@@ -1,5 +1,8 @@
 <template>
-    <router-view :key="$route.path"></router-view>
+    <div>
+        <h1>가나다라마바사</h1>
+        <router-view></router-view>
+    </div>
 </template>
 
 <script>

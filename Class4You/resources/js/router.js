@@ -1,10 +1,11 @@
 import { createWebHistory, createRouter } from 'vue-router';
+import AppComponent from '../components/AppComponent.vue';
 import store from './store';
 
 const routes = [
     {
         path: '/',
-        redirect: '/',
+        component: AppComponent,
     },
 ];
 
