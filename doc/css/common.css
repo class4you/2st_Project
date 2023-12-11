@@ -101,7 +101,7 @@ hr {
 }
 
 header {
-    height: 100px;
+    height: 80px;
     padding: 0 10vw;
 }
 
@@ -211,8 +211,8 @@ footer {
     height: 150px;
     background-color: #2E2E2E;
     padding: 0 10vw;
-    /* position:absolute;
-	bottom:0px; */
+    position:relative;
+	bottom: 0;
 }
 
 
@@ -655,6 +655,7 @@ footer {
 
 .regist_table label {
     line-height: 20px;
+    text-transform: uppercase;
 }
 
 th, td {
@@ -675,8 +676,17 @@ th:last-child, td:last-child {
 }
 
 .regist_table input {
-    width: 100%;
+    width: 90%;
     padding: 8px;
+}
+
+.phone_select_box {
+    border: 1px solid #83838360;
+    width: 25%;
+    padding: 8px;
+}
+.phone_input_box {
+    width: 30.5% !important;
 }
 
 .error_message {
@@ -705,6 +715,5 @@ th:last-child, td:last-child {
     }
     
 }
-
 
 /* ============================================================================================= */ 

@@ -54,8 +54,6 @@
                             <span>1. 이용약관 동의</span>
                             <span class="ml_10">></span>
                             <span class="ml_10"><strong>2. 계정정보 입력</strong></span>
-                            <span class="ml_10">></span>
-                            <span class="ml_10">3. 회원가입 완료</span>
                         </div>
 
                         <table class="regist_table">
@@ -94,14 +92,32 @@
                             <tr>
                                 <th><label for="phone_number">phone number</label><span style="color: red;">*</span></th>
                                 <td>
-                                    <input type="password" id="phone_number">
+                                    <select class="phone_select_box" name="" id="">
+                                        <option value="010">010</option>
+                                        <option value="011">011</option>
+                                        <option value="016">016</option>
+                                        <option value="017">017</option>
+                                        <option value="018">018</option>
+                                        <option value="019">019</option>
+                                    </select>
+                                    -
+                                    <input class="phone_input_box" type="password" id="phone_number">
+                                    -
+                                    <input class="phone_input_box" type="password" id="phone_number">
                                     <div class="error_message"></div>
                                 </td>
                             </tr>
                             <tr>
                                 <th><label for="birth_date">birth date</label><span style="color: red;">*</span></th>
                                 <td>
-                                    <input type="password" id="birth_date">
+                                    <input type="date" id="birth_date">
+                                    <div class="error_message"></div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th><label for="address">Address</label><span style="color: red;">*</span></th>
+                                <td>
+                                    <input type="text" id="address">
                                     <div class="error_message"></div>
                                 </td>
                             </tr>
