@@ -29,6 +29,8 @@
                     <li><a href="">신규 강의</a></li>
                     <li><a href="">|</a></li>
                     <li><a href="">커뮤니티</a></li>
+                    <p v-if="userSession">Hello, {{ userSession.name }}!</p>
+                    <p v-else>Please log in to continue.</p>
                 </ul>
                 <h1>
                     <a href="/">
@@ -85,7 +87,7 @@ export default {
 
     data() {
         return {
-            loginShowModal: false,
+            // loginShowModal: false,
 
             frmUserLoginData: {
                 UserEmail: '',
@@ -93,12 +95,25 @@ export default {
             },
         }
     },
+    props: {
+        userSession: {
+            type: Object,
+            default: null,
+        },
+    },
+
+    computed: {
+        loginShowModal() {
+            return this.$store.state.loginShowModal;
+        },
+    },
+
     methods: {
         loginOpenModal() {
-            this.loginShowModal = true;
+            this.$store.commit('setOpenLoginModal');
         }, 
         loginCloseModal() {
-            this.loginShowModal = false;
+            this.$store.commit('setCloseLoginModal');
         },
         submitUserLoginData() {
             this.$store.dispatch('submitUserLoginData', this.frmUserLoginData);

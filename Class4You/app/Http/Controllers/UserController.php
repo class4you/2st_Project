@@ -55,10 +55,8 @@ class UserController extends Controller
             session(['user' => Auth::user()]);
 
             return response()->json([
-                // 'user_id' => $userId,
                 'success' => true,
                 'message' => '로그인이 성공적으로 수행되었습니다.',
-                // 'cookie' => $token,
             ]);
 
         } else {

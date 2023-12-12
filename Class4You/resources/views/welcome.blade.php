@@ -11,7 +11,7 @@
 <body>
     <div id="app">
         <Header-Component></Header-Component>
-        <App-Component></App-Component>
+        <App-Component :user-session="{{ json_encode(session('user')) }}"></App-Component>
         <Footer-Component></Footer-Component>
     </div>
 </body>

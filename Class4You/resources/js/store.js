@@ -20,6 +20,7 @@ const store = createStore({
                 UserTermsofUse: '',
                 UserPrivacy: '',
             },
+            loginShowModal: false,
         }
     },
 
@@ -29,10 +30,22 @@ const store = createStore({
         setRegistrationErrorMessage(state, error) {
             state.RegistrationErrorMessage = error;
         },
+        setOpenLoginModal(state) {
+            state.loginShowModal = true;
+        },
+        setCloseLoginModal(state) {
+            state.loginShowModal = false;
+        },
     },
 
     // actions : ajax로 서버에 데이터를 요청할 때나 시간 함수등 비동기 처리는 actions에 정의
     actions: {
+        openLoginModal({ commit }) {
+            commit('setOpenLoginModal');
+        },
+        closeLoginModal({ commit }) {
+            commit('setCloseLoginModal');
+        },
         submitUserData(context, data) {
             const url = '/api/registration'
             const header = {
@@ -87,8 +100,7 @@ const store = createStore({
             .then(res => { 
                 console.log(res);
                 if (res.data.success) {
-                    router.push('/'); 
-                    // window.location.href = '/';
+                    // router.push('/'); 
                 } else {
                     console.log(err.response.data.errors)
                 }
@@ -96,6 +108,9 @@ const store = createStore({
             .catch(err => {
                 console.log(err.response.data)
                 // context.commit('setErrorData', err.response.data.errors)
+            })
+            .finally(() => {
+                context.dispatch('closeLoginModal');
             })
         },
     }, 
