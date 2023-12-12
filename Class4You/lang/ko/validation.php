@@ -130,6 +130,15 @@ return [
         'user_id' => '아이디',
         'phone_number' => '전화번호',
         'birthdate' => '생일',
+        'UserEmail' => '이메일'
+        ,'UserPassword' => '패스워드'
+        ,'UserPasswordChk' => '패스워드 체크'
+        ,'UserName' => '이름'
+        ,'UserPhoneNumber' => '휴대폰 번호'
+        ,'UserBirthDate' => '생년월일'
+        ,'UserAddress' => '주소'
+        ,'UserTermsofUse' => '이용약관'
+        ,'UserPrivacy' => '개인정보'
 
 //        'use'=> '제품용도',
 //        'size'=> '제품규격',

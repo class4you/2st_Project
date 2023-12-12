@@ -25,6 +25,7 @@
                                     <div class="regist_content_box_l_checkbox">
                                         <input type="checkbox" name="UserTermsofUse" v-model="frmUserData.UserTermsofUse" @change="handleSelectSingle">
                                         <label for="" style="line-height: 15px;">이용약관 동의 (필수)</label>
+                                        <label for="" style="line-height: 15px; color: red; margin-left: 10px;">{{ errors.UserTermsofUse }}</label>
                                     </div>
                                     <div class="regist_content_box_l_terms">
                                         <h3><strong>Class 4 You 이용약관</strong></h3>
@@ -102,6 +103,7 @@
                                     <div class="regist_content_box_r_checkbox">
                                         <input type="checkbox" name="UserUserPrivacy" v-model="frmUserData.UserPrivacy" @change="handleSelectSingle">
                                         <label for="" style="line-height: 15px;">개인정보처리방침 동의 (필수)</label>
+                                        <label for="" style="line-height: 15px; color: red; margin-left: 10px;">{{ errors.UserPrivacy }}</label>
                                     </div>
                                     <div class="regist_content_box_r_terms">
                                         <h3><strong>Class 4 You 개인정보처리방침</strong></h3>
@@ -173,7 +175,7 @@
 
                             <div class="regist_button">
                                 <button class="regist_button_cancel">CANCEL</button>
-                                <button class="regist_button_next" type="button" @click="regiflg1=true; regiflg2=false;">NEXT</button>
+                                <button class="regist_button_next" type="button" @click="moveToNext">NEXT</button>
                             </div>
                         </div>
                     </div>
@@ -201,35 +203,43 @@
                             <tr>
                                 <th><label for="email">email</label><span style="color: red;">*</span></th>
                                 <td>
-                                    <input type="text" id="email" name="UserEmail" v-model="frmUserData.UserEmail">
-                                    <div class="error_message"></div>
+                                    <input type="text" id="email" name="UserEmail" v-model="frmUserData.UserEmail" @input="validateUserEmail" placeholder="이메일을 입력해주세요">
+                                    <div class="error_message" v-if="$store.state.RegistrationErrorMessage.UserEmail">{{ $store.state.RegistrationErrorMessage.UserEmail }}</div>
+                                    <div class="error_message" v-if="errors.UserEmail">{{ errors.UserEmail }}</div>
+                                    <div class="success_message" v-if="!errors.UserEmail && frmUserData.UserEmail"> 유효한 이메일입니다. </div>
                                 </td>
                             </tr>
                             <tr>
                                 <th><label for="password">password</label><span style="color: red;">*</span></th>
                                 <td>
-                                    <input type="password" id="password" name="UserPassword" v-model="frmUserData.Password">
-                                    <div class="error_message"></div>
+                                    <input type="password" id="password" name="UserPassword" v-model="frmUserData.UserPassword" @input="validateUserPassword" placeholder="영대소문자,숫자,특수문자(!@#)를 포함한 8~17자" minlength="8" maxlength="17">
+                                    <div class="error_message" v-if="$store.state.RegistrationErrorMessage.UserPassword">{{ $store.state.RegistrationErrorMessage.UserPassword }}</div>
+                                    <div class="error_message" v-if="errors.UserPassword">{{ errors.UserPassword }}</div>
+                                    <div class="success_message" v-if="!errors.UserPassword && frmUserData.UserPassword"> 유효한 비밀번호입니다. </div>
                                 </td>
                             </tr>
                             <tr>
                                 <th><label for="password_chk">password chk</label><span style="color: red;">*</span></th>
                                 <td>
-                                    <input type="password" id="password_chk" name="UserPasswordChk" v-model="frmUserData.PasswordChk">
-                                    <div class="error_message"></div>
+                                    <input type="password" id="password_chk" name="UserPasswordChk" v-model="frmUserData.UserPasswordChk" @input="validateUserPasswordChk" placeholder="영대소문자,숫자,특수문자(!@#)를 포함한 8~17자" minlength="8" maxlength="17">
+                                    <div class="error_message" v-if="$store.state.RegistrationErrorMessage.UserPasswordChk">{{ $store.state.RegistrationErrorMessage.UserPasswordChk }}</div>
+                                    <div class="error_message" v-if="errors.UserPasswordChk"> {{ errors.UserPasswordChk }}</div>
+                                    <div class="success_message" v-if="!errors.UserPasswordChk && frmUserData.UserPasswordChk"> 입력한 비밀번호와 일치합니다. </div>
                                 </td>
                             </tr>
                             <tr>
                                 <th><label for="name">name</label><span style="color: red;">*</span></th>
                                 <td>
-                                    <input type="text" id="name" name="UserName" v-model="frmUserData.UserName">
-                                    <div class="error_message"></div>
+                                    <input type="text" id="name" name="UserName" v-model="frmUserData.UserName" @input="validateUserName" placeholder="최소 2글자 이상" minlength="2" maxlength="50">
+                                    <div class="error_message" v-if="$store.state.RegistrationErrorMessage.UserName">{{ $store.state.RegistrationErrorMessage.UserName }}</div>
+                                    <div class="error_message" v-if="errors.UserName">{{ errors.UserName }}</div>
+                                    <div class="success_message" v-if="!errors.UserName && frmUserData.UserName"></div>
                                 </td>
                             </tr>
                             <tr>
                                 <th><label for="phone_number">phone number</label><span style="color: red;">*</span></th>
                                 <td>
-                                    <select class="phone_select_box" id="" name="PhoneNumber" v-model="frmUserData.PhoneNumber1">
+                                    <select class="phone_select_box" id="PhoneNumber1" name="PhoneNumber1" v-model="frmUserData.UserPhoneNumber1">
                                         <option value="010">010</option>
                                         <option value="011">011</option>
                                         <option value="016">016</option>
@@ -238,24 +248,28 @@
                                         <option value="019">019</option>
                                     </select>
                                     -
-                                    <input class="phone_input_box" type="text" id="phone_number" name="PhoneNumber" v-model="frmUserData.PhoneNumber2">
+                                    <input class="phone_input_box" type="text" id="PhoneNumber2" name="PhoneNumber2" v-model="frmUserData.UserPhoneNumber2">
                                     -
-                                    <input class="phone_input_box" type="text" id="phone_number" name="PhoneNumber" v-model="frmUserData.PhoneNumber3">
+                                    <input class="phone_input_box" type="text" id="PhoneNumber3" name="PhoneNumber3" v-model="frmUserData.UserPhoneNumber3">
+                                    <div class="error_message" v-if="$store.state.RegistrationErrorMessage.UserPhoneNumber">{{ $store.state.RegistrationErrorMessage.UserPhoneNumber }}</div>
                                     <div class="error_message"></div>
                                 </td>
                             </tr>
                             <tr>
                                 <th><label for="birth_date">birth date</label><span style="color: red;">*</span></th>
                                 <td>
-                                    <input type="date" id="birth_date" name="UserBirthDate" v-model="frmUserData.UserBirthDate">
-                                    <div class="error_message"></div>
+                                    <input type="date" id="birth_date" name="UserBirthDate" v-model="frmUserData.UserBirthDate" @input="validateUserBirthDate">
+                                    <div class="error_message" v-if="$store.state.RegistrationErrorMessage.UserBirthDate">{{ $store.state.RegistrationErrorMessage.UserBirthDate }}</div>
+                                    <div class="error_message" v-if="errors.UserBirthDate">{{ errors.UserBirthDate }}</div>
+                                    <div class="success_message" v-if="!errors.UserBirthDate && frmUserData.UserBirthDate"></div>
                                 </td>
                             </tr>
                             <tr>
                                 <th><label for="address">Address</label><span style="color: red;">*</span></th>
                                 <td>
-                                    <input type="text" id="address" name="UserAddress" v-model="frmUserData.Address">
-                                    <div class="error_message"></div>
+                                    <input type="text" id="address" name="UserAddress" v-model="frmUserData.UserAddress" @input="validateuserAddress" minlength="2" maxlength="255">
+                                    <div class="error_message" v-if="$store.state.RegistrationErrorMessage.UserAddress">{{ $store.state.RegistrationErrorMessage.UserAddress }}</div>
+                                    <div class="error_message" v-if="errors.UserAddress">{{ errors.UserAddress }}</div>
                                 </td>
                             </tr>
                         </table>
@@ -264,7 +278,7 @@
                             <button class="regist_button_cancel" type="button" @click="regiflg1=false; regiflg2=true;">PREV</button>
                             <button class="regist_button_next" type="button" @click="submitUserData()">SIGN UP</button>
                         </div>
-                       
+
                     </div>
                 </div>
             </main>
@@ -280,6 +294,8 @@ export default {
             regiflg1: false,
             regiflg2: true,
 
+            selectAll: false,
+
             frmUserData: {
                 UserEmail: '',
                 UserPassword: '',
@@ -292,7 +308,11 @@ export default {
                 UserAddress: '',
                 UserTermsofUse: '',
                 UserPrivacy: '',
+                UserTermsofUse: '',
+                UserPrivacy: '',
             },
+
+            errors: {},
         }
     },
     methods: {
@@ -307,14 +327,68 @@ export default {
             }
         },
         handleSelectSingle() {
-            if (this.frmUserData.UserTermsofUse || this.frmUserData.UserPrivacy) {
+            if (this.frmUserData.UserTermsofUse && this.frmUserData.UserPrivacy) {
                 this.selectAll = true;
-            } else if (this.frmUserData.UserTermsofUse === false && this.frmUserData.UserPrivacy === false) {
+            } else {
                 this.selectAll = false;
             }
         },
         submitUserData() {
             this.$store.dispatch('submitUserData', this.frmUserData);
+        },
+        validateUserEmail() {
+            if (!this.frmUserData.UserEmail.match(/^\S+@\S+\.\S+$/)) {
+                this.errors.UserEmail = '이메일 양식이 맞지 않습니다.';
+            } else {
+                this.errors.UserEmail = '';
+            }
+        },
+        validateUserPassword() {
+            if (!this.frmUserData.UserPassword.match(/^(?=.*[a-zA-Z])(?=.*[!@#]).+$/)) {
+                this.errors.UserPassword = '패스워드 양식이 맞지 않습니다.';
+            } else {
+                this.errors.UserPassword = '';
+            }
+        },
+        validateUserPasswordChk() {
+            if (this.frmUserData.UserPasswordChk !== this.frmUserData.UserPassword) {
+                this.errors.UserPasswordChk = '입력한 패스워드와 일치하지 않습니다.';
+            } else {
+                this.errors.UserPasswordChk = '';
+            }
+        },
+        validateUserName() {
+            if (!this.frmUserData.UserName.match(/^[a-zA-Z가-힣 ]+$/)) {
+                this.errors.UserName = '이름을 다시 한 번 확인해주세요.';
+            } else {
+                this.errors.UserName = '';
+            }
+        },
+        validateUserBirthDate() {
+            if (!this.frmUserData.UserBirthDate.match(/^\d{4}-\d{2}-\d{2}$/)) {
+                this.errors.UserBirthDate = '생년월일을 다시 한 번 확인해주세요.';
+            } else {
+                this.errors.UserBirthDate = '';
+            }
+        },
+        moveToNext() {
+            if(!this.frmUserData.UserTermsofUse) {
+                this.errors.UserTermsofUse = '이용약관 동의는 필수사항입니다.'
+            } else {
+                this.errors.UserTermsofUse = ''
+            }
+
+            if(!this.frmUserData.UserPrivacy) {
+                this.errors.UserPrivacy = '개인정보 동의는 필수사항입니다.'
+            } else {
+                this.errors.UserPrivacy = ''
+            }
+
+            if (this.frmUserData.UserTermsofUse && this.frmUserData.UserPrivacy) {
+                // 이동 로직 구현
+                this.regiflg1 = true;
+                this.regiflg2 = false;
+            }
         },
     }
 }

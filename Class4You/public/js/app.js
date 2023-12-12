@@ -19443,13 +19443,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
+function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return _typeof(key) === "symbol" ? key : String(key); }
+function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (_typeof(res) !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: 'RegistrationComponent',
   data: function data() {
     return {
       regiflg1: false,
       regiflg2: true,
-      frmUserData: {
+      selectAll: false,
+      frmUserData: _defineProperty(_defineProperty({
         UserEmail: '',
         UserPassword: '',
         UserPasswordChk: '',
@@ -19461,7 +19466,8 @@ __webpack_require__.r(__webpack_exports__);
         UserAddress: '',
         UserTermsofUse: '',
         UserPrivacy: ''
-      }
+      }, "UserTermsofUse", ''), "UserPrivacy", ''),
+      errors: {}
     };
   },
   methods: {
@@ -19476,14 +19482,66 @@ __webpack_require__.r(__webpack_exports__);
       }
     },
     handleSelectSingle: function handleSelectSingle() {
-      if (this.frmUserData.UserTermsofUse || this.frmUserData.UserPrivacy) {
+      if (this.frmUserData.UserTermsofUse && this.frmUserData.UserPrivacy) {
         this.selectAll = true;
-      } else if (this.frmUserData.UserTermsofUse === false && this.frmUserData.UserPrivacy === false) {
+      } else {
         this.selectAll = false;
       }
     },
     submitUserData: function submitUserData() {
       this.$store.dispatch('submitUserData', this.frmUserData);
+    },
+    validateUserEmail: function validateUserEmail() {
+      if (!this.frmUserData.UserEmail.match(/^\S+@\S+\.\S+$/)) {
+        this.errors.UserEmail = '이메일 양식이 맞지 않습니다.';
+      } else {
+        this.errors.UserEmail = '';
+      }
+    },
+    validateUserPassword: function validateUserPassword() {
+      if (!this.frmUserData.UserPassword.match(/^(?=.*[a-zA-Z])(?=.*[!@#]).+$/)) {
+        this.errors.UserPassword = '패스워드 양식이 맞지 않습니다.';
+      } else {
+        this.errors.UserPassword = '';
+      }
+    },
+    validateUserPasswordChk: function validateUserPasswordChk() {
+      if (this.frmUserData.UserPasswordChk !== this.frmUserData.UserPassword) {
+        this.errors.UserPasswordChk = '입력한 패스워드와 일치하지 않습니다.';
+      } else {
+        this.errors.UserPasswordChk = '';
+      }
+    },
+    validateUserName: function validateUserName() {
+      if (!this.frmUserData.UserName.match(/^[a-zA-Z가-힣 ]+$/)) {
+        this.errors.UserName = '이름을 다시 한 번 확인해주세요.';
+      } else {
+        this.errors.UserName = '';
+      }
+    },
+    validateUserBirthDate: function validateUserBirthDate() {
+      if (!this.frmUserData.UserBirthDate.match(/^\d{4}-\d{2}-\d{2}$/)) {
+        this.errors.UserBirthDate = '생년월일을 다시 한 번 확인해주세요.';
+      } else {
+        this.errors.UserBirthDate = '';
+      }
+    },
+    moveToNext: function moveToNext() {
+      if (!this.frmUserData.UserTermsofUse) {
+        this.errors.UserTermsofUse = '이용약관 동의는 필수사항입니다.';
+      } else {
+        this.errors.UserTermsofUse = '';
+      }
+      if (!this.frmUserData.UserPrivacy) {
+        this.errors.UserPrivacy = '개인정보 동의는 필수사항입니다.';
+      } else {
+        this.errors.UserPrivacy = '';
+      }
+      if (this.frmUserData.UserTermsofUse && this.frmUserData.UserPrivacy) {
+        // 이동 로직 구현
+        this.regiflg1 = true;
+        this.regiflg2 = false;
+      }
     }
   }
 });
@@ -19504,9 +19562,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-  var _component_Main_Component = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Main-Component");
   var _component_router_view = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("router-view");
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Main_Component), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_view)]);
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <Main-Component></Main-Component> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_view)]);
 }
 
 /***/ }),
@@ -19545,10 +19602,50 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 
-var _hoisted_1 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div id=\"top_banner\" class=\"top_banner\"><div class=\"desc\"><ul id=\"list_txt\" class=\"list_txt\"><li><a href=\"\">새로운 온라인 클래스 STUDY 4 YOU 개설</a></li><li></li><li></li><li></li><li></li></ul></div></div><header id=\"header\"><div class=\"navigation\"><ul class=\"nav_left side_nav\"><li><a href=\"\" class=\"menu_btn\"><img src=\"/img/menu.png\" alt=\"\">전체 강의</a><ul class=\"dropdown\"><li><a href=\"#\">HTML</a></li><li><a href=\"#\">CSS</a></li><li><a href=\"#\">Java Script</a></li><li><a href=\"#\">PHP</a></li><li><a href=\"#\">MariaDB</a></li><!-- 필요한 만큼 강의 항목을 추가 --></ul></li><li><a href=\"\">추천 강의</a></li><li><a href=\"\">신규 강의</a></li><li><a href=\"\">|</a></li><li><a href=\"\">커뮤니티</a></li></ul><h1><a href=\"\"><img src=\"/img/v2_14378e7f2adb0ec0ad8cddaaf3b0fbdd_0DXltiM6xt_top.jpg\" alt=\"\"></a></h1><div class=\"side_nav\"><a href=\"\">SIGN UP</a><a href=\"\">LOGIN</a><div class=\"search_box\"><input type=\"text\" placeholder=\"SEARCH\"><button><img src=\"/img/SEARCH.png\" alt=\"\"></button></div></div></div></header><hr>", 3);
-var _hoisted_4 = [_hoisted_1];
+var _hoisted_1 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+  id: "top_banner",
+  "class": "top_banner"
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+  "class": "desc"
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("ul", {
+  id: "list_txt",
+  "class": "list_txt"
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
+  href: ""
+}, "새로운 온라인 클래스 STUDY 4 YOU 개설")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li")])])], -1 /* HOISTED */);
+var _hoisted_2 = {
+  id: "header"
+};
+var _hoisted_3 = {
+  "class": "navigation"
+};
+var _hoisted_4 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<ul class=\"nav_left side_nav\"><li><a href=\"\" class=\"menu_btn\"><img src=\"/img/menu.png\" alt=\"\">전체 강의</a><ul class=\"dropdown\"><li><a href=\"#\">HTML</a></li><li><a href=\"#\">CSS</a></li><li><a href=\"#\">Java Script</a></li><li><a href=\"#\">PHP</a></li><li><a href=\"#\">MariaDB</a></li><!-- 필요한 만큼 강의 항목을 추가 --></ul></li><li><a href=\"\">추천 강의</a></li><li><a href=\"\">신규 강의</a></li><li><a href=\"\">|</a></li><li><a href=\"\">커뮤니티</a></li></ul><h1><a href=\"/\"><img src=\"/img/v2_14378e7f2adb0ec0ad8cddaaf3b0fbdd_0DXltiM6xt_top.jpg\" alt=\"\"></a></h1>", 2);
+var _hoisted_6 = {
+  "class": "side_nav"
+};
+var _hoisted_7 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
+  href: ""
+}, "LOGIN", -1 /* HOISTED */);
+var _hoisted_8 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+  "class": "search_box"
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+  type: "text",
+  placeholder: "SEARCH"
+}), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
+  src: "/img/SEARCH.png",
+  alt: ""
+})])], -1 /* HOISTED */);
+var _hoisted_9 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("hr", null, null, -1 /* HOISTED */);
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", null, [].concat(_hoisted_4));
+  var _component_router_link = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("router-link");
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", null, [_hoisted_1, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("header", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [_hoisted_4, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
+    to: "/registration"
+  }, {
+    "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("SIGN UP")];
+    }),
+    _: 1 /* STABLE */
+  }), _hoisted_7, _hoisted_8])])]), _hoisted_9]);
 }
 
 /***/ }),
@@ -19633,46 +19730,62 @@ var _hoisted_12 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
     "line-height": "15px"
   }
 }, "이용약관 동의 (필수)", -1 /* HOISTED */);
-var _hoisted_13 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"regist_content_box_l_terms\"><h3><strong>Class 4 You 이용약관</strong></h3><br><p> &quot;제 1장 총칙&quot; </p><br><p><strong>제1조(목적)</strong><br> 1. 이 이용약관은 Class 4 You(이하 &#39;회사&#39;라 함)에서 제공하는 온라인 클래스 서비스(이하 &#39;서비스&#39;라 함)를 이용함에 있어 회사와 이용자 간의 권리, 의무 및 책임사항을 규정함을 목적으로 합니다. <br> 2. 회사는 본 약관의 내용을 이용자에게 미리 고지하고, 변경이 있는 경우 변경된 약관을 최소 7일 이전에 홈페이지를 통해 공지합니다. </p><br><p><strong>제2조(약관의 효력과 변경)</strong><br> 1. 이 약관은 회사의 홈페이지에 게시함으로써 효력을 발생합니다. <br> 2. 회사는 필요한 경우 관련 법령을 준수하며 본 약관을 변경할 수 있습니다. 변경된 약관은 홈페이지에 게시함으로써 효력을 발생합니다. </p><br><p><strong>제3조(서비스의 종류)</strong><br> 회사는 다음과 같은 서비스를 제공합니다. <br> 1. 온라인 수업 예약 및 수강 서비스 <br> 2. 커뮤니티 및 토론 참여 서비스 </p><br><p><strong>제4조(이용자의 의무)</strong><br> 1. 이용자는 본 약관 및 관련 법령을 준수하여 서비스를 이용해야 합니다. <br> 2. 이용자는 회사의 시스템을 이용하여 얻은 정보를 무단으로 복제, 변경, 배포할 수 없습니다. </p><br><p><strong>제5조(서비스 이용료 및 결제)</strong><br> 1. 서비스 이용에 대한 이용료는 회사의 공지나 고지에 따라 정해집니다. <br> 2. 이용자는 서비스 이용료를 회사가 지정한 방법으로 지불해야 합니다. </p><br><p><strong>제6조(개인정보의 보호)</strong><br> 1. 회사는 이용자의 개인정보를 보호하기 위해 최선을 다하며, 개인정보 처리에 관한 사항은 개인정보 처리방침에서 정합니다. </p><br><p><strong>제7조(서비스 이용의 제한과 중지)</strong><br> 1. 회사는 이용자가 본 약관의 의무를 위반하는 경우, 서비스 이용을 제한하거나 중지할 수 있습니다. <br> 2. 서비스 이용이 제한되거나 중지된 경우, 이용자는 그 사유를 확인하고 이의를 제기할 수 있습니다. </p><br><p><strong>제8조(면책조항)</strong><br> 1. 회사는 천재지변, 정전, 서비스 설비의 장애 또는 기타 불가항력적인 사유로 인해 서비스를 제공할 수 없는 경우, 이로 인한 손해에 대해 책임을 지지 않습니다. </p></div>", 1);
-var _hoisted_14 = {
+var _hoisted_13 = {
+  "for": "",
+  style: {
+    "line-height": "15px",
+    "color": "red",
+    "margin-left": "10px"
+  }
+};
+var _hoisted_14 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"regist_content_box_l_terms\"><h3><strong>Class 4 You 이용약관</strong></h3><br><p> &quot;제 1장 총칙&quot; </p><br><p><strong>제1조(목적)</strong><br> 1. 이 이용약관은 Class 4 You(이하 &#39;회사&#39;라 함)에서 제공하는 온라인 클래스 서비스(이하 &#39;서비스&#39;라 함)를 이용함에 있어 회사와 이용자 간의 권리, 의무 및 책임사항을 규정함을 목적으로 합니다. <br> 2. 회사는 본 약관의 내용을 이용자에게 미리 고지하고, 변경이 있는 경우 변경된 약관을 최소 7일 이전에 홈페이지를 통해 공지합니다. </p><br><p><strong>제2조(약관의 효력과 변경)</strong><br> 1. 이 약관은 회사의 홈페이지에 게시함으로써 효력을 발생합니다. <br> 2. 회사는 필요한 경우 관련 법령을 준수하며 본 약관을 변경할 수 있습니다. 변경된 약관은 홈페이지에 게시함으로써 효력을 발생합니다. </p><br><p><strong>제3조(서비스의 종류)</strong><br> 회사는 다음과 같은 서비스를 제공합니다. <br> 1. 온라인 수업 예약 및 수강 서비스 <br> 2. 커뮤니티 및 토론 참여 서비스 </p><br><p><strong>제4조(이용자의 의무)</strong><br> 1. 이용자는 본 약관 및 관련 법령을 준수하여 서비스를 이용해야 합니다. <br> 2. 이용자는 회사의 시스템을 이용하여 얻은 정보를 무단으로 복제, 변경, 배포할 수 없습니다. </p><br><p><strong>제5조(서비스 이용료 및 결제)</strong><br> 1. 서비스 이용에 대한 이용료는 회사의 공지나 고지에 따라 정해집니다. <br> 2. 이용자는 서비스 이용료를 회사가 지정한 방법으로 지불해야 합니다. </p><br><p><strong>제6조(개인정보의 보호)</strong><br> 1. 회사는 이용자의 개인정보를 보호하기 위해 최선을 다하며, 개인정보 처리에 관한 사항은 개인정보 처리방침에서 정합니다. </p><br><p><strong>제7조(서비스 이용의 제한과 중지)</strong><br> 1. 회사는 이용자가 본 약관의 의무를 위반하는 경우, 서비스 이용을 제한하거나 중지할 수 있습니다. <br> 2. 서비스 이용이 제한되거나 중지된 경우, 이용자는 그 사유를 확인하고 이의를 제기할 수 있습니다. </p><br><p><strong>제8조(면책조항)</strong><br> 1. 회사는 천재지변, 정전, 서비스 설비의 장애 또는 기타 불가항력적인 사유로 인해 서비스를 제공할 수 없는 경우, 이로 인한 손해에 대해 책임을 지지 않습니다. </p></div>", 1);
+var _hoisted_15 = {
   "class": "regist_content_box_r"
 };
-var _hoisted_15 = {
+var _hoisted_16 = {
   "class": "regist_content_box_r_checkbox"
 };
-var _hoisted_16 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
+var _hoisted_17 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
   "for": "",
   style: {
     "line-height": "15px"
   }
 }, "개인정보처리방침 동의 (필수)", -1 /* HOISTED */);
-var _hoisted_17 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"regist_content_box_r_terms\"><h3><strong>Class 4 You 개인정보처리방침</strong></h3><br><p> &quot;제 1장 개인정보의 처리 목적&quot; </p><br><p><strong>제1조(개인정보의 수집 및 이용 목적)</strong><br> 1. 회사는 이용자의 개인정보를 다음과 같은 목적으로 수집 및 이용합니다. <br> 1) 서비스 제공에 관한 계약 이행 <br> 2) 이용자 식별 및 본인 확인 <br> 3) 회원 관리 </p><br><p><strong>제2조(수집하는 개인정보의 항목)</strong><br> 1. 회사는 다음과 같은 개인정보를 수집할 수 있습니다. <br> 1) 필수 항목: 이메일 주소, 이름, 연락처 <br> 2) 선택 항목: 주소, 성별, 생년월일 등 </p><br><p><strong>제3조(개인정보의 보유 및 이용 기간)</strong><br> 1. 회사는 이용자의 개인정보를 수집 및 이용 목적이 달성된 후에는 지체 없이 파기합니다. </p><br><p><strong>제4조(개인정보의 처리 및 보유 기간)</strong><br> 1. 회사는 이용자의 개인정보를 수집한 목적이 달성되면 지체 없이 파기합니다. 다만, 관련 법령에 따라 일정 기간 동안 보존할 필요가 있는 경우에는 해당 기간 동안 보관하며, 그 외의 경우에는 지체 없이 파기합니다. <br> 2. 이용자가 회원탈퇴를 요청한 경우에도, 회사는 해당 회원의 개인정보를 처리 및 보유할 의무가 없습니다. </p><br><p><strong>제5조(개인정보의 안전성 확보 조치)</strong><br> 1. 회사는 개인정보보호법 제29조에 따라 다음과 같이 안전성 확보에 필요한 기술적, 관리적, 물리적 조치를 하고 있습니다. <br> 1) 개인정보 암호화: 이용자의 개인정보는 암호화되어 저장 및 관리됩니다. <br> 2) 접근 제한: 개인정보를 처리하는 데이터베이스시스템에 대한 접근 권한을 최소한으로 제한하고 있습니다. </p><br><p><strong>제6조(개인정보의 파기 절차)</strong><br> 1. 회사는 개인정보 보유기간의 경과, 처리목적 달성 등 개인정보가 불필요하게 되었을 때에는 지체 없이 해당 정보를 파기합니다. <br> 2. 파기 절차는 다음과 같습니다. <br> 1) 파기 대상: 이용자가 회원탈퇴를 요청한 경우, 수집한 개인정보 <br> 2) 파기 방법: 전자적 파일 형태의 정보는 기록을 재생할 수 없는 기술적 방법을 사용하여 파기하며, 종이에 출력된 개인정보는 분쇄기로 분쇄하거나 소각하여 파기합니다. </p></div>", 1);
 var _hoisted_18 = {
+  "for": "",
+  style: {
+    "line-height": "15px",
+    "color": "red",
+    "margin-left": "10px"
+  }
+};
+var _hoisted_19 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"regist_content_box_r_terms\"><h3><strong>Class 4 You 개인정보처리방침</strong></h3><br><p> &quot;제 1장 개인정보의 처리 목적&quot; </p><br><p><strong>제1조(개인정보의 수집 및 이용 목적)</strong><br> 1. 회사는 이용자의 개인정보를 다음과 같은 목적으로 수집 및 이용합니다. <br> 1) 서비스 제공에 관한 계약 이행 <br> 2) 이용자 식별 및 본인 확인 <br> 3) 회원 관리 </p><br><p><strong>제2조(수집하는 개인정보의 항목)</strong><br> 1. 회사는 다음과 같은 개인정보를 수집할 수 있습니다. <br> 1) 필수 항목: 이메일 주소, 이름, 연락처 <br> 2) 선택 항목: 주소, 성별, 생년월일 등 </p><br><p><strong>제3조(개인정보의 보유 및 이용 기간)</strong><br> 1. 회사는 이용자의 개인정보를 수집 및 이용 목적이 달성된 후에는 지체 없이 파기합니다. </p><br><p><strong>제4조(개인정보의 처리 및 보유 기간)</strong><br> 1. 회사는 이용자의 개인정보를 수집한 목적이 달성되면 지체 없이 파기합니다. 다만, 관련 법령에 따라 일정 기간 동안 보존할 필요가 있는 경우에는 해당 기간 동안 보관하며, 그 외의 경우에는 지체 없이 파기합니다. <br> 2. 이용자가 회원탈퇴를 요청한 경우에도, 회사는 해당 회원의 개인정보를 처리 및 보유할 의무가 없습니다. </p><br><p><strong>제5조(개인정보의 안전성 확보 조치)</strong><br> 1. 회사는 개인정보보호법 제29조에 따라 다음과 같이 안전성 확보에 필요한 기술적, 관리적, 물리적 조치를 하고 있습니다. <br> 1) 개인정보 암호화: 이용자의 개인정보는 암호화되어 저장 및 관리됩니다. <br> 2) 접근 제한: 개인정보를 처리하는 데이터베이스시스템에 대한 접근 권한을 최소한으로 제한하고 있습니다. </p><br><p><strong>제6조(개인정보의 파기 절차)</strong><br> 1. 회사는 개인정보 보유기간의 경과, 처리목적 달성 등 개인정보가 불필요하게 되었을 때에는 지체 없이 해당 정보를 파기합니다. <br> 2. 파기 절차는 다음과 같습니다. <br> 1) 파기 대상: 이용자가 회원탈퇴를 요청한 경우, 수집한 개인정보 <br> 2) 파기 방법: 전자적 파일 형태의 정보는 기록을 재생할 수 없는 기술적 방법을 사용하여 파기하며, 종이에 출력된 개인정보는 분쇄기로 분쇄하거나 소각하여 파기합니다. </p></div>", 1);
+var _hoisted_20 = {
   "class": "regist_button"
 };
-var _hoisted_19 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+var _hoisted_21 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
   "class": "regist_button_cancel"
 }, "CANCEL", -1 /* HOISTED */);
-var _hoisted_20 = {
+var _hoisted_22 = {
   "class": "contents"
 };
-var _hoisted_21 = {
+var _hoisted_23 = {
   "class": "regist_mrap"
 };
-var _hoisted_22 = {
+var _hoisted_24 = {
   "class": "regist_title_box"
 };
-var _hoisted_23 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+var _hoisted_25 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "regist_title"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", null, "정보입력"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "1. 이용약관 동의"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
   "class": "ml_10"
 }, ">"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
   "class": "ml_10"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("strong", null, "2. 계정정보 입력")])], -1 /* HOISTED */);
-var _hoisted_24 = {
+var _hoisted_26 = {
   "class": "regist_table"
 };
-var _hoisted_25 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("colgroup", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("col", {
+var _hoisted_27 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("colgroup", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("col", {
   style: {
     "width": "20%"
   }
@@ -19681,79 +19794,133 @@ var _hoisted_25 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
     "width": "80%"
   }
 })], -1 /* HOISTED */);
-var _hoisted_26 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
+var _hoisted_28 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
   "for": "email"
 }, "email"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
   style: {
     "color": "red"
   }
 }, "*")], -1 /* HOISTED */);
-var _hoisted_27 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+var _hoisted_29 = {
+  key: 0,
   "class": "error_message"
-}, null, -1 /* HOISTED */);
-var _hoisted_28 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
+};
+var _hoisted_30 = {
+  key: 1,
+  "class": "error_message"
+};
+var _hoisted_31 = {
+  key: 2,
+  "class": "success_message"
+};
+var _hoisted_32 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
   "for": "password"
 }, "password"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
   style: {
     "color": "red"
   }
 }, "*")], -1 /* HOISTED */);
-var _hoisted_29 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+var _hoisted_33 = {
+  key: 0,
   "class": "error_message"
-}, null, -1 /* HOISTED */);
-var _hoisted_30 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
+};
+var _hoisted_34 = {
+  key: 1,
+  "class": "error_message"
+};
+var _hoisted_35 = {
+  key: 2,
+  "class": "success_message"
+};
+var _hoisted_36 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
   "for": "password_chk"
 }, "password chk"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
   style: {
     "color": "red"
   }
 }, "*")], -1 /* HOISTED */);
-var _hoisted_31 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+var _hoisted_37 = {
+  key: 0,
   "class": "error_message"
-}, null, -1 /* HOISTED */);
-var _hoisted_32 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
+};
+var _hoisted_38 = {
+  key: 1,
+  "class": "error_message"
+};
+var _hoisted_39 = {
+  key: 2,
+  "class": "success_message"
+};
+var _hoisted_40 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
   "for": "name"
 }, "name"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
   style: {
     "color": "red"
   }
 }, "*")], -1 /* HOISTED */);
-var _hoisted_33 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+var _hoisted_41 = {
+  key: 0,
   "class": "error_message"
-}, null, -1 /* HOISTED */);
-var _hoisted_34 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
+};
+var _hoisted_42 = {
+  key: 1,
+  "class": "error_message"
+};
+var _hoisted_43 = {
+  key: 2,
+  "class": "success_message"
+};
+var _hoisted_44 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
   "for": "phone_number"
 }, "phone number"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
   style: {
     "color": "red"
   }
 }, "*")], -1 /* HOISTED */);
-var _hoisted_35 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<option value=\"010\">010</option><option value=\"011\">011</option><option value=\"016\">016</option><option value=\"017\">017</option><option value=\"018\">018</option><option value=\"019\">019</option>", 6);
-var _hoisted_41 = [_hoisted_35];
-var _hoisted_42 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+var _hoisted_45 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<option value=\"010\">010</option><option value=\"011\">011</option><option value=\"016\">016</option><option value=\"017\">017</option><option value=\"018\">018</option><option value=\"019\">019</option>", 6);
+var _hoisted_51 = [_hoisted_45];
+var _hoisted_52 = {
+  key: 0,
+  "class": "error_message"
+};
+var _hoisted_53 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "error_message"
 }, null, -1 /* HOISTED */);
-var _hoisted_43 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
+var _hoisted_54 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
   "for": "birth_date"
 }, "birth date"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
   style: {
     "color": "red"
   }
 }, "*")], -1 /* HOISTED */);
-var _hoisted_44 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+var _hoisted_55 = {
+  key: 0,
   "class": "error_message"
-}, null, -1 /* HOISTED */);
-var _hoisted_45 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
+};
+var _hoisted_56 = {
+  key: 1,
+  "class": "error_message"
+};
+var _hoisted_57 = {
+  key: 2,
+  "class": "success_message"
+};
+var _hoisted_58 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
   "for": "address"
 }, "Address"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
   style: {
     "color": "red"
   }
 }, "*")], -1 /* HOISTED */);
-var _hoisted_46 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+var _hoisted_59 = {
+  key: 0,
   "class": "error_message"
-}, null, -1 /* HOISTED */);
-var _hoisted_47 = {
+};
+var _hoisted_60 = {
+  key: 1,
+  "class": "error_message"
+};
+var _hoisted_61 = {
   "class": "regist_button"
 };
 function render(_ctx, _cache, $props, $setup, $data, $options) {
@@ -19765,12 +19932,12 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     type: "checkbox",
     name: "selectAll",
     "onUpdate:modelValue": _cache[0] || (_cache[0] = function ($event) {
-      return _ctx.selectAll = $event;
+      return $data.selectAll = $event;
     }),
     onChange: _cache[1] || (_cache[1] = function () {
       return $options.handleSelectAll && $options.handleSelectAll.apply($options, arguments);
     })
-  }, null, 544 /* NEED_HYDRATION, NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelCheckbox, _ctx.selectAll]]), _hoisted_8]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_9, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_10, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_11, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+  }, null, 544 /* NEED_HYDRATION, NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelCheckbox, $data.selectAll]]), _hoisted_8]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_9, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_10, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_11, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     type: "checkbox",
     name: "UserTermsofUse",
     "onUpdate:modelValue": _cache[2] || (_cache[2] = function ($event) {
@@ -19779,7 +19946,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     onChange: _cache[3] || (_cache[3] = function () {
       return $options.handleSelectSingle && $options.handleSelectSingle.apply($options, arguments);
     })
-  }, null, 544 /* NEED_HYDRATION, NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelCheckbox, $data.frmUserData.UserTermsofUse]]), _hoisted_12]), _hoisted_13]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_14, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_15, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+  }, null, 544 /* NEED_HYDRATION, NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelCheckbox, $data.frmUserData.UserTermsofUse]]), _hoisted_12, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", _hoisted_13, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.errors.UserTermsofUse), 1 /* TEXT */)]), _hoisted_14]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_15, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_16, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     type: "checkbox",
     name: "UserUserPrivacy",
     "onUpdate:modelValue": _cache[4] || (_cache[4] = function ($event) {
@@ -19788,93 +19955,122 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     onChange: _cache[5] || (_cache[5] = function () {
       return $options.handleSelectSingle && $options.handleSelectSingle.apply($options, arguments);
     })
-  }, null, 544 /* NEED_HYDRATION, NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelCheckbox, $data.frmUserData.UserPrivacy]]), _hoisted_16]), _hoisted_17])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_18, [_hoisted_19, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+  }, null, 544 /* NEED_HYDRATION, NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelCheckbox, $data.frmUserData.UserPrivacy]]), _hoisted_17, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", _hoisted_18, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.errors.UserPrivacy), 1 /* TEXT */)]), _hoisted_19])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_20, [_hoisted_21, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
     "class": "regist_button_next",
     type: "button",
-    onClick: _cache[6] || (_cache[6] = function ($event) {
-      $data.regiflg1 = true;
-      $data.regiflg2 = false;
+    onClick: _cache[6] || (_cache[6] = function () {
+      return $options.moveToNext && $options.moveToNext.apply($options, arguments);
     })
   }, "NEXT")])])])])])], 2 /* CLASS */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
     "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["container", {
       'container-registration-none': $data.regiflg2
     }])
-  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("main", _hoisted_20, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_21, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_22, [_hoisted_23, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("table", _hoisted_24, [_hoisted_25, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tr", null, [_hoisted_26, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("main", _hoisted_22, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_23, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_24, [_hoisted_25, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("table", _hoisted_26, [_hoisted_27, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tr", null, [_hoisted_28, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     type: "text",
     id: "email",
     name: "UserEmail",
     "onUpdate:modelValue": _cache[7] || (_cache[7] = function ($event) {
       return $data.frmUserData.UserEmail = $event;
-    })
-  }, null, 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.frmUserData.UserEmail]]), _hoisted_27])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tr", null, [_hoisted_28, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+    }),
+    onInput: _cache[8] || (_cache[8] = function () {
+      return $options.validateUserEmail && $options.validateUserEmail.apply($options, arguments);
+    }),
+    placeholder: "이메일을 입력해주세요"
+  }, null, 544 /* NEED_HYDRATION, NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.frmUserData.UserEmail]]), _ctx.$store.state.RegistrationErrorMessage.UserEmail ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_29, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$store.state.RegistrationErrorMessage.UserEmail), 1 /* TEXT */)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $data.errors.UserEmail ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_30, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.errors.UserEmail), 1 /* TEXT */)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), !$data.errors.UserEmail && $data.frmUserData.UserEmail ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_31, " 유효한 이메일입니다. ")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tr", null, [_hoisted_32, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     type: "password",
     id: "password",
     name: "UserPassword",
-    "onUpdate:modelValue": _cache[8] || (_cache[8] = function ($event) {
-      return $data.frmUserData.Password = $event;
-    })
-  }, null, 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.frmUserData.Password]]), _hoisted_29])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tr", null, [_hoisted_30, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+    "onUpdate:modelValue": _cache[9] || (_cache[9] = function ($event) {
+      return $data.frmUserData.UserPassword = $event;
+    }),
+    onInput: _cache[10] || (_cache[10] = function () {
+      return $options.validateUserPassword && $options.validateUserPassword.apply($options, arguments);
+    }),
+    placeholder: "영대소문자,숫자,특수문자(!@#)를 포함한 8~17자",
+    minlength: "8",
+    maxlength: "17"
+  }, null, 544 /* NEED_HYDRATION, NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.frmUserData.UserPassword]]), _ctx.$store.state.RegistrationErrorMessage.UserPassword ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_33, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$store.state.RegistrationErrorMessage.UserPassword), 1 /* TEXT */)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $data.errors.UserPassword ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_34, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.errors.UserPassword), 1 /* TEXT */)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), !$data.errors.UserPassword && $data.frmUserData.UserPassword ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_35, " 유효한 비밀번호입니다. ")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tr", null, [_hoisted_36, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     type: "password",
     id: "password_chk",
     name: "UserPasswordChk",
-    "onUpdate:modelValue": _cache[9] || (_cache[9] = function ($event) {
-      return $data.frmUserData.PasswordChk = $event;
-    })
-  }, null, 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.frmUserData.PasswordChk]]), _hoisted_31])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tr", null, [_hoisted_32, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+    "onUpdate:modelValue": _cache[11] || (_cache[11] = function ($event) {
+      return $data.frmUserData.UserPasswordChk = $event;
+    }),
+    onInput: _cache[12] || (_cache[12] = function () {
+      return $options.validateUserPasswordChk && $options.validateUserPasswordChk.apply($options, arguments);
+    }),
+    placeholder: "영대소문자,숫자,특수문자(!@#)를 포함한 8~17자",
+    minlength: "8",
+    maxlength: "17"
+  }, null, 544 /* NEED_HYDRATION, NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.frmUserData.UserPasswordChk]]), _ctx.$store.state.RegistrationErrorMessage.UserPasswordChk ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_37, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$store.state.RegistrationErrorMessage.UserPasswordChk), 1 /* TEXT */)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $data.errors.UserPasswordChk ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_38, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.errors.UserPasswordChk), 1 /* TEXT */)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), !$data.errors.UserPasswordChk && $data.frmUserData.UserPasswordChk ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_39, " 입력한 비밀번호와 일치합니다. ")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tr", null, [_hoisted_40, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     type: "text",
     id: "name",
     name: "UserName",
-    "onUpdate:modelValue": _cache[10] || (_cache[10] = function ($event) {
-      return $data.frmUserData.UserName = $event;
-    })
-  }, null, 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.frmUserData.UserName]]), _hoisted_33])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tr", null, [_hoisted_34, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("select", {
-    "class": "phone_select_box",
-    id: "",
-    name: "PhoneNumber",
-    "onUpdate:modelValue": _cache[11] || (_cache[11] = function ($event) {
-      return $data.frmUserData.PhoneNumber1 = $event;
-    })
-  }, [].concat(_hoisted_41), 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, $data.frmUserData.PhoneNumber1]]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" - "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
-    "class": "phone_input_box",
-    type: "text",
-    id: "phone_number",
-    name: "PhoneNumber",
-    "onUpdate:modelValue": _cache[12] || (_cache[12] = function ($event) {
-      return $data.frmUserData.PhoneNumber2 = $event;
-    })
-  }, null, 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.frmUserData.PhoneNumber2]]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" - "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
-    "class": "phone_input_box",
-    type: "text",
-    id: "phone_number",
-    name: "PhoneNumber",
     "onUpdate:modelValue": _cache[13] || (_cache[13] = function ($event) {
-      return $data.frmUserData.PhoneNumber3 = $event;
+      return $data.frmUserData.UserName = $event;
+    }),
+    onInput: _cache[14] || (_cache[14] = function () {
+      return $options.validateUserName && $options.validateUserName.apply($options, arguments);
+    }),
+    placeholder: "최소 2글자 이상",
+    minlength: "2",
+    maxlength: "50"
+  }, null, 544 /* NEED_HYDRATION, NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.frmUserData.UserName]]), _ctx.$store.state.RegistrationErrorMessage.UserName ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_41, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$store.state.RegistrationErrorMessage.UserName), 1 /* TEXT */)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $data.errors.UserName ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_42, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.errors.UserName), 1 /* TEXT */)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), !$data.errors.UserName && $data.frmUserData.UserName ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_43)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tr", null, [_hoisted_44, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("select", {
+    "class": "phone_select_box",
+    id: "PhoneNumber1",
+    name: "PhoneNumber1",
+    "onUpdate:modelValue": _cache[15] || (_cache[15] = function ($event) {
+      return $data.frmUserData.UserPhoneNumber1 = $event;
     })
-  }, null, 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.frmUserData.PhoneNumber3]]), _hoisted_42])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tr", null, [_hoisted_43, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+  }, [].concat(_hoisted_51), 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, $data.frmUserData.UserPhoneNumber1]]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" - "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+    "class": "phone_input_box",
+    type: "text",
+    id: "PhoneNumber2",
+    name: "PhoneNumber2",
+    "onUpdate:modelValue": _cache[16] || (_cache[16] = function ($event) {
+      return $data.frmUserData.UserPhoneNumber2 = $event;
+    })
+  }, null, 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.frmUserData.UserPhoneNumber2]]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" - "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+    "class": "phone_input_box",
+    type: "text",
+    id: "PhoneNumber3",
+    name: "PhoneNumber3",
+    "onUpdate:modelValue": _cache[17] || (_cache[17] = function ($event) {
+      return $data.frmUserData.UserPhoneNumber3 = $event;
+    })
+  }, null, 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.frmUserData.UserPhoneNumber3]]), _ctx.$store.state.RegistrationErrorMessage.UserPhoneNumber ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_52, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$store.state.RegistrationErrorMessage.UserPhoneNumber), 1 /* TEXT */)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), _hoisted_53])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tr", null, [_hoisted_54, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     type: "date",
     id: "birth_date",
     name: "UserBirthDate",
-    "onUpdate:modelValue": _cache[14] || (_cache[14] = function ($event) {
+    "onUpdate:modelValue": _cache[18] || (_cache[18] = function ($event) {
       return $data.frmUserData.UserBirthDate = $event;
+    }),
+    onInput: _cache[19] || (_cache[19] = function () {
+      return $options.validateUserBirthDate && $options.validateUserBirthDate.apply($options, arguments);
     })
-  }, null, 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.frmUserData.UserBirthDate]]), _hoisted_44])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tr", null, [_hoisted_45, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+  }, null, 544 /* NEED_HYDRATION, NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.frmUserData.UserBirthDate]]), _ctx.$store.state.RegistrationErrorMessage.UserBirthDate ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_55, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$store.state.RegistrationErrorMessage.UserBirthDate), 1 /* TEXT */)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $data.errors.UserBirthDate ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_56, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.errors.UserBirthDate), 1 /* TEXT */)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), !$data.errors.UserBirthDate && $data.frmUserData.UserBirthDate ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_57)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tr", null, [_hoisted_58, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     type: "text",
     id: "address",
     name: "UserAddress",
-    "onUpdate:modelValue": _cache[15] || (_cache[15] = function ($event) {
-      return $data.frmUserData.Address = $event;
-    })
-  }, null, 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.frmUserData.Address]]), _hoisted_46])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_47, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+    "onUpdate:modelValue": _cache[20] || (_cache[20] = function ($event) {
+      return $data.frmUserData.UserAddress = $event;
+    }),
+    onInput: _cache[21] || (_cache[21] = function () {
+      return _ctx.validateuserAddress && _ctx.validateuserAddress.apply(_ctx, arguments);
+    }),
+    minlength: "2",
+    maxlength: "255"
+  }, null, 544 /* NEED_HYDRATION, NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.frmUserData.UserAddress]]), _ctx.$store.state.RegistrationErrorMessage.UserAddress ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_59, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$store.state.RegistrationErrorMessage.UserAddress), 1 /* TEXT */)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $data.errors.UserAddress ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_60, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.errors.UserAddress), 1 /* TEXT */)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_61, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
     "class": "regist_button_cancel",
     type: "button",
-    onClick: _cache[16] || (_cache[16] = function ($event) {
+    onClick: _cache[22] || (_cache[22] = function ($event) {
       $data.regiflg1 = false;
       $data.regiflg2 = true;
     })
   }, "PREV"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
     "class": "regist_button_next",
     type: "button",
-    onClick: _cache[17] || (_cache[17] = function ($event) {
+    onClick: _cache[23] || (_cache[23] = function ($event) {
       return $options.submitUserData();
     })
   }, "SIGN UP")])])])])], 2 /* CLASS */)]);
@@ -19915,7 +20111,7 @@ __webpack_require__(/*! ./bootstrap.js */ "./resources/js/bootstrap.js");
     FooterComponent: _components_FooterComponent_vue__WEBPACK_IMPORTED_MODULE_6__["default"],
     RegistrationComponent: _components_RegistrationComponent_vue__WEBPACK_IMPORTED_MODULE_7__["default"]
   }
-}).use(_router_js__WEBPACK_IMPORTED_MODULE_1__["default"]).use(_store_js__WEBPACK_IMPORTED_MODULE_2__["default"]).mount("#app").mount("#header");
+}).use(_router_js__WEBPACK_IMPORTED_MODULE_1__["default"]).use(_store_js__WEBPACK_IMPORTED_MODULE_2__["default"]).mount("#app");
 
 /***/ }),
 
@@ -20015,13 +20211,60 @@ __webpack_require__.r(__webpack_exports__);
 var store = (0,vuex__WEBPACK_IMPORTED_MODULE_3__.createStore)({
   // state() : 데이터를 저장하는 영역
   state: function state() {
-    return {};
+    return {
+      RegistrationErrorMessage: {
+        UserEmail: '',
+        UserPassword: '',
+        UserPasswordChk: '',
+        UserName: '',
+        UserPhoneNumber1: '',
+        UserPhoneNumber2: '',
+        UserPhoneNumber3: '',
+        UserBirthDate: '',
+        UserAddress: '',
+        UserTermsofUse: '',
+        UserPrivacy: ''
+      }
+    };
   },
   // mutations : 데이터 수정용 함수 저장 영역
   // 초기 데이터 세팅 (라라벨에서 받은)
-  mutations: {},
+  mutations: {
+    setRegistrationErrorMessage: function setRegistrationErrorMessage(state, error) {
+      state.RegistrationErrorMessage = error;
+    }
+  },
   // actions : ajax로 서버에 데이터를 요청할 때나 시간 함수등 비동기 처리는 actions에 정의
-  actions: {}
+  actions: {
+    submitUserData: function submitUserData(context, data) {
+      var url = '/api/registration';
+      var header = {
+        headers: {
+          "Content-Type": 'multipart/form-data'
+        }
+      };
+      var frm = new FormData();
+      var UserPhoneNumber = data.UserPhoneNumber1 + data.UserPhoneNumber2 + data.UserPhoneNumber3;
+      data.UserTermsofUse = data.UserTermsofUse ? 1 : 0;
+      data.UserPrivacy = data.UserPrivacy ? 1 : 0;
+      frm.append('UserEmail', data.UserEmail);
+      frm.append('UserPassword', data.UserPassword);
+      frm.append('UserPasswordChk', data.UserPasswordChk);
+      frm.append('UserName', data.UserName);
+      frm.append('UserPhoneNumber', UserPhoneNumber);
+      frm.append('UserBirthDate', data.UserBirthDate);
+      frm.append('UserAddress', data.UserAddress);
+      frm.append('UserTermsofUse', data.UserTermsofUse);
+      frm.append('UserPrivacy', data.UserPrivacy);
+      axios__WEBPACK_IMPORTED_MODULE_0___default().post(url, frm, header).then(function (res) {
+        console.log(res.data);
+        _router_js__WEBPACK_IMPORTED_MODULE_1__["default"].push('/');
+      })["catch"](function (err) {
+        console.log(err.response.data.errors);
+        context.commit('setRegistrationErrorMessage', err.response.data.errors);
+      });
+    }
+  }
 });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (store);
 
@@ -20099,7 +20342,7 @@ __webpack_require__.r(__webpack_exports__);
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 ___CSS_LOADER_EXPORT___.push([module.id, "@import url(https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap);"]);
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "* {\r\n\tmargin: 0;\r\n\tpadding: 0;\r\n\tbox-sizing: border-box;\r\n}\r\n/* reset.css */\r\nhtml, body, div, span, applet, object, iframe,\r\nh1, h2, h3, h4, h5, h6, p, blockquote, pre,\r\na, abbr, acronym, address, big, cite, code,\r\ndel, dfn, em, img, ins, kbd, q, s, samp,\r\nsmall, strike, strong, sub, sup, tt, var,\r\nb, u, i, center,\r\ndl, dt, dd, ol, ul, li,\r\nfieldset, form, label, legend,\r\ntable, caption, tbody, tfoot, thead, tr, th, td,\r\narticle, aside, canvas, details, embed, \r\nfigure, figcaption, footer, header, hgroup, \r\nmenu, nav, output, ruby, section, summary,\r\ntime, mark, audio, video {\r\n    margin: 0;\r\n    padding: 0;\r\n    border: 0;\r\n    font-size: 100%;\r\n    font: inherit;\r\n    vertical-align: baseline;\r\n\ttext-decoration-line: none;\r\n    text-decoration: none;\r\n}\r\n/* HTML5 display-role reset for older browsers */\r\narticle, aside, details, figcaption, figure, \r\nfooter, header, hgroup, menu, nav, section {\r\n    display: block;\r\n}\r\nbody {\r\n    position: relative;\r\n    left: 0;\r\n    transition: left 500ms cubic-bezier(0.25,0.46,0.45,0.94);\r\n    font-family: 'Noto Sans KR', sans-serif;\r\n    font-size: 0.6vw;\r\n    line-height: 0.7vw;\r\n}\r\nol, ul {\r\n    list-style: none;\r\n}\r\nblockquote, q {\r\n    quotes: none;\r\n}\r\nblockquote:before, blockquote:after,\r\nq:before, q:after {\r\n    content: '';\r\n    content: none;\r\n}\r\ntable {\r\n    border-collapse: collapse;\r\n    border-spacing: 0;\r\n}\r\ninput {\r\n\tborder: none;\r\n\tbackground-color: transparent;\r\n}\r\nstrong {\r\n    font-weight: 700;\r\n}\r\n\r\nhr {\r\n    opacity: 0.5;\r\n}\r\n/* ============================================================================================= */\r\n/* 공통 헤더 영역 */\r\n\r\n.top_banner {\r\n    position: relative;\r\n    overflow: hidden;\r\n    height: 30px;\r\n    text-align: center;\r\n    background: #3D64BF;\r\n}\r\n\r\n.top_banner .desc {\r\n    overflow: hidden;\r\n    font-size: 12px;\r\n    color: #fff;\r\n    box-sizing: border-box;\r\n    line-height: 30px;\r\n    white-space: nowrap;\r\n}\r\n\r\n.list_txt {\r\n    height: 30px;\r\n    overflow: hidden;\r\n    margin: 0px;\r\n    padding: 0px;\r\n    color: #fff;\r\n    top: 0;\r\n}\r\n\r\n.list_txt  a{\r\n    color: #fff;\r\n    font-weight: 700;\r\n}\r\n\r\nheader {\r\n    height: 70px;\r\n    padding: 0 10vw;\r\n}\r\n\r\n\r\nheader .navigation {\r\n    display: flex;\r\n    justify-content: space-between;\r\n    align-items: center;\r\n    position: relative !important;\r\n    height: 100%;\r\n}\r\n\r\n\r\n.navigation ul.nav_left {\r\n    display: flex;\r\n    gap: 1vw;\r\n}\r\n\r\n.side_nav {\r\n    gap: 1vw;\r\n    align-items: center;\r\n}\r\n\r\n.navigation h1 {\r\n    width: 100px;\r\n    position: absolute;\r\n    left: 50%;\r\n    transform: translateX(-50%);\r\n    padding: 0;\r\n    height: 100%;\r\n    display: flex;\r\n    justify-content: center;\r\n    align-items: center;\r\n}\r\n\r\n.navigation h1 a img {\r\n    height: 4vw;\r\n    max-height: 30px;\r\n    transition: none;\r\n}\r\n\r\n.side_nav {\r\n    display: flex;\r\n    gap: 1vw;\r\n    align-items: center;\r\n}\r\n\r\n.side_nav a {\r\n    font-weight: 600;\r\n    font-family: Arial;\r\n    font-size: 12px;\r\n    color: #1e1e1e;\r\n    text-transform: uppercase;\r\n}\r\n\r\n.search_box {\r\n    border-bottom: 1px solid #1e1e1e;\r\n    display: flex;\r\n}\r\n\r\n.search_box input {\r\n    font-weight: 600;\r\n    font-family: Arial;\r\n    font-size: 12px;\r\n    color: #1e1e1e;\r\n    text-transform: uppercase;\r\n}\r\n\r\n\r\n.search_box input:focus {\r\n    outline: none;\r\n}\r\n\r\n.search_box button {\r\n    cursor: pointer;\r\n    background-color: transparent;\r\n    border: none;\r\n}\r\n\r\n.menu_btn {\r\n    background-color: #000;\r\n    color: #fff !important;\r\n    padding: 0.15vw 0.5vw;\r\n    border: 1px solid #000;\r\n    display: flex;\r\n    justify-content: center;\r\n    align-items: center;\r\n    padding: 5px 10px;\r\n    border-radius: 5px;\r\n}\r\n\r\n.menu_btn img {\r\n    margin-right: 5px;\r\n}\r\n\r\n@media screen and (max-width: 1000px) {\r\n    /* .navigation ul.nav_left {\r\n        display: none;\r\n    } */\r\n\r\n    .side_nav a {\r\n        display: none;\r\n    }\r\n\r\n    .side_nav input {\r\n        display: none;\r\n    }\r\n\r\n    /* .menu_btn {\r\n        display: flex;\r\n    } */\r\n}\r\n\r\n.dropdown {\r\n    display: none;\r\n    position: absolute;\r\n    background-color: #fff;\r\n    border: 1px solid #2E2E2E;\r\n    outline: none;\r\n    text-align: left;\r\n    z-index: 2;\r\n    border-radius: 5px;\r\n    /* margin-top: 15px; */\r\n}\r\n\r\n.side_nav li:hover .dropdown {\r\n    display: block; /* 호버 시 드롭다운 표시 */\r\n}\r\n\r\n.side_nav .dropdown li {\r\n    /* padding: 10px; */\r\n}\r\n\r\n.dropdown a {\r\n    width: 150px;\r\n    padding: 10px 30px;\r\n    display: inline-block;\r\n}\r\n\r\n.dropdown a:hover {\r\n    color: #3D64BF;\r\n}\r\n\r\n/* ============================================================================================= */\r\n\r\n\r\n\r\n\r\n\r\n/* ============================================================================================= */\r\n/* 공통 푸터 영역 */\r\n\r\nfooter {\r\n    margin-top: 100px;\r\n    width: 100%;\r\n    height: 150px;\r\n    background-color: #2E2E2E;\r\n    padding: 0 10vw;\r\n    position:relative;\r\n\tbottom: 0;\r\n}\r\n\r\n\r\n\r\n/* ============================================================================================= */\r\n\r\n\r\n\r\n\r\n\r\n/* ============================================================================================= */\r\n/* 메인 영역 */\r\n\r\n.main_wrap {\r\n    position: relative;\r\n    display: flex;\r\n}\r\n\r\n.main_visual {\r\n    width: 100%;\r\n    height: 40vh;\r\n    overflow: hidden;\r\n    display: flex;\r\n    justify-content: center;\r\n    align-items: center;\r\n    transition: all 0.2s;\r\n    background: #000;\r\n}\r\n\r\n.main_nav {\r\n    width: 100%;\r\n    height: 75px;\r\n    padding: 10px 10vw;\r\n    display: grid;\r\n    padding-top: 18px;\r\n    grid-template-columns: 135px 33px 1fr 52px;\r\n}\r\n\r\n.main_nav_num_space {\r\n    display: flex;\r\n    flex-direction: row;\r\n    justify-content: space-between;\r\n    align-items: center;\r\n    padding: 0 1rem;\r\n    width: 135px;\r\n    height: 36px;\r\n    font-size: .875rem;\r\n    color: #fff;\r\n    border-radius: 20px;\r\n    background-color: #7F7F7F;\r\n}\r\n\r\n.control-wrapper {\r\n    display: flex;\r\n    align-items: center;\r\n    justify-content: space-between;\r\n    width: 50px;\r\n}\r\n\r\n.control-wrapper button {\r\n    padding: 0;\r\n    background: none;\r\n    border: 0;\r\n    color: #fff;\r\n    cursor: pointer;\r\n}\r\n\r\n.divider {\r\n    margin: 0 1rem;\r\n    width: 1px;\r\n    height: 36px;\r\n    background-color: #dee2e6;\r\n}\r\n\r\n.main_nav_selection {\r\n    overflow: hidden;\r\n    height: 36px;\r\n}\r\n\r\n.main_nav_selection_box {\r\n    display: flex;\r\n    height: 36px;\r\n}\r\n\r\n.main_nav_selection_btn {\r\n    flex: 0 0 auto;\r\n    padding: 0 1rem;\r\n    height: 36px;\r\n    line-height: 36px;\r\n    text-align: center;\r\n    font-size: .875rem;\r\n    font-weight: 700;\r\n    color: #495057;\r\n    border-radius: 20px;\r\n    box-shadow: inset 0 0 0 1px #ced4da;\r\n    background-color: #fff;\r\n    cursor: pointer;    \r\n}\r\n\r\n.ml_10 {\r\n    margin-left: 10px;\r\n}\r\n\r\n.main_new_text {\r\n    margin-top: 50px;\r\n    margin-bottom: 10px;\r\n    text-align: center;\r\n    padding: 10px;\r\n}\r\n\r\n.main_new_text h3 {\r\n    font-size: 20px;\r\n    font-weight: 700;\r\n}\r\n\r\n.main_new_text a {\r\n    color: #000;\r\n    line-height: 50px;\r\n    font-size: 15px;\r\n}\r\n\r\n.main_container_new {\r\n    padding: 0 10vw;\r\n    display: grid; \r\n    transition: all 0.2s;\r\n    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));\r\n    gap: 20px\r\n}\r\n\r\n.main_container_new_card {\r\n    display: block;\r\n}\r\n\r\n.main_container_new_card_img {\r\n    position: relative;\r\n    overflow: hidden;\r\n    width: 100%;\r\n    padding-top: 50%;\r\n    border-radius: 0.8rem;\r\n}\r\n\r\n.main_container_new_card_img img {\r\n    position: absolute;\r\n    top: 50%;\r\n    left: 50%;\r\n    display: inline-block;\r\n    width: 100%;\r\n    max-width: none;\r\n    padding-top: 0;\r\n    transform: translate(-50%, -50%);\r\n    border-radius: 10px;\r\n}\r\n\r\n.main_container_new_card_title {\r\n    margin-top: 10px;\r\n    overflow: hidden;\r\n    font-size: 20px;\r\n    font-weight: 700;\r\n    line-height: 25px;\r\n    color: #000;\r\n}\r\n\r\n.main_container_new_card_content {\r\n    margin-top: 10px;\r\n    font-size: 13px;\r\n    line-height: 20px;\r\n    color: #000;\r\n}\r\n\r\n.main_container_new_card_tag {\r\n    display: flex;\r\n    flex-wrap: wrap;\r\n    margin-top: 20px;\r\n}\r\n\r\n.main_container_new_card_tag li {\r\n    padding: 10px 20px;\r\n    margin-right: 10px;\r\n    border-radius: 5px;\r\n    color: #6e6e73;\r\n    background: #f2f2f2;\r\n    font-size: 10px;\r\n}\r\n\r\n.main_banner {\r\n    margin-top: 100px;\r\n    width: 100%;\r\n    height: 250px;\r\n    background-color: #3D64BF;\r\n}\r\n\r\n.main_container_hot {\r\n    padding: 0 10vw;\r\n    display: grid; \r\n    transition: all 0.2s;\r\n    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));\r\n    gap: 20px\r\n}\r\n\r\n.main_container_hot_card {\r\n    display: block;\r\n}\r\n\r\n.main_container_hot_card_img {\r\n    position: relative;\r\n    overflow: hidden;\r\n    width: 100%;\r\n    padding-top: 130%;\r\n    border-radius: 0.8rem;\r\n}\r\n\r\n.main_container_hot_card_img img {\r\n    position: absolute;\r\n    top: 50%;\r\n    left: 50%;\r\n    display: inline-block;\r\n    width: 100%;\r\n    max-width: none;\r\n    padding-top: 0;\r\n    transform: translate(-50%, -50%);\r\n    border-radius: 10px;\r\n}\r\n\r\n.main_container_keyword {\r\n    padding: 0 10vw;\r\n    display: grid; \r\n    transition: all 0.2s;\r\n    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));\r\n    gap: 20px\r\n}\r\n\r\n.main_container_keyword_card {\r\n    display: block;\r\n}\r\n\r\n.main_container_keyword_card_img {\r\n    position: relative;\r\n    overflow: hidden;\r\n    width: 100%;\r\n    padding-top: 80%;\r\n    border-radius: 0.8rem;\r\n}\r\n\r\n.main_container_keyword_card_img img {\r\n    position: absolute;\r\n    top: 50%;\r\n    left: 50%;\r\n    display: inline-block;\r\n    width: 100%;\r\n    max-width: none;\r\n    padding-top: 0;\r\n    transform: translate(-50%, -50%);\r\n    border-radius: 10px;\r\n}\r\n\r\n/* ============================================================================================= */\r\n\r\n\r\n\r\n\r\n\r\n/* ============================================================================================= */\r\n/* 회원가입 영역 (약관 입력) */\r\n\r\n.regist_wrap {\r\n    position: relative;\r\n    display: flex;\r\n}\r\n\r\n.container-registration-none {\r\n    display: none;\r\n}\r\n\r\n.regist_title_box {\r\n    padding: 0 10vw;\r\n    margin-top: 50px;\r\n}\r\n\r\n.regist_title {\r\n    text-align: center;\r\n}\r\n\r\n@media screen and (max-width: 800px) {\r\n    .regist_title span {\r\n        display: block;\r\n        line-height: 20px;\r\n        text-align: left;\r\n        margin-left: 15px;\r\n    }\r\n    .ml_10 {\r\n        margin-left: 0px;\r\n    }\r\n}\r\n\r\n.regist_title h3 {\r\n    font-size: 30px;\r\n    font-weight: 700;\r\n    line-height: 60px;\r\n}\r\n\r\n.regist_title span {\r\n    font-size: 15px;\r\n}\r\n\r\n.regist_content_box {\r\n    width: 90%;\r\n    margin: auto;\r\n    margin-top: 30px;\r\n}\r\n\r\n.regist_content_box_lr {\r\n    margin-top: 15px;\r\n    display: flex;\r\n    gap: 20px;\r\n}\r\n\r\n@media screen and (max-width: 800px) {\r\n    .regist_content_box_lr {\r\n        display: grid;\r\n        flex-direction: column;\r\n    }\r\n}\r\n\r\n.regist_content_box_l {\r\n    width: 100%;\r\n}\r\n\r\n.regist_content_box_r {\r\n    width: 100%;\r\n}\r\n\r\n.regist_content_box_title h3 {\r\n    font-size: 15px;\r\n    font-weight: 700;\r\n    margin-bottom: 15px;\r\n}\r\n\r\n.regist_content_box_check_box {\r\n    display: flex;\r\n    font-size: 13px;\r\n}\r\n\r\n.regist_content_box_check_box input {\r\n    margin-right: 10px;\r\n}\r\n\r\n.regist_content_box_checkbox_sel {\r\n    margin-right: 10px;\r\n}\r\n\r\n.regist_content_box_l_checkbox {\r\n    display: flex;\r\n    font-size: 13px;\r\n}\r\n\r\n.regist_content_box_l_checkbox input {\r\n    margin-right: 10px;\r\n}\r\n\r\n.regist_content_box_r_checkbox {\r\n    display: flex;\r\n    font-size: 13px;\r\n}\r\n\r\n.regist_content_box_r_checkbox input {\r\n    margin-right: 10px;\r\n}\r\n\r\n.regist_content_box_l_terms {\r\n    margin-top: 15px;\r\n    width: 100%;\r\n    height: 500px;\r\n    border: 0.5px solid #5c5c5c6c;\r\n    overflow-y: scroll;\r\n    padding: 10px;\r\n}\r\n\r\n.regist_content_box_l_terms h3 {\r\n    font-size: 12px;\r\n    line-height: 20px;\r\n}\r\n\r\n.regist_content_box_l_terms p {\r\n    font-size: 12px;\r\n    line-height: 20px;\r\n}\r\n\r\n.regist_content_box_r_terms {\r\n    margin-top: 15px;\r\n    width: 100%;\r\n    height: 500px;\r\n    border: 0.5px solid #5c5c5c6c;\r\n    overflow-y: scroll;\r\n    padding: 10px;\r\n}\r\n\r\n.regist_content_box_r_terms h3 {\r\n    font-size: 12px;\r\n    line-height: 20px;\r\n}\r\n\r\n.regist_content_box_r_terms p {\r\n    font-size: 12px;\r\n    line-height: 20px;\r\n}\r\n\r\n.regist_button {\r\n    margin: auto;\r\n    display: flex;\r\n    justify-content: center;\r\n    margin-top: 20px;\r\n}\r\n\r\n.regist_button_cancel {\r\n    padding: 10px 20px;\r\n    border: 1px solid #000;\r\n    background-color: #fff;\r\n    margin-right: 20px;\r\n    cursor: pointer;\r\n}\r\n\r\n.regist_button_next {\r\n    padding: 10px 30px;\r\n    border: 1px solid #000;\r\n    background-color: #000000;\r\n    color: #fff;\r\n    cursor: pointer;\r\n}\r\n\r\n/* ============================================================================================= */\r\n\r\n\r\n\r\n\r\n\r\n/* ============================================================================================= */\r\n/* 회원가입 영역 (정보 입력)*/\r\n\r\n.regist_table {\r\n    width: 40%;\r\n    border-collapse: collapse;\r\n    margin: 30px auto 20px auto;\r\n}\r\n\r\n.regist_table label {\r\n    line-height: 20px;\r\n    text-transform: uppercase;\r\n}\r\n\r\nth, td {\r\n    padding: 10px;\r\n    text-align: left;\r\n    border-bottom: 1px solid #000000;\r\n    border-top: 1px solid #000000;\r\n    border-right: 1px solid #ddd;\r\n    font-size: 12px;\r\n}\r\n\r\nth:last-child, td:last-child {\r\n    border-right: none;\r\n}\r\n\r\n.regist_table input {\r\n    border: 1px solid #83838360;\r\n}\r\n\r\n.regist_table input {\r\n    width: 90%;\r\n    padding: 8px;\r\n}\r\n\r\n.phone_select_box {\r\n    border: 1px solid #83838360;\r\n    width: 25%;\r\n    padding: 8px;\r\n}\r\n.phone_input_box {\r\n    width: 30.5% !important;\r\n}\r\n\r\n.error_message {\r\n    color: red;\r\n    font-size: 12px;\r\n    margin-top: 5px;\r\n}\r\n\r\n\r\n@media screen and (max-width: 1200px) {\r\n    .regist_table {\r\n        width: 100%;\r\n    }\r\n    \r\n    table, th, td {\r\n        /* display: block; */\r\n    }\r\n    \r\n    th, td {\r\n        padding: 10px;\r\n        text-align: left;\r\n        border-bottom: 1px solid #000000;\r\n        border-top: 1px solid #000000;\r\n        border-right: 1px solid #ddd;\r\n        font-size: 12px;\r\n    }\r\n    \r\n}\r\n\r\n/* ============================================================================================= */ \r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n/* ============================================================================================= */ \r\n/* 강의 게시판 */", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "* {\r\n\tmargin: 0;\r\n\tpadding: 0;\r\n\tbox-sizing: border-box;\r\n}\r\n/* reset.css */\r\nhtml, body, div, span, applet, object, iframe,\r\nh1, h2, h3, h4, h5, h6, p, blockquote, pre,\r\na, abbr, acronym, address, big, cite, code,\r\ndel, dfn, em, img, ins, kbd, q, s, samp,\r\nsmall, strike, strong, sub, sup, tt, var,\r\nb, u, i, center,\r\ndl, dt, dd, ol, ul, li,\r\nfieldset, form, label, legend,\r\ntable, caption, tbody, tfoot, thead, tr, th, td,\r\narticle, aside, canvas, details, embed, \r\nfigure, figcaption, footer, header, hgroup, \r\nmenu, nav, output, ruby, section, summary,\r\ntime, mark, audio, video {\r\n    margin: 0;\r\n    padding: 0;\r\n    border: 0;\r\n    font-size: 100%;\r\n    font: inherit;\r\n    vertical-align: baseline;\r\n\ttext-decoration-line: none;\r\n    text-decoration: none;\r\n}\r\n/* HTML5 display-role reset for older browsers */\r\narticle, aside, details, figcaption, figure, \r\nfooter, header, hgroup, menu, nav, section {\r\n    display: block;\r\n}\r\nbody {\r\n    position: relative;\r\n    left: 0;\r\n    transition: left 500ms cubic-bezier(0.25,0.46,0.45,0.94);\r\n    font-family: 'Noto Sans KR', sans-serif;\r\n    font-size: 0.6vw;\r\n    line-height: 0.7vw;\r\n}\r\nol, ul {\r\n    list-style: none;\r\n}\r\nblockquote, q {\r\n    quotes: none;\r\n}\r\nblockquote:before, blockquote:after,\r\nq:before, q:after {\r\n    content: '';\r\n    content: none;\r\n}\r\ntable {\r\n    border-collapse: collapse;\r\n    border-spacing: 0;\r\n}\r\ninput {\r\n\tborder: none;\r\n\tbackground-color: transparent;\r\n}\r\nstrong {\r\n    font-weight: 700;\r\n}\r\n\r\nhr {\r\n    opacity: 0.5;\r\n}\r\n/* ============================================================================================= */\r\n/* 공통 헤더 영역 */\r\n\r\n.top_banner {\r\n    position: relative;\r\n    overflow: hidden;\r\n    height: 30px;\r\n    text-align: center;\r\n    background: #3D64BF;\r\n}\r\n\r\n.top_banner .desc {\r\n    overflow: hidden;\r\n    font-size: 12px;\r\n    color: #fff;\r\n    box-sizing: border-box;\r\n    line-height: 30px;\r\n    white-space: nowrap;\r\n}\r\n\r\n.list_txt {\r\n    height: 30px;\r\n    overflow: hidden;\r\n    margin: 0px;\r\n    padding: 0px;\r\n    color: #fff;\r\n    top: 0;\r\n}\r\n\r\n.list_txt  a{\r\n    color: #fff;\r\n    font-weight: 700;\r\n}\r\n\r\nheader {\r\n    height: 70px;\r\n    padding: 0 10vw;\r\n}\r\n\r\n\r\nheader .navigation {\r\n    display: flex;\r\n    justify-content: space-between;\r\n    align-items: center;\r\n    position: relative !important;\r\n    height: 100%;\r\n}\r\n\r\n\r\n.navigation ul.nav_left {\r\n    display: flex;\r\n    gap: 1vw;\r\n}\r\n\r\n.side_nav {\r\n    gap: 1vw;\r\n    align-items: center;\r\n}\r\n\r\n.navigation h1 {\r\n    width: 100px;\r\n    position: absolute;\r\n    left: 50%;\r\n    transform: translateX(-50%);\r\n    padding: 0;\r\n    height: 100%;\r\n    display: flex;\r\n    justify-content: center;\r\n    align-items: center;\r\n}\r\n\r\n.navigation h1 a img {\r\n    height: 4vw;\r\n    max-height: 30px;\r\n    transition: none;\r\n}\r\n\r\n.side_nav {\r\n    display: flex;\r\n    gap: 1vw;\r\n    align-items: center;\r\n}\r\n\r\n.side_nav a {\r\n    font-weight: 600;\r\n    font-family: Arial;\r\n    font-size: 12px;\r\n    color: #1e1e1e;\r\n    text-transform: uppercase;\r\n}\r\n\r\n.search_box {\r\n    border-bottom: 1px solid #1e1e1e;\r\n    display: flex;\r\n}\r\n\r\n.search_box input {\r\n    font-weight: 600;\r\n    font-family: Arial;\r\n    font-size: 12px;\r\n    color: #1e1e1e;\r\n    text-transform: uppercase;\r\n}\r\n\r\n\r\n.search_box input:focus {\r\n    outline: none;\r\n}\r\n\r\n.search_box button {\r\n    cursor: pointer;\r\n    background-color: transparent;\r\n    border: none;\r\n}\r\n\r\n.menu_btn {\r\n    background-color: #000;\r\n    color: #fff !important;\r\n    padding: 0.15vw 0.5vw;\r\n    border: 1px solid #000;\r\n    display: flex;\r\n    justify-content: center;\r\n    align-items: center;\r\n    padding: 5px 10px;\r\n    border-radius: 5px;\r\n}\r\n\r\n.menu_btn img {\r\n    margin-right: 5px;\r\n}\r\n\r\n@media screen and (max-width: 1000px) {\r\n    /* .navigation ul.nav_left {\r\n        display: none;\r\n    } */\r\n\r\n    .side_nav a {\r\n        display: none;\r\n    }\r\n\r\n    .side_nav input {\r\n        display: none;\r\n    }\r\n\r\n    /* .menu_btn {\r\n        display: flex;\r\n    } */\r\n}\r\n\r\n.dropdown {\r\n    display: none;\r\n    position: absolute;\r\n    background-color: #fff;\r\n    border: 1px solid #2E2E2E;\r\n    outline: none;\r\n    text-align: left;\r\n    z-index: 2;\r\n    border-radius: 5px;\r\n    /* margin-top: 15px; */\r\n}\r\n\r\n.side_nav li:hover .dropdown {\r\n    display: block; /* 호버 시 드롭다운 표시 */\r\n}\r\n\r\n.side_nav .dropdown li {\r\n    /* padding: 10px; */\r\n}\r\n\r\n.dropdown a {\r\n    width: 150px;\r\n    padding: 10px 30px;\r\n    display: inline-block;\r\n}\r\n\r\n.dropdown a:hover {\r\n    color: #3D64BF;\r\n}\r\n\r\n/* ============================================================================================= */\r\n\r\n\r\n\r\n\r\n\r\n/* ============================================================================================= */\r\n/* 공통 푸터 영역 */\r\n\r\nfooter {\r\n    margin-top: 100px;\r\n    width: 100%;\r\n    height: 150px;\r\n    background-color: #2E2E2E;\r\n    padding: 0 10vw;\r\n    position:relative;\r\n\tbottom: 0;\r\n}\r\n\r\n\r\n\r\n/* ============================================================================================= */\r\n\r\n\r\n\r\n\r\n\r\n/* ============================================================================================= */\r\n/* 메인 영역 */\r\n\r\n.main_wrap {\r\n    position: relative;\r\n    display: flex;\r\n}\r\n\r\n.main_visual {\r\n    width: 100%;\r\n    height: 40vh;\r\n    overflow: hidden;\r\n    display: flex;\r\n    justify-content: center;\r\n    align-items: center;\r\n    transition: all 0.2s;\r\n    background: #000;\r\n}\r\n\r\n.main_nav {\r\n    width: 100%;\r\n    height: 75px;\r\n    padding: 10px 10vw;\r\n    display: grid;\r\n    padding-top: 18px;\r\n    grid-template-columns: 135px 33px 1fr 52px;\r\n}\r\n\r\n.main_nav_num_space {\r\n    display: flex;\r\n    flex-direction: row;\r\n    justify-content: space-between;\r\n    align-items: center;\r\n    padding: 0 1rem;\r\n    width: 135px;\r\n    height: 36px;\r\n    font-size: .875rem;\r\n    color: #fff;\r\n    border-radius: 20px;\r\n    background-color: #7F7F7F;\r\n}\r\n\r\n.control-wrapper {\r\n    display: flex;\r\n    align-items: center;\r\n    justify-content: space-between;\r\n    width: 50px;\r\n}\r\n\r\n.control-wrapper button {\r\n    padding: 0;\r\n    background: none;\r\n    border: 0;\r\n    color: #fff;\r\n    cursor: pointer;\r\n}\r\n\r\n.divider {\r\n    margin: 0 1rem;\r\n    width: 1px;\r\n    height: 36px;\r\n    background-color: #dee2e6;\r\n}\r\n\r\n.main_nav_selection {\r\n    overflow: hidden;\r\n    height: 36px;\r\n}\r\n\r\n.main_nav_selection_box {\r\n    display: flex;\r\n    height: 36px;\r\n}\r\n\r\n.main_nav_selection_btn {\r\n    flex: 0 0 auto;\r\n    padding: 0 1rem;\r\n    height: 36px;\r\n    line-height: 36px;\r\n    text-align: center;\r\n    font-size: .875rem;\r\n    font-weight: 700;\r\n    color: #495057;\r\n    border-radius: 20px;\r\n    box-shadow: inset 0 0 0 1px #ced4da;\r\n    background-color: #fff;\r\n    cursor: pointer;    \r\n}\r\n\r\n.ml_10 {\r\n    margin-left: 10px;\r\n}\r\n\r\n.main_new_text {\r\n    margin-top: 50px;\r\n    margin-bottom: 10px;\r\n    text-align: center;\r\n    padding: 10px;\r\n}\r\n\r\n.main_new_text h3 {\r\n    font-size: 20px;\r\n    font-weight: 700;\r\n}\r\n\r\n.main_new_text a {\r\n    color: #000;\r\n    line-height: 50px;\r\n    font-size: 15px;\r\n}\r\n\r\n.main_container_new {\r\n    padding: 0 10vw;\r\n    display: grid; \r\n    transition: all 0.2s;\r\n    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));\r\n    gap: 20px\r\n}\r\n\r\n.main_container_new_card {\r\n    display: block;\r\n}\r\n\r\n.main_container_new_card_img {\r\n    position: relative;\r\n    overflow: hidden;\r\n    width: 100%;\r\n    padding-top: 50%;\r\n    border-radius: 0.8rem;\r\n}\r\n\r\n.main_container_new_card_img img {\r\n    position: absolute;\r\n    top: 50%;\r\n    left: 50%;\r\n    display: inline-block;\r\n    width: 100%;\r\n    max-width: none;\r\n    padding-top: 0;\r\n    transform: translate(-50%, -50%);\r\n    border-radius: 10px;\r\n}\r\n\r\n.main_container_new_card_title {\r\n    margin-top: 10px;\r\n    overflow: hidden;\r\n    font-size: 20px;\r\n    font-weight: 700;\r\n    line-height: 25px;\r\n    color: #000;\r\n}\r\n\r\n.main_container_new_card_content {\r\n    margin-top: 10px;\r\n    font-size: 13px;\r\n    line-height: 20px;\r\n    color: #000;\r\n}\r\n\r\n.main_container_new_card_tag {\r\n    display: flex;\r\n    flex-wrap: wrap;\r\n    margin-top: 20px;\r\n}\r\n\r\n.main_container_new_card_tag li {\r\n    padding: 10px 20px;\r\n    margin-right: 10px;\r\n    border-radius: 5px;\r\n    color: #6e6e73;\r\n    background: #f2f2f2;\r\n    font-size: 10px;\r\n}\r\n\r\n.main_banner {\r\n    margin-top: 100px;\r\n    width: 100%;\r\n    height: 250px;\r\n    background-color: #3D64BF;\r\n}\r\n\r\n.main_container_hot {\r\n    padding: 0 10vw;\r\n    display: grid; \r\n    transition: all 0.2s;\r\n    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));\r\n    gap: 20px\r\n}\r\n\r\n.main_container_hot_card {\r\n    display: block;\r\n}\r\n\r\n.main_container_hot_card_img {\r\n    position: relative;\r\n    overflow: hidden;\r\n    width: 100%;\r\n    padding-top: 130%;\r\n    border-radius: 0.8rem;\r\n}\r\n\r\n.main_container_hot_card_img img {\r\n    position: absolute;\r\n    top: 50%;\r\n    left: 50%;\r\n    display: inline-block;\r\n    width: 100%;\r\n    max-width: none;\r\n    padding-top: 0;\r\n    transform: translate(-50%, -50%);\r\n    border-radius: 10px;\r\n}\r\n\r\n.main_container_keyword {\r\n    padding: 0 10vw;\r\n    display: grid; \r\n    transition: all 0.2s;\r\n    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));\r\n    gap: 20px\r\n}\r\n\r\n.main_container_keyword_card {\r\n    display: block;\r\n}\r\n\r\n.main_container_keyword_card_img {\r\n    position: relative;\r\n    overflow: hidden;\r\n    width: 100%;\r\n    padding-top: 80%;\r\n    border-radius: 0.8rem;\r\n}\r\n\r\n.main_container_keyword_card_img img {\r\n    position: absolute;\r\n    top: 50%;\r\n    left: 50%;\r\n    display: inline-block;\r\n    width: 100%;\r\n    max-width: none;\r\n    padding-top: 0;\r\n    transform: translate(-50%, -50%);\r\n    border-radius: 10px;\r\n}\r\n\r\n/* ============================================================================================= */\r\n\r\n\r\n\r\n\r\n\r\n/* ============================================================================================= */\r\n/* 회원가입 영역 (약관 입력) */\r\n\r\n.regist_wrap {\r\n    position: relative;\r\n    display: flex;\r\n}\r\n\r\n.container-registration-none {\r\n    display: none;\r\n}\r\n\r\n.regist_title_box {\r\n    padding: 0 10vw;\r\n    margin-top: 50px;\r\n}\r\n\r\n.regist_title {\r\n    text-align: center;\r\n}\r\n\r\n@media screen and (max-width: 800px) {\r\n    .regist_title span {\r\n        display: block;\r\n        line-height: 20px;\r\n        text-align: left;\r\n        margin-left: 15px;\r\n    }\r\n    .ml_10 {\r\n        margin-left: 0px;\r\n    }\r\n}\r\n\r\n.regist_title h3 {\r\n    font-size: 30px;\r\n    font-weight: 700;\r\n    line-height: 60px;\r\n}\r\n\r\n.regist_title span {\r\n    font-size: 15px;\r\n}\r\n\r\n.regist_content_box {\r\n    width: 90%;\r\n    margin: auto;\r\n    margin-top: 30px;\r\n}\r\n\r\n.regist_content_box_lr {\r\n    margin-top: 15px;\r\n    display: flex;\r\n    gap: 20px;\r\n}\r\n\r\n@media screen and (max-width: 800px) {\r\n    .regist_content_box_lr {\r\n        display: grid;\r\n        flex-direction: column;\r\n    }\r\n}\r\n\r\n.regist_content_box_l {\r\n    width: 100%;\r\n}\r\n\r\n.regist_content_box_r {\r\n    width: 100%;\r\n}\r\n\r\n.regist_content_box_title h3 {\r\n    font-size: 15px;\r\n    font-weight: 700;\r\n    margin-bottom: 15px;\r\n}\r\n\r\n.regist_content_box_check_box {\r\n    display: flex;\r\n    font-size: 13px;\r\n}\r\n\r\n.regist_content_box_check_box input {\r\n    margin-right: 10px;\r\n}\r\n\r\n.regist_content_box_checkbox_sel {\r\n    margin-right: 10px;\r\n}\r\n\r\n.regist_content_box_l_checkbox {\r\n    display: flex;\r\n    font-size: 13px;\r\n}\r\n\r\n.regist_content_box_l_checkbox input {\r\n    margin-right: 10px;\r\n}\r\n\r\n.regist_content_box_r_checkbox {\r\n    display: flex;\r\n    font-size: 13px;\r\n}\r\n\r\n.regist_content_box_r_checkbox input {\r\n    margin-right: 10px;\r\n}\r\n\r\n.regist_content_box_l_terms {\r\n    margin-top: 15px;\r\n    width: 100%;\r\n    height: 500px;\r\n    border: 0.5px solid #5c5c5c6c;\r\n    overflow-y: scroll;\r\n    padding: 10px;\r\n}\r\n\r\n.regist_content_box_l_terms h3 {\r\n    font-size: 12px;\r\n    line-height: 20px;\r\n}\r\n\r\n.regist_content_box_l_terms p {\r\n    font-size: 12px;\r\n    line-height: 20px;\r\n}\r\n\r\n.regist_content_box_r_terms {\r\n    margin-top: 15px;\r\n    width: 100%;\r\n    height: 500px;\r\n    border: 0.5px solid #5c5c5c6c;\r\n    overflow-y: scroll;\r\n    padding: 10px;\r\n}\r\n\r\n.regist_content_box_r_terms h3 {\r\n    font-size: 12px;\r\n    line-height: 20px;\r\n}\r\n\r\n.regist_content_box_r_terms p {\r\n    font-size: 12px;\r\n    line-height: 20px;\r\n}\r\n\r\n.regist_button {\r\n    margin: auto;\r\n    display: flex;\r\n    justify-content: center;\r\n    margin-top: 20px;\r\n}\r\n\r\n.regist_button_cancel {\r\n    padding: 10px 20px;\r\n    border: 1px solid #000;\r\n    background-color: #fff;\r\n    margin-right: 20px;\r\n    cursor: pointer;\r\n}\r\n\r\n.regist_button_next {\r\n    padding: 10px 30px;\r\n    border: 1px solid #000;\r\n    background-color: #000000;\r\n    color: #fff;\r\n    cursor: pointer;\r\n}\r\n\r\n/* ============================================================================================= */\r\n\r\n\r\n\r\n\r\n\r\n/* ============================================================================================= */\r\n/* 회원가입 영역 (정보 입력)*/\r\n\r\n.regist_table {\r\n    width: 40%;\r\n    border-collapse: collapse;\r\n    margin: 30px auto 20px auto;\r\n}\r\n\r\n.regist_table label {\r\n    line-height: 20px;\r\n    text-transform: uppercase;\r\n}\r\n\r\nth, td {\r\n    padding: 10px;\r\n    text-align: left;\r\n    border-bottom: 1px solid #000000;\r\n    border-top: 1px solid #000000;\r\n    border-right: 1px solid #ddd;\r\n    font-size: 12px;\r\n}\r\n\r\nth:last-child, td:last-child {\r\n    border-right: none;\r\n}\r\n\r\n.regist_table input {\r\n    border: 1px solid #83838360;\r\n}\r\n\r\n.regist_table input {\r\n    width: 90%;\r\n    padding: 8px;\r\n}\r\n\r\n.phone_select_box {\r\n    border: 1px solid #83838360;\r\n    width: 25%;\r\n    padding: 8px;\r\n}\r\n.phone_input_box {\r\n    width: 30.5% !important;\r\n}\r\n\r\n.error_message {\r\n    color: red;\r\n    font-size: 12px;\r\n    margin-top: 5px;\r\n}\r\n\r\n.success_message {\r\n    color: #3D64BF;\r\n    font-size: 12px;\r\n    margin-top: 5px;\r\n}\r\n\r\n\r\n@media screen and (max-width: 1200px) {\r\n    .regist_table {\r\n        width: 100%;\r\n    }\r\n    \r\n    table, th, td {\r\n        /* display: block; */\r\n    }\r\n    \r\n    th, td {\r\n        padding: 10px;\r\n        text-align: left;\r\n        border-bottom: 1px solid #000000;\r\n        border-top: 1px solid #000000;\r\n        border-right: 1px solid #ddd;\r\n        font-size: 12px;\r\n    }\r\n    \r\n}\r\n\r\n/* ============================================================================================= */ \r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n/* ============================================================================================= */ \r\n/* 강의 게시판 */", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
