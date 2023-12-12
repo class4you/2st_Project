@@ -196,6 +196,48 @@ header .navigation {
     margin-right: 5px;
 }
 
+@media screen and (max-width: 768px) {
+    /* .navigation ul.nav_left {
+        display: none;
+    } */
+
+    .side_nav a {
+        display: none;
+    }
+
+    .side_nav input {
+        display: none;
+    }
+
+    /* .menu_btn {
+        display: flex;
+    } */
+}
+
+.dropdown {
+    display: none;
+    position: absolute;
+    background-color: #fff;
+    border: 1px solid #2E2E2E;
+    text-align: left;
+    z-index: 2;
+}
+
+.side_nav li:hover .dropdown {
+    display: block; /* 호버 시 드롭다운 표시 */
+}
+
+.side_nav .dropdown li {
+    padding: 10px;
+    border-bottom: 1px solid #000000;
+}
+
+.dropdown a {
+    padding: 10px 30px;
+    background-color: #000;
+    color: #ddd;
+}
+
 /* ============================================================================================= */
 
 
@@ -717,3 +759,119 @@ th:last-child, td:last-child {
 }
 
 /* ============================================================================================= */ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ============================================================================================= */ 
+/* 강의 게시판 */
