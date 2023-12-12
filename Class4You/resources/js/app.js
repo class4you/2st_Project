@@ -21,5 +21,4 @@ createApp({
 })
     .use(router)
     .use(store)
-    .mount("#app")
-    .mount("#header");
+    .mount("#app");

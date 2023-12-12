@@ -748,6 +748,12 @@ th:last-child, td:last-child {
     margin-top: 5px;
 }
 
+.success_message {
+    color: #3D64BF;
+    font-size: 12px;
+    margin-top: 5px;
+}
+
 
 @media screen and (max-width: 1200px) {
     .regist_table {

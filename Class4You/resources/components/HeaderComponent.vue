@@ -31,12 +31,12 @@
                     <li><a href="">커뮤니티</a></li>
                 </ul>
                 <h1>
-                    <a href="">
+                    <a href="/">
                         <img src="/img/v2_14378e7f2adb0ec0ad8cddaaf3b0fbdd_0DXltiM6xt_top.jpg" alt="">
                     </a>
                 </h1>
                 <div class="side_nav">
-                    <a href="">SIGN UP</a>
+                    <router-link to="/registration">SIGN UP</router-link>
                     <a href="">LOGIN</a>
                     <div class="search_box">
                         <input type="text" placeholder="SEARCH">
