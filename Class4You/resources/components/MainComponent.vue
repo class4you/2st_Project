@@ -1,59 +1,5 @@
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./css/common.css">
-    <title>인덱스</title>
-</head>
-<body>
-    <div id="wrap">
-        <div id="top_banner" class="top_banner">
-            <div class="desc">
-                <ul id="list_txt" class="list_txt">
-                    <li><a href="">새로운 온라인 클래스 STUDY 4 YOU 개설</a></li>
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                </ul>
-            </div>
-        </div>
-
-        <header id="header">
-            <div class="navigation">
-                <ul class="nav_left side_nav">
-                    <li><a href="" class="menu_btn"><img src="./img/menu.png" alt="">전체 강의</a>
-                        <ul class="dropdown">
-                            <li><a href="#">HTML</a></li>
-                            <li><a href="#">CSS</a></li>
-                            <li><a href="#">Java Script</a></li>
-                            <li><a href="#">PHP</a></li>
-                            <li><a href="#">MariaDB</a></li>
-                            <!-- 필요한 만큼 강의 항목을 추가 -->
-                        </ul>
-                    </li>
-                    <li><a href="">추천 강의</a></li>
-                    <li><a href="">신규 강의</a></li>
-                    <li><a href="">|</a></li>
-                    <li><a href="">커뮤니티</a></li>
-                </ul>
-                <h1>
-                    <a href="">
-                        <img src="./img/v2_14378e7f2adb0ec0ad8cddaaf3b0fbdd_0DXltiM6xt_top.jpg" alt="">
-                    </a>
-                </h1>
-                <div class="side_nav">
-                    <a href="">SIGN UP</a>
-                    <a href="">LOGIN</a>
-                    <div class="search_box">
-                        <input type="text" placeholder="SEARCH">
-                        <button><img src="./img/SEARCH.png" alt=""></button>
-                    </div>
-                </div>
-            </div>
-        </header>
-        <hr>
+<template>
+    <div>
         <div class="container">
             <main class="contents">
                 <div class="main_mrap">
@@ -68,9 +14,9 @@
                                 <span class="total-count">7</span>
                             </div>
                             <div class="control-wrapper">
-                                <button><</button>
-                                <button>||</button>
-                                <button>></button>
+                                <button>&#60;</button>
+                                <button>&#124;&#124;</button>
+                                <button>&#62;</button>
                             </div>
                         </div>
                         <div class="divider"></div>
@@ -102,7 +48,7 @@
                             <a href="">
                             <li class="main_container_new_card">
                                 <div class="main_container_new_card_img">
-                                    <img src="./img/img-1.png" alt="">
+                                    <img src="/img/img-1.png" alt="">
                                 </div>
                                 <div class="main_container_new_card_title">
                                     <h4>실무까지 한 번에 끝내는 DevOps를 위한 Docker & Kubernetes feat.</h4>
@@ -122,7 +68,7 @@
                             <a href="">
                                 <li class="main_container_new_card">
                                     <div class="main_container_new_card_img">
-                                        <img src="./img/img-1.png" alt="">
+                                        <img src="/img/img-1.png" alt="">
                                     </div>
                                     <div class="main_container_new_card_title">
                                         <h4>실무까지 한 번에 끝내는 DevOps를 위한 Docker & Kubernetes feat.</h4>
@@ -142,7 +88,7 @@
                             <a href="">
                                 <li class="main_container_new_card">
                                     <div class="main_container_new_card_img">
-                                        <img src="./img/img-1.png" alt="">
+                                        <img src="/img/img-1.png" alt="">
                                     </div>
                                     <div class="main_container_new_card_title">
                                         <h4>실무까지 한 번에 끝내는 DevOps를 위한 Docker & Kubernetes feat.</h4>
@@ -162,7 +108,7 @@
                             <a href="">
                                 <li class="main_container_new_card">
                                     <div class="main_container_new_card_img">
-                                        <img src="./img/img-1.png" alt="">
+                                        <img src="/img/img-1.png" alt="">
                                     </div>
                                     <div class="main_container_new_card_title">
                                         <h4>실무까지 한 번에 끝내는 DevOps를 위한 Docker & Kubernetes feat.</h4>
@@ -195,7 +141,7 @@
                             <a href="">
                                 <li class="main_container_hot_card">
                                     <div class="main_container_hot_card_img">
-                                        <img src="./img/img-2.png" alt="">
+                                        <img src="/img/img-2.png" alt="">
                                     </div>
                                 </li>
                             </a>
@@ -203,7 +149,7 @@
                             <a href="">
                                 <li class="main_container_hot_card">
                                     <div class="main_container_hot_card_img">
-                                        <img src="./img/img-2.png" alt="">
+                                        <img src="/img/img-2.png" alt="">
                                     </div>
                                 </li>
                             </a>
@@ -211,7 +157,7 @@
                             <a href="">
                                 <li class="main_container_hot_card">
                                     <div class="main_container_hot_card_img">
-                                        <img src="./img/img-2.png" alt="">
+                                        <img src="/img/img-2.png" alt="">
                                     </div>
                                 </li>
                             </a>
@@ -219,7 +165,7 @@
                             <a href="">
                                 <li class="main_container_hot_card">
                                     <div class="main_container_hot_card_img">
-                                        <img src="./img/img-2.png" alt="">
+                                        <img src="/img/img-2.png" alt="">
                                     </div>
                                 </li>
                             </a>
@@ -227,7 +173,7 @@
                             <a href="">
                                 <li class="main_container_hot_card">
                                     <div class="main_container_hot_card_img">
-                                        <img src="./img/img-2.png" alt="">
+                                        <img src="/img/img-2.png" alt="">
                                     </div>
                                 </li>
                             </a>
@@ -235,7 +181,7 @@
                             <a href="">
                                 <li class="main_container_hot_card">
                                     <div class="main_container_hot_card_img">
-                                        <img src="./img/img-2.png" alt="">
+                                        <img src="/img/img-2.png" alt="">
                                     </div>
                                 </li>
                             </a>
@@ -243,7 +189,7 @@
                             <a href="">
                                 <li class="main_container_hot_card">
                                     <div class="main_container_hot_card_img">
-                                        <img src="./img/img-2.png" alt="">
+                                        <img src="/img/img-2.png" alt="">
                                     </div>
                                 </li>
                             </a>
@@ -251,7 +197,7 @@
                             <a href="">
                                 <li class="main_container_hot_card">
                                     <div class="main_container_hot_card_img">
-                                        <img src="./img/img-2.png" alt="">
+                                        <img src="/img/img-2.png" alt="">
                                     </div>
                                 </li>
                             </a>
@@ -272,7 +218,7 @@
                             <a href="">
                                 <li class="main_container_keyword_card">
                                     <div class="main_container_keyword_card_img">
-                                        <img src="./img/img-2.png" alt="">
+                                        <img src="/img/img-2.png" alt="">
                                     </div>
                                 </li>
                             </a>
@@ -280,7 +226,7 @@
                             <a href="">
                                 <li class="main_container_keyword_card">
                                     <div class="main_container_keyword_card_img">
-                                        <img src="./img/img-2.png" alt="">
+                                        <img src="/img/img-2.png" alt="">
                                     </div>
                                 </li>
                             </a>
@@ -288,7 +234,7 @@
                             <a href="">
                                 <li class="main_container_keyword_card">
                                     <div class="main_container_keyword_card_img">
-                                        <img src="./img/img-2.png" alt="">
+                                        <img src="/img/img-2.png" alt="">
                                     </div>
                                 </li>
                             </a>
@@ -296,7 +242,7 @@
                             <a href="">
                                 <li class="main_container_keyword_card">
                                     <div class="main_container_keyword_card_img">
-                                        <img src="./img/img-2.png" alt="">
+                                        <img src="/img/img-2.png" alt="">
                                     </div>
                                 </li>
                             </a>
@@ -304,7 +250,7 @@
                             <a href="">
                                 <li class="main_container_keyword_card">
                                     <div class="main_container_keyword_card_img">
-                                        <img src="./img/img-2.png" alt="">
+                                        <img src="/img/img-2.png" alt="">
                                     </div>
                                 </li>
                             </a>
@@ -312,7 +258,7 @@
                             <a href="">
                                 <li class="main_container_keyword_card">
                                     <div class="main_container_keyword_card_img">
-                                        <img src="./img/img-2.png" alt="">
+                                        <img src="/img/img-2.png" alt="">
                                     </div>
                                 </li>
                             </a>
@@ -320,7 +266,7 @@
                             <a href="">
                                 <li class="main_container_keyword_card">
                                     <div class="main_container_keyword_card_img">
-                                        <img src="./img/img-2.png" alt="">
+                                        <img src="/img/img-2.png" alt="">
                                     </div>
                                 </li>
                             </a>
@@ -328,7 +274,7 @@
                             <a href="">
                                 <li class="main_container_keyword_card">
                                     <div class="main_container_keyword_card_img">
-                                        <img src="./img/img-2.png" alt="">
+                                        <img src="/img/img-2.png" alt="">
                                     </div>
                                 </li>
                             </a>
@@ -340,9 +286,13 @@
                 </div>
             </main>
         </div>
-        <footer>
-
-        </footer>
     </div>
-</body>
-</html>
+</template>
+<script>
+export default {
+    name: 'MainComponent'
+}
+</script>
+<style>
+    
+</style>

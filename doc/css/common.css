@@ -101,9 +101,10 @@ hr {
 }
 
 header {
-    height: 80px;
+    height: 70px;
     padding: 0 10vw;
 }
+
 
 header .navigation {
     display: flex;
@@ -137,8 +138,8 @@ header .navigation {
 }
 
 .navigation h1 a img {
-    height: 2vw;
-    max-height: 40px;
+    height: 4vw;
+    max-height: 30px;
     transition: none;
 }
 
@@ -196,7 +197,7 @@ header .navigation {
     margin-right: 5px;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1000px) {
     /* .navigation ul.nav_left {
         display: none;
     } */
@@ -219,8 +220,11 @@ header .navigation {
     position: absolute;
     background-color: #fff;
     border: 1px solid #2E2E2E;
+    outline: none;
     text-align: left;
     z-index: 2;
+    border-radius: 5px;
+    /* margin-top: 15px; */
 }
 
 .side_nav li:hover .dropdown {
@@ -228,14 +232,17 @@ header .navigation {
 }
 
 .side_nav .dropdown li {
-    padding: 10px;
-    border-bottom: 1px solid #000000;
+    /* padding: 10px; */
 }
 
 .dropdown a {
+    width: 150px;
     padding: 10px 30px;
-    background-color: #000;
-    color: #ddd;
+    display: inline-block;
+}
+
+.dropdown a:hover {
+    color: #3D64BF;
 }
 
 /* ============================================================================================= */
@@ -286,8 +293,8 @@ footer {
 
 .main_nav {
     width: 100%;
-    height: 8vh;
-    padding: 0 10vw;
+    height: 75px;
+    padding: 10px 10vw;
     display: grid;
     padding-top: 18px;
     grid-template-columns: 135px 33px 1fr 52px;
@@ -431,7 +438,7 @@ footer {
 }
 
 .main_container_new_card_tag li {
-    padding: 5px 15px;
+    padding: 10px 20px;
     margin-right: 10px;
     border-radius: 5px;
     color: #6e6e73;
@@ -875,3 +882,16 @@ th:last-child, td:last-child {
 
 /* ============================================================================================= */ 
 /* 강의 게시판 */
+
+
+
+
+
+
+
+
+
+
+
+
+

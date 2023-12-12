@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF_8">
+    <meta name="viewport" content="width=device_width, initial_scale=1.0">
+    <link rel="stylesheet" href="./css/common.css">
+    <title>로그인</title>
+</head>
+<body>
+    <div id="wrap">
+        <div id="top_banner" class="top_banner">
+            <div class="desc">
+                <ul id="list_txt" class="list_txt">
+                    <li><a href="">새로운 온라인 클래스 STUDY 4 YOU 개설</a></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                </ul>
+            </div>
+        </div>
+
+        <header id="header">
+            <div class="navigation">
+                <ul class="nav_left side_nav">
+                    <li><a href="" class="menu_btn"><img src="./img/menu.png" alt="">전체 강의</a></li>
+                    <li><a href="">추천 강의</a></li>
+                    <li><a href="">신규 강의</a></li>
+                    <li>|</li>
+                    <li><a href="">커뮤니티</a></li>
+                </ul>
+                <h1>
+                    <a href="">
+                        <img src="./img/v2_14378e7f2adb0ec0ad8cddaaf3b0fbdd_0DXltiM6xt_top.jpg" alt="">
+                    </a>
+                </h1>
+                <div class="side_nav">
+                    <a href="">SIGN UP</a>
+                    <a href="">LOGIN</a>
+                    <div class="search_box">
+                        <input type="text" placeholder="SEARCH">
+                        <button type="button"><img src="./img/SEARCH.png" alt=""></button>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <hr>
+        <div class="container">
+            <main class="contents">
+                <div class="regist_mrap">
+                    <div class="regist_title_box">
+                        <div class="regist_title">
+                            <h3>정보입력</h3>
+                            <span>1. 이용약관 동의</span>
+                            <span class="ml_10">></span>
+                            <span class="ml_10"><strong>2. 계정정보 입력</strong></span>
+                        </div>
+
+                        <table class="regist_table">
+                            <colgroup>
+                                <col style="width: 20%;">
+                                <col style="width: 80%;">
+                            </colgroup>
+                            <tr>
+                                <th><label for="email">email</label><span style="color: red;">*</span></th>
+                                <td>
+                                    <input type="text" id="email" name="email">
+                                    <div class="error_message"></div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th><label for="password">password</label><span style="color: red;">*</span></th>
+                                <td>
+                                    <input type="password" id="password">
+                                    <div class="error_message"></div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th><label for="password_chk">password chk</label><span style="color: red;">*</span></th>
+                                <td>
+                                    <input type="password" id="password_chk">
+                                    <div class="error_message"></div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th><label for="name">name</label><span style="color: red;">*</span></th>
+                                <td>
+                                    <input type="text" id="name">
+                                    <div class="error_message"></div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th><label for="phone_number">phone number</label><span style="color: red;">*</span></th>
+                                <td>
+                                    <select class="phone_select_box" name="" id="">
+                                        <option value="010">010</option>
+                                        <option value="011">011</option>
+                                        <option value="016">016</option>
+                                        <option value="017">017</option>
+                                        <option value="018">018</option>
+                                        <option value="019">019</option>
+                                    </select>
+                                    -
+                                    <input class="phone_input_box" type="password" id="phone_number">
+                                    -
+                                    <input class="phone_input_box" type="password" id="phone_number">
+                                    <div class="error_message"></div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th><label for="birth_date">birth date</label><span style="color: red;">*</span></th>
+                                <td>
+                                    <input type="date" id="birth_date">
+                                    <div class="error_message"></div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th><label for="address">Address</label><span style="color: red;">*</span></th>
+                                <td>
+                                    <input type="text" id="address">
+                                    <div class="error_message"></div>
+                                </td>
+                            </tr>
+                        </table>
+
+                        <div class="regist_button">
+                            <button class="regist_button_cancel">CANCEL</button>
+                            <button class="regist_button_next">SIGN UP</button>
+                        </div>
+                       
+                    </div>
+                </div>
+            </main>
+        </div>
+
+        <footer>
+
+        </footer>
+    </div>
+</body>
+</html>

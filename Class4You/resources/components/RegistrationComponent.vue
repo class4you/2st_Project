@@ -1,51 +1,6 @@
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./css/common.css">
-    <title>회원가입</title>
-</head>
-<body>
-    <div id="wrap">
-        <div id="top_banner" class="top_banner">
-            <div class="desc">
-                <ul id="list_txt" class="list_txt">
-                    <li><a href="">새로운 온라인 클래스 STUDY 4 YOU 개설</a></li>
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                </ul>
-            </div>
-        </div>
-
-        <header id="header">
-            <div class="navigation">
-                <ul class="nav_left side_nav">
-                    <li><a href="" class="menu_btn"><img src="./img/menu.png" alt="">전체 강의</a></li>
-                    <li><a href="">추천 강의</a></li>
-                    <li><a href="">신규 강의</a></li>
-                    <li>|</li>
-                    <li><a href="">커뮤니티</a></li>
-                </ul>
-                <h1>
-                    <a href="">
-                        <img src="./img/v2_14378e7f2adb0ec0ad8cddaaf3b0fbdd_0DXltiM6xt_top.jpg" alt="">
-                    </a>
-                </h1>
-                <div class="side_nav">
-                    <a href="">SIGN UP</a>
-                    <a href="">LOGIN</a>
-                    <div class="search_box">
-                        <input type="text" placeholder="SEARCH">
-                        <button type="button"><img src="./img/SEARCH.png" alt=""></button>
-                    </div>
-                </div>
-            </div>
-        </header>
-        <hr>
-        <div class="container">
+<template>
+    <div>
+        <div class="container" :class="{ 'container-registration-none': regiflg1 }">
             <main class="contents">
                 <div class="regist_mrap">
                     <div class="regist_title_box">
@@ -61,14 +16,14 @@
                                 <h3>전체동의</h3>
                             </div>
                             <div class="regist_content_box_check_box">
-                                <input type="checkbox">
+                                <input type="checkbox" name="selectAll" v-model="selectAll" @change="handleSelectAll">
                                 <label for="" style="line-height: 15px;">이용약관 및 개인정보수집 및 이용에 모두 동의합니다.</label>
                             </div>
 
                             <div class="regist_content_box_lr">
                                 <div class="regist_content_box_l">
                                     <div class="regist_content_box_l_checkbox">
-                                        <input type="checkbox">
+                                        <input type="checkbox" name="UserTermsofUse" v-model="frmUserData.UserTermsofUse" @change="handleSelectSingle">
                                         <label for="" style="line-height: 15px;">이용약관 동의 (필수)</label>
                                     </div>
                                     <div class="regist_content_box_l_terms">
@@ -145,7 +100,7 @@
 
                                 <div class="regist_content_box_r">
                                     <div class="regist_content_box_r_checkbox">
-                                        <input type="checkbox">
+                                        <input type="checkbox" name="UserUserPrivacy" v-model="frmUserData.UserPrivacy" @change="handleSelectSingle">
                                         <label for="" style="line-height: 15px;">개인정보처리방침 동의 (필수)</label>
                                     </div>
                                     <div class="regist_content_box_r_terms">
@@ -184,7 +139,6 @@
                                         </p>
                                         <br>
                                         <p>
-                                        <p>
                                         <strong>제4조(개인정보의 처리 및 보유 기간)</strong>
                                         <br>
                                         1. 회사는 이용자의 개인정보를 수집한 목적이 달성되면 지체 없이 파기합니다. 다만, 관련 법령에 따라 일정 기간 동안 보존할 필요가 있는 경우에는 해당 기간 동안 보관하며, 그 외의 경우에는 지체 없이 파기합니다.
@@ -219,7 +173,7 @@
 
                             <div class="regist_button">
                                 <button class="regist_button_cancel">CANCEL</button>
-                                <button class="regist_button_next">NEXT</button>
+                                <button class="regist_button_next" type="button" @click="regiflg1=true; regiflg2=false;">NEXT</button>
                             </div>
                         </div>
                     </div>
@@ -227,9 +181,144 @@
             </main>
         </div>
 
-        <footer>
 
-        </footer>
+        <div class="container" :class="{ 'container-registration-none': regiflg2 }">
+            <main class="contents">
+                <div class="regist_mrap">
+                    <div class="regist_title_box">
+                        <div class="regist_title">
+                            <h3>정보입력</h3>
+                            <span>1. 이용약관 동의</span>
+                            <span class="ml_10">></span>
+                            <span class="ml_10"><strong>2. 계정정보 입력</strong></span>
+                        </div>
+
+                        <table class="regist_table">
+                            <colgroup>
+                                <col style="width: 20%;">
+                                <col style="width: 80%;">
+                            </colgroup>
+                            <tr>
+                                <th><label for="email">email</label><span style="color: red;">*</span></th>
+                                <td>
+                                    <input type="text" id="email" name="UserEmail" v-model="frmUserData.UserEmail">
+                                    <div class="error_message"></div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th><label for="password">password</label><span style="color: red;">*</span></th>
+                                <td>
+                                    <input type="password" id="password" name="UserPassword" v-model="frmUserData.Password">
+                                    <div class="error_message"></div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th><label for="password_chk">password chk</label><span style="color: red;">*</span></th>
+                                <td>
+                                    <input type="password" id="password_chk" name="UserPasswordChk" v-model="frmUserData.PasswordChk">
+                                    <div class="error_message"></div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th><label for="name">name</label><span style="color: red;">*</span></th>
+                                <td>
+                                    <input type="text" id="name" name="UserName" v-model="frmUserData.UserName">
+                                    <div class="error_message"></div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th><label for="phone_number">phone number</label><span style="color: red;">*</span></th>
+                                <td>
+                                    <select class="phone_select_box" id="" name="PhoneNumber" v-model="frmUserData.PhoneNumber1">
+                                        <option value="010">010</option>
+                                        <option value="011">011</option>
+                                        <option value="016">016</option>
+                                        <option value="017">017</option>
+                                        <option value="018">018</option>
+                                        <option value="019">019</option>
+                                    </select>
+                                    -
+                                    <input class="phone_input_box" type="text" id="phone_number" name="PhoneNumber" v-model="frmUserData.PhoneNumber2">
+                                    -
+                                    <input class="phone_input_box" type="text" id="phone_number" name="PhoneNumber" v-model="frmUserData.PhoneNumber3">
+                                    <div class="error_message"></div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th><label for="birth_date">birth date</label><span style="color: red;">*</span></th>
+                                <td>
+                                    <input type="date" id="birth_date" name="UserBirthDate" v-model="frmUserData.UserBirthDate">
+                                    <div class="error_message"></div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th><label for="address">Address</label><span style="color: red;">*</span></th>
+                                <td>
+                                    <input type="text" id="address" name="UserAddress" v-model="frmUserData.Address">
+                                    <div class="error_message"></div>
+                                </td>
+                            </tr>
+                        </table>
+
+                        <div class="regist_button">
+                            <button class="regist_button_cancel" type="button" @click="regiflg1=false; regiflg2=true;">PREV</button>
+                            <button class="regist_button_next" type="button" @click="submitUserData()">SIGN UP</button>
+                        </div>
+                       
+                    </div>
+                </div>
+            </main>
+        </div>
     </div>
-</body>
-</html>
+</template>
+<script>
+export default {
+    name: 'RegistrationComponent',
+
+    data() {
+        return {
+            regiflg1: false,
+            regiflg2: true,
+
+            frmUserData: {
+                UserEmail: '',
+                UserPassword: '',
+                UserPasswordChk: '',
+                UserName: '',
+                UserPhoneNumber1: '',
+                UserPhoneNumber2: '',
+                UserPhoneNumber3: '',
+                UserBirthDate: '',
+                UserAddress: '',
+                UserTermsofUse: '',
+                UserPrivacy: '',
+            },
+        }
+    },
+    methods: {
+        handleSelectAll() {
+            if (this.selectAll) {
+                this.frmUserData.UserTermsofUse = true;
+                this.frmUserData.UserPrivacy = true;
+            } else {
+                // 전체 선택 체크박스를 해제했을 때
+                this.frmUserData.UserTermsofUse = false;
+                this.frmUserData.UserPrivacy = false;
+            }
+        },
+        handleSelectSingle() {
+            if (this.frmUserData.UserTermsofUse || this.frmUserData.UserPrivacy) {
+                this.selectAll = true;
+            } else if (this.frmUserData.UserTermsofUse === false && this.frmUserData.UserPrivacy === false) {
+                this.selectAll = false;
+            }
+        },
+        submitUserData() {
+            this.$store.dispatch('submitUserData', this.frmUserData);
+        },
+    }
+}
+</script>
+<style>
+    
+</style>

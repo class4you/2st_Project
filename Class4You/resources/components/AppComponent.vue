@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h1>가나다라마바사</h1>
+        <Main-Component></Main-Component>
         <router-view></router-view>
     </div>
 </template>
@@ -32,4 +32,5 @@ export default {
 }
 </script>
 <style>
+    @import url('/css/common.css');
 </style>
