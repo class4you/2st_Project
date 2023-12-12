@@ -16,7 +16,7 @@ class UserController extends Controller
     function store (Request $request) {
 
         Log::debug($request);
-        $data = $request->only('UserEmail', 'UserPassword', 'UserPasswordChk', 'UserName', 'UserPhoneNumber', 'UserBirthDate', 'UserAddress', 'UserTermsofUse', 'UserPrivacy');
+        $data = $request->only('UserEmail', 'UserPassword', 'UserName', 'UserPhoneNumber', 'UserBirthDate', 'UserAddress', 'UserTermsofUse', 'UserPrivacy');
         // 비밀번호 암호화
         $data['UserPassword'] = Hash::make($data['UserPassword']);
         // Log::info($request);
