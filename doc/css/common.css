@@ -987,8 +987,69 @@ th:last-child, td:last-child {
     height: 40vh;
     overflow: hidden;
     display: flex;
+    padding: 0 10vW;
     justify-content: center;
     align-items: center;
     transition: all 0.2s;
     background: #000;
+
+}
+
+.class_detail_content {
+    height: 40vh;
+    width: 100%;
+    background-color: #7F7F7F;
+}
+
+.class_detail_content_img {
+    display: inline-block;
+}
+
+.class_detail_content_text {
+    display: inline-block;
+    position: relative;
+    left: 500px;
+}
+
+.class_container {
+    margin: 0;
+    margin-top: 10px;
+    font-size: 1rem;
+    /* background-color: #2E2E2E; */
+    padding: 0 10vw;
+    }
+
+ul.class_tabs {
+    margin: 0px;
+    padding: 0px;
+    list-style: none;
+    }
+
+ul.class_tabs li {
+    background: none;
+    color: #222;
+    display: inline-block;
+    padding: 10px 15px;
+    }
+
+ul.class_tabs li.class_current {
+    background: #ededed;
+    color: #222;
+    }
+
+.class_tab_content {
+    /* display: none; */
+    background: #ededed;
+    margin: 5px;
+    margin-bottom: 40px;
+    padding: 10px;
+    line-height: 20px;
+    }
+
+.class_tab_content>p {
+    text-align: center;
+}
+
+.class_tab_content_title {
+    margin: 10px;
 }
