@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,3 +21,5 @@ Route::get('/', function () {
 Route::any("{slug}", function ($slug) {
     return view('welcome');
 });
+
+Route::middleware('my.user.validation')->post('/web/login', [UserController::class, 'loginpost']);

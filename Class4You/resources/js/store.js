@@ -70,7 +70,7 @@ const store = createStore({
             })
         },
         submitUserLoginData(context, data) {
-            const url = '/api/login'
+            const url = '/web/login'
             
             const header = {
                 headers: {

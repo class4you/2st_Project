@@ -37,7 +37,7 @@
                 </h1>
                 <div class="side_nav">
                     <router-link to="/registration">SIGN UP</router-link>
-                    <a @click="login_open_modal" style="cursor: pointer;">LOGIN</a>
+                    <a @click="loginOpenModal" style="cursor: pointer;">LOGIN</a>
                     <div class="search_box">
                         <input type="text" placeholder="SEARCH">
                         <button><img src="/img/SEARCH.png" alt=""></button>
@@ -59,9 +59,9 @@
                     <input type="email" placeholder="이메일" name="UserEmail" v-model="frmUserLoginData.UserEmail">
                     <input type="password" placeholder="비밀번호" name="UserPassword" v-model="frmUserLoginData.UserPassword">
                 </div>
-                <div class="login_error_message">이메일 또는 비밀번호를 확인해주세요.</div>
+                <div class="login_error_message"></div>
                 <div class="login_modal_button">
-                    <button type="button" @click="submitUserLoginData()">로그인</button>
+                    <button type="button" @click="submitUserLoginData()" style="cursor: pointer;">로그인</button>
                 </div>
                 <dir class="login_modal_find_box">
                     <span><a href="">비밀번호 찾기</a></span>
@@ -107,5 +107,5 @@ export default {
 }
 </script>
 <style>
-    @import url('/css/common.css');
+
 </style>
