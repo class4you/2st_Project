@@ -37,7 +37,7 @@
                 </h1>
                 <div class="side_nav">
                     <router-link to="/registration">SIGN UP</router-link>
-                    <a href="">LOGIN</a>
+                    <a @click="login_open_modal" style="cursor: pointer;">LOGIN</a>
                     <div class="search_box">
                         <input type="text" placeholder="SEARCH">
                         <button><img src="/img/SEARCH.png" alt=""></button>
@@ -46,11 +46,64 @@
             </div>
         </header>
         <hr>
+
+        <div class="login_modal_bk" v-if="loginShowModal">
+            <div class="login_modal">
+                <div class="login_modal_cancel">
+                    <img style="cursor: pointer;" src="/img/modal_cancel.png" alt="" @click="loginCloseModal">
+                </div>
+                <div class="login_modal_logo">
+                    <img src="/img/v2_14378e7f2adb0ec0ad8cddaaf3b0fbdd_0DXltiM6xt_top.jpg" alt="">
+                </div>
+                <div class="login_modal_input_box">
+                    <input type="email" placeholder="이메일" name="UserEmail" v-model="frmUserLoginData.UserEmail">
+                    <input type="password" placeholder="비밀번호" name="UserPassword" v-model="frmUserLoginData.UserPassword">
+                </div>
+                <div class="login_error_message">이메일 또는 비밀번호를 확인해주세요.</div>
+                <div class="login_modal_button">
+                    <button type="button" @click="submitUserLoginData()">로그인</button>
+                </div>
+                <dir class="login_modal_find_box">
+                    <span><a href="">비밀번호 찾기</a></span>
+                    <span>&#124;</span>
+                    <span><a href="">회원가입 하기</a></span>
+                </dir>
+                <div class="login_modal_easy_box">
+                    <p>간편 로그인</p>
+                </div>
+                <div class="login_modal_easy_login">
+
+                </div>
+            </div>
+        </div>
+
     </div>
 </template>
 <script>
 export default {
-    name: 'HeaderComponent'
+    name: 'HeaderComponent',
+
+    data() {
+        return {
+            loginShowModal: false,
+
+            frmUserLoginData: {
+                UserEmail: '',
+                UserPassword: '',
+            },
+        }
+    },
+    methods: {
+        loginOpenModal() {
+            this.loginShowModal = true;
+        }, 
+        loginCloseModal() {
+            this.loginShowModal = false;
+        },
+        submitUserLoginData() {
+            this.$store.dispatch('submitUserLoginData', this.frmUserLoginData);
+        },
+    }
 }
 </script>
 <style>

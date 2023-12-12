@@ -16,7 +16,7 @@ class UserController extends Controller
     function store (Request $request) {
 
         Log::debug($request);
-        $data = $request->only('UserEmail', 'UserPassword', 'UserPasswordChk', 'UserName', 'UserPhoneNumber', 'UserBirthDate', 'UserAddress', 'UserTermsofUse', 'UserPrivacy');
+        $data = $request->only('UserEmail', 'UserPassword', 'UserName', 'UserPhoneNumber', 'UserBirthDate', 'UserAddress', 'UserTermsofUse', 'UserPrivacy');
         // 비밀번호 암호화
         $data['UserPassword'] = Hash::make($data['UserPassword']);
         // Log::info($request);
@@ -29,5 +29,55 @@ class UserController extends Controller
 
         // 저장된 사용자를 반환하거나 다른 작업을 수행할 수 있습니다.
         // return response()->json(['user' => $user, 'message' => 'User created successfully']);
+    }
+
+    public function loginpost(Request $request) {
+        // Log::debug("****************** login 시작 ******************");
+        // 유저 정보 획득
+        $result = User::where('email', $request->email)->first();
+
+        // Log::debug("값 :" .$request);
+        // Log::debug("값 :" .$result);
+        // 받은 값과 있는 값의 비밀번호를 체크
+        if(!$result || !(Hash::check($request->password, $result->password))) {
+            return response()->json([
+                'success' => false,
+                'message' => '아이디와 비밀번호를 확인해주세요.',
+            ]);
+        }
+    
+        // 유저 인증 작업
+        Auth::login($result);
+
+        $userId = Auth::id();
+    
+        $token = Str::random(60);
+
+        // 데이터베이스에 토큰 저장
+        $result->update(['remember_token' => $token]);
+
+        // Log::debug($token);
+        // Log::debug($request);
+        if (Auth::check()) {
+            session(['user' => Auth::user()]);
+            // $allSessionData = session()->all();
+
+            // Log::debug($allSessionData);
+
+            // $request->session()->put('login_status', 'authenticated');
+
+            return response()->json([
+                'user_id' => $userId,
+                'success' => true,
+                'message' => '로그인이 성공적으로 수행되었습니다.',
+                'cookie' => $token,
+            ]);
+
+        } else {
+            return response()->json([
+                'success' => false,
+                'message' => '인증 에러가 발생했습니다.',
+            ]);
+        }
     }
 }

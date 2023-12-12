@@ -37,7 +37,8 @@ const store = createStore({
             const url = '/api/registration'
             const header = {
                 headers: {
-                    "Content-Type": 'multipart/form-data'
+                    "Content-Type": 'multipart/form-data',
+                    'X-CSRF-TOKEN': document.head.querySelector('meta[name="csrf-token"]').content,
                 },
             }
             let frm = new FormData();
@@ -66,6 +67,35 @@ const store = createStore({
             .catch(err => {
                 console.log(err.response.data.errors)
                 context.commit('setRegistrationErrorMessage', err.response.data.errors);
+            })
+        },
+        submitUserLoginData(context, data) {
+            const url = '/api/login'
+            
+            const header = {
+                headers: {
+                    "Content-Type": 'application/json',
+                    'X-CSRF-TOKEN': document.head.querySelector('meta[name="csrf-token"]').content,
+                },
+            }
+            const requestData = {
+                UserEmail: data.UserEmail,
+                UserPassword: data.UserPassword,
+            };
+
+            axios.post(url, requestData, header)
+            .then(res => { 
+                console.log(res);
+                if (res.data.success) {
+                    router.push('/'); 
+                    // window.location.href = '/';
+                } else {
+                    console.log(err.response.data.errors)
+                }
+            })
+            .catch(err => {
+                console.log(err.response.data)
+                // context.commit('setErrorData', err.response.data.errors)
             })
         },
     }, 
