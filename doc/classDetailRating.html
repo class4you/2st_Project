@@ -4,7 +4,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="./css/common.css">
-	<title>강의게시판detail</title>
+	<title>강의게시판detail_rating</title>
 </head>
 <body>
 	<div id="wrap">
@@ -113,54 +113,130 @@
 
         <div class="class_container">
 
-            <ul class="class_tabs">
+            <ul class="class_tabs class_detail_rating_tab">
                 <li class="class_tab_link current" data-tab="class_tab1"><a href="#">강의 소개</a></li>
                 <li class="class_tab_link" data-tab="class_tab2"><a href="">수강평</a></li>
                 <li class="class_tab_link" data-tab="class_tab3"><a href="">커뮤니티</a></li>
                 <li class="class_tab_link" data-tab="class_tab4"><a href="">공지사항</a></li>
             </ul>
             
-            <div id="class_tab1" class="class_tab_content class_current">
-                <p>tab content1</p>
-                <p>동해물과백두산이마르고닳도록하느님이보우하사우리나라만세</p>
-                <p>동해물과백두산이마르고닳도록하느님이보우하사우리나라만세</p>
-                <p>동해물과백두산이마르고닳도록하느님이보우하사우리나라만세</p>
-                <p>동해물과백두산이마르고닳도록하느님이보우하사우리나라만세</p>
-                <p>동해물과백두산이마르고닳도록하느님이보우하사우리나라만세</p>
-                <p>동해물과백두산이마르고닳도록하느님이보우하사우리나라만세</p>
-            </div>
-            
-            <div class="class_tab_content_title">
-                <p>기초 설명</p>
-            </div>
-            <div id="class_tab1" class="class_tab_content">
-                <p>무궁화삼천리화려강산대한사람대한으로길이보전하세</p>
-                <p>무궁화삼천리화려강산대한사람대한으로길이보전하세</p>
-                <p>무궁화삼천리화려강산대한사람대한으로길이보전하세</p>
+            <div id="class_tab1" class="class_current class_detail_rating_form">
+                <form action="">
+                    <fieldset>
+
+                        <div class="class_detail_rating_form_text">
+                            <textarea name="" id="" cols="30" rows="10" placeholder="수강평을 작성해주세요."></textarea>
+                        </div>
+
+                        <div class="class_detail_rating_form_content">
+                            <div class="class_detail_rating_form_star">
+								<label>평점</label>
+									<label for=""></label><span>☆</span>
+									<label for=""></label><span>☆</span>
+									<label for=""></label><span>☆</span>
+									<label for=""></label><span>☆</span>
+									<label for=""></label><span>☆</span>
+                            </div>
+
+                            <div class="class_detail_rating_form_button">
+                                <button>수강평 작성</button>
+                            </div>
+                        </div>
+
+                    </fieldset>
+                </form>
             </div>
 
-            <div class="class_tab_content_title">
-                <p>커리큘럼</p>
-            </div>
-            <div id="class_tab1" class="class_tab_content">
-                <p>커리큘럼</p>
-            </div>
+            <div class="class_detail_rating_list">
+				<div class="class_detail_rating_view_tab">
+					<div class="class_detail_rating_tab_title">
+						<span><a href="">최신순</a></span>
+					</div>
+					<div class="class_detail_rating_tab_title">
+						<span><a href="">인기순</a></span>
+					</div>
+					<div class="class_detail_rating_tab_title">
+						<span><a href="">조회순</a></span>
+					</div>
+				</div>
 
-            <div class="class_tab_content_title">
-                <p>강의 특징</p>
-            </div>
-            <div id="class_tab1" class="class_tab_content">
-                <p>강의 특징</p>
-            </div>
+			<hr>
 
-            <div class="class_tab_content_title">
-                <p>강사 설명</p>
-            </div>
-            <div id="class_tab1" class="class_tab_content">
-                <p>강사 설명</p>
-            </div>
+				<div id="class_tab1" class="class_detail_rating_list_div">
+					<div class="class_detail_rating_list_user">
+						<div class="class_detail_rating_user_id">
+							<p>작성자ID</p>
+						</div>
+						<div class="class_detail_rating_user_date">
+							<p>2023-12-13</p>
+						</div>
+					</div>
+					<div class="class_detail_rating_list_text">
+						<p>css 이렇게 많이 써본건 처음이야</p>
+						<p>css 이렇게 많이 써본건 처음이야</p>
+						<p>css 이렇게 많이 써본건 처음이야</p>
+						<p>내가 쓴글 수정삭제가능</p>
+					</div>
+					<div class="class_detail_rating_user_button">
+						<div class="class_detail_rating_user_update_button">
+							<button>수정</button>
+						</div>
+						<div class="class_detail_rating_user_delete_button">
+							<button>삭제</button>
+						</div>
+					</div>
+				</div>
+			
+			<hr>
+
+				<div id="class_tab1" class="class_detail_rating_list_div">
+					<div class="class_detail_rating_list_user">
+						<div class="class_detail_rating_user_id">
+							<p>작성자ID</p>
+						</div>
+						<div class="class_detail_rating_user_date">
+							<p>2023-12-13</p>
+						</div>
+					</div>
+					<div class="class_detail_rating_list_text">
+						<p>수업이 재밌어요</p>
+					</div>
+				</div>
+
+			<hr>	
+
+				<div id="class_tab1" class="class_detail_rating_list_div">
+					<div class="class_detail_rating_list_user">
+						<div class="class_detail_rating_user_id">
+							<p>작성자ID</p>
+						</div>
+						<div class="class_detail_rating_user_date">
+							<p>2023-12-13</p>
+						</div>
+					</div>
+					<div class="class_detail_rating_list_text">
+						<p>코딩 조아요</p>
+					</div>
+				</div>
+
+			<hr>
+
+				<div id="class_tab1" class="class_detail_rating_list_div">
+					<div class="class_detail_rating_list_user">
+						<div class="class_detail_rating_user_id">
+							<p>작성자ID</p>
+						</div>
+						<div class="class_detail_rating_user_date">
+							<p>2023-12-13</p>
+						</div>
+					</div>
+					<div class="class_detail_rating_list_text">
+						<p>재밌는 라라벨</p>
+					</div>
+				</div>
+        	</div>
         
-        </div>
+		</div>
 
 		<footer>
 
