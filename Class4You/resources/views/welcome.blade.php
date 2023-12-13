@@ -9,10 +9,6 @@
     <title>Document</title>
 </head>
 <body>
-    <div id="header">
-        
-    </div>
-
     <div id="app">
         <Header-Component></Header-Component>
         <App-Component></App-Component>
