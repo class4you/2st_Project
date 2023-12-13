@@ -982,56 +982,125 @@ th:last-child, td:last-child {
 
 /* 강의 게시판_detail */
 
+.class_detail_visual {
+	width: 100%;
+	height: 40vh;
+	overflow: hidden;
+	transition: all 0.2s;
+	background: #000;
+	display: flex;
+	justify-content: center;
+}
 
+.class_detail_content {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 10px;
+	justify-items: center;
+	/* width: 80%; */
+    padding: 0 10vw;
+    background-color: rgb(127, 127, 127);
+    align-items: center;
+}
 
-    .class_detail_visual {
+.class_detail_content_img {
+	display: inline-block;
+	align-items: center;
+	width: 500px;
+}
+
+.class_detail_content_img > img {
+	width: 100%;
+	height: 300px;
+}
+
+.class_detail_content_text {
+    height: 300px;
+    width: 500px;
+    display: inline-block;
+    font-size: 1rem;
+    /* text-align:start; */
+}
+
+.class_detail_content_text_category {
+    height: 40px;
+    line-height: initial;
+}
+
+.class_detail_content_text_title {
+    height: 40px;
+    line-height: initial;
+}
+
+.class_detail_content_text_lnginfo {
+    height: 80px;
+    line-height: initial;
+}
+
+.class_detail_content_text_review {
+    height: 30px;
+    line-height: initial;
+}
+
+.class_detail_content_text_info {
+    height: 80px;
+    line-height: initial;
+}
+
+.class_detail_content_text_div {
+	display: flex;
+	/* justify-content: space-between; */
+    /* margin-top: 10px; */
+}
+
+.class_detail_content_price {
+    width: 200px;
+	height: 30px;
+    line-height: 30px;
+}
+
+.class_detail_content_button>button {
+	padding: 10px 20px;
+}
+
+@media screen and (max-width: 540px) {
+    /* .class_detail_visual {
         width: 100%;
         height: 40vh;
         overflow: hidden;
-        /* display: flex; */
-        padding: 0 10vW;
-        /* justify-content: center; */
-        /* align-items: center; */
         transition: all 0.2s;
         background: #000;
-
-    }
-
+        display: flex;
+        justify-content: center;
+    } */
     .class_detail_content {
-        height: 40vh;
-        width: 100%;
-        background-color: #7F7F7F;
         display: grid;
-        justify-content: space-evenly;
-        grid-template-columns: 1fr 1fr;
-        align-items: center;
+        grid-template-columns: 1fr;
+        gap: 10px;
+        justify-content: center;
+        width: 80%;
+        background-color: rgb(127, 127, 127);
     }
-
     .class_detail_content_img {
         display: inline-block;
-        text-align: center;
+	    width: 400px;
     }
-
     .class_detail_content_img>img {
-        width: 500px;
-        height: 300px;
+        width: 100%;
     }
-
     .class_detail_content_text {
-        height: 300px;
-        width: 500px;
-        display: inline-block;
-        left: 500px;
-        font-size: 1rem;
-        line-height: 30px;
-        grid-gap: 10px;
+        display: grid;
+        justify-content: center;
     }
-
-    /* .class_detail_content_button {
+    .class_detail_content_text_div {
         display: flex;
-        justify-content: space-between;
-        flex-direction: row-reverse;
-    } */
+        flex-direction: column;
+    }
+    .class_detail_content_text_category {
+        height: 20px;
+        line-height: initial;
+    }
+}
 
     .class_container {
         margin: 0;
