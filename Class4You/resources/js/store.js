@@ -4,6 +4,7 @@ import router from "./router.js"
 import VueCookies from "vue-cookies";
 
 const store = createStore({
+    
     // state() : 데이터를 저장하는 영역
     state() {
         return {
@@ -21,6 +22,12 @@ const store = createStore({
                 UserPrivacy: '',
             },
             loginShowModal: false,
+
+            userData: {
+                userCheck: '',
+                userName: '',
+                userEmail: '',
+            },
         }
     },
 
@@ -36,6 +43,15 @@ const store = createStore({
         setCloseLoginModal(state) {
             state.loginShowModal = false;
         },
+        setSaveToLocalStorage(state, data) {
+            // state.userData.userCheck = data.sessionDataCheck
+            // state.userData.userName = data.sessionCheckUserName
+            // state.userData.userEmail = data.sessionCheckUserEmail
+            localStorage.setItem('userCheck', data.sessionDataCheck);
+            localStorage.setItem('userName', data.sessionCheckUserName);
+            localStorage.setItem('userEmail', data.sessionCheckUserEmail);
+            // state.userData.userCheck = localStorage.getItem('userCheck');
+        }
     },
 
     // actions : ajax로 서버에 데이터를 요청할 때나 시간 함수등 비동기 처리는 actions에 정의
@@ -83,7 +99,7 @@ const store = createStore({
             })
         },
         submitUserLoginData(context, data) {
-            const url = '/web/login'
+            const url = '/login'
             
             const header = {
                 headers: {
@@ -100,6 +116,7 @@ const store = createStore({
             .then(res => { 
                 console.log(res);
                 if (res.data.success) {
+                    context.commit('setSaveToLocalStorage', res.data)
                     // router.push('/'); 
                 } else {
                     console.log(err.response.data.errors)
@@ -113,6 +130,23 @@ const store = createStore({
                 context.dispatch('closeLoginModal');
             })
         },
+        logout(context, data) {
+            const url = '/logout'
+            const header = {
+                headers: {
+                    "Content-Type": 'application/json',
+                    // 'X-CSRF-TOKEN': document.head.querySelector('meta[name="csrf-token"]').content,
+                },
+            }
+            axios.get(url, header)
+            .then(res => {
+                // 쿠키 삭제
+                console.log(res.data)
+                router.push('/'); 
+                // window.location.href = '/';
+            })
+            .catch(err => console.log(err.response.data))
+        }
     }, 
 });
 

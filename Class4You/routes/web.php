@@ -18,8 +18,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::middleware('my.user.validation')->post('/login', [UserController::class, 'loginpost']);
+
+Route::get('/logout', [UserController::class, 'logout']);
+
 Route::any("{slug}", function ($slug) {
     return view('welcome');
 });
-
-Route::middleware('my.user.validation')->post('/web/login', [UserController::class, 'loginpost']);

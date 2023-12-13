@@ -29,17 +29,23 @@
                     <li><a href="">신규 강의</a></li>
                     <li><a href="">|</a></li>
                     <li><a href="">커뮤니티</a></li>
-                    <p v-if="userSession">Hello, {{ userSession.name }}!</p>
-                    <p v-else>Please log in to continue.</p>
                 </ul>
                 <h1>
                     <a href="/">
                         <img src="/img/v2_14378e7f2adb0ec0ad8cddaaf3b0fbdd_0DXltiM6xt_top.jpg" alt="">
                     </a>
                 </h1>
-                <div class="side_nav">
+                <div v-if="!userLoginChk" class="side_nav">
                     <router-link to="/registration">SIGN UP</router-link>
                     <a @click="loginOpenModal" style="cursor: pointer;">LOGIN</a>
+                    <div class="search_box">
+                        <input type="text" placeholder="SEARCH">
+                        <button><img src="/img/SEARCH.png" alt=""></button>
+                    </div>
+                </div>
+                <div v-if="userLoginChk" class="side_nav">
+                    <router-link to="/">MY PAGE</router-link>
+                    <a @click="logout" style="cursor: pointer;">LOGOUT</a>
                     <div class="search_box">
                         <input type="text" placeholder="SEARCH">
                         <button><img src="/img/SEARCH.png" alt=""></button>
@@ -93,12 +99,22 @@ export default {
                 UserEmail: '',
                 UserPassword: '',
             },
+
+            userLoginChk: '',
         }
     },
-    props: {
-        userSession: {
-            type: Object,
-            default: null,
+
+    created() {
+        const userLoginChk = localStorage.getItem('userCheck');
+
+        if(userLoginChk !== null) {
+            this.userLoginChk = userLoginChk;
+        }
+    },
+
+    watch: {
+        userLoginChk(newVal) {
+            localStorage.setItem('userCheck', newVal);
         },
     },
 
@@ -117,6 +133,10 @@ export default {
         },
         submitUserLoginData() {
             this.$store.dispatch('submitUserLoginData', this.frmUserLoginData);
+        },
+        logout() {
+            this.$store.dispatch('logout');
+            localStorage.clear();
         },
     }
 }

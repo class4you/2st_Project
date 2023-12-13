@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Str;
 
 
@@ -31,8 +32,8 @@ class UserController extends Controller
         // return response()->json(['user' => $user, 'message' => 'User created successfully']);
     }
 
+    // 회원 로그인
     public function loginpost(Request $request) {
-        // Log::debug("****************** login 시작 ******************");
         $result = User::where('UserEmail', $request->UserEmail)->first();
 
         if(!$result || !(Hash::check($request->UserPassword, $result->UserPassword))) {
@@ -54,9 +55,20 @@ class UserController extends Controller
         if (Auth::check()) {
             session(['user' => Auth::user()]);
 
+            $sessionDataCheck = Auth::check();
+            // $sessionDataCheck = $sessionDataCheck ? 1 : 0;
+
+            $sessionDataUserName = Auth::user()->UserName;
+            $sessionDataUserEmail = Auth::user()->UserEmail;
+            // Log::debug($sessionDataUserName);
+            // Log::debug($sessionDataUserEmail);
+
             return response()->json([
                 'success' => true,
                 'message' => '로그인이 성공적으로 수행되었습니다.',
+                'sessionDataCheck' => $sessionDataCheck,
+                'sessionCheckUserName' => $sessionDataUserName,
+                'sessionCheckUserEmail' => $sessionDataUserEmail,
             ]);
 
         } else {
@@ -65,5 +77,15 @@ class UserController extends Controller
                 'message' => '인증 에러가 발생했습니다.',
             ]);
         }
+    }
+
+    // 회원 로그아웃
+    public function logout(Request $request)
+    {
+
+        // 로그아웃 처리
+        Auth::logout();
+
+        return response()->json(['message' => '로그아웃 성공']);
     }
 }
