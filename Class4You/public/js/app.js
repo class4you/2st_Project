@@ -20455,6 +20455,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+// import BoardComponent from './components/BoardComponent.vue';
 
 var routes = [{
   path: '/',
@@ -20462,7 +20463,12 @@ var routes = [{
 }, {
   path: '/registration',
   component: _components_RegistrationComponent_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
-}];
+}
+// {
+//     path: '/board',
+//     component: BoardComponent
+// },
+];
 var router = (0,vue_router__WEBPACK_IMPORTED_MODULE_4__.createRouter)({
   history: (0,vue_router__WEBPACK_IMPORTED_MODULE_4__.createWebHistory)(),
   routes: routes
