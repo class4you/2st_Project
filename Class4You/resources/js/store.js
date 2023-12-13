@@ -8,6 +8,7 @@ const store = createStore({
     // state() : 데이터를 저장하는 영역
     state() {
         return {
+            // 정명호
             RegistrationErrorMessage: {
                 UserEmail: '',
                 UserPassword: '',
@@ -28,6 +29,43 @@ const store = createStore({
                 userName: '',
                 userEmail: '',
             },
+
+
+
+
+
+
+
+
+
+
+            
+
+
+
+
+
+
+
+            // 최현희
+            
+
+
+
+
+
+
+
+
+
+            
+
+
+
+
+
+
+            // 김민정
         }
     },
 
@@ -51,7 +89,44 @@ const store = createStore({
             localStorage.setItem('userName', data.sessionCheckUserName);
             localStorage.setItem('userEmail', data.sessionCheckUserEmail);
             // state.userData.userCheck = localStorage.getItem('userCheck');
-        }
+        },
+        
+
+
+
+
+
+
+
+
+
+            
+
+
+
+
+
+
+
+        // 최현희
+        
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+        // 김민정
     },
 
     // actions : ajax로 서버에 데이터를 요청할 때나 시간 함수등 비동기 처리는 actions에 정의
@@ -146,7 +221,44 @@ const store = createStore({
                 // window.location.href = '/';
             })
             .catch(err => console.log(err.response.data))
-        }
+        },
+        
+
+
+
+
+
+
+
+
+
+            
+
+
+
+
+
+
+
+        // 최현희
+        
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+        // 김민정
     }, 
 });
 

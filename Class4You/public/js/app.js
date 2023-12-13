@@ -20363,6 +20363,7 @@ var store = (0,vuex__WEBPACK_IMPORTED_MODULE_3__.createStore)({
   // state() : 데이터를 저장하는 영역
   state: function state() {
     return {
+      // 정명호
       RegistrationErrorMessage: {
         UserEmail: '',
         UserPassword: '',
@@ -20382,6 +20383,10 @@ var store = (0,vuex__WEBPACK_IMPORTED_MODULE_3__.createStore)({
         userName: '',
         userEmail: ''
       }
+
+      // 최현희
+
+      // 김민정
     };
   },
   // mutations : 데이터 수정용 함수 저장 영역
@@ -20404,7 +20409,8 @@ var store = (0,vuex__WEBPACK_IMPORTED_MODULE_3__.createStore)({
       localStorage.setItem('userName', data.sessionCheckUserName);
       localStorage.setItem('userEmail', data.sessionCheckUserEmail);
       // state.userData.userCheck = localStorage.getItem('userCheck');
-    }
+    } // 최현희
+    // 김민정
   },
   // actions : ajax로 서버에 데이터를 요청할 때나 시간 함수등 비동기 처리는 actions에 정의
   actions: {
@@ -20488,7 +20494,8 @@ var store = (0,vuex__WEBPACK_IMPORTED_MODULE_3__.createStore)({
       })["catch"](function (err) {
         return console.log(err.response.data);
       });
-    }
+    } // 최현희
+    // 김민정
   }
 });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (store);
