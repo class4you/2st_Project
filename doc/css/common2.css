@@ -1,0 +1,206 @@
+.class_detail_container_box {
+    position: relative;
+    padding: 50px 0;
+    background: #002333;
+}
+
+.class_detail_container {
+    padding: 0 10vw;
+}
+
+.class_detail_container_lr {
+    display: flex;
+    flex: 0 1 auto;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin: 0 -8px;
+}
+
+.class_detail_container_l {
+    display: inline-flex;
+    justify-content: center;
+    padding: 8px 0;
+    flex-basis: 41.66666667%;
+    max-width: 41.66666667%;
+}
+
+.class_detail_container_l_img_cover {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    max-width: 473.33px;
+    height: inherit;
+    border-radius: 8px;
+    /* aspect-ratio: 100/65.088; */
+    aspect-ratio: 100/70;
+}
+
+.class_detail_container_l_img_cover img {
+    width: 100%;
+    height: 100%;
+    max-width: 100%;
+    display: block;
+}
+
+.class_detail_container_r {
+    margin-top: 15px;
+    display: flex;
+    flex-direction: column;
+    padding: 0 0 0 32px;
+    flex-basis: 58.33333333%;
+    max-width: 50.33333333%;
+}
+
+.class_detail_container_r_banner {
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    margin-bottom: 6px;
+    flex-wrap: wrap;
+}
+
+.class_detail_container_r_title_box {
+    margin-bottom: 40px;
+}
+
+.class_detail_container_r_content_box {
+    margin-bottom: 40px;
+}
+
+.class_detail_container_r_info_box {
+    font-weight: 400;
+    line-height: 1.43;
+    letter-spacing: -.3px;
+    font-size: 14px;
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 8px;
+    color: #fff;
+}
+
+.class_detail_container_r_language {
+    margin-top: 10px;
+    margin-bottom: 12px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.class_detail_container_r_payment_box {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+    width: 100%;
+    height: 20px;
+}
+
+.class_detail_container_r_banner_label {
+    display: flex;
+    align-items: center;
+}
+
+.class_detail_container_r_banner_label span {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1.5;
+    letter-spacing: -.3px;
+    margin-right: 10px;
+    padding: 0 10px;
+    color: #fff;
+    font-weight: 700;
+    background-color: #3D64BF;
+}
+
+.class_detail_container_r_banner span {
+    font-size: 15px;
+    color: #fff;
+}
+
+.class_detail_container_r_title {
+    line-height: 1.5;
+    letter-spacing: -.3px;
+    color: #fff;
+    font-weight: 700;
+    font-size: 26px;
+    word-break: break-word;
+}
+
+.class_detail_container_r_content {
+    line-height: 1.5;
+    letter-spacing: -.3px;
+    color: #fff;
+    font-weight: 700;
+    font-size: 15px;
+    word-break: break-word;
+}
+
+.class_detail_container_r_info_star_box {
+    margin-right: 8px;
+}
+
+.class_detail_container_r_info_star {
+    width: 70px;
+    position: relative;
+    display: inline-block;
+}
+
+.class_detail_container_r_info_star_inr {
+    display: flex;
+}
+
+.class_detail_container_r_language span {
+    font-weight: 400;
+    line-height: 1.5;
+    letter-spacing: -.3px;
+    font-size: 12px;
+    margin-right: 4px;
+    padding: 4px 12px;
+    border-radius: 100px;
+    background-color: #173f51;
+    color: #fff;
+    font-weight: 500;
+}
+
+.class_detail_container_r_payment_price {
+    color: #fff;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.class_detail_container_r_payment_classes button {
+    background-color: transparent;
+    border: none;
+    color: #ffffff74;
+    padding: 10px 30px;
+    background-color: #3d64bf76;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.class_detail_container_r_payment_classes button:hover {
+    color: #fff;
+    background-color: #3D64BF;
+}
+
+@media screen and (max-width: 1000px) {
+    .class_detail_container_lr {  
+        flex-direction: column-reverse;
+        align-items: flex-start;
+    }
+    .class_detail_container_l {
+        margin-top: 32px;
+        width: 100%;
+        max-width: 100%;
+        z-index: 7;
+    }
+    .class_detail_container_l_img_cover {
+        padding-left: unset;
+        width: auto;
+    }
+    .class_detail_container_r {
+        padding: 0;
+        max-width: 100%
+    }
+    
+}
