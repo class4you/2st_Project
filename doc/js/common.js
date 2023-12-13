@@ -21,3 +21,5 @@ let currentSlide = 1;
 
         slides[currentSlide - 1].classList.add('active');
     }
+
+    

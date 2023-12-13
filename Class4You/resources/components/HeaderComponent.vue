@@ -71,11 +71,11 @@
                 <div class="login_modal_button">
                     <button type="button" @click="submitUserLoginData()" style="cursor: pointer;">로그인</button>
                 </div>
-                <dir class="login_modal_find_box">
+                <div class="login_modal_find_box">
                     <span><a href="">비밀번호 찾기</a></span>
                     <span>&#124;</span>
                     <span><a href="">회원가입 하기</a></span>
-                </dir>
+                </div>
                 <div class="login_modal_easy_box">
                     <p>간편 로그인</p>
                 </div>
