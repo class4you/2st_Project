@@ -1345,3 +1345,24 @@ ul.class_tabs li.class_current {
     justify-content: end;
     padding-top: 10px;
 }
+
+/* ============================================================================================================ */
+/* 강의게시판Notice */
+
+.class_detail_notice_main {
+    text-align: center;
+    
+    /* border: 1px solid; */
+}
+
+.class_detail_notice_main_div {
+    /* background-color: #ededed18; */
+    border: 1px solid;
+    padding: 10px;
+}
+
+.class_detail_notice_title {
+    font-weight: bold;
+    font-size: 1.2rem;
+    margin-bottom: 5px;
+}
