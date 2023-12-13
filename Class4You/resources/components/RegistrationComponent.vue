@@ -177,6 +177,8 @@
                                 <button class="regist_button_cancel">CANCEL</button>
                                 <button class="regist_button_next" type="button" @click="moveToNext">NEXT</button>
                             </div>
+
+
                         </div>
                     </div>
                 </div>
@@ -265,11 +267,15 @@
                                 </td>
                             </tr>
                             <tr>
-                                <th><label for="address">Address</label><span style="color: red;">*</span></th>
+                                <th><label for="sample4_postcode">Address</label><span style="color: red;">*</span></th>
                                 <td>
-                                    <input type="text" id="address" name="UserAddress" v-model="frmUserData.UserAddress" @input="validateuserAddress" minlength="2" maxlength="255">
-                                    <div class="error_message" v-if="$store.state.RegistrationErrorMessage.UserAddress">{{ $store.state.RegistrationErrorMessage.UserAddress }}</div>
-                                    <div class="error_message" v-if="errors.UserAddress">{{ errors.UserAddress }}</div>
+                                    <div class="regist_table_address_box">
+                                        <input class="regist_table_address_postcode" type="text" id="sample4_postcode" name="UserAddress1" v-model="sampleData.postcode" placeholder="우편번호">
+                                        <button class="regist_table_address_button" type="button" @click="openDaumPostcode">우편번호 찾기</button>
+                                    </div>
+                                        <br>
+                                    <input type="text" id="sample4_roadAddress" name="UserAddress2" v-model="sampleData.roadAddress" placeholder="도로명주소">
+                                    <input style="margin-top: 10px;" type="text" id="sample4_detailAddress"  name="UserAddress3" v-model="frmUserData.detailedAddress" placeholder="상세주소">
                                 </td>
                             </tr>
                         </table>
@@ -310,6 +316,12 @@ export default {
                 UserPrivacy: '',
                 UserTermsofUse: '',
                 UserPrivacy: '',
+                detailedAddress: '',
+            },
+
+            sampleData: {
+                postcode: '',
+                roadAddress: '',
             },
 
             errors: {},
@@ -390,7 +402,57 @@ export default {
                 this.regiflg2 = false;
             }
         },
-    }
+        openDaumPostcode() {
+            new daum.Postcode({
+            oncomplete: function (data) {
+                this.handleAddressComplete(data);
+            }.bind(this),
+            }).open();
+        },
+        handleAddressComplete(data) {
+            // 도로명 주소의 노출 규칙에 따라 주소를 표시하는 로직
+            var roadAddr = data.roadAddress;
+            var extraRoadAddr = '';
+
+            if (data.bname !== '' && /[동|로|가]$/g.test(data.bname)) {
+                extraRoadAddr += data.bname;
+            }
+
+            if (data.buildingName !== '' && data.apartment === 'Y') {
+                extraRoadAddr += (extraRoadAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+            }
+
+            if (extraRoadAddr !== '') {
+                extraRoadAddr = ' (' + extraRoadAddr + ')';
+            }
+
+            // 주소 정보를 컴포넌트 데이터에 저장
+            this.sampleData = {
+                postcode: data.zonecode,
+                roadAddress: roadAddr,
+            };
+
+            this.frmUserData.UserAddress = `${this.sampleData.postcode} ${this.sampleData.roadAddress}`;
+        },
+    },
+
+    // 카카오톡 주소 찾기 API 스크립트 불러오기
+    mounted() {
+        // 동적으로 스크립트 로드
+        const script = document.createElement('script');
+        script.src = 'https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js';
+        script.async = true;
+
+        // 스크립트 로드 완료 후 실행될 콜백 함수
+        script.onload = () => {
+            // 이제 스크립트를 사용할 수 있음
+            console.log('DaumMapApi.js 로드 완료!');
+            // 여기서부터 DaumMapApi.js를 사용할 수 있음
+        };
+
+        // document.head에 스크립트 추가
+        document.head.appendChild(script);
+    },
 }
 </script>
 <style>

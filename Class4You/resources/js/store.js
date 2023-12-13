@@ -152,6 +152,8 @@ const store = createStore({
 
             data.UserPrivacy = data.UserPrivacy ? 1 : 0;
 
+            data.UserAddress = data.UserAddress + ' ' + data.detailedAddress;
+
             frm.append('UserEmail',data.UserEmail);
             frm.append('UserPassword',data.UserPassword);
             frm.append('UserPasswordChk',data.UserPasswordChk);
