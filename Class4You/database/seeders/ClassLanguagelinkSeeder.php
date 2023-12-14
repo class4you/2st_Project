@@ -16,68 +16,77 @@ class ClassLanguagelinkSeeder extends Seeder
      */
     public function run()
     {
-        $cnt = 1;
-        while($cnt <= 17) {
-            ClassLanguagelink::create([
-                'ClassID' => $cnt
-                ,'ClassLanguageID' => 1
-            ]);
-            $cnt++;
-        }
+        // $cnt = 1;
+        // while($cnt <= 17) {
+        //     ClassLanguagelink::create([
+        //         'ClassID' => $cnt
+        //         ,'ClassLanguageID' => 1
+        //     ]);
+        //     $cnt++;
+        // }
 
-        $cnt = 18;
-        while($cnt <= 33) {
-            ClassLanguagelink::create([
-                'ClassID' => $cnt
-                ,'ClassLanguageID' => 2
-            ]);    
-            $cnt++;
-        }
+        // $cnt = 18;
+        // while($cnt <= 33) {
+        //     ClassLanguagelink::create([
+        //         'ClassID' => $cnt
+        //         ,'ClassLanguageID' => 2
+        //     ]);    
+        //     $cnt++;
+        // }
 
-        $cnt = 34;
-        while($cnt <= 49) {
-            ClassLanguagelink::create([
-                'ClassID' => $cnt
-                ,'ClassLanguageID' => 3
-            ]);
-            $cnt++;
-        }
+        // $cnt = 34;
+        // while($cnt <= 49) {
+        //     ClassLanguagelink::create([
+        //         'ClassID' => $cnt
+        //         ,'ClassLanguageID' => 3
+        //     ]);
+        //     $cnt++;
+        // }
 
-        $cnt = 50;
-        while($cnt <= 65) {
-            ClassLanguagelink::create([
-                'ClassID' => $cnt
-                ,'ClassLanguageID' => 4
-            ]);
-            $cnt++;
-        }
+        // $cnt = 50;
+        // while($cnt <= 65) {
+        //     ClassLanguagelink::create([
+        //         'ClassID' => $cnt
+        //         ,'ClassLanguageID' => 4
+        //     ]);
+        //     $cnt++;
+        // }
 
-        $cnt = 66;
-        while($cnt <= 81) {
-            ClassLanguagelink::create([
-                'ClassID' => $cnt
-                ,'ClassLanguageID' => 5
-            ]);
-            $cnt++;
-        }
+        // $cnt = 66;
+        // while($cnt <= 81) {
+        //     ClassLanguagelink::create([
+        //         'ClassID' => $cnt
+        //         ,'ClassLanguageID' => 5
+        //     ]);
+        //     $cnt++;
+        // }
 
-        $cnt = 82;
-        while($cnt <= 97) {
-            ClassLanguagelink::create([
-                'ClassID' => $cnt
-                ,'ClassLanguageID' => 6
-            ]);
-            $cnt++;
-        }
+        // $cnt = 82;
+        // while($cnt <= 97) {
+        //     ClassLanguagelink::create([
+        //         'ClassID' => $cnt
+        //         ,'ClassLanguageID' => 6
+        //     ]);
+        //     $cnt++;
+        // }
 
-        $cnt = 1;
-        while($cnt <= 17) {
-            ClassLanguagelink::create([
-                'ClassID' => $cnt
-                ,'ClassLanguageID' => 2
-            ]);
-            $cnt++;
-        }
+        // $cnt = 1;
+        // while($cnt <= 17) {
+        //     ClassLanguagelink::create([
+        //         'ClassID' => $cnt
+        //         ,'ClassLanguageID' => 2
+        //     ]);
+        //     $cnt++;
+        // }
+
+        // $cnt = 1;
+        // while($cnt <= 17) {
+        //     ClassLanguagelink::create([
+        //         'ClassID' => $cnt
+        //         ,'ClassLanguageID' => 3
+        //     ]);
+        //     $cnt++;
+        // }
 
     }
 }
