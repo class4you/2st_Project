@@ -1,0 +1,352 @@
+/* border */
+.border-none{border: none !important;}
+.border-r-none{border-right: none !important;}
+.border-t-none{border-top: none !important;}
+.border-l-none{border-left: none !important;}
+.border-b-none{border-bottom: none !important;}
+
+
+* {margin:0; padding:0; box-sizing: border-box;}
+body{font-size:16px;color:#333333; sans-serif;font-weight: 400;}
+ul, ol, li{list-style-type:none}
+img, fieldset{border:none;vertical-align: middle}
+hr {clear:both;border:none}
+a {color:inherit;text-decoration:none}
+table{border-collapse:collapse}
+input, textarea {color:inherit;font-size:inherit;font-family:inherit; vertical-align: middle}
+button{color:inherit;font-size:inherit;font-family:inherit;}
+
+/* flex */
+.row{display: -webkit-box;display: -ms-flexbox;display: flex;-webkit-box-orient: horizontal; -ms-flex-direction: row; flex-direction: row;-webkit-box-lines: multiple; -ms-flex-wrap: wrap; flex-wrap: wrap;}
+.culumn{display: -webkit-box;display: -ms-flexbox;display: flex;-webkit-box-orient: vertical; -ms-flex-direction: column; flex-direction: column;-webkit-box-lines: multiple; -ms-flex-wrap: wrap; flex-wrap: wrap;}
+.jcS{-webkit-box-pack: start; -ms-flex-pack: start; justify-content: flex-start;}
+.jcE{-webkit-box-pack: end; -ms-flex-pack: end; justify-content: flex-end;}
+.jcC{-webkit-box-pack: center; -ms-flex-pack: center; justify-content: center;}
+.jcB{-webkit-box-pack: justify; -ms-flex-pack: justify; justify-content: space-between;}
+.aiS{-webkit-box-align: start; -ms-flex-align: start; align-items: flex-start;} 
+.aiE{-webkit-box-align: end; -ms-flex-align: end; align-items: flex-end;}
+.aiC{-webkit-box-align: center; -ms-flex-align: center; align-items: center;}
+
+
+/* 
+   z-index 
+ - header: 11~20
+ - section: 1 ~ 10
+ - footer: 1 ~ 10
+ - popup : 21 ~ 30
+*/
+
+
+
+#wrap{
+    width: 100%;
+}
+
+
+
+#header{
+    height: 60px; /* 삭제 */
+    background: #333; /* 삭제 */
+}
+
+
+
+.whr{
+    width: 100%;
+    max-width: 1520px;
+    margin: 20px auto 10px auto;
+    font-size: 14px;
+    color: #999;
+}
+.whr span:last-child{
+    font-weight: 700;
+    color: #333;
+}
+.whr span:nth-child(even){
+    margin: 0 10px;
+}
+
+
+
+.bannerBox{
+    width: 100%;
+    height: 400px;
+    margin-bottom: 30px;
+    background: orange; /* 삭제 */
+}
+.banner{
+    width: 100%;
+    max-width: 1520px;
+    height: 100%;
+    margin: 0 auto;
+    background: yellow; /* 삭제 */
+}
+
+
+
+.mainSec{
+    width: 1520px;
+    margin: 0 auto;
+    padding-bottom: 40px;
+}
+
+
+.leftNav{
+    width: 180px;
+}
+.leftNav > p{
+    margin-bottom: 10px;
+    font-size: 14px;
+    color: #999;
+}
+.mainNav li{
+    cursor: pointer;
+}
+.mainNav > li{
+    font-weight: 700;
+    margin-bottom: 5px;
+}
+.mainNav > li:last-child{
+    margin-bottom: 0px;
+}
+.subNav{
+    margin-top: 10px;
+    padding-left: 10px;
+}
+.subNav > li{
+    margin-bottom: 5px;
+    font-size: 14px;
+    font-weight: 400;
+    color: #999;
+}
+.subNav > li:last-child{
+    margin-bottom: 0px;
+}
+.subNav > li.active{
+    font-weight: 700;
+    color: #333;
+}
+
+
+
+.container{
+    width: calc(100% - 440px);
+    height: 100px;
+}
+.searchbox{
+    margin-bottom: 30px;
+}
+.searchbox input[type=text]{
+    width: calc(100% - 90px);
+    height: 40px;
+    margin-right: 10px;
+    border: none;
+    background: #eee;
+    line-height: 40px;
+}
+.searchbox button{
+    width: 80px;
+    height: 40px;
+    border-radius: 0;
+    border: none;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+}
+.titBox{
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #ccc;
+}
+.titBox .sort ul li{
+    margin-right: 10px;
+    font-size: 14px;
+    cursor: pointer;
+    color: #999;
+}
+.titBox .sort ul li span{
+    display: block;
+    margin-right: 5px;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: #999;
+}
+.titBox .sort ul li.active{
+    color: #333;
+    font-weight: 500;
+}
+.titBox .sort ul li.active span{
+    background: orange;
+}
+.titBox .btnbox button{
+    width: 70px;
+    height: 30px;
+    font-size: 14px;
+    border: none;
+    cursor: pointer;
+
+}
+.titBox .btnbox button:first-child{
+    margin-right: 5px;
+
+}
+.contBox .cont{
+    width: 100%;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #ccc;
+}
+.contBox .cont .item{
+    width: 100%;
+    height: 200px;
+    background: #eee;
+}
+
+
+
+
+.best{
+    width: 180px;
+}
+.best > p{
+    margin-bottom: 10px;
+    font-size: 14px;
+    color: #999;
+}
+.best ul li{
+    width: 100%;
+    margin-bottom: 5px;
+    padding: 5px 10px;
+    background: #eee;
+    font-size: 12px;
+}
+
+
+
+.postBox{
+    width: 100%;
+    padding: 30px;
+    background: #eee;
+    border: 1px solid #999;
+}
+.postBox label{
+    display: block;
+    width: 50px;
+}
+.postTitBox{
+    margin-bottom: 10px;
+}
+.postTitBox input{
+    width: calc(100% - 50px);
+    height: 40px;
+    border: none;
+    background: #ccc;
+    padding: 10px;
+}
+.postInfo{
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #999;
+}
+.postInfo p{
+    font-size: 12px;
+    margin-right: 10px;
+    color: #999;
+}
+.postInfo p:last-child{
+    margin-right: 0;
+}
+.postInfo p span{
+    display: inline-block;
+    margin-left: 5px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #333;
+}
+.postContBox{
+    margin-bottom: 10px;
+}
+.postContBox label{
+    padding-top: 10px;
+}
+.postContBox textarea{
+    width: calc(100% - 50px);
+    height: 300px;
+    border: none;
+    background: #ccc;
+    resize: none;
+}
+.laguage{
+    margin: 0 0 30px 50px
+}
+.laguage li{
+    font-size: 12px;
+    margin-right: 5px;
+    padding: 5px 10px;
+    background-color: #ccc;
+}
+.laguage li:last-child{
+    margin-right: 0;
+}
+.reco > div{
+    margin: 0 20px;
+}
+.reco p{
+    margin: 0 15px;
+    font-size: 18px;
+    font-weight: 700;
+}
+.reco button{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: none;
+    background: #ccc;
+    cursor: pointer;
+}
+.reviewBox{
+    width: 100%;
+    padding: 30px;
+    border: 1px solid #999;
+}
+.reviewBox .number p{
+    font-size: 12px;
+    color: #999;
+}
+.reviewBox .number p span{
+    font-size: 14px;
+    color: #333;
+    font-weight: 500;
+    margin-left: 5px;
+}
+.reviewBox .reviewList{
+    padding: 10px 0;
+}
+.reviewBox .reviewList .item:nth-child(even){
+    background: #f1f1f1;
+    padding: 10px;
+    font-size: 14px;
+}
+.reviewBox .reviewList .item:nth-child(odd){
+    background: #ccc;
+    padding: 10px;
+    font-size: 14px;
+}
+.reviewBox .reviewPost{
+    border: 1px solid #ccc;
+}
+.reviewBox .reviewPost textarea{
+    width: calc(100% - 110px);
+    height: 100px;
+    resize: none;
+    padding: 10px;
+    font-size: 14px;
+    border: none;
+}
+.reviewBox .reviewPost button{
+    height: 100px;
+    width: 100px;
+    border: none;
+    cursor: pointer;
+}

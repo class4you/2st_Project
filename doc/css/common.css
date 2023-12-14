@@ -1405,3 +1405,40 @@ ul.class_tabs li.class_current {
     font-size: 1.2rem;
     margin-bottom: 5px;
 }
+
+/* ============================================================================================================ */
+/* 커뮤니티 게시판*/
+
+.board_main_banner{
+    width: 100%;
+    height: 40vh;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.2s;
+    background: #000;
+}
+.board_detail_container_icon 
+    {
+        margin: 0px;
+        padding: 0px 5px;
+        list-style: none;
+        font-weight: bold;
+    }
+
+
+.board_main_box{
+margin-top: 50px;
+margin-bottom: 10px;
+text-align: center;
+padding: 10px;
+}
+
+.board_search_form_text{
+    background: #ededed;
+    margin-top: 8px;
+    margin-bottom: 40px;
+    padding: 20px;
+    line-height: 20px;
+}
