@@ -586,12 +586,19 @@ footer {
 }
 
 .main_container_new_card_tag li {
-    padding: 10px 20px;
+    padding: 5px 20px;
     margin-right: 10px;
     border-radius: 5px;
     color: #6e6e73;
     background: #f2f2f2;
     font-size: 10px;
+}
+
+@media screen and (max-width: 800px) {
+    .main_container_new_card_tag li {
+        padding: 10px 20px;
+    }
+    
 }
 
 .main_banner {
@@ -1154,7 +1161,7 @@ th:last-child, td:last-child {
 }
 
 .class_main_container_new_card_tag li {
-    padding: 5px 15px;
+    padding: 0px 15px;
     margin-right: 10px;
     border-radius: 5px;
     color: #6e6e73;

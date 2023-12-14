@@ -32,7 +32,6 @@ class ClassInfoSeeder extends Seeder
                 ClassInfo::create([
                     'InstructorID' => 1,
                     'CategoryID' => 1,
-                    'CourseLanguageID' => 1,
                     'ClassImg' => $imagePath,
                     'ClassTitle' => '강의 더미 데이터 제목입니다. 난이도는 '.$cnt.' 단계 입니다',
                     'ClassDescription' => '강의 더미 데이터 내용입니다. 난이도는 '.$cnt.' 단계 입니다',
@@ -57,7 +56,6 @@ class ClassInfoSeeder extends Seeder
                 ClassInfo::create([
                     'InstructorID' => 1,
                     'CategoryID' => 1,
-                    'CourseLanguageID' => 1,
                     'ClassImg' => $imagePath,
                     'ClassTitle' => '강의 더미 데이터 제목입니다. 난이도는 '.$cnt.' 단계 입니다',
                     'ClassDescription' => '강의 더미 데이터 내용입니다. 난이도는 '.$cnt.' 단계 입니다',
@@ -82,7 +80,6 @@ class ClassInfoSeeder extends Seeder
                 ClassInfo::create([
                     'InstructorID' => 1,
                     'CategoryID' => 1,
-                    'CourseLanguageID' => 1,
                     'ClassImg' => $imagePath,
                     'ClassTitle' => '강의 더미 데이터 제목입니다. 난이도는 '.$cnt.' 단계 입니다',
                     'ClassDescription' => '강의 더미 데이터 내용입니다. 난이도는 '.$cnt.' 단계 입니다',
@@ -108,7 +105,6 @@ class ClassInfoSeeder extends Seeder
                 ClassInfo::create([
                     'InstructorID' => 1,
                     'CategoryID' => 1,
-                    'CourseLanguageID' => 1,
                     'ClassImg' => $imagePath,
                     'ClassTitle' => '강의 더미 데이터 제목입니다. 난이도는 '.$cnt.' 단계 입니다',
                     'ClassDescription' => '강의 더미 데이터 내용입니다. 난이도는 '.$cnt.' 단계 입니다',
@@ -133,7 +129,6 @@ class ClassInfoSeeder extends Seeder
                 ClassInfo::create([
                     'InstructorID' => 1,
                     'CategoryID' => 1,
-                    'CourseLanguageID' => 1,
                     'ClassImg' => $imagePath,
                     'ClassTitle' => '강의 더미 데이터 제목입니다. 난이도는 '.$cnt.' 단계 입니다',
                     'ClassDescription' => '강의 더미 데이터 내용입니다. 난이도는 '.$cnt.' 단계 입니다',
@@ -158,7 +153,6 @@ class ClassInfoSeeder extends Seeder
                 ClassInfo::create([
                     'InstructorID' => 1,
                     'CategoryID' => 1,
-                    'CourseLanguageID' => 1,
                     'ClassImg' => $imagePath,
                     'ClassTitle' => '강의 더미 데이터 제목입니다. 난이도는 '.$cnt.' 단계 입니다',
                     'ClassDescription' => '강의 더미 데이터 내용입니다. 난이도는 '.$cnt.' 단계 입니다',

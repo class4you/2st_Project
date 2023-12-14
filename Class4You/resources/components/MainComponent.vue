@@ -59,10 +59,8 @@
                                         <p>{{ item.ClassDescription }}</p>
                                     </div>
                                     <ul class="main_container_new_card_tag"> 
-                                        <li>html</li>
-                                        <li>css</li>
-                                        <li>php</li>
-                                        <li>java</li>
+                                        <li>{{ item.ClassLanguageName }}</li>
+                                        <li>{{ item.ClassID }}</li>
                                     </ul>
                                 </li>
                             </a>
