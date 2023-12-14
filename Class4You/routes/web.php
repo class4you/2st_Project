@@ -22,6 +22,10 @@ Route::middleware('my.user.validation')->post('/login', [UserController::class, 
 
 Route::get('/logout', [UserController::class, 'logout']);
 
+Route::get('/classBoard', function () {
+    return view('classBoardMain');
+});
+
 Route::any("{slug}", function ($slug) {
     return view('welcome');
 });
