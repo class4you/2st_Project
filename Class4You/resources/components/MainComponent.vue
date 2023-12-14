@@ -5,28 +5,7 @@
                 <div class="main_mrap">
                     <div class="main_banner_box">
                         <div class="main_visual">
-                            <a class="main_visual_scene">
-                                <div class="main_visual_scene_content">
-                                    <div class="main_visual_scene_container">
-                                        <div class="main_visual_scene_container_cover_right">
-                                            <img src="/img/img-1.png" alt="">
-                                        </div>
-                                        <div class="main_visual_scene_container_cover_left">
-                                            <div class="main_visual_scene_container_cover_left_tags">
-                                                <div>
-                                                    0원 부트캠프
-                                                </div>
-                                            </div>
-                                            <h3>
-                                                나에게 주어지는 합격 목걸이! 0원 취업 지원 교육 모음
-                                            </h3>
-                                            <p>
-                                                비전공, 경험, 경력 없는 취준생을 위한 2,000만원 상당의 취업 부트캠프
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
+                            
                         </div>
                         <div class="main_nav">
                             <div class="main_nav_num_space">
