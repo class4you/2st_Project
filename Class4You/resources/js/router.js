@@ -22,6 +22,10 @@ const routes = [
     {
         path: '/test',
         component: TestComponent,
+    },
+    {
+        path: '/:path*',
+        component: MainComponent,
     }
 ];
 

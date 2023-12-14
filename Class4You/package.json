@@ -17,9 +17,11 @@
         "vue": "^3.3.11"
     },
     "dependencies": {
+        "vue-carousel": "^0.18.0",
         "vue-cookies": "^1.8.3",
         "vue-loader": "^17.3.1",
         "vue-router": "^4.2.5",
+        "vue-slick-carousel": "^1.0.6",
         "vuex": "^4.0.2"
     }
 }

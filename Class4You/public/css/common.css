@@ -648,6 +648,13 @@ footer {
     gap: 20px
 }
 
+
+@media screen and (max-width: 500px) {
+    .main_container_keyword {
+        grid-template-columns: 1fr;
+    }
+}
+
 .main_container_keyword_card {
     display: block;
 }

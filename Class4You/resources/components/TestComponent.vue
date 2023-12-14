@@ -1,64 +1,44 @@
 <template>
-    <div class="carousel">
-      <div class="slides" :style="{ transform: `translateX(-${currentSlide * 100}%)` }">
-        <div v-for="(slide, index) in slides" :key="index" class="slide">
-          <!-- Your slide content goes here -->
-          <img :src="slide.image" alt="Slide Image">
-          <h3>{{ slide.title }}</h3>
-        </div>
-      </div>
-      <button @click="prevSlide">Previous</button>
-      <button @click="nextSlide">Next</button>
+    <div>
+      <carousel :perPage="3" :perPageCustom="[[0, 1], [480, 2], [768, 3]]">
+        <slide v-for="item in items" :key="item.id">
+          <!-- 캐러셀 아이템 내용 -->
+          <div class="carousel-item">
+            <img :src="item.image" alt="Carousel Item" />
+            <div class="carousel-caption">{{ item.caption }}</div>
+          </div>
+        </slide>
+      </carousel>
     </div>
   </template>
   
   <script>
+  import { Carousel, Slide } from 'vue-carousel';
+  
   export default {
+    name: 'TestComponent',
+    components: {
+      Carousel,
+      Slide,
+    },
     data() {
       return {
-        slides: [
-          { title: 'Slide 1', image: 'slide1.jpg' },
-          { title: 'Slide 2', image: 'slide2.jpg' },
-          { title: 'Slide 3', image: 'slide3.jpg' },
+        items: [
+          { id: 1, image: 'image1.jpg', caption: 'Caption 1' },
+          { id: 2, image: 'image2.jpg', caption: 'Caption 2' },
+          { id: 3, image: 'image3.jpg', caption: 'Caption 3' },
+          // 추가적인 아이템들
         ],
-        currentSlide: 0,
       };
-    },
-    methods: {
-      nextSlide() {
-        this.currentSlide = (this.currentSlide + 1) % this.slides.length;
-      },
-      prevSlide() {
-        this.currentSlide = (this.currentSlide - 1 + this.slides.length) % this.slides.length;
-      },
     },
   };
   </script>
   
   <style scoped>
-  .carousel {
-    width: 100%;
-    overflow: hidden;
-    position: relative;
-  }
-  
-  .slides {
-    display: flex;
-    transition: transform 0.5s ease-in-out;
-  }
-  
-  .slide {
-    width: 100%;
-  }
-  
-  button {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background-color: #3498db;
-    color: #fff;
-    border: none;
-    padding: 10px;
-    cursor: pointer;
+  .carousel-item {
+    text-align: center;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
   }
   </style>

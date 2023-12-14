@@ -59,8 +59,7 @@
                                         <p>{{ item.ClassDescription }}</p>
                                     </div>
                                     <ul class="main_container_new_card_tag"> 
-                                        <li>{{ item.ClassLanguageName }}</li>
-                                        <li>{{ item.ClassID }}</li>
+                                        <li v-for="item2 in item.languages" :key="item2.id">{{ item2.ClassLanguageName }}</li>
                                     </ul>
                                 </li>
                             </a>
@@ -166,7 +165,6 @@
                     </div>
 
 
-
                 </div>
             </main>
         </div>
@@ -199,5 +197,5 @@ export default {
 }
 </script>
 <style>
-    
+
 </style>
