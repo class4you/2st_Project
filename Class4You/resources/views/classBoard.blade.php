@@ -1,0 +1,6 @@
+
+
+
+@section('classBoard')
+	
+@endsection
