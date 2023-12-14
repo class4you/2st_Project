@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ClassBoardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,9 +23,11 @@ Route::middleware('my.user.validation')->post('/login', [UserController::class, 
 
 Route::get('/logout', [UserController::class, 'logout']);
 
-Route::get('/classBoard', function () {
-    return view('classBoardMain');
-});
+// Route::get('/classBoard', function () {
+//     return view('classBoardMain');
+// });
+
+Route::get('/classBoard', [ClassBoardController::class, 'classBoardIndex'])->name('classboardmain');
 
 Route::any("{slug}", function ($slug) {
     return view('welcome');
