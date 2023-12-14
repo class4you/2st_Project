@@ -12,7 +12,7 @@
             </div>
         </div>
 
-        <header id="header">
+        <header id="header" style="border-bottom: 0.5px solid rgba(114, 114, 114, 0.1);">
             <div class="navigation">
                 <ul class="nav_left side_nav">
                     <li><a href="" class="menu_btn"><img src="/img/menu.png" alt="">전체 강의</a>
@@ -53,7 +53,6 @@
                 </div>
             </div>
         </header>
-        <hr>
 
         <div class="login_modal_bk" v-if="loginShowModal">
             <div class="login_modal">
