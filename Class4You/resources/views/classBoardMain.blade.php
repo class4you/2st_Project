@@ -25,16 +25,19 @@
 				<div class="main_container_new_box">
 					<ul class="class_main_container_new">
 
-						<a href="">
+					@forelse($data as $item)
+						@if ($loop->iteration <= 4)
+
+						<a href="{{route('classboardall', ['ClassDifficulty' => $item->ClassDifficulty])}}">
 						<li class="class_main_container_new_card">
 							<div class="class_main_container_new_card_img">
 								<img src="./img/img-1.png" alt="">
 							</div>
 							<div class="class_main_container_new_card_title">
-								<h4>{{$data->ClassTitle}}</h4>
+								<h4>{{$item->ClassTitle}}</h4>
 							</div>
 							<div class="class_main_container_new_card_content">
-								<p>130시간 이상의 커리큘럼을 통해 온프레미스 환경 & AWS EKS 환경까지 실무 환경을 그대로</p>
+								<p>{{$item->ClassDescription}}</p>
 							</div>
 							<ul class="class_main_container_new_card_tag"> 
 								<li>html</li>
@@ -44,6 +47,10 @@
 							</ul>
 						</li>
 						</a>
+
+						@endif
+					@empty
+					@endforelse
 
 					</ul>
 				</div>

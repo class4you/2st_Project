@@ -40,4 +40,5 @@ class ClassInfoController extends Controller
         Log::debug($data);
         return response()->json($data);
     }
+    
 }
