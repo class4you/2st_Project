@@ -68,7 +68,15 @@ button{color:inherit;font-size:inherit;font-family:inherit;}
     width: 100%;
     padding: 0 20px;
     max-width: 1520px; /* 예시로 1520px로 지정 */
+    margin-top: -30px;
 }
+.mainSectionpost{
+    width: 100%;
+    padding: 310px 20px;
+    max-width: 1520px;
+    margin-top: -150px;
+}
+
 
 /* 왼쪽 네비게이션 스타일 */
 .leftNav{
@@ -76,8 +84,9 @@ button{color:inherit;font-size:inherit;font-family:inherit;}
 }
 .leftNav > p{
     margin-bottom: 10px;
-    font-size: 14px;
+    font-size: 20px;
     color: #999;
+    padding: 10px 0;
 }
 .mainNav li{
     cursor: pointer;
@@ -85,7 +94,8 @@ button{color:inherit;font-size:inherit;font-family:inherit;}
 .mainNav > li{
     font-weight: bold;
     margin-bottom: 9px;
-    font-size: 13px;
+    font-size: 16px;
+    padding: 10px 0;
 }
 .mainNav > li:last-child{
     margin-bottom: 0px;
@@ -99,6 +109,7 @@ button{color:inherit;font-size:inherit;font-family:inherit;}
     font-size: 14px;
     font-weight: 400;
     color: #999;
+    /* display: none; */
 }
 .subNav > li:last-child{
     margin-bottom: 0px;
@@ -107,6 +118,7 @@ button{color:inherit;font-size:inherit;font-family:inherit;}
     font-weight: 700;
     color: #333;
 }
+
 
 /* 게시판 컨테이너 스타일 */
 .board_container{
@@ -119,7 +131,7 @@ button{color:inherit;font-size:inherit;font-family:inherit;}
 .searchbox input[type=text]{
     width: calc(100% - 90px);
     height: 40px;
-    margin-right: 10px;
+    margin: 10px 0;
     border: none;
     background: #eee;
     line-height: 40px;
@@ -221,9 +233,12 @@ button{color:inherit;font-size:inherit;font-family:inherit;}
 .postBox label{
     display: block;
     width: 50px;
+    margin-bottom: 10px;
 }
 .postTitBox{
     margin-bottom: 10px;
+    font-size: 15px;
+    padding: 10px 0;
 }
 .postTitBox input{
     width: calc(100% - 50px);
@@ -243,7 +258,7 @@ button{color:inherit;font-size:inherit;font-family:inherit;}
     color: #999;
 }
 .postInfo p:last-child{
-    margin-right: 0;
+        margin: 15px 0;
 }
 .postInfo p span{
     display: inline-block;
@@ -257,6 +272,8 @@ button{color:inherit;font-size:inherit;font-family:inherit;}
 }
 .postContBox label{
     padding-top: 10px;
+        font-size: 15px;
+    padding: 10px 0;
 }
 .postContBox textarea{
     width: calc(100% - 50px);
@@ -339,9 +356,25 @@ button{color:inherit;font-size:inherit;font-family:inherit;}
     cursor: pointer;
 }
 
+.bannerImg{
+    width: 100%;
+}
+.bannerImg Img{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    display: inline-block;
+    width: 100%;
+    max-width: none;
+    padding-top: 0;
+    transform: translate(-50%, -50%);
+    border-radius: 10px;
+}
+
 /* 추가된 모바일 레이아웃 스타일 */
 @media (max-width: 767px) {
     .bannerBox {
+        width: 350px;
         height: 200px;
         margin-bottom: 15px;
     }
@@ -357,6 +390,7 @@ button{color:inherit;font-size:inherit;font-family:inherit;}
 
     .leftNav {
         width: 100%;
+        padding: 10px;
     }
 
     .searchbox input[type=text] {
