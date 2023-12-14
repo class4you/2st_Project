@@ -1,64 +1,102 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-    <meta charset="UTF-8">
+	<meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../doc/css/reset.css">
     <link rel="stylesheet" href="../doc/css/common.css">
-    <script src="../doc/js/jquery-3.1.1.min.js"></script>
-    <script src="../doc/js/main.js"></script>
-
-    <title> 커뮤니티</title>
+	<title>커뮤니티</title>
 </head>
+<body>
+	<div id="wrap">
+        <div id="top_banner" class="top_banner">
+            <div class="desc">
+                <ul id="list_txt" class="list_txt">
+                    <li><a href="">새로운 온라인 클래스 STUDY 4 YOU 개설</a></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                </ul>
+            </div>
+        </div>
+
+        <header id="header">
+            <div class="navigation">
+                <ul class="nav_left side_nav">
+                    <li><a href="" class="menu_btn"><img src="./img/menu.png" alt="">전체 강의</a></li>
+                    <li><a href="">추천 강의</a></li>
+                    <li><a href="">신규 강의</a></li>
+                    <li>|</li>
+                    <li><a href="">커뮤니티</a></li>
+                </ul>
+                <h1>
+                    <a href="">
+                        <img src="./img/v2_14378e7f2adb0ec0ad8cddaaf3b0fbdd_0DXltiM6xt_top.jpg" alt="">
+                    </a>
+                </h1>
+                <div class="side_nav">
+                    <a href="">SIGN UP</a>
+                    <a href="">LOGIN</a>
+                    <div class="search_box">
+                        <input type="text" placeholder="SEARCH">
+                        <button type="button"><img src="./img/SEARCH.png" alt=""></button>
+                    </div>
+                </div>
+            </div>
+            <hr>
+
+    <title> 보드리스트</title>
+
 <body>
     <div id="wrap">
       <form>
-    
-        <div id="header">
-        </div><!-- header -->
+  
     
         <div class="whr"><span>게시판</span><span>></span><span>게시판</span>
         </div><!-- whr -->
     
         <div class="bannerBox">
-          <div class="banner"></div>
+          <div class="banner">
+            <img src="../doc/img/boardbg.PNG" alt="board_banenr_img">
+          </div>
         </div><!-- banner -->
     
         <section class="mainSec row jcB">
     
           <article class="leftNav">
-            <p>정보글 공유해요</p>
+            <p>정보를 공유해요</p>
             <ul class="mainNav">
-              <li>자유게시판</li>
+              <li>자유 게시판</li>
               <li>
-                자유게시판
+                질문 게시판
                 <ul class="subNav">
                   <li class="row jcB active">
                     <p>HTML</p>
                     <p>0</p>
                   </li>
                   <li class="row jcB">
-                    <p>HTML</p>
+                    <p>CSS</p>
                     <p>0</p>
                   </li>
                   <li class="row jcB">
-                    <p>HTML</p>
+                    <p>JS</p>
                     <p>0</p>
                   </li>
                   <li class="row jcB">
-                    <p>HTML</p>
+                    <p>PHP</p>
                     <p>0</p>
                   </li>
                   <li class="row jcB">
-                    <p>HTML</p>
+                    <p>JAVA</p>
                     <p>0</p>
                   </li>
                   <li class="row jcB">
-                    <p>HTML</p>
+                    <p>DB</p>
                     <p>0</p>
                   </li>
                   <li class="row jcB">
-                    <p>HTML</p>
+                    <p>TOOL</p>
                     <p>0</p>
                   </li>
                 </ul>
@@ -66,11 +104,11 @@
             </ul>
           </article><!-- leftNav -->
         
-          <div class="container">
+          <div class="board_container">
             <div class="searchbox row aiC">
               <input type="text" id="searchTxt">
               <button type="submit" for="">검색</button>
-            </div><!-- searchbox -->
+            </div>
     
             <div class="titBox row jcB aiC">
               <div class="sort">
@@ -85,29 +123,48 @@
                 <button type="button">글작성</button>
               </div>
             </div><!-- titBox -->
-    
+            <div class="board_detail_rating_list">
+            <div class="contBox">
+              <div class="cont">
+                <div class="item"></div>
+              </div>
+            </div>
+            <div class="contBox">
+              <div class="cont">
+                <div class="item"></div>
+              </div>
+            </div>
+            <div class="contBox">
+              <div class="cont">
+                <div class="item"></div>
+              </div>
+            </div>
             <div class="contBox">
               <div class="cont">
                 <div class="item"></div>
               </div>
             </div>
           </div><!-- container -->
-    
+          </div>
+
+          
+          
           <article class="best">
             <p>best</p>
             <ul>
-              <li>1</li>
-              <li>2</li>
-              <li>3</li>
-              <li>4</li>
-              <li>5</li>
-              <li>6</li>
+              <li>1.홍길동</li>
+              <li>2.홍길동</li>
+              <li>3.홍길동</li>
+              <li>4.홍길동</li>
+              <li>5.홍길동</li>
+              <li>6.홍길동</li>
             </ul>
           </article><!-- best -->
     
-        </section>
+
       </form>
     </div>
+  </section>
     </body>
     
     </html>
