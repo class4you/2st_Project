@@ -12,6 +12,7 @@
     <div id="app">
         <Header-Component></Header-Component>
         <App-Component></App-Component>
+        <Main-Component></Main-Component>
         <Footer-Component></Footer-Component>
     </div>
 </body>
