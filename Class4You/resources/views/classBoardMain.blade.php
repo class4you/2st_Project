@@ -3,44 +3,6 @@
 @section('classBoardMain')
 
 <div id="wrap">
-	{{-- <div id="top_banner" class="top_banner">
-		<div class="desc">
-			<ul id="list_txt" class="list_txt">
-				<li><a href="">새로운 온라인 클래스 STUDY 4 YOU 개설</a></li>
-				<li></li>
-				<li></li>
-				<li></li>
-				<li></li>
-			</ul>
-		</div>
-	</div>
-
-	<header id="header">
-		<div class="navigation">
-			<ul class="nav_left side_nav">
-				<li><a href="" class="menu_btn"><img src="./img/menu.png" alt="">전체 강의</a></li>
-				<li><a href="">추천 강의</a></li>
-				<li><a href="">신규 강의</a></li>
-				<li>|</li>
-				<li><a href="">커뮤니티</a></li>
-			</ul>
-			<h1>
-				<a href="">
-					<img src="./img/v2_14378e7f2adb0ec0ad8cddaaf3b0fbdd_0DXltiM6xt_top.jpg" alt="">
-				</a>
-			</h1>
-			<div class="side_nav">
-				<a href="">SIGN UP</a>
-				<a href="">LOGIN</a>
-				<div class="search_box">
-					<input type="text" placeholder="SEARCH">
-					<button type="button"><img src="./img/SEARCH.png" alt=""></button>
-				</div>
-			</div>
-		</div>
-	</header>
-	
-	<hr> --}}
 
 	<div class="class_container_main">
 		<main class="class_contents">
@@ -69,7 +31,7 @@
 								<img src="./img/img-1.png" alt="">
 							</div>
 							<div class="class_main_container_new_card_title">
-								<h4>실무까지 한 번에 끝내는 DevOps를 위한 Docker & Kubernetes feat.</h4>
+								<h4>{{$data->ClassTitle}}</h4>
 							</div>
 							<div class="class_main_container_new_card_content">
 								<p>130시간 이상의 커리큘럼을 통해 온프레미스 환경 & AWS EKS 환경까지 실무 환경을 그대로</p>

@@ -4,18 +4,15 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<link rel="stylesheet" href="">
-	<title>classBoard</title>
+	<link rel="stylesheet" href="/css/common.css">
+	<title>@yield('title', 'classBoard')</title>
+	<script src="{{ asset('js/app.js') }}" defer></script>
 </head>
 <body>
-	
-	<div>
-		<Header-Component></Header-Component>
-
-		@yield('classBoardMain')
-
-		<Footer-Component></Footer-Component>
-	</div>
-
+		<div id="app">
+			<Header-Component></Header-Component>
+			@yield('classBoardMain')
+			<Footer-Component></Footer-Component>
+		</div>
 </body>
 </html>
