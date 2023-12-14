@@ -17,5 +17,6 @@ class ClassInfo extends Model
     protected $fillable = [
         'ClassTitle',
         'ClassDescription',
+        'ClassImg',
     ];
 }

@@ -30,8 +30,8 @@ Route::get('/logout', [UserController::class, 'logout']);
 // });
 
 Route::get('/classBoard', [ClassBoardController::class, 'classBoardIndex'])->name('classboardmain');
-// Route::get('/classBoard', [ClassInfoController::class, 'getClassBoardIndex'])->name('classBoardMain');
-Route::get('/classBoardViewAll/{}', [ClassInfoController::class, 'getClassBoardShow'])->name('classboardall');
+
+Route::get('/classBoardViewAll/{ClassDifficulty}', [ClassInfoController::class, 'getClassBoardShow'])->name('classboardall');
 
 Route::any("{slug}", function ($slug) {
     return view('welcome');

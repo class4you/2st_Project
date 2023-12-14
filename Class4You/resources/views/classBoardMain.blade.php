@@ -1,7 +1,7 @@
 @extends('classBoard')
-
+<!-- 상속받음 -->
 @section('classBoardMain')
-
+<!-- section: 아래의 코드 출력 -->
 <div id="wrap">
 
 	<div class="class_container_main">
@@ -17,7 +17,10 @@
 					<h3>아직 방향성을 찾지 못한 분들을 위한 1단계</h3>
 					<div class="class_main_viewall_text">
 						<p>
-							<a href="#">전체보기</a>
+							@foreach ($data1 as $item)
+								<a href="{{route('classboardall',['ClassDifficulty' => $item->ClassDifficulty])}}">전체보기</a>
+								@break
+							@endforeach	
 						</p>
 					</div>
 				</div>
@@ -25,13 +28,60 @@
 				<div class="main_container_new_box">
 					<ul class="class_main_container_new">
 
-					@forelse($data as $item)
+					@forelse($data1 as $item)
 						@if ($loop->iteration <= 4)
 
-						<a href="{{route('classboardall', ['ClassDifficulty' => $item->ClassDifficulty])}}">
+						<a href="">
 						<li class="class_main_container_new_card">
 							<div class="class_main_container_new_card_img">
-								<img src="./img/img-1.png" alt="">
+								<img src="{{$item->ClassImg}}" alt="">
+							</div>
+							<div class="class_main_container_new_card_title">
+								<h4>{{$item->ClassTitle}}</h4>
+							</div>
+							<div class="class_main_container_new_card_content">
+								<p>{{$item->ClassDescription}}</p>
+							</div>
+							<ul class="class_main_container_new_card_tag"> 
+								<li>html</li>
+								<li>css</li>
+								<li>php</li>
+								<li>java</li>
+							</ul>
+						</li>
+						</a>
+
+						@endif
+					@empty
+					@endforelse
+
+					</ul>
+				</div>
+
+				@foreach ($data2 as $item)
+				<div class="class_main_new_text">
+					<h3>이제 첫발을 뗀 당신을 위한 2단계</h3>
+					<div class="class_main_viewall_text">
+						<p>
+							
+								<a href="{{route('classboardall',['ClassDifficulty' => $item->ClassDifficulty])}}">전체보기</a>
+								
+						</p>
+					</div>
+				</div>
+					@break
+				@endforeach
+
+				<div class="class_main_container_new_box">
+					<ul class="class_main_container_new">
+
+					@forelse($data2 as $item)
+						@if ($loop->iteration <= 4)
+
+						<a href="">
+						<li class="class_main_container_new_card">
+							<div class="class_main_container_new_card_img">
+								<img src="{{$item->ClassImg}}" alt="">
 							</div>
 							<div class="class_main_container_new_card_title">
 								<h4>{{$item->ClassTitle}}</h4>
@@ -56,44 +106,13 @@
 				</div>
 
 				<div class="class_main_new_text">
-					<h3>이제 첫발을 뗀 당신을 위한 2단계</h3>
-					<div class="class_main_viewall_text">
-						<p>
-							<a href="#">전체보기</a>
-						</p>
-					</div>
-				</div>
-
-				<div class="class_main_container_new_box">
-					<ul class="class_main_container_new">
-						<a href="">
-						<li class="class_main_container_new_card">
-							<div class="class_main_container_new_card_img">
-								<img src="./img/img-1.png" alt="">
-							</div>
-							<div class="class_main_container_new_card_title">
-								<h4>실무까지 한 번에 끝내는 DevOps를 위한 Docker & Kubernetes feat.</h4>
-							</div>
-							<div class="class_main_container_new_card_content">
-								<p>130시간 이상의 커리큘럼을 통해 온프레미스 환경 & AWS EKS 환경까지 실무 환경을 그대로</p>
-							</div>
-							<ul class="class_main_container_new_card_tag"> 
-								<li>html</li>
-								<li>css</li>
-								<li>php</li>
-								<li>java</li>
-							</ul>
-						</li>
-						</a>
-
-					</ul>
-				</div>
-
-				<div class="class_main_new_text">
 					<h3>1단계와 2단계를 완강한 당신을 위한 3단계</h3>
 					<div class="class_main_viewall_text">
 						<p>
-							<a href="#">전체보기</a>
+							@foreach ($data3 as $item)
+								<a href="{{route('classboardall',['ClassDifficulty' => $item->ClassDifficulty])}}">전체보기</a>
+								@break
+							@endforeach
 						</p>
 					</div>
 				</div>
@@ -101,16 +120,19 @@
 				<div class="class_main_container_new_box">
 					<ul class="class_main_container_new">
 
+					@forelse($data3 as $item)
+						@if ($loop->iteration <= 4)
+
 						<a href="">
 						<li class="class_main_container_new_card">
 							<div class="class_main_container_new_card_img">
-								<img src="./img/img-1.png" alt="">
+								<img src="{{$item->ClassImg}}" alt="">
 							</div>
 							<div class="class_main_container_new_card_title">
-								<h4>실무까지 한 번에 끝내는 DevOps를 위한 Docker & Kubernetes feat.</h4>
+								<h4>{{$item->ClassTitle}}</h4>
 							</div>
 							<div class="class_main_container_new_card_content">
-								<p>130시간 이상의 커리큘럼을 통해 온프레미스 환경 & AWS EKS 환경까지 실무 환경을 그대로</p>
+								<p>{{$item->ClassDescription}}</p>
 							</div>
 							<ul class="class_main_container_new_card_tag"> 
 								<li>html</li>
@@ -120,6 +142,10 @@
 							</ul>
 						</li>
 						</a>
+
+						@endif
+					@empty
+					@endforelse
 
 					</ul>
 				</div>
@@ -128,7 +154,10 @@
 					<h3>3단계까지 완강한 당신 이제 현업 기술을 위한 4단계</h3>
 					<div class="class_main_viewall_text">
 						<p>
-							<a href="#">전체보기</a>
+							@foreach ($data4 as $item)
+								<a href="{{route('classboardall',['ClassDifficulty' => $item->ClassDifficulty])}}">전체보기</a>
+								@break
+							@endforeach
 						</p>
 					</div>
 				</div>
@@ -136,16 +165,19 @@
 				<div class="class_main_container_new_box">
 					<ul class="class_main_container_new">
 
+					@forelse($data4 as $item)
+						@if ($loop->iteration <= 4)
+
 						<a href="">
 						<li class="class_main_container_new_card">
 							<div class="class_main_container_new_card_img">
-								<img src="./img/img-1.png" alt="">
+								<img src="{{$item->ClassImg}}" alt="">
 							</div>
 							<div class="class_main_container_new_card_title">
-								<h4>실무까지 한 번에 끝내는 DevOps를 위한 Docker & Kubernetes feat.</h4>
+								<h4>{{$item->ClassTitle}}</h4>
 							</div>
 							<div class="class_main_container_new_card_content">
-								<p>130시간 이상의 커리큘럼을 통해 온프레미스 환경 & AWS EKS 환경까지 실무 환경을 그대로</p>
+								<p>{{$item->ClassDescription}}</p>
 							</div>
 							<ul class="class_main_container_new_card_tag"> 
 								<li>html</li>
@@ -155,6 +187,10 @@
 							</ul>
 						</li>
 						</a>
+
+						@endif
+					@empty
+					@endforelse
 
 					</ul>
 				</div>

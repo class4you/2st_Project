@@ -32,5 +32,27 @@ class ClassInfoController extends Controller
         Log::debug($data);
         return response()->json($data);
     }
+
+    public function getClassBoardShow($classdiffinum) {
+       
+        $result = ClassInfo::where('ClassDifficulty', $classdiffinum)->get();
+        // var_dump($result);
+
+        foreach ($result as $item) {
+            $classdiffinumValue = $item->classdiffinum;
+            // 이제 $classdiffinumValue를 사용할 수 있음
+            
+        }
+        
+        return view('classBoardViewAll',['data' => $result]);
+    }
+
+    // public function getClassBoardShow() {
+
+    //     $classdiffinum = 1;
+    //     $result = ClassInfo::where('ClassDifficulty', $classdiffinum)->get();
+        
+    //     return view('classBoardViewAll',['data' => $result]);
+    // }
     
 }
