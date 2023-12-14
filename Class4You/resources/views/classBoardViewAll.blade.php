@@ -1,7 +1,5 @@
 @extends('classBoard')
 
-@section('title', 'viewall')
-
 @section('classBoardViewAll')
 
 <div id="wrap">

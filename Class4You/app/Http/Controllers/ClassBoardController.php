@@ -11,12 +11,14 @@ use Illuminate\Support\Facades\Auth;
 class ClassBoardController extends Controller
 {
     public function classBoardIndex() {
-        $result = ClassInfo::get();
+        $result = ClassInfo::all();
 
-        return view('classBoardMain',['data' => $result]);
+        return view('classboardmain',['data' => $result]);
     }
     //
-    public function classBoardShow($id) {
+    // public function classBoardAllShow($id) {
+    //     $result = ClassInfo::where();
 
-    }
+    //     return view('classboardall',['data' => $result]);
+    // }
 }
