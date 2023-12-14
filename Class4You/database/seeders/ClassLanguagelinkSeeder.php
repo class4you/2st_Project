@@ -16,34 +16,59 @@ class ClassLanguagelinkSeeder extends Seeder
      */
     public function run()
     {
-        ClassLanguagelink::create([
-            'ClassID' => 'HTML'
-            ,'ClassLanguageID' => ''
-        ]);
+        $cnt = 1;
+        while($cnt <= 17) {
+            ClassLanguagelink::create([
+                'ClassID' => $cnt
+                ,'ClassLanguageID' => 1
+            ]);
+            $cnt++;
+        }
 
-        ClassLanguagelink::create([
-            'ClassID' => 'CSS'
-            ,'ClassLanguageID' => ''
-        ]);
+        $cnt = 18;
+        while($cnt <= 33) {
+            ClassLanguagelink::create([
+                'ClassID' => $cnt
+                ,'ClassLanguageID' => 2
+            ]);    
+            $cnt++;
+        }
 
-        ClassLanguagelink::create([
-            'ClassID' => 'JavaScript'
-            ,'ClassLanguageID' => ''
-        ]);
+        $cnt = 34;
+        while($cnt <= 49) {
+            ClassLanguagelink::create([
+                'ClassID' => $cnt
+                ,'ClassLanguageID' => 3
+            ]);
+            $cnt++;
+        }
 
-        ClassLanguagelink::create([
-            'ClassID' => 'PHP'
-            ,'ClassLanguageID' => ''
-        ]);
+        $cnt = 50;
+        while($cnt <= 65) {
+            ClassLanguagelink::create([
+                'ClassID' => $cnt
+                ,'ClassLanguageID' => 4
+            ]);
+            $cnt++;
+        }
 
-        ClassLanguagelink::create([
-            'ClassID' => 'JAVA'
-            ,'ClassLanguageID' => ''
-        ]);
+        $cnt = 66;
+        while($cnt <= 81) {
+            ClassLanguagelink::create([
+                'ClassID' => $cnt
+                ,'ClassLanguageID' => 5
+            ]);
+            $cnt++;
+        }
 
-        ClassLanguagelink::create([
-            'ClassID' => 'DataBase'
-            ,'ClassLanguageID' => ''
-        ]);
+        $cnt = 82;
+        while($cnt <= 97) {
+            ClassLanguagelink::create([
+                'ClassID' => $cnt
+                ,'ClassLanguageID' => 6
+            ]);
+            $cnt++;
+        }
+
     }
 }

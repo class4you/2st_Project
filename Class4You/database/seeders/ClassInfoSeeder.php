@@ -71,14 +71,90 @@ class ClassInfoSeeder extends Seeder
         $cnt = 1;
         while($cnt <= 4) {
             // 이미지 디렉터리 경로
-            $imageDirectory = public_path('img/css/'.$cnt.'st/');
+            $imageDirectory = public_path('img/javascript/'.$cnt.'st/');
 
             // 이미지 파일 목록
             $imageFiles = File::files($imageDirectory);
 
             foreach ($imageFiles as $imageFile) {
             // 이미지 파일 경로
-            $imagePath = 'img/css/'.$cnt.'st/' . $imageFile->getFilename();
+            $imagePath = 'img/javascript/'.$cnt.'st/' . $imageFile->getFilename();
+                ClassInfo::create([
+                    'InstructorID' => 1,
+                    'CategoryID' => 1,
+                    'CourseLanguageID' => 1,
+                    'ClassImg' => $imagePath,
+                    'ClassTitle' => '강의 더미 데이터 제목입니다. 난이도는 '.$cnt.' 단계 입니다',
+                    'ClassDescription' => '강의 더미 데이터 내용입니다. 난이도는 '.$cnt.' 단계 입니다',
+                    'ClassPrice' => 0,
+                    'ClassDifficulty' => $cnt,
+                ]);
+            }
+            $cnt++;
+        }
+
+        
+        $cnt = 1;
+        while($cnt <= 4) {
+            // 이미지 디렉터리 경로
+            $imageDirectory = public_path('img/php/'.$cnt.'st/');
+
+            // 이미지 파일 목록
+            $imageFiles = File::files($imageDirectory);
+
+            foreach ($imageFiles as $imageFile) {
+            // 이미지 파일 경로
+            $imagePath = 'img/php/'.$cnt.'st/' . $imageFile->getFilename();
+                ClassInfo::create([
+                    'InstructorID' => 1,
+                    'CategoryID' => 1,
+                    'CourseLanguageID' => 1,
+                    'ClassImg' => $imagePath,
+                    'ClassTitle' => '강의 더미 데이터 제목입니다. 난이도는 '.$cnt.' 단계 입니다',
+                    'ClassDescription' => '강의 더미 데이터 내용입니다. 난이도는 '.$cnt.' 단계 입니다',
+                    'ClassPrice' => 0,
+                    'ClassDifficulty' => $cnt,
+                ]);
+            }
+            $cnt++;
+        }
+
+        $cnt = 1;
+        while($cnt <= 4) {
+            // 이미지 디렉터리 경로
+            $imageDirectory = public_path('img/java/'.$cnt.'st/');
+
+            // 이미지 파일 목록
+            $imageFiles = File::files($imageDirectory);
+
+            foreach ($imageFiles as $imageFile) {
+            // 이미지 파일 경로
+            $imagePath = 'img/java/'.$cnt.'st/' . $imageFile->getFilename();
+                ClassInfo::create([
+                    'InstructorID' => 1,
+                    'CategoryID' => 1,
+                    'CourseLanguageID' => 1,
+                    'ClassImg' => $imagePath,
+                    'ClassTitle' => '강의 더미 데이터 제목입니다. 난이도는 '.$cnt.' 단계 입니다',
+                    'ClassDescription' => '강의 더미 데이터 내용입니다. 난이도는 '.$cnt.' 단계 입니다',
+                    'ClassPrice' => 0,
+                    'ClassDifficulty' => $cnt,
+                ]);
+            }
+            $cnt++;
+        }
+
+        $cnt = 1;
+        while($cnt <= 4) {
+            // 이미지 디렉터리 경로
+            $imageDirectory = public_path('img/db/'.$cnt.'st/');
+
+            // 이미지 파일 목록
+            $imageFiles = File::files($imageDirectory);
+
+            foreach ($imageFiles as $imageFile) {
+            // 이미지 파일 경로
+            $imagePath = 'img/db/'.$cnt.'st/' . $imageFile->getFilename();
                 ClassInfo::create([
                     'InstructorID' => 1,
                     'CategoryID' => 1,

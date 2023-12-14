@@ -341,96 +341,96 @@ button{color:inherit;font-size:inherit;font-family:inherit;}
 
 /* 추가된 모바일 레이아웃 스타일 */
 @media (max-width: 767px) {
-  .bannerBox {
-    height: 200px;
-    margin-bottom: 15px;
-  }
+    .bannerBox {
+        height: 200px;
+        margin-bottom: 15px;
+    }
 
-  .mainSec {
-    padding: 0 10px;
-  }
+    .mainSec {
+        padding: 0 10px;
+    }
 
-  .board_container {
-    width: 100%;
-    max-width: none;
-  }
+    .board_container {
+        width: 100%;
+        max-width: none;
+    }
 
-  .leftNav {
-    width: 100%;
-  }
+    .leftNav {
+        width: 100%;
+    }
 
-  .searchbox input[type=text] {
-    width: 100%;
-    margin-right: 0;
-  }
+    .searchbox input[type=text] {
+        width: 100%;
+        margin-right: 0;
+    }
 
-  .titBox .sort ul li {
-    margin-right: 5px;
-    font-size: 12px;
-  }
+    .titBox .sort ul li {
+        margin-right: 5px;
+        font-size: 12px;
+    }
 
-  .titBox .btnbox button {
-    width: 60px;
-    height: 24px;
-  }
+    .titBox .btnbox button {
+        width: 60px;
+        height: 24px;
+    }
 
-  .contBox .cont .item {
-    height: 150px;
-  }
+    .contBox .cont .item {
+        height: 150px;
+    }
 
-  .postBox {
-    padding: 20px;
-  }
+    .postBox {
+        padding: 20px;
+    }
 
-  .postTitBox input {
-    width: 100%;
-  }
+    .postTitBox input {
+        width: 100%;
+    }
 
-  .postContBox textarea {
-    width: 100%;
-  }
+    .postContBox textarea {
+        width: 100%;
+    }
 
-  .laguage {
-    margin: 0;
-  }
+    .laguage {
+        margin: 0;
+    }
 
-  .reco > div {
-    margin: 0 10px;
-  }
+    .reco > div {
+        margin: 0 10px;
+    }
 
-  .reco p {
-    margin: 0 10px;
-    font-size: 16px;
-  }
+    .reco p {
+        margin: 0 10px;
+        font-size: 16px;
+    }
 
-  .reco button {
-    width: 30px;
-    height: 30px;
-  }
+    .reco button {
+        width: 30px;
+        height: 30px;
+    }
 
-  .reviewBox {
-    padding: 20px;
-  }
+    .reviewBox {
+        padding: 20px;
+    }
 
-  .reviewBox .number p {
-    font-size: 14px;
-  }
+    .reviewBox .number p {
+        font-size: 14px;
+    }
 
-  .reviewBox .number p span {
-    font-size: 16px;
-  }
+    .reviewBox .number p span {
+        font-size: 16px;
+    }
 
-  .reviewBox .reviewList .item {
-    padding: 10px;
-    font-size: 12px;
-  }
+    .reviewBox .reviewList .item {
+        padding: 10px;
+        font-size: 12px;
+    }
 
-  .reviewBox .reviewPost textarea {
-    height: 80px;
-  }
+    .reviewBox .reviewPost textarea {
+        height: 80px;
+    }
 
-  .reviewBox .reviewPost button {
-    height: 80px;
-    width: 80px;
-  }
-}
+    .reviewBox .reviewPost button {
+        height: 80px;
+        width: 80px;
+    }
+    }

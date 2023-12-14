@@ -8,4 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class ClassInfo extends Model
 {
     use HasFactory;
+    public function languageLink() {
+        return $this->belongsTo(ClassLanguageLink::class, 'ClassLanguageID');
+    }
 }
