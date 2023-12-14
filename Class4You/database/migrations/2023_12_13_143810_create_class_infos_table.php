@@ -23,7 +23,6 @@ return new class extends Migration
             $table->string('ClassDescription', 1000);
             $table->integer('ClassPrice')->nullable();
             $table->char('ClassDifficulty', 1);
-            $table->decimal('ClassRating', 2, 1)->default(0);
             $table->timestamps();
             $table->softDeletes();
         });
