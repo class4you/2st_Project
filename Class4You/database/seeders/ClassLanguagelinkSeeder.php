@@ -70,5 +70,14 @@ class ClassLanguagelinkSeeder extends Seeder
             $cnt++;
         }
 
+        $cnt = 1;
+        while($cnt <= 17) {
+            ClassLanguagelink::create([
+                'ClassID' => $cnt
+                ,'ClassLanguageID' => 2
+            ]);
+            $cnt++;
+        }
+
     }
 }

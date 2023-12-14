@@ -19,6 +19,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+
 Route::middleware('my.user.validation')->post('/login', [UserController::class, 'loginpost']);
 
 Route::get('/logout', [UserController::class, 'logout']);

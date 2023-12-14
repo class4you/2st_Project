@@ -17,7 +17,6 @@ return new class extends Migration
             $table->id('ClassID');
             $table->integer('InstructorID');
             $table->integer('CategoryID');
-            $table->integer('CourseLanguageID');
             $table->string('ClassImg');
             $table->string('ClassTitle', 100);
             $table->string('ClassDescription', 1000);
