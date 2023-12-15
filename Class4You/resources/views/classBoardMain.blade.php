@@ -42,12 +42,17 @@
 							<div class="class_main_container_new_card_content">
 								<p>{{$item->ClassDescription}}</p>
 							</div>
+
+							
 							<ul class="class_main_container_new_card_tag"> 
+							
 								<li>html</li>
-								<li>css</li>
-								<li>php</li>
-								<li>java</li>
+								<li>html</li>
+								<li>html</li>
+								<li>html</li>
+								
 							</ul>
+							
 						</li>
 						</a>
 

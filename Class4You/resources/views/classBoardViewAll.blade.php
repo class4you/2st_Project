@@ -13,16 +13,15 @@
 	<div class="class_container_main">
 		<main class="class_contents">
 			<div class="class_main_mrap">
-	
 				
 				<div class="class_main_new_text">
 					<h3>{{$msg}}</h3>
 				</div>
 				
-	@forelse($data as $item)
+	
 				<div class="main_container_new_box">
 					<ul class="class_main_container_new">
-					
+					@forelse($data as $item)
 						<a href="">
 						<li class="class_main_container_new_card">
 							<div class="class_main_container_new_card_img">
@@ -42,12 +41,12 @@
 							</ul>
 						</li>
 						</a>
-					
+					@empty
+					@endforelse
+
 					</ul>
 				</div>
-	@empty
-	@endforelse
-
+	
 				
 
 			</div>
