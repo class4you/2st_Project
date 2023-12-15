@@ -33,26 +33,41 @@ class ClassInfoController extends Controller
         return response()->json($data);
     }
 
-    public function getClassBoardShow($classdiffinum) {
-       
-        $result = ClassInfo::where('ClassDifficulty', $classdiffinum)->get();
-        // var_dump($result);
-
-        foreach ($result as $item) {
-            $classdiffinumValue = $item->classdiffinum;
-            // 이제 $classdiffinumValue를 사용할 수 있음
-            
-        }
-        
-        return view('classBoardViewAll',['data' => $result]);
-    }
-
-    // public function getClassBoardShow() {
-
-    //     $classdiffinum = 1;
+    // public function getClassBoardShow($classdiffinum) {
+    
     //     $result = ClassInfo::where('ClassDifficulty', $classdiffinum)->get();
+    //     // var_dump($result);
+    //     foreach ($result as $item) {
+    //         $classdiffinumValue = $item->classdiffinum;
+    //         // 이제 $classdiffinumValue를 사용할 수 있음
+    //     }
         
     //     return view('classBoardViewAll',['data' => $result]);
     // }
+
+    public function getClassBoardShow($classdiffinum) {
+
+        $msg = "";
+    
+        $result = ClassInfo::where('ClassDifficulty', $classdiffinum)->get();
+        // var_dump($result);
+        foreach ($result as $item) {
+            $classdiffinumValue = $item->classdiffinum;
+            // 이제 $classdiffinumValue를 사용할 수 있음
+            if($classdiffinum === "1") {
+                $msg = "아직 방향성을 찾지 못한 분들을 위한 1단계";
+            } else if($classdiffinum === "2") {
+                $msg = "아직 방향성을 찾지 못한 분들을 위한 2단계";
+            } else if($classdiffinum === "3") {
+                $msg = "아직 방향성을 찾지 못한 분들을 위한 3단계";
+            } else if($classdiffinum === "4") {
+                $msg = "아직 방향성을 찾지 못한 분들을 위한 4단계";
+            }
+        }
+        
+        return view('classBoardViewAll',['data' => $result, 'msg' => $msg]);
+    }
+
+    
     
 }
