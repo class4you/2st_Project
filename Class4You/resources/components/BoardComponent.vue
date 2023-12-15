@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 	<template>
 		<div id="wrap">
 		<form @submit.prevent="search">
@@ -63,8 +64,116 @@
 			</article>
 			</section>
 		</form>
+=======
+<template>
+	<div id="wrap">
+		<div class="whr"><span>게시판</span><span>></span><span>게시판</span>
+	</div><!-- whr -->
+
+	<div class="bannerBox">
+		<div class="banner">
+		<!-- <img class="bannerImg" src="/img/event_banner_2.png" alt="board_banenr_img"> -->
+>>>>>>> aa4cce8dd5d8de093b080c2ce40b1552d509fa81
 		</div>
-	</template>
+	</div><!-- banner -->
+
+	<section class="mainSec row jcB">
+
+		<article class="leftNav">
+		<p>정보를 공유해요</p>
+		<ul class="mainNav">
+			<li>자유 게시판</li>
+			<li>질문 게시판</li>
+			<ul class="subNav">
+				<li class="row jcB active">
+				<p>HTML</p>
+				<p>0</p>
+				</li>
+				<li class="row jcB">
+				<p>CSS</p>
+				<p>0</p>
+				</li>
+				<li class="row jcB">
+				<p>JS</p>
+				<p>0</p>
+				</li>
+				<li class="row jcB">
+				<p>PHP</p>
+				<p>0</p>
+				</li>
+				<li class="row jcB">
+				<p>JAVA</p>
+				<p>0</p>
+				</li>
+				<li class="row jcB">
+				<p>DB</p>
+				<p>0</p>
+				</li>
+				<li class="row jcB">
+				<p>TOOL</p>
+				<p>0</p>
+				</li>
+			</ul>
+		</ul>
+		</article><!-- leftNav -->
+	
+		<div class="board_container">
+		<div class="searchbox row aiC">
+			<input type="text" id="searchTxt">
+			<button type="submit" for="">검색</button>
+		</div>
+
+		<div class="titBox row jcB aiC">
+			<div class="sort">
+			<ul class="row aiC">
+				<li class="row aiC active"><span></span>최신순</li>
+				<li class="row aiC"><span></span>인기순</li>
+				<li class="row aiC"><span></span>조회순</li>
+			</ul>
+			</div>
+			<div class="btnbox row aiC">
+			<button type="button">미해결</button>
+			<button type="button">글작성</button>
+			</div>
+		</div><!-- titBox -->
+		<div class="board_detail_rating_list">
+		<div class="contBox">
+			<div class="cont">
+			<div class="item"></div>
+			</div>
+		</div>
+		<div class="contBox">
+			<div class="cont">
+			<div class="item"></div>
+			</div>
+		</div>
+		<div class="contBox">
+			<div class="cont">
+			<div class="item"></div>
+			</div>
+		</div>
+		<div class="contBox">
+			<div class="cont">
+			<div class="item"></div>
+			</div>
+		</div>
+		</div><!-- container -->
+		</div>
+
+		<article class="best">
+		<p>best</p>
+		<ul>
+			<li>1.홍길동</li>
+			<li>2.홍길동</li>
+			<li>3.홍길동</li>
+			<li>4.홍길동</li>
+			<li>5.홍길동</li>
+			<li>6.홍길동</li>
+		</ul>
+		</article><!-- best -->
+	</section>
+</div>
+</template>
 	
 	<script>
 	// import axios from 'axios';
@@ -155,7 +264,6 @@
 	// };
 	// </script>
 	
-	<style scoped>
-	/* 필요한 스타일을 여기에 추가 */
+	<style>
 	</style>
 	
