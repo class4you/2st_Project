@@ -3,7 +3,7 @@ import AppComponent from '../components/AppComponent.vue';
 import RegistrationComponent from '../components/RegistrationComponent.vue';
 import MainComponent from '../components/MainComponent.vue';
 import TestComponent from '../components/TestComponent.vue';
-import BoardComponent from './components/BoardComponent.vue';
+import BoardComponent from '../components/BoardComponent.vue';
 import store from './store';
 
 const routes = [
@@ -17,7 +17,7 @@ const routes = [
     },
     {
         path: '/board',
-        component: BoardComponent
+        component: BoardComponent,
     },
     {
         path: '/test',
