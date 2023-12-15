@@ -79,14 +79,14 @@ class ClassLanguagelinkSeeder extends Seeder
         //     $cnt++;
         // }
 
-        // $cnt = 1;
-        // while($cnt <= 17) {
-        //     ClassLanguagelink::create([
-        //         'ClassID' => $cnt
-        //         ,'ClassLanguageID' => 3
-        //     ]);
-        //     $cnt++;
-        // }
+        $cnt = 50;
+        while($cnt <= 53) {
+            ClassLanguagelink::create([
+                'ClassID' => $cnt
+                ,'ClassLanguageID' => 6
+            ]);
+            $cnt++;
+        }
 
     }
 }

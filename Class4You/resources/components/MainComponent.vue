@@ -62,22 +62,42 @@
 
                     <div class="main_container_new_box">
                         <ul class="main_container_new">
-                            <a v-for="item in newClassItems" :key="item.id" href="">
-                                <li class="main_container_new_card">
-                                    <div class="main_container_new_card_img">
-                                        <img :src="item.ClassImg" alt="">
-                                    </div>
-                                    <div class="main_container_new_card_title">
-                                        <h4>{{ item.ClassTitle }}</h4>
-                                    </div>
-                                    <div class="main_container_new_card_content">
-                                        <p>{{ item.ClassDescription }}</p>
-                                    </div>
-                                    <ul class="main_container_new_card_tag"> 
-                                        <li v-for="item2 in item.languages" :key="item2.id">{{ item2.ClassLanguageName }}</li>
-                                    </ul>
-                                </li>
-                            </a>
+                            <carousel v-if="$store.state.shouldShowCarousel" :per-page="4" :navigation-enabled="true" :autoplay="false" :transition="500" >
+                                <Slide v-for="item in newClassItems" :key="item.id">
+                                <a href="">
+                                    <li class="main_container_new_card">
+                                        <div class="main_container_new_card_img">
+                                            <img :src="item.ClassImg" alt="">
+                                        </div>
+                                        <div class="main_container_new_card_title">
+                                            <h4>{{ item.ClassTitle }}</h4>
+                                        </div>
+                                        <div class="main_container_new_card_content">
+                                            <p>{{ item.ClassDescription }}</p>
+                                        </div>
+                                        <ul class="main_container_new_card_tag"> 
+                                            <li v-for="item2 in item.languages" :key="item2.id">{{ item2.ClassLanguageName }}</li>
+                                        </ul>
+                                    </li>
+                                </a>
+                                </Slide>
+                            </carousel>
+                                <a v-if="!$store.state.shouldShowCarousel" v-for="item in newClassItems" :key="item.id" href="">
+                                    <li class="main_container_new_card">
+                                        <div class="main_container_new_card_img">
+                                            <img :src="item.ClassImg" alt="">
+                                        </div>
+                                        <div class="main_container_new_card_title">
+                                            <h4>{{ item.ClassTitle }}</h4>
+                                        </div>
+                                        <div class="main_container_new_card_content">
+                                            <p>{{ item.ClassDescription }}</p>
+                                        </div>
+                                        <ul class="main_container_new_card_tag"> 
+                                            <li v-for="item2 in item.languages" :key="item2.id">{{ item2.ClassLanguageName }}</li>
+                                        </ul>
+                                    </li>
+                                </a>
                         </ul>
                     </div>
 
@@ -90,7 +110,20 @@
 
                     <div class="main_container_hot_box">
                         <ul class="main_container_hot">
-                            <a v-for="item in hot_banners" :key="item.id" href="">
+
+                            <carousel v-if="$store.state.shouldShowCarousel" :per-page="4" :navigation-enabled="true" :autoplay="false" :transition="500" >
+                                <Slide v-for="item in hot_banners" :key="item.id">
+                                    <a href="">
+                                        <li class="main_container_hot_card">
+                                            <div class="main_container_hot_card_img">
+                                                <img :src="item" alt="">
+                                            </div>
+                                        </li>
+                                    </a>
+                                </Slide>
+                            </carousel>
+                            
+                            <a v-if="!$store.state.shouldShowCarousel" v-for="item in hot_banners" :key="item.id" href="">
                                 <li class="main_container_hot_card">
                                     <div class="main_container_hot_card_img">
                                         <img :src="item" alt="">
@@ -109,7 +142,19 @@
 
                     <div class="main_container_keyword_box">
                         <ul class="main_container_keyword">
-                            <a v-for="item in guide_banners" :key="item.id" href="">
+                            <carousel v-if="$store.state.shouldShowCarousel" :per-page="4" :navigation-enabled="true" :autoplay="false" :transition="500" >
+                                <Slide v-for="item in guide_banners" :key="item.id">
+                                    <a href="">
+                                        <li class="main_container_keyword_card">
+                                            <div class="main_container_keyword_card_img">
+                                                <img :src="item" alt="">
+                                            </div>
+                                        </li>
+                                    </a>
+                                </Slide>
+                            </carousel>
+
+                            <a v-if="!$store.state.shouldShowCarousel" v-for="item in guide_banners" :key="item.id" href="">
                                 <li class="main_container_keyword_card">
                                     <div class="main_container_keyword_card_img">
                                         <img :src="item" alt="">
@@ -140,7 +185,7 @@ export default {
 		Carousel,
 		Slide,
 		Pagination,
-        Navigation
+        Navigation,
 	},
 
     data() {
@@ -162,6 +207,11 @@ export default {
     },
     mounted() {
         this.fetchData();
+        this.checkWindowWidth();
+        window.addEventListener('resize', this.checkWindowWidth);
+    },
+    beforeDestroy() {
+        window.removeEventListener('resize', this.checkWindowWidth);
     },
     methods: {
         fetchData() {
@@ -188,6 +238,9 @@ export default {
         },
         updateIndex(index) {
             this.currentIndex = index;
+        },
+        checkWindowWidth() {
+            this.$store.dispatch('checkWindowWidth');
         },
     },
 }

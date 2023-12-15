@@ -19381,127 +19381,6 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/components/BoardComponent.vue?vue&type=script&lang=js":
-/*!*****************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/components/BoardComponent.vue?vue&type=script&lang=js ***!
-  \*****************************************************************************************************************************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
-
-// 하위 카테고리별 목록
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  name: 'BoardComponent',
-  data: function data() {
-    return {
-      boardItems: [],
-      categories: [{
-        id: 1,
-        name: 'HTML'
-      }, {
-        id: 2,
-        name: 'CSS'
-      }, {
-        id: 3,
-        name: 'JS'
-      }, {
-        id: 4,
-        name: 'PHP'
-      }, {
-        id: 5,
-        name: 'JAVA'
-      }, {
-        id: 6,
-        name: 'DB'
-      }, {
-        id: 7,
-        name: 'TOOL'
-      }],
-      activeCategory: null,
-      currentSubCategory: null,
-      searchText: ''
-    };
-  },
-  // 게시물 목록중 해결된것만 나오게끔 하는 정렬 카테고리 목록
-  computed: {
-    filteredBoardItems: function filteredBoardItems() {
-      var _this = this;
-      var filteredItems = this.boardItems;
-      if (this.currentSubCategory) {
-        filteredItems = filteredItems.filter(function (item) {
-          return item.categoryId === _this.currentSubCategory;
-        });
-      }
-      if (this.searchText) {
-        var searchTextLower = this.searchText.toLowerCase();
-        filteredItems = filteredItems.filter(function (item) {
-          return item.title.toLowerCase().includes(searchTextLower);
-        });
-      }
-      return filteredItems;
-    }
-  },
-  mounted: function mounted() {
-    this.fetchBoardItems();
-  },
-  methods: {
-    fetchBoardItems: function fetchBoardItems() {
-      var _this2 = this;
-      axios__WEBPACK_IMPORTED_MODULE_0___default().get('/api/getBoardItems').then(function (response) {
-        _this2.boardItems = response.data;
-      })["catch"](function (error) {
-        console.error('Error fetching board items:', error);
-      });
-    },
-    getCategoryItemCount: function getCategoryItemCount(categoryId) {
-      return this.boardItems.filter(function (item) {
-        return item.categoryId === categoryId;
-      }).length;
-    },
-    selectCategory: function selectCategory(category) {
-      this.activeCategory = category;
-      this.currentSubCategory = null;
-    },
-    // 해결 카테고리.
-    selectSubCategory: function selectSubCategory(subCategory) {
-      this.currentSubCategory = subCategory;
-    },
-    sortByRecent: function sortByRecent() {
-      this.boardItems.sort(function (a, b) {
-        return new Date(b.createdAt) - new Date(a.createdAt);
-      });
-    },
-    sortByPopularity: function sortByPopularity() {
-      // 추가로 정렬 로직을 구현해야 합니다.
-    },
-    sortByViews: function sortByViews() {
-      this.boardItems.sort(function (a, b) {
-        return b.viewCount - a.viewCount;
-      });
-    },
-    markAsResolved: function markAsResolved() {
-      // 선택된 게시물의 리스트를 해결된 것만 불러오는 로직을 추가합니다.
-      console.log('해결완료 클릭');
-    },
-    goToBoardInsert: function goToBoardInsert() {
-      // BoardInsertComponent.vue 페이지로 이동
-      console.log('글작성 버튼이 클릭되었습니다. BoardInsertComponent.vue 페이지로 이동합니다.');
-    },
-    search: function search() {
-      // 검색 로직을 추가합니다.
-      console.log('검색 버튼 클릭');
-    }
-  }
-});
-
-/***/ }),
-
 /***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/components/FooterComponent.vue?vue&type=script&lang=js":
 /*!******************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/components/FooterComponent.vue?vue&type=script&lang=js ***!
@@ -19645,6 +19524,11 @@ __webpack_require__.r(__webpack_exports__);
   },
   mounted: function mounted() {
     this.fetchData();
+    this.checkWindowWidth();
+    window.addEventListener('resize', this.checkWindowWidth);
+  },
+  beforeDestroy: function beforeDestroy() {
+    window.removeEventListener('resize', this.checkWindowWidth);
   },
   methods: {
     fetchData: function fetchData() {
@@ -19670,6 +19554,9 @@ __webpack_require__.r(__webpack_exports__);
     },
     updateIndex: function updateIndex(index) {
       this.currentIndex = index;
+    },
+    checkWindowWidth: function checkWindowWidth() {
+      this.$store.dispatch('checkWindowWidth');
     }
   }
 });
@@ -19896,174 +19783,6 @@ __webpack_require__.r(__webpack_exports__);
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_router_view = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("router-view");
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_view)]);
-}
-
-/***/ }),
-
-/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/components/BoardComponent.vue?vue&type=template&id=15212468&scoped=true":
-/*!*********************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/components/BoardComponent.vue?vue&type=template&id=15212468&scoped=true ***!
-  \*********************************************************************************************************************************************************************************************************************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   render: () => (/* binding */ render)
-/* harmony export */ });
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
-
-var _withScopeId = function _withScopeId(n) {
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.pushScopeId)("data-v-15212468"), n = n(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.popScopeId)(), n;
-};
-var _hoisted_1 = {
-  id: "wrap"
-};
-var _hoisted_2 = /*#__PURE__*/_withScopeId(function () {
-  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-    "class": "whr"
-  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("title", null, "커뮤니티리스트")], -1 /* HOISTED */);
-});
-var _hoisted_3 = /*#__PURE__*/_withScopeId(function () {
-  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-    "class": "bannerBox"
-  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-    "class": "banner"
-  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <img class=\"bannerImg\" src=\"../doc/img/boardbg.PNG\" alt=\"board_banner_img\"> ")])], -1 /* HOISTED */);
-});
-var _hoisted_4 = {
-  "class": "mainSec row jcB"
-};
-var _hoisted_5 = {
-  "class": "leftNav"
-};
-var _hoisted_6 = /*#__PURE__*/_withScopeId(function () {
-  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, "정보를 공유해요시른데요", -1 /* HOISTED */);
-});
-var _hoisted_7 = {
-  "class": "mainNav"
-};
-var _hoisted_8 = {
-  key: 0,
-  "class": "subNav"
-};
-var _hoisted_9 = ["onClick"];
-var _hoisted_10 = {
-  "class": "board_container"
-};
-var _hoisted_11 = {
-  "class": "searchbox row aiC"
-};
-var _hoisted_12 = /*#__PURE__*/_withScopeId(function () {
-  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
-    type: "submit"
-  }, "검색", -1 /* HOISTED */);
-});
-var _hoisted_13 = {
-  "class": "titBox row jcB aiC"
-};
-var _hoisted_14 = {
-  "class": "sort"
-};
-var _hoisted_15 = {
-  "class": "row aiC"
-};
-var _hoisted_16 = /*#__PURE__*/_withScopeId(function () {
-  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, null, -1 /* HOISTED */);
-});
-var _hoisted_17 = /*#__PURE__*/_withScopeId(function () {
-  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, null, -1 /* HOISTED */);
-});
-var _hoisted_18 = /*#__PURE__*/_withScopeId(function () {
-  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, null, -1 /* HOISTED */);
-});
-var _hoisted_19 = {
-  "class": "btnbox row aiC"
-};
-var _hoisted_20 = {
-  "class": "board_detail_rating_list"
-};
-var _hoisted_21 = {
-  "class": "cont"
-};
-var _hoisted_22 = {
-  "class": "item"
-};
-var _hoisted_23 = {
-  "class": "best"
-};
-var _hoisted_24 = /*#__PURE__*/_withScopeId(function () {
-  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, "bestreviewer", -1 /* HOISTED */);
-});
-function render(_ctx, _cache, $props, $setup, $data, $options) {
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", {
-    onSubmit: _cache[8] || (_cache[8] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function () {
-      return $options.search && $options.search.apply($options, arguments);
-    }, ["prevent"]))
-  }, [_hoisted_2, _hoisted_3, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("section", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("article", _hoisted_5, [_hoisted_6, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("ul", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", {
-    onClick: _cache[0] || (_cache[0] = function ($event) {
-      return $options.selectCategory('question');
-    }),
-    "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)({
-      active: $data.activeCategory === 'question'
-    })
-  }, "질문 게시판", 2 /* CLASS */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", {
-    onClick: _cache[1] || (_cache[1] = function ($event) {
-      return $options.selectCategory('free');
-    }),
-    "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)({
-      active: $data.activeCategory === 'free'
-    })
-  }, "자유 게시판", 2 /* CLASS */), $data.activeCategory === 'question' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("ul", _hoisted_8, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.categories, function (category) {
-    return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("li", {
-      key: category.id,
-      "class": "row jcB"
-    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", {
-      onClick: function onClick($event) {
-        return $options.selectSubCategory(category.id);
-      }
-    }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(category.name), 9 /* TEXT, PROPS */, _hoisted_9), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.getCategoryItemCount(category.id)), 1 /* TEXT */)]);
-  }), 128 /* KEYED_FRAGMENT */))])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_10, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_11, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
-    "onUpdate:modelValue": _cache[2] || (_cache[2] = function ($event) {
-      return $data.searchText = $event;
-    }),
-    type: "text",
-    id: "searchTxt"
-  }, null, 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.searchText]]), _hoisted_12]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_13, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_14, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("ul", _hoisted_15, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", {
-    "class": "row aiC",
-    onClick: _cache[3] || (_cache[3] = function () {
-      return $options.sortByRecent && $options.sortByRecent.apply($options, arguments);
-    })
-  }, [_hoisted_16, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("최신순")]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", {
-    "class": "row aiC",
-    onClick: _cache[4] || (_cache[4] = function () {
-      return $options.sortByPopularity && $options.sortByPopularity.apply($options, arguments);
-    })
-  }, [_hoisted_17, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("인기순")]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", {
-    "class": "row aiC",
-    onClick: _cache[5] || (_cache[5] = function () {
-      return $options.sortByViews && $options.sortByViews.apply($options, arguments);
-    })
-  }, [_hoisted_18, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("조회순")])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_19, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
-    onClick: _cache[6] || (_cache[6] = function () {
-      return $options.markAsResolved && $options.markAsResolved.apply($options, arguments);
-    }),
-    type: "button"
-  }, "해결완료"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
-    onClick: _cache[7] || (_cache[7] = function () {
-      return $options.goToBoardInsert && $options.goToBoardInsert.apply($options, arguments);
-    }),
-    type: "button"
-  }, "글작성")])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_20, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($options.filteredBoardItems, function (item) {
-    return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
-      "class": "contBox",
-      key: item.id
-    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_21, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_22, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.title), 1 /* TEXT */)])]);
-  }), 128 /* KEYED_FRAGMENT */))])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("article", _hoisted_23, [_hoisted_24, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("ul", null, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)(_ctx.bestuserItems, function (bestuserItem) {
-    return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("li", {
-      key: bestuserItem.id
-    }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(bestuserItem.name), 1 /* TEXT */);
-  }), 128 /* KEYED_FRAGMENT */))])])])], 32 /* NEED_HYDRATION */)]);
 }
 
 /***/ }),
@@ -20334,72 +20053,112 @@ var _hoisted_17 = {
   "class": "main_container_new"
 };
 var _hoisted_18 = {
-  "class": "main_container_new_card"
+  href: ""
 };
 var _hoisted_19 = {
+  "class": "main_container_new_card"
+};
+var _hoisted_20 = {
   "class": "main_container_new_card_img"
 };
-var _hoisted_20 = ["src"];
-var _hoisted_21 = {
+var _hoisted_21 = ["src"];
+var _hoisted_22 = {
   "class": "main_container_new_card_title"
 };
-var _hoisted_22 = {
+var _hoisted_23 = {
   "class": "main_container_new_card_content"
 };
-var _hoisted_23 = {
+var _hoisted_24 = {
   "class": "main_container_new_card_tag"
 };
-var _hoisted_24 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
+var _hoisted_25 = {
+  "class": "main_container_new_card"
+};
+var _hoisted_26 = {
+  "class": "main_container_new_card_img"
+};
+var _hoisted_27 = ["src"];
+var _hoisted_28 = {
+  "class": "main_container_new_card_title"
+};
+var _hoisted_29 = {
+  "class": "main_container_new_card_content"
+};
+var _hoisted_30 = {
+  "class": "main_container_new_card_tag"
+};
+var _hoisted_31 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
   "class": "main_banner",
   src: "/img/event_banner_1.png",
   alt: ""
 }, null, -1 /* HOISTED */);
-var _hoisted_25 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+var _hoisted_32 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "main_new_text"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", null, "HOT 추천강의"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
   href: "#"
 }, "모든 추천강의 보러가기 >")], -1 /* HOISTED */);
-var _hoisted_26 = {
+var _hoisted_33 = {
   "class": "main_container_hot_box"
 };
-var _hoisted_27 = {
+var _hoisted_34 = {
   "class": "main_container_hot"
 };
-var _hoisted_28 = {
+var _hoisted_35 = {
+  href: ""
+};
+var _hoisted_36 = {
   "class": "main_container_hot_card"
 };
-var _hoisted_29 = {
+var _hoisted_37 = {
   "class": "main_container_hot_card_img"
 };
-var _hoisted_30 = ["src"];
-var _hoisted_31 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
+var _hoisted_38 = ["src"];
+var _hoisted_39 = {
+  "class": "main_container_hot_card"
+};
+var _hoisted_40 = {
+  "class": "main_container_hot_card_img"
+};
+var _hoisted_41 = ["src"];
+var _hoisted_42 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
   "class": "main_banner",
   src: "/img/event_banner_2.png",
   alt: ""
 }, null, -1 /* HOISTED */);
-var _hoisted_32 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+var _hoisted_43 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "main_new_text"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", null, "학습 가이드"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
   href: "#"
 }, "원하는 키워드를 눌러보세요")], -1 /* HOISTED */);
-var _hoisted_33 = {
+var _hoisted_44 = {
   "class": "main_container_keyword_box"
 };
-var _hoisted_34 = {
+var _hoisted_45 = {
   "class": "main_container_keyword"
 };
-var _hoisted_35 = {
+var _hoisted_46 = {
+  href: ""
+};
+var _hoisted_47 = {
   "class": "main_container_keyword_card"
 };
-var _hoisted_36 = {
+var _hoisted_48 = {
   "class": "main_container_keyword_card_img"
 };
-var _hoisted_37 = ["src"];
+var _hoisted_49 = ["src"];
+var _hoisted_50 = {
+  "class": "main_container_keyword_card"
+};
+var _hoisted_51 = {
+  "class": "main_container_keyword_card_img"
+};
+var _hoisted_52 = ["src"];
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_Slide = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Slide");
   var _component_Navigation = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Navigation");
   var _component_Pagination = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Pagination");
   var _component_Carousel = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Carousel");
+  var _component_carousel = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("carousel");
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("main", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_8, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_9, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_10, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Carousel, {
     ref: "carousel",
     autoplay: $data.autoplayDuration,
@@ -20424,35 +20183,114 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       }), 128 /* KEYED_FRAGMENT */))];
     }),
     _: 1 /* STABLE */
-  }, 8 /* PROPS */, ["autoplay", "onAfterSlide"])])])])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <div class=\"main_nav\">\r\n                            <div class=\"main_nav_num_space\">\r\n                                <div class=\"index-wrapper\">\r\n                                    <span class=\"current-index\">{{ currentIndex + 1 }}</span>\r\n                                    /\r\n                                    <span class=\"total-count\">{{ giftItems.length }}</span>\r\n                                </div>\r\n                                <div class=\"control-wrapper\">\r\n                                    <button @click=\"prevSlide\">&#60;</button>\r\n                                    <button @click=\"toggleAutoplay\"> {{ autoplay ? '&#124;&#124;' : '≥' }}</button>\r\n                                    <button @click=\"nextSlide\">&#62;</button>\r\n                                </div>\r\n                            </div>\r\n                            <div class=\"divider\"></div>\r\n\r\n                            <div class=\"main_nav_selection\">\r\n                                <div class=\"main_nav_selection_box\">\r\n                                    <span class=\"main_nav_selection_btn mr_10\" v-for=\"(gift, index) in giftItems\" :key=\"index\" @click=\"selectGift(index)\">\r\n                                        {{ gift.name }}\r\n                                    </span>\r\n                                </div>\r\n                            </div>\r\n                        </div> ")]), _hoisted_14, _hoisted_15, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_16, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("ul", _hoisted_17, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.newClassItems, function (item) {
+  }, 8 /* PROPS */, ["autoplay", "onAfterSlide"])])])])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <div class=\"main_nav\">\r\n                            <div class=\"main_nav_num_space\">\r\n                                <div class=\"index-wrapper\">\r\n                                    <span class=\"current-index\">{{ currentIndex + 1 }}</span>\r\n                                    /\r\n                                    <span class=\"total-count\">{{ giftItems.length }}</span>\r\n                                </div>\r\n                                <div class=\"control-wrapper\">\r\n                                    <button @click=\"prevSlide\">&#60;</button>\r\n                                    <button @click=\"toggleAutoplay\"> {{ autoplay ? '&#124;&#124;' : '≥' }}</button>\r\n                                    <button @click=\"nextSlide\">&#62;</button>\r\n                                </div>\r\n                            </div>\r\n                            <div class=\"divider\"></div>\r\n\r\n                            <div class=\"main_nav_selection\">\r\n                                <div class=\"main_nav_selection_box\">\r\n                                    <span class=\"main_nav_selection_btn mr_10\" v-for=\"(gift, index) in giftItems\" :key=\"index\" @click=\"selectGift(index)\">\r\n                                        {{ gift.name }}\r\n                                    </span>\r\n                                </div>\r\n                            </div>\r\n                        </div> ")]), _hoisted_14, _hoisted_15, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_16, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("ul", _hoisted_17, [_ctx.$store.state.shouldShowCarousel ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_carousel, {
+    key: 0,
+    "per-page": 4,
+    "navigation-enabled": true,
+    autoplay: false,
+    transition: 500
+  }, {
+    "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+      return [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.newClassItems, function (item) {
+        return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_Slide, {
+          key: item.id
+        }, {
+          "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+            return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", _hoisted_18, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", _hoisted_19, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_20, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
+              src: item.ClassImg,
+              alt: ""
+            }, null, 8 /* PROPS */, _hoisted_21)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_22, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h4", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.ClassTitle), 1 /* TEXT */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_23, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.ClassDescription), 1 /* TEXT */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("ul", _hoisted_24, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)(item.languages, function (item2) {
+              return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("li", {
+                key: item2.id
+              }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item2.ClassLanguageName), 1 /* TEXT */);
+            }), 128 /* KEYED_FRAGMENT */))])])])];
+          }),
+          _: 2 /* DYNAMIC */
+        }, 1024 /* DYNAMIC_SLOTS */);
+      }), 128 /* KEYED_FRAGMENT */))];
+    }),
+    _: 1 /* STABLE */
+  })) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), !_ctx.$store.state.shouldShowCarousel ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
+    key: 1
+  }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.newClassItems, function (item) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("a", {
       key: item.id,
       href: ""
-    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", _hoisted_18, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_19, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
+    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", _hoisted_25, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_26, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
       src: item.ClassImg,
       alt: ""
-    }, null, 8 /* PROPS */, _hoisted_20)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_21, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h4", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.ClassTitle), 1 /* TEXT */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_22, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.ClassDescription), 1 /* TEXT */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("ul", _hoisted_23, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)(item.languages, function (item2) {
+    }, null, 8 /* PROPS */, _hoisted_27)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_28, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h4", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.ClassTitle), 1 /* TEXT */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_29, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.ClassDescription), 1 /* TEXT */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("ul", _hoisted_30, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)(item.languages, function (item2) {
       return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("li", {
         key: item2.id
       }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item2.ClassLanguageName), 1 /* TEXT */);
     }), 128 /* KEYED_FRAGMENT */))])])]);
-  }), 128 /* KEYED_FRAGMENT */))])]), _hoisted_24, _hoisted_25, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_26, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("ul", _hoisted_27, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.hot_banners, function (item) {
+  }), 128 /* KEYED_FRAGMENT */)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])]), _hoisted_31, _hoisted_32, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_33, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("ul", _hoisted_34, [_ctx.$store.state.shouldShowCarousel ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_carousel, {
+    key: 0,
+    "per-page": 4,
+    "navigation-enabled": true,
+    autoplay: false,
+    transition: 500
+  }, {
+    "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+      return [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.hot_banners, function (item) {
+        return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_Slide, {
+          key: item.id
+        }, {
+          "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+            return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", _hoisted_35, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", _hoisted_36, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_37, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
+              src: item,
+              alt: ""
+            }, null, 8 /* PROPS */, _hoisted_38)])])])];
+          }),
+          _: 2 /* DYNAMIC */
+        }, 1024 /* DYNAMIC_SLOTS */);
+      }), 128 /* KEYED_FRAGMENT */))];
+    }),
+    _: 1 /* STABLE */
+  })) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), !_ctx.$store.state.shouldShowCarousel ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
+    key: 1
+  }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.hot_banners, function (item) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("a", {
       key: item.id,
       href: ""
-    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", _hoisted_28, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_29, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
+    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", _hoisted_39, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_40, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
       src: item,
       alt: ""
-    }, null, 8 /* PROPS */, _hoisted_30)])])]);
-  }), 128 /* KEYED_FRAGMENT */))])]), _hoisted_31, _hoisted_32, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_33, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("ul", _hoisted_34, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.guide_banners, function (item) {
+    }, null, 8 /* PROPS */, _hoisted_41)])])]);
+  }), 128 /* KEYED_FRAGMENT */)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])]), _hoisted_42, _hoisted_43, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_44, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("ul", _hoisted_45, [_ctx.$store.state.shouldShowCarousel ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_carousel, {
+    key: 0,
+    "per-page": 4,
+    "navigation-enabled": true,
+    autoplay: false,
+    transition: 500
+  }, {
+    "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+      return [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.guide_banners, function (item) {
+        return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_Slide, {
+          key: item.id
+        }, {
+          "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+            return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", _hoisted_46, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", _hoisted_47, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_48, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
+              src: item,
+              alt: ""
+            }, null, 8 /* PROPS */, _hoisted_49)])])])];
+          }),
+          _: 2 /* DYNAMIC */
+        }, 1024 /* DYNAMIC_SLOTS */);
+      }), 128 /* KEYED_FRAGMENT */))];
+    }),
+    _: 1 /* STABLE */
+  })) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), !_ctx.$store.state.shouldShowCarousel ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
+    key: 1
+  }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.guide_banners, function (item) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("a", {
       key: item.id,
       href: ""
-    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", _hoisted_35, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_36, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
+    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", _hoisted_50, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_51, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
       src: item,
       alt: ""
-    }, null, 8 /* PROPS */, _hoisted_37)])])]);
-  }), 128 /* KEYED_FRAGMENT */))])])])])])]);
+    }, null, 8 /* PROPS */, _hoisted_52)])])]);
+  }), 128 /* KEYED_FRAGMENT */)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])])])])])]);
 }
 
 /***/ }),
@@ -21035,6 +20873,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_MainComponent_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/MainComponent.vue */ "./resources/components/MainComponent.vue");
 /* harmony import */ var _components_TestComponent_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../components/TestComponent.vue */ "./resources/components/TestComponent.vue");
 /* harmony import */ var _components_BoardComponent_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../components/BoardComponent.vue */ "./resources/components/BoardComponent.vue");
+/* harmony import */ var _components_BoardComponent_vue__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_components_BoardComponent_vue__WEBPACK_IMPORTED_MODULE_4__);
 /* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./store */ "./resources/js/store.js");
 
 
@@ -21051,7 +20890,7 @@ var routes = [{
   component: _components_RegistrationComponent_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
 }, {
   path: '/board',
-  component: _components_BoardComponent_vue__WEBPACK_IMPORTED_MODULE_4__["default"]
+  component: (_components_BoardComponent_vue__WEBPACK_IMPORTED_MODULE_4___default())
 }, {
   path: '/test',
   component: _components_TestComponent_vue__WEBPACK_IMPORTED_MODULE_3__["default"]
@@ -21112,7 +20951,8 @@ var store = (0,vuex__WEBPACK_IMPORTED_MODULE_3__.createStore)({
         userName: '',
         userEmail: ''
       },
-      userLoginChk: null
+      userLoginChk: null,
+      shouldShowCarousel: false
 
       // 최현희
 
@@ -21142,6 +20982,9 @@ var store = (0,vuex__WEBPACK_IMPORTED_MODULE_3__.createStore)({
     },
     setUserLoginChk: function setUserLoginChk(state, userLoginChk) {
       state.userLoginChk = userLoginChk;
+    },
+    setShowCarousel: function setShowCarousel(state, value) {
+      state.shouldShowCarousel = value;
     } // 최현희
     // 김민정
   },
@@ -21231,6 +21074,14 @@ var store = (0,vuex__WEBPACK_IMPORTED_MODULE_3__.createStore)({
       })["catch"](function (err) {
         return console.log(err.response.data);
       });
+    },
+    checkWindowWidth: function checkWindowWidth(context) {
+      // 특정 크기 이상이면 캐러셀을 표시
+      if (window.innerWidth <= 770) {
+        context.commit('setShowCarousel', true);
+      } else {
+        context.commit('setShowCarousel', false);
+      }
     } // 최현희
     // 김민정
   }
@@ -21290,30 +21141,6 @@ ___CSS_LOADER_EXPORT___.push([module.id, "\r\n", ""]);
 
 /***/ }),
 
-/***/ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!./node_modules/vue-loader/dist/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/components/BoardComponent.vue?vue&type=style&index=0&id=15212468&scoped=true&lang=css":
-/*!******************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!./node_modules/vue-loader/dist/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/components/BoardComponent.vue?vue&type=style&index=0&id=15212468&scoped=true&lang=css ***!
-  \******************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
-/***/ ((module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
-/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__);
-// Imports
-
-var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
-// Module
-___CSS_LOADER_EXPORT___.push([module.id, "\r\n\t/* 필요한 스타일을 여기에 추가 */\r\n\t", ""]);
-// Exports
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
-
-
-/***/ }),
-
 /***/ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!./node_modules/vue-loader/dist/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/components/MainComponent.vue?vue&type=style&index=0&id=10ba9c23&lang=css":
 /*!*****************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!./node_modules/vue-loader/dist/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/components/MainComponent.vue?vue&type=style&index=0&id=10ba9c23&lang=css ***!
@@ -21356,7 +21183,7 @@ __webpack_require__.r(__webpack_exports__);
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 ___CSS_LOADER_EXPORT___.push([module.id, "@import url(https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap);"]);
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "* {\r\n\tmargin: 0;\r\n\tpadding: 0;\r\n\tbox-sizing: border-box;\r\n}\r\n/* reset.css */\r\nhtml, body, div, span, applet, object, iframe,\r\nh1, h2, h3, h4, h5, h6, p, blockquote, pre,\r\na, abbr, acronym, address, big, cite, code,\r\ndel, dfn, em, img, ins, kbd, q, s, samp,\r\nsmall, strike, strong, sub, sup, tt, var,\r\nb, u, i, center,\r\ndl, dt, dd, ol, ul, li,\r\nfieldset, form, label, legend,\r\ntable, caption, tbody, tfoot, thead, tr, th, td,\r\narticle, aside, canvas, details, embed, \r\nfigure, figcaption, footer, header, hgroup, \r\nmenu, nav, output, ruby, section, summary,\r\ntime, mark, audio, video {\r\n    margin: 0;\r\n    padding: 0;\r\n    border: 0;\r\n    font-size: 100%;\r\n    font: inherit;\r\n    vertical-align: baseline;\r\n\ttext-decoration-line: none;\r\n    text-decoration: none;\r\n}\r\n/* HTML5 display-role reset for older browsers */\r\narticle, aside, details, figcaption, figure, \r\nfooter, header, hgroup, menu, nav, section {\r\n    display: block;\r\n}\r\nbody {\r\n    position: relative;\r\n    left: 0;\r\n    transition: left 500ms cubic-bezier(0.25,0.46,0.45,0.94);\r\n    font-family: 'Noto Sans KR', sans-serif;\r\n    font-size: 0.6vw;\r\n    line-height: 0.7vw;\r\n}\r\nol, ul {\r\n    list-style: none;\r\n}\r\nblockquote, q {\r\n    quotes: none;\r\n}\r\nblockquote:before, blockquote:after,\r\nq:before, q:after {\r\n    content: '';\r\n    content: none;\r\n}\r\ntable {\r\n    border-collapse: collapse;\r\n    border-spacing: 0;\r\n}\r\ninput {\r\n\tborder: none;\r\n\tbackground-color: transparent;\r\n}\r\nstrong {\r\n    font-weight: 700;\r\n}\r\n\r\nhr {\r\n    opacity: 0.5;\r\n}\r\n/* ============================================================================================= */\r\n/* 공통 헤더 영역 */\r\n\r\n.top_banner {\r\n    position: relative;\r\n    overflow: hidden;\r\n    height: 30px;\r\n    text-align: center;\r\n    background: #3D64BF;\r\n}\r\n\r\n.top_banner .desc {\r\n    overflow: hidden;\r\n    font-size: 12px;\r\n    color: #fff;\r\n    box-sizing: border-box;\r\n    line-height: 30px;\r\n    white-space: nowrap;\r\n}\r\n\r\n.list_txt {\r\n    height: 30px;\r\n    overflow: hidden;\r\n    margin: 0px;\r\n    padding: 0px;\r\n    color: #fff;\r\n    top: 0;\r\n}\r\n\r\n.list_txt  a{\r\n    color: #fff;\r\n    font-weight: 700;\r\n}\r\n\r\nheader {\r\n    height: 70px;\r\n    padding: 0 10vw;\r\n}\r\n\r\n\r\nheader .navigation {\r\n    display: flex;\r\n    justify-content: space-between;\r\n    align-items: center;\r\n    position: relative !important;\r\n    height: 100%;\r\n}\r\n\r\n\r\n.navigation ul.nav_left {\r\n    display: flex;\r\n    gap: 1vw;\r\n}\r\n\r\n.side_nav {\r\n    gap: 1vw;\r\n    align-items: center;\r\n}\r\n\r\n.navigation h1 {\r\n    width: 100px;\r\n    position: absolute;\r\n    left: 50%;\r\n    transform: translateX(-50%);\r\n    padding: 0;\r\n    height: 100%;\r\n    display: flex;\r\n    justify-content: center;\r\n    align-items: center;\r\n}\r\n\r\n.navigation h1 a img {\r\n    height: 4vw;\r\n    max-height: 30px;\r\n    transition: none;\r\n}\r\n\r\n.side_nav {\r\n    display: flex;\r\n    gap: 1vw;\r\n    align-items: center;\r\n}\r\n\r\n.side_nav a {\r\n    font-weight: 600;\r\n    font-family: Arial;\r\n    font-size: 12px;\r\n    color: #1e1e1e;\r\n    text-transform: uppercase;\r\n}\r\n\r\n.search_box {\r\n    border-bottom: 1px solid #1e1e1e;\r\n    display: flex;\r\n}\r\n\r\n.search_box input {\r\n    font-weight: 600;\r\n    font-family: Arial;\r\n    font-size: 12px;\r\n    color: #1e1e1e;\r\n    text-transform: uppercase;\r\n}\r\n\r\n\r\n.search_box input:focus {\r\n    outline: none;\r\n}\r\n\r\n.search_box button {\r\n    cursor: pointer;\r\n    background-color: transparent;\r\n    border: none;\r\n}\r\n\r\n.menu_btn {\r\n    background-color: #000;\r\n    color: #fff !important;\r\n    padding: 0.15vw 0.5vw;\r\n    border: 1px solid #000;\r\n    display: flex;\r\n    justify-content: center;\r\n    align-items: center;\r\n    padding: 5px 10px;\r\n    border-radius: 5px;\r\n}\r\n\r\n.menu_btn img {\r\n    margin-right: 5px;\r\n}\r\n\r\n@media screen and (max-width: 1000px) {\r\n    /* .navigation ul.nav_left {\r\n        display: none;\r\n    } */\r\n\r\n    .side_nav a {\r\n        display: none;\r\n    }\r\n\r\n    .side_nav input {\r\n        display: none;\r\n    }\r\n\r\n    /* .menu_btn {\r\n        display: flex;\r\n    } */\r\n}\r\n\r\n.dropdown {\r\n    display: none;\r\n    position: absolute;\r\n    background-color: #fff;\r\n    border: 1px solid #2E2E2E;\r\n    outline: none;\r\n    text-align: left;\r\n    z-index: 1001;\r\n    border-radius: 5px;\r\n    /* margin-top: 15px; */\r\n}\r\n\r\n.side_nav li:hover .dropdown {\r\n    display: block; /* 호버 시 드롭다운 표시 */\r\n}\r\n\r\n.side_nav .dropdown li {\r\n    /* padding: 10px; */\r\n}\r\n\r\n.dropdown a {\r\n    width: 150px;\r\n    padding: 10px 30px;\r\n    display: inline-block;\r\n}\r\n\r\n.dropdown a:hover {\r\n    color: #3D64BF;\r\n}\r\n\r\nhr {\r\n    opacity: 0.1;\r\n}\r\n/* ============================================================================================= */\r\n\r\n\r\n\r\n\r\n/* ============================================================================================= */\r\n/* 로그인 모달 영역 */\r\n\r\n.login_modal_bk {\r\n    width: 100vw;\r\n    height: 100vh;\r\n    background-color: #00000080;\r\n    position: fixed;\r\n    top: 0;\r\n    z-index: 1000;\r\n    backdrop-filter: blur(3px);\r\n    display: flex;\r\n    justify-content: center;\r\n    align-items: center;\r\n}\r\n\r\n.login_modal {\r\n    width: 350px;\r\n    height: 480px;\r\n    background-color: #fff;\r\n    border-radius: 20px;\r\n    padding: 20px 20px;\r\n}\r\n\r\n.login_modal_cancel {\r\n    width: 100%;\r\n    margin-left: auto;\r\n}\r\n\r\n.login_modal_cancel img {\r\n    margin-left: auto;\r\n    display: block;\r\n}\r\n\r\n.login_modal_logo {\r\n    width: 50%;\r\n    margin: auto;\r\n    margin-top: 20px;\r\n    /* background-color: #3D64BF; */\r\n}\r\n\r\n.login_modal_logo img {\r\n    width: 100%;\r\n    /* height: 10px; */\r\n}\r\n\r\n.login_modal_input_box {\r\n    margin-top: 10px;\r\n    width: 100%;\r\n    /* background-color: #3D64BF; */\r\n}\r\n\r\n.login_modal_input_box input {\r\n    width: 100%;\r\n    height: 50px;\r\n    border: 1px solid #ABABAB;\r\n    border-radius: 5px;\r\n    padding: 10px 15px;\r\n    font-size: 15px;\r\n    margin-top: 10px;\r\n}\r\n\r\n.login_modal_input_box input:focus {\r\n    outline: none;\r\n}\r\n\r\n.login_error_message {\r\n    color: red;\r\n    font-size: 15px;\r\n    margin-top: 10px;\r\n    margin-left: 5px;\r\n}\r\n\r\n.login_modal_button {\r\n    width: 100%;\r\n    margin-top: 20px;\r\n}\r\n\r\n.login_modal_button button {\r\n    width: 100%;\r\n    height: 50px;\r\n    border: none;\r\n    background-color: #3D64BF;\r\n    border-radius: 5px;\r\n    font-size: 15px;\r\n    color: #fff;\r\n    font-weight: 700;\r\n}\r\n\r\n.login_modal_find_box {\r\n    margin-top: 15px;\r\n    width: 100%;\r\n    text-align: center;\r\n    font-size: 15px;\r\n}\r\n\r\n.login_modal_find_box a {\r\n    color: #000;\r\n}\r\n\r\n.login_modal_find_box span:nth-child(2) {\r\n    margin-left: 10px;\r\n    margin-right: 10px;\r\n}\r\n\r\n.login_modal_easy_box {\r\n    display: flex;\r\n    flex-basis: 100%;\r\n    align-items: center;\r\n    color: #ABABAB;\r\n    font-size: 15px;\r\n    margin: 20px 0;\r\n}\r\n\r\n.login_modal_easy_box::before {\r\n    content: \"\";\r\n    flex-grow: 1;\r\n    margin: 0px 8px;\r\n    background: rgba(0, 0, 0, 0.35);\r\n    height: 1px;\r\n    font-size: 0px;\r\n    line-height: 0px;\r\n    opacity: 0.5;\r\n}\r\n\r\n.login_modal_easy_box::after {\r\n    content: \"\";\r\n    flex-grow: 1;\r\n    margin: 0px 8px;\r\n    background: rgba(0, 0, 0, 0.35);\r\n    height: 1px;\r\n    font-size: 0px;\r\n    line-height: 0px;\r\n    opacity: 0.5;\r\n}\r\n\r\n.login_modal_easy_login {\r\n    margin-top: 20px;\r\n    width: 100%;\r\n    height: 50px;\r\n    background-color: #3D64BF;\r\n}\r\n/* ============================================================================================= */\r\n\r\n\r\n\r\n\r\n\r\n/* ============================================================================================= */\r\n/* 공통 푸터 영역 */\r\n\r\nfooter {\r\n    margin-top: 100px;\r\n    width: 100%;\r\n    height: 150px;\r\n    background-color: #2E2E2E;\r\n    padding: 0 10vw;\r\n    position:relative;\r\n\tbottom: 0;\r\n}\r\n\r\n\r\n\r\n/* ============================================================================================= */\r\n\r\n\r\n\r\n\r\n\r\n/* ============================================================================================= */\r\n/* 메인 영역 */\r\n\r\n.main_wrap {\r\n    position: relative;\r\n    display: flex;\r\n}\r\n\r\n/* .main_visual {\r\n    width: 100%;\r\n    height: 40vh;\r\n    overflow: hidden;\r\n    display: flex;\r\n    justify-content: center;\r\n    align-items: center;\r\n    transition: all 0.2s;\r\n    background: #000;\r\n} */\r\n\r\n.main_visual {\r\n    width: 100%;\r\n    overflow: hidden;\r\n    position: relative;\r\n}\r\n\r\n.main_visual_slider {\r\n    position: relative;\r\n    display: block;\r\n    box-sizing: border-box;\r\n    user-select: none;\r\n    -webkit-touch-callout: none;\r\n    touch-action: pan-y;\r\n    -webkit-tap-highlight-color: transparent;\r\n}\r\n\r\n.main_visual_slider_list {\r\n    position: relative;\r\n    display: block;\r\n    height: 100%;\r\n    margin: 0;\r\n    padding: 0;\r\n}\r\n\r\n.main_visual_slider_track {\r\n    position: relative;\r\n    top: 0;\r\n    left: 0;\r\n    height: 100%;\r\n    display: block;\r\n    margin-left: auto;\r\n    margin-right: auto;\r\n}\r\n\r\n.main_visual_slider_track_slick {\r\n    transition: opacity 1500ms ease 0s;\r\n    width: 100%;\r\n    position: relative;\r\n    left: 0px;\r\n    top: 0px;\r\n    z-index: 998;\r\n    opacity: 1;\r\n}\r\n\r\n.main_visual_slider_track_slick div {\r\n    display: table;\r\n    width: 100%;\r\n    height: 100%;\r\n    text-align: center;\r\n}\r\n\r\n.main_visual_slider_track_slick_item {\r\n    display: table-cell;\r\n    vertical-align: middle;\r\n    text-align: center;\r\n}\r\n\r\n.main_visual_slider_track_slick_item a img {\r\n    max-width: 100%;\r\n    max-height: 100%;\r\n    width: auto;\r\n    height: auto;\r\n    position: relative;\r\n}\r\n\r\n.main_nav {\r\n    width: 100%;\r\n    height: 75px;\r\n    padding: 10px 10vw;\r\n    display: grid;\r\n    padding-top: 18px;\r\n    grid-template-columns: 135px 33px 1fr 52px;\r\n}\r\n\r\n.main_nav_num_space {\r\n    display: flex;\r\n    flex-direction: row;\r\n    justify-content: space-between;\r\n    align-items: center;\r\n    padding: 0 1rem;\r\n    width: 135px;\r\n    height: 36px;\r\n    font-size: .875rem;\r\n    color: #fff;\r\n    border-radius: 20px;\r\n    background-color: #7F7F7F;\r\n}\r\n\r\n.control-wrapper {\r\n    display: flex;\r\n    align-items: center;\r\n    justify-content: space-between;\r\n    width: 50px;\r\n}\r\n\r\n.control-wrapper button {\r\n    padding: 0;\r\n    background: none;\r\n    border: 0;\r\n    color: #fff;\r\n    cursor: pointer;\r\n}\r\n\r\n.divider {\r\n    margin: 0 1rem;\r\n    width: 1px;\r\n    height: 36px;\r\n    background-color: #dee2e6;\r\n}\r\n\r\n.main_nav_selection {\r\n    overflow: hidden;\r\n    height: 36px;\r\n}\r\n\r\n.main_nav_selection_box {\r\n    display: flex;\r\n    height: 36px;\r\n}\r\n\r\n.main_nav_selection_btn {\r\n    flex: 0 0 auto;\r\n    padding: 0 1rem;\r\n    height: 36px;\r\n    line-height: 36px;\r\n    text-align: center;\r\n    font-size: .875rem;\r\n    font-weight: 700;\r\n    color: #495057;\r\n    border-radius: 20px;\r\n    box-shadow: inset 0 0 0 1px #ced4da;\r\n    background-color: #fff;\r\n    cursor: pointer;    \r\n}\r\n\r\n.ml_10 {\r\n    margin-left: 10px;\r\n}\r\n\r\n.mr_10 {\r\n    margin-right: 10px;\r\n}\r\n\r\n.main_new_text {\r\n    margin-top: 50px;\r\n    margin-bottom: 10px;\r\n    text-align: center;\r\n    padding: 10px;\r\n}\r\n\r\n.main_new_text h3 {\r\n    font-size: 20px;\r\n    font-weight: 700;\r\n}\r\n\r\n.main_new_text a {\r\n    color: #000;\r\n    line-height: 50px;\r\n    font-size: 15px;\r\n}\r\n\r\n.main_container_new {\r\n    padding: 0 10vw;\r\n    display: grid; \r\n    transition: all 0.2s;\r\n    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));\r\n    gap: 20px\r\n}\r\n\r\n@media (max-width: 750px) {\r\n\r\n}\r\n\r\n\r\n.main_container_new_card {\r\n    display: block;\r\n}\r\n\r\n.main_container_new_card_img {\r\n    position: relative;\r\n    overflow: hidden;\r\n    width: 100%;\r\n    padding-top: 70%;\r\n    border-radius: 0.8rem;\r\n}\r\n\r\n.main_container_new_card_img img {\r\n    position: absolute;\r\n    top: 50%;\r\n    left: 50%;\r\n    display: inline-block;\r\n    width: 100%;\r\n    max-width: none;\r\n    padding-top: 0;\r\n    transform: translate(-50%, -50%);\r\n    border-radius: 10px;\r\n}\r\n\r\n.main_container_new_card_title {\r\n    margin-top: 10px;\r\n    overflow: hidden;\r\n    font-size: 20px;\r\n    font-weight: 700;\r\n    line-height: 25px;\r\n    color: #000;\r\n}\r\n\r\n.main_container_new_card_content {\r\n    margin-top: 10px;\r\n    font-size: 13px;\r\n    line-height: 20px;\r\n    color: #000;\r\n}\r\n\r\n.main_container_new_card_tag {\r\n    display: flex;\r\n    flex-wrap: wrap;\r\n    margin-top: 20px;\r\n}\r\n\r\n.main_container_new_card_tag li {\r\n    padding: 5px 20px;\r\n    margin-right: 10px;\r\n    border-radius: 5px;\r\n    color:#ffffff;\r\n    background:#346ba3;\r\n    font-size: 10px;\r\n    font-weight: 700;\r\n}\r\n\r\n@media screen and (max-width: 800px) {\r\n    .main_container_new_card_tag li {\r\n        padding: 10px 20px;\r\n    }\r\n    \r\n}\r\n\r\n.main_banner {\r\n    margin-top: 100px;\r\n    width: 100%;\r\n    /* background-color: #fbfbfbe4; */\r\n    position: relative;\r\n    overflow: hidden; /* 이미지가 배너를 벗어나는 것을 막기 위해 */\r\n    padding: 0 10vw;\r\n}\r\n\r\n.main_banner img {\r\n    position: absolute;\r\n    top: 50%;\r\n    left: 50%;\r\n    transform: translate(-50%, -50%);\r\n    max-width: 100%;\r\n    max-height: 100%;\r\n    width: auto;\r\n    height: auto;\r\n}\r\n\r\n@media screen and (max-width: 800px) {\r\n    .main_banner {\r\n        padding: 0;\r\n    }\r\n}\r\n\r\n.main_container_hot {\r\n    padding: 0 10vw;\r\n    display: grid; \r\n    transition: all 0.2s;\r\n    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));\r\n    gap: 20px\r\n}\r\n\r\n.main_container_hot_card {\r\n    display: block;\r\n}\r\n\r\n.main_container_hot_card_img {\r\n    position: relative;\r\n    overflow: hidden;\r\n    width: 100%;\r\n    padding-top: 130%;\r\n    border-radius: 0.8rem;\r\n}\r\n\r\n.main_container_hot_card_img img {\r\n    position: absolute;\r\n    top: 50%;\r\n    left: 50%;\r\n    display: inline-block;\r\n    width: 100%;\r\n    max-width: none;\r\n    padding-top: 0;\r\n    transform: translate(-50%, -50%);\r\n    border-radius: 10px;\r\n}\r\n\r\n.main_container_keyword {\r\n    padding: 0 10vw;\r\n    display: grid; \r\n    transition: all 0.2s;\r\n    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));\r\n    gap: 20px\r\n}\r\n\r\n\r\n@media screen and (max-width: 500px) {\r\n    .main_container_keyword {\r\n        grid-template-columns: 1fr;\r\n    }\r\n}\r\n\r\n.main_container_keyword_card {\r\n    display: block;\r\n}\r\n\r\n.main_container_keyword_card_img {\r\n    position: relative;\r\n    overflow: hidden;\r\n    width: 100%;\r\n    padding-top: 90%;\r\n    border-radius: 0.8rem;\r\n}\r\n\r\n.main_container_keyword_card_img img {\r\n    position: absolute;\r\n    top: 55%;\r\n    left: 50%;\r\n    display: inline-block;\r\n    width: 100%;\r\n    max-width: none;\r\n    padding-top: 0;\r\n    transform: translate(-50%, -50%);\r\n    border-radius: 10px;\r\n}\r\n\r\n/* ============================================================================================= */\r\n\r\n\r\n\r\n\r\n\r\n/* ============================================================================================= */\r\n/* 회원가입 영역 (약관 입력) */\r\n\r\n.regist_wrap {\r\n    position: relative;\r\n    display: flex;\r\n}\r\n\r\n.container-registration-none {\r\n    display: none;\r\n}\r\n\r\n.regist_title_box {\r\n    padding: 0 10vw;\r\n    margin-top: 50px;\r\n}\r\n\r\n.regist_title {\r\n    text-align: center;\r\n}\r\n\r\n@media screen and (max-width: 800px) {\r\n    /* .regist_title span {\r\n        display: block;\r\n        line-height: 20px;\r\n        text-align: left;\r\n        margin-left: 15px;\r\n    }\r\n    .ml_10 {\r\n        margin-left: 0px;\r\n    } */\r\n    \r\n    .regist_title h3 {\r\n        margin-bottom: 10px;\r\n    }\r\n}\r\n\r\n.regist_title h3 {\r\n    font-size: 30px;\r\n    font-weight: 700;\r\n    line-height: 60px;\r\n}\r\n\r\n.regist_title span {\r\n    font-size: 15px;\r\n}\r\n\r\n.regist_content_box {\r\n    width: 90%;\r\n    margin: auto;\r\n    margin-top: 30px;\r\n}\r\n\r\n.regist_content_box_lr {\r\n    margin-top: 15px;\r\n    display: flex;\r\n    gap: 20px;\r\n}\r\n\r\n@media screen and (max-width: 800px) {\r\n    .regist_content_box_lr {\r\n        display: grid;\r\n        flex-direction: column;\r\n    }\r\n}\r\n\r\n.regist_content_box_l {\r\n    width: 100%;\r\n}\r\n\r\n.regist_content_box_r {\r\n    width: 100%;\r\n}\r\n\r\n.regist_content_box_title h3 {\r\n    font-size: 15px;\r\n    font-weight: 700;\r\n    margin-bottom: 15px;\r\n}\r\n\r\n.regist_content_box_check_box {\r\n    display: flex;\r\n    font-size: 13px;\r\n}\r\n\r\n.regist_content_box_check_box input {\r\n    margin-right: 10px;\r\n}\r\n\r\n.regist_content_box_checkbox_sel {\r\n    margin-right: 10px;\r\n}\r\n\r\n.regist_content_box_l_checkbox {\r\n    display: flex;\r\n    font-size: 13px;\r\n}\r\n\r\n.regist_content_box_l_checkbox input {\r\n    margin-right: 10px;\r\n}\r\n\r\n.regist_content_box_r_checkbox {\r\n    display: flex;\r\n    font-size: 13px;\r\n}\r\n\r\n.regist_content_box_r_checkbox input {\r\n    margin-right: 10px;\r\n}\r\n\r\n.regist_content_box_l_terms {\r\n    margin-top: 15px;\r\n    width: 100%;\r\n    height: 500px;\r\n    border: 0.5px solid #5c5c5c6c;\r\n    overflow-y: scroll;\r\n    padding: 10px;\r\n}\r\n\r\n.regist_content_box_l_terms h3 {\r\n    font-size: 12px;\r\n    line-height: 20px;\r\n}\r\n\r\n.regist_content_box_l_terms p {\r\n    font-size: 12px;\r\n    line-height: 20px;\r\n}\r\n\r\n.regist_content_box_r_terms {\r\n    margin-top: 15px;\r\n    width: 100%;\r\n    height: 500px;\r\n    border: 0.5px solid #5c5c5c6c;\r\n    overflow-y: scroll;\r\n    padding: 10px;\r\n}\r\n\r\n.regist_content_box_r_terms h3 {\r\n    font-size: 12px;\r\n    line-height: 20px;\r\n}\r\n\r\n.regist_content_box_r_terms p {\r\n    font-size: 12px;\r\n    line-height: 20px;\r\n}\r\n\r\n.regist_button {\r\n    margin: auto;\r\n    display: flex;\r\n    justify-content: center;\r\n    margin-top: 20px;\r\n}\r\n\r\n.regist_button_cancel {\r\n    padding: 10px 20px;\r\n    border: 1px solid #000;\r\n    background-color: #fff;\r\n    margin-right: 20px;\r\n    cursor: pointer;\r\n}\r\n\r\n.regist_button_next {\r\n    padding: 10px 30px;\r\n    border: 1px solid #000;\r\n    background-color: #000000;\r\n    color: #fff;\r\n    cursor: pointer;\r\n}\r\n\r\n/* ============================================================================================= */\r\n\r\n\r\n\r\n\r\n\r\n/* ============================================================================================= */\r\n/* 회원가입 영역 (정보 입력)*/\r\n\r\n.regist_table {\r\n    width: 40%;\r\n    border-collapse: collapse;\r\n    margin: 30px auto 20px auto;\r\n}\r\n\r\n.regist_table label {\r\n    line-height: 20px;\r\n    text-transform: uppercase;\r\n}\r\n\r\nth, td {\r\n    padding: 10px;\r\n    text-align: left;\r\n    border-bottom: 1px solid #000000;\r\n    border-top: 1px solid #000000;\r\n    border-right: 1px solid #ddd;\r\n    font-size: 12px;\r\n}\r\n\r\nth:last-child, td:last-child {\r\n    border-right: none;\r\n}\r\n\r\n.regist_table input {\r\n    border: 1px solid #83838360;\r\n}\r\n\r\n.regist_table input {\r\n    width: 90%;\r\n    padding: 8px;\r\n}\r\n\r\n.regist_table_address_box {\r\n    display: flex;\r\n    align-items: center;\r\n}\r\n\r\n.regist_table_address_postcode {\r\n    width: 100px !important;\r\n}\r\n\r\n.regist_table_address_button {\r\n    width: 100px;\r\n    padding: 6px;\r\n    border-radius: 5px;\r\n    border: none;\r\n    border: 1px solid #83838360;\r\n    margin-left: 10px;\r\n    cursor: pointer;\r\n}\r\n\r\n.phone_select_box {\r\n    border: 1px solid #83838360;\r\n    width: 25%;\r\n    padding: 8px;\r\n}\r\n.phone_input_box {\r\n    width: 30.5% !important;\r\n}\r\n\r\n.error_message {\r\n    color: red;\r\n    font-size: 12px;\r\n    margin-top: 5px;\r\n}\r\n\r\n.success_message {\r\n    color: #3D64BF;\r\n    font-size: 12px;\r\n    margin-top: 5px;\r\n}\r\n\r\n\r\n@media screen and (max-width: 1200px) {\r\n    .regist_table {\r\n        width: 100%;\r\n    }\r\n    \r\n    table, th, td {\r\n        /* display: block; */\r\n    }\r\n    \r\n    th, td {\r\n        padding: 10px;\r\n        text-align: left;\r\n        border-bottom: 1px solid #000000;\r\n        border-top: 1px solid #000000;\r\n        border-right: 1px solid #ddd;\r\n        font-size: 12px;\r\n    }\r\n    \r\n}\r\n\r\n/* ============================================================================================= */ \r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n/* ============================================================================================= */ \r\n/* 강의 게시판 */\r\n\r\n/* 강의 게시판_main */\r\n.class_container_main {\r\n    margin: 0;\r\n    /* margin-top: 10px; */\r\n    font-size: 1rem;\r\n    /* background-color: #2E2E2E; */\r\n    /* padding: 0 10vw; */\r\n}\r\n\r\n.class_main_visual {\r\n    width: 100%;\r\n    height: 40vh;\r\n    overflow: hidden;\r\n    display: flex;\r\n    justify-content: center;\r\n    align-items: center;\r\n    transition: all 0.2s;\r\n    background: #000;\r\n}\r\n\r\n.class_main_new_text {\r\n    margin-top: 50px;\r\n    text-align: center;\r\n    padding: 10px;\r\n}\r\n\r\n.class_main_new_text h3 {\r\n    font-size: 20px;\r\n    font-weight: 700;\r\n    white-space: nowrap;\r\n    text-align: center;\r\n}\r\n\r\n.class_main_new_text a {\r\n    color: #000;\r\n    line-height: 50px;\r\n    font-size: 15px;\r\n}\r\n\r\n.class_main_container_new {\r\n    padding: 0 10vw;\r\n    display: grid; \r\n    transition: all 0.2s;\r\n    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));\r\n    gap: 20px\r\n}\r\n\r\n.class_main_container_new_card {\r\n    display: block;\r\n}\r\n\r\n.class_main_container_new_card_img {\r\n    position: relative;\r\n    overflow: hidden;\r\n    width: 100%;\r\n    padding-top: 50%;\r\n    border-radius: 0.8rem;\r\n}\r\n\r\n.class_main_container_new_card_img img {\r\n    position: absolute;\r\n    top: 50%;\r\n    left: 50%;\r\n    display: inline-block;\r\n    width: 100%;\r\n    max-width: none;\r\n    padding-top: 0;\r\n    transform: translate(-50%, -50%);\r\n    border-radius: 10px;\r\n}\r\n\r\n.class_main_container_new_card_title {\r\n    margin-top: 10px;\r\n    overflow: hidden;\r\n    font-size: 20px;\r\n    font-weight: 700;\r\n    line-height: 25px;\r\n    color: #000;\r\n}\r\n\r\n.class_main_container_new_card_content {\r\n    margin-top: 10px;\r\n    font-size: 13px;\r\n    line-height: 20px;\r\n    color: #000;\r\n}\r\n\r\n.class_main_container_new_card_tag {\r\n    display: flex;\r\n    flex-wrap: wrap;\r\n    margin-top: 20px;\r\n}\r\n\r\n.class_main_container_new_card_tag li {\r\n    padding: 0px 15px;\r\n    margin-right: 10px;\r\n    border-radius: 5px;\r\n    color: #6e6e73;\r\n    background: #f2f2f2;\r\n    font-size: 10px;\r\n}\r\n\r\n.class_main_container_new_box {\r\n    margin-bottom: 50px;\r\n}\r\n\r\n/* .class_main_new_text>h3 {\r\n    text-align: center;\r\n} */\r\n\r\n.class_main_new_text>h3:after {\r\n    content: \"\";\r\n    display: block;\r\n    width: 40px; /* 밑줄 길이 조절 */\r\n    border-bottom: 2px solid #000000;\r\n    margin: 35px auto;\r\n}\r\n\r\n.class_main_viewall_text>p>a {\r\n    font-weight: bold;\r\n    color: #6e6e73;\r\n    position: relative;\r\n    left: 40vw;\r\n    margin-right: 70px;\r\n}\r\n\r\n@media screen and (min-width: 500px) {\r\n    \r\n    .class_main_new_text {\r\n        margin-top: 50px;\r\n        padding: 10px;\r\n    }\r\n}\r\n\r\n/* ============================================================================================================ */\r\n/* 강의 게시판_viewAll */\r\n\r\n\r\n\r\n\r\n/* ============================================================================================================ */\r\n/* 강의 게시판_detail */\r\n.class_detail_container_box {\r\n    position: relative;\r\n    padding: 50px 0;\r\n    background: #002333;\r\n}\r\n\r\n.class_detail_container {\r\n    padding: 0 10vw;\r\n}\r\n\r\n.class_detail_container_lr {\r\n    display: flex;\r\n    flex: 0 1 auto;\r\n    flex-direction: row;\r\n    flex-wrap: wrap;\r\n    margin: 0 -8px;\r\n}\r\n\r\n.class_detail_container_l {\r\n    display: inline-flex;\r\n    justify-content: center;\r\n    padding: 8px 0;\r\n    flex-basis: 41.66666667%;\r\n    max-width: 41.66666667%;\r\n}\r\n\r\n.class_detail_container_l_img_cover {\r\n    position: relative;\r\n    overflow: hidden;\r\n    width: 100%;\r\n    max-width: 473.33px;\r\n    height: inherit;\r\n    border-radius: 8px;\r\n    /* aspect-ratio: 100/65.088; */\r\n    aspect-ratio: 100/70;\r\n}\r\n\r\n.class_detail_container_l_img_cover img {\r\n    width: 100%;\r\n    height: 100%;\r\n    max-width: 100%;\r\n    display: block;\r\n}\r\n\r\n.class_detail_container_r {\r\n    margin-top: 15px;\r\n    display: flex;\r\n    flex-direction: column;\r\n    padding: 0 0 0 32px;\r\n    flex-basis: 58.33333333%;\r\n    max-width: 50.33333333%;\r\n}\r\n\r\n.class_detail_container_r_banner {\r\n    overflow: hidden;\r\n    display: flex;\r\n    align-items: center;\r\n    margin-bottom: 6px;\r\n    flex-wrap: wrap;\r\n}\r\n\r\n.class_detail_container_r_title_box {\r\n    margin-bottom: 40px;\r\n}\r\n\r\n.class_detail_container_r_content_box {\r\n    margin-bottom: 40px;\r\n}\r\n\r\n.class_detail_container_r_info_box {\r\n    font-weight: 400;\r\n    line-height: 1.43;\r\n    letter-spacing: -.3px;\r\n    font-size: 14px;\r\n    display: flex;\r\n    flex-wrap: wrap;\r\n    margin-bottom: 8px;\r\n    color: #fff;\r\n}\r\n\r\n.class_detail_container_r_language {\r\n    margin-top: 10px;\r\n    margin-bottom: 12px;\r\n    display: flex;\r\n    flex-wrap: wrap;\r\n    align-items: center;\r\n}\r\n\r\n.class_detail_container_r_payment_box {\r\n    display: flex;\r\n    align-items: center;\r\n    justify-content: space-between;\r\n    margin-top: 30px;\r\n    width: 100%;\r\n    height: 20px;\r\n}\r\n\r\n.class_detail_container_r_banner_label {\r\n    display: flex;\r\n    align-items: center;\r\n}\r\n\r\n.class_detail_container_r_banner_label span {\r\n    display: inline-flex;\r\n    align-items: center;\r\n    justify-content: center;\r\n    line-height: 1.5;\r\n    letter-spacing: -.3px;\r\n    margin-right: 10px;\r\n    padding: 0 10px;\r\n    color: #fff;\r\n    font-weight: 700;\r\n    background-color: #3D64BF;\r\n}\r\n\r\n.class_detail_container_r_banner span {\r\n    font-size: 15px;\r\n    color: #fff;\r\n}\r\n\r\n.class_detail_container_r_title {\r\n    line-height: 1.5;\r\n    letter-spacing: -.3px;\r\n    color: #fff;\r\n    font-weight: 700;\r\n    font-size: 26px;\r\n    word-break: break-word;\r\n}\r\n\r\n.class_detail_container_r_content {\r\n    line-height: 1.5;\r\n    letter-spacing: -.3px;\r\n    color: #fff;\r\n    font-weight: 700;\r\n    font-size: 15px;\r\n    word-break: break-word;\r\n}\r\n\r\n.class_detail_container_r_info_star_box {\r\n    margin-right: 8px;\r\n}\r\n\r\n.class_detail_container_r_info_star {\r\n    width: 70px;\r\n    position: relative;\r\n    display: inline-block;\r\n}\r\n\r\n.class_detail_container_r_info_star_inr {\r\n    display: flex;\r\n}\r\n\r\n.class_detail_container_r_language span {\r\n    font-weight: 400;\r\n    line-height: 1.5;\r\n    letter-spacing: -.3px;\r\n    font-size: 12px;\r\n    margin-right: 4px;\r\n    padding: 4px 12px;\r\n    border-radius: 100px;\r\n    background-color: #173f51;\r\n    color: #fff;\r\n    font-weight: 500;\r\n}\r\n\r\n.class_detail_container_r_payment_price {\r\n    color: #fff;\r\n    font-size: 20px;\r\n    font-weight: 700;\r\n}\r\n\r\n.class_detail_container_r_payment_classes button {\r\n    background-color: transparent;\r\n    border: none;\r\n    color: #ffffff74;\r\n    padding: 10px 30px;\r\n    background-color: #3d64bf76;\r\n    border-radius: 5px;\r\n    cursor: pointer;\r\n}\r\n\r\n.class_detail_container_r_payment_classes button:hover {\r\n    color: #fff;\r\n    background-color: #3D64BF;\r\n}\r\n\r\n@media screen and (max-width: 1000px) {\r\n    .class_detail_container_lr {  \r\n        flex-direction: column-reverse;\r\n        align-items: flex-start;\r\n    }\r\n    .class_detail_container_l {\r\n        margin-top: 32px;\r\n        width: 100%;\r\n        max-width: 100%;\r\n        z-index: 7;\r\n    }\r\n    .class_detail_container_l_img_cover {\r\n        padding-left: unset;\r\n        width: auto;\r\n    }\r\n    .class_detail_container_r {\r\n        padding: 0;\r\n        max-width: 100%\r\n    }\r\n}\r\n\r\n.class_container {\r\n    margin: 0;\r\n    margin-top: 10px;\r\n    font-size: 1rem;\r\n    /* background-color: #2E2E2E; */\r\n    padding: 0 10vw;\r\n}\r\n\r\nul.class_tabs {\r\n    margin: 0px;\r\n    padding: 0px 5px;\r\n    list-style: none;\r\n    font-weight: bold;\r\n}\r\n\r\nul.class_tabs li {\r\n    background: none;\r\n    color: #222;\r\n    display: inline-block;\r\n    padding: 10px 15px;\r\n}\r\n\r\nul.class_tabs li:hover {\r\n    text-decoration: underline;\r\n    text-decoration-color: #0000007e;\r\n    text-decoration-thickness: 2px;\r\n    text-underline-offset: 3px;\r\n    background-color: #ededed;\r\n}\r\n\r\nul.class_tabs li.class_current {\r\n    background: #ededed;\r\n    color: #222;\r\n    }\r\n\r\n.class_tab_content {\r\n    /* display: none; */\r\n    background: #ededed;\r\n    margin: 5px;\r\n    margin-bottom: 40px;\r\n    padding: 20px;\r\n    line-height: 20px;\r\n    \r\n    }\r\n\r\n.class_tab_content>p {\r\n    text-align: center;\r\n}\r\n\r\n.class_tab_content_title {\r\n    margin: 5px;\r\n    text-decoration: underline;\r\n    text-decoration-thickness: 1px;\r\n    text-underline-offset: 3px;\r\n    font-weight: bold;\r\n}\r\n\r\n/* ============================================================================================================ */\r\n/* 강의게시판rating */\r\n\r\n.class_detail_rating_tab {\r\n    margin: 0px;\r\n    list-style: none;\r\n    font-weight: bold;\r\n}\r\n\r\n.class_detail_rating_form {\r\n    background: #ededed;\r\n    margin-top: 8px;\r\n    margin-bottom: 40px;\r\n    padding: 20px;\r\n    line-height: 20px;\r\n    \r\n}\r\n\r\n.class_detail_rating_form_text>textarea {\r\n    background-color: transparent;\r\n    width: 100%;\r\n    resize: none;\r\n}\r\n\r\n.class_detail_rating_form_content {\r\n    display: flex;\r\n    align-items: center;\r\n    justify-content: space-between;\r\n    padding-top: 10px;\r\n}\r\n\r\n.class_detail_rating_form_button>button {\r\n    padding: 10px 30px;\r\n}\r\n\r\n.class_detail_rating_view_tab {\r\n    display: flex;\r\n    padding: 10px;\r\n}\r\n\r\n.class_detail_rating_tab_title {\r\n    margin: 10px;\r\n}\r\n\r\n.class_detail_rating_tab_title>span>a {\r\n    cursor: pointer;\r\n}\r\n\r\n.class_detail_rating_tab_title>span>a:hover {\r\n    color: red;\r\n}\r\n\r\n.class_detail_rating_list_div {\r\n    background: #ededed;\r\n    margin: 10px 0;\r\n    padding: 20px;\r\n    line-height: 20px;\r\n    \r\n}\r\n\r\n.class_detail_rating_list_user {\r\n    color: #0000007e;\r\n    display: flex;\r\n    justify-content: space-between;\r\n}\r\n\r\n.class_detail_rating_list_text {\r\n    padding-top: 5px;\r\n}\r\n\r\n.class_detail_rating_user_button {\r\n    display: flex;\r\n    justify-content: end;\r\n}\r\n\r\n.class_detail_rating_user_update_button>button {\r\n    padding: 5px 20px;\r\n    margin-right: 5px;\r\n}\r\n\r\n.class_detail_rating_user_delete_button>button {\r\n    padding: 5px 20px;\r\n}\r\n\r\n\r\n\r\n/* ============================================================================================================ */\r\n/* 강의 게시판Community */\r\n\r\n.class_detail_commu_form_content {\r\n    display: flex;\r\n    align-items: center;\r\n    justify-content: end;\r\n    padding-top: 10px;\r\n}\r\n\r\n/* ============================================================================================================ */\r\n/* 강의게시판Notice */\r\n\r\n.class_detail_notice_main {\r\n    text-align: center;\r\n    \r\n    /* border: 1px solid; */\r\n}\r\n\r\n.class_detail_notice_main_div {\r\n    /* background-color: #ededed18; */\r\n    border: 1px solid;\r\n    padding: 10px;\r\n}\r\n\r\n.class_detail_notice_title {\r\n    font-weight: bold;\r\n    font-size: 1.2rem;\r\n    margin-bottom: 5px;\r\n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "* {\r\n\tmargin: 0;\r\n\tpadding: 0;\r\n\tbox-sizing: border-box;\r\n}\r\n/* reset.css */\r\nhtml, body, div, span, applet, object, iframe,\r\nh1, h2, h3, h4, h5, h6, p, blockquote, pre,\r\na, abbr, acronym, address, big, cite, code,\r\ndel, dfn, em, img, ins, kbd, q, s, samp,\r\nsmall, strike, strong, sub, sup, tt, var,\r\nb, u, i, center,\r\ndl, dt, dd, ol, ul, li,\r\nfieldset, form, label, legend,\r\ntable, caption, tbody, tfoot, thead, tr, th, td,\r\narticle, aside, canvas, details, embed, \r\nfigure, figcaption, footer, header, hgroup, \r\nmenu, nav, output, ruby, section, summary,\r\ntime, mark, audio, video {\r\n    margin: 0;\r\n    padding: 0;\r\n    border: 0;\r\n    font-size: 100%;\r\n    font: inherit;\r\n    vertical-align: baseline;\r\n\ttext-decoration-line: none;\r\n    text-decoration: none;\r\n}\r\n/* HTML5 display-role reset for older browsers */\r\narticle, aside, details, figcaption, figure, \r\nfooter, header, hgroup, menu, nav, section {\r\n    display: block;\r\n}\r\nbody {\r\n    position: relative;\r\n    left: 0;\r\n    transition: left 500ms cubic-bezier(0.25,0.46,0.45,0.94);\r\n    font-family: 'Noto Sans KR', sans-serif;\r\n    font-size: 0.6vw;\r\n    line-height: 0.7vw;\r\n}\r\nol, ul {\r\n    list-style: none;\r\n}\r\nblockquote, q {\r\n    quotes: none;\r\n}\r\nblockquote:before, blockquote:after,\r\nq:before, q:after {\r\n    content: '';\r\n    content: none;\r\n}\r\ntable {\r\n    border-collapse: collapse;\r\n    border-spacing: 0;\r\n}\r\ninput {\r\n\tborder: none;\r\n\tbackground-color: transparent;\r\n}\r\nstrong {\r\n    font-weight: 700;\r\n}\r\n\r\nhr {\r\n    opacity: 0.5;\r\n}\r\n/* ============================================================================================= */\r\n/* 공통 헤더 영역 */\r\n\r\n.top_banner {\r\n    position: relative;\r\n    overflow: hidden;\r\n    height: 30px;\r\n    text-align: center;\r\n    background: #3D64BF;\r\n}\r\n\r\n.top_banner .desc {\r\n    overflow: hidden;\r\n    font-size: 12px;\r\n    color: #fff;\r\n    box-sizing: border-box;\r\n    line-height: 30px;\r\n    white-space: nowrap;\r\n}\r\n\r\n.list_txt {\r\n    height: 30px;\r\n    overflow: hidden;\r\n    margin: 0px;\r\n    padding: 0px;\r\n    color: #fff;\r\n    top: 0;\r\n}\r\n\r\n.list_txt  a{\r\n    color: #fff;\r\n    font-weight: 700;\r\n}\r\n\r\nheader {\r\n    height: 70px;\r\n    padding: 0 10vw;\r\n}\r\n\r\n\r\nheader .navigation {\r\n    display: flex;\r\n    justify-content: space-between;\r\n    align-items: center;\r\n    position: relative !important;\r\n    height: 100%;\r\n}\r\n\r\n\r\n.navigation ul.nav_left {\r\n    display: flex;\r\n    gap: 1vw;\r\n}\r\n\r\n.side_nav {\r\n    gap: 1vw;\r\n    align-items: center;\r\n}\r\n\r\n.navigation h1 {\r\n    width: 100px;\r\n    position: absolute;\r\n    left: 50%;\r\n    transform: translateX(-50%);\r\n    padding: 0;\r\n    height: 100%;\r\n    display: flex;\r\n    justify-content: center;\r\n    align-items: center;\r\n}\r\n\r\n.navigation h1 a img {\r\n    height: 4vw;\r\n    max-height: 30px;\r\n    transition: none;\r\n}\r\n\r\n.side_nav {\r\n    display: flex;\r\n    gap: 1vw;\r\n    align-items: center;\r\n}\r\n\r\n.side_nav a {\r\n    font-weight: 600;\r\n    font-family: Arial;\r\n    font-size: 12px;\r\n    color: #1e1e1e;\r\n    text-transform: uppercase;\r\n}\r\n\r\n.search_box {\r\n    border-bottom: 1px solid #1e1e1e;\r\n    display: flex;\r\n}\r\n\r\n.search_box input {\r\n    font-weight: 600;\r\n    font-family: Arial;\r\n    font-size: 12px;\r\n    color: #1e1e1e;\r\n    text-transform: uppercase;\r\n}\r\n\r\n\r\n.search_box input:focus {\r\n    outline: none;\r\n}\r\n\r\n.search_box button {\r\n    cursor: pointer;\r\n    background-color: transparent;\r\n    border: none;\r\n}\r\n\r\n.menu_btn {\r\n    background-color: #000;\r\n    color: #fff !important;\r\n    padding: 0.15vw 0.5vw;\r\n    border: 1px solid #000;\r\n    display: flex;\r\n    justify-content: center;\r\n    align-items: center;\r\n    padding: 5px 10px;\r\n    border-radius: 5px;\r\n}\r\n\r\n.menu_btn img {\r\n    margin-right: 5px;\r\n}\r\n\r\n@media screen and (max-width: 1000px) {\r\n    /* .navigation ul.nav_left {\r\n        display: none;\r\n    } */\r\n\r\n    .side_nav a {\r\n        display: none;\r\n    }\r\n\r\n    .side_nav input {\r\n        display: none;\r\n    }\r\n\r\n    /* .menu_btn {\r\n        display: flex;\r\n    } */\r\n}\r\n\r\n.dropdown {\r\n    display: none;\r\n    position: absolute;\r\n    background-color: #fff;\r\n    border: 1px solid #2E2E2E;\r\n    outline: none;\r\n    text-align: left;\r\n    z-index: 1001;\r\n    border-radius: 5px;\r\n    /* margin-top: 15px; */\r\n}\r\n\r\n.side_nav li:hover .dropdown {\r\n    display: block; /* 호버 시 드롭다운 표시 */\r\n}\r\n\r\n.side_nav .dropdown li {\r\n    /* padding: 10px; */\r\n}\r\n\r\n.dropdown a {\r\n    width: 150px;\r\n    padding: 10px 30px;\r\n    display: inline-block;\r\n}\r\n\r\n.dropdown a:hover {\r\n    color: #3D64BF;\r\n}\r\n\r\nhr {\r\n    opacity: 0.1;\r\n}\r\n/* ============================================================================================= */\r\n\r\n\r\n\r\n\r\n/* ============================================================================================= */\r\n/* 로그인 모달 영역 */\r\n\r\n.login_modal_bk {\r\n    width: 100vw;\r\n    height: 100vh;\r\n    background-color: #00000080;\r\n    position: fixed;\r\n    top: 0;\r\n    z-index: 1000;\r\n    backdrop-filter: blur(3px);\r\n    display: flex;\r\n    justify-content: center;\r\n    align-items: center;\r\n}\r\n\r\n.login_modal {\r\n    width: 350px;\r\n    height: 480px;\r\n    background-color: #fff;\r\n    border-radius: 20px;\r\n    padding: 20px 20px;\r\n}\r\n\r\n.login_modal_cancel {\r\n    width: 100%;\r\n    margin-left: auto;\r\n}\r\n\r\n.login_modal_cancel img {\r\n    margin-left: auto;\r\n    display: block;\r\n}\r\n\r\n.login_modal_logo {\r\n    width: 50%;\r\n    margin: auto;\r\n    margin-top: 20px;\r\n    /* background-color: #3D64BF; */\r\n}\r\n\r\n.login_modal_logo img {\r\n    width: 100%;\r\n    /* height: 10px; */\r\n}\r\n\r\n.login_modal_input_box {\r\n    margin-top: 10px;\r\n    width: 100%;\r\n    /* background-color: #3D64BF; */\r\n}\r\n\r\n.login_modal_input_box input {\r\n    width: 100%;\r\n    height: 50px;\r\n    border: 1px solid #ABABAB;\r\n    border-radius: 5px;\r\n    padding: 10px 15px;\r\n    font-size: 15px;\r\n    margin-top: 10px;\r\n}\r\n\r\n.login_modal_input_box input:focus {\r\n    outline: none;\r\n}\r\n\r\n.login_error_message {\r\n    color: red;\r\n    font-size: 15px;\r\n    margin-top: 10px;\r\n    margin-left: 5px;\r\n}\r\n\r\n.login_modal_button {\r\n    width: 100%;\r\n    margin-top: 20px;\r\n}\r\n\r\n.login_modal_button button {\r\n    width: 100%;\r\n    height: 50px;\r\n    border: none;\r\n    background-color: #3D64BF;\r\n    border-radius: 5px;\r\n    font-size: 15px;\r\n    color: #fff;\r\n    font-weight: 700;\r\n}\r\n\r\n.login_modal_find_box {\r\n    margin-top: 15px;\r\n    width: 100%;\r\n    text-align: center;\r\n    font-size: 15px;\r\n}\r\n\r\n.login_modal_find_box a {\r\n    color: #000;\r\n}\r\n\r\n.login_modal_find_box span:nth-child(2) {\r\n    margin-left: 10px;\r\n    margin-right: 10px;\r\n}\r\n\r\n.login_modal_easy_box {\r\n    display: flex;\r\n    flex-basis: 100%;\r\n    align-items: center;\r\n    color: #ABABAB;\r\n    font-size: 15px;\r\n    margin: 20px 0;\r\n}\r\n\r\n.login_modal_easy_box::before {\r\n    content: \"\";\r\n    flex-grow: 1;\r\n    margin: 0px 8px;\r\n    background: rgba(0, 0, 0, 0.35);\r\n    height: 1px;\r\n    font-size: 0px;\r\n    line-height: 0px;\r\n    opacity: 0.5;\r\n}\r\n\r\n.login_modal_easy_box::after {\r\n    content: \"\";\r\n    flex-grow: 1;\r\n    margin: 0px 8px;\r\n    background: rgba(0, 0, 0, 0.35);\r\n    height: 1px;\r\n    font-size: 0px;\r\n    line-height: 0px;\r\n    opacity: 0.5;\r\n}\r\n\r\n.login_modal_easy_login {\r\n    margin-top: 20px;\r\n    width: 100%;\r\n    height: 50px;\r\n    background-color: #3D64BF;\r\n}\r\n/* ============================================================================================= */\r\n\r\n\r\n\r\n\r\n\r\n/* ============================================================================================= */\r\n/* 공통 푸터 영역 */\r\n\r\nfooter {\r\n    margin-top: 100px;\r\n    width: 100%;\r\n    height: 150px;\r\n    background-color: #2E2E2E;\r\n    padding: 0 10vw;\r\n    position:relative;\r\n\tbottom: 0;\r\n}\r\n\r\n\r\n\r\n/* ============================================================================================= */\r\n\r\n\r\n\r\n\r\n\r\n/* ============================================================================================= */\r\n/* 메인 영역 */\r\n\r\n.main_wrap {\r\n    position: relative;\r\n    display: flex;\r\n}\r\n\r\n/* .main_visual {\r\n    width: 100%;\r\n    height: 40vh;\r\n    overflow: hidden;\r\n    display: flex;\r\n    justify-content: center;\r\n    align-items: center;\r\n    transition: all 0.2s;\r\n    background: #000;\r\n} */\r\n\r\n.main_visual {\r\n    width: 100%;\r\n    overflow: hidden;\r\n    position: relative;\r\n}\r\n\r\n.main_visual_slider {\r\n    position: relative;\r\n    display: block;\r\n    box-sizing: border-box;\r\n    user-select: none;\r\n    -webkit-touch-callout: none;\r\n    touch-action: pan-y;\r\n    -webkit-tap-highlight-color: transparent;\r\n}\r\n\r\n.main_visual_slider_list {\r\n    position: relative;\r\n    display: block;\r\n    height: 100%;\r\n    margin: 0;\r\n    padding: 0;\r\n}\r\n\r\n.main_visual_slider_track {\r\n    position: relative;\r\n    top: 0;\r\n    left: 0;\r\n    height: 100%;\r\n    display: block;\r\n    margin-left: auto;\r\n    margin-right: auto;\r\n}\r\n\r\n.main_visual_slider_track_slick {\r\n    transition: opacity 1500ms ease 0s;\r\n    width: 100%;\r\n    position: relative;\r\n    left: 0px;\r\n    top: 0px;\r\n    z-index: 998;\r\n    opacity: 1;\r\n}\r\n\r\n.main_visual_slider_track_slick div {\r\n    display: table;\r\n    width: 100%;\r\n    height: 100%;\r\n    text-align: center;\r\n}\r\n\r\n.main_visual_slider_track_slick_item {\r\n    display: table-cell;\r\n    vertical-align: middle;\r\n    text-align: center;\r\n}\r\n\r\n.main_visual_slider_track_slick_item a img {\r\n    max-width: 100%;\r\n    max-height: 100%;\r\n    width: auto;\r\n    height: auto;\r\n    position: relative;\r\n}\r\n\r\n.main_nav {\r\n    width: 100%;\r\n    height: 75px;\r\n    padding: 10px 10vw;\r\n    display: grid;\r\n    padding-top: 18px;\r\n    grid-template-columns: 135px 33px 1fr 52px;\r\n}\r\n\r\n.main_nav_num_space {\r\n    display: flex;\r\n    flex-direction: row;\r\n    justify-content: space-between;\r\n    align-items: center;\r\n    padding: 0 1rem;\r\n    width: 135px;\r\n    height: 36px;\r\n    font-size: .875rem;\r\n    color: #fff;\r\n    border-radius: 20px;\r\n    background-color: #7F7F7F;\r\n}\r\n\r\n.control-wrapper {\r\n    display: flex;\r\n    align-items: center;\r\n    justify-content: space-between;\r\n    width: 50px;\r\n}\r\n\r\n.control-wrapper button {\r\n    padding: 0;\r\n    background: none;\r\n    border: 0;\r\n    color: #fff;\r\n    cursor: pointer;\r\n}\r\n\r\n.divider {\r\n    margin: 0 1rem;\r\n    width: 1px;\r\n    height: 36px;\r\n    background-color: #dee2e6;\r\n}\r\n\r\n.main_nav_selection {\r\n    overflow: hidden;\r\n    height: 36px;\r\n}\r\n\r\n.main_nav_selection_box {\r\n    display: flex;\r\n    height: 36px;\r\n}\r\n\r\n.main_nav_selection_btn {\r\n    flex: 0 0 auto;\r\n    padding: 0 1rem;\r\n    height: 36px;\r\n    line-height: 36px;\r\n    text-align: center;\r\n    font-size: .875rem;\r\n    font-weight: 700;\r\n    color: #495057;\r\n    border-radius: 20px;\r\n    box-shadow: inset 0 0 0 1px #ced4da;\r\n    background-color: #fff;\r\n    cursor: pointer;    \r\n}\r\n\r\n.ml_10 {\r\n    margin-left: 10px;\r\n}\r\n\r\n.mr_10 {\r\n    margin-right: 10px;\r\n}\r\n\r\n.main_new_text {\r\n    margin-top: 50px;\r\n    margin-bottom: 10px;\r\n    text-align: center;\r\n    padding: 10px;\r\n}\r\n\r\n.main_new_text h3 {\r\n    font-size: 20px;\r\n    font-weight: 700;\r\n}\r\n\r\n.main_new_text a {\r\n    color: #000;\r\n    line-height: 50px;\r\n    font-size: 15px;\r\n}\r\n\r\n.main_container_new {\r\n    padding: 0 10vw;\r\n    display: grid; \r\n    transition: all 0.2s;\r\n    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));\r\n    gap: 20px\r\n}\r\n\r\n@media (max-width: 750px) {\r\n\r\n}\r\n\r\n\r\n.main_container_new_card {\r\n    display: block;\r\n    padding: 15px;\r\n    border-radius: 10px;\r\n    transition: box-shadow 0.3s ease;\r\n    position: relative;\r\n    top: 0; /* 초기 위치 */\r\n    transition: top 0.3s ease;\r\n}\r\n\r\n.main_container_new_card:hover {\r\n    position: relative;\r\n    top: -5px;\r\n    box-shadow: 0px 15px 20px 2px rgba(125, 125, 125, 0.2);\r\n}\r\n\r\n.main_container_new_card_img {\r\n    position: relative;\r\n    overflow: hidden;\r\n    width: 100%;\r\n    padding-top: 70%;\r\n    border-radius: 0.8rem;\r\n}\r\n\r\n.main_container_new_card_img img {\r\n    position: absolute;\r\n    top: 50%;\r\n    left: 50%;\r\n    display: inline-block;\r\n    width: 100%;\r\n    max-width: none;\r\n    padding-top: 0;\r\n    transform: translate(-50%, -50%);\r\n    border-radius: 10px;\r\n}\r\n\r\n.main_container_new_card_title {\r\n    margin-top: 10px;\r\n    overflow: hidden;\r\n    font-size: 20px;\r\n    font-weight: 700;\r\n    line-height: 25px;\r\n    color: #000;\r\n}\r\n\r\n.main_container_new_card_content {\r\n    margin-top: 10px;\r\n    font-size: 13px;\r\n    line-height: 20px;\r\n    color: #000;\r\n}\r\n\r\n.main_container_new_card_tag {\r\n    display: flex;\r\n    flex-wrap: wrap;\r\n    margin-top: 20px;\r\n}\r\n\r\n.main_container_new_card_tag li {\r\n    padding: 5px 20px;\r\n    margin-right: 10px;\r\n    border-radius: 5px;\r\n    color:#ffffff;\r\n    background:#346ba3;\r\n    font-size: 10px;\r\n    font-weight: 700;\r\n}\r\n\r\n@media screen and (max-width: 800px) {\r\n    .main_container_new_card_tag li {\r\n        padding: 10px 20px;\r\n    }\r\n    \r\n}\r\n\r\n.main_banner {\r\n    margin-top: 100px;\r\n    width: 100%;\r\n    /* background-color: #fbfbfbe4; */\r\n    position: relative;\r\n    overflow: hidden; /* 이미지가 배너를 벗어나는 것을 막기 위해 */\r\n    padding: 0 10vw;\r\n}\r\n\r\n.main_banner img {\r\n    position: absolute;\r\n    top: 50%;\r\n    left: 50%;\r\n    transform: translate(-50%, -50%);\r\n    max-width: 100%;\r\n    max-height: 100%;\r\n    width: auto;\r\n    height: auto;\r\n}\r\n\r\n@media screen and (max-width: 800px) {\r\n    .main_banner {\r\n        padding: 0;\r\n    }\r\n}\r\n\r\n.main_container_hot {\r\n    padding: 0 10vw;\r\n    display: grid; \r\n    transition: all 0.2s;\r\n    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));\r\n    gap: 20px;\r\n}\r\n\r\n.main_container_hot_card {\r\n    display: block;\r\n    border-radius: 30px;\r\n    transition: box-shadow 0.3s ease;\r\n    position: relative;\r\n    top: 0; /* 초기 위치 */\r\n    transition: top 0.3s ease;\r\n}\r\n\r\n.main_container_hot_card:hover {\r\n    position: relative;\r\n    top: -5px;\r\n    box-shadow: 0px 15px 20px 5px rgba(163, 163, 163, 0.5);\r\n}\r\n\r\n.main_container_hot_card_img {\r\n    position: relative;\r\n    overflow: hidden;\r\n    width: 100%;\r\n    padding-top: 130%;\r\n    border-radius: 0.8rem;\r\n}\r\n\r\n.main_container_hot_card_img img {\r\n    position: absolute;\r\n    top: 50%;\r\n    left: 50%;\r\n    display: inline-block;\r\n    width: 100%;\r\n    max-width: none;\r\n    padding-top: 0;\r\n    transform: translate(-50%, -50%);\r\n    border-radius: 10px;\r\n}\r\n\r\n.main_container_keyword {\r\n    padding: 0 10vw;\r\n    display: grid; \r\n    transition: all 0.2s;\r\n    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));\r\n    gap: 20px\r\n}\r\n\r\n\r\n@media screen and (max-width: 500px) {\r\n    .main_container_keyword {\r\n        grid-template-columns: 1fr;\r\n    }\r\n}\r\n\r\n.main_container_keyword_card {\r\n    display: block;\r\n    border-radius: 20px;\r\n    position: relative;\r\n    top: 0; /* 초기 위치 */\r\n    transition: top 0.3s ease;\r\n}\r\n\r\n\r\n.main_container_keyword_card:hover {\r\n    position: relative;\r\n    top: -5px;\r\n    box-shadow: 0px 15px 20px 5px rgba(218, 218, 218, 0.5);\r\n}\r\n\r\n.main_container_keyword_card_img {\r\n    position: relative;\r\n    overflow: hidden;\r\n    width: 100%;\r\n    padding-top: 90%;\r\n    border-radius: 0.8rem;\r\n}\r\n\r\n.main_container_keyword_card_img img {\r\n    position: absolute;\r\n    top: 55%;\r\n    left: 50%;\r\n    display: inline-block;\r\n    width: 100%;\r\n    max-width: none;\r\n    padding-top: 0;\r\n    transform: translate(-50%, -50%);\r\n    border-radius: 10px;\r\n}\r\n\r\n/* ============================================================================================= */\r\n\r\n\r\n\r\n\r\n\r\n/* ============================================================================================= */\r\n/* 회원가입 영역 (약관 입력) */\r\n\r\n.regist_wrap {\r\n    position: relative;\r\n    display: flex;\r\n}\r\n\r\n.container-registration-none {\r\n    display: none;\r\n}\r\n\r\n.regist_title_box {\r\n    padding: 0 10vw;\r\n    margin-top: 50px;\r\n}\r\n\r\n.regist_title {\r\n    text-align: center;\r\n}\r\n\r\n@media screen and (max-width: 800px) {\r\n    /* .regist_title span {\r\n        display: block;\r\n        line-height: 20px;\r\n        text-align: left;\r\n        margin-left: 15px;\r\n    }\r\n    .ml_10 {\r\n        margin-left: 0px;\r\n    } */\r\n    \r\n    .regist_title h3 {\r\n        margin-bottom: 10px;\r\n    }\r\n}\r\n\r\n.regist_title h3 {\r\n    font-size: 30px;\r\n    font-weight: 700;\r\n    line-height: 60px;\r\n}\r\n\r\n.regist_title span {\r\n    font-size: 15px;\r\n}\r\n\r\n.regist_content_box {\r\n    width: 90%;\r\n    margin: auto;\r\n    margin-top: 30px;\r\n}\r\n\r\n.regist_content_box_lr {\r\n    margin-top: 15px;\r\n    display: flex;\r\n    gap: 20px;\r\n}\r\n\r\n@media screen and (max-width: 800px) {\r\n    .regist_content_box_lr {\r\n        display: grid;\r\n        flex-direction: column;\r\n    }\r\n}\r\n\r\n.regist_content_box_l {\r\n    width: 100%;\r\n}\r\n\r\n.regist_content_box_r {\r\n    width: 100%;\r\n}\r\n\r\n.regist_content_box_title h3 {\r\n    font-size: 15px;\r\n    font-weight: 700;\r\n    margin-bottom: 15px;\r\n}\r\n\r\n.regist_content_box_check_box {\r\n    display: flex;\r\n    font-size: 13px;\r\n}\r\n\r\n.regist_content_box_check_box input {\r\n    margin-right: 10px;\r\n}\r\n\r\n.regist_content_box_checkbox_sel {\r\n    margin-right: 10px;\r\n}\r\n\r\n.regist_content_box_l_checkbox {\r\n    display: flex;\r\n    font-size: 13px;\r\n}\r\n\r\n.regist_content_box_l_checkbox input {\r\n    margin-right: 10px;\r\n}\r\n\r\n.regist_content_box_r_checkbox {\r\n    display: flex;\r\n    font-size: 13px;\r\n}\r\n\r\n.regist_content_box_r_checkbox input {\r\n    margin-right: 10px;\r\n}\r\n\r\n.regist_content_box_l_terms {\r\n    margin-top: 15px;\r\n    width: 100%;\r\n    height: 500px;\r\n    border: 0.5px solid #5c5c5c6c;\r\n    overflow-y: scroll;\r\n    padding: 10px;\r\n}\r\n\r\n.regist_content_box_l_terms h3 {\r\n    font-size: 12px;\r\n    line-height: 20px;\r\n}\r\n\r\n.regist_content_box_l_terms p {\r\n    font-size: 12px;\r\n    line-height: 20px;\r\n}\r\n\r\n.regist_content_box_r_terms {\r\n    margin-top: 15px;\r\n    width: 100%;\r\n    height: 500px;\r\n    border: 0.5px solid #5c5c5c6c;\r\n    overflow-y: scroll;\r\n    padding: 10px;\r\n}\r\n\r\n.regist_content_box_r_terms h3 {\r\n    font-size: 12px;\r\n    line-height: 20px;\r\n}\r\n\r\n.regist_content_box_r_terms p {\r\n    font-size: 12px;\r\n    line-height: 20px;\r\n}\r\n\r\n.regist_button {\r\n    margin: auto;\r\n    display: flex;\r\n    justify-content: center;\r\n    margin-top: 20px;\r\n}\r\n\r\n.regist_button_cancel {\r\n    padding: 10px 20px;\r\n    border: 1px solid #000;\r\n    background-color: #fff;\r\n    margin-right: 20px;\r\n    cursor: pointer;\r\n}\r\n\r\n.regist_button_next {\r\n    padding: 10px 30px;\r\n    border: 1px solid #000;\r\n    background-color: #000000;\r\n    color: #fff;\r\n    cursor: pointer;\r\n}\r\n\r\n/* ============================================================================================= */\r\n\r\n\r\n\r\n\r\n\r\n/* ============================================================================================= */\r\n/* 회원가입 영역 (정보 입력)*/\r\n\r\n.regist_table {\r\n    width: 40%;\r\n    border-collapse: collapse;\r\n    margin: 30px auto 20px auto;\r\n}\r\n\r\n.regist_table label {\r\n    line-height: 20px;\r\n    text-transform: uppercase;\r\n}\r\n\r\nth, td {\r\n    padding: 10px;\r\n    text-align: left;\r\n    border-bottom: 1px solid #000000;\r\n    border-top: 1px solid #000000;\r\n    border-right: 1px solid #ddd;\r\n    font-size: 12px;\r\n}\r\n\r\nth:last-child, td:last-child {\r\n    border-right: none;\r\n}\r\n\r\n.regist_table input {\r\n    border: 1px solid #83838360;\r\n}\r\n\r\n.regist_table input {\r\n    width: 90%;\r\n    padding: 8px;\r\n}\r\n\r\n.regist_table_address_box {\r\n    display: flex;\r\n    align-items: center;\r\n}\r\n\r\n.regist_table_address_postcode {\r\n    width: 100px !important;\r\n}\r\n\r\n.regist_table_address_button {\r\n    width: 100px;\r\n    padding: 6px;\r\n    border-radius: 5px;\r\n    border: none;\r\n    border: 1px solid #83838360;\r\n    margin-left: 10px;\r\n    cursor: pointer;\r\n}\r\n\r\n.phone_select_box {\r\n    border: 1px solid #83838360;\r\n    width: 25%;\r\n    padding: 8px;\r\n}\r\n.phone_input_box {\r\n    width: 30.5% !important;\r\n}\r\n\r\n.error_message {\r\n    color: red;\r\n    font-size: 12px;\r\n    margin-top: 5px;\r\n}\r\n\r\n.success_message {\r\n    color: #3D64BF;\r\n    font-size: 12px;\r\n    margin-top: 5px;\r\n}\r\n\r\n\r\n@media screen and (max-width: 1200px) {\r\n    .regist_table {\r\n        width: 100%;\r\n    }\r\n    \r\n    table, th, td {\r\n        /* display: block; */\r\n    }\r\n    \r\n    th, td {\r\n        padding: 10px;\r\n        text-align: left;\r\n        border-bottom: 1px solid #000000;\r\n        border-top: 1px solid #000000;\r\n        border-right: 1px solid #ddd;\r\n        font-size: 12px;\r\n    }\r\n    \r\n}\r\n\r\n/* ============================================================================================= */ \r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n/* ============================================================================================= */ \r\n/* 강의 게시판 */\r\n\r\n/* 강의 게시판_main */\r\n.class_container_main {\r\n    margin: 0;\r\n    /* margin-top: 10px; */\r\n    font-size: 1rem;\r\n    /* background-color: #2E2E2E; */\r\n    /* padding: 0 10vw; */\r\n}\r\n\r\n.class_main_visual {\r\n    width: 100%;\r\n    height: 40vh;\r\n    overflow: hidden;\r\n    display: flex;\r\n    justify-content: center;\r\n    align-items: center;\r\n    transition: all 0.2s;\r\n    background: #000;\r\n}\r\n\r\n.class_main_new_text {\r\n    margin-top: 50px;\r\n    text-align: center;\r\n    padding: 10px;\r\n}\r\n\r\n.class_main_new_text h3 {\r\n    font-size: 20px;\r\n    font-weight: 700;\r\n    white-space: nowrap;\r\n    text-align: center;\r\n}\r\n\r\n.class_main_new_text a {\r\n    color: #000;\r\n    line-height: 50px;\r\n    font-size: 15px;\r\n}\r\n\r\n.class_main_container_new {\r\n    padding: 0 10vw;\r\n    display: grid; \r\n    transition: all 0.2s;\r\n    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));\r\n    gap: 20px\r\n}\r\n\r\n.class_main_container_new_card {\r\n    display: block;\r\n}\r\n\r\n.class_main_container_new_card_img {\r\n    position: relative;\r\n    overflow: hidden;\r\n    width: 100%;\r\n    padding-top: 50%;\r\n    border-radius: 0.8rem;\r\n}\r\n\r\n.class_main_container_new_card_img img {\r\n    position: absolute;\r\n    top: 50%;\r\n    left: 50%;\r\n    display: inline-block;\r\n    width: 100%;\r\n    max-width: none;\r\n    padding-top: 0;\r\n    transform: translate(-50%, -50%);\r\n    border-radius: 10px;\r\n}\r\n\r\n.class_main_container_new_card_title {\r\n    margin-top: 10px;\r\n    overflow: hidden;\r\n    font-size: 20px;\r\n    font-weight: 700;\r\n    line-height: 25px;\r\n    color: #000;\r\n}\r\n\r\n.class_main_container_new_card_content {\r\n    margin-top: 10px;\r\n    font-size: 13px;\r\n    line-height: 20px;\r\n    color: #000;\r\n}\r\n\r\n.class_main_container_new_card_tag {\r\n    display: flex;\r\n    flex-wrap: wrap;\r\n    margin-top: 20px;\r\n}\r\n\r\n.class_main_container_new_card_tag li {\r\n    padding: 0px 15px;\r\n    margin-right: 10px;\r\n    border-radius: 5px;\r\n    color: #6e6e73;\r\n    background: #f2f2f2;\r\n    font-size: 10px;\r\n}\r\n\r\n.class_main_container_new_box {\r\n    margin-bottom: 50px;\r\n}\r\n\r\n/* .class_main_new_text>h3 {\r\n    text-align: center;\r\n} */\r\n\r\n.class_main_new_text>h3:after {\r\n    content: \"\";\r\n    display: block;\r\n    width: 40px; /* 밑줄 길이 조절 */\r\n    border-bottom: 2px solid #000000;\r\n    margin: 35px auto;\r\n}\r\n\r\n.class_main_viewall_text>p>a {\r\n    font-weight: bold;\r\n    color: #6e6e73;\r\n    position: relative;\r\n    left: 40vw;\r\n    margin-right: 70px;\r\n}\r\n\r\n@media screen and (min-width: 500px) {\r\n    \r\n    .class_main_new_text {\r\n        margin-top: 50px;\r\n        padding: 10px;\r\n    }\r\n}\r\n\r\n/* ============================================================================================================ */\r\n/* 강의 게시판_viewAll */\r\n\r\n\r\n\r\n\r\n/* ============================================================================================================ */\r\n/* 강의 게시판_detail */\r\n.class_detail_container_box {\r\n    position: relative;\r\n    padding: 50px 0;\r\n    background: #002333;\r\n}\r\n\r\n.class_detail_container {\r\n    padding: 0 10vw;\r\n}\r\n\r\n.class_detail_container_lr {\r\n    display: flex;\r\n    flex: 0 1 auto;\r\n    flex-direction: row;\r\n    flex-wrap: wrap;\r\n    margin: 0 -8px;\r\n}\r\n\r\n.class_detail_container_l {\r\n    display: inline-flex;\r\n    justify-content: center;\r\n    padding: 8px 0;\r\n    flex-basis: 41.66666667%;\r\n    max-width: 41.66666667%;\r\n}\r\n\r\n.class_detail_container_l_img_cover {\r\n    position: relative;\r\n    overflow: hidden;\r\n    width: 100%;\r\n    max-width: 473.33px;\r\n    height: inherit;\r\n    border-radius: 8px;\r\n    /* aspect-ratio: 100/65.088; */\r\n    aspect-ratio: 100/70;\r\n}\r\n\r\n.class_detail_container_l_img_cover img {\r\n    width: 100%;\r\n    height: 100%;\r\n    max-width: 100%;\r\n    display: block;\r\n}\r\n\r\n.class_detail_container_r {\r\n    margin-top: 15px;\r\n    display: flex;\r\n    flex-direction: column;\r\n    padding: 0 0 0 32px;\r\n    flex-basis: 58.33333333%;\r\n    max-width: 50.33333333%;\r\n}\r\n\r\n.class_detail_container_r_banner {\r\n    overflow: hidden;\r\n    display: flex;\r\n    align-items: center;\r\n    margin-bottom: 6px;\r\n    flex-wrap: wrap;\r\n}\r\n\r\n.class_detail_container_r_title_box {\r\n    margin-bottom: 40px;\r\n}\r\n\r\n.class_detail_container_r_content_box {\r\n    margin-bottom: 40px;\r\n}\r\n\r\n.class_detail_container_r_info_box {\r\n    font-weight: 400;\r\n    line-height: 1.43;\r\n    letter-spacing: -.3px;\r\n    font-size: 14px;\r\n    display: flex;\r\n    flex-wrap: wrap;\r\n    margin-bottom: 8px;\r\n    color: #fff;\r\n}\r\n\r\n.class_detail_container_r_language {\r\n    margin-top: 10px;\r\n    margin-bottom: 12px;\r\n    display: flex;\r\n    flex-wrap: wrap;\r\n    align-items: center;\r\n}\r\n\r\n.class_detail_container_r_payment_box {\r\n    display: flex;\r\n    align-items: center;\r\n    justify-content: space-between;\r\n    margin-top: 30px;\r\n    width: 100%;\r\n    height: 20px;\r\n}\r\n\r\n.class_detail_container_r_banner_label {\r\n    display: flex;\r\n    align-items: center;\r\n}\r\n\r\n.class_detail_container_r_banner_label span {\r\n    display: inline-flex;\r\n    align-items: center;\r\n    justify-content: center;\r\n    line-height: 1.5;\r\n    letter-spacing: -.3px;\r\n    margin-right: 10px;\r\n    padding: 0 10px;\r\n    color: #fff;\r\n    font-weight: 700;\r\n    background-color: #3D64BF;\r\n}\r\n\r\n.class_detail_container_r_banner span {\r\n    font-size: 15px;\r\n    color: #fff;\r\n}\r\n\r\n.class_detail_container_r_title {\r\n    line-height: 1.5;\r\n    letter-spacing: -.3px;\r\n    color: #fff;\r\n    font-weight: 700;\r\n    font-size: 26px;\r\n    word-break: break-word;\r\n}\r\n\r\n.class_detail_container_r_content {\r\n    line-height: 1.5;\r\n    letter-spacing: -.3px;\r\n    color: #fff;\r\n    font-weight: 700;\r\n    font-size: 15px;\r\n    word-break: break-word;\r\n}\r\n\r\n.class_detail_container_r_info_star_box {\r\n    margin-right: 8px;\r\n}\r\n\r\n.class_detail_container_r_info_star {\r\n    width: 70px;\r\n    position: relative;\r\n    display: inline-block;\r\n}\r\n\r\n.class_detail_container_r_info_star_inr {\r\n    display: flex;\r\n}\r\n\r\n.class_detail_container_r_language span {\r\n    font-weight: 400;\r\n    line-height: 1.5;\r\n    letter-spacing: -.3px;\r\n    font-size: 12px;\r\n    margin-right: 4px;\r\n    padding: 4px 12px;\r\n    border-radius: 100px;\r\n    background-color: #173f51;\r\n    color: #fff;\r\n    font-weight: 500;\r\n}\r\n\r\n.class_detail_container_r_payment_price {\r\n    color: #fff;\r\n    font-size: 20px;\r\n    font-weight: 700;\r\n}\r\n\r\n.class_detail_container_r_payment_classes button {\r\n    background-color: transparent;\r\n    border: none;\r\n    color: #ffffff74;\r\n    padding: 10px 30px;\r\n    background-color: #3d64bf76;\r\n    border-radius: 5px;\r\n    cursor: pointer;\r\n}\r\n\r\n.class_detail_container_r_payment_classes button:hover {\r\n    color: #fff;\r\n    background-color: #3D64BF;\r\n}\r\n\r\n@media screen and (max-width: 1000px) {\r\n    .class_detail_container_lr {  \r\n        flex-direction: column-reverse;\r\n        align-items: flex-start;\r\n    }\r\n    .class_detail_container_l {\r\n        margin-top: 32px;\r\n        width: 100%;\r\n        max-width: 100%;\r\n        z-index: 7;\r\n    }\r\n    .class_detail_container_l_img_cover {\r\n        padding-left: unset;\r\n        width: auto;\r\n    }\r\n    .class_detail_container_r {\r\n        padding: 0;\r\n        max-width: 100%\r\n    }\r\n}\r\n\r\n.class_container {\r\n    margin: 0;\r\n    margin-top: 10px;\r\n    font-size: 1rem;\r\n    /* background-color: #2E2E2E; */\r\n    padding: 0 10vw;\r\n}\r\n\r\nul.class_tabs {\r\n    margin: 0px;\r\n    padding: 0px 5px;\r\n    list-style: none;\r\n    font-weight: bold;\r\n}\r\n\r\nul.class_tabs li {\r\n    background: none;\r\n    color: #222;\r\n    display: inline-block;\r\n    padding: 10px 15px;\r\n}\r\n\r\nul.class_tabs li:hover {\r\n    text-decoration: underline;\r\n    text-decoration-color: #0000007e;\r\n    text-decoration-thickness: 2px;\r\n    text-underline-offset: 3px;\r\n    background-color: #ededed;\r\n}\r\n\r\nul.class_tabs li.class_current {\r\n    background: #ededed;\r\n    color: #222;\r\n    }\r\n\r\n.class_tab_content {\r\n    /* display: none; */\r\n    background: #ededed;\r\n    margin: 5px;\r\n    margin-bottom: 40px;\r\n    padding: 20px;\r\n    line-height: 20px;\r\n    \r\n    }\r\n\r\n.class_tab_content>p {\r\n    text-align: center;\r\n}\r\n\r\n.class_tab_content_title {\r\n    margin: 5px;\r\n    text-decoration: underline;\r\n    text-decoration-thickness: 1px;\r\n    text-underline-offset: 3px;\r\n    font-weight: bold;\r\n}\r\n\r\n/* ============================================================================================================ */\r\n/* 강의게시판rating */\r\n\r\n.class_detail_rating_tab {\r\n    margin: 0px;\r\n    list-style: none;\r\n    font-weight: bold;\r\n}\r\n\r\n.class_detail_rating_form {\r\n    background: #ededed;\r\n    margin-top: 8px;\r\n    margin-bottom: 40px;\r\n    padding: 20px;\r\n    line-height: 20px;\r\n    \r\n}\r\n\r\n.class_detail_rating_form_text>textarea {\r\n    background-color: transparent;\r\n    width: 100%;\r\n    resize: none;\r\n}\r\n\r\n.class_detail_rating_form_content {\r\n    display: flex;\r\n    align-items: center;\r\n    justify-content: space-between;\r\n    padding-top: 10px;\r\n}\r\n\r\n.class_detail_rating_form_button>button {\r\n    padding: 10px 30px;\r\n}\r\n\r\n.class_detail_rating_view_tab {\r\n    display: flex;\r\n    padding: 10px;\r\n}\r\n\r\n.class_detail_rating_tab_title {\r\n    margin: 10px;\r\n}\r\n\r\n.class_detail_rating_tab_title>span>a {\r\n    cursor: pointer;\r\n}\r\n\r\n.class_detail_rating_tab_title>span>a:hover {\r\n    color: red;\r\n}\r\n\r\n.class_detail_rating_list_div {\r\n    background: #ededed;\r\n    margin: 10px 0;\r\n    padding: 20px;\r\n    line-height: 20px;\r\n    \r\n}\r\n\r\n.class_detail_rating_list_user {\r\n    color: #0000007e;\r\n    display: flex;\r\n    justify-content: space-between;\r\n}\r\n\r\n.class_detail_rating_list_text {\r\n    padding-top: 5px;\r\n}\r\n\r\n.class_detail_rating_user_button {\r\n    display: flex;\r\n    justify-content: end;\r\n}\r\n\r\n.class_detail_rating_user_update_button>button {\r\n    padding: 5px 20px;\r\n    margin-right: 5px;\r\n}\r\n\r\n.class_detail_rating_user_delete_button>button {\r\n    padding: 5px 20px;\r\n}\r\n\r\n\r\n\r\n/* ============================================================================================================ */\r\n/* 강의 게시판Community */\r\n\r\n.class_detail_commu_form_content {\r\n    display: flex;\r\n    align-items: center;\r\n    justify-content: end;\r\n    padding-top: 10px;\r\n}\r\n\r\n/* ============================================================================================================ */\r\n/* 강의게시판Notice */\r\n\r\n.class_detail_notice_main {\r\n    text-align: center;\r\n    \r\n    /* border: 1px solid; */\r\n}\r\n\r\n.class_detail_notice_main_div {\r\n    /* background-color: #ededed18; */\r\n    border: 1px solid;\r\n    padding: 10px;\r\n}\r\n\r\n.class_detail_notice_title {\r\n    font-weight: bold;\r\n    font-size: 1.2rem;\r\n    margin-bottom: 5px;\r\n}\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n/* flex */\r\n.row{display: -webkit-box;display: -ms-flexbox;display: flex;-webkit-box-orient: horizontal; -ms-flex-direction: row; flex-direction: row;-webkit-box-lines: multiple; -ms-flex-wrap: wrap; flex-wrap: wrap;}\r\n.culumn{display: -webkit-box;display: -ms-flexbox;display: flex;-webkit-box-orient: vertical; -ms-flex-direction: column; flex-direction: column;-webkit-box-lines: multiple; -ms-flex-wrap: wrap; flex-wrap: wrap;}\r\n.jcS{-webkit-box-pack: start; -ms-flex-pack: start; justify-content: flex-start;}\r\n.jcE{-webkit-box-pack: end; -ms-flex-pack: end; justify-content: flex-end;}\r\n.jcC{-webkit-box-pack: center; -ms-flex-pack: center; justify-content: center;}\r\n.jcB{-webkit-box-pack: justify; -ms-flex-pack: justify; justify-content: space-between;}\r\n.aiS{-webkit-box-align: start; -ms-flex-align: start; align-items: flex-start;} \r\n.aiE{-webkit-box-align: end; -ms-flex-align: end; align-items: flex-end;}\r\n.aiC{-webkit-box-align: center; -ms-flex-align: center; align-items: center;}\r\n\r\n/* 공통 스타일 */\r\n.whr{\r\n    width: 100%;\r\n    max-width: 1520px;\r\n    margin: 20px auto 10px auto;\r\n    font-size: 14px;\r\n    color: #999;\r\n}\r\n.whr span:last-child{\r\n    font-weight: 700;\r\n    color: #333;\r\n}\r\n.whr span:nth-child(even){\r\n    margin: 0 10px;\r\n}\r\n\r\n/* 배너 스타일 */\r\n.bannerBox{\r\n    width: 100%;\r\n    height: 350px;\r\n    margin-bottom: 30px;\r\n\r\n}\r\n.banner{\r\n    width: 100%;\r\n    height: 100%;\r\n    margin: 0 auto;\r\n\r\n}\r\n\r\n/* 메인 섹션 스타일 */\r\n.mainSec{\r\n    width: 100%;\r\n    padding: 0 10vw;\r\n    margin-top: 30px;\r\n}\r\n.mainSectionpost{\r\n    width: 100%;\r\n    padding: 310px 20px;\r\n    max-width: 1520px;\r\n    margin-top: -150px;\r\n}\r\n\r\n\r\n/* 왼쪽 네비게이션 스타일 */\r\n.leftNav{\r\n    width: 180px;\r\n}\r\n.leftNav > p{\r\n    margin-bottom: 10px;\r\n    font-size: 20px;\r\n    color: #999;\r\n    padding: 10px 0;\r\n}\r\n.mainNav li{\r\n    cursor: pointer;\r\n}\r\n.mainNav > li{\r\n    font-weight: bold;\r\n    margin-bottom: 9px;\r\n    font-size: 16px;\r\n    padding: 10px 0;\r\n}\r\n.mainNav > li:last-child{\r\n    margin-bottom: 0px;\r\n}\r\n.subNav{\r\n    margin-top: 10px;\r\n    padding-left: 10px;\r\n}\r\n.subNav > li{\r\n    margin-bottom: 5px;\r\n    font-size: 14px;\r\n    font-weight: 400;\r\n    color: #999;\r\n    /* display: none; */\r\n}\r\n.subNav > li:last-child{\r\n    margin-bottom: 0px;\r\n}\r\n.subNav > li.active{\r\n    font-weight: 700;\r\n    color: #333;\r\n}\r\n\r\n\r\n/* 게시판 컨테이너 스타일 */\r\n.board_container{\r\n    width: 100%;\r\n    max-width: calc(100% - 440px); /* 예시로 440px 감안 */\r\n}\r\n.searchbox{\r\n    margin-bottom: 30px;\r\n}\r\n.searchbox input[type=text]{\r\n    width: calc(100% - 90px);\r\n    height: 40px;\r\n    margin: 10px 0;\r\n    border: none;\r\n    background: #eee;\r\n    line-height: 40px;\r\n}\r\n.searchbox button{\r\n    width: 80px;\r\n    height: 40px;\r\n    border-radius: 0;\r\n    border: none;\r\n    font-size: 14px;\r\n    font-weight: 500;\r\n    cursor: pointer;\r\n    background-color: aquamarine;\r\n}\r\n.titBox{\r\n    padding-bottom: 10px;\r\n    margin-bottom: 10px;\r\n    border-bottom: 1px solid #ccc;\r\n}\r\n.titBox .sort ul li{\r\n    margin-right: 10px;\r\n    font-size: 14px;\r\n    cursor: pointer;\r\n    color: #999;\r\n}\r\n.titBox .sort ul li span{\r\n    display: block;\r\n    margin-right: 5px;\r\n    width: 5px;\r\n    height: 5px;\r\n    border-radius: 50%;\r\n    background: #999;\r\n}\r\n.titBox .sort ul li.active{\r\n    color: #333;\r\n    font-weight: 500;\r\n}\r\n.titBox .sort ul li.active span{\r\n    background: orange;\r\n}\r\n.titBox .btnbox button{\r\n    width: 70px;\r\n    height: 30px;\r\n    font-size: 14px;\r\n    border: none;\r\n    cursor: pointer;\r\n    background-color: #333333;\r\n    color: #ffffff; /* 흰색으로 설정 */\r\n}\r\n.titBox .btnbox button:first-child{\r\n    margin-right: 5px;\r\n}\r\n\r\n\r\n/* 상세 게시판 등 스타일 */\r\n.board_detail_rating_list{\r\n    background: #ededed;\r\n    margin: 10px 0;\r\n    padding: 20px;\r\n    line-height: 20px;\r\n}\r\n.contBox .cont{\r\n    width: 100%;\r\n    padding-bottom: 10px;\r\n    margin-bottom: 10px;\r\n    border-bottom: 1px solid #ccc;\r\n    line-height: 20px;\r\n}\r\n.contBox .cont .item{\r\n    width: 100%;\r\n    height: 200px;\r\n    background: #eee;\r\n}\r\n\r\n/* 추천 및 리뷰 스타일 */\r\n.best{\r\n    width: 180px;\r\n}\r\n.best > p{\r\n    margin-bottom: 10px;\r\n    font-size: 14px;\r\n    color: #999;\r\n}\r\n.best ul li{\r\n    width: 100%;\r\n    margin-bottom: 5px;\r\n    padding: 5px 10px;\r\n    background: #eee;\r\n    font-size: 12px;\r\n}\r\n\r\n/* 포스트 관련 스타일 */\r\n.postBox{\r\n    width: 100%;\r\n    padding: 30px;\r\n    background: #eee;\r\n    border: 1px solid #999;\r\n}\r\n.postBox label{\r\n    display: block;\r\n    width: 50px;\r\n    margin-bottom: 10px;\r\n}\r\n.postTitBox{\r\n    margin-bottom: 10px;\r\n    font-size: 15px;\r\n    padding: 10px 0;\r\n}\r\n.postTitBox input{\r\n    width: calc(100% - 50px);\r\n    height: 40px;\r\n    border: none;\r\n    background: #ccc;\r\n    padding: 10px;\r\n}\r\n.postInfo{\r\n    margin-bottom: 10px;\r\n    padding-bottom: 10px;\r\n    border-bottom: 1px solid #999;\r\n}\r\n.postInfo p{\r\n    font-size: 12px;\r\n    margin-right: 10px;\r\n    color: #999;\r\n}\r\n.postInfo p:last-child{\r\n        margin: 15px 0;\r\n}\r\n.postInfo p span{\r\n    display: inline-block;\r\n    margin-left: 5px;\r\n    font-size: 14px;\r\n    font-weight: 500;\r\n    color: #333;\r\n}\r\n.postContBox{\r\n    margin-bottom: 10px;\r\n}\r\n.postContBox label{\r\n    padding-top: 10px;\r\n        font-size: 15px;\r\n    padding: 10px 0;\r\n}\r\n.postContBox textarea{\r\n    width: calc(100% - 50px);\r\n    height: 300px;\r\n    border: none;\r\n    background: #ccc;\r\n    resize: none;\r\n}\r\n.laguage{\r\n    margin: 0 0 30px 50px;\r\n}\r\n.laguage li{\r\n    font-size: 12px;\r\n    margin-right: 5px;\r\n    padding: 5px 10px;\r\n    background-color: #ccc;\r\n}\r\n.laguage li:last-child{\r\n    margin-right: 0;\r\n}\r\n.reco > div{\r\n    margin: 0 20px;\r\n}\r\n.reco p{\r\n    margin: 0 15px;\r\n    font-size: 18px;\r\n    font-weight: 700;\r\n}\r\n.reco button{\r\n    width: 40px;\r\n    height: 40px;\r\n    border-radius: 50%;\r\n    border: none;\r\n    background: #ccc;\r\n    cursor: pointer;\r\n}\r\n.reviewBox{\r\n    width: 100%;\r\n    padding: 30px;\r\n    border: 1px solid #999;\r\n}\r\n.reviewBox .number p{\r\n    font-size: 12px;\r\n    color: #999;\r\n}\r\n.reviewBox .number p span{\r\n    font-size: 14px;\r\n    color: #333;\r\n    font-weight: 500;\r\n    margin-left: 5px;\r\n}\r\n.reviewBox .reviewList{\r\n    padding: 10px 0;\r\n}\r\n.reviewBox .reviewList .item:nth-child(even){\r\n    background: #f1f1f1;\r\n    padding: 10px;\r\n    font-size: 14px;\r\n}\r\n.reviewBox .reviewList .item:nth-child(odd){\r\n    background: #ccc;\r\n    padding: 10px;\r\n    font-size: 14px;\r\n}\r\n.reviewBox .reviewPost{\r\n    border: 1px solid #ccc;\r\n}\r\n.reviewBox .reviewPost textarea{\r\n    width: calc(100% - 110px);\r\n    height: 100px;\r\n    resize: none;\r\n    padding: 10px;\r\n    font-size: 14px;\r\n    border: none;\r\n}\r\n.reviewBox .reviewPost button{\r\n    height: 100px;\r\n    width: 100px;\r\n    border: none;\r\n    cursor: pointer;\r\n}\r\n\r\n.bannerImg{\r\n    width: 100%;\r\n}\r\n.bannerImg Img{\r\n    position: absolute;\r\n    top: 50%;\r\n    left: 50%;\r\n    display: inline-block;\r\n    width: 100%;\r\n    max-width: none;\r\n    padding-top: 0;\r\n    transform: translate(-50%, -50%);\r\n    border-radius: 10px;\r\n}\r\n\r\n/* 추가된 모바일 레이아웃 스타일 */\r\n@media (max-width: 1000px) {\r\n    .bannerBox {\r\n        width: 350px;\r\n        height: 200px;\r\n        margin-bottom: 15px;\r\n    }\r\n\r\n    .mainSec {\r\n        padding: 0 10px;\r\n    }\r\n\r\n    .board_container {\r\n        width: 100%;\r\n        max-width: none;\r\n    }\r\n\r\n    .leftNav {\r\n        width: 100%;\r\n        padding: 10px;\r\n    }\r\n\r\n    .searchbox input[type=text] {\r\n        width: 100%;\r\n        margin-right: 0;\r\n    }\r\n\r\n    .titBox .sort ul li {\r\n        margin-right: 5px;\r\n        font-size: 12px;\r\n    }\r\n\r\n    .titBox .btnbox button {\r\n        width: 60px;\r\n        height: 24px;\r\n    }\r\n\r\n    .contBox .cont .item {\r\n        height: 150px;\r\n    }\r\n\r\n    .postBox {\r\n        padding: 20px;\r\n    }\r\n\r\n    .postTitBox input {\r\n        width: 100%;\r\n    }\r\n\r\n    .postContBox textarea {\r\n        width: 100%;\r\n    }\r\n\r\n    .laguage {\r\n        margin: 0;\r\n    }\r\n\r\n    .reco > div {\r\n        margin: 0 10px;\r\n    }\r\n\r\n    .reco p {\r\n        margin: 0 10px;\r\n        font-size: 16px;\r\n    }\r\n\r\n    .reco button {\r\n        width: 30px;\r\n        height: 30px;\r\n    }\r\n\r\n    .reviewBox {\r\n        padding: 20px;\r\n    }\r\n\r\n    .reviewBox .number p {\r\n        font-size: 14px;\r\n    }\r\n\r\n    .reviewBox .number p span {\r\n        font-size: 16px;\r\n    }\r\n\r\n    .reviewBox .reviewList .item {\r\n        padding: 10px;\r\n        font-size: 12px;\r\n    }\r\n\r\n    .reviewBox .reviewPost textarea {\r\n        height: 80px;\r\n    }\r\n\r\n    .reviewBox .reviewPost button {\r\n        height: 80px;\r\n        width: 80px;\r\n    }\r\n    }\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -38963,36 +38790,6 @@ var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js
 
 /***/ }),
 
-/***/ "./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!./node_modules/vue-loader/dist/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/components/BoardComponent.vue?vue&type=style&index=0&id=15212468&scoped=true&lang=css":
-/*!**********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!./node_modules/vue-loader/dist/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/components/BoardComponent.vue?vue&type=style&index=0&id=15212468&scoped=true&lang=css ***!
-  \**********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
-/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_use_1_node_modules_vue_loader_dist_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_use_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_BoardComponent_vue_vue_type_style_index_0_id_15212468_scoped_true_lang_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!../../node_modules/vue-loader/dist/stylePostLoader.js!../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./BoardComponent.vue?vue&type=style&index=0&id=15212468&scoped=true&lang=css */ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!./node_modules/vue-loader/dist/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/components/BoardComponent.vue?vue&type=style&index=0&id=15212468&scoped=true&lang=css");
-
-            
-
-var options = {};
-
-options.insert = "head";
-options.singleton = false;
-
-var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_use_1_node_modules_vue_loader_dist_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_use_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_BoardComponent_vue_vue_type_style_index_0_id_15212468_scoped_true_lang_css__WEBPACK_IMPORTED_MODULE_1__["default"], options);
-
-
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_use_1_node_modules_vue_loader_dist_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_use_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_BoardComponent_vue_vue_type_style_index_0_id_15212468_scoped_true_lang_css__WEBPACK_IMPORTED_MODULE_1__["default"].locals || {});
-
-/***/ }),
-
 /***/ "./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!./node_modules/vue-loader/dist/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/components/MainComponent.vue?vue&type=style&index=0&id=10ba9c23&lang=css":
 /*!*********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!./node_modules/vue-loader/dist/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/components/MainComponent.vue?vue&type=style&index=0&id=10ba9c23&lang=css ***!
@@ -39514,30 +39311,9 @@ if (false) {}
 /*!*************************************************!*\
   !*** ./resources/components/BoardComponent.vue ***!
   \*************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _BoardComponent_vue_vue_type_template_id_15212468_scoped_true__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./BoardComponent.vue?vue&type=template&id=15212468&scoped=true */ "./resources/components/BoardComponent.vue?vue&type=template&id=15212468&scoped=true");
-/* harmony import */ var _BoardComponent_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./BoardComponent.vue?vue&type=script&lang=js */ "./resources/components/BoardComponent.vue?vue&type=script&lang=js");
-/* harmony import */ var _BoardComponent_vue_vue_type_style_index_0_id_15212468_scoped_true_lang_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./BoardComponent.vue?vue&type=style&index=0&id=15212468&scoped=true&lang=css */ "./resources/components/BoardComponent.vue?vue&type=style&index=0&id=15212468&scoped=true&lang=css");
-/* harmony import */ var _node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../node_modules/vue-loader/dist/exportHelper.js */ "./node_modules/vue-loader/dist/exportHelper.js");
+/***/ (() => {
 
 
-
-
-;
-
-
-const __exports__ = /*#__PURE__*/(0,_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_3__["default"])(_BoardComponent_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__["default"], [['render',_BoardComponent_vue_vue_type_template_id_15212468_scoped_true__WEBPACK_IMPORTED_MODULE_0__.render],['__scopeId',"data-v-15212468"],['__file',"resources/components/BoardComponent.vue"]])
-/* hot reload */
-if (false) {}
-
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (__exports__);
 
 /***/ }),
 
@@ -39700,22 +39476,6 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/components/BoardComponent.vue?vue&type=script&lang=js":
-/*!*************************************************************************!*\
-  !*** ./resources/components/BoardComponent.vue?vue&type=script&lang=js ***!
-  \*************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_BoardComponent_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__["default"])
-/* harmony export */ });
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_BoardComponent_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./BoardComponent.vue?vue&type=script&lang=js */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/components/BoardComponent.vue?vue&type=script&lang=js");
- 
-
-/***/ }),
-
 /***/ "./resources/components/FooterComponent.vue?vue&type=script&lang=js":
 /*!**************************************************************************!*\
   !*** ./resources/components/FooterComponent.vue?vue&type=script&lang=js ***!
@@ -39812,22 +39572,6 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/components/BoardComponent.vue?vue&type=template&id=15212468&scoped=true":
-/*!*******************************************************************************************!*\
-  !*** ./resources/components/BoardComponent.vue?vue&type=template&id=15212468&scoped=true ***!
-  \*******************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   render: () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_BoardComponent_vue_vue_type_template_id_15212468_scoped_true__WEBPACK_IMPORTED_MODULE_0__.render)
-/* harmony export */ });
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_BoardComponent_vue_vue_type_template_id_15212468_scoped_true__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./BoardComponent.vue?vue&type=template&id=15212468&scoped=true */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/components/BoardComponent.vue?vue&type=template&id=15212468&scoped=true");
-
-
-/***/ }),
-
 /***/ "./resources/components/FooterComponent.vue?vue&type=template&id=62bb55c1":
 /*!********************************************************************************!*\
   !*** ./resources/components/FooterComponent.vue?vue&type=template&id=62bb55c1 ***!
@@ -39917,19 +39661,6 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _node_modules_style_loader_dist_cjs_js_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_use_1_node_modules_vue_loader_dist_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_use_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_AppComponent_vue_vue_type_style_index_0_id_1a737966_lang_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../node_modules/style-loader/dist/cjs.js!../../node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!../../node_modules/vue-loader/dist/stylePostLoader.js!../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./AppComponent.vue?vue&type=style&index=0&id=1a737966&lang=css */ "./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!./node_modules/vue-loader/dist/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/components/AppComponent.vue?vue&type=style&index=0&id=1a737966&lang=css");
-
-
-/***/ }),
-
-/***/ "./resources/components/BoardComponent.vue?vue&type=style&index=0&id=15212468&scoped=true&lang=css":
-/*!*********************************************************************************************************!*\
-  !*** ./resources/components/BoardComponent.vue?vue&type=style&index=0&id=15212468&scoped=true&lang=css ***!
-  \*********************************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_style_loader_dist_cjs_js_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_use_1_node_modules_vue_loader_dist_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_use_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_BoardComponent_vue_vue_type_style_index_0_id_15212468_scoped_true_lang_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../node_modules/style-loader/dist/cjs.js!../../node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!../../node_modules/vue-loader/dist/stylePostLoader.js!../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./BoardComponent.vue?vue&type=style&index=0&id=15212468&scoped=true&lang=css */ "./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!./node_modules/vue-loader/dist/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/components/BoardComponent.vue?vue&type=style&index=0&id=15212468&scoped=true&lang=css");
 
 
 /***/ }),
