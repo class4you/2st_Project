@@ -30,6 +30,7 @@ const store = createStore({
                 userEmail: '',
             },
             userLoginChk: null,
+            shouldShowCarousel: false
 
 
 
@@ -93,6 +94,9 @@ const store = createStore({
         },
         setUserLoginChk(state, userLoginChk) {
             state.userLoginChk = userLoginChk;
+        },
+        setShowCarousel(state, value) {
+            state.shouldShowCarousel = value;
         },
         
 
@@ -230,6 +234,14 @@ const store = createStore({
                 // window.location.href = '/';
             })
             .catch(err => console.log(err.response.data))
+        },
+        checkWindowWidth(context) {
+            // 특정 크기 이상이면 캐러셀을 표시
+            if (window.innerWidth <= 770) {
+                context.commit('setShowCarousel', true);
+            } else {
+                context.commit('setShowCarousel', false);
+            }
         },
         
 

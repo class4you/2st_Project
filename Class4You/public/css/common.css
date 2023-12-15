@@ -617,6 +617,18 @@ footer {
 
 .main_container_new_card {
     display: block;
+    padding: 15px;
+    border-radius: 10px;
+    transition: box-shadow 0.3s ease;
+    position: relative;
+    top: 0; /* 초기 위치 */
+    transition: top 0.3s ease;
+}
+
+.main_container_new_card:hover {
+    position: relative;
+    top: -5px;
+    box-shadow: 0px 15px 20px 2px rgba(125, 125, 125, 0.2);
 }
 
 .main_container_new_card_img {
@@ -709,11 +721,22 @@ footer {
     display: grid; 
     transition: all 0.2s;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 20px
+    gap: 20px;
 }
 
 .main_container_hot_card {
     display: block;
+    border-radius: 30px;
+    transition: box-shadow 0.3s ease;
+    position: relative;
+    top: 0; /* 초기 위치 */
+    transition: top 0.3s ease;
+}
+
+.main_container_hot_card:hover {
+    position: relative;
+    top: -5px;
+    box-shadow: 0px 15px 20px 5px rgba(163, 163, 163, 0.5);
 }
 
 .main_container_hot_card_img {
@@ -753,6 +776,17 @@ footer {
 
 .main_container_keyword_card {
     display: block;
+    border-radius: 20px;
+    position: relative;
+    top: 0; /* 초기 위치 */
+    transition: top 0.3s ease;
+}
+
+
+.main_container_keyword_card:hover {
+    position: relative;
+    top: -5px;
+    box-shadow: 0px 15px 20px 5px rgba(218, 218, 218, 0.5);
 }
 
 .main_container_keyword_card_img {
@@ -1722,6 +1756,51 @@ ul.class_tabs li.class_current {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /* flex */
 .row{display: -webkit-box;display: -ms-flexbox;display: flex;-webkit-box-orient: horizontal; -ms-flex-direction: row; flex-direction: row;-webkit-box-lines: multiple; -ms-flex-wrap: wrap; flex-wrap: wrap;}
 .culumn{display: -webkit-box;display: -ms-flexbox;display: flex;-webkit-box-orient: vertical; -ms-flex-direction: column; flex-direction: column;-webkit-box-lines: multiple; -ms-flex-wrap: wrap; flex-wrap: wrap;}
@@ -2071,7 +2150,7 @@ ul.class_tabs li.class_current {
 }
 
 /* 추가된 모바일 레이아웃 스타일 */
-@media (max-width: 767px) {
+@media (max-width: 1000px) {
     .bannerBox {
         width: 350px;
         height: 200px;
