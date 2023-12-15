@@ -7,7 +7,7 @@
 	
 			<div class="bannerBox">
 			<div class="banner">
-				<img class="bannerImg" src="../doc/img/boardbg.PNG" alt="board_banner_img">
+				<!-- <img class="bannerImg" src="../doc/img/boardbg.PNG" alt="board_banner_img"> -->
 			</div>
 			</div>
 	
@@ -70,6 +70,8 @@
 	import axios from 'axios';
 	// 하위 카테고리별 목록
 	export default {
+		name: 'BoardComponent',
+
 		data() {
 		return {
 			boardItems: [],
