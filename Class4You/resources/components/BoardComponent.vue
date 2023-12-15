@@ -1,70 +1,111 @@
-	<template>
-		<div id="wrap">
-		<form @submit.prevent="search">
-			<div class="whr">
-			<title>커뮤니티리스트</title>
-			</div>
-	
-			<div class="bannerBox">
-			<div class="banner">
-				<img class="bannerImg" src="/img/background-img.png" alt="board_banner_img">
-			</div>
-			</div>
-	
-			<section class="mainSec row jcB">
-			<article class="leftNav">
-				<p>정보를 공유해요시른데요</p>
-				<ul class="mainNav">
-				<li @click="selectCategory('question')" :class="{ active: activeCategory === 'question' }">질문 게시판</li>
-				<li @click="selectCategory('free')" :class="{ active: activeCategory === 'free' }">자유 게시판</li>
-				<ul class="subNav" v-if="activeCategory === 'question'">
-					<li v-for="category in categories" :key="category.id" class="row jcB">
-					<p @click="selectSubCategory(category.id)">{{ category.name }}</p>
-					<p>{{ getCategoryItemCount(category.id) }}</p>
-					</li>
-				</ul>
-				</ul>
-			</article>
-	
-			<div class="board_container">
-				<div class="searchbox row aiC">
-				<input v-model="searchText" type="text" id="searchTxt">
-				<button type="submit">검색</button>
-				</div>
-	
-				<div class="titBox row jcB aiC">
-				<div class="sort">
-					<ul class="row aiC">
-					<li class="row aiC" @click="sortByRecent"><span></span>최신순</li>
-					<li class="row aiC" @click="sortByPopularity"><span></span>인기순</li>
-					<li class="row aiC" @click="sortByViews"><span></span>조회순</li>
-					</ul>
-				</div>
-				<div class="btnbox row aiC">
-					<button @click="markAsResolved" type="button">해결완료</button>
-					<button @click="goToBoardInsert" type="button">글작성</button>
-				</div>
-				</div>
-	
-				<div class="board_detail_rating_list">
-				<div class="contBox" v-for="item in filteredBoardItems" :key="item.id">
-					<div class="cont">
-					<div class="item">{{ item.title }}</div>
-					</div>
-				</div>
-				</div>
-			</div>
-	
-			<article class="best">
-				<p>bestreviewer</p>
-				<ul>
-				<li v-for="bestuserItem in bestuserItems" :key="bestuserItem.id">{{ bestuserItem.name }}</li>
-				</ul>
-			</article>
-			</section>
-		</form>
+<template>
+	<div id="wrap">
+		<div class="whr"><span>게시판</span><span>></span><span>게시판</span>
+	</div><!-- whr -->
+
+	<div class="bannerBox">
+		<div class="banner">
+		<!-- <img class="bannerImg" src="/img/event_banner_2.png" alt="board_banenr_img"> -->
 		</div>
-	</template>
+	</div><!-- banner -->
+
+	<section class="mainSec row jcB">
+
+		<article class="leftNav">
+		<p>정보를 공유해요</p>
+		<ul class="mainNav">
+			<li>자유 게시판</li>
+			<li>질문 게시판</li>
+			<ul class="subNav">
+				<li class="row jcB active">
+				<p>HTML</p>
+				<p>0</p>
+				</li>
+				<li class="row jcB">
+				<p>CSS</p>
+				<p>0</p>
+				</li>
+				<li class="row jcB">
+				<p>JS</p>
+				<p>0</p>
+				</li>
+				<li class="row jcB">
+				<p>PHP</p>
+				<p>0</p>
+				</li>
+				<li class="row jcB">
+				<p>JAVA</p>
+				<p>0</p>
+				</li>
+				<li class="row jcB">
+				<p>DB</p>
+				<p>0</p>
+				</li>
+				<li class="row jcB">
+				<p>TOOL</p>
+				<p>0</p>
+				</li>
+			</ul>
+		</ul>
+		</article><!-- leftNav -->
+	
+		<div class="board_container">
+		<div class="searchbox row aiC">
+			<input type="text" id="searchTxt">
+			<button type="submit" for="">검색</button>
+		</div>
+
+		<div class="titBox row jcB aiC">
+			<div class="sort">
+			<ul class="row aiC">
+				<li class="row aiC active"><span></span>최신순</li>
+				<li class="row aiC"><span></span>인기순</li>
+				<li class="row aiC"><span></span>조회순</li>
+			</ul>
+			</div>
+			<div class="btnbox row aiC">
+			<button type="button">미해결</button>
+			<button type="button">글작성</button>
+			</div>
+		</div><!-- titBox -->
+		<div class="board_detail_rating_list">
+		<div class="contBox">
+			<div class="cont">
+			<div class="item"></div>
+			</div>
+		</div>
+		<div class="contBox">
+			<div class="cont">
+			<div class="item"></div>
+			</div>
+		</div>
+		<div class="contBox">
+			<div class="cont">
+			<div class="item"></div>
+			</div>
+		</div>
+		<div class="contBox">
+			<div class="cont">
+			<div class="item"></div>
+			</div>
+		</div>
+		</div><!-- container -->
+		</div>
+
+		<article class="best">
+		<p>best</p>
+		<ul>
+			<li>1.홍길동</li>
+			<li>2.홍길동</li>
+			<li>3.홍길동</li>
+			<li>4.홍길동</li>
+			<li>5.홍길동</li>
+			<li>6.홍길동</li>
+		</ul>
+		</article><!-- best -->
+	</section>
+</div>
+</template>
 	
 	<script>
 	import axios from 'axios';
@@ -155,7 +196,6 @@
 	};
 	</script>
 	
-	<style scoped>
-	/* 필요한 스타일을 여기에 추가 */
+	<style>
 	</style>
 	
