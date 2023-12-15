@@ -10,15 +10,17 @@
                                     <div class="main_visual_slider_track">
                                         <div class="main_visual_slider_track_slick">
                                             <div class="main_visual_slider_track_slick_item">
-                                                <Carousel ref="carousel" :autoplay="autoplayDuration" :wrap-around="true" >
-                                                    <Slide v-for="slide in giftItems" :key="slide">
+                                                <Carousel ref="carousel" :autoplay="autoplayDuration" :wrap-around="true" @after-slide="updateIndex" >
+                                                    <Slide v-for="slide in giftItems" :key="slide.id">
                                                         <a href="">
-                                                            <img :src="slide.images">
-                                                            <div v-if="selectedGift">
-                                                                <img :src="selectedGift" alt="선택된 선물 이미지">
-                                                            </div>
+                                                            <img :src="slide.images[0]">
                                                         </a>
                                                     </Slide>
+                                                    <template #addons>
+                                                        <Navigation />
+                                                        <Pagination />
+                                                        <div style="margin-bottom: 10px;"></div>
+                                                    </template>
                                                 </Carousel>
                                             </div>
                                         </div>
@@ -26,12 +28,12 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="main_nav">
+                        <!-- <div class="main_nav">
                             <div class="main_nav_num_space">
                                 <div class="index-wrapper">
-                                    <span class="current-index">2</span>
+                                    <span class="current-index">{{ currentIndex + 1 }}</span>
                                     /
-                                    <span class="total-count">7</span>
+                                    <span class="total-count">{{ giftItems.length }}</span>
                                 </div>
                                 <div class="control-wrapper">
                                     <button @click="prevSlide">&#60;</button>
@@ -43,14 +45,12 @@
 
                             <div class="main_nav_selection">
                                 <div class="main_nav_selection_box">
-                                    <span class="main_nav_selection_btn mr_10" v-for="(gift, index) in giftItems" :key="index" @click="selectGift(gift.images[0])">
+                                    <span class="main_nav_selection_btn mr_10" v-for="(gift, index) in giftItems" :key="index" @click="selectGift(index)">
                                         {{ gift.name }}
                                     </span>
-                                    <span class="main_nav_selection_btn">김영한님의 선물</span>
-                                    <span class="main_nav_selection_btn ml_10">김영한님의 선물</span>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
 
                     <hr style="margin: 0px; padding: 0px;">
@@ -81,7 +81,7 @@
                         </ul>
                     </div>
 
-                    <img class="main_banner" src="/img/banner-1.jpg" alt="">
+                    <img class="main_banner" src="/img/event_banner_1.png" alt="">
 
                     <div class="main_new_text">
                         <h3>HOT 추천강의</h3>
@@ -90,17 +90,17 @@
 
                     <div class="main_container_hot_box">
                         <ul class="main_container_hot">
-                            <a v-for="item in newClassItems" :key="item.id" href="">
+                            <a v-for="item in hot_banners" :key="item.id" href="">
                                 <li class="main_container_hot_card">
                                     <div class="main_container_hot_card_img">
-                                        <img src="/img/img-2.png" alt="">
+                                        <img :src="item" alt="">
                                     </div>
                                 </li>
                             </a>
                         </ul>
                     </div>
 
-                        <img class="main_banner" src="/img/banner-1.jpg" alt="">
+                        <img class="main_banner" src="/img/event_banner_2.png" alt="">
 
                     <div class="main_new_text">
                         <h3>학습 가이드</h3>
@@ -109,66 +109,10 @@
 
                     <div class="main_container_keyword_box">
                         <ul class="main_container_keyword">
-                            <a href="">
+                            <a v-for="item in guide_banners" :key="item.id" href="">
                                 <li class="main_container_keyword_card">
                                     <div class="main_container_keyword_card_img">
-                                        <img src="/img/guide/html.png" alt="">
-                                    </div>
-                                </li>
-                            </a>
-
-                            <a href="">
-                                <li class="main_container_keyword_card">
-                                    <div class="main_container_keyword_card_img">
-                                        <img src="/img/guide/css.png" alt="">
-                                    </div>
-                                </li>
-                            </a>
-
-                            <a href="">
-                                <li class="main_container_keyword_card">
-                                    <div class="main_container_keyword_card_img">
-                                        <img src="/img/guide/js.png" alt="">
-                                    </div>
-                                </li>
-                            </a>
-
-                            <a href="">
-                                <li class="main_container_keyword_card">
-                                    <div class="main_container_keyword_card_img">
-                                        <img src="/img/guide/php.png" alt="">
-                                    </div>
-                                </li>
-                            </a>
-
-                            <a href="">
-                                <li class="main_container_keyword_card">
-                                    <div class="main_container_keyword_card_img">
-                                        <img src="/img/guide/java.png" alt="">
-                                    </div>
-                                </li>
-                            </a>
-                            
-                            <a href="">
-                                <li class="main_container_keyword_card">
-                                    <div class="main_container_keyword_card_img">
-                                        <img src="/img/guide/db.png" alt="">
-                                    </div>
-                                </li>
-                            </a>
-
-                            <a href="">
-                                <li class="main_container_keyword_card">
-                                    <div class="main_container_keyword_card_img">
-                                        <img src="/img/guide/jira.png" alt="">
-                                    </div>
-                                </li>
-                            </a>
-                            
-                            <a href="">
-                                <li class="main_container_keyword_card">
-                                    <div class="main_container_keyword_card_img">
-                                        <img src="/img/guide/figma.png" alt="">
+                                        <img :src="item" alt="">
                                     </div>
                                 </li>
                             </a>
@@ -184,7 +128,7 @@
 <script>
 
 import { defineComponent } from "vue";
-import { Carousel, Pagination, Slide } from "vue3-carousel";
+import { Carousel, Pagination, Slide, Navigation } from "vue3-carousel";
 
 import "vue3-carousel/dist/carousel.css"; 
 
@@ -196,21 +140,24 @@ export default {
 		Carousel,
 		Slide,
 		Pagination,
+        Navigation
 	},
 
     data() {
         return {
             newClassItems: [],
-            slides: ['/img/banner/banner1.png', '/img/banner/banner2.png', '/img/banner/banner3.png', '/img/banner/banner4.png'],
+            hot_banners: ['/img/hot_banner/hot_banner_1.png', '/img/hot_banner/hot_banner_2.png', '/img/hot_banner/hot_banner_3.png', '/img/hot_banner/hot_banner_4.png', '/img/hot_banner/hot_banner_5.png', '/img/hot_banner/hot_banner_6.png', '/img/hot_banner/hot_banner_7.png' , '/img/hot_banner/hot_banner_8.png'],
+            guide_banners: ['/img/guide/html.png', '/img/guide/css.png', '/img/guide/js.png', '/img/guide/php.png', '/img/guide/java.png', '/img/guide/db.png', '/img/guide/jira.png', '/img/guide/figma.png',],
             autoplay: true,
-            autoplayDuration: 2000,
+            autoplayDuration: 2500,
             giftItems: [
-                { id: 1, name: "김영한님의 선물1", images: ['/img/banner/banner1.png'] },
-                { id: 2, name: "김영한님의 선물2", images: ['/img/banner/banner2.png'] },
-                { id: 3, name: "김영한님의 선물3", images: ['/img/banner/banner3.png'] },
-                { id: 4, name: "김영한님의 선물4", images: ['/img/banner/banner4.png'] },
+                { id: 1, name: "갑코 채용", images: ['/img/banner/banner1.png'] },
+                { id: 2, name: "코딩 역량 인증 시험", images: ['/img/banner/banner2.png'] },
+                { id: 3, name: "크래프톤", images: ['/img/banner/banner3.png'] },
+                { id: 4, name: "데브코스 (부트캠프)", images: ['/img/banner/banner4.png'] },
             ],
-            selectedGift: null,
+            selectedGiftId: null,
+            currentIndex: 0,
         }
     },
     mounted() {
@@ -221,14 +168,13 @@ export default {
         axios.get('/api/getNewClassMainData')
             .then(response => {
                 this.newClassItems = response.data;
-                console.log(response.data);
             })
             .catch(error => {
                 console.error('Error fetching data:', error);
             });
         },
         selectGift(gift) {
-            this.selectedGift = image;
+            this.selectedGiftId = gift;
         },
         prevSlide() {
             this.$refs.carousel.prev();
@@ -239,6 +185,9 @@ export default {
         toggleAutoplay() {
             this.autoplay = !this.autoplay;
             this.autoplayDuration = this.autoplay ? 3000 : 0;
+        },
+        updateIndex(index) {
+            this.currentIndex = index;
         },
     },
 }
@@ -261,4 +210,30 @@ export default {
     display: block;
     width: 100%;
 }
+
+.carousel__pagination-button::after {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    margin: 0 5px;
+    background-color: #bbb;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.carousel__pagination-button:hover::after, .carousel__pagination-button--active::after {
+    background-color: var(--vc-pgn-active-color);
+}
+
+.carousel__prev,
+.carousel__next {
+    box-sizing: content-box;
+    /* border: 5px solid white; */
+    /* font-size: 300px; */
+}
+
+.carousel__icon {
+    color: #fff;
+}
+
 </style>

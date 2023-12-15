@@ -1,6 +1,16 @@
 <template>
 	<div class="wrapper">
-		<Carousel :autoplay="3000" :wrap-around="true">
+		<Carousel :autoplay="3000" :wrap-around="true" :i18n="{
+    'ariaNextSlide': 'Zur nächsten Slide',
+    'ariaPreviousSlide': 'Zur vorherigen Slide',
+    'ariaNavigateToSlide': 'Springe zu Slide {slideNumber}',
+    'ariaGallery': 'Galerie',
+    'itemXofY': 'Slide {currentSlide} von {slidesCount}',
+    'iconArrowUp': 'Pfeil nach oben',
+    'iconArrowDown': 'Pfeil nach unten',
+    'iconArrowRight': 'Pfeil nach rechts',
+    'iconArrowLeft': 'Pfeil nach links',
+  }">
 			<Slide v-for="slide in slides" :key="slide">
 				<div class="carousel__item">
 					<img class="slideImg" :src="slide" />

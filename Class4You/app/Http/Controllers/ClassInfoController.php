@@ -29,7 +29,6 @@ class ClassInfoController extends Controller
             // 결과 확인
             // Log::debug($classInfo);
         }
-        Log::debug($data);
         return response()->json($data);
     }
 

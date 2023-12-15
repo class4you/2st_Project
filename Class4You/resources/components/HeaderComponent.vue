@@ -3,11 +3,11 @@
         <div id="top_banner" class="top_banner">
             <div class="desc">
                 <ul id="list_txt" class="list_txt">
-                    <li><a href="">새로운 온라인 클래스 STUDY 4 YOU 개설</a></li>
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                    <li></li>
+                    <Carousel ref="carousel" :autoplay="autoplayDuration" :wrap-around="true">
+                        <Slide v-for="slide in top_banners" :key="slide.id">
+                            <li><a href="">{{ slide }}</a></li>
+                        </Slide>
+                    </Carousel>
                 </ul>
             </div>
         </div>
@@ -32,10 +32,10 @@
                 </ul>
                 <h1>
                     <a href="/">
-                        <img src="/img/v2_14378e7f2adb0ec0ad8cddaaf3b0fbdd_0DXltiM6xt_top.jpg" alt="">
+                        <img src="/img/Logo.png" alt="">
                     </a>
                 </h1>
-                <div v-if="!userLoginChk" class="side_nav">
+                <div v-if="!$store.state.userLoginChk" class="side_nav">
                     <router-link to="/registration">SIGN UP</router-link>
                     <a @click="loginOpenModal" style="cursor: pointer;">LOGIN</a>
                     <div class="search_box">
@@ -43,7 +43,7 @@
                         <button><img src="/img/SEARCH.png" alt=""></button>
                     </div>
                 </div>
-                <div v-if="userLoginChk" class="side_nav">
+                <div v-if="$store.state.userLoginChk" class="side_nav">
                     <router-link to="/">MY PAGE</router-link>
                     <a @click="logout" style="cursor: pointer;">LOGOUT</a>
                     <div class="search_box">
@@ -87,8 +87,20 @@
     </div>
 </template>
 <script>
+import { defineComponent } from "vue";
+import { Carousel, Pagination, Slide, Navigation } from "vue3-carousel";
+
+
+import "vue3-carousel/dist/carousel.css"; 
 export default {
     name: 'HeaderComponent',
+
+    components: {
+		Carousel,
+		Slide,
+		Pagination,
+        Navigation
+	},
 
     data() {
         return {
@@ -99,22 +111,14 @@ export default {
                 UserPassword: '',
             },
 
-            userLoginChk: '',
+            top_banners: ['새로운 온라인 클래스 오픈', '풀스택 개발자를 위한 과정', '지금 결제 시 무료 강의 오픈', '오픈 찬스 지금 당장 확인하세요',],
+            autoplay: true,
+            autoplayDuration: 5000,
         }
     },
 
     created() {
-        const userLoginChk = localStorage.getItem('userCheck');
-
-        if(userLoginChk !== null) {
-            this.userLoginChk = userLoginChk;
-        }
-    },
-
-    watch: {
-        userLoginChk(newVal) {
-            localStorage.setItem('userCheck', newVal);
-        },
+        this.loadUserLoginStatus();
     },
 
     computed: {
@@ -136,6 +140,12 @@ export default {
         logout() {
             this.$store.dispatch('logout');
             localStorage.clear();
+        },
+        loadUserLoginStatus() {
+            const userLoginChk = localStorage.getItem('userCheck');
+            if (userLoginChk !== null) {
+                this.$store.commit('setUserLoginChk', userLoginChk);
+            }
         },
     }
 }

@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('enrollments', function (Blueprint $table) {
             $table->id('EnrollmentID');
             $table->integer('UserID');
-            $table->integer('CourseID');
+            $table->integer('ClassID');
             $table->timestamps();
             $table->softDeletes();
         });

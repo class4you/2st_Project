@@ -29,6 +29,7 @@ const store = createStore({
                 userName: '',
                 userEmail: '',
             },
+            userLoginChk: null,
 
 
 
@@ -89,6 +90,9 @@ const store = createStore({
             localStorage.setItem('userName', data.sessionCheckUserName);
             localStorage.setItem('userEmail', data.sessionCheckUserEmail);
             // state.userData.userCheck = localStorage.getItem('userCheck');
+        },
+        setUserLoginChk(state, userLoginChk) {
+            state.userLoginChk = userLoginChk;
         },
         
 
@@ -193,7 +197,9 @@ const store = createStore({
             .then(res => { 
                 console.log(res);
                 if (res.data.success) {
-                    context.commit('setSaveToLocalStorage', res.data)
+                    context.commit('setSaveToLocalStorage', res.data);
+                    context.commit('setUserLoginChk', res.data.sessionDataCheck);
+                    console.log(res.data.sessionDataCheck)
                     // router.push('/'); 
                 } else {
                     console.log(err.response.data.errors)
@@ -219,6 +225,7 @@ const store = createStore({
             .then(res => {
                 // 쿠키 삭제
                 console.log(res.data)
+                context.commit('setUserLoginChk', res.data.sessionDataCheck);
                 router.push('/'); 
                 // window.location.href = '/';
             })

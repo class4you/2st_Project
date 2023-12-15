@@ -54,12 +54,13 @@ class UserController extends Controller
 
         if (Auth::check()) {
             session(['user' => Auth::user()]);
-
+            
             $sessionDataCheck = Auth::check();
             // $sessionDataCheck = $sessionDataCheck ? 1 : 0;
-
+            // $sessionDataUser = Auth::user();
             $sessionDataUserName = Auth::user()->UserName;
             $sessionDataUserEmail = Auth::user()->UserEmail;
+            // Log::debug($sessionDataUser);
             // Log::debug($sessionDataUserName);
             // Log::debug($sessionDataUserEmail);
 
@@ -86,6 +87,11 @@ class UserController extends Controller
         // 로그아웃 처리
         Auth::logout();
 
-        return response()->json(['message' => '로그아웃 성공']);
+        $sessionDataCheck = Auth::check();
+
+        return response()->json([
+            'message' => '로그아웃 성공',
+            'sessionDataCheck' => $sessionDataCheck,
+        ]);
     }
 }
