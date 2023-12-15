@@ -19929,7 +19929,11 @@ var _hoisted_3 = /*#__PURE__*/_withScopeId(function () {
     "class": "bannerBox"
   }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
     "class": "banner"
-  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <img class=\"bannerImg\" src=\"../doc/img/boardbg.PNG\" alt=\"board_banner_img\"> ")])], -1 /* HOISTED */);
+  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
+    "class": "bannerImg",
+    src: "/img/background-img.png",
+    alt: "board_banner_img"
+  })])], -1 /* HOISTED */);
 });
 var _hoisted_4 = {
   "class": "mainSec row jcB"

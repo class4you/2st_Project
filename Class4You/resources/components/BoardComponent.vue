@@ -7,7 +7,7 @@
 	
 			<div class="bannerBox">
 			<div class="banner">
-				<!-- <img class="bannerImg" src="../doc/img/boardbg.PNG" alt="board_banner_img"> -->
+				<img class="bannerImg" src="/img/background-img.png" alt="board_banner_img">
 			</div>
 			</div>
 	
