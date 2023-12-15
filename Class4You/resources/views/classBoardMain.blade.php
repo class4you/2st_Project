@@ -58,19 +58,19 @@
 					</ul>
 				</div>
 
-				@foreach ($data2 as $item)
+				
 				<div class="class_main_new_text">
-					<h3>이제 첫발을 뗀 당신을 위한 2단계</h3>
-					<div class="class_main_viewall_text">
+				@foreach ($data2 as $item)
+					<h3>{{$msg2}}</h3>
+				<div class="class_main_viewall_text">
 						<p>
-							
-								<a href="{{route('classboardall',['ClassDifficulty' => $item->ClassDifficulty])}}">전체보기</a>
-								
+							<a href="{{route('classboardall',['ClassDifficulty' => $item->ClassDifficulty])}}">전체보기</a>	
 						</p>
-					</div>
 				</div>
 					@break
 				@endforeach
+				</div>
+					
 
 				<div class="class_main_container_new_box">
 					<ul class="class_main_container_new">

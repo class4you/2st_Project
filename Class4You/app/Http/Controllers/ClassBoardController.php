@@ -21,8 +21,15 @@ class ClassBoardController extends Controller
         $result2 = $this->getDataForSecondSection();
         $result3 = $this->getDataForThirdSection();
         $result4 = $this->getDataForFourthSection();
-    
-        return view('classboardmain', ['data1' => $result1, 'data2' => $result2, 'data3' => $result3, 'data4' => $result4]);
+    //  뷰로 전달하는 배열을 올바르게 구성하려면 데이터와 메시지 변수를 각각 분리하고, 
+    //  뷰로 전달할 때 각각의 변수에 대한 키를 지정해야함.
+        return view('classboardmain', [
+            'data1' => $result1, 
+            'data2' => $result2['data2'], 
+            'msg2' => $result2['msg2'],
+            'data3' => $result3, 
+            'data4' => $result4
+        ]);
     }
     
     private function getDataForFirstSection() {
@@ -30,9 +37,16 @@ class ClassBoardController extends Controller
         return ClassInfo::where('ClassDifficulty', 1)->take(4)->get();
     }
     
+    // private function getDataForSecondSection() {
+
+    //     return ClassInfo::where('ClassDifficulty', 2)->take(4)->get();
+    // }
+
     private function getDataForSecondSection() {
-        
-        return ClassInfo::where('ClassDifficulty', 2)->take(4)->get();
+        $msg2 = "이제 첫발을 뗀 당신을 위한 2단계";
+        $data2 = ClassInfo::where('ClassDifficulty', 2)->take(4)->get();
+
+        return ['data2' => $data2, 'msg2' => $msg2];
     }
     
     private function getDataForThirdSection() {
