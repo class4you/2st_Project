@@ -18,11 +18,10 @@
 					<h3>{{$msg}}</h3>
 				</div>
 				
-	
 				<div class="main_container_new_box">
 					<ul class="class_main_container_new">
 					@forelse($data as $item)
-						<a href="">
+						<a href="{{ route('classboarddetail', ['ClassID' => $item->ClassID]) }}">
 						<li class="class_main_container_new_card">
 							<div class="class_main_container_new_card_img">
 								<img src="{{ asset($item->ClassImg) }}" alt="">
@@ -33,11 +32,12 @@
 							<div class="class_main_container_new_card_content">
 								<p>{{$item->ClassDescription}}</p>
 							</div>
+
 							<ul class="class_main_container_new_card_tag"> 
-								<li>html</li>
-								<li>css</li>
-								<li>php</li>
-								<li>java</li>
+						@forelse($item->languages as $language)			
+								<li>{{ $language->ClassLanguageName }}</li>
+							@empty	
+						@endforelse		
 							</ul>
 						</li>
 						</a>
@@ -47,8 +47,6 @@
 					</ul>
 				</div>
 	
-				
-
 			</div>
 		</main>
 	</div>

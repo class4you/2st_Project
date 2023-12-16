@@ -17,7 +17,7 @@
 					<h3>아직 방향성을 찾지 못한 분들을 위한 1단계</h3>
 					<div class="class_main_viewall_text">
 						<p>
-							@foreach ($data1 as $item)
+							@foreach ($classInfo1 as $item)
 								<a href="{{route('classboardall',['ClassDifficulty' => $item->ClassDifficulty])}}">전체보기</a>
 								@break
 							@endforeach	
@@ -28,10 +28,10 @@
 				<div class="main_container_new_box">
 					<ul class="class_main_container_new">
 
-					@forelse($data1 as $item)
+					@forelse($classInfo1 as $item)
 						@if ($loop->iteration <= 4)
 
-						<a href="">
+						<a href="{{ route('classboarddetail', ['ClassID' => $item->ClassID]) }}">
 						<li class="class_main_container_new_card">
 							<div class="class_main_container_new_card_img">
 								<img src="{{$item->ClassImg}}" alt="">
@@ -45,12 +45,10 @@
 
 							
 							<ul class="class_main_container_new_card_tag"> 
-							
-								<li>html</li>
-								<li>html</li>
-								<li>html</li>
-								<li>html</li>
-								
+						@forelse($item->languages as $language)
+								<li>{{$language->ClassLanguageName}}</li>
+							@empty
+						@endforelse
 							</ul>
 							
 						</li>
@@ -65,7 +63,7 @@
 
 				
 				<div class="class_main_new_text">
-				@foreach ($data2 as $item)
+				@foreach ($classInfo2 as $item)
 					<h3>{{$msg2}}</h3>
 				<div class="class_main_viewall_text">
 						<p>
@@ -80,10 +78,10 @@
 				<div class="class_main_container_new_box">
 					<ul class="class_main_container_new">
 
-					@forelse($data2 as $item)
+					@forelse($classInfo2 as $item)
 						@if ($loop->iteration <= 4)
 
-						<a href="">
+						<a href="{{ route('classboarddetail', ['ClassID' => $item->ClassID]) }}">
 						<li class="class_main_container_new_card">
 							<div class="class_main_container_new_card_img">
 								<img src="{{$item->ClassImg}}" alt="">
@@ -95,10 +93,10 @@
 								<p>{{$item->ClassDescription}}</p>
 							</div>
 							<ul class="class_main_container_new_card_tag"> 
-								<li>html</li>
-								<li>css</li>
-								<li>php</li>
-								<li>java</li>
+							@forelse($item->languages as $language)
+								<li>{{$language->ClassLanguageName}}</li>
+							@empty
+						@endforelse
 							</ul>
 						</li>
 						</a>
@@ -114,7 +112,7 @@
 					<h3>1단계와 2단계를 완강한 당신을 위한 3단계</h3>
 					<div class="class_main_viewall_text">
 						<p>
-							@foreach ($data3 as $item)
+							@foreach ($classInfo3 as $item)
 								<a href="{{route('classboardall',['ClassDifficulty' => $item->ClassDifficulty])}}">전체보기</a>
 								@break
 							@endforeach
@@ -125,10 +123,10 @@
 				<div class="class_main_container_new_box">
 					<ul class="class_main_container_new">
 
-					@forelse($data3 as $item)
+					@forelse($classInfo3 as $item)
 						@if ($loop->iteration <= 4)
 
-						<a href="">
+						<a href="{{ route('classboarddetail', ['ClassID' => $item->ClassID]) }}">
 						<li class="class_main_container_new_card">
 							<div class="class_main_container_new_card_img">
 								<img src="{{$item->ClassImg}}" alt="">
@@ -140,10 +138,10 @@
 								<p>{{$item->ClassDescription}}</p>
 							</div>
 							<ul class="class_main_container_new_card_tag"> 
-								<li>html</li>
-								<li>css</li>
-								<li>php</li>
-								<li>java</li>
+							@forelse($item->languages as $language)
+								<li>{{$language->ClassLanguageName}}</li>
+							@empty
+						@endforelse
 							</ul>
 						</li>
 						</a>
@@ -159,7 +157,7 @@
 					<h3>3단계까지 완강한 당신 이제 현업 기술을 위한 4단계</h3>
 					<div class="class_main_viewall_text">
 						<p>
-							@foreach ($data4 as $item)
+							@foreach ($classInfo4 as $item)
 								<a href="{{route('classboardall',['ClassDifficulty' => $item->ClassDifficulty])}}">전체보기</a>
 								@break
 							@endforeach
@@ -170,10 +168,10 @@
 				<div class="class_main_container_new_box">
 					<ul class="class_main_container_new">
 
-					@forelse($data4 as $item)
+					@forelse($classInfo4 as $item)
 						@if ($loop->iteration <= 4)
 
-						<a href="">
+						<a href="{{ route('classboarddetail', ['ClassID' => $item->ClassID]) }}">
 						<li class="class_main_container_new_card">
 							<div class="class_main_container_new_card_img">
 								<img src="{{$item->ClassImg}}" alt="">
@@ -185,10 +183,10 @@
 								<p>{{$item->ClassDescription}}</p>
 							</div>
 							<ul class="class_main_container_new_card_tag"> 
-								<li>html</li>
-								<li>css</li>
-								<li>php</li>
-								<li>java</li>
+							@forelse($item->languages as $language)
+								<li>{{$language->ClassLanguageName}}</li>
+							@empty
+						@endforelse
 							</ul>
 						</li>
 						</a>

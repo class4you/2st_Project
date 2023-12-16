@@ -33,6 +33,12 @@ Route::get('/classBoard', [ClassInfoController::class, 'classBoardIndex'])->name
 
 Route::get('/classBoardViewAll/{ClassDifficulty}', [ClassInfoController::class, 'getClassBoardShow'])->name('classboardall');
 
+// Route::get('/classdetailboard', function () {
+//     return view('classBoardDetail');
+// });
+
+Route::get('/classBoardDetail/{ClassID}', [ClassInfoController::class, 'getClassBoardDetailShow'])->name('classboarddetail');
+
 Route::any("{slug}", function ($slug) {
     return view('welcome');
 });
