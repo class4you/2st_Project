@@ -95,8 +95,8 @@
 							<ul class="class_main_container_new_card_tag"> 
 							@forelse($item->languages as $language)
 								<li>{{$language->ClassLanguageName}}</li>
-							@empty
-						@endforelse
+								@empty
+							@endforelse
 							</ul>
 						</li>
 						</a>

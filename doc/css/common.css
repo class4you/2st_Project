@@ -1396,7 +1396,7 @@ ul.class_tabs li.class_current {
 
 .class_detail_notice_main_div {
     /* background-color: #ededed18; */
-    border: 1px solid;
+    border: 1px solid #e3d9d9;
     padding: 10px;
 }
 
@@ -1405,6 +1405,53 @@ ul.class_tabs li.class_current {
     font-size: 1.2rem;
     margin-bottom: 5px;
 }
+
+/* ============================================================================================================ */
+/* 강의 시청 페이지 */
+
+.class_detail_watch {
+    display: inline-block;
+    font-size: 1rem;
+    
+}
+
+.class_detail_watch_nav {
+    background-color: #ededed;
+    
+}
+
+.class_detail_watch_list {
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.class_detail_watch_main {
+    background-color: #ededed;
+}
+
+.class_detail_watch_footer {
+    background-color: #c0bdbd;
+    padding: 20px;
+    
+}
+
+.class_detail_watch_right_side {
+    background-color: #ededed;
+    padding: 20px;
+    display: flex;
+    justify-content: space-around;
+    /* flex-shrink: 0; */
+}
+
+.class_detail_watch_side_curriculum {
+   
+}
+
+
+
+
+
 
 /* ============================================================================================================ */
 /* 커뮤니티 게시판*/

@@ -245,6 +245,7 @@ class ClassInfoController extends Controller
     //     return ['data' => $result];
     // }
 
+    // 강의 디테일페이지 불러오기
     public function getClassBoardDetailShow($id) {
         $result = ClassInfo::where('ClassID', $id)->first();
 
