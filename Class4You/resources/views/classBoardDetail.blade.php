@@ -9,7 +9,7 @@
                     <div class="class_detail_container_lr">
                         <div class="class_detail_container_l">
                             <div class="class_detail_container_l_img_cover">
-                                <img src="./img/img-2.png" alt="">
+                                <img src="{{ asset($data->ClassImg) }}" alt="">
                             </div>
                         </div>
 
@@ -22,12 +22,12 @@
                             </div>
                             <div class="class_detail_container_r_title_box">
                                 <h2 class="class_detail_container_r_title">
-                                    김영한의 자바 입문 - 코드로 시작하는 자바 첫걸음일수도 있고
+                                    {{$data->ClassTitle}}
                                 </h2>
                             </div>
                             <div class="class_detail_container_r_content_box">
                                 <p class="class_detail_container_r_content">
-                                    강의에 대한 간단 내용 강의에 대한 간단 내용강의에 대한 간단 내용 강의에 대한 간단 내용강의에 대한 간단 내용 강의에 대한 간단 내용강의에 대한 간단 내용 강의에 대한 간단 내용강의에 대한 간단 내용 강의에 대한 간단 내용
+                                    {{$data->ClassDescription}}
                                 </p>
                             </div>
                             <div class="class_detail_container_r_info_box">
@@ -47,14 +47,15 @@
                             </div>
                             <div class="class_detail_container_r_language">
                                 <span class="class_detail_container_r_language_icon">#</span>
-                                <span>HTML</span>
-                                <span>CSS</span>
-                                <span>JS</span>
-                                <span>PHP</span>
+                                <!-- 제목이나 소개글같은 데이터들은 한가지 정보만 가지고 오지만 태그의 경우 -->
+                                <!-- 여러가지 정보를 가져와야해서 반복문 사용 -->
+                            @foreach($data->languages as $language)
+								<span>{{$language->ClassLanguageName}}</span>
+						    @endforeach
                             </div>
                             <div class="class_detail_container_r_payment_box">
                                 <div class="class_detail_container_r_payment_price">
-                                    <span>가격: 122312312원</span>
+                                    <span>가격: {{$data->ClassPrice}}원</span>
                                 </div>
                                 <div class="class_detail_container_r_payment_classes">
                                     <button>수강 신청</button>

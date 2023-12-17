@@ -248,7 +248,20 @@ class ClassInfoController extends Controller
     public function getClassBoardDetailShow($id) {
         $result = ClassInfo::where('ClassID', $id)->first();
 
-        return view('classBoardDetail', ['data' => $result]);
+        // classboardshow와 다르게 한가지 정보만 가지고 오기 때문에 if문 사용
+        if ($result) {
+            $classID = $result->ClassID;
+
+            $langData = ClassInfo::select('class_languages.ClassLanguageName')
+            ->join('class_languagelinks', 'class_infos.ClassID', 'class_languagelinks.ClassID')
+            ->join('class_languages', 'class_languagelinks.ClassLanguageID', 'class_languages.ClassLanguageID')
+            ->where('class_infos.ClassID', $classID)
+            ->get();
+
+            $result->languages = $langData;
+
+            return view('classBoardDetail', ['data' => $result]);
+        }    
     }
     
 }
