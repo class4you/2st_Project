@@ -121,7 +121,7 @@
             </ul>
             
             <div id="class_tab1" class="class_current class_detail_rating_form">
-                <form action="">
+                <form name="myform" id="myform" method="post" action="./save">
                     <fieldset>
 
                         <div class="class_detail_rating_form_text">
@@ -130,8 +130,8 @@
 
                         <div class="class_detail_rating_form_content">
                             <div class="class_detail_rating_form_star">
-								<form class="class_detail_rating_star_form" name="myform" id="myform" method="post" action="./save">
-                                    <fieldset>
+                                    <fieldset class="class_detail_rating_star_form">
+                                        
                                         <legend class="class_detail_rating_star_form_title">별점</legend>
                                             <input class="class_detail_rating_star_input" type="radio" name="rating" value="5" id="rate1">
                                                 <label class="class_detail_rating_star_label" for="rate1">⭐</label>
@@ -143,9 +143,8 @@
                                                 <label class="class_detail_rating_star_label" for="rate4">⭐</label>
                                             <input class="class_detail_rating_star_input" type="radio" name="rating" value="1" id="rate5">
                                                 <label class="class_detail_rating_star_label" for="rate5">⭐</label>
-                                            
                                     </fieldset>
-                                </form>
+                                
                             </div>
 
                             <div class="class_detail_rating_form_button">

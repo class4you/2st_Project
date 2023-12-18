@@ -317,5 +317,15 @@ class ClassInfoController extends Controller
             return response()->json($result);
         }    
     }
+
+    // public function getClassBoardTabClassInfo($ClassID) {
+    //     $result = ClassInfo::where('ClassID', $ClassID)->first();
+
+    //     if($result) {
+           
+    //     }
+
+    //     return ['data' => $result];
+    // }
     
 }
