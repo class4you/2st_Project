@@ -1,49 +1,5 @@
-			<template>
-		<div id="wrap">
-				<div id="top_banner" class="top_banner">
-					<div class="desc">
-						<ul id="list_txt" class="list_txt">
-							<li><a href="">새로운 온라인 클래스 STUDY 4 YOU 개설</a></li>
-							<li></li>
-							<li></li>
-							<li></li>
-							<li></li>
-						</ul>
-					</div>
-				</div>
-
-				<header id="header">
-					<div class="navigation">
-						<ul class="nav_left side_nav">
-							<li><a href="" class="menu_btn"><img src="./img/menu.png" alt="">전체 강의</a></li>
-							<li><a href="">추천 강의</a></li>
-							<li><a href="">신규 강의</a></li>
-							<li>|</li>
-							<li><a href="">커뮤니티</a></li>
-						</ul>
-						<h1>
-							<a href="">
-								<img src="./img/v2_14378e7f2adb0ec0ad8cddaaf3b0fbdd_0DXltiM6xt_top.jpg" alt="">
-							</a>
-						</h1>
-						<div class="side_nav">
-							<a href="">SIGN UP</a>
-							<a href="">LOGIN</a>
-							<div class="search_box">
-								<input type="text" placeholder="SEARCH">
-								<button type="button"><img src="./img/SEARCH.png" alt=""></button>
-							</div>
-						</div>
-					</div>
-			<hr>
-
-			<title> 커뮤니티</title>
-
-		<body>
-			<div id="wrap">
-				<form>
-
-			
+<template>
+			<div>
 				<div class="whr"><span>게시판</span><span>></span><span>게시판</span>
 				</div><!-- whr -->
 				<section class="mainSectionpost">
@@ -101,13 +57,9 @@
 							<button type="button">저장</button>
 						</div>
 					</div>
-			
-				</section> 
-			</section>
-			</form>
-			</div>
-			<script src="https://kit.fontawesome.com/b69518c43b.js" crossorigin="anonymous"></script>
-			</body>
+					</section>
+					</section>
+				</div>
 </template>
 	
 	<script>
