@@ -19385,96 +19385,101 @@ __webpack_require__.r(__webpack_exports__);
 /*!*****************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/components/BoardComponent.vue?vue&type=script&lang=js ***!
   \*****************************************************************************************************************************************************************************************************/
-/***/ (() => {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
 
-// import axios from 'axios';
-// // 하위 카테고리별 목록
-// export default {
-// 	name: 'BoardComponent',
+// 하위 카테고리별 목록
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  name: 'BoardComponent'
 
-// 	data() {
-// 	return {
-// 		boardItems: [],
-// 		categories: [
-// 		{ id: 1, name: 'HTML' },
-// 		{ id: 2, name: 'CSS' },
-// 		{ id: 3, name: 'JS' },
-// 		{ id: 4, name: 'PHP' },
-// 		{ id: 5, name: 'JAVA' },
-// 		{ id: 6, name: 'DB' },
-// 		{ id: 7, name: 'TOOL' },
-// 		],
-// 		activeCategory: null,
-// 		currentSubCategory: null,
-// 		searchText: '',
-// 	};
-// 	},
-// 	// 게시물 목록중 해결된것만 나오게끔 하는 정렬 카테고리 목록
-// 	computed: {
-// 	filteredBoardItems() {
-// 		let filteredItems = this.boardItems;
-// 		if (this.currentSubCategory) {
-// 		filteredItems = filteredItems.filter((item) => item.categoryId === this.currentSubCategory);
-// 		}
-// 		if (this.searchText) {
-// 		const searchTextLower = this.searchText.toLowerCase();
-// 		filteredItems = filteredItems.filter(
-// 			(item) => item.title.toLowerCase().includes(searchTextLower)
-// 		);
-// 		}
-// 		return filteredItems;
-// 	},
-// 	},
-// 	mounted() {
-// 	this.fetchBoardItems();
-// 	},
-// 	methods: {
-// 	fetchBoardItems() {
-// 		axios
-// 		.get('/api/getBoardItems')
-// 		.then((response) => {
-// 			this.boardItems = response.data;
-// 		})
-// 		.catch((error) => {
-// 			console.error('Error fetching board items:', error);
-// 		});
-// 	},
-// 	getCategoryItemCount(categoryId) {
-// 		return this.boardItems.filter((item) => item.categoryId === categoryId).length;
-// 	},
-// 	selectCategory(category) {
-// 		this.activeCategory = category;
-// 		this.currentSubCategory = null;
-// 	},
-// 	// 해결 카테고리.
-// 	selectSubCategory(subCategory) {
-// 		this.currentSubCategory = subCategory;
-// 	},
-// 	sortByRecent() {
-// 		this.boardItems.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
-// 	},
-// 	sortByPopularity() {
-// 		// 추가로 정렬 로직을 구현해야 합니다.
-// 	},
-// 	sortByViews() {
-// 		this.boardItems.sort((a, b) => b.viewCount - a.viewCount);
-// 	},
-// 	markAsResolved() {
-// 		// 선택된 게시물의 리스트를 해결된 것만 불러오는 로직을 추가합니다.
-// 		console.log('해결완료 클릭');
-// 	},
-// 	goToBoardInsert() {
-// 		// BoardInsertComponent.vue 페이지로 이동
-// 		console.log('글작성 버튼이 클릭되었습니다. BoardInsertComponent.vue 페이지로 이동합니다.');
-// 	},
-// 	search() {
-// 		// 검색 로직을 추가합니다.
-// 		console.log('검색 버튼 클릭');
-// 	},
-// 	},
-// };
-//
+  // data() {
+  // return {
+  // 	boardItems: [],
+  // 	categories: [
+  // 	{ id: 1, name: 'HTML' },
+  // 	{ id: 2, name: 'CSS' },
+  // 	{ id: 3, name: 'JS' },
+  // 	{ id: 4, name: 'PHP' },
+  // 	{ id: 5, name: 'JAVA' },
+  // 	{ id: 6, name: 'DB' },
+  // 	{ id: 7, name: 'TOOL' },
+  // 	],
+  // 	activeCategory: null,
+  // 	currentSubCategory: null,
+  // 	searchText: '',
+  // };
+  // },
+  // // 게시물 목록중 해결된것만 나오게끔 하는 정렬 카테고리 목록
+  // computed: {
+  // filteredBoardItems() {
+  // 	let filteredItems = this.boardItems;
+  // 	if (this.currentSubCategory) {
+  // 	filteredItems = filteredItems.filter((item) => item.categoryId === this.currentSubCategory);
+  // 	}
+  // 	if (this.searchText) {
+  // 	const searchTextLower = this.searchText.toLowerCase();
+  // 	filteredItems = filteredItems.filter(
+  // 		(item) => item.title.toLowerCase().includes(searchTextLower)
+  // 	);
+  // 	}
+  // 	return filteredItems;
+  // },
+  // },
+  // mounted() {
+  // this.fetchBoardItems();
+  // },
+  // methods: {
+  // fetchBoardItems() {
+  // 	axios
+  // 	.get('/api/getBoardItems')
+  // 	.then((response) => {
+  // 		this.boardItems = response.data;
+  // 	})
+  // 	.catch((error) => {
+  // 		console.error('Error fetching board items:', error);
+  // 	});
+  // },
+  // getCategoryItemCount(categoryId) {
+  // 	return this.boardItems.filter((item) => item.categoryId === categoryId).length;
+  // },
+  // selectCategory(category) {
+  // 	this.activeCategory = category;
+  // 	this.currentSubCategory = null;
+  // },
+  // // 해결 카테고리.
+  // selectSubCategory(subCategory) {
+  // 	this.currentSubCategory = subCategory;
+  // },
+  // sortByRecent() {
+  // 	this.boardItems.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+  // },
+  // sortByPopularity() {
+  // 	// 추가로 정렬 로직을 구현해야 합니다.
+  // },
+  // sortByViews() {
+  // 	this.boardItems.sort((a, b) => b.viewCount - a.viewCount);
+  // },
+  // markAsResolved() {
+  // 	// 선택된 게시물의 리스트를 해결된 것만 불러오는 로직을 추가합니다.
+  // 	console.log('해결완료 클릭');
+  // },
+  // goToBoardInsert() {
+  // 	// BoardInsertComponent.vue 페이지로 이동
+  // 	console.log('글작성 버튼이 클릭되었습니다. BoardInsertComponent.vue 페이지로 이동합니다.');
+  // },
+  // search() {
+  // 	// 검색 로직을 추가합니다.
+  // 	console.log('검색 버튼 클릭');
+  // },
+  // },
+});
 
 /***/ }),
 
@@ -39439,9 +39444,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _BoardComponent_vue_vue_type_template_id_15212468__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./BoardComponent.vue?vue&type=template&id=15212468 */ "./resources/components/BoardComponent.vue?vue&type=template&id=15212468");
 /* harmony import */ var _BoardComponent_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./BoardComponent.vue?vue&type=script&lang=js */ "./resources/components/BoardComponent.vue?vue&type=script&lang=js");
-/* harmony reexport (unknown) */ var __WEBPACK_REEXPORT_OBJECT__ = {};
-/* harmony reexport (unknown) */ for(const __WEBPACK_IMPORT_KEY__ in _BoardComponent_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__) if(__WEBPACK_IMPORT_KEY__ !== "default") __WEBPACK_REEXPORT_OBJECT__[__WEBPACK_IMPORT_KEY__] = () => _BoardComponent_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__[__WEBPACK_IMPORT_KEY__]
-/* harmony reexport (unknown) */ __webpack_require__.d(__webpack_exports__, __WEBPACK_REEXPORT_OBJECT__);
 /* harmony import */ var _node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../node_modules/vue-loader/dist/exportHelper.js */ "./node_modules/vue-loader/dist/exportHelper.js");
 
 
@@ -39625,13 +39627,9 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* reexport default from dynamic */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_BoardComponent_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0___default.a)
+/* harmony export */   "default": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_BoardComponent_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__["default"])
 /* harmony export */ });
 /* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_BoardComponent_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./BoardComponent.vue?vue&type=script&lang=js */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/components/BoardComponent.vue?vue&type=script&lang=js");
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_BoardComponent_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_BoardComponent_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony reexport (unknown) */ var __WEBPACK_REEXPORT_OBJECT__ = {};
-/* harmony reexport (unknown) */ for(const __WEBPACK_IMPORT_KEY__ in _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_BoardComponent_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== "default") __WEBPACK_REEXPORT_OBJECT__[__WEBPACK_IMPORT_KEY__] = () => _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_BoardComponent_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__[__WEBPACK_IMPORT_KEY__]
-/* harmony reexport (unknown) */ __webpack_require__.d(__webpack_exports__, __WEBPACK_REEXPORT_OBJECT__);
  
 
 /***/ }),
