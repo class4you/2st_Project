@@ -85,7 +85,8 @@
                                 <div @click="handleClassImageClick(item.ClassID)" v-if="!$store.state.shouldShowCarousel" v-for="item in newClassItems" :key="item.id" href="">
                                     <li class="main_container_new_card">
                                         <div class="main_container_new_card_img">
-                                            <img :src="item.ClassImg" alt="">
+                                            <img :src=item.ClassImg />
+                                            <!-- <img :src="require(`@/img/${item.ClassImg}`)" /> -->
                                         </div>
                                         <div class="main_container_new_card_title">
                                             <h4>{{ item.ClassTitle }}</h4>

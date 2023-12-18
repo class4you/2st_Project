@@ -25,20 +25,29 @@ Route::middleware('my.user.validation')->post('/login', [UserController::class, 
 
 Route::get('/logout', [UserController::class, 'logout']);
 
+// 클래스보드 테스트용
 // Route::get('/classBoard', function () {
 //     return view('classBoardMain');
 // });
 
-Route::get('/classBoard/{classID}', [ClassInfoController::class, 'classBoardIndex'])->name('classboardmain');
+Route::get('/classBoard/{ClassLanguageName}', [ClassInfoController::class, 'classBoardIndex'])->name('classboardmain');
 
-Route::get('/classBoardViewAll/{ClassDifficulty}/{ClassLanguageName}', [ClassInfoController::class, 'getClassBoardShow'])->name('classboardall');
+
+// 클래스보드 vue 컴포넌트 테스트용
+// Route::get('/classBoardMain/{ClassLanguageName}', [ClassInfoController::class, 'classBoardIndex']);
 
 // Route::get('/classdetailboard', function () {
 //     return view('classBoardDetail');
 // });
 
+Route::get('/classBoardViewAll/{ClassDifficulty}/{ClassLanguageName}', [ClassInfoController::class, 'getClassBoardShow'])->name('classboardall');
+
 Route::get('/classBoardDetail/{ClassID}', [ClassInfoController::class, 'getClassBoardDetailShow'])->name('classboarddetail');
 
 Route::any("{slug}", function ($slug) {
+    return view('welcome');
+});
+
+Route::any("{slug1}/{slug2}", function ($slug1, $slug2) {
     return view('welcome');
 });

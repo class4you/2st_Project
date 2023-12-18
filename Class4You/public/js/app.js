@@ -20108,7 +20108,7 @@ var _hoisted_5 = {
 var _hoisted_6 = {
   "class": "navigation"
 };
-var _hoisted_7 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<ul class=\"nav_left side_nav\"><li><a href=\"\" class=\"menu_btn\"><img src=\"/img/menu.png\" alt=\"\">전체 강의</a><ul class=\"dropdown\"><li><a href=\"/classBoard/HTML\">HTML</a></li><li><a href=\"/classBoard/CSS\">CSS</a></li><li><a href=\"/classBoard/JavaScript\">Java Script</a></li><li><a href=\"/classBoard/PHP\">PHP</a></li><li><a href=\"/classBoard/JAVA\">JAVA</a></li><li><a href=\"/classBoard/DataBase\">DataBase</a></li><!-- 필요한 만큼 강의 항목을 추가 --></ul></li><!-- &lt;li&gt;&lt;a href=&quot;&quot;&gt;추천 강의&lt;/a&gt;&lt;/li&gt; --><!-- &lt;li&gt;&lt;a href=&quot;&quot;&gt;신규 강의&lt;/a&gt;&lt;/li&gt; --><li><a href=\"\">|</a></li><li><a href=\"\">커뮤니티</a></li></ul><h1><a href=\"/\"><img src=\"/img/Logo.png\" alt=\"\"></a></h1>", 2);
+var _hoisted_7 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<ul class=\"nav_left side_nav\"><li><a href=\"\" class=\"menu_btn\"><img src=\"/img/menu.png\" alt=\"\">전체 강의</a><ul class=\"dropdown\"><!-- &lt;li&gt;&lt;router-link to=&quot;/classBoardMain/HTML&quot;&gt;HTML&lt;/router-link&gt;&lt;/li&gt; --><li><a href=\"/classBoard/HTML\">HTML</a></li><li><a href=\"/classBoard/CSS\">CSS</a></li><li><a href=\"/classBoard/JavaScript\">Java Script</a></li><li><a href=\"/classBoard/PHP\">PHP</a></li><li><a href=\"/classBoard/JAVA\">JAVA</a></li><li><a href=\"/classBoard/DataBase\">DataBase</a></li><!-- 필요한 만큼 강의 항목을 추가 --></ul></li><!-- &lt;li&gt;&lt;a href=&quot;&quot;&gt;추천 강의&lt;/a&gt;&lt;/li&gt; --><!-- &lt;li&gt;&lt;a href=&quot;&quot;&gt;신규 강의&lt;/a&gt;&lt;/li&gt; --><li><a href=\"\">|</a></li><li><a href=\"\">커뮤니티</a></li></ul><h1><a href=\"/\"><img src=\"/img/Logo.png\" alt=\"\"></a></h1>", 2);
 var _hoisted_9 = {
   key: 0,
   "class": "side_nav"
@@ -20482,9 +20482,8 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       key: item.id,
       href: ""
     }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", _hoisted_25, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_26, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
-      src: item.ClassImg,
-      alt: ""
-    }, null, 8 /* PROPS */, _hoisted_27)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_28, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h4", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.ClassTitle), 1 /* TEXT */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_29, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.ClassDescription), 1 /* TEXT */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("ul", _hoisted_30, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)(item.languages, function (item2) {
+      src: item.ClassImg
+    }, null, 8 /* PROPS */, _hoisted_27), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <img :src=\"require(`@/img/${item.ClassImg}`)\" /> ")]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_28, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h4", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.ClassTitle), 1 /* TEXT */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_29, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.ClassDescription), 1 /* TEXT */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("ul", _hoisted_30, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)(item.languages, function (item2) {
       return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("li", {
         key: item2.id
       }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item2.ClassLanguageName), 1 /* TEXT */);
@@ -21075,6 +21074,8 @@ __webpack_require__(/*! ./bootstrap.js */ "./resources/js/bootstrap.js");
 
 
 
+// import ClassBoardMainComponent from '../components/ClassBoardMainComponent.vue';
+
 (0,vue__WEBPACK_IMPORTED_MODULE_0__.createApp)({
   components: {
     AppComponent: _components_AppComponent_vue__WEBPACK_IMPORTED_MODULE_3__["default"],
@@ -21083,6 +21084,7 @@ __webpack_require__(/*! ./bootstrap.js */ "./resources/js/bootstrap.js");
     FooterComponent: _components_FooterComponent_vue__WEBPACK_IMPORTED_MODULE_6__["default"],
     RegistrationComponent: _components_RegistrationComponent_vue__WEBPACK_IMPORTED_MODULE_7__["default"],
     ClassBoardDetailComponent: _components_ClassBoardDetailComponent_vue__WEBPACK_IMPORTED_MODULE_8__["default"]
+    // ClassBoardMainComponent,
   }
 }).use(_router_js__WEBPACK_IMPORTED_MODULE_1__["default"]).use(_store_js__WEBPACK_IMPORTED_MODULE_2__["default"]).mount("#app");
 
@@ -21150,6 +21152,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+// import ClassBoardMainComponent from '../components/ClassBoardMainComponent.vue';
 
 var routes = [{
   path: '/',
@@ -21163,7 +21166,13 @@ var routes = [{
 }, {
   path: '/classboarddetail',
   component: _components_ClassBoardDetailComponent_vue__WEBPACK_IMPORTED_MODULE_5__["default"]
-}, {
+},
+// {
+//     path: '/classBoardMain/:ClassLanguageName',
+//     component: ClassBoardMainComponent,
+//     props: true,
+// },
+{
   path: '/test',
   component: _components_TestComponent_vue__WEBPACK_IMPORTED_MODULE_3__["default"]
 }, {
