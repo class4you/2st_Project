@@ -194,11 +194,16 @@ class ClassInfoController extends Controller
     // }
 
     // 해당 단계별 언어 전체보기
-    public function getClassBoardShow($classdiffinum) {
+    public function getClassBoardShow($classdiffinum, $ClassLanguageName) {
 
         $msg = "";
     
-        $result = ClassInfo::where('ClassDifficulty', $classdiffinum)->get();
+        $result = ClassInfo::join('class_languagelinks', 'class_infos.ClassID', 'class_languagelinks.ClassID')
+            ->join('class_languages', 'class_languagelinks.ClassLanguageID', 'class_languages.ClassLanguageID')
+            ->where('class_languages.ClassLanguageName', $ClassLanguageName)
+            ->where('class_infos.ClassDifficulty', $classdiffinum)
+            ->get();
+        
         // var_dump($result);
         foreach ($result as $item) {
             $classdiffinumValue = $item->classdiffinum;
