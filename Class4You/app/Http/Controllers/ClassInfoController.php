@@ -292,8 +292,8 @@ class ClassInfoController extends Controller
     // }
 
     // 강의 디테일페이지 불러오기
-    public function getClassBoardDetailShow($id) {
-        $result = ClassInfo::where('ClassID', $id)->first();
+    public function getClassBoardDetailShow($ClassID) {
+        $result = ClassInfo::where('ClassID', $ClassID)->first();
 
         // classboardshow와 다르게 한가지 정보만 가지고 오기 때문에 if문 사용
         if ($result) {
@@ -307,7 +307,8 @@ class ClassInfoController extends Controller
 
             $result->languages = $langData;
 
-            return view('classBoardDetail', ['data' => $result]);
+            // return view('classBoardDetail', ['data' => $result]);
+            return response()->json($result);
         }    
     }
     

@@ -1,13 +1,13 @@
 <template>
     <div> 
-        <div v-for="data in item" class="class_detail_visual">
+        <div class="class_detail_visual">
             <div class="class_detail_container_box">
                 
-                <div v-for="data in item" class="class_detail_container">
+                <div class="class_detail_container">
                     <div class="class_detail_container_lr">
                         <div class="class_detail_container_l">
                             <div class="class_detail_container_l_img_cover">
-                                <img src="/img/html/1st/html1.png" alt="">
+                                <img :src="'/' + detailClassItems.ClassImg" alt="">
                             </div>
                         </div>
 
@@ -20,12 +20,12 @@
                             </div>
                             <div class="class_detail_container_r_title_box">
                                 <h2 class="class_detail_container_r_title">
-                                    김영한의 자바수업
+                                    {{ detailClassItems.ClassTitle }}
                                 </h2>
                             </div>
                             <div class="class_detail_container_r_content_box">
                                 <p class="class_detail_container_r_content">
-                                    강의에 대한 간단 내용 강의에 대한 간단 내용강의에 대한 간단 내용 강의에 대한 간단 내용강의에 대한 간단 내용 강의에 대한 간단 내용강의에 대한 간단 내용 강의에 대한 간단 내용강의에 대한 간단 내용 강의에 대한 간단 내용
+                                    {{ detailClassItems.ClassDescription }}
                                 </p>
                             </div>
                             <div class="class_detail_container_r_info_box">
@@ -52,7 +52,7 @@
                             </div>
                             <div class="class_detail_container_r_payment_box">
                                 <div class="class_detail_container_r_payment_price">
-                                    <span>가격: 122312312원</span>
+                                    <span>가격: {{ detailClassItems.ClassPrice }}원</span>
                                 </div>
                                 <div class="class_detail_container_r_payment_classes">
                                     <button>수강 신청</button>
@@ -447,18 +447,36 @@
     </div>
 </template>
 <script>
-
+import axios from 'axios'
 
 export default {
     name: 'ClassBoardDetailComponent',
-    props: {
-        data: Object
-    },
+	props: ['ClassID'],
     data() {
         return {
             clickFlgTab: 0,
+			detailClassItems: [],
         }
     },
+	mounted() {
+        this.fetchData();
+    },
+	methods: {
+		fetchData() {
+		// 여기에서 정보를 추가로 조회하는 로직을 구현
+		// 예시: API를 호출하여 데이터를 가져옴\
+		axios.get('/api/classboarddetail/' + this.ClassID)
+			.then(response => {
+			// API 응답에 대한 로직 수행
+			this.detailClassItems = response.data;
+			console.log(response.data)
+			})
+			.catch(error => {
+			// 에러 처리
+			console.error(error);
+			});
+		},
+	},
     
 }
 </script>

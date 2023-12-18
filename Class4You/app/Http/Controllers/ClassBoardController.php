@@ -59,4 +59,24 @@ class ClassBoardController extends Controller
     //     return ClassInfo::where('ClassDifficulty', 4)->take(4)->get();
     // }
 
+    public function getClassBoardDetailShow($ClassID) {
+        $result = ClassInfo::where('ClassID', $ClassID)->first();
+
+        // classboardshow와 다르게 한가지 정보만 가지고 오기 때문에 if문 사용
+        if ($result) {
+            $classID = $result->ClassID;
+
+            $langData = ClassInfo::select('class_languages.ClassLanguageName')
+            ->join('class_languagelinks', 'class_infos.ClassID', 'class_languagelinks.ClassID')
+            ->join('class_languages', 'class_languagelinks.ClassLanguageID', 'class_languages.ClassLanguageID')
+            ->where('class_infos.ClassID', $classID)
+            ->get();
+
+            $result->languages = $langData;
+
+            // return view('classBoardDetail', ['data' => $result]);
+            return response()->json($result);
+        }    
+    }
+
 }
