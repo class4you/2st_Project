@@ -61,6 +61,8 @@
 }
 
 
+
+
 /* 왼쪽 네비게이션 스타일 */
 .leftNav{
     width: 180px;
@@ -108,6 +110,14 @@
     width: 100%;
     max-width: calc(100% - 440px); /* 예시로 440px 감안 */
 }
+
+.question .title-sub__text .course__title, .question .title__text {
+    font-weight: 700;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+}
 .searchbox{
     margin-bottom: 30px;
 }
@@ -129,6 +139,54 @@
     cursor: pointer;
     background-color: aquamarine;
 }
+.question .question__title {
+    flex-direction: column;
+    align-items: flex-start;
+}
+.question .title-sub__text {
+    display: flex;
+    align-items: center;
+}
+
+.question .question__tags {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 8px;
+}
+
+.ac-tag.ac-button.is-gray.ac-tag--blue {
+    background-color: #eff3fa;
+}
+
+.question .question__tags .ac-tag {
+    margin-right: 8px;
+    margin-bottom: 5px;
+}
+
+
+.ac-tag.ac-button.is-gray {
+    padding: 4px 8px;
+    /* width: -webkit-fit-content; */
+    width: -moz-fit-content;
+    width: fit-content;
+    height: 26px;
+    border: none;
+    white-space: nowrap;
+    color: #3e4042;
+    /* background-color: #f1f3f5; */
+    line-height: 1.38;
+    font-size: 13px;
+    
+}
+
+
+.ac-tag.ac-button.is-gray .ac-tag__name {
+    margin-bottom: 1px;
+}
+.span {
+    font-weight: inherit;
+    font-style: inherit;
+}
 .titBox{
     padding-bottom: 10px;
     margin-bottom: 10px;
@@ -147,6 +205,79 @@
     height: 5px;
     border-radius: 50%;
     background: #999;
+}
+.bootstrap-components .rounded-pill {
+    border-radius: 50rem!important;
+}
+.bootstrap-components .badge {
+    display: inline-block;
+    padding: 0.35em 0.65em;
+    font-size: .75em;
+    font-weight: 700;
+    line-height: 1;
+    color: #fff;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+}
+.question .title-sub__text .question__status-tag {
+    margin-right: 8px;
+}
+.question .question__title {
+    display: flex;
+    /* align-items: center; */
+    margin-bottom: 4px;
+}
+.question .question__body {
+    height: 24px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    /* white-space: nowrap; */
+    white-space: normal;
+    line-height: 1.5;
+    /* max-height: 1.5rem; */
+    text-align: left;
+    word-break: break-all;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    color: #495057;
+    font-size: .875rem;
+}
+
+.question .title__text {
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    /* -webkit-line-clamp: 1; */
+    /* white-space: nowrap; */
+    white-space: normal;
+    line-height: 1.5;
+    max-height: 3rem;
+    text-align: left;
+    word-break: break-all;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+.question .title-sub__text .course__title {
+    flex-shrink: 1;
+    font-size: 12px;
+    color: #adb5bd;
+    white-space: nowrap;
+    white-space: normal;
+    line-height: 1.5;
+    max-height: 1.5rem;
+    text-align: left;
+    word-break: break-all;
+    display: -webkit-box;
+}
+.question .title__text {
+    flex: 1;
+    /* width: 0; */
+    /* white-space: nowrap; */
+    font-size: 1rem;
+    color: #212529;
 }
 .titBox .sort ul li.active{
     color: #333;
@@ -169,25 +300,219 @@
 }
 
 
+.question .question__info-footer {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    white-space: nowrap;
+    display: flex;
+    margin-top: 1rem;
+    justify-content: space-between;
+    color: #868e96;
+    font-size: 12px;
+    font-weight: 400;
+}
+
+.question .question__info-footer .question__info-detail {
+    flex: 1 1 auto;
+    width: 0;
+    max-width: 520px;
+    margin-right: 12px;
+}
+
+.question .question__info-footer>div {
+    display: flex;
+    min-width: 0;
+    align-items: center;
+}
+
+.question .question__info-footer .question__info-course-title, .question .question__info-footer .question__info-user-name {
+    flex-shrink: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+
+.is-hidden-mobile {
+    display: none!important;
+}
+.question .question__info-footer .question__info-course-title, .question .question__info-footer .question__info-user-name {
+    flex-shrink: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.question .question__info-footer .question__info-userData dl {
+    display: flex;
+}
+
+.question .question__info-footer .question__info-userData dl dd {
+    margin-right: 12px;
+}
+
+.question .question__info-footer .question__info-userData dl dd i {
+    font-size: 12px;
+    margin-right: 4px;
+}
+.fa-regular, .far {
+    font-family: Font Awesome\ 6 Pro;
+    font-weight: 400;
+}
+
+.question .question__info-footer .question__info-userData dl dd .text {
+    font-size: 12px;
+    font-weight: 700;
+}
+
 /* 상세 게시판 등 스타일 */
-.board_detail_rating_list{
-    background: #ededed;
-    margin: 10px 0;
-    padding: 20px;
-    line-height: 20px;
+.question {
+    display: flex;
+    padding: 18px 16px;
+    border-bottom: 1px solid #dee2e6;
 }
-.contBox .cont{
-    width: 100%;
-    padding-bottom: 10px;
-    margin-bottom: 10px;
-    border-bottom: 1px solid #ccc;
-    line-height: 20px;
+.question .title-sub__text .question__status-tag {
+    margin-right: 8px;
 }
-.contBox .cont .item{
-    width: 100%;
-    height: 200px;
-    background: #eee;
+
+.question .title-sub__text .question__status-tag {
+    margin-right: 8px;
 }
+
+.question .title-sub__text {
+    display: flex;
+    align-items: center;
+}
+.question .title-sub__text .question__status-tag.question__status-tag--recruited span, .question .title-sub__text .question__status-tag.question__status-tag--unresolved span {
+    background-color: #ced4da;
+    
+
+.question .title__text {
+    flex: 1;
+    width: 0;
+    white-space: nowrap;
+    font-size: 1rem;
+    color: #212529;
+}
+.question .question__info {
+    flex: 1 1 auto;
+    width: 0;
+}
+
+.question .question__title {
+    display: flex;
+    align-items: center;
+    margin-bottom: 4px;
+}
+
+.question .question__body {
+    height: 24px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    /* white-space: nowrap; */
+    white-space: normal;
+    line-height: 1.5;
+    max-height: 1.5rem;
+    text-align: left;
+    word-break: break-all;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    color: #495057;
+    font-size: .875rem;
+}
+
+.question .question__tags {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 8px;
+}
+.p {
+    margin: 0;
+}
+
+.question .question__tags {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 8px;
+}
+
+.ac-tag.ac-button.is-gray.ac-tag--blue {
+    background-color: #eff3fa;
+}
+
+.question .question__tags .ac-tag {
+    margin-right: 8px;
+    margin-bottom: 5px;
+}
+
+.question .question__info-footer {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    white-space: nowrap;
+    display: flex;
+    margin-top: 1rem;
+    justify-content: space-between;
+    color: #868e96;
+    font-size: 12px;
+    font-weight: 400;
+}
+
+.ac-tag.ac-button.is-gray.ac-tag--blue {
+    background-color: #eff3fa;
+}
+
+
+.ac-tag.ac-button.is-gray .ac-tag__name {
+    margin-bottom: 1px;
+}
+
+
+.question .question__info-footer .question__info-detail {
+    flex: 1 1 auto;
+    width: 0;
+    max-width: 520px;
+    margin-right: 12px;
+}
+.question .question__info-footer>div span {
+    /* flex-shrink: 0; */
+    display: inline-block;
+}
+
+
+
+.question .question__info-footer .question__info-course-title, .question .question__info-footer .question__info-user-name {
+    flex-shrink: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.visually-hidden {
+    position: absolute;
+    overflow: hidden;
+    width: 1px;
+    height: 1px;
+    clip: rect(1px,1px,1px,1px);
+    white-space: nowrap;
+}
+
+
+
+.fa-regular, .far {
+    font-family: Font Awesome\ 6 Pro;
+    font-weight: 400;
+}
+
+.fa-regular, .far {
+    font-family: Font Awesome\ 6 Pro;
+    font-weight: 400;
+}
+
+
 
 /* 추천 및 리뷰 스타일 */
 .best{
