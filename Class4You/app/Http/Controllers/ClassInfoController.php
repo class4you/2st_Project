@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\DB;
 
 class ClassInfoController extends Controller
 {
+    private $sharedData;
     public function getNewClassMainData()
     {
         $data = ClassInfo::select('class_infos.ClassID', 'class_infos.ClassImg', 'class_infos.ClassTitle', 'class_infos.ClassDescription')
@@ -33,12 +34,14 @@ class ClassInfoController extends Controller
     }
 
     // 강의 게시판 메인페이지 불러오기
-    public function classBoardIndex() {
+    public function classBoardIndex($id) {
+        $this->sharedData = $id;
         $result1 = $this->getDataForFirstSection();
         $result2 = $this->getDataForSecondSection();
         $result3 = $this->getDataForThirdSection();
         $result4 = $this->getDataForFourthSection();
 
+    
         // $resultLang = $this->classBoardLangName();
 
     //  뷰로 전달하는 배열을 올바르게 구성하려면 데이터와 메시지 변수를 각각 분리하고, 
@@ -55,7 +58,13 @@ class ClassInfoController extends Controller
     
     // 1단계 클래스 가져올때 가지고 있는 강의언어이름 같이 가져오기
     private function getDataForFirstSection() {
-        $classInfo1 = ClassInfo::where('ClassDifficulty', 1)->take(4)->get();
+        $id = $this->sharedData;
+        $classInfo1 = ClassInfo::join('class_languagelinks', 'class_infos.ClassID', 'class_languagelinks.ClassID')
+            ->join('class_languages', 'class_languagelinks.ClassLanguageID', 'class_languages.ClassLanguageID')
+            ->where('ClassDifficulty', 1)
+            ->where('class_languages.ClassLanguageName', $id)
+            ->take(4)
+            ->get();
         
         foreach ($classInfo1 as $info) {
             $classID = $info->ClassID;
@@ -89,7 +98,15 @@ class ClassInfoController extends Controller
     // 2단계 클래스 가져오기
     private function getDataForSecondSection() {
         $msg2 = "이제 첫발을 뗀 당신을 위한 2단계";
-        $classInfo2 = ClassInfo::where('ClassDifficulty', 2)->take(4)->get();
+
+        $id = $this->sharedData;
+
+        $classInfo2 = ClassInfo::join('class_languagelinks', 'class_infos.ClassID', 'class_languagelinks.ClassID')
+        ->join('class_languages', 'class_languagelinks.ClassLanguageID', 'class_languages.ClassLanguageID')
+        ->where('ClassDifficulty', 2)
+        ->where('class_languages.ClassLanguageName', $id)
+        ->take(4)
+        ->get();
 
         foreach ($classInfo2 as $info) {
             $classID = $info->ClassID;
@@ -110,7 +127,14 @@ class ClassInfoController extends Controller
     
     // 3단계 클래스 가져오기
     private function getDataForThirdSection() {
-        $classInfo3 = ClassInfo::where('ClassDifficulty', 3)->take(4)->get();
+        $id = $this->sharedData;
+
+        $classInfo3 = ClassInfo::join('class_languagelinks', 'class_infos.ClassID', 'class_languagelinks.ClassID')
+        ->join('class_languages', 'class_languagelinks.ClassLanguageID', 'class_languages.ClassLanguageID')
+        ->where('ClassDifficulty', 3)
+        ->where('class_languages.ClassLanguageName', $id)
+        ->take(4)
+        ->get();
 
         foreach ($classInfo3 as $info) {
             $classID = $info->ClassID;
@@ -131,7 +155,14 @@ class ClassInfoController extends Controller
 
     // 4단계 클래스 가져오기
     private function getDataForFourthSection() {
-        $classInfo4 = ClassInfo::where('ClassDifficulty', 4)->take(4)->get();
+        $id = $this->sharedData;
+
+        $classInfo4 = ClassInfo::join('class_languagelinks', 'class_infos.ClassID', 'class_languagelinks.ClassID')
+        ->join('class_languages', 'class_languagelinks.ClassLanguageID', 'class_languages.ClassLanguageID')
+        ->where('ClassDifficulty', 4)
+        ->where('class_languages.ClassLanguageName', $id)
+        ->take(4)
+        ->get();
 
         foreach ($classInfo4 as $info) {
             $classID = $info->ClassID;
