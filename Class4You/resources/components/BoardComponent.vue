@@ -1,7 +1,6 @@
-<<<<<<< HEAD
 	<template>
 		<div id="wrap">
-		<form @submit.prevent="search">
+		<!-- <form @submit.prevent="search">
 			<div class="whr">
 			<title>커뮤니티리스트</title>
 			</div>
@@ -64,18 +63,9 @@
 			</article>
 			</section>
 		</form>
-=======
-<template>
-	<div id="wrap">
-		<div class="whr"><span>게시판</span><span>></span><span>게시판</span>
-	</div><!-- whr -->
-
-	<div class="bannerBox">
-		<div class="banner">
-		<!-- <img class="bannerImg" src="/img/event_banner_2.png" alt="board_banenr_img"> -->
->>>>>>> aa4cce8dd5d8de093b080c2ce40b1552d509fa81
 		</div>
-	</div><!-- banner -->
+	</div> -->
+	<!-- banner -->
 
 	<section class="mainSec row jcB">
 

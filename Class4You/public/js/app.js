@@ -19381,6 +19381,103 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/components/BoardComponent.vue?vue&type=script&lang=js":
+/*!*****************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/components/BoardComponent.vue?vue&type=script&lang=js ***!
+  \*****************************************************************************************************************************************************************************************************/
+/***/ (() => {
+
+
+// import axios from 'axios';
+// // 하위 카테고리별 목록
+// export default {
+// 	name: 'BoardComponent',
+
+// 	data() {
+// 	return {
+// 		boardItems: [],
+// 		categories: [
+// 		{ id: 1, name: 'HTML' },
+// 		{ id: 2, name: 'CSS' },
+// 		{ id: 3, name: 'JS' },
+// 		{ id: 4, name: 'PHP' },
+// 		{ id: 5, name: 'JAVA' },
+// 		{ id: 6, name: 'DB' },
+// 		{ id: 7, name: 'TOOL' },
+// 		],
+// 		activeCategory: null,
+// 		currentSubCategory: null,
+// 		searchText: '',
+// 	};
+// 	},
+// 	// 게시물 목록중 해결된것만 나오게끔 하는 정렬 카테고리 목록
+// 	computed: {
+// 	filteredBoardItems() {
+// 		let filteredItems = this.boardItems;
+// 		if (this.currentSubCategory) {
+// 		filteredItems = filteredItems.filter((item) => item.categoryId === this.currentSubCategory);
+// 		}
+// 		if (this.searchText) {
+// 		const searchTextLower = this.searchText.toLowerCase();
+// 		filteredItems = filteredItems.filter(
+// 			(item) => item.title.toLowerCase().includes(searchTextLower)
+// 		);
+// 		}
+// 		return filteredItems;
+// 	},
+// 	},
+// 	mounted() {
+// 	this.fetchBoardItems();
+// 	},
+// 	methods: {
+// 	fetchBoardItems() {
+// 		axios
+// 		.get('/api/getBoardItems')
+// 		.then((response) => {
+// 			this.boardItems = response.data;
+// 		})
+// 		.catch((error) => {
+// 			console.error('Error fetching board items:', error);
+// 		});
+// 	},
+// 	getCategoryItemCount(categoryId) {
+// 		return this.boardItems.filter((item) => item.categoryId === categoryId).length;
+// 	},
+// 	selectCategory(category) {
+// 		this.activeCategory = category;
+// 		this.currentSubCategory = null;
+// 	},
+// 	// 해결 카테고리.
+// 	selectSubCategory(subCategory) {
+// 		this.currentSubCategory = subCategory;
+// 	},
+// 	sortByRecent() {
+// 		this.boardItems.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+// 	},
+// 	sortByPopularity() {
+// 		// 추가로 정렬 로직을 구현해야 합니다.
+// 	},
+// 	sortByViews() {
+// 		this.boardItems.sort((a, b) => b.viewCount - a.viewCount);
+// 	},
+// 	markAsResolved() {
+// 		// 선택된 게시물의 리스트를 해결된 것만 불러오는 로직을 추가합니다.
+// 		console.log('해결완료 클릭');
+// 	},
+// 	goToBoardInsert() {
+// 		// BoardInsertComponent.vue 페이지로 이동
+// 		console.log('글작성 버튼이 클릭되었습니다. BoardInsertComponent.vue 페이지로 이동합니다.');
+// 	},
+// 	search() {
+// 		// 검색 로직을 추가합니다.
+// 		console.log('검색 버튼 클릭');
+// 	},
+// 	},
+// };
+//
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/components/FooterComponent.vue?vue&type=script&lang=js":
 /*!******************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/components/FooterComponent.vue?vue&type=script&lang=js ***!
@@ -19783,6 +19880,29 @@ __webpack_require__.r(__webpack_exports__);
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_router_view = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("router-view");
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_view)]);
+}
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/components/BoardComponent.vue?vue&type=template&id=15212468":
+/*!*********************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/components/BoardComponent.vue?vue&type=template&id=15212468 ***!
+  \*********************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   render: () => (/* binding */ render)
+/* harmony export */ });
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
+
+var _hoisted_1 = {
+  id: "wrap"
+};
+var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<section class=\"mainSec row jcB\"><article class=\"leftNav\"><p>정보를 공유해요</p><ul class=\"mainNav\"><li>자유 게시판</li><li>질문 게시판</li><ul class=\"subNav\"><li class=\"row jcB active\"><p>HTML</p><p>0</p></li><li class=\"row jcB\"><p>CSS</p><p>0</p></li><li class=\"row jcB\"><p>JS</p><p>0</p></li><li class=\"row jcB\"><p>PHP</p><p>0</p></li><li class=\"row jcB\"><p>JAVA</p><p>0</p></li><li class=\"row jcB\"><p>DB</p><p>0</p></li><li class=\"row jcB\"><p>TOOL</p><p>0</p></li></ul></ul></article><!-- leftNav --><div class=\"board_container\"><div class=\"searchbox row aiC\"><input type=\"text\" id=\"searchTxt\"><button type=\"submit\" for=\"\">검색</button></div><div class=\"titBox row jcB aiC\"><div class=\"sort\"><ul class=\"row aiC\"><li class=\"row aiC active\"><span></span>최신순</li><li class=\"row aiC\"><span></span>인기순</li><li class=\"row aiC\"><span></span>조회순</li></ul></div><div class=\"btnbox row aiC\"><button type=\"button\">미해결</button><button type=\"button\">글작성</button></div></div><!-- titBox --><div class=\"board_detail_rating_list\"><div class=\"contBox\"><div class=\"cont\"><div class=\"item\"></div></div></div><div class=\"contBox\"><div class=\"cont\"><div class=\"item\"></div></div></div><div class=\"contBox\"><div class=\"cont\"><div class=\"item\"></div></div></div><div class=\"contBox\"><div class=\"cont\"><div class=\"item\"></div></div></div></div><!-- container --></div><article class=\"best\"><p>best</p><ul><li>1.홍길동</li><li>2.홍길동</li><li>3.홍길동</li><li>4.홍길동</li><li>5.홍길동</li><li>6.홍길동</li></ul></article><!-- best --></section>", 1);
+function render(_ctx, _cache, $props, $setup, $data, $options) {
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <form @submit.prevent=\"search\">\r\n\t\t\t<div class=\"whr\">\r\n\t\t\t<title>커뮤니티리스트</title>\r\n\t\t\t</div>\r\n\t\r\n\t\t\t<div class=\"bannerBox\">\r\n\t\t\t<div class=\"banner\">\r\n\t\t\t\t<img class=\"bannerImg\" src=\"/img/event_banner_2.png\" alt=\"board_banner_img\">\r\n\t\t\t</div>\r\n\t\t\t</div>\r\n\t\r\n\t\t\t<section class=\"mainSec row jcB\">\r\n\t\t\t<article class=\"leftNav\">\r\n\t\t\t\t<p>정보를 공유해요시른데요</p>\r\n\t\t\t\t<ul class=\"mainNav\">\r\n\t\t\t\t<li @click=\"selectCategory('question')\" :class=\"{ active: activeCategory === 'question' }\">질문 게시판</li>\r\n\t\t\t\t<li @click=\"selectCategory('free')\" :class=\"{ active: activeCategory === 'free' }\">자유 게시판</li>\r\n\t\t\t\t<ul class=\"subNav\" v-if=\"activeCategory === 'question'\">\r\n\t\t\t\t\t<li v-for=\"category in categories\" :key=\"category.id\" class=\"row jcB\">\r\n\t\t\t\t\t<p @click=\"selectSubCategory(category.id)\">{{ category.name }}</p>\r\n\t\t\t\t\t<p>{{ getCategoryItemCount(category.id) }}</p>\r\n\t\t\t\t\t</li>\r\n\t\t\t\t</ul>\r\n\t\t\t\t</ul>\r\n\t\t\t</article>\r\n\t\r\n\t\t\t<div class=\"board_container\">\r\n\t\t\t\t<div class=\"searchbox row aiC\">\r\n\t\t\t\t<input v-model=\"searchText\" type=\"text\" id=\"searchTxt\">\r\n\t\t\t\t<button type=\"submit\">검색</button>\r\n\t\t\t\t</div>\r\n\t\r\n\t\t\t\t<div class=\"titBox row jcB aiC\">\r\n\t\t\t\t<div class=\"sort\">\r\n\t\t\t\t\t<ul class=\"row aiC\">\r\n\t\t\t\t\t<li class=\"row aiC\" @click=\"sortByRecent\"><span></span>최신순</li>\r\n\t\t\t\t\t<li class=\"row aiC\" @click=\"sortByPopularity\"><span></span>인기순</li>\r\n\t\t\t\t\t<li class=\"row aiC\" @click=\"sortByViews\"><span></span>조회순</li>\r\n\t\t\t\t\t</ul>\r\n\t\t\t\t</div>\r\n\t\t\t\t<div class=\"btnbox row aiC\">\r\n\t\t\t\t\t<button @click=\"markAsResolved\" type=\"button\">해결완료</button>\r\n\t\t\t\t\t<button @click=\"goToBoardInsert\" type=\"button\">글작성</button>\r\n\t\t\t\t</div>\r\n\t\t\t\t</div>\r\n\t\r\n\t\t\t\t<div class=\"board_detail_rating_list\">\r\n\t\t\t\t<div class=\"contBox\" v-for=\"item in filteredBoardItems\" :key=\"item.id\">\r\n\t\t\t\t\t<div class=\"cont\">\r\n\t\t\t\t\t<div class=\"item\">{{ item.title }}</div>\r\n\t\t\t\t\t</div>\r\n\t\t\t\t</div>\r\n\t\t\t\t</div>\r\n\t\t\t</div>\r\n\t\r\n\t\t\t<article class=\"best\">\r\n\t\t\t\t<p>bestreviewer</p>\r\n\t\t\t\t<ul>\r\n\t\t\t\t<li v-for=\"bestuserItem in bestuserItems\" :key=\"bestuserItem.id\">{{ bestuserItem.name }}</li>\r\n\t\t\t\t</ul>\r\n\t\t\t</article>\r\n\t\t\t</section>\r\n\t\t</form>\r\n\t\t</div>\r\n\t</div> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" banner "), _hoisted_2]);
 }
 
 /***/ }),
@@ -20873,7 +20993,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_MainComponent_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/MainComponent.vue */ "./resources/components/MainComponent.vue");
 /* harmony import */ var _components_TestComponent_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../components/TestComponent.vue */ "./resources/components/TestComponent.vue");
 /* harmony import */ var _components_BoardComponent_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../components/BoardComponent.vue */ "./resources/components/BoardComponent.vue");
-/* harmony import */ var _components_BoardComponent_vue__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_components_BoardComponent_vue__WEBPACK_IMPORTED_MODULE_4__);
 /* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./store */ "./resources/js/store.js");
 
 
@@ -20890,7 +21009,7 @@ var routes = [{
   component: _components_RegistrationComponent_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
 }, {
   path: '/board',
-  component: (_components_BoardComponent_vue__WEBPACK_IMPORTED_MODULE_4___default())
+  component: _components_BoardComponent_vue__WEBPACK_IMPORTED_MODULE_4__["default"]
 }, {
   path: '/test',
   component: _components_TestComponent_vue__WEBPACK_IMPORTED_MODULE_3__["default"]
@@ -39311,9 +39430,30 @@ if (false) {}
 /*!*************************************************!*\
   !*** ./resources/components/BoardComponent.vue ***!
   \*************************************************/
-/***/ (() => {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _BoardComponent_vue_vue_type_template_id_15212468__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./BoardComponent.vue?vue&type=template&id=15212468 */ "./resources/components/BoardComponent.vue?vue&type=template&id=15212468");
+/* harmony import */ var _BoardComponent_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./BoardComponent.vue?vue&type=script&lang=js */ "./resources/components/BoardComponent.vue?vue&type=script&lang=js");
+/* harmony reexport (unknown) */ var __WEBPACK_REEXPORT_OBJECT__ = {};
+/* harmony reexport (unknown) */ for(const __WEBPACK_IMPORT_KEY__ in _BoardComponent_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__) if(__WEBPACK_IMPORT_KEY__ !== "default") __WEBPACK_REEXPORT_OBJECT__[__WEBPACK_IMPORT_KEY__] = () => _BoardComponent_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__[__WEBPACK_IMPORT_KEY__]
+/* harmony reexport (unknown) */ __webpack_require__.d(__webpack_exports__, __WEBPACK_REEXPORT_OBJECT__);
+/* harmony import */ var _node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../node_modules/vue-loader/dist/exportHelper.js */ "./node_modules/vue-loader/dist/exportHelper.js");
 
 
+
+
+;
+const __exports__ = /*#__PURE__*/(0,_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__["default"])(_BoardComponent_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__["default"], [['render',_BoardComponent_vue_vue_type_template_id_15212468__WEBPACK_IMPORTED_MODULE_0__.render],['__file',"resources/components/BoardComponent.vue"]])
+/* hot reload */
+if (false) {}
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (__exports__);
 
 /***/ }),
 
@@ -39476,6 +39616,26 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/components/BoardComponent.vue?vue&type=script&lang=js":
+/*!*************************************************************************!*\
+  !*** ./resources/components/BoardComponent.vue?vue&type=script&lang=js ***!
+  \*************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* reexport default from dynamic */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_BoardComponent_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0___default.a)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_BoardComponent_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./BoardComponent.vue?vue&type=script&lang=js */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/components/BoardComponent.vue?vue&type=script&lang=js");
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_BoardComponent_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_BoardComponent_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony reexport (unknown) */ var __WEBPACK_REEXPORT_OBJECT__ = {};
+/* harmony reexport (unknown) */ for(const __WEBPACK_IMPORT_KEY__ in _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_BoardComponent_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== "default") __WEBPACK_REEXPORT_OBJECT__[__WEBPACK_IMPORT_KEY__] = () => _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_BoardComponent_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__[__WEBPACK_IMPORT_KEY__]
+/* harmony reexport (unknown) */ __webpack_require__.d(__webpack_exports__, __WEBPACK_REEXPORT_OBJECT__);
+ 
+
+/***/ }),
+
 /***/ "./resources/components/FooterComponent.vue?vue&type=script&lang=js":
 /*!**************************************************************************!*\
   !*** ./resources/components/FooterComponent.vue?vue&type=script&lang=js ***!
@@ -39568,6 +39728,22 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   render: () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_AppComponent_vue_vue_type_template_id_1a737966__WEBPACK_IMPORTED_MODULE_0__.render)
 /* harmony export */ });
 /* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_AppComponent_vue_vue_type_template_id_1a737966__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./AppComponent.vue?vue&type=template&id=1a737966 */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/components/AppComponent.vue?vue&type=template&id=1a737966");
+
+
+/***/ }),
+
+/***/ "./resources/components/BoardComponent.vue?vue&type=template&id=15212468":
+/*!*******************************************************************************!*\
+  !*** ./resources/components/BoardComponent.vue?vue&type=template&id=15212468 ***!
+  \*******************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   render: () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_BoardComponent_vue_vue_type_template_id_15212468__WEBPACK_IMPORTED_MODULE_0__.render)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_BoardComponent_vue_vue_type_template_id_15212468__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./BoardComponent.vue?vue&type=template&id=15212468 */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/components/BoardComponent.vue?vue&type=template&id=15212468");
 
 
 /***/ }),
