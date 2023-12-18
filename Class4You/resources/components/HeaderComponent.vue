@@ -28,8 +28,8 @@
                     </li>
                     <!-- <li><a href="">추천 강의</a></li> -->
                     <!-- <li><a href="">신규 강의</a></li> -->
-                    <li><a href="">|</a></li>
-                    <li><a href="">커뮤니티</a></li>
+                    <li>|</li>
+                    <li><a href="/Board/">커뮤니티</a></li>
                 </ul>
                 <h1>
                     <a href="/">
