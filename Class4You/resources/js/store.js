@@ -30,7 +30,7 @@ const store = createStore({
                 userEmail: '',
             },
             userLoginChk: null,
-            shouldShowCarousel: false
+            shouldShowCarousel: false,
 
 
 
@@ -50,7 +50,7 @@ const store = createStore({
 
 
             // 최현희
-            
+            laravelData: null,
 
 
 
@@ -117,7 +117,9 @@ const store = createStore({
 
 
         // 최현희
-        
+        setLaravelData(state, data) {
+			state.laravelData = data;
+		}
 
 
 

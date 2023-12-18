@@ -2,7 +2,8 @@
     <div> 
         <div v-for="data in item" class="class_detail_visual">
             <div class="class_detail_container_box">
-                <div class="class_detail_container">
+                
+                <div v-for="data in item" class="class_detail_container">
                     <div class="class_detail_container_lr">
                         <div class="class_detail_container_l">
                             <div class="class_detail_container_l_img_cover">
@@ -19,7 +20,7 @@
                             </div>
                             <div class="class_detail_container_r_title_box">
                                 <h2 class="class_detail_container_r_title">
-                                    {{ data.ClassTitle }}    
+                                    김영한의 자바수업
                                 </h2>
                             </div>
                             <div class="class_detail_container_r_content_box">
@@ -446,10 +447,12 @@
     </div>
 </template>
 <script>
+
+
 export default {
     name: 'ClassBoardDetailComponent',
     props: {
-        data: Object,
+        data: Object
     },
     data() {
         return {

@@ -2,9 +2,9 @@
 
 @section('classBoardMain')
 
-{{-- <div id="wrap">
-        <div class="class_detail_visual">
-            <div class="class_detail_container_box">
+{{-- <div id="wrap"> --}}
+        {{-- <div class="class_detail_visual"> --}}
+            {{-- <div class="class_detail_container_box">
                 <div class="class_detail_container">
                     <div class="class_detail_container_lr">
                         <div class="class_detail_container_l">
@@ -65,10 +65,13 @@
                     </div>
                 </div>
 
-            </div>
-        </div>
+            </div> --}}
+            {{-- <div>
+                <classBoardDetail-Component :data="{{ $data }}"></classBoardDetail-Component>
+            </div> --}}
+        {{-- </div> --}}
 
-        <div class="class_container">
+        {{-- <div class="class_container">
 
             <ul class="class_tabs">
                 <li class="class_tab_link current" data-tab="class_tab1"><a href="#">강의 소개</a></li>
@@ -117,12 +120,17 @@
                 <p>강사 설명</p>
             </div>
         
-        </div>
+        </div> --}}
+        {{-- <div>
+            <classBoardDetail-Component :data="{{ $data }}"></classBoardDetail-Component>
+        </div> --}}
 
-</div> --}}
 
-<div>
-    <classBoardDetail-Component :data"{{ $data }}"></classBoardDetail-Component>
-</div>
+        {{-- {{$data}} --}}
+{{-- </div> --}}
+
+    <div id="app">
+        <classBoardDetail-Component :data="{{ $data }}"></classBoardDetail-Component>
+    </div>
 
 @endsection
