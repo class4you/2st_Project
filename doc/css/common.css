@@ -14,7 +14,7 @@ b, u, i, center,
 dl, dt, dd, ol, ul, li,
 fieldset, form, label, legend,
 table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed, 
+article, community_aside_menu, canvas, details, embed, 
 figure, figcaption, footer, header, hgroup, 
 menu, nav, output, ruby, section, summary,
 time, mark, audio, video {
@@ -1609,14 +1609,29 @@ ul.class_tabs li.class_current {
 .community_aside_group h6{
     margin-bottom: 1em;
     height: 20px;
-    font-size: 12px;
+    font-size: 20px;
     font-weight: 500;
     color: #adb5bd;
 }
 
-.community_aside_menu_list {
-
+.community_aside_menu_list { 
+    margin-bottom: 1em;
+    height: 20px;
+    font-size: 17px;
+    font-weight: 500;
+    color: #adb5bd;
+    
 }
+.community_aside_menu a {
+    margin-bottom: 1em;
+    height: 20px;
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 30px;
+    color: #000;
+}
+
+
 
 .community_aside_menu_list li:hover .community_dropdown {
     display: block; /* 호버 시 드롭다운 표시 */
@@ -1631,16 +1646,30 @@ ul.class_tabs li.class_current {
     text-align: left;
     z-index: 2;
     border-radius: 5px;
-    /* margin-top: 15px; */
+    line-height: 22.5px;
+    width: 130px;
+    height: 200px;
+    color: #000;
+    padding-left: 10px;
 }
 
-.community_aside_menu {
+.community_community_aside_menu_menu {
     padding: 0.5em 0.75em;
 }
 
 .search_filter_status {
     display: flex;
     border-bottom: 1px solid #dee2e6;
+}
+
+.weeklyranking{
+    padding: 0 12px;
+    margin-bottom: 10px;
+    letter-spacing: -.3px;
+    font-size: 18px;
+    font-weight: 700;
+    color: #212529;
+    line-height: 170%;
 }
 
 .e_status_active {
@@ -2004,10 +2033,16 @@ option {
 }
 
 .ranking_weekly_popular_writes_list {
-    flex: 1;
     display: flex;
-    flex-direction: column;
-}
+    justify-content: space-between;
+    padding: 4px 12px;
+    width: 100%;
+    border-radius: 2px;
+        list-style: none;
+        padding: 0;
+      }
+
+
 
 .ranking_weekly_popular_write a{
     padding: 10px 12px;
@@ -2035,9 +2070,21 @@ option {
     width: 100%;
 }
 
-.ranking_weekly_popular_write_writer {
+.ranking_weekly_popular_write_list {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .ranking_weekly_popular_write_writer {
+    width: 140px;
+    height: 22px;
     font-weight: 700;
-    font-size: 12px;
-    line-height: 150%;
-    color: #212529;
-}
+    font-size: 17px;
+    color: #495057;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    padding: 3px;
+    margin: 0px -2px
+  }
+
