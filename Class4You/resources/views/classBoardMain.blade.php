@@ -34,7 +34,7 @@
 						<a href="{{ route('classboarddetail', ['ClassID' => $item->ClassID]) }}">
 						<li class="class_main_container_new_card">
 							<div class="class_main_container_new_card_img">
-								<img src="{{$item->ClassImg}}" alt="">
+								<img src="/{{$item->ClassImg}}" alt="">
 							</div>
 							<div class="class_main_container_new_card_title">
 								<h4>{{$item->ClassTitle}}</h4>
@@ -84,7 +84,7 @@
 						<a href="{{ route('classboarddetail', ['ClassID' => $item->ClassID]) }}">
 						<li class="class_main_container_new_card">
 							<div class="class_main_container_new_card_img">
-								<img src="{{$item->ClassImg}}" alt="">
+								<img src="/{{$item->ClassImg}}" alt="">
 							</div>
 							<div class="class_main_container_new_card_title">
 								<h4>{{$item->ClassTitle}}</h4>
@@ -129,7 +129,7 @@
 						<a href="{{ route('classboarddetail', ['ClassID' => $item->ClassID]) }}">
 						<li class="class_main_container_new_card">
 							<div class="class_main_container_new_card_img">
-								<img src="{{$item->ClassImg}}" alt="">
+								<img src="/{{$item->ClassImg}}" alt="">
 							</div>
 							<div class="class_main_container_new_card_title">
 								<h4>{{$item->ClassTitle}}</h4>
@@ -174,7 +174,7 @@
 						<a href="{{ route('classboarddetail', ['ClassID' => $item->ClassID]) }}">
 						<li class="class_main_container_new_card">
 							<div class="class_main_container_new_card_img">
-								<img src="{{$item->ClassImg}}" alt="">
+								<img src="/{{$item->ClassImg}}" alt="">
 							</div>
 							<div class="class_main_container_new_card_title">
 								<h4>{{$item->ClassTitle}}</h4>

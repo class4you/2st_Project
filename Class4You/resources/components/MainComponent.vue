@@ -62,9 +62,9 @@
 
                     <div class="main_container_new_box">
                         <ul class="main_container_new">
-                            <carousel v-if="$store.state.shouldShowCarousel" :per-page="4" :navigation-enabled="true" :autoplay="false" :transition="500" >
+                            <carousel v-if="$store.state.shouldShowCarousel" :per-page="4" :navigation-enabled="true" :autoplay=0 :transition="500" >
                                 <Slide v-for="item in newClassItems" :key="item.id">
-                                <a href="">
+                                <div>
                                     <li class="main_container_new_card">
                                         <div class="main_container_new_card_img">
                                             <img :src="item.ClassImg" alt="">
@@ -79,10 +79,10 @@
                                             <li v-for="item2 in item.languages" :key="item2.id">{{ item2.ClassLanguageName }}</li>
                                         </ul>
                                     </li>
-                                </a>
+                                </div>
                                 </Slide>
                             </carousel>
-                                <a v-if="!$store.state.shouldShowCarousel" v-for="item in newClassItems" :key="item.id" href="">
+                                <div @click="handleClassImageClick(item.ClassID)" v-if="!$store.state.shouldShowCarousel" v-for="item in newClassItems" :key="item.id" href="">
                                     <li class="main_container_new_card">
                                         <div class="main_container_new_card_img">
                                             <img :src="item.ClassImg" alt="">
@@ -97,7 +97,7 @@
                                             <li v-for="item2 in item.languages" :key="item2.id">{{ item2.ClassLanguageName }}</li>
                                         </ul>
                                     </li>
-                                </a>
+                                </div>
                         </ul>
                     </div>
 
@@ -111,7 +111,7 @@
                     <div class="main_container_hot_box">
                         <ul class="main_container_hot">
 
-                            <carousel v-if="$store.state.shouldShowCarousel" :per-page="4" :navigation-enabled="true" :autoplay="false" :transition="500" >
+                            <carousel v-if="$store.state.shouldShowCarousel" :per-page="4" :navigation-enabled="true" :autoplay=0 :transition="500" >
                                 <Slide v-for="item in hot_banners" :key="item.id">
                                     <a href="">
                                         <li class="main_container_hot_card">
@@ -142,7 +142,7 @@
 
                     <div class="main_container_keyword_box">
                         <ul class="main_container_keyword">
-                            <carousel v-if="$store.state.shouldShowCarousel" :per-page="4" :navigation-enabled="true" :autoplay="false" :transition="500" >
+                            <carousel v-if="$store.state.shouldShowCarousel" :per-page="4" :navigation-enabled="true" :autoplay=0 :transition="500" >
                                 <Slide v-for="item in guide_banners" :key="item.id">
                                     <a href="">
                                         <li class="main_container_keyword_card">
@@ -174,6 +174,7 @@
 
 import { defineComponent } from "vue";
 import { Carousel, Pagination, Slide, Navigation } from "vue3-carousel";
+import axios from 'axios'
 
 import "vue3-carousel/dist/carousel.css"; 
 
@@ -242,7 +243,34 @@ export default {
         checkWindowWidth() {
             this.$store.dispatch('checkWindowWidth');
         },
-    },
+        handleClassImageClick(classId) {
+            const url = '/api/classBoardDetail/${classId}'
+            const header = {
+                headers: {
+                    "Content-Type": 'application/json',
+                    // 'X-CSRF-TOKEN': document.head.querySelector('meta[name="csrf-token"]').content,
+                },
+            }
+            axios.get(url, header)
+            .then(response => {
+            const detailData = response.data;
+
+            // 프로그래밍 방식으로 라우터를 통해 디테일 페이지로 이동
+            this.$router.push({
+                    name: 'classboarddetail', // 디테일 페이지의 라우터 이름
+                    params: {
+                    id: classId,
+                    // 기타 필요한 파라미터들...
+                    },
+                    query: {
+                    },
+                });
+            })
+            .catch(error => {
+            console.error('API 요청 실패:', error);
+            });
+        },
+    }
 }
 </script>
 <style>

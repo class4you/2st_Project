@@ -29,7 +29,7 @@ Route::get('/logout', [UserController::class, 'logout']);
 //     return view('classBoardMain');
 // });
 
-Route::get('/classBoard', [ClassInfoController::class, 'classBoardIndex'])->name('classboardmain');
+Route::get('/classBoard/{classID}', [ClassInfoController::class, 'classBoardIndex'])->name('classboardmain');
 
 Route::get('/classBoardViewAll/{ClassDifficulty}', [ClassInfoController::class, 'getClassBoardShow'])->name('classboardall');
 
