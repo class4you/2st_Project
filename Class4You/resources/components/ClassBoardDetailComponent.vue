@@ -67,13 +67,13 @@
         <div class="class_container">
             <!-- 강의 소개 -->
             <ul class="class_tabs">
-                <li @click="flgTab=0;" class="class_tab_link current" data-tab="class_tab1"><a href="#">강의 소개</a></li>
-                <li @click="flgTab=1;" class="class_tab_link" data-tab="class_tab2"><a href="">수강평</a></li>
-                <li @click="flgTab=2;" class="class_tab_link" data-tab="class_tab3"><a href="">커뮤니티</a></li>
-                <li @click="flgTab=3;" class="class_tab_link" data-tab="class_tab4"><a href="">공지사항</a></li>
+                <li @click="clickFlgTab = 0;" class="class_tab_link current" data-tab="class_tab1"><a href="#">강의 소개</a></li>
+                <li @click="clickFlgTab = 1;" class="class_tab_link" data-tab="class_tab2"><a href="">수강평</a></li>
+                <li @click="clickFlgTab = 2;" class="class_tab_link" data-tab="class_tab3"><a href="">커뮤니티</a></li>
+                <li @click="clickFlgTab = 3;" class="class_tab_link" data-tab="class_tab4"><a href="">공지사항</a></li>
             </ul>
 
-        <div v-if="flgTab === 0">
+        <div v-if="clickFlgTab === 0">
             <div id="class_tab1" class="class_tab_content class_current">
                 <p>tab content1</p>
                 <p>동해물과백두산이마르고닳도록하느님이보우하사우리나라만세</p>
@@ -116,7 +116,7 @@
         </div>
 
             <!-- 수강평 -->
-        <div v-if="flgTab === 1">    
+        <div v-if="clickFlgTab === 1">    
             <div id="class_tab1" class="class_current class_detail_rating_form">
                 <form action="">
                     <fieldset>
@@ -236,7 +236,7 @@
 
             <!-- 커뮤니티 -->
             
-        <div v-if="flgTab === 2">    
+        <div v-if="clickFlgTab === 2">    
             <div id="class_tab1" class="class_current class_detail_rating_form">
                 <form action="">
                     <fieldset>
@@ -345,7 +345,7 @@
 
             <!-- 공지사항 -->
         
-        <div v-if="flgTab === 3">   
+        <div v-if="clickFlgTab === 3">   
             <div id="class_tab1" class="class_tab_content class_current class_detail_notice_main">
 				<div class="class_detail_notice_main_div">
 					<div class="class_detail_notice_title">
@@ -453,7 +453,7 @@ export default {
     },
     data() {
         return {
-            flgTab: 0,
+            clickFlgTab: 0,
         }
     },
     
