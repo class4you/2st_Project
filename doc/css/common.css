@@ -1373,6 +1373,7 @@ ul.class_tabs li.class_current {
     padding: 5px 20px;
 }
 
+/* 별점 기능 */
 .class_detail_rating_star_form>fieldset{
     display: inline-block; /* 하위 별점 이미지들이 있는 영역만 자리를 차지함.*/
     direction: rtl;

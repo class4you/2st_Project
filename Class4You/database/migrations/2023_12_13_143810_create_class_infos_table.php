@@ -21,6 +21,8 @@ return new class extends Migration
             $table->string('ClassImg');
             $table->string('ClassTitle', 100);
             $table->string('ClassDescription', 1000);
+            $table->string('ClassIntroduction');
+            $table->string('ClassPoint');
             $table->integer('ClassPrice')->nullable();
             $table->timestamps();
             $table->softDeletes();

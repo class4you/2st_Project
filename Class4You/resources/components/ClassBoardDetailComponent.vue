@@ -75,22 +75,15 @@
 
         <div v-if="clickFlgTab === 0">
             <div id="class_tab1" class="class_tab_content class_current">
-                <p>tab content1</p>
-                <p>동해물과백두산이마르고닳도록하느님이보우하사우리나라만세</p>
-                <p>동해물과백두산이마르고닳도록하느님이보우하사우리나라만세</p>
-                <p>동해물과백두산이마르고닳도록하느님이보우하사우리나라만세</p>
-                <p>동해물과백두산이마르고닳도록하느님이보우하사우리나라만세</p>
-                <p>동해물과백두산이마르고닳도록하느님이보우하사우리나라만세</p>
-                <p>동해물과백두산이마르고닳도록하느님이보우하사우리나라만세</p>
+                <p>ClassIntroduction 입니다</p>
+                <p>{{ detailClassItems.ClassIntroduction }}</p>
             </div>
             
             <div class="class_tab_content_title">
                 <p>기초 설명</p>
             </div>
             <div id="class_tab1" class="class_tab_content">
-                <p>무궁화삼천리화려강산대한사람대한으로길이보전하세</p>
-                <p>무궁화삼천리화려강산대한사람대한으로길이보전하세</p>
-                <p>무궁화삼천리화려강산대한사람대한으로길이보전하세</p>
+                <p>{{ detailClassItems.ClassDescription }}</p>
             </div>
 
             <div class="class_tab_content_title">
@@ -104,21 +97,21 @@
                 <p>강의 특징</p>
             </div>
             <div id="class_tab1" class="class_tab_content">
-                <p>강의 특징</p>
+                <p>{{detailClassItems.ClassPoint}}</p>
             </div>
 
             <div class="class_tab_content_title">
-                <p>강사 설명</p>
+                <p>강사 이력</p>
             </div>
             <div id="class_tab1" class="class_tab_content">
-                <p>강사 설명</p>
+                <p>강사 소개란 입니다.</p>
             </div>
         </div>
 
             <!-- 수강평 -->
         <div v-if="clickFlgTab === 1">    
             <div id="class_tab1" class="class_current class_detail_rating_form">
-                <form action="">
+                <form name="myform" id="myform" method="post" action="./save">
                     <fieldset>
 
                         <div class="class_detail_rating_form_text">
@@ -127,12 +120,21 @@
 
                         <div class="class_detail_rating_form_content">
                             <div class="class_detail_rating_form_star">
-								<label>평점</label>
-									<label for=""></label><span>☆</span>
-									<label for=""></label><span>☆</span>
-									<label for=""></label><span>☆</span>
-									<label for=""></label><span>☆</span>
-									<label for=""></label><span>☆</span>
+								
+                                    <fieldset class="class_detail_rating_star_form">
+                                        <legend class="class_detail_rating_star_form_title">별점</legend>
+                                            <input class="class_detail_rating_star_input" type="radio" name="rating" value="5" id="rate1">
+                                                <label class="class_detail_rating_star_label" for="rate1">⭐</label>
+                                            <input class="class_detail_rating_star_input" type="radio" name="rating" value="4" id="rate2">
+                                                <label class="class_detail_rating_star_label" for="rate2">⭐</label>
+                                            <input class="class_detail_rating_star_input" type="radio" name="rating" value="3" id="rate3">
+                                                <label class="class_detail_rating_star_label" for="rate3">⭐</label>
+                                            <input class="class_detail_rating_star_input" type="radio" name="rating" value="2" id="rate4">
+                                                <label class="class_detail_rating_star_label" for="rate4">⭐</label>
+                                            <input class="class_detail_rating_star_input" type="radio" name="rating" value="1" id="rate5">
+                                                <label class="class_detail_rating_star_label" for="rate5">⭐</label>
+                                    </fieldset>
+                                
                             </div>
 
                             <div class="class_detail_rating_form_button">

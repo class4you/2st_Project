@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/common.css">
-    <link rel="stylesheet" href="./css/test.css">
     <title>마이페이지main</title>
 </head>
 <body>
@@ -45,34 +44,46 @@
     <hr>
     
     <!-- 바디 영역 -->
-    <div class="dashboard-main">
-        <div class="dashboard-buttons">
-            <div class="dashboard-button" onclick="showDashboardContent('대시보드')">대시보드</div>
-            <div class="dashboard-button" onclick="showDashboardContent('계정정보')">계정정보</div>
-            <div class="dashboard-button" onclick="showDashboardContent('나의학습')">나의학습</div>
-            <div class="dashboard-button" onclick="showDashboardContent('강의노트')">강의노트</div>
-            <div class="dashboard-button" onclick="showDashboardContent('작성 게시글')">작성 게시글</div>
-            <div class="dashboard-button" onclick="showDashboardContent('구매내역')">구매내역</div>
-            <div class="dashboard-button" onclick="showDashboardContent('공란')">공란</div>
-
+    <div class="my_page_main">
+        <div class="my_page_main_tap_uis">
+            <div class="my_page_main_tap_ui" onclick="showDashboardContent('대시보드')">대시보드</div>
+            <div class="my_page_main_tap_ui" onclick="showDashboardContent('계정정보')">계정정보</div>
+            <div class="my_page_main_tap_ui" onclick="showDashboardContent('나의학습')">나의학습</div>
+            <div class="my_page_main_tap_ui" onclick="showDashboardContent('강의노트')">강의노트</div>
+            <div class="my_page_main_tap_ui" onclick="showDashboardContent('작성 게시글')">작성 게시글</div>
+            <div class="my_page_main_tap_ui" onclick="showDashboardContent('구매내역')">구매내역</div>
+            <!-- <div class="my_page_main_tap_ui" onclick="showDashboardContent('공란')">공란</div> -->
         </div>
-        <main id="main__dash-board">
-            <div class="grid-item__dash-board">
-                <div class="dashboard-detail">
-                    <div>기본정보</div>
-                </div>
-                <main class="user-profile__dash-board"></main>
-            </div>
-            <div class="grid-item__dash-board">
-                <div class="dashboard-detail">
-                    <div>계정정보</div>
-                </div>
-            </div>
-        </main>
-        <div class="bottom-dashboard-title">연간 학습정보</div>
-        <div class="bottom-dashboard">
 
+        <div class="my_page_dashboard_box">
+            <div class="my_page_dashboard_box_cover">
+                <div class="dashboard_recent_learning_class">
+                    <div class="dashboard_recent_learning_class_title">
+                        <p>최근 학습 강의</p>
+                    </div>
+                    <div class="dashboard_recent_learning_class_box">
+                        
+                    </div>
+                </div>
+                <div class="dashboard_weekly_study_class">
+                    <div class="dashboard_weekly_study_class_title">
+                        <p>주간 학습 정보</p>
+                    </div>
+                    <div class="dashboard_weekly_study_class_box">
+
+                    </div>
+                </div>
+                <div class="dashboard_annual_study_class">
+                    <div class="dashboard_annual_study_class_title">
+                        <p>연간 학습 정보</p>
+                    </div>
+                    <div class="dashboard_annual_study_class_box">
+
+                    </div>
+                </div>
+            </div>
         </div>
+        
     </div>
     
     <!-- 푸터 영역 -->
