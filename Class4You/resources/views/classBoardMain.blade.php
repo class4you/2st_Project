@@ -18,7 +18,7 @@
 					<div class="class_main_viewall_text">
 						<p>
 							@foreach ($classInfo1 as $item)
-								<a href="{{route('classboardall',['ClassDifficulty' => $item->ClassDifficulty])}}">전체보기</a>
+								<a href="{{route('classboardall',['ClassDifficulty' => $item->ClassDifficulty, 'ClassLanguageName' => $item->ClassLanguageName])}}">전체보기</a>
 								@break
 							@endforeach	
 						</p>
@@ -67,7 +67,7 @@
 					<h3>{{$msg2}}</h3>
 				<div class="class_main_viewall_text">
 						<p>
-							<a href="{{route('classboardall',['ClassDifficulty' => $item->ClassDifficulty])}}">전체보기</a>	
+							<a href="{{route('classboardall',['ClassDifficulty' => $item->ClassDifficulty, 'ClassLanguageName' => $item->ClassLanguageName])}}">전체보기</a>	
 						</p>
 				</div>
 					@break
@@ -113,7 +113,7 @@
 					<div class="class_main_viewall_text">
 						<p>
 							@foreach ($classInfo3 as $item)
-								<a href="{{route('classboardall',['ClassDifficulty' => $item->ClassDifficulty])}}">전체보기</a>
+								<a href="{{route('classboardall',['ClassDifficulty' => $item->ClassDifficulty, 'ClassLanguageName' => $item->ClassLanguageName])}}">전체보기</a>
 								@break
 							@endforeach
 						</p>
@@ -158,7 +158,7 @@
 					<div class="class_main_viewall_text">
 						<p>
 							@foreach ($classInfo4 as $item)
-								<a href="{{route('classboardall',['ClassDifficulty' => $item->ClassDifficulty])}}">전체보기</a>
+								<a href="{{route('classboardall',['ClassDifficulty' => $item->ClassDifficulty, 'ClassLanguageName' => $item->ClassLanguageName])}}">전체보기</a>
 								@break
 							@endforeach
 						</p>

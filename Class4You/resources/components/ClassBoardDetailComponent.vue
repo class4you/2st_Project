@@ -1,6 +1,6 @@
 <template>
     <div> 
-        <div class="class_detail_visual">
+        <div v-for="data in item" class="class_detail_visual">
             <div class="class_detail_container_box">
                 <div class="class_detail_container">
                     <div class="class_detail_container_lr">
@@ -19,7 +19,7 @@
                             </div>
                             <div class="class_detail_container_r_title_box">
                                 <h2 class="class_detail_container_r_title">
-                                    김영한의 자바 입문 - 코드로 시작하는 자바 첫걸음일수도 있고
+                                    {{ data.ClassTitle }}    
                                 </h2>
                             </div>
                             <div class="class_detail_container_r_content_box">
@@ -65,14 +65,178 @@
         </div>
 
         <div class="class_container">
-
-            <ul class="class_tabs class_detail_rating_tab">
-                <li class="class_tab_link current" data-tab="class_tab1"><a href="#">강의 소개</a></li>
-                <li class="class_tab_link" data-tab="class_tab2"><a href="">수강평</a></li>
-                <li class="class_tab_link" data-tab="class_tab3"><a href="">커뮤니티</a></li>
-                <li class="class_tab_link" data-tab="class_tab4"><a href="">공지사항</a></li>
+            <!-- 강의 소개 -->
+            <ul class="class_tabs">
+                <li @click="clickFlgTab = 0;" class="class_tab_link current" data-tab="class_tab1"><a href="#">강의 소개</a></li>
+                <li @click="clickFlgTab = 1;" class="class_tab_link" data-tab="class_tab2"><a href="">수강평</a></li>
+                <li @click="clickFlgTab = 2;" class="class_tab_link" data-tab="class_tab3"><a href="">커뮤니티</a></li>
+                <li @click="clickFlgTab = 3;" class="class_tab_link" data-tab="class_tab4"><a href="">공지사항</a></li>
             </ul>
+
+        <div v-if="clickFlgTab === 0">
+            <div id="class_tab1" class="class_tab_content class_current">
+                <p>tab content1</p>
+                <p>동해물과백두산이마르고닳도록하느님이보우하사우리나라만세</p>
+                <p>동해물과백두산이마르고닳도록하느님이보우하사우리나라만세</p>
+                <p>동해물과백두산이마르고닳도록하느님이보우하사우리나라만세</p>
+                <p>동해물과백두산이마르고닳도록하느님이보우하사우리나라만세</p>
+                <p>동해물과백두산이마르고닳도록하느님이보우하사우리나라만세</p>
+                <p>동해물과백두산이마르고닳도록하느님이보우하사우리나라만세</p>
+            </div>
             
+            <div class="class_tab_content_title">
+                <p>기초 설명</p>
+            </div>
+            <div id="class_tab1" class="class_tab_content">
+                <p>무궁화삼천리화려강산대한사람대한으로길이보전하세</p>
+                <p>무궁화삼천리화려강산대한사람대한으로길이보전하세</p>
+                <p>무궁화삼천리화려강산대한사람대한으로길이보전하세</p>
+            </div>
+
+            <div class="class_tab_content_title">
+                <p>커리큘럼</p>
+            </div>
+            <div id="class_tab1" class="class_tab_content">
+                <p>커리큘럼</p>
+            </div>
+
+            <div class="class_tab_content_title">
+                <p>강의 특징</p>
+            </div>
+            <div id="class_tab1" class="class_tab_content">
+                <p>강의 특징</p>
+            </div>
+
+            <div class="class_tab_content_title">
+                <p>강사 설명</p>
+            </div>
+            <div id="class_tab1" class="class_tab_content">
+                <p>강사 설명</p>
+            </div>
+        </div>
+
+            <!-- 수강평 -->
+        <div v-if="clickFlgTab === 1">    
+            <div id="class_tab1" class="class_current class_detail_rating_form">
+                <form action="">
+                    <fieldset>
+
+                        <div class="class_detail_rating_form_text">
+                            <textarea name="" id="" cols="30" rows="10" placeholder="수강평을 작성해주세요."></textarea>
+                        </div>
+
+                        <div class="class_detail_rating_form_content">
+                            <div class="class_detail_rating_form_star">
+								<label>평점</label>
+									<label for=""></label><span>☆</span>
+									<label for=""></label><span>☆</span>
+									<label for=""></label><span>☆</span>
+									<label for=""></label><span>☆</span>
+									<label for=""></label><span>☆</span>
+                            </div>
+
+                            <div class="class_detail_rating_form_button">
+                                <button>수강평 작성</button>
+                            </div>
+                        </div>
+
+                    </fieldset>
+                </form>
+            </div>
+
+            <div class="class_detail_rating_list">
+				<div class="class_detail_rating_view_tab">
+					<div class="class_detail_rating_tab_title">
+						<span><a href="">최신순</a></span>
+					</div>
+					<div class="class_detail_rating_tab_title">
+						<span><a href="">인기순</a></span>
+					</div>
+					<div class="class_detail_rating_tab_title">
+						<span><a href="">조회순</a></span>
+					</div>
+				</div>
+
+			<hr>
+
+				<div id="class_tab1" class="class_detail_rating_list_div">
+					<div class="class_detail_rating_list_user">
+						<div class="class_detail_rating_user_id">
+							<p>작성자ID</p>
+						</div>
+						<div class="class_detail_rating_user_date">
+							<p>2023-12-13</p>
+						</div>
+					</div>
+					<div class="class_detail_rating_list_text">
+						<p>css 이렇게 많이 써본건 처음이야</p>
+						<p>css 이렇게 많이 써본건 처음이야</p>
+						<p>css 이렇게 많이 써본건 처음이야</p>
+						<p>내가 쓴글 수정삭제가능</p>
+					</div>
+					<div class="class_detail_rating_user_button">
+						<div class="class_detail_rating_user_update_button">
+							<button>수정</button>
+						</div>
+						<div class="class_detail_rating_user_delete_button">
+							<button>삭제</button>
+						</div>
+					</div>
+				</div>
+			
+			<hr>
+
+				<div id="class_tab1" class="class_detail_rating_list_div">
+					<div class="class_detail_rating_list_user">
+						<div class="class_detail_rating_user_id">
+							<p>작성자ID</p>
+						</div>
+						<div class="class_detail_rating_user_date">
+							<p>2023-12-13</p>
+						</div>
+					</div>
+					<div class="class_detail_rating_list_text">
+						<p>수업이 재밌어요</p>
+					</div>
+				</div>
+
+			<hr>	
+
+				<div id="class_tab1" class="class_detail_rating_list_div">
+					<div class="class_detail_rating_list_user">
+						<div class="class_detail_rating_user_id">
+							<p>작성자ID</p>
+						</div>
+						<div class="class_detail_rating_user_date">
+							<p>2023-12-13</p>
+						</div>
+					</div>
+					<div class="class_detail_rating_list_text">
+						<p>코딩 조아요</p>
+					</div>
+				</div>
+
+			<hr>
+
+				<div id="class_tab1" class="class_detail_rating_list_div">
+					<div class="class_detail_rating_list_user">
+						<div class="class_detail_rating_user_id">
+							<p>작성자ID</p>
+						</div>
+						<div class="class_detail_rating_user_date">
+							<p>2023-12-13</p>
+						</div>
+					</div>
+					<div class="class_detail_rating_list_text">
+						<p>재밌는 라라벨</p>
+					</div>
+				</div>
+        	</div>
+        </div>
+
+            <!-- 커뮤니티 -->
+            
+        <div v-if="clickFlgTab === 2">    
             <div id="class_tab1" class="class_current class_detail_rating_form">
                 <form action="">
                     <fieldset>
@@ -177,8 +341,106 @@
 					</div>
 				</div>
         	</div>
+        </div>    
+
+            <!-- 공지사항 -->
         
+        <div v-if="clickFlgTab === 3">   
+            <div id="class_tab1" class="class_tab_content class_current class_detail_notice_main">
+				<div class="class_detail_notice_main_div">
+					<div class="class_detail_notice_title">
+						<p>메인 공지사항</p>
+					</div>
+					<div class="class_detail_notice_content">
+						<p>집에가면머합니까남아서열심히하소</p>
+						<p>그래도레이아웃작업은다해가지않슴니까?</p>
+						<p>감사하다명호야</p>
+						<p>근데 이거 늘어나나?</p>
+						<p>늘어나긴하네</p>
+						<p>div로 함더 묶을까 말까</p>
+					</div>
+				</div>
+            </div>
+            
+            <div class="class_detail_rating_list">
+				<div class="class_detail_rating_view_tab">
+					<div class="class_detail_rating_tab_title">
+                        <!-- 질문게시판 클릭시 커뮤니티 질문게시판 페이지로 이동 -->
+						<span>이전 공지사항</span>
+					</div>
+				</div>
+
+			<hr>
+
+				<div id="class_tab1" class="class_detail_rating_list_div">
+					<div class="class_detail_rating_list_user">
+						<div class="class_detail_rating_user_id">
+							<p>관리자ID</p>
+						</div>
+						<div class="class_detail_rating_user_date">
+							<p>2023-12-13</p>
+						</div>
+					</div>
+					<div class="class_detail_rating_list_text">
+						<p>css 이렇게 많이 써본건 처음이야</p>
+						<p>css 이렇게 많이 써본건 처음이야</p>
+						<p>css 이렇게 많이 써본건 처음이야</p>
+						
+					</div>
+				</div>
+			
+			<hr>
+
+				<div id="class_tab1" class="class_detail_rating_list_div">
+					<div class="class_detail_rating_list_user">
+						<div class="class_detail_rating_user_id">
+							<p>관리자ID</p>
+						</div>
+						<div class="class_detail_rating_user_date">
+							<p>2023-12-13</p>
+						</div>
+					</div>
+					<div class="class_detail_rating_list_text">
+						<p>수업이 재밌어요</p>
+					</div>
+				</div>
+
+			<hr>	
+
+				<div id="class_tab1" class="class_detail_rating_list_div">
+					<div class="class_detail_rating_list_user">
+						<div class="class_detail_rating_user_id">
+							<p>관리자ID</p>
+						</div>
+						<div class="class_detail_rating_user_date">
+							<p>2023-12-13</p>
+						</div>
+					</div>
+					<div class="class_detail_rating_list_text">
+						<p>코딩 조아요</p>
+					</div>
+				</div>
+
+			<hr>
+
+				<div id="class_tab1" class="class_detail_rating_list_div">
+					<div class="class_detail_rating_list_user">
+						<div class="class_detail_rating_user_id">
+							<p>관리자ID</p>
+						</div>
+						<div class="class_detail_rating_user_date">
+							<p>2023-12-13</p>
+						</div>
+					</div>
+					<div class="class_detail_rating_list_text">
+						<p>재밌는 라라벨</p>
+					</div>
+				</div>
+        	</div>
+        </div> 
+
 		</div>
+        
 
         
     </div>
@@ -186,6 +448,14 @@
 <script>
 export default {
     name: 'ClassBoardDetailComponent',
+    props: {
+        data: Object,
+    },
+    data() {
+        return {
+            clickFlgTab: 0,
+        }
+    },
     
 }
 </script>

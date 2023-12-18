@@ -31,7 +31,7 @@ Route::get('/logout', [UserController::class, 'logout']);
 
 Route::get('/classBoard/{classID}', [ClassInfoController::class, 'classBoardIndex'])->name('classboardmain');
 
-Route::get('/classBoardViewAll/{ClassDifficulty}', [ClassInfoController::class, 'getClassBoardShow'])->name('classboardall');
+Route::get('/classBoardViewAll/{ClassDifficulty}/{ClassLanguageName}', [ClassInfoController::class, 'getClassBoardShow'])->name('classboardall');
 
 // Route::get('/classdetailboard', function () {
 //     return view('classBoardDetail');
