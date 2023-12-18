@@ -17,11 +17,11 @@ return new class extends Migration
             $table->id('ClassID');
             $table->integer('InstructorID');
             $table->integer('CategoryID');
+            $table->integer('ClassDifficultyID');
             $table->string('ClassImg');
             $table->string('ClassTitle', 100);
             $table->string('ClassDescription', 1000);
             $table->integer('ClassPrice')->nullable();
-            $table->char('ClassDifficulty', 1);
             $table->timestamps();
             $table->softDeletes();
         });

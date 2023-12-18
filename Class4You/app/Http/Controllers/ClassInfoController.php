@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\ClassInfo;
 use App\Models\ClassLanguagelink;
+use App\Models\ClassDiffiBanner;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\DB;
 
@@ -69,7 +70,7 @@ class ClassInfoController extends Controller
         $id = $this->sharedData;
         $classInfo1 = ClassInfo::join('class_languagelinks', 'class_infos.ClassID', 'class_languagelinks.ClassID')
             ->join('class_languages', 'class_languagelinks.ClassLanguageID', 'class_languages.ClassLanguageID')
-            ->where('ClassDifficulty', 1)
+            ->where('ClassDifficultyID', 1)
             ->where('class_languages.ClassLanguageName', $id)
             ->take(4)
             ->get();
@@ -95,12 +96,12 @@ class ClassInfoController extends Controller
     // 1단계 클래스 가져오기
     // private function getDataForFirstSection() {
 
-    //     return ClassInfo::where('ClassDifficulty', 1)->take(4)->get();
+    //     return ClassInfo::where('ClassDifficultyID', 1)->take(4)->get();
     // }
     
     // private function getDataForSecondSection() {
 
-    //     return ClassInfo::where('ClassDifficulty', 2)->take(4)->get();
+    //     return ClassInfo::where('ClassDifficultyID', 2)->take(4)->get();
     // }
 
     // 단계별 클래스 문구 삽입해봄
@@ -112,7 +113,7 @@ class ClassInfoController extends Controller
 
         $classInfo2 = ClassInfo::join('class_languagelinks', 'class_infos.ClassID', 'class_languagelinks.ClassID')
         ->join('class_languages', 'class_languagelinks.ClassLanguageID', 'class_languages.ClassLanguageID')
-        ->where('ClassDifficulty', 2)
+        ->where('ClassDifficultyID', 2)
         ->where('class_languages.ClassLanguageName', $id)
         ->take(4)
         ->get();
@@ -140,7 +141,7 @@ class ClassInfoController extends Controller
 
         $classInfo3 = ClassInfo::join('class_languagelinks', 'class_infos.ClassID', 'class_languagelinks.ClassID')
         ->join('class_languages', 'class_languagelinks.ClassLanguageID', 'class_languages.ClassLanguageID')
-        ->where('ClassDifficulty', 3)
+        ->where('ClassDifficultyID', 3)
         ->where('class_languages.ClassLanguageName', $id)
         ->take(4)
         ->get();
@@ -168,7 +169,7 @@ class ClassInfoController extends Controller
 
         $classInfo4 = ClassInfo::join('class_languagelinks', 'class_infos.ClassID', 'class_languagelinks.ClassID')
         ->join('class_languages', 'class_languagelinks.ClassLanguageID', 'class_languages.ClassLanguageID')
-        ->where('ClassDifficulty', 4)
+        ->where('ClassDifficultyID', 4)
         ->where('class_languages.ClassLanguageName', $id)
         ->take(4)
         ->get();
@@ -192,7 +193,7 @@ class ClassInfoController extends Controller
 
     // public function getClassBoardShow($classdiffinum) {
     
-    //     $result = ClassInfo::where('ClassDifficulty', $classdiffinum)->get();
+    //     $result = ClassInfo::where('ClassDifficultyID', $classdiffinum)->get();
     //     // var_dump($result);
     //     foreach ($result as $item) {
     //         $classdiffinumValue = $item->classdiffinum;
@@ -204,14 +205,13 @@ class ClassInfoController extends Controller
 
     // 해당 단계별 언어 전체보기
     public function getClassBoardShow($classdiffinum, $ClassLanguageName) {
-        $id = $this->sharedData;
 
         $msg = "";
     
         $result = ClassInfo::join('class_languagelinks', 'class_infos.ClassID', 'class_languagelinks.ClassID')
             ->join('class_languages', 'class_languagelinks.ClassLanguageID', 'class_languages.ClassLanguageID')
-            ->where('class_languages.ClassLanguageName', $id)
-            ->where('class_infos.ClassDifficulty', $classdiffinum)
+            ->where('class_languages.ClassLanguageName', $ClassLanguageName)
+            ->where('class_infos.ClassDifficultyID', $classdiffinum)
             ->get();
         
         // var_dump($result);
@@ -238,8 +238,14 @@ class ClassInfoController extends Controller
                 $msg = "3단계까지 완강한 당신 이제 현업 기술을 위한 4단계";
             }
         }
+
+        $resultBanner = ClassDiffiBanner::select('ClassDiffiBanner')
+            ->where('ClassDifficultyID', $classdiffinum)
+            ->get();
+
+            Log::debug($resultBanner);
         
-        return view('classBoardViewAll',['data' => $result, 'msg' => $msg]);
+        return view('classBoardViewAll',['data' => $result, 'msg' => $msg, 'banner' => $resultBanner]);
     }
 
     // 해당 단계별 언어 전체보기
@@ -247,7 +253,7 @@ class ClassInfoController extends Controller
 
     //     $msg = "";
     
-    //     $result = ClassInfo::where('ClassDifficulty', $classdiffinum)->get();
+    //     $result = ClassInfo::where('ClassDifficultyID', $classdiffinum)->get();
     //     // var_dump($result);
     //     foreach ($result as $item) {
     //         $classdiffinumValue = $item->classdiffinum;
@@ -270,7 +276,7 @@ class ClassInfoController extends Controller
     // public function classBoardLangName() {
     //     $result = [];
 
-    //     $data = ClassInfo::select('class_infos.ClassID', 'class_infos.ClassTitle', 'class_infos.ClassDifficulty')
+    //     $data = ClassInfo::select('class_infos.ClassID', 'class_infos.ClassTitle', 'class_infos.ClassDifficultyID')
     //         ->get();
 
     //     foreach($data as $classInfo) {
