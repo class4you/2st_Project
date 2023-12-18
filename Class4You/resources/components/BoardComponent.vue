@@ -1,100 +1,113 @@
-	<template>
+			<template>
 		<div id="wrap">
-	<section class="mainSec row jcB">
-		<article class="leftNav">
-		<p>정보를 공유해요</p>
-		<ul class="mainNav">
-			<li>자유 게시판</li>
-			<li>질문 게시판</li>
-			<ul class="subNav">
-				<li class="row jcB active">
-				<p>HTML</p>
-				<p>0</p>
-				</li>
-				<li class="row jcB">
-				<p>CSS</p>
-				<p>0</p>
-				</li>
-				<li class="row jcB">
-				<p>JS</p>
-				<p>0</p>
-				</li>
-				<li class="row jcB">
-				<p>PHP</p>
-				<p>0</p>
-				</li>
-				<li class="row jcB">
-				<p>JAVA</p>
-				<p>0</p>
-				</li>
-				<li class="row jcB">
-				<p>DB</p>
-				<p>0</p>
-				</li>
-				<li class="row jcB">
-				<p>TOOL</p>
-				<p>0</p>
-				</li>
-			</ul>
-		</ul>
-		</article><!-- leftNav -->
-	
-		<div class="board_container">
-		<div class="searchbox row aiC">
-			<input type="text" id="searchTxt">
-			<button type="submit" for="">검색</button>
-		</div>
+				<div id="top_banner" class="top_banner">
+					<div class="desc">
+						<ul id="list_txt" class="list_txt">
+							<li><a href="">새로운 온라인 클래스 STUDY 4 YOU 개설</a></li>
+							<li></li>
+							<li></li>
+							<li></li>
+							<li></li>
+						</ul>
+					</div>
+				</div>
 
-		<div class="titBox row jcB aiC">
-			<div class="sort">
-			<ul class="row aiC">
-				<li class="row aiC active"><span></span>최신순</li>
-				<li class="row aiC"><span></span>인기순</li>
-				<li class="row aiC"><span></span>조회순</li>
-			</ul>
-			</div>
-			<div class="btnbox row aiC">
-			<button type="button">미해결</button>
-			<button type="button">글작성</button>
-			</div>
-		</div><!-- titBox -->
-		<div class="board_detail_rating_list">
-		<div class="contBox">
-			<div class="cont">
-			<div class="item"></div>
-			</div>
-		</div>
-		<div class="contBox">
-			<div class="cont">
-			<div class="item"></div>
-			</div>
-		</div>
-		<div class="contBox">
-			<div class="cont">
-			<div class="item"></div>
-			</div>
-		</div>
-		<div class="contBox">
-			<div class="cont">
-			<div class="item"></div>
-			</div>
-		</div>
-		</div><!-- container -->
-		</div>
+				<header id="header">
+					<div class="navigation">
+						<ul class="nav_left side_nav">
+							<li><a href="" class="menu_btn"><img src="./img/menu.png" alt="">전체 강의</a></li>
+							<li><a href="">추천 강의</a></li>
+							<li><a href="">신규 강의</a></li>
+							<li>|</li>
+							<li><a href="">커뮤니티</a></li>
+						</ul>
+						<h1>
+							<a href="">
+								<img src="./img/v2_14378e7f2adb0ec0ad8cddaaf3b0fbdd_0DXltiM6xt_top.jpg" alt="">
+							</a>
+						</h1>
+						<div class="side_nav">
+							<a href="">SIGN UP</a>
+							<a href="">LOGIN</a>
+							<div class="search_box">
+								<input type="text" placeholder="SEARCH">
+								<button type="button"><img src="./img/SEARCH.png" alt=""></button>
+							</div>
+						</div>
+					</div>
+			<hr>
 
-		<article class="best">
-		<p>best</p>
-		<ul>
-			<li>1.홍길동</li>
-			<li>2.홍길동</li>
-			<li>3.홍길동</li>
-			<li>4.홍길동</li>
-			<li>5.홍길동</li>
-			<li>6.홍길동</li>
-		</ul>
-		</article><!-- best -->
-	</section>
-</div>
+			<title> 커뮤니티</title>
+
+		<body>
+			<div id="wrap">
+				<form>
+
+			
+				<div class="whr"><span>게시판</span><span>></span><span>게시판</span>
+				</div><!-- whr -->
+				<section class="mainSectionpost">
+				<section class="mainSec row jcB">
+			
+					<div class="postBox">
+						<div class="postInfo row aiC jcB">
+							<div>
+								<p>작성자<span>홍길동</span></p>
+							</div>
+							<div class="row aiC">
+								<p>작성일<span>2023.12.11</span></p>
+								<p>조회수<span>9999</span></p>
+								<p>좋아요<span>9999</span></p>
+							</div>
+						</div>
+						<div class="postTitBox row aiC">
+							<label for="postTit">제목</label>
+							<input type="text" id="postTit">
+						</div>
+						<div class="postContBox row">
+							<label for="postCont">내용</label>
+							<textarea id="postCont"></textarea>
+						</div>
+						<div class="laguage">
+							<ul class="row aiC">
+								<li>React</li>
+								<li>JS</li>
+								<li>CSS</li>
+								<li>HTML</li>
+								<li>LARAVEL</li>
+								<li>React</li>
+							</ul>
+						</div>
+						<div class="reco row jcC">
+							<div class="row aiC">
+								<p>0</p>
+								<button><i class="fas fa-thumbs-up" style="font-size: 20px;"></i></button>
+							</div>
+							<div class="row aiC">
+								<button>엄지</button>
+								<p>0</p>
+							</div>
+						</div>
+					</div>
+			
+					<div class="reviewBox border-t-none">
+						<div class="number">
+							<p>답변<span>0</span></p>
+						</div>
+						<div class="reviewList">
+						</div>
+						<div class="reviewPost row jcB">
+							<textarea placeholder="댓글을 입력해주세요."></textarea>
+							<button type="button">저장</button>
+						</div>
+					</div>
+			
+				</section> 
+			</section>
+			</form>
+			</div>
+			<script src="https://kit.fontawesome.com/b69518c43b.js" crossorigin="anonymous"></script>
+			</body>
 </template>
 	
 	<script>
