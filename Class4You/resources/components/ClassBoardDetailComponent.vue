@@ -45,10 +45,9 @@
                             </div>
                             <div class="class_detail_container_r_language">
                                 <span class="class_detail_container_r_language_icon">#</span>
-                                <span>HTML</span>
-                                <span>CSS</span>
-                                <span>JS</span>
-                                <span>PHP</span>
+                                <span v-for="language in detailClassItems.languages" :key="language.id">
+									{{ language.ClassLanguageName }}
+								</span>
                             </div>
                             <div class="class_detail_container_r_payment_box">
                                 <div class="class_detail_container_r_payment_price">
