@@ -19976,12 +19976,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 
-var _hoisted_1 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "whr"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "게시판"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, ">"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "게시판")], -1 /* HOISTED */);
-var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<section class=\"mainSectionpost\"><section class=\"mainSec row jcB\"><div class=\"postBox\"><div class=\"postInfo row aiC jcB\"><div><p>작성자<span>홍길동</span></p></div><div class=\"row aiC\"><p>작성일<span>2023.12.11</span></p><p>조회수<span>9999</span></p><p>좋아요<span>9999</span></p></div></div><div class=\"postTitBox row aiC\"><label for=\"postTit\">제목</label><input type=\"text\" id=\"postTit\"></div><div class=\"postContBox row\"><label for=\"postCont\">내용</label><textarea id=\"postCont\"></textarea></div><div class=\"laguage\"><ul class=\"row aiC\"><li>React</li><li>JS</li><li>CSS</li><li>HTML</li><li>LARAVEL</li><li>React</li></ul></div><div class=\"reco row jcC\"><div class=\"row aiC\"><p>0</p><button><i class=\"fas fa-thumbs-up\" style=\"font-size:20px;\"></i></button></div><div class=\"row aiC\"><button>엄지</button><p>0</p></div></div></div><div class=\"reviewBox border-t-none\"><div class=\"number\"><p>답변<span>0</span></p></div><div class=\"reviewList\"></div><div class=\"reviewPost row jcB\"><textarea placeholder=\"댓글을 입력해주세요.\"></textarea><button type=\"button\">저장</button></div></div></section></section>", 1);
+var _hoisted_1 = {
+  id: "wrap"
+};
+var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<section class=\"mainSec row jcB\"><article class=\"leftNav\"><p>정보를 공유해요</p><ul class=\"mainNav\"><li>자유 게시판</li><li>질문 게시판</li><ul class=\"subNav\"><li class=\"row jcB active\"><p>HTML</p><p>0</p></li><li class=\"row jcB\"><p>CSS</p><p>0</p></li><li class=\"row jcB\"><p>JS</p><p>0</p></li><li class=\"row jcB\"><p>PHP</p><p>0</p></li><li class=\"row jcB\"><p>JAVA</p><p>0</p></li><li class=\"row jcB\"><p>DB</p><p>0</p></li><li class=\"row jcB\"><p>TOOL</p><p>0</p></li></ul></ul></article><!-- leftNav --><div class=\"board_container\"><div class=\"searchbox row aiC\"><input type=\"text\" id=\"searchTxt\"><button type=\"submit\" for=\"\">검색</button></div><div class=\"titBox row jcB aiC\"><div class=\"sort\"><ul class=\"row aiC\"><li class=\"row aiC active\"><span></span>최신순</li><li class=\"row aiC\"><span></span>인기순</li><li class=\"row aiC\"><span></span>조회순</li></ul></div><div class=\"btnbox row aiC\"><button type=\"button\">미해결</button><button type=\"button\">글작성</button></div></div><!-- titBox --><div class=\"board_detail_rating_list\"><div class=\"contBox\"><div class=\"cont\"><div class=\"item\"></div></div></div><div class=\"contBox\"><div class=\"cont\"><div class=\"item\"></div></div></div><div class=\"contBox\"><div class=\"cont\"><div class=\"item\"></div></div></div><div class=\"contBox\"><div class=\"cont\"><div class=\"item\"></div></div></div></div><!-- container --></div><article class=\"best\"><p>best</p><ul><li>1.홍길동</li><li>2.홍길동</li><li>3.홍길동</li><li>4.홍길동</li><li>5.홍길동</li><li>6.홍길동</li></ul></article><!-- best --></section>", 1);
+var _hoisted_3 = [_hoisted_2];
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", null, [_hoisted_1, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" whr "), _hoisted_2]);
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [].concat(_hoisted_3));
 }
 
 /***/ }),
@@ -20551,7 +20552,12 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       key: item.id,
       href: ""
     }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
-      to: ""
+      to: {
+        name: 'classboarddetail',
+        params: {
+          ClassID: item.ClassID
+        }
+      }
     }, {
       "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
         return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", _hoisted_25, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_26, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
@@ -20563,7 +20569,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         }), 128 /* KEYED_FRAGMENT */))])])];
       }),
       _: 2 /* DYNAMIC */
-    }, 1024 /* DYNAMIC_SLOTS */)], 8 /* PROPS */, _hoisted_24);
+    }, 1032 /* PROPS, DYNAMIC_SLOTS */, ["to"])], 8 /* PROPS */, _hoisted_24);
   }), 128 /* KEYED_FRAGMENT */)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])]), _hoisted_31, _hoisted_32, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_33, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("ul", _hoisted_34, [_ctx.$store.state.shouldShowCarousel ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_carousel, {
     key: 0,
     "per-page": 4,

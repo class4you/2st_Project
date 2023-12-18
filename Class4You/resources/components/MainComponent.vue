@@ -85,7 +85,7 @@
                                 </Slide>
                             </carousel>
                                 <div @click="handleClassImageClick(item.ClassID)" v-if="!$store.state.shouldShowCarousel" v-for="item in newClassItems" :key="item.id" href="">
-                                    <router-link to="">
+                                    <router-link :to="{ name: 'classboarddetail', params: { ClassID: item.ClassID } }">
                                         <li class="main_container_new_card">
                                             <div class="main_container_new_card_img">
                                                 <img :src=item.ClassImg />
