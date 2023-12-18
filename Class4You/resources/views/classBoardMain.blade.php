@@ -212,25 +212,6 @@
 
 				<hr>
 
-				<div class="main_new_text">
-					<h3>학습 가이드</h3>
-					<a href="#">원하는 키워드를 눌러보세요</a>
-				</div>
-
-				<div class="main_container_keyword_box">
-					<ul class="main_container_keyword">
-
-						<a href="">
-							<li class="main_container_keyword_card">
-								<div class="main_container_keyword_card_img">
-									{{-- <img src="./img/img-2.png" alt=""> --}}
-								</div>
-							</li>
-						</a>
-
-					</ul>
-				</div>
-
 			</div>
 		</main>
 	</div>

@@ -1373,7 +1373,37 @@ ul.class_tabs li.class_current {
     padding: 5px 20px;
 }
 
+.class_detail_rating_star_form>fieldset{
+    display: inline-block; /* 하위 별점 이미지들이 있는 영역만 자리를 차지함.*/
+    direction: rtl;
+    border: 0; /* 필드셋 테두리 제거 */
+}
 
+.class_detail_rating_star_form_title {
+    text-align: left;
+}
+
+.class_detail_rating_star_input {
+    display: none;
+}
+
+.class_detail_rating_star_label{
+    font-size: 1.2em; /* 이모지 크기 */
+    color: transparent; 
+    text-shadow: 0 0 0 #858484; 
+}
+
+.class_detail_rating_star_label:hover{
+    text-shadow: 0 0 0 #a00; /* 마우스 호버 */
+}
+
+.class_detail_rating_star_label:hover ~ .class_detail_rating_star_label{
+    text-shadow: 0 0 0 #a00; /* 마우스 호버 뒤에오는 이모지들 */
+}
+
+.class_detail_rating_star_input[type=radio]:checked ~ label{
+    text-shadow: 0 0 0 #a00; /* 마우스 클릭 체크 */
+}
 
 /* ============================================================================================================ */
 /* 강의 게시판Community */
@@ -1409,7 +1439,7 @@ ul.class_tabs li.class_current {
 /* ============================================================================================================ */
 /* 강의 시청 페이지 */
 
-.class_detail_watch_body {
+/* .class_detail_watch_body {
     width: 100%;
     box-sizing: border-box;
     height: 100%;
@@ -1464,16 +1494,25 @@ ul.class_tabs li.class_current {
     width: 30vw;
     display: flex;
     flex-direction: row;
-    /* flex-shrink: 0; */
 }
 
 .class_detail_watch_right_side_tab {
     margin: 20px;
     padding: 20px;
     display: flex;
+} */
+
+.class_detail_watch {
+    background-color: #e3d9d9;
+    box-sizing: border-box;
+    margin: 0;
+    width: 100vw;
+    height: 100vh;
 }
 
+.class_detail_watch_contents {
 
+}
 
 
 
