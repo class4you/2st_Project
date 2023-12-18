@@ -49,9 +49,9 @@
 /* 메인 섹션 스타일 */
 .mainSec{
     width: 100%;
-    padding: 0 20px;
+    margin: 0 auto;
     max-width: 1520px; /* 예시로 1520px로 지정 */
-    margin-top: -30px;
+  
 }
 .mainSectionpost{
     width: 100%;
@@ -125,28 +125,27 @@
     width: calc(100% - 90px);
     height: 40px;
     margin: 10px 0;
-    border: none;
-    background: #eee;
-    line-height: 40px;
+    line-height: 40px;letter-spacing: -.3px;
+    border: 1px solid #dee2e6;
+    border-radius: 4px;
+    background-color: #fff;
 }
+
 .searchbox button{
     width: 80px;
     height: 40px;
-    border-radius: 0;
+    border-radius: 10px;
     border: none;
     font-size: 14px;
-    font-weight: 500;
     cursor: pointer;
-    background-color: aquamarine;
+    border-color: #00c471;
+    font-weight: 700;
+    background-color: #00c471;
+    
 }
-.question .question__title {
-    flex-direction: column;
-    align-items: flex-start;
-}
-.question .title-sub__text {
-    display: flex;
-    align-items: center;
-}
+
+
+
 
 .question .question__tags {
     display: flex;
@@ -220,14 +219,7 @@
     white-space: nowrap;
     vertical-align: baseline;
 }
-.question .title-sub__text .question__status-tag {
-    margin-right: 8px;
-}
-.question .question__title {
-    display: flex;
-    /* align-items: center; */
-    margin-bottom: 4px;
-}
+
 .question .question__body {
     height: 24px;
     overflow: hidden;
@@ -299,7 +291,11 @@
     margin-right: 5px;
 }
 
-
+.question .question__tags {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 8px;
+}
 .question .question__info-footer {
     overflow: hidden;
     text-overflow: ellipsis;
@@ -312,6 +308,28 @@
     color: #868e96;
     font-size: 12px;
     font-weight: 400;
+}
+
+
+
+.question .question__info-footer .question__info-detail {
+    flex: 1 1 auto;
+    width: 0;
+    max-width: 520px;
+    margin-right: 12px;
+    
+}
+
+.question .question__info-footer>div {
+    display: flex;
+    min-width: 0;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+}
+    
+.question .question__info-footer .question__info-userData dl dd {
+    margin-right: 12px;
 }
 
 .question .question__info-footer .question__info-detail {
@@ -338,19 +356,14 @@
 .is-hidden-mobile {
     display: none!important;
 }
-.question .question__info-footer .question__info-course-title, .question .question__info-footer .question__info-user-name {
-    flex-shrink: 1;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-}
+
 .question .question__info-footer .question__info-userData dl {
     display: flex;
+    height: 13px;
+    position: absolute;
+    margin-left: 220px;
 }
 
-.question .question__info-footer .question__info-userData dl dd {
-    margin-right: 12px;
-}
 
 .question .question__info-footer .question__info-userData dl dd i {
     font-size: 12px;
@@ -376,9 +389,7 @@
     margin-right: 8px;
 }
 
-.question .title-sub__text .question__status-tag {
-    margin-right: 8px;
-}
+
 
 .question .title-sub__text {
     display: flex;
@@ -388,19 +399,14 @@
     background-color: #ced4da;
     
 
-.question .title__text {
-    flex: 1;
-    width: 0;
-    white-space: nowrap;
-    font-size: 1rem;
-    color: #212529;
-}
+
 .question .question__info {
     flex: 1 1 auto;
     width: 0;
 }
 
 .question .question__title {
+    flex-direction: column;
     display: flex;
     align-items: center;
     margin-bottom: 4px;
@@ -428,15 +434,7 @@
     flex-wrap: wrap;
     margin-top: 8px;
 }
-.p {
-    margin: 0;
-}
 
-.question .question__tags {
-    display: flex;
-    flex-wrap: wrap;
-    margin-top: 8px;
-}
 
 .ac-tag.ac-button.is-gray.ac-tag--blue {
     background-color: #eff3fa;
@@ -484,12 +482,6 @@
 
 
 
-.question .question__info-footer .question__info-course-title, .question .question__info-footer .question__info-user-name {
-    flex-shrink: 1;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-}
 
 .visually-hidden {
     position: absolute;
@@ -501,16 +493,6 @@
 }
 
 
-
-.fa-regular, .far {
-    font-family: Font Awesome\ 6 Pro;
-    font-weight: 400;
-}
-
-.fa-regular, .far {
-    font-family: Font Awesome\ 6 Pro;
-    font-weight: 400;
-}
 
 
 
@@ -679,6 +661,7 @@
     border-radius: 10px;
 }
 
+
 /* 추가된 모바일 레이아웃 스타일 */
 @media (max-width: 767px) {
     .bannerBox {
@@ -694,6 +677,8 @@
     .board_container {
         width: 100%;
         max-width: none;
+
+        
     }
 
     .leftNav {
@@ -966,11 +951,116 @@
     border-radius: 7px;
 }
 
-.editor-container {
+
+/*  랭킹 부분  */
+.ranking-container .ranking-writer-container {
     display: flex;
     flex-direction: column;
-    height: 100%;
-    max-height: 100%;
-    min-height: 480px;
-    border: 1px solid #55555535; /* border 속성 추가 */
+    margin-top: 20px;
+    padding: 10px 0;
+    width: 100%;
+    height: 292px;
+}
+.ranking-writer-section{
+    border: 1px solid #707579;
+    background-color: #000000;
+    border-radius: 4px;
+}
+.ranking-container {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+    padding: 10px 0;
+    width: 100%;
+    height: 292px;
+}
+
+
+
+
+.posts-by-type .ranking-writer-container .ranking-writer-list {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+
+.posts-by-type .ranking-writer-container>h2 {
+    padding: 0 12px;
+    margin-bottom: 10px;
+    font-weight: 400;
+    line-height: 1.43;
+    letter-spacing: -.3px;
+    font-size: 14px;
+    font-weight: 700;
+    color: #212529;
+    line-height: 170%;}
+
+    .posts-by-type .ranking-writer-container {
+        display: flex;
+        flex-direction: column;
+        margin-top: 20px;
+        padding: 10px 0;
+        width: 100%;
+        height: 292px;
+    }
+
+    .posts-by-type .ranking-writer-container .ranking-writer-list {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .posts-by-type .ranking-writer-container .ranking-writer-link {
+        display: flex;
+        justify-content: space-between;
+        padding: 4px 12px;
+        width: 100%;
+        border-radius: 2px;
+    }
+
+}
+
+.ranking-container h2{
+    margin-bottom: 0px;
+    padding: 0 0px;
+    margin-bottom: 10px;
+    /* font-weight: 400; */
+    /* line-height: 1.43; */
+    letter-spacing: -.3px;
+    font-size: 14px;
+    font-weight: 700;
+    color: #212529;
+    line-height: 170%;
+    
+}
+
+.ranking-nickname{
+    width: 79px;
+    font-weight: 700;
+    font-size: 10px;
+    color: #495057;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    margin-bottom: 10px;
+    
+}
+
+.ranking-right {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.ranking-right span{
+    font-size: 15px;
+    
+    
+}
+.e-ranking-writer-list{
+    border: 1px solid #707579;
+    background-color: none;
+    border-radius: 4px;
+    width: 100px;
+    height: 200px;
+    margin-top: 10px;
 }
