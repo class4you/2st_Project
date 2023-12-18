@@ -6,46 +6,57 @@
     <link rel="stylesheet" href="./css/common.css">
     <title>강의 시청 페이지</title>
 </head>
-<body>
+<body class="class_detail_watch_body">
     <div class="class_detail_watch">
-        <div class="class_detail_watch_nav">
-            <div class="class_detail_watch_list">
-                <div>챕터</div>
-                <div>강의 제목</div>
-                <div>전체 진도율</div>
+
+        <div class="class_detail_watch_contents">
+            <div class="class_detail_watch_nav">
+                <div class="class_detail_watch_list">
+                    <div>챕터</div>
+                    <div>강의 제목</div>
+                    <div>전체 진도율</div>
+                </div>
             </div>
+            <div class="class_detail_watch_main">
+                <div class="class_detail_watch_main_content">
+                    <img src="./img/youtube.png" alt="">
+                </div>
+                <div class="class_detail_watch_main_content_bar">
+                    <span>재생바</span>
+                </div>
+            </div>
+            <div class="class_detail_watch_footer">
+                <!-- 근데 이전강의 버튼은 필요없나? -->
+                <div>
+                    <button class="class_detail_watch_next_btn">
+                        <span>다음강의</span>
+                    </button>
+                </div>
+            </div>
+            
+
+
         </div>
-        <div class="class_detail_watch_main">
-            <div class="class_detail_watch_main_content">
-                <img src="./img/youtube.png" alt="">
-            </div>
-            <div>
-                <span>재생바</span>
-            </div>
-        </div>
-        <div class="class_detail_watch_footer">
-            <!-- 근데 이전강의 버튼은 필요없나? -->
-            <div>
-                <button class="class_detail_watch_next_btn">
-                    <span>다음강의</span>
-                </button>
-            </div>
-        </div>
+
         <!-- 탭 UI 될부분 -->
-        <div class="class_detail_watch_right_side">
-            <div class="class_detail_watch_side_curriculum">
-                <a href="">
-                    <div class="class_detail_watch_side_curriculum_text">
-                        <span>커리큘럼 내용</span>
+            <div class="class_detail_watch_right_side">
+                <div class="class_detail_watch_right_side_tab_nav">
+                    <div class="class_detail_watch_side_tab1">
+                        <span>커리큘럼</span>
                     </div>
-                </a>
-            </div>    
-            <div class="class_detail_watch_side_classnote">
-                <a href="">
-                    <div class="class_detail_watch_side_classnote_text">
-                        <span>강의 노트</span>
+                    <!-- <div>
+                        <span>대충 커리큘럼임</span>
+                    </div> -->
+                    <div class="class_detail_watch_side_tab2">
+                        <span>강의노트</span>
                     </div>
-                </a>
+                    <!-- <div>
+                        <textarea>노트적는중</textarea>
+                    </div> -->
+                </div>
+                <div>
+                    
+                </div>
             </div>
             <!-- 다른페이지 만들기 애매해서 주석처리 -->
             <!-- <div class="class_detail_watch_side_classnote">
