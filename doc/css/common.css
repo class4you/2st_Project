@@ -1409,15 +1409,32 @@ ul.class_tabs li.class_current {
 /* ============================================================================================================ */
 /* 강의 시청 페이지 */
 
+.class_detail_watch_body {
+    width: 100%;
+    box-sizing: border-box;
+    height: 100%;
+}
+
 .class_detail_watch {
-    display: inline-block;
-    font-size: 1rem;
     
+    display: flex;
+    font-size: 1rem;
+    height: 100%;
+}
+
+.class_detail_watch_contents {
+    
+    position: relative;
+    overflow: auto;
+    display: flex;
+    flex: 1 1 auto;
+    flex-direction: column;
+    height: 100%;
+    transition: padding-right 0.3s linear 0s;
 }
 
 .class_detail_watch_nav {
     background-color: #ededed;
-    
 }
 
 .class_detail_watch_list {
@@ -1428,26 +1445,33 @@ ul.class_tabs li.class_current {
 
 .class_detail_watch_main {
     background-color: #ededed;
+    height: 100%;
 }
 
 .class_detail_watch_footer {
     background-color: #c0bdbd;
     padding: 20px;
-    
+    height: 100%;
+}
+
+.class_detail_watch_main_content_bar {
+    padding: 10px;
 }
 
 .class_detail_watch_right_side {
     background-color: #ededed;
-    padding: 20px;
+    height: 100vh;
+    width: 30vw;
     display: flex;
-    justify-content: space-around;
+    flex-direction: row;
     /* flex-shrink: 0; */
 }
 
-.class_detail_watch_side_curriculum {
-   
+.class_detail_watch_right_side_tab {
+    margin: 20px;
+    padding: 20px;
+    display: flex;
 }
-
 
 
 
