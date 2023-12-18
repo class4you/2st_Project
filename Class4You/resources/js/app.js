@@ -9,6 +9,7 @@ import MainComponent from '../components/MainComponent.vue';
 import FooterComponent from '../components/FooterComponent.vue';
 import RegistrationComponent from '../components/RegistrationComponent.vue';
 import ClassBoardDetailComponent from '../components/ClassBoardDetailComponent.vue';
+// import ClassBoardMainComponent from '../components/ClassBoardMainComponent.vue';
 
 
 createApp({
@@ -19,6 +20,7 @@ createApp({
         FooterComponent,
         RegistrationComponent,
         ClassBoardDetailComponent,
+        // ClassBoardMainComponent,
     }
 })
     .use(router)

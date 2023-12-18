@@ -34,8 +34,8 @@ class ClassInfoController extends Controller
     }
 
     // 강의 게시판 메인페이지 불러오기
-    public function classBoardIndex($id) {
-        $this->sharedData = $id;
+    public function classBoardIndex($ClassLanguageName) {
+        $this->sharedData = $ClassLanguageName;
         $result1 = $this->getDataForFirstSection();
         $result2 = $this->getDataForSecondSection();
         $result3 = $this->getDataForThirdSection();
@@ -54,6 +54,14 @@ class ClassInfoController extends Controller
             'classInfo4' => $result4,
             
         ]);
+
+        // return response()->json([
+        //     'classInfo1' => $result1, 
+        //     'classInfo2' => $result2['classInfo2'], 
+        //     'msg2' => $result2['msg2'],
+        //     'classInfo3' => $result3, 
+        //     'classInfo4' => $result4,
+        // ]);
     }
     
     // 1단계 클래스 가져올때 가지고 있는 강의언어이름 같이 가져오기
@@ -77,6 +85,7 @@ class ClassInfoController extends Controller
     
             // $info 객체에 'languages' 키로 $langData를 할당
             $info->languages = $langData;
+            
         }
         $classInfo1->languages = $langData;
 
@@ -195,12 +204,13 @@ class ClassInfoController extends Controller
 
     // 해당 단계별 언어 전체보기
     public function getClassBoardShow($classdiffinum, $ClassLanguageName) {
+        $id = $this->sharedData;
 
         $msg = "";
     
         $result = ClassInfo::join('class_languagelinks', 'class_infos.ClassID', 'class_languagelinks.ClassID')
             ->join('class_languages', 'class_languagelinks.ClassLanguageID', 'class_languages.ClassLanguageID')
-            ->where('class_languages.ClassLanguageName', $ClassLanguageName)
+            ->where('class_languages.ClassLanguageName', $id)
             ->where('class_infos.ClassDifficulty', $classdiffinum)
             ->get();
         
@@ -297,12 +307,8 @@ class ClassInfoController extends Controller
 
             $result->languages = $langData;
 
-            // return view('classBoardDetail', ['data' => $result]);
-            return view('classBoardDetail')->with('data', json_encode($result->toArray()));
-            // return response()->json_encode($result);
+            return view('classBoardDetail', ['data' => $result]);
         }    
     }
-
-
     
 }

@@ -24,4 +24,7 @@ Route::middleware('my.user.validation')->post('/registration', [UserController::
 
 Route::get('/getNewClassMainData', [ClassInfoController::class, 'getNewClassMainData']);
 
+// 클래스 보드 뷰 연동 테스트용
+// Route::get('/classBoardMain/{ClassLanguageName}', [ClassInfoController::class, 'classBoardIndex']);
+
 Route::get('/classboarddetail/{id}', [ClassInfoController::class, 'getClassBoardDetailShow']);

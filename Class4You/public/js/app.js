@@ -19960,8 +19960,9 @@ var _hoisted_1 = {
   id: "wrap"
 };
 var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<section class=\"mainSec row jcB\"><article class=\"leftNav\"><p>정보를 공유해요</p><ul class=\"mainNav\"><li>자유 게시판</li><li>질문 게시판</li><ul class=\"subNav\"><li class=\"row jcB active\"><p>HTML</p><p>0</p></li><li class=\"row jcB\"><p>CSS</p><p>0</p></li><li class=\"row jcB\"><p>JS</p><p>0</p></li><li class=\"row jcB\"><p>PHP</p><p>0</p></li><li class=\"row jcB\"><p>JAVA</p><p>0</p></li><li class=\"row jcB\"><p>DB</p><p>0</p></li><li class=\"row jcB\"><p>TOOL</p><p>0</p></li></ul></ul></article><!-- leftNav --><div class=\"board_container\"><div class=\"searchbox row aiC\"><input type=\"text\" id=\"searchTxt\"><button type=\"submit\" for=\"\">검색</button></div><div class=\"titBox row jcB aiC\"><div class=\"sort\"><ul class=\"row aiC\"><li class=\"row aiC active\"><span></span>최신순</li><li class=\"row aiC\"><span></span>인기순</li><li class=\"row aiC\"><span></span>조회순</li></ul></div><div class=\"btnbox row aiC\"><button type=\"button\">미해결</button><button type=\"button\">글작성</button></div></div><!-- titBox --><div class=\"board_detail_rating_list\"><div class=\"contBox\"><div class=\"cont\"><div class=\"item\"></div></div></div><div class=\"contBox\"><div class=\"cont\"><div class=\"item\"></div></div></div><div class=\"contBox\"><div class=\"cont\"><div class=\"item\"></div></div></div><div class=\"contBox\"><div class=\"cont\"><div class=\"item\"></div></div></div></div><!-- container --></div><article class=\"best\"><p>best</p><ul><li>1.홍길동</li><li>2.홍길동</li><li>3.홍길동</li><li>4.홍길동</li><li>5.홍길동</li><li>6.홍길동</li></ul></article><!-- best --></section>", 1);
+var _hoisted_3 = [_hoisted_2];
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <form @submit.prevent=\"search\">\r\n\t\t\t<div class=\"whr\">\r\n\t\t\t<title>커뮤니티리스트</title>\r\n\t\t\t</div>\r\n\t\r\n\t\t\t<div class=\"bannerBox\">\r\n\t\t\t<div class=\"banner\">\r\n\t\t\t\t<img class=\"bannerImg\" src=\"/img/event_banner_2.png\" alt=\"board_banner_img\">\r\n\t\t\t</div>\r\n\t\t\t</div>\r\n\t\r\n\t\t\t<section class=\"mainSec row jcB\">\r\n\t\t\t<article class=\"leftNav\">\r\n\t\t\t\t<p>정보를 공유해요시른데요</p>\r\n\t\t\t\t<ul class=\"mainNav\">\r\n\t\t\t\t<li @click=\"selectCategory('question')\" :class=\"{ active: activeCategory === 'question' }\">질문 게시판</li>\r\n\t\t\t\t<li @click=\"selectCategory('free')\" :class=\"{ active: activeCategory === 'free' }\">자유 게시판</li>\r\n\t\t\t\t<ul class=\"subNav\" v-if=\"activeCategory === 'question'\">\r\n\t\t\t\t\t<li v-for=\"category in categories\" :key=\"category.id\" class=\"row jcB\">\r\n\t\t\t\t\t<p @click=\"selectSubCategory(category.id)\">{{ category.name }}</p>\r\n\t\t\t\t\t<p>{{ getCategoryItemCount(category.id) }}</p>\r\n\t\t\t\t\t</li>\r\n\t\t\t\t</ul>\r\n\t\t\t\t</ul>\r\n\t\t\t</article>\r\n\t\r\n\t\t\t<div class=\"board_container\">\r\n\t\t\t\t<div class=\"searchbox row aiC\">\r\n\t\t\t\t<input v-model=\"searchText\" type=\"text\" id=\"searchTxt\">\r\n\t\t\t\t<button type=\"submit\">검색</button>\r\n\t\t\t\t</div>\r\n\t\r\n\t\t\t\t<div class=\"titBox row jcB aiC\">\r\n\t\t\t\t<div class=\"sort\">\r\n\t\t\t\t\t<ul class=\"row aiC\">\r\n\t\t\t\t\t<li class=\"row aiC\" @click=\"sortByRecent\"><span></span>최신순</li>\r\n\t\t\t\t\t<li class=\"row aiC\" @click=\"sortByPopularity\"><span></span>인기순</li>\r\n\t\t\t\t\t<li class=\"row aiC\" @click=\"sortByViews\"><span></span>조회순</li>\r\n\t\t\t\t\t</ul>\r\n\t\t\t\t</div>\r\n\t\t\t\t<div class=\"btnbox row aiC\">\r\n\t\t\t\t\t<button @click=\"markAsResolved\" type=\"button\">해결완료</button>\r\n\t\t\t\t\t<button @click=\"goToBoardInsert\" type=\"button\">글작성</button>\r\n\t\t\t\t</div>\r\n\t\t\t\t</div>\r\n\t\r\n\t\t\t\t<div class=\"board_detail_rating_list\">\r\n\t\t\t\t<div class=\"contBox\" v-for=\"item in filteredBoardItems\" :key=\"item.id\">\r\n\t\t\t\t\t<div class=\"cont\">\r\n\t\t\t\t\t<div class=\"item\">{{ item.title }}</div>\r\n\t\t\t\t\t</div>\r\n\t\t\t\t</div>\r\n\t\t\t\t</div>\r\n\t\t\t</div>\r\n\t\r\n\t\t\t<article class=\"best\">\r\n\t\t\t\t<p>bestreviewer</p>\r\n\t\t\t\t<ul>\r\n\t\t\t\t<li v-for=\"bestuserItem in bestuserItems\" :key=\"bestuserItem.id\">{{ bestuserItem.name }}</li>\r\n\t\t\t\t</ul>\r\n\t\t\t</article>\r\n\t\t\t</section>\r\n\t\t</form>\r\n\t\t</div>\r\n\t</div> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" banner "), _hoisted_2]);
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [].concat(_hoisted_3));
 }
 
 /***/ }),
@@ -20129,7 +20130,7 @@ var _hoisted_5 = {
 var _hoisted_6 = {
   "class": "navigation"
 };
-var _hoisted_7 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<ul class=\"nav_left side_nav\"><li><a href=\"\" class=\"menu_btn\"><img src=\"/img/menu.png\" alt=\"\">전체 강의</a><ul class=\"dropdown\"><li><a href=\"/classBoard/HTML\">HTML</a></li><li><a href=\"/classBoard/CSS\">CSS</a></li><li><a href=\"/classBoard/JavaScript\">Java Script</a></li><li><a href=\"/classBoard/PHP\">PHP</a></li><li><a href=\"/classBoard/JAVA\">JAVA</a></li><li><a href=\"/classBoard/DataBase\">DataBase</a></li><!-- 필요한 만큼 강의 항목을 추가 --></ul></li><!-- &lt;li&gt;&lt;a href=&quot;&quot;&gt;추천 강의&lt;/a&gt;&lt;/li&gt; --><!-- &lt;li&gt;&lt;a href=&quot;&quot;&gt;신규 강의&lt;/a&gt;&lt;/li&gt; --><li><a href=\"\">|</a></li><li><a href=\"\">커뮤니티</a></li></ul><h1><a href=\"/\"><img src=\"/img/Logo.png\" alt=\"\"></a></h1>", 2);
+var _hoisted_7 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<ul class=\"nav_left side_nav\"><li><a href=\"\" class=\"menu_btn\"><img src=\"/img/menu.png\" alt=\"\">전체 강의</a><ul class=\"dropdown\"><!-- &lt;li&gt;&lt;router-link to=&quot;/classBoardMain/HTML&quot;&gt;HTML&lt;/router-link&gt;&lt;/li&gt; --><li><a href=\"/classBoard/HTML\">HTML</a></li><li><a href=\"/classBoard/CSS\">CSS</a></li><li><a href=\"/classBoard/JavaScript\">Java Script</a></li><li><a href=\"/classBoard/PHP\">PHP</a></li><li><a href=\"/classBoard/JAVA\">JAVA</a></li><li><a href=\"/classBoard/DataBase\">DataBase</a></li><!-- 필요한 만큼 강의 항목을 추가 --></ul></li><!-- &lt;li&gt;&lt;a href=&quot;&quot;&gt;추천 강의&lt;/a&gt;&lt;/li&gt; --><!-- &lt;li&gt;&lt;a href=&quot;&quot;&gt;신규 강의&lt;/a&gt;&lt;/li&gt; --><li><a href=\"\">|</a></li><li><a href=\"\">커뮤니티</a></li></ul><h1><a href=\"/\"><img src=\"/img/Logo.png\" alt=\"\"></a></h1>", 2);
 var _hoisted_9 = {
   key: 0,
   "class": "side_nav"
@@ -20503,9 +20504,8 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       key: item.id,
       href: ""
     }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", _hoisted_25, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_26, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
-      src: item.ClassImg,
-      alt: ""
-    }, null, 8 /* PROPS */, _hoisted_27)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_28, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h4", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.ClassTitle), 1 /* TEXT */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_29, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.ClassDescription), 1 /* TEXT */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("ul", _hoisted_30, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)(item.languages, function (item2) {
+      src: item.ClassImg
+    }, null, 8 /* PROPS */, _hoisted_27), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <img :src=\"require(`@/img/${item.ClassImg}`)\" /> ")]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_28, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h4", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.ClassTitle), 1 /* TEXT */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_29, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.ClassDescription), 1 /* TEXT */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("ul", _hoisted_30, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)(item.languages, function (item2) {
       return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("li", {
         key: item2.id
       }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item2.ClassLanguageName), 1 /* TEXT */);
@@ -21096,6 +21096,8 @@ __webpack_require__(/*! ./bootstrap.js */ "./resources/js/bootstrap.js");
 
 
 
+// import ClassBoardMainComponent from '../components/ClassBoardMainComponent.vue';
+
 (0,vue__WEBPACK_IMPORTED_MODULE_0__.createApp)({
   components: {
     AppComponent: _components_AppComponent_vue__WEBPACK_IMPORTED_MODULE_3__["default"],
@@ -21104,6 +21106,7 @@ __webpack_require__(/*! ./bootstrap.js */ "./resources/js/bootstrap.js");
     FooterComponent: _components_FooterComponent_vue__WEBPACK_IMPORTED_MODULE_6__["default"],
     RegistrationComponent: _components_RegistrationComponent_vue__WEBPACK_IMPORTED_MODULE_7__["default"],
     ClassBoardDetailComponent: _components_ClassBoardDetailComponent_vue__WEBPACK_IMPORTED_MODULE_8__["default"]
+    // ClassBoardMainComponent,
   }
 }).use(_router_js__WEBPACK_IMPORTED_MODULE_1__["default"]).use(_store_js__WEBPACK_IMPORTED_MODULE_2__["default"]).mount("#app");
 
@@ -21171,6 +21174,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+// import ClassBoardMainComponent from '../components/ClassBoardMainComponent.vue';
 
 var routes = [{
   path: '/',
@@ -21184,7 +21188,13 @@ var routes = [{
 }, {
   path: '/classboarddetail',
   component: _components_ClassBoardDetailComponent_vue__WEBPACK_IMPORTED_MODULE_5__["default"]
-}, {
+},
+// {
+//     path: '/classBoardMain/:ClassLanguageName',
+//     component: ClassBoardMainComponent,
+//     props: true,
+// },
+{
   path: '/test',
   component: _components_TestComponent_vue__WEBPACK_IMPORTED_MODULE_3__["default"]
 }, {

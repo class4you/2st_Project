@@ -5,6 +5,7 @@ import MainComponent from '../components/MainComponent.vue';
 import TestComponent from '../components/TestComponent.vue';
 import BoardComponent from '../components/BoardComponent.vue';
 import ClassBoardDetailComponent from '../components/ClassBoardDetailComponent.vue';
+// import ClassBoardMainComponent from '../components/ClassBoardMainComponent.vue';
 import store from './store';
 
 const routes = [
@@ -24,6 +25,11 @@ const routes = [
         path: '/classboarddetail',
         component: ClassBoardDetailComponent,
     },
+    // {
+    //     path: '/classBoardMain/:ClassLanguageName',
+    //     component: ClassBoardMainComponent,
+    //     props: true,
+    // },
     {
         path: '/test',
         component: TestComponent,
