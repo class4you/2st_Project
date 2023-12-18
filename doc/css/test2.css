@@ -1,0 +1,200 @@
+.mantine-1zsxti {
+	display: flex;
+	flex-flow: row;
+	justify-content: flex-start;
+	border-bottom: 0.125rem solid rgb(222, 226, 230);
+}
+
+.mantine-11amb58[data-active] {
+	border-color: rgb(0, 196, 113);
+	color: rgb(0, 0, 0);
+}
+
+.mantine-11amb58 {
+	cursor: pointer;
+	border-width: 0px 0px 0.125rem;
+	border-top-style: initial;
+	border-right-style: initial;
+	border-left-style: initial;
+	border-top-color: initial;
+	border-right-color: initial;
+	border-left-color: initial;
+	appearance: none;
+	background-color: transparent;
+	text-align: left;
+	color: rgb(0, 0, 0);
+	text-decoration: none;
+	box-sizing: border-box;
+	position: relative;
+	white-space: nowrap;
+	z-index: 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	line-height: 1;
+	border-bottom-style: solid;
+	border-bottom-color: transparent;
+	margin-bottom: -0.125rem;
+	border-radius: 0.5rem 0.5rem 0px 0px;
+	padding: 14px 16px;
+	height: auto;
+	font-size: 16px;
+}
+
+.mantine-160zkmi {
+	position: relative;
+	overflow: hidden;
+	padding: 0.75rem 0.75rem 0.75rem 1rem;
+	border-radius: 0.5rem;
+	border: 0.0625rem solid transparent;
+	background-color: rgb(229, 249, 241);
+	color: rgb(0, 196, 113);
+	margin-top: 0.75rem;
+	margin-bottom: 1.25rem;
+	font-size: 13px;
+	font-style: bold;
+}
+
+.mantine-1y7fzyr {
+	font-family: Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+	line-height: 1.5;
+}
+
+.mantine-1v7s5f8 {
+	position: relative;
+}
+
+.mantine-goibal {
+	font-family: Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+	-webkit-tap-highlight-color: transparent;
+	appearance: none;
+	resize: none;
+	box-sizing: border-box;
+	color: rgb(0, 0, 0);
+	display: block;
+	text-align: left;
+	border-width: 0px;
+	background-color: transparent;
+	min-height: 1.75rem;
+	outline: 0px;
+	margin-bottom: 16px;
+	width: 100%;
+	font-size: 24px;
+	font-weight: 700;
+	line-height: 1.35;
+	padding: 0px !important;
+}
+
+.css-140imd4 {
+	display: flex;
+	flex-wrap: wrap;
+	margin-bottom: 14px;
+}
+.css-1ryum8s {
+	padding: 0px;
+	width: 100%; /* 변경된 부분 */
+	height: 26px;
+	border: none;
+	font-size: 16px;
+	outline: none;
+	margin-bottom: 10px;
+	box-sizing: border-box; /* 변경된 부분 */
+	margin-right: 60px;
+}
+
+.css-1grvssq {
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
+	width: 100%;
+	max-width: 752px;
+	margin: 0px auto;
+}
+
+.css-os36di {
+	position: static;
+	padding: 16px 0px;
+	border: none;
+}
+
+.css-os36di {
+	/* position: fixed; */
+	bottom: 0px;
+	left: 0px;
+	display: flex;
+	-webkit-box-pack: end;
+	justify-content: flex-end;
+	-webkit-box-align: center;
+	align-items: center;
+	/* padding: 16px 20px; */
+	width: 100%;
+	/* border: 1px solid rgb(222, 226, 230); */
+	background-color: rgb(255, 255, 255);
+	z-index: 100;
+}
+
+.css-os36di {
+	position: static;
+	padding: 16px 0px;
+	border: none;
+}
+
+.mantine-1uni1zy {
+	padding: 0px 1.375rem;
+	appearance: none;
+	text-align: left;
+	text-decoration: none;
+	box-sizing: border-box;
+	height: 2.625rem;
+	font-family: Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+	-webkit-tap-highlight-color: transparent;
+	display: inline-block;
+	width: auto;
+	font-weight: 600;
+	position: relative;
+	line-height: 1;
+	font-size: 1rem;
+	user-select: none;
+	cursor: pointer;
+	margin-right: 1rem;
+	color: rgb(0, 0, 0);
+	background-color: rgb(255, 255, 255);
+	border: 1px solid rgb(206, 212, 218);
+	border-radius: 7px;
+}
+
+.mantine-1276sa2 {
+padding: 0px 1.375rem;
+appearance: none;
+text-align: left;
+text-decoration: none;
+box-sizing: border-box;
+height: 2.625rem;
+font-family: Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+-webkit-tap-highlight-color: transparent;
+display: inline-block;
+width: auto;
+font-weight: 600;
+position: relative;
+line-height: 1;
+font-size: 1rem;
+user-select: none;
+cursor: pointer;
+border: 0.0625rem solid transparent;
+color: rgb(255, 255, 255);
+background-color: rgb(0, 196, 113);
+border-radius: 7px;
+}
+
+@media only screen and (max-width: 600px) {
+    .mantine-1zsxti {
+        /* flex-direction: column; 화면이 작을 때 세로로 정렬 */
+        align-items: flex-start;
+		border-bottom-color: transparent; /* 초기 스타일과 동일하게 유지 */
+		margin-bottom: 0; /* 기본 마진 제거 */
+		justify-content: space-around;
+		
+    }
+
+
+}
