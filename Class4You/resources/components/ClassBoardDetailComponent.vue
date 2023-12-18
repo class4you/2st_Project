@@ -67,10 +67,10 @@
         <div class="class_container">
             <!-- 강의 소개 -->
             <ul class="class_tabs">
-                <li @click="clickFlgTab = 0;" class="class_tab_link current" data-tab="class_tab1"><a href="#">강의 소개</a></li>
-                <li @click="clickFlgTab = 1;" class="class_tab_link" data-tab="class_tab2"><a href="">수강평</a></li>
-                <li @click="clickFlgTab = 2;" class="class_tab_link" data-tab="class_tab3"><a href="">커뮤니티</a></li>
-                <li @click="clickFlgTab = 3;" class="class_tab_link" data-tab="class_tab4"><a href="">공지사항</a></li>
+                <li @click="clickFlgTab = 0;" class="class_tab_link current" data-tab="class_tab1">강의 소개</li>
+                <li @click="clickFlgTab = 1;" class="class_tab_link" data-tab="class_tab2">수강평</li>
+                <li @click="clickFlgTab = 2;" class="class_tab_link" data-tab="class_tab3">커뮤니티</li>
+                <li @click="clickFlgTab = 3;" class="class_tab_link" data-tab="class_tab4">공지사항</li>
             </ul>
 
         <div v-if="clickFlgTab === 0">
