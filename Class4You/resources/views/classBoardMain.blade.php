@@ -43,8 +43,7 @@
 					@forelse($classInfo1 as $item)
 						@if ($loop->iteration <= 4)
 
-						{{-- <a href="{{ route('classboarddetail', ['ClassID' => $item->ClassID]) }}"> --}}
-							<a href="#" onclick="redirectToClassDetail({{ $item->ClassID }})">
+						<a href="/classboarddetail/{{ $item->ClassID }}">
 						<li class="class_main_container_new_card">
 							<div class="class_main_container_new_card_img">
 								<img src="/{{$item->ClassImg}}" alt="">
@@ -94,7 +93,7 @@
 					@forelse($classInfo2 as $item)
 						@if ($loop->iteration <= 4)
 
-						<a href="{{ route('classboarddetail', ['ClassID' => $item->ClassID]) }}">
+						<a href="/classboarddetail/{{ $item->ClassID }}">
 						<li class="class_main_container_new_card">
 							<div class="class_main_container_new_card_img">
 								<img src="/{{$item->ClassImg}}" alt="">
@@ -139,7 +138,7 @@
 					@forelse($classInfo3 as $item)
 						@if ($loop->iteration <= 4)
 
-						<a href="{{ route('classboarddetail', ['ClassID' => $item->ClassID]) }}">
+						<a href="/classboarddetail/{{ $item->ClassID }}">
 						<li class="class_main_container_new_card">
 							<div class="class_main_container_new_card_img">
 								<img src="/{{$item->ClassImg}}" alt="">
@@ -184,7 +183,7 @@
 					@forelse($classInfo4 as $item)
 						@if ($loop->iteration <= 4)
 
-						<a href="{{ route('classboarddetail', ['ClassID' => $item->ClassID]) }}">
+						<a href="/classboarddetail/{{ $item->ClassID }}">
 						<li class="class_main_container_new_card">
 							<div class="class_main_container_new_card_img">
 								<img src="/{{$item->ClassImg}}" alt="">
@@ -224,7 +223,7 @@
 						<a href="">
 							<li class="main_container_keyword_card">
 								<div class="main_container_keyword_card_img">
-									<img src="./img/img-2.png" alt="">
+									{{-- <img src="./img/img-2.png" alt=""> --}}
 								</div>
 							</li>
 						</a>
@@ -237,16 +236,6 @@
 	</div>
 	
 </div>
-
 <script>
-    function redirectToClassDetail(ClassID) {
-        // Blade 템플릿에서 컨트롤러로 데이터를 전송하는 경우에는
-        // 직접 URL로 데이터를 전달하거나, axios 등을 사용하여 API를 호출할 수 있습니다.
-        
-        // 예시: 직접 URL로 데이터를 전달하는 방법
-        window.location.href = `/classboarddetail/${ClassID}`;
-    }
 </script>
-
-
 @endsection
