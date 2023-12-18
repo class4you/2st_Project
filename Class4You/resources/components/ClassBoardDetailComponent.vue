@@ -6,7 +6,7 @@
                     <div class="class_detail_container_lr">
                         <div class="class_detail_container_l">
                             <div class="class_detail_container_l_img_cover">
-                                <img src="{{ asset($data->ClassImg) }}" alt="">
+                                <img src="/img/html/1st/html1.png" alt="">
                             </div>
                         </div>
 
@@ -19,12 +19,12 @@
                             </div>
                             <div class="class_detail_container_r_title_box">
                                 <h2 class="class_detail_container_r_title">
-                                    {{$data->ClassTitle}}
+                                    김영한의 자바 입문 - 코드로 시작하는 자바 첫걸음일수도 있고
                                 </h2>
                             </div>
                             <div class="class_detail_container_r_content_box">
                                 <p class="class_detail_container_r_content">
-                                    {{$data->ClassDescription}}
+                                    강의에 대한 간단 내용 강의에 대한 간단 내용강의에 대한 간단 내용 강의에 대한 간단 내용강의에 대한 간단 내용 강의에 대한 간단 내용강의에 대한 간단 내용 강의에 대한 간단 내용강의에 대한 간단 내용 강의에 대한 간단 내용
                                 </p>
                             </div>
                             <div class="class_detail_container_r_info_box">
@@ -44,15 +44,14 @@
                             </div>
                             <div class="class_detail_container_r_language">
                                 <span class="class_detail_container_r_language_icon">#</span>
-                                <!-- 제목이나 소개글같은 데이터들은 한가지 정보만 가지고 오지만 태그의 경우 -->
-                                <!-- 여러가지 정보를 가져와야해서 반복문 사용 -->
-                            @foreach($data->languages as $language)
-								<span>{{$language->ClassLanguageName}}</span>
-						    @endforeach
+                                <span>HTML</span>
+                                <span>CSS</span>
+                                <span>JS</span>
+                                <span>PHP</span>
                             </div>
                             <div class="class_detail_container_r_payment_box">
                                 <div class="class_detail_container_r_payment_price">
-                                    <span>가격: {{$data->ClassPrice}}원</span>
+                                    <span>가격: 122312312원</span>
                                 </div>
                                 <div class="class_detail_container_r_payment_classes">
                                     <button>수강 신청</button>
@@ -67,59 +66,124 @@
 
         <div class="class_container">
 
-            <ul class="class_tabs">
+            <ul class="class_tabs class_detail_rating_tab">
                 <li class="class_tab_link current" data-tab="class_tab1"><a href="#">강의 소개</a></li>
                 <li class="class_tab_link" data-tab="class_tab2"><a href="">수강평</a></li>
                 <li class="class_tab_link" data-tab="class_tab3"><a href="">커뮤니티</a></li>
                 <li class="class_tab_link" data-tab="class_tab4"><a href="">공지사항</a></li>
             </ul>
             
-            <div id="class_tab1" class="class_tab_content class_current">
-                <p>tab content1</p>
-                <p>동해물과백두산이마르고닳도록하느님이보우하사우리나라만세</p>
-                <p>동해물과백두산이마르고닳도록하느님이보우하사우리나라만세</p>
-                <p>동해물과백두산이마르고닳도록하느님이보우하사우리나라만세</p>
-                <p>동해물과백두산이마르고닳도록하느님이보우하사우리나라만세</p>
-                <p>동해물과백두산이마르고닳도록하느님이보우하사우리나라만세</p>
-                <p>동해물과백두산이마르고닳도록하느님이보우하사우리나라만세</p>
-            </div>
-            
-            <div class="class_tab_content_title">
-                <p>기초 설명</p>
-            </div>
-            <div id="class_tab1" class="class_tab_content">
-                <p>무궁화삼천리화려강산대한사람대한으로길이보전하세</p>
-                <p>무궁화삼천리화려강산대한사람대한으로길이보전하세</p>
-                <p>무궁화삼천리화려강산대한사람대한으로길이보전하세</p>
+            <div id="class_tab1" class="class_current class_detail_rating_form">
+                <form action="">
+                    <fieldset>
+
+                        <div class="class_detail_rating_form_text">
+                            <textarea name="" id="" cols="30" rows="10" placeholder="강의에 대한 질문을 작성해주세요."></textarea>
+                        </div>
+
+                        <div class="class_detail_commu_form_content">
+
+                            <div class="class_detail_rating_form_button">
+                                <button>질문 작성</button>
+                            </div>
+                        </div>
+
+                    </fieldset>
+                </form>
             </div>
 
-            <div class="class_tab_content_title">
-                <p>커리큘럼</p>
-            </div>
-            <div id="class_tab1" class="class_tab_content">
-                <p>커리큘럼</p>
-            </div>
+            <div class="class_detail_rating_list">
+				<div class="class_detail_rating_view_tab">
+					<div class="class_detail_rating_tab_title">
+                        <!-- 질문게시판 클릭시 커뮤니티 질문게시판 페이지로 이동 -->
+						<span>
+                            <a href="">질문게시판</a>
+                        </span>
+					</div>
+				</div>
 
-            <div class="class_tab_content_title">
-                <p>강의 특징</p>
-            </div>
-            <div id="class_tab1" class="class_tab_content">
-                <p>강의 특징</p>
-            </div>
+			<hr>
 
-            <div class="class_tab_content_title">
-                <p>강사 설명</p>
-            </div>
-            <div id="class_tab1" class="class_tab_content">
-                <p>강사 설명</p>
-            </div>
+				<div id="class_tab1" class="class_detail_rating_list_div">
+					<div class="class_detail_rating_list_user">
+						<div class="class_detail_rating_user_id">
+							<p>작성자ID</p>
+						</div>
+						<div class="class_detail_rating_user_date">
+							<p>2023-12-13</p>
+						</div>
+					</div>
+					<div class="class_detail_rating_list_text">
+						<p>css 이렇게 많이 써본건 처음이야</p>
+						<p>css 이렇게 많이 써본건 처음이야</p>
+						<p>css 이렇게 많이 써본건 처음이야</p>
+						<p>내가 쓴글 수정삭제가능</p>
+					</div>
+					<div class="class_detail_rating_user_button">
+						<div class="class_detail_rating_user_update_button">
+							<button>수정</button>
+						</div>
+						<div class="class_detail_rating_user_delete_button">
+							<button>삭제</button>
+						</div>
+					</div>
+				</div>
+			
+			<hr>
+
+				<div id="class_tab1" class="class_detail_rating_list_div">
+					<div class="class_detail_rating_list_user">
+						<div class="class_detail_rating_user_id">
+							<p>작성자ID</p>
+						</div>
+						<div class="class_detail_rating_user_date">
+							<p>2023-12-13</p>
+						</div>
+					</div>
+					<div class="class_detail_rating_list_text">
+						<p>수업이 재밌어요</p>
+					</div>
+				</div>
+
+			<hr>	
+
+				<div id="class_tab1" class="class_detail_rating_list_div">
+					<div class="class_detail_rating_list_user">
+						<div class="class_detail_rating_user_id">
+							<p>작성자ID</p>
+						</div>
+						<div class="class_detail_rating_user_date">
+							<p>2023-12-13</p>
+						</div>
+					</div>
+					<div class="class_detail_rating_list_text">
+						<p>코딩 조아요</p>
+					</div>
+				</div>
+
+			<hr>
+
+				<div id="class_tab1" class="class_detail_rating_list_div">
+					<div class="class_detail_rating_list_user">
+						<div class="class_detail_rating_user_id">
+							<p>작성자ID</p>
+						</div>
+						<div class="class_detail_rating_user_date">
+							<p>2023-12-13</p>
+						</div>
+					</div>
+					<div class="class_detail_rating_list_text">
+						<p>재밌는 라라벨</p>
+					</div>
+				</div>
+        	</div>
         
-        </div>
+		</div>
     </div>
 </template>
 <script>
 export default {
-    
+    name: 'ClassBoardDetailComponent',
     
 }
 </script>

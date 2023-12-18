@@ -4,6 +4,7 @@ import RegistrationComponent from '../components/RegistrationComponent.vue';
 import MainComponent from '../components/MainComponent.vue';
 import TestComponent from '../components/TestComponent.vue';
 import BoardComponent from '../components/BoardComponent.vue';
+import ClassBoardDetailComponent from '../components/ClassBoardDetailComponent.vue';
 import store from './store';
 
 const routes = [
@@ -18,6 +19,10 @@ const routes = [
     {
         path: '/board',
         component: BoardComponent,
+    },
+    {
+        path: '/classboarddetail',
+        component: ClassBoardDetailComponent,
     },
     {
         path: '/test',

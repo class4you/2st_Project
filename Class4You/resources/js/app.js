@@ -8,6 +8,7 @@ import HeaderComponent from '../components/HeaderComponent.vue';
 import MainComponent from '../components/MainComponent.vue';
 import FooterComponent from '../components/FooterComponent.vue';
 import RegistrationComponent from '../components/RegistrationComponent.vue';
+import ClassBoardDetailComponent from '../components/ClassBoardDetailComponent.vue';
 
 
 createApp({
@@ -17,6 +18,7 @@ createApp({
         MainComponent,
         FooterComponent,
         RegistrationComponent,
+        ClassBoardDetailComponent,
     }
 })
     .use(router)
