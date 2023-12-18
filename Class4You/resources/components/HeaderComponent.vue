@@ -17,7 +17,6 @@
                 <ul class="nav_left side_nav">
                     <li><a href="" class="menu_btn"><img src="/img/menu.png" alt="">전체 강의</a>
                         <ul class="dropdown">
-                            <!-- <li><router-link to="/classBoardMain/HTML">HTML</router-link></li> -->
                             <li><a href="/classBoard/HTML">HTML</a></li>
                             <li><a href="/classBoard/CSS">CSS</a></li>
                             <li><a href="/classBoard/JavaScript">Java Script</a></li>

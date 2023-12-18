@@ -22,8 +22,10 @@ const routes = [
         component: BoardComponent,
     },
     {
-        path: '/classboarddetail',
+        path: '/classboarddetail/:ClassID',
+        name: 'classboarddetail',
         component: ClassBoardDetailComponent,
+        props: true
     },
     // {
     //     path: '/classBoardMain/:ClassLanguageName',

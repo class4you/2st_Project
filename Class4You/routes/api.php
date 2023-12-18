@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ClassInfoController;
+use App\Http\Controllers\ClassBoardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,4 +28,4 @@ Route::get('/getNewClassMainData', [ClassInfoController::class, 'getNewClassMain
 // 클래스 보드 뷰 연동 테스트용
 // Route::get('/classBoardMain/{ClassLanguageName}', [ClassInfoController::class, 'classBoardIndex']);
 
-Route::get('/classboarddetail/{id}', [ClassInfoController::class, 'getClassBoardDetailShow']);
+Route::get('/classboarddetail/{ClassID}', [ClassInfoController::class, 'getClassBoardDetailShow']);

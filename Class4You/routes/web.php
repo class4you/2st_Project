@@ -40,9 +40,10 @@ Route::get('/classBoard/{ClassLanguageName}', [ClassInfoController::class, 'clas
 //     return view('classBoardDetail');
 // });
 
+Route::get('/classBoardDetail/{ClassID}', [ClassInfoController::class, 'getClassBoardDetailShow'])->name('classboarddetail');
+
 Route::get('/classBoardViewAll/{ClassDifficulty}/{ClassLanguageName}', [ClassInfoController::class, 'getClassBoardShow'])->name('classboardall');
 
-Route::get('/classBoardDetail/{ClassID}', [ClassInfoController::class, 'getClassBoardDetailShow'])->name('classboarddetail');
 
 Route::any("{slug}", function ($slug) {
     return view('welcome');

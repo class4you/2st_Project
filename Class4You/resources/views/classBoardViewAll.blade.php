@@ -4,8 +4,20 @@
 
 <div id="wrap">
 
-	<div class="class_main_visual">
-		<img src="" alt="">
+	<div class="main_visual">
+		<div class="main_visual_slider">
+			<div class="main_visual_slider_list">
+				<div class="main_visual_slider_track">
+					<div class="main_visual_slider_track_slick">
+						<div class="main_visual_slider_track_slick_item">
+							<a href="">
+								<img src={{asset($banner[0]['ClassDiffiBanner'])}} alt="">
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
 
 	<hr>
