@@ -261,8 +261,12 @@ class ClassInfoController extends Controller
 
             $result->languages = $langData;
 
-            return view('classBoardDetail', ['data' => $result]);
+            // return view('classBoardDetail', ['data' => $result]);
+            return view('classBoardDetail')->with('data', json_encode($result->toArray()));
+            // return response()->json_encode($result);
         }    
     }
+
+
     
 }

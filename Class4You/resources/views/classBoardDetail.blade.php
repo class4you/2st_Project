@@ -2,7 +2,7 @@
 
 @section('classBoardMain')
 
-<div id="wrap">
+{{-- <div id="wrap">
         <div class="class_detail_visual">
             <div class="class_detail_container_box">
                 <div class="class_detail_container">
@@ -119,6 +119,10 @@
         
         </div>
 
+</div> --}}
+
+<div>
+    <classBoardDetail-Component :data"{{ $data }}"></classBoardDetail-Component>
 </div>
 
 @endsection
