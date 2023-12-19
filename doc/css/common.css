@@ -2075,15 +2075,16 @@ option {
     list-style: none;
     padding: 0;
   }
-  
   .ranking_weekly_popular_write_writer {
     width: 140px;
     height: 22px;
     font-weight: 700;
-    background-color: transparent; /* 배경을 투명하게 설정 */
-    border-bottom: 1px solid #969393; /* 아래에 1px 높이의 회색 선 추가 */
-}
-
+    background-color: transparent;
+    border-bottom: 1px solid #969393;
+    color: #000;
+    font-size: 12px;
+    margin-top: 10px;
+  }
 
 	
 .my_page_main_tap_ui:hover {
@@ -2260,3 +2261,4 @@ option {
     font-size: 15px;
     font-weight: 700;
 }
+
