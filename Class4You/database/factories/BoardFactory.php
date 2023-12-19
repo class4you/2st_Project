@@ -31,7 +31,7 @@ class BoardFactory extends Factory
         // ];
 
         return [
-            'BoardCategotyID' => 2,
+            'BoardCategoryID' => 2,
             'UserID' => $this->faker->randomElement([8, 9, 10, 11]),
             'ClassID' => null,
             'BoardTitle' => $this->faker->realText(50),

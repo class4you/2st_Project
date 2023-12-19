@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ClassBoardController;
 use App\Http\Controllers\ClassInfoController;
+use App\Http\Controllers\ReviewController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,6 +25,8 @@ Route::get('/', function () {
 
 Route::middleware('my.user.validation')->post('/login', [UserController::class, 'loginpost']);
 
+Route::middleware('my.user.validation')->post('/registration', [UserController::class, 'store']);
+
 Route::get('/logout', [UserController::class, 'logout']);
 
 // 클래스보드 테스트용
@@ -33,6 +36,17 @@ Route::get('/logout', [UserController::class, 'logout']);
 
 Route::get('/classBoard/{ClassLanguageName}', [ClassInfoController::class, 'classBoardIndex'])->name('classboardmain');
 
+Route::get('/getNewClassMainData', [ClassInfoController::class, 'getNewClassMainData']);
+
+Route::get('/classBoardDetail/{ClassID}', [ClassInfoController::class, 'getClassBoardDetailShow']);
+
+Route::get('/classboarddetailreview/{ClassID}', [ReviewController::class, 'getClassReviewIndex']);
+
+Route::get('/classBoardViewAll/{ClassDifficulty}/{ClassLanguageName}', [ClassInfoController::class, 'getClassBoardShow'])->name('classboardall');
+
+
+// Route::get('/classboarddetail/{ClassID}', [ClassInfoController::class, 'getClassBoardDetailShow']);
+
 
 // 클래스보드 vue 컴포넌트 테스트용
 // Route::get('/classBoardMain/{ClassLanguageName}', [ClassInfoController::class, 'classBoardIndex']);
@@ -41,9 +55,7 @@ Route::get('/classBoard/{ClassLanguageName}', [ClassInfoController::class, 'clas
 //     return view('classBoardDetail');
 // });
 
-Route::get('/classBoardDetail/{ClassID}', [ClassInfoController::class, 'getClassBoardDetailShow'])->name('classboarddetail');
 
-Route::get('/classBoardViewAll/{ClassDifficulty}/{ClassLanguageName}', [ClassInfoController::class, 'getClassBoardShow'])->name('classboardall');
 
 
 Route::any("{slug}", function ($slug) {

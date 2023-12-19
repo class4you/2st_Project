@@ -14,8 +14,8 @@ return new class extends Migration
     public function up()
     {
         Schema::create('board_categoties', function (Blueprint $table) {
-            $table->id('BoardCategotyID');
-            $table->string('BoardCategotyName', 50);
+            $table->id('BoardCategoryID');
+            $table->string('BoardCategoryName', 50);
             $table->timestamps();
             $table->softDeletes();
         });

@@ -221,8 +221,9 @@ export default {
     },
     methods: {
         fetchData() {
-        axios.get('/api/getNewClassMainData')
+        axios.get('/getNewClassMainData')
             .then(response => {
+                console.log(response.data);
                 this.newClassItems = response.data;
             })
             .catch(error => {
@@ -248,33 +249,33 @@ export default {
         checkWindowWidth() {
             this.$store.dispatch('checkWindowWidth');
         },
-        handleClassImageClick(classId) {
-            const url = '/api/classBoardDetail/${classId}'
-            const header = {
-                headers: {
-                    "Content-Type": 'application/json',
-                    // 'X-CSRF-TOKEN': document.head.querySelector('meta[name="csrf-token"]').content,
-                },
-            }
-            axios.get(url, header)
-            .then(response => {
-            const detailData = response.data;
+        // handleClassImageClick(classId) {
+        //     const url = '/classBoardDetail/${classId}'
+        //     const header = {
+        //         headers: {
+        //             "Content-Type": 'application/json',
+        //             // 'X-CSRF-TOKEN': document.head.querySelector('meta[name="csrf-token"]').content,
+        //         },
+        //     }
+        //     axios.get(url, header)
+        //     .then(response => {
+        //     const detailData = response.data;
 
-            // 프로그래밍 방식으로 라우터를 통해 디테일 페이지로 이동
-            this.$router.push({
-                    name: 'classboarddetail', // 디테일 페이지의 라우터 이름
-                    params: {
-                    id: classId,
-                    // 기타 필요한 파라미터들...
-                    },
-                    query: {
-                    },
-                });
-            })
-            .catch(error => {
-            console.error('API 요청 실패:', error);
-            });
-        },
+        //     // 프로그래밍 방식으로 라우터를 통해 디테일 페이지로 이동
+        //     this.$router.push({
+        //             name: 'classboarddetail', // 디테일 페이지의 라우터 이름
+        //             params: {
+        //             id: classId,
+        //             // 기타 필요한 파라미터들...
+        //             },
+        //             query: {
+        //             },
+        //         });
+        //     })
+        //     .catch(error => {
+        //     console.error('API 요청 실패:', error);
+        //     });
+        // },
     }
 }
 </script>

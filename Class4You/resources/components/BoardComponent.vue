@@ -108,7 +108,7 @@
 								<ul class="question_list">
 									<li class="question_container">
 									<a href="">
-										<div class="question">
+										<div v-for="item in newBoardItems" class="question">
 										<div class="question_info">
 											<div class="question_title">
 											<div class="title_sub_text">
@@ -117,11 +117,11 @@
 												</div>
 											</div>
 											<h3 class="title_text">
-												제목 입력란
+												{{ item.BoardTitle }}
 											</h3>
 											</div>
 											<p class="question_content_body">
-											내용입력란
+												{{ item.BoardComment }}
 											</p>
 											<div class="question_tags">
 											<button class="question_tags_button">
@@ -132,23 +132,28 @@
 											<div class="question_info_detail">
 												<span class="question_info_user_name">작성자</span>
 												<span> · </span>
-												<span class="question_info_user_name">작성시간</span>
+												<span class="question_info_user_name">작성시간 : {{ item.created_at }}</span>
 											</div>
 											<div class="question_info_user_data">
 												<dl>
 												<dt class="visually_hidden">투표점수</dt>
 												<dd class="comment_count">
-													<i>svg</i>
-													<span>0</span>
+													<i>추천수 {{ item.BoardRecommended }}</i>
+													<span>{{item.Boardgoodcount}}</span>
+												</dd>
+												<dt class="visually_hidden">투표점수</dt>
+												<dd class="comment_count">
+													<i>비추천: {{ item.BoardNotRecommended }}</i>
+													<span>{{item.Boardbadcount}}</span>
 												</dd>
 												<dt class="visually_hidden">조회수</dt>
 												<dd class="comment_count">
-													<i>svg</i>
-													<span>0</span>
+													<i>조회수 : {{ item.BoardView }}</i>
+													<span>{{item.Boardhitscount}}</span>
 												</dd>
 												<dt class="visually_hidden">답변</dt>
 												<dd class="comment_count">
-													<i>svg</i>
+													<i>답변순</i>
 													<span>0</span>
 												</dd>
 												</dl>
@@ -159,6 +164,9 @@
 									</a>
 									</li>
 								</ul>
+								<div v-for="page in pagination" >
+									<a href="">{{ page.url }}</a>
+								</div>
 								</div>
 							</div>
 							<div class="community_right_side">
@@ -178,7 +186,6 @@
 								</ul>
 								</div>
 							</div>
-
 							</section>
 						</div>
 				</div>
@@ -188,10 +195,35 @@
 </div>
 </template>
 <script>
+// import Pagination from 'vue3-pagination';
 export default {
 	name: 'BoardComponent',
+
+	data() {
+		return {
+			newBoardItems: [],
+			pagination: [],
+		}
+	},
 	
+	mounted() {
+        this.fetchData();
+    },
+	methods: {
+		fetchData() {
+        axios.get('/api/board')
+            .then(response => {
+				console.log(response.data.links);
+                this.newBoardItems = response.data.data;
+				this.pagination = response.data.links;
+            })
+            .catch(error => {
+                console.error('Error fetching data:', error);
+            });
+        },
+	}
 }
+
 </script>
 <style>
 	

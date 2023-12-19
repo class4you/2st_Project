@@ -28,7 +28,7 @@ const routes = [
     },
     {
         path: '/classboarddetail/:ClassID',
-        name: 'classboarddetail',
+        // name: 'classboarddetail',
         component: ClassBoardDetailComponent,
         props: true
     },

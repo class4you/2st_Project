@@ -425,13 +425,13 @@ export default {
 		fetchData() {
 		// 여기에서 정보를 추가로 조회하는 로직을 구현
 		// 예시: API를 호출하여 데이터를 가져옴\
-		axios.get('/api/classboarddetail/' + this.ClassID)
+		axios.get('/classBoardDetail/' + this.ClassID)
 			.then(response => {
 			// API 응답에 대한 로직 수행
 			console.log(response.data);
 			this.detailClassItems = response.data;
 
-			axios.get('/api/classboarddetailreview/' + this.ClassID)
+			axios.get('/classboarddetailreview/' + this.ClassID)
 				.then(reviewResponse => {
                     // 두 번째 API 응답에 대한 로직 수행
                     console.log(reviewResponse.data);

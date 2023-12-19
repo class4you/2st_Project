@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('boards', function (Blueprint $table) {
             $table->id('BoardID');
-            $table->integer('BoardCategotyID');
+            $table->integer('BoardCategoryID');
             $table->integer('UserID');
             $table->integer('ClassID')->nullable();
             $table->string('BoardTitle', 100);

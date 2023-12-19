@@ -2296,8 +2296,6 @@ option {
 
 .title_text {
     flex: 1;
-    width: 0;
-    white-space: nowrap;
     font-size: 15px;
     color: #212529;
     font-weight: 700;
@@ -2305,6 +2303,7 @@ option {
     text-overflow: ellipsis;
     -webkit-line-clamp: 1;
     -webkit-box-orient: vertical;
+    line-height: 20px;
 }
 
 .question_content_body {
@@ -2388,6 +2387,7 @@ option {
 
 .question_info_user_name span {
     font-size: 14px;
+   
 }
 .question_info_user_data {
     font-size: 0;
@@ -2871,7 +2871,6 @@ option {
 
 /* 상세 게시판 등 스타일 */
 .question {
-    display: flex;
     padding: 18px 16px;
     border-bottom: 1px solid #dee2e6;
 }
@@ -3331,6 +3330,27 @@ option {
         grid-template-columns: 1fr 0.5fr;
         /* justify-content: right; */
         vertical-align: middle;
+    }
+    
+    .question_info_footer {
+        display: block;
+        line-height: 20px;
+    }
+
+    .question_title {
+        display: block;
+    }
+
+    .title_sub_text {
+        display: block;
+    }
+
+    .title_text {
+        margin-top: 5px;
+        line-height: 30px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
     }
 }
 
