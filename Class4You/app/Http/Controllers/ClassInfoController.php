@@ -300,6 +300,7 @@ class ClassInfoController extends Controller
 
     // 강의 디테일페이지 불러오기
     public function getClassBoardDetailShow($ClassID) {
+        // Log::debug('***** getClassBoardDetailShow Start *****');
         $result = ClassInfo::where('ClassID', $ClassID)->first();
 
         // classboardshow와 다르게 한가지 정보만 가지고 오기 때문에 if문 사용
@@ -312,15 +313,19 @@ class ClassInfoController extends Controller
             ->where('class_infos.ClassID', $classID)
             ->get();
 
-            $userId =  session(['user' => Auth::user()]);
+            $userId = Auth::id();
+            // Log::debug(Auth::id());
+            // Log::debug(auth()->UserID);
+            // Log::debug(session()->UserID);
             
             $result->UserID = $userId;
 
             $result->languages = $langData;
 
-            Log::debug($userId);
-            Log::debug(Auth::check() ? 'true' : 'false');
+            // Log::debug($userId);
+            // Log::debug(Auth::check() ? 'true' : 'false');
             // return view('classBoardDetail', ['data' => $result]);
+        // Log::debug('***** getClassBoardDetailShow End *****');
             return response()->json($result);
         }    
     }
