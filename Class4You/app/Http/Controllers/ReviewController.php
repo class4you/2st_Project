@@ -21,9 +21,11 @@ class ReviewController extends Controller
         ->join('enrollments','reviews.EnrollmentID','enrollments.EnrollmentID')
         ->join('class_infos','class_infos.ClassID','enrollments.ClassID')
         ->join('users','enrollments.UserID','users.UserID')
+        ->where('enrollments.ClassID', $ClassID)
         ->orderBy('enrollments.created_at', 'desc')
         ->get();
 
+        Log::debug($result);
         return response()->json($result);
     }
     
