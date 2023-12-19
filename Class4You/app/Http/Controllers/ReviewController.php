@@ -5,11 +5,14 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Review;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Auth;
 
 class ReviewController extends Controller
 {
     //강의게시판_수강평불러오기
     public function getClassReviewIndex($ClassID) {
+        Log::debug(Auth::check());
+        Log::debug(Auth::user());
         Log::debug($ClassID);
         $result = Review::select('reviews.ReviewID',
                 'reviews.EnrollmentID',
@@ -24,6 +27,7 @@ class ReviewController extends Controller
         ->where('enrollments.ClassID', $ClassID)
         ->orderBy('enrollments.created_at', 'desc')
         ->get();
+
 
         Log::debug($result);
         return response()->json($result);
