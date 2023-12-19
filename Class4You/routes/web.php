@@ -16,6 +16,7 @@ use App\Http\Controllers\ClassInfoController;
 |
 */
 
+
 Route::get('/', function () {
     return view('welcome');
 });
