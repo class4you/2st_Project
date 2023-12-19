@@ -311,15 +311,18 @@ class ClassInfoController extends Controller
             ->join('class_languages', 'class_languagelinks.ClassLanguageID', 'class_languages.ClassLanguageID')
             ->where('class_infos.ClassID', $classID)
             ->get();
-
-            $userId =  session(['user' => Auth::user()]);
             
-            $result->UserID = $userId;
+            // $userId = Auth::id();
+            // $userId2 = Auth::user();
+            // $userId3 = auth()->user();
+            // Log::debug($userId);
+            // Log::debug($userId2);
+            // Log::debug($userId3);
+
+            // $result->UserID = $userId;
 
             $result->languages = $langData;
 
-            Log::debug($userId);
-            Log::debug(Auth::check() ? 'true' : 'false');
             // return view('classBoardDetail', ['data' => $result]);
             return response()->json($result);
         }    

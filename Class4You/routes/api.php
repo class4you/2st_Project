@@ -31,4 +31,4 @@ Route::get('/getNewClassMainData', [ClassInfoController::class, 'getNewClassMain
 
 Route::get('/classboarddetail/{ClassID}', [ClassInfoController::class, 'getClassBoardDetailShow']);
 
-Route::get('/classboarddetailreview/{UserID}', [ReviewController::class, 'getClassReviewIndex']);
+Route::get('/classboarddetailreview/{ClassID}', [ReviewController::class, 'getClassReviewIndex']);

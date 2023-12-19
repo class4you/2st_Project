@@ -48,29 +48,30 @@ class UserController extends Controller
 
         $userId = Auth::id();
 
-        Log::debug($userId);
+        // Log::debug($userId);
         // $token = Str::random(60);
 
         // $result->update(['remember_token' => $token]);
 
         if (Auth::check()) {
-            session(['user' => Auth::user()]);
+            // session(['user' => Auth::user()]);
             
-            $sessionDataCheck = Auth::check();
+            // $sessionDataCheck = Auth::check();
             // $sessionDataCheck = $sessionDataCheck ? 1 : 0;
             // $sessionDataUser = Auth::user();
-            $sessionDataUserName = Auth::user()->UserName;
-            $sessionDataUserEmail = Auth::user()->UserEmail;
+            // $sessionDataUserName = Auth::user()->UserName;
+            // $sessionDataUserEmail = Auth::user()->UserEmail;
             // Log::debug($sessionDataUser);
             // Log::debug($sessionDataUserName);
             // Log::debug($sessionDataUserEmail);
-            Log::debug($sessionDataUserEmail);
+            // Log::debug($sessionDataUserEmail);
             return response()->json([
                 'success' => true,
                 'message' => '로그인이 성공적으로 수행되었습니다.',
-                'sessionDataCheck' => $sessionDataCheck,
-                'sessionCheckUserName' => $sessionDataUserName,
-                'sessionCheckUserEmail' => $sessionDataUserEmail,
+                // 'sessionDataCheck' => $sessionDataCheck,
+                // 'sessionCheckUserName' => $sessionDataUserName,
+                // 'sessionCheckUserEmail' => $sessionDataUserEmail,
+                'user' => Auth::user(),
             ]);
 
         } else {

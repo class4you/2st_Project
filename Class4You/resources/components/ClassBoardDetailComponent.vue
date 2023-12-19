@@ -474,7 +474,15 @@ export default {
 			// API 응답에 대한 로직 수행
 			console.log(response.data);
 			this.detailClassItems = response.data;
-			// axios.get('/api/classboarddetailreview/')
+			axios.get('/api/classboarddetailreview/' + this.ClassID)
+				.then(reviewResponse => {
+                    // 두 번째 API 응답에 대한 로직 수행
+                    console.log(reviewResponse.data);
+                })
+                .catch(reviewError => {
+                    // 두 번째 API 에러 처리
+                    console.error(reviewError);
+                });
 			})
 			.catch(error => {
 			// 에러 처리
