@@ -109,7 +109,7 @@
 									<li class="question_container">
 									<a href="">
 										<div class="question">
-										<div class="question_info">
+										<div v-for="item in newBoardItems" class="question_info">
 											<div class="question_title">
 											<div class="title_sub_text">
 												<div class="question_status_tag">
@@ -117,7 +117,7 @@
 												</div>
 											</div>
 											<h3 class="title_text">
-												제목 입력란
+												{{ item.BoardTitle }}
 											</h3>
 											</div>
 											<p class="question_content_body">
@@ -190,7 +190,28 @@
 <script>
 export default {
 	name: 'BoardComponent',
+
+	data() {
+		return {
+			newBoardItems: [],
+		}
+	},
 	
+	mounted() {
+        this.fetchData();
+    },
+	methods: {
+		fetchData() {
+        axios.get('/api/board')
+            .then(response => {
+				console.log(response.data);
+                this.newBoardItems = response.data;
+            })
+            .catch(error => {
+                console.error('Error fetching data:', error);
+            });
+        },
+	}
 }
 </script>
 <style>

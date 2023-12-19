@@ -4,9 +4,9 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use App\Models\BoardCategoty;
+use App\Models\BoardCategory;
 
-class BoardCategotySeeder extends Seeder
+class BoardCategorySeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,12 +15,12 @@ class BoardCategotySeeder extends Seeder
      */
     public function run()
     {
-        BoardCategoty::create([
-            'BoardCategotyName' => '자유게시판'
+        BoardCategory::create([
+            'BoardCategoryName' => '자유게시판'
         ]);
 
-        BoardCategoty::create([
-            'BoardCategotyName' => '질문게시판'
+        BoardCategory::create([
+            'BoardCategoryName' => '질문게시판'
         ]);
     }
 }

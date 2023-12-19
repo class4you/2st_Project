@@ -6,6 +6,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\ClassInfoController;
 use App\Http\Controllers\ClassBoardController;
 use App\Http\Controllers\ReviewController;
+use App\Http\Controllers\BoardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,3 +33,5 @@ Route::get('/getNewClassMainData', [ClassInfoController::class, 'getNewClassMain
 Route::get('/classboarddetail/{ClassID}', [ClassInfoController::class, 'getClassBoardDetailShow']);
 
 Route::get('/classboarddetailreview/{ClassID}', [ReviewController::class, 'getClassReviewIndex']);
+
+Route::get('/board', [BoardController::class, 'getBoardMainData']);

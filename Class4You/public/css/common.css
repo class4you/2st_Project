@@ -2351,6 +2351,10 @@ option {
     cursor: pointer;
 }
 
+.question_info {
+    border: 1px solid #000;
+}
+
 .question_info_footer {
     /* overflow: hidden; */
     text-overflow: ellipsis;

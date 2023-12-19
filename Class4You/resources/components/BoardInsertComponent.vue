@@ -21,12 +21,12 @@
             <button class="mantine-UnstyledButton-root mantine-Tabs-tab mantine-11amb58" type="button" data-active="true" role="tab" id="mantine-1ig8a3r50-tab-question" aria-selected="true" tabindex="0">
                 <span class="mantine-480qv8 mantine-Tabs-tabLabel">질문</span>
             </button>
-            <button class="mantine-UnstyledButton-root mantine-Tabs-tab mantine-11amb58" type="button" role="tab" id="mantine-1ig8a3r50-tab-chat" aria-selected="false" tabindex="-1">
+            <!-- <button class="mantine-UnstyledButton-root mantine-Tabs-tab mantine-11amb58" type="button" role="tab" id="mantine-1ig8a3r50-tab-chat" aria-selected="false" tabindex="-1">
                 <span class="mantine-480qv8 mantine-Tabs-tabLabel">고민있어요</span>
             </button>
             <button class="mantine-UnstyledButton-root mantine-Tabs-tab mantine-11amb58" type="button" role="tab" id="mantine-1ig8a3r50-tab-study" aria-selected="false" tabindex="-1">
                 <span class="mantine-480qv8 mantine-Tabs-tabLabel">스터디</span>
-            </button>
+            </button> -->
         </div>
 
         <div class="mantine-Alert-root mantine-160zkmi" id="mantine-iilfjlpyb" role="alert" aria-labelledby="mantine-iilfjlpyb-title" aria-describedby="mantine-iilfjlpyb-body">
