@@ -51,6 +51,7 @@
     width: 100%;
     margin: 0 auto;
     max-width: 1520px; /* 예시로 1520px로 지정 */
+  
 }
 .mainSectionpost{
     width: 100%;
@@ -396,7 +397,7 @@
 }
 .question .title-sub__text .question__status-tag.question__status-tag--recruited span, .question .title-sub__text .question__status-tag.question__status-tag--unresolved span {
     background-color: #ced4da;
-}
+    
 
 
 .question .question__info {
@@ -993,30 +994,31 @@
     font-size: 14px;
     font-weight: 700;
     color: #212529;
-    line-height: 170%;
-}
+    line-height: 170%;}
 
-.posts-by-type .ranking-writer-container {
-    display: flex;
-    flex-direction: column;
-    margin-top: 20px;
-    padding: 10px 0;
-    width: 100%;
-    height: 292px;
-}
+    .posts-by-type .ranking-writer-container {
+        display: flex;
+        flex-direction: column;
+        margin-top: 20px;
+        padding: 10px 0;
+        width: 100%;
+        height: 292px;
+    }
 
-.posts-by-type .ranking-writer-container .ranking-writer-list {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-}
+    .posts-by-type .ranking-writer-container .ranking-writer-list {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+    }
 
-.posts-by-type .ranking-writer-container .ranking-writer-link {
-    display: flex;
-    justify-content: space-between;
-    padding: 4px 12px;
-    width: 100%;
-    border-radius: 2px;
+    .posts-by-type .ranking-writer-container .ranking-writer-link {
+        display: flex;
+        justify-content: space-between;
+        padding: 4px 12px;
+        width: 100%;
+        border-radius: 2px;
+    }
+
 }
 
 .ranking-container h2{

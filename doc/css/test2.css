@@ -3,12 +3,17 @@
 	flex-flow: row;
 	justify-content: flex-start;
 	border-bottom: 0.125rem solid rgb(222, 226, 230);
+	margin-right: 100px;
+    margin-left: 100px;
 }
 
 .mantine-11amb58[data-active] {
 	border-color: rgb(0, 196, 113);
 	color: rgb(0, 0, 0);
 }
+
+
+
 
 .mantine-11amb58 {
 	cursor: pointer;
@@ -53,6 +58,8 @@
 	margin-bottom: 1.25rem;
 	font-size: 13px;
 	font-style: bold;
+	margin-left: 100px;
+    margin-right: 100px;
 }
 
 .mantine-1y7fzyr {
@@ -82,13 +89,15 @@
 	font-size: 24px;
 	font-weight: 700;
 	line-height: 1.35;
-	padding: 0px !important;
+
+	margin-left: 100px;
 }
 
 .css-140imd4 {
 	display: flex;
 	flex-wrap: wrap;
 	margin-bottom: 14px;
+	margin-left: 100px;
 }
 .css-1ryum8s {
 	padding: 0px;
@@ -113,8 +122,9 @@
 
 .css-os36di {
 	position: static;
-	padding: 16px 0px;
-	border: none;
+    padding: 16px 0px;
+    border: none;
+    margin-left: -115px;
 }
 
 .css-os36di {
@@ -186,6 +196,7 @@ background-color: rgb(0, 196, 113);
 border-radius: 7px;
 }
 
+
 @media only screen and (max-width: 600px) {
     .mantine-1zsxti {
         /* flex-direction: column; 화면이 작을 때 세로로 정렬 */
@@ -197,4 +208,43 @@ border-radius: 7px;
     }
 
 
+}
+
+
+@media only screen and (max-width: 600px) {
+    .mantine-160zkmi
+	{
+        /* flex-direction: column; 화면이 작을 때 세로로 정렬 */
+        align-items: flex-start;
+		/* border-bottom-color: transparent; 초기 스타일과 동일하게 유지 */
+		margin-bottom: 0; /* 기본 마진 제거 */
+		justify-content: space-around;
+		margin-left: 0px;
+		margin-right: 23px;
+    }
+	.mantine-goibal
+	{
+		margin-bottom: 0;
+		justify-content: space-around;
+		margin-left: 10px;
+		/* margin-right: -4px; */
+		font-size: 21px
+    }
+	.css-5kov97{
+		margin-bottom: 0;
+		justify-content: space-around;
+		/* margin-right: -4px; */
+		font-size: 21px;
+		margin-left:-90px;
+		margin-right: 125px;
+	}
+
+	.toolbar-group{
+		margin-bottom: 0;
+		justify-content: space-around;
+		/* margin-right: -4px; */
+		font-size: 21px;
+		margin-left:-90px;
+		margin-right: 125px;
+	}
 }

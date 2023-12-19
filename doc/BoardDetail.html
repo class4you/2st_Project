@@ -3,9 +3,8 @@
 <head>
 	<meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../doc/css/common.css">
-    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-xxx" crossorigin="anonymous" /> -->
-    <link rel="stylesheet" href="../doc/css/reset.css">
+    <link rel="stylesheet" href="./css/common.css">
+    <link rel="stylesheet" href="./css/reset.css">
 	<title>커뮤니티</title>
 </head>
 <body>
@@ -40,7 +39,7 @@
                     <a href="">SIGN UP</a>
                     <a href="">LOGIN</a>
                     <div class="search_box">
-                        <input type="text" placeholder="SEARCH">
+                        <input type="text" placeholder="SEARCH" name="search_text">
                         <button type="button"><img src="./img/SEARCH.png" alt=""></button>
                     </div>
                 </div>
@@ -51,70 +50,64 @@
 
 <body>
     <div id="wrap">
-        <form>
-
-    
-        <div class="whr"><span>게시판</span><span>></span><span>게시판</span>
-        </div><!-- whr -->
+        <div class="whr"><span>게시판</span><span>></span><span>게시판</span></div><!-- whr -->
         <section class="mainSectionpost">
-        <section class="mainSec row jcB">
-    
-            <div class="postBox">
-                <div class="postInfo row aiC jcB">
-                    <div>
-                        <p>작성자<span>홍길동</span></p>
+            <section class="mainSec row jcB">
+                <div class="postBox">
+                    <div class="postInfo row aiC jcB">
+                        <div>
+                            <p>작성자<span>홍길동</span></p>
+                        </div>
+                        <div class="row aiC">
+                            <p>작성일<span>2023.12.11</span></p>
+                            <p>조회수<span>9999</span></p>
+                            <p>좋아요<span>9999</span></p>
+                        </div>
                     </div>
-                    <div class="row aiC">
-                        <p>작성일<span>2023.12.11</span></p>
-                        <p>조회수<span>9999</span></p>
-                        <p>좋아요<span>9999</span></p>
+                    <div class="postTitBox row aiC">
+                        <label for="postTit">제목</label>
+                        <input type="text" id="postTit">
+                    </div>
+                    <div class="postContBox row">
+                        <label for="postCont">내용</label>
+                        <textarea id="postCont"></textarea>
+                    </div>
+                    <div class="laguage">
+                        <ul class="row aiC">
+                            <li>React</li>
+                            <li>JS</li>
+                            <li>CSS</li>
+                            <li>HTML</li>
+                            <li>LARAVEL</li>
+                            <li>React</li>
+                        </ul>
+                    </div>
+                    <div class="reco row jcC">
+                        <div class="row aiC">
+                            <p>0</p>
+                            <button><i class="fas fa-thumbs-up" style="font-size: 20px;"></i></button>
+                        </div>
+                        <div class="row aiC">
+                            <button>엄지</button>
+                            <p>0</p>
+                        </div>
                     </div>
                 </div>
-                <div class="postTitBox row aiC">
-                    <label for="postTit">제목</label>
-                    <input type="text" id="postTit">
-                </div>
-                <div class="postContBox row">
-                    <label for="postCont">내용</label>
-                    <textarea id="postCont"></textarea>
-                </div>
-                <div class="laguage">
-                    <ul class="row aiC">
-                        <li>React</li>
-                        <li>JS</li>
-                        <li>CSS</li>
-                        <li>HTML</li>
-                        <li>LARAVEL</li>
-                        <li>React</li>
-                    </ul>
-                </div>
-                <div class="reco row jcC">
-                    <div class="row aiC">
-                        <p>0</p>
-                        <button><i class="fas fa-thumbs-up" style="font-size: 20px;"></i></button>
+        
+                <!-- <div class="reviewBox border-t-none">
+                    <div class="number">
+                        <p>답변<span>0</span></p>
                     </div>
-                    <div class="row aiC">
-                        <button>엄지</button>
-                        <p>0</p>
+                    <div class="reviewList">
                     </div>
-                </div>
-            </div>
-    
-            <div class="reviewBox border-t-none">
-                <div class="number">
-                    <p>답변<span>0</span></p>
-                </div>
-                <div class="reviewList">
-                </div>
-                <div class="reviewPost row jcB">
-                    <textarea placeholder="댓글을 입력해주세요."></textarea>
-                    <button type="button">저장</button>
-                </div>
-            </div>
-    
-        </section> 
-    </section>
-    </form>
+                    <div class="reviewPost row jcB">
+                        <textarea placeholder="댓글을 입력해주세요."></textarea>
+                        <button type="button">저장</button>
+                    </div>
+                </div> -->
+        
+            </section> 
+        </section>
     </div>
     <script src="https://kit.fontawesome.com/b69518c43b.js" crossorigin="anonymous"></script>
     </body>
