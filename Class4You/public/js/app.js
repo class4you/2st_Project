@@ -19518,7 +19518,13 @@ __webpack_require__.r(__webpack_exports__);
         // API 응답에 대한 로직 수행
         console.log(response.data);
         _this.detailClassItems = response.data;
-        // axios.get('/api/classboarddetailreview/')
+        axios__WEBPACK_IMPORTED_MODULE_0___default().get('/api/classboarddetailreview/' + _this.ClassID).then(function (reviewResponse) {
+          // 두 번째 API 응답에 대한 로직 수행
+          console.log(reviewResponse.data);
+        })["catch"](function (reviewError) {
+          // 두 번째 API 에러 처리
+          console.error(reviewError);
+        });
       })["catch"](function (error) {
         // 에러 처리
         console.error(error);
