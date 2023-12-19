@@ -115,13 +115,14 @@
                     <fieldset>
 
                         <div class="class_detail_rating_form_text">
-                            <textarea name="" id="" cols="30" rows="10" placeholder="수강평을 작성해주세요."></textarea>
+                            <textarea name="myform" id="" cols="30" rows="10" placeholder="수강평을 작성해주세요."></textarea>
+                            <!-- <input type="text" placeholder="수강평을 작성해주세요."> -->
                         </div>
 
                         <div class="class_detail_rating_form_content">
                             <div class="class_detail_rating_form_star">
 								
-                                    <fieldset class="class_detail_rating_star_form">
+                                    <fieldset class="class_detail_rating_star_form" name="myform">
                                         <legend class="class_detail_rating_star_form_title">별점</legend>
                                             <input class="class_detail_rating_star_input" type="radio" name="rating" value="5" id="rate1">
                                                 <label class="class_detail_rating_star_label" for="rate1">⭐</label>
@@ -138,7 +139,7 @@
                             </div>
 
                             <div class="class_detail_rating_form_button">
-                                <button>수강평 작성</button>
+                                <button type="submit">수강평 작성</button>
                             </div>
                         </div>
 

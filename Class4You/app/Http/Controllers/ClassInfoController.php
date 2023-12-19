@@ -322,7 +322,7 @@ class ClassInfoController extends Controller
     //     $result = ClassInfo::where('ClassID', $ClassID)->first();
 
     //     if($result) {
-           
+    
     //     }
 
     //     return ['data' => $result];
