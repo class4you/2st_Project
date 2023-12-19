@@ -165,7 +165,7 @@
 				<div id="class_tab1" class="class_detail_rating_list_div">
 					<div class="class_detail_rating_list_user">
 						<div class="class_detail_rating_user_id">
-							<p>작성자ID</p>
+							<p>{{ detailClassItems.UserID }}</p>
 						</div>
 						<div class="class_detail_rating_user_date">
 							<p>2023-12-13</p>
@@ -453,7 +453,9 @@ import axios from 'axios'
 
 export default {
     name: 'ClassBoardDetailComponent',
-	props: ['ClassID'],
+	props: 
+		['ClassID', 'UserID'],
+	
     data() {
         return {
             clickFlgTab: 0,
@@ -470,8 +472,9 @@ export default {
 		axios.get('/api/classboarddetail/' + this.ClassID)
 			.then(response => {
 			// API 응답에 대한 로직 수행
+			console.log(response.data);
 			this.detailClassItems = response.data;
-			console.log(response.data)
+			// axios.get('/api/classboarddetailreview/')
 			})
 			.catch(error => {
 			// 에러 처리

@@ -8,9 +8,19 @@ class ReviewController extends Controller
 {
     //강의게시판_수강평불러오기
     public function getClassReviewIndex() {
-        $result = Comment::select()
-        ->join()
-        ->where()
+        $result = Review::select('reviews.ReviewID',
+                'reviews.EnrollmentID',
+                'reviews.ReviewContent',
+                'reviews.ReviewRating',
+                'reviews.created_at',
+                'users.UserID',
+                'class_infos.ClassID')
+        ->join('enrollment','reviews.EnrollmentID','enrollment.EnrollmentID')
+        ->join('class_infos','class_infos.ClassID','enrollment.ClassID')
+        ->join('users','enrollment.UserID','users.UserID')
+        ->where('users.UserID', $UserID)
+        ->where('class_infos.ClassID', $ClassID)
+        ->orderBy('enrollment.created_at', 'desc')
         ->get();
 
         return response()->json($result);

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\ClassInfo;
 use App\Models\ClassLanguagelink;
 use App\Models\ClassDiffiBanner;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\DB;
 
@@ -311,8 +312,14 @@ class ClassInfoController extends Controller
             ->where('class_infos.ClassID', $classID)
             ->get();
 
+            $userId =  session(['user' => Auth::user()]);
+            
+            $result->UserID = $userId;
+
             $result->languages = $langData;
 
+            Log::debug($userId);
+            Log::debug(Auth::check() ? 'true' : 'false');
             // return view('classBoardDetail', ['data' => $result]);
             return response()->json($result);
         }    

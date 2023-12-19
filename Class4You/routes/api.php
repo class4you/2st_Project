@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ClassInfoController;
 use App\Http\Controllers\ClassBoardController;
+use App\Http\Controllers\ReviewController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,3 +30,5 @@ Route::get('/getNewClassMainData', [ClassInfoController::class, 'getNewClassMain
 // Route::get('/classBoardMain/{ClassLanguageName}', [ClassInfoController::class, 'classBoardIndex']);
 
 Route::get('/classboarddetail/{ClassID}', [ClassInfoController::class, 'getClassBoardDetailShow']);
+
+Route::get('/classboarddetailreview/{UserID}', [ReviewController::class, 'getClassReviewIndex']);
