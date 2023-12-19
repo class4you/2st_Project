@@ -3337,8 +3337,9 @@ option {
 
     /* 글 작성 페이지 */
     .Board_Insert_Box{
-        margin-left: 5px;
-
+        /* margin-left: 5px; */
+        margin-top: 20px;
+        padding: 0 10vw;
     }
     .mantine-1zsxti {
         display: flex;
