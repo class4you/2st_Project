@@ -148,7 +148,7 @@ const store = createStore({
             commit('setCloseLoginModal');
         },
         submitUserData(context, data) {
-            const url = '/api/registration'
+            const url = '/registration'
             const header = {
                 headers: {
                     "Content-Type": 'multipart/form-data',

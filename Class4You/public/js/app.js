@@ -19392,11 +19392,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+// import Pagination from 'vue3-pagination';
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: 'BoardComponent',
   data: function data() {
     return {
-      newBoardItems: []
+      newBoardItems: [],
+      pagination: []
     };
   },
   mounted: function mounted() {
@@ -19406,8 +19408,9 @@ __webpack_require__.r(__webpack_exports__);
     fetchData: function fetchData() {
       var _this = this;
       axios.get('/api/board').then(function (response) {
-        console.log(response.data);
-        _this.newBoardItems = response.data;
+        console.log(response.data.links);
+        _this.newBoardItems = response.data.data;
+        _this.pagination = response.data.links;
       })["catch"](function (error) {
         console.error('Error fetching data:', error);
       });
@@ -19466,11 +19469,11 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
       // 여기에서 정보를 추가로 조회하는 로직을 구현
       // 예시: API를 호출하여 데이터를 가져옴\
-      axios__WEBPACK_IMPORTED_MODULE_0___default().get('/api/classboarddetail/' + this.ClassID).then(function (response) {
+      axios__WEBPACK_IMPORTED_MODULE_0___default().get('/classBoardDetail/' + this.ClassID).then(function (response) {
         // API 응답에 대한 로직 수행
         console.log(response.data);
         _this.detailClassItems = response.data;
-        axios__WEBPACK_IMPORTED_MODULE_0___default().get('/api/classboarddetailreview/' + _this.ClassID).then(function (reviewResponse) {
+        axios__WEBPACK_IMPORTED_MODULE_0___default().get('/classboarddetailreview/' + _this.ClassID).then(function (reviewResponse) {
           // 두 번째 API 응답에 대한 로직 수행
           console.log(reviewResponse.data);
           _this.reviewClassItems = reviewResponse.data;
@@ -19643,7 +19646,8 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     fetchData: function fetchData() {
       var _this = this;
-      axios__WEBPACK_IMPORTED_MODULE_2___default().get('/api/getNewClassMainData').then(function (response) {
+      axios__WEBPACK_IMPORTED_MODULE_2___default().get('/getNewClassMainData').then(function (response) {
+        console.log(response.data);
         _this.newClassItems = response.data;
       })["catch"](function (error) {
         console.error('Error fetching data:', error);
@@ -19667,33 +19671,32 @@ __webpack_require__.r(__webpack_exports__);
     },
     checkWindowWidth: function checkWindowWidth() {
       this.$store.dispatch('checkWindowWidth');
-    },
-    handleClassImageClick: function handleClassImageClick(classId) {
-      var _this2 = this;
-      var url = '/api/classBoardDetail/${classId}';
-      var header = {
-        headers: {
-          "Content-Type": 'application/json'
-          // 'X-CSRF-TOKEN': document.head.querySelector('meta[name="csrf-token"]').content,
-        }
-      };
-      axios__WEBPACK_IMPORTED_MODULE_2___default().get(url, header).then(function (response) {
-        var detailData = response.data;
-
-        // 프로그래밍 방식으로 라우터를 통해 디테일 페이지로 이동
-        _this2.$router.push({
-          name: 'classboarddetail',
-          // 디테일 페이지의 라우터 이름
-          params: {
-            id: classId
-            // 기타 필요한 파라미터들...
-          },
-          query: {}
-        });
-      })["catch"](function (error) {
-        console.error('API 요청 실패:', error);
-      });
-    }
+    } // handleClassImageClick(classId) {
+    //     const url = '/classBoardDetail/${classId}'
+    //     const header = {
+    //         headers: {
+    //             "Content-Type": 'application/json',
+    //             // 'X-CSRF-TOKEN': document.head.querySelector('meta[name="csrf-token"]').content,
+    //         },
+    //     }
+    //     axios.get(url, header)
+    //     .then(response => {
+    //     const detailData = response.data;
+    //     // 프로그래밍 방식으로 라우터를 통해 디테일 페이지로 이동
+    //     this.$router.push({
+    //             name: 'classboarddetail', // 디테일 페이지의 라우터 이름
+    //             params: {
+    //             id: classId,
+    //             // 기타 필요한 파라미터들...
+    //             },
+    //             query: {
+    //             },
+    //         });
+    //     })
+    //     .catch(error => {
+    //     console.error('API 요청 실패:', error);
+    //     });
+    // },
   }
 });
 
@@ -20040,7 +20043,10 @@ var _hoisted_39 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
 var _hoisted_40 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("dd", {
   "class": "comment_count"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", null, "답변순"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "0")], -1 /* HOISTED */);
-var _hoisted_41 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"community_right_side\"><div class=\"ranking_container\"><p class=\"weeklyranking\">주간 인기 순위</p><ul class=\"ranking_weekly_popular_writes_list\"><li class=\"ranking_weekly_popular_write\"><a href=\"\"><ol class=\"ranking_weekly_popular_write_list\"><li class=\"ranking_weekly_popular_write_writer\">1. 작성자 아이디</li><li class=\"ranking_weekly_popular_write_writer\">2. 작성자 아이디</li><li class=\"ranking_weekly_popular_write_writer\">3. 작성자 아이디</li></ol></a></li></ul></div></div>", 1);
+var _hoisted_41 = {
+  href: ""
+};
+var _hoisted_42 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"community_right_side\"><div class=\"ranking_container\"><p class=\"weeklyranking\">주간 인기 순위</p><ul class=\"ranking_weekly_popular_writes_list\"><li class=\"ranking_weekly_popular_write\"><a href=\"\"><ol class=\"ranking_weekly_popular_write_list\"><li class=\"ranking_weekly_popular_write_writer\">1. 작성자 아이디</li><li class=\"ranking_weekly_popular_write_writer\">2. 작성자 아이디</li><li class=\"ranking_weekly_popular_write_writer\">3. 작성자 아이디</li></ol></a></li></ul></div></div>", 1);
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_router_link = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("router-link");
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, [_hoisted_2, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("section", _hoisted_7, [_hoisted_8, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_9, [_hoisted_10, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_11, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_12, [_hoisted_13, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
@@ -20053,7 +20059,9 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     _: 1 /* STABLE */
   })]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("ul", _hoisted_17, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", _hoisted_18, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", _hoisted_19, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.newBoardItems, function (item) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_20, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_21, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_22, [_hoisted_23, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", _hoisted_24, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.BoardTitle), 1 /* TEXT */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_25, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.BoardComment), 1 /* TEXT */), _hoisted_26, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_27, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_28, [_hoisted_29, _hoisted_30, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_31, "작성시간 : " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.created_at), 1 /* TEXT */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_32, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("dl", null, [_hoisted_33, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("dd", _hoisted_34, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", null, "추천수 " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.BoardRecommended), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.Boardgoodcount), 1 /* TEXT */)]), _hoisted_35, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("dd", _hoisted_36, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", null, "비추천: " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.BoardNotRecommended), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.Boardbadcount), 1 /* TEXT */)]), _hoisted_37, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("dd", _hoisted_38, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", null, "조회수 : " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.BoardView), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.Boardhitscount), 1 /* TEXT */)]), _hoisted_39, _hoisted_40])])])])]);
-  }), 256 /* UNKEYED_FRAGMENT */))])])])])]), _hoisted_41])])])])])]);
+  }), 256 /* UNKEYED_FRAGMENT */))])])]), ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.pagination, function (page) {
+    return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", _hoisted_41, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(page.url), 1 /* TEXT */)]);
+  }), 256 /* UNKEYED_FRAGMENT */))])]), _hoisted_42])])])])])]);
 }
 
 /***/ }),
@@ -20896,7 +20904,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.newClassItems, function (item) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
       onClick: function onClick($event) {
-        return $options.handleClassImageClick(item.ClassID);
+        return _ctx.handleClassImageClick(item.ClassID);
       },
       key: item.id,
       href: ""
@@ -21601,7 +21609,7 @@ var routes = [{
   component: _components_BoardInsertComponent_vue__WEBPACK_IMPORTED_MODULE_5__["default"]
 }, {
   path: '/classboarddetail/:ClassID',
-  name: 'classboarddetail',
+  // name: 'classboarddetail',
   component: _components_ClassBoardDetailComponent_vue__WEBPACK_IMPORTED_MODULE_6__["default"],
   props: true
 },
@@ -21721,7 +21729,7 @@ var store = (0,vuex__WEBPACK_IMPORTED_MODULE_3__.createStore)({
       commit('setCloseLoginModal');
     },
     submitUserData: function submitUserData(context, data) {
-      var url = '/api/registration';
+      var url = '/registration';
       var header = {
         headers: {
           "Content-Type": 'multipart/form-data',

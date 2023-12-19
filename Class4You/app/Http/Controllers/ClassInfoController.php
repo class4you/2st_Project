@@ -32,6 +32,7 @@ class ClassInfoController extends Controller
             // 결과 확인
             // Log::debug($classInfo);
         }
+        Log::debug($data);
         return response()->json($data);
     }
 
@@ -244,7 +245,7 @@ class ClassInfoController extends Controller
             ->where('ClassDifficultyID', $classdiffinum)
             ->get();
 
-            Log::debug($resultBanner);
+            // Log::debug($resultBanner);
         
         return view('classBoardViewAll',['data' => $result, 'msg' => $msg, 'banner' => $resultBanner]);
     }
@@ -303,6 +304,8 @@ class ClassInfoController extends Controller
         // Log::debug('***** getClassBoardDetailShow Start *****');
         $result = ClassInfo::where('ClassID', $ClassID)->first();
 
+        Log::debug($ClassID);
+        Log::debug($result);
         // classboardshow와 다르게 한가지 정보만 가지고 오기 때문에 if문 사용
         if ($result) {
             $classID = $result->ClassID;
@@ -323,6 +326,7 @@ class ClassInfoController extends Controller
             // $result->UserID = $userId;
 
             $result->languages = $langData;
+
 
             // return view('classBoardDetail', ['data' => $result]);
         // Log::debug('***** getClassBoardDetailShow End *****');

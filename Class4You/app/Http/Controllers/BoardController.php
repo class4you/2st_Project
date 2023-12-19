@@ -16,8 +16,7 @@ class BoardController extends Controller
     public function getBoardMainData()
     {
         $data = Board::orderBy('created_at', 'desc')
-        ->take(50)
-        ->get();
+        ->paginate(10);
 
         Log::debug($data);
         return response()->json($data);

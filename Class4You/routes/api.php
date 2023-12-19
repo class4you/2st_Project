@@ -23,15 +23,15 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::middleware('my.user.validation')->post('/registration', [UserController::class, 'store']);
+// Route::middleware('my.user.validation')->post('/registration', [UserController::class, 'store']);
 
-Route::get('/getNewClassMainData', [ClassInfoController::class, 'getNewClassMainData']);
+// Route::get('/getNewClassMainData', [ClassInfoController::class, 'getNewClassMainData']);
 
 // 클래스 보드 뷰 연동 테스트용
 // Route::get('/classBoardMain/{ClassLanguageName}', [ClassInfoController::class, 'classBoardIndex']);
 
-Route::get('/classboarddetail/{ClassID}', [ClassInfoController::class, 'getClassBoardDetailShow']);
+// Route::get('/classboarddetail/{ClassID}', [ClassInfoController::class, 'getClassBoardDetailShow']);
 
-Route::get('/classboarddetailreview/{ClassID}', [ReviewController::class, 'getClassReviewIndex']);
+// Route::get('/classboarddetailreview/{ClassID}', [ReviewController::class, 'getClassReviewIndex']);
 
 Route::get('/board', [BoardController::class, 'getBoardMainData']);

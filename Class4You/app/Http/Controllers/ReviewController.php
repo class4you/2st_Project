@@ -29,7 +29,7 @@ class ReviewController extends Controller
         ->get();
 
 
-        Log::debug($result);
+        // Log::debug($result);
         return response()->json($result);
     }
     

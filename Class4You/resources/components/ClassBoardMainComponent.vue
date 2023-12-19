@@ -206,7 +206,7 @@ export default {
     methods: {
         fetchData() {
             // 언어 값을 사용하여 API에 요청을 보냄
-            axios.get(`/api/classBoardMain/${this.ClassLanguageName}`)
+            axios.get(`/classBoardMain/${this.ClassLanguageName}`)
             .then(response => {
                 // 받아온 데이터를 컴포넌트의 상태에 설정
                 this.classInfo1 = response.data.classInfo1;

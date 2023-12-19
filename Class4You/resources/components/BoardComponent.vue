@@ -164,6 +164,9 @@
 									</a>
 									</li>
 								</ul>
+								<div v-for="page in pagination" >
+									<a href="">{{ page.url }}</a>
+								</div>
 								</div>
 							</div>
 							<div class="community_right_side">
@@ -183,7 +186,6 @@
 								</ul>
 								</div>
 							</div>
-
 							</section>
 						</div>
 				</div>
@@ -193,12 +195,14 @@
 </div>
 </template>
 <script>
+// import Pagination from 'vue3-pagination';
 export default {
 	name: 'BoardComponent',
 
 	data() {
 		return {
 			newBoardItems: [],
+			pagination: [],
 		}
 	},
 	
@@ -209,8 +213,9 @@ export default {
 		fetchData() {
         axios.get('/api/board')
             .then(response => {
-				console.log(response.data);
-                this.newBoardItems = response.data;
+				console.log(response.data.links);
+                this.newBoardItems = response.data.data;
+				this.pagination = response.data.links;
             })
             .catch(error => {
                 console.error('Error fetching data:', error);
