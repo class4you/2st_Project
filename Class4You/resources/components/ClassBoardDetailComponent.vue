@@ -162,78 +162,33 @@
 
 			<hr>
 
-				<div id="class_tab1" class="class_detail_rating_list_div">
-					<div class="class_detail_rating_list_user">
-						<div class="class_detail_rating_user_id">
-							<p>{{ detailClassItems.UserID }}</p>
+				<div>
+					<div v-for="data in reviewClassItems" :key="data.ReviewID" id="class_tab1" class="class_detail_rating_list_div">
+						<div class="class_detail_rating_list_user">
+							<div class="class_detail_rating_user_id">
+								<p>{{ data.ReviewID }}</p>
+							</div>
+							<div class="class_detail_rating_user_date">
+								<p>{{ data.created_at }}</p>
+							</div>
 						</div>
-						<div class="class_detail_rating_user_date">
-							<p>2023-12-13</p>
+						<div class="class_detail_rating_list_text">
+							<p>{{ data.ReviewComment }}</p>
 						</div>
-					</div>
-					<div class="class_detail_rating_list_text">
-						<p>css 이렇게 많이 써본건 처음이야</p>
-						<p>css 이렇게 많이 써본건 처음이야</p>
-						<p>css 이렇게 많이 써본건 처음이야</p>
-						<p>내가 쓴글 수정삭제가능</p>
-					</div>
-					<div class="class_detail_rating_user_button">
-						<div class="class_detail_rating_user_update_button">
-							<button>수정</button>
-						</div>
-						<div class="class_detail_rating_user_delete_button">
-							<button>삭제</button>
+						<div class="class_detail_rating_user_button">
+							<div class="class_detail_rating_user_update_button">
+								<button>수정</button>
+							</div>
+							<div class="class_detail_rating_user_delete_button">
+								<button>삭제</button>
+							</div>
 						</div>
 					</div>
 				</div>
 			
 			<hr>
 
-				<div id="class_tab1" class="class_detail_rating_list_div">
-					<div class="class_detail_rating_list_user">
-						<div class="class_detail_rating_user_id">
-							<p>작성자ID</p>
-						</div>
-						<div class="class_detail_rating_user_date">
-							<p>2023-12-13</p>
-						</div>
-					</div>
-					<div class="class_detail_rating_list_text">
-						<p>수업이 재밌어요</p>
-					</div>
-				</div>
-
-			<hr>	
-
-				<div id="class_tab1" class="class_detail_rating_list_div">
-					<div class="class_detail_rating_list_user">
-						<div class="class_detail_rating_user_id">
-							<p>작성자ID</p>
-						</div>
-						<div class="class_detail_rating_user_date">
-							<p>2023-12-13</p>
-						</div>
-					</div>
-					<div class="class_detail_rating_list_text">
-						<p>코딩 조아요</p>
-					</div>
-				</div>
-
-			<hr>
-
-				<div id="class_tab1" class="class_detail_rating_list_div">
-					<div class="class_detail_rating_list_user">
-						<div class="class_detail_rating_user_id">
-							<p>작성자ID</p>
-						</div>
-						<div class="class_detail_rating_user_date">
-							<p>2023-12-13</p>
-						</div>
-					</div>
-					<div class="class_detail_rating_list_text">
-						<p>재밌는 라라벨</p>
-					</div>
-				</div>
+				
         	</div>
         </div>
 
@@ -454,12 +409,13 @@ import axios from 'axios'
 export default {
     name: 'ClassBoardDetailComponent',
 	props: 
-		['ClassID', 'UserID'],
+		['ClassID'],
 	
     data() {
         return {
             clickFlgTab: 0,
 			detailClassItems: [],
+			reviewClassItems: Object,
         }
     },
 	mounted() {
@@ -474,10 +430,12 @@ export default {
 			// API 응답에 대한 로직 수행
 			console.log(response.data);
 			this.detailClassItems = response.data;
+
 			axios.get('/api/classboarddetailreview/' + this.ClassID)
 				.then(reviewResponse => {
                     // 두 번째 API 응답에 대한 로직 수행
                     console.log(reviewResponse.data);
+					this.reviewClassItems = reviewResponse.data;
                 })
                 .catch(reviewError => {
                     // 두 번째 API 에러 처리
