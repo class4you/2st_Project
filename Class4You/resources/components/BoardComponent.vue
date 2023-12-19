@@ -121,7 +121,7 @@
 											</h3>
 											</div>
 											<p class="question_content_body">
-											내용입력란
+												{{ item.BoardComment }}
 											</p>
 											<div class="question_tags">
 											<button class="question_tags_button">
@@ -138,17 +138,22 @@
 												<dl>
 												<dt class="visually_hidden">투표점수</dt>
 												<dd class="comment_count">
-													<i>svg</i>
+													<i>추천순</i>
+													<span>0</span>
+												</dd>
+												<dt class="visually_hidden">투표점수</dt>
+												<dd class="comment_count">
+													<i>비추천순</i>
 													<span>0</span>
 												</dd>
 												<dt class="visually_hidden">조회수</dt>
 												<dd class="comment_count">
-													<i>svg</i>
+													<i>조회순</i>
 													<span>0</span>
 												</dd>
 												<dt class="visually_hidden">답변</dt>
 												<dd class="comment_count">
-													<i>svg</i>
+													<i>답변순</i>
 													<span>0</span>
 												</dd>
 												</dl>
