@@ -2320,7 +2320,6 @@ option {
 /* 공통 스타일 */
 .whr{
     width: 100%;
-    max-width: 1520px;
     margin: 20px auto 10px auto;
     font-size: 14px;
     color: #999;
@@ -2333,6 +2332,10 @@ option {
     margin: 0 10px;
 }
 
+.board_detail_wrap {
+    padding: 0 10vw;
+}
+
 /* 배너 스타일 */
 .bannerBox{
     width: 100%;
@@ -2342,7 +2345,6 @@ option {
 }
 .banner{
     width: 100%;
-    max-width: 1520px;
     height: 100%;
     margin: 0 auto;
 
@@ -2352,13 +2354,9 @@ option {
 .mainSec{
     width: 100%;
     margin: 0 auto;
-    max-width: 1520px; /* 예시로 1520px로 지정 */
 }
-.mainSectionpost{
+.mainSectionpost {
     width: 100%;
-    padding: 310px 20px;
-    max-width: 1520px;
-    margin-top: -150px;
 }
 
 
@@ -2868,10 +2866,12 @@ option {
 }
 .postContBox p{
     width: calc(100% - 50px);
-    height: 300px;
     border: none;
     background: #ccc;
     resize: none;
+    padding: 10px;
+    font-size: 15px;
+    line-height: 20px;
 }
 .laguage{
     margin: 0 0 30px 50px;
@@ -2903,19 +2903,14 @@ option {
 }
 .reviewBox {
     width: 100%;
-    padding: 30px;
+    padding: 30px 0px;
     border-bottom: 1px solid #999;
     font-size: 15px;
-    margin-bottom: -30px;
 }
 
-.reviewList {
-    padding: 10px 0;
-}
 
 .reviewList .item {
     background: #f1f1f1;
-    padding: 10px;
     font-size: 14px;
     margin-bottom: 10px;
 }
@@ -2923,6 +2918,12 @@ option {
 .reviewList .item:nth-child(odd) {
     background: none;
 }
+
+.reviewList p {
+    font-size: 15px;
+}
+
+
 
 .Board_good_bad {
     text-align: center;
@@ -2940,17 +2941,26 @@ option {
 
 
 .commentActions{
-    margin-bottom: -35px;
+    /* margin-bottom: -35px; */
     display: flex;
     justify-content: space-between;
 }
 .Board_good_bad p{
-    margin-top: 11px;
-    margin-left: -6px;
+    /* margin-left: -6px; */
     margin-right: 5px;
 }
 
 
+@media (max-width: 767px) {
+    .commentActions div button {
+        font-size: 10px;
+        margin-right: 5px
+    }
+    
+    .Board_good_bad {
+        justify-content: right;
+    }
+}
 
 .commentInfo {
     font-size: 12px;
@@ -2969,8 +2979,6 @@ option {
     font-size: 16px;
     line-height: 1.5;
     margin-bottom: 10px;
-
-    height: 80px;
 }
 
 
@@ -3033,12 +3041,6 @@ option {
     border-bottom: 0.125rem solid rgb(222, 226, 230);
     }
 
-
-
-    .mainSec {
-        padding: 0 10px;
-    }
-
     .board_container {
         width: 100%;
         max-width: none;
@@ -3067,7 +3069,7 @@ option {
     }
 
     .contBox .cont .item {
-        height: 150px;
+        /* height: 150px; */
     }
 
     .postBox {
@@ -3083,7 +3085,7 @@ option {
     }
 
     .laguage {
-        margin: 0;
+        /* margin: 0; */
     }
 
     .reco > div {
@@ -3101,21 +3103,21 @@ option {
     }
 
     .reviewBox {
-        padding: 20px;
+        padding: 20px 0;
         font-size: 10px;
         line-height: 10px;
     }
 
     .reviewBox .number p {
-        font-size: 20px;
+        font-size: 15px;
     }
 
     .reviewBox .number p span {
-        font-size: 16px;
+        margin-left: 10px;
+        font-size: 15px;
     }
 
     .reviewBox .reviewList .item {
-        padding: 10px;
         font-size: 12px;
     }
 
@@ -3127,7 +3129,20 @@ option {
         height: 100px;
         width: 80px;
     }
+
+    .postCont {
+        font-size: 10px;
+        line-height: 20px;
     }
+    
+    .commentActions {
+        display: grid;
+        grid-template-columns: 1fr 0.5fr;
+        /* justify-content: right; */
+        vertical-align: middle;
+    }
+}
+
 
     /* 글 작성 페이지 */
     .Board_Insert_Box{
@@ -3432,7 +3447,10 @@ option {
     margin-top: 10px;
 }
 
-
+.board_detail_user_id {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
 
 
 
@@ -4195,4 +4213,8 @@ option {
         padding: 10px 30px;
         font-size: 13px;
     }
+}
+
+.laguage_gap_10 {
+    gap: 10px;
 }

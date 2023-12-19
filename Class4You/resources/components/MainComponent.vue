@@ -38,7 +38,7 @@
                                 <div class="control-wrapper">
                                     <button @click="prevSlide">&#60;</button>
                                     <button @click="toggleAutoplay"> {{ autoplay ? '&#124;&#124;' : '≥' }}</button>
-                                    <button @click="nextSlide">&#62;</button>
+                                    <but @click="nextSlide">&#62;</but   ton>
                                 </div>
                             </div>
                             <div class="divider"></div>
