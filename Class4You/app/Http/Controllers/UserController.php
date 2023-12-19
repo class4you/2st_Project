@@ -46,8 +46,9 @@ class UserController extends Controller
         // 유저 인증 작업
         Auth::login($result);
 
-        // $userId = Auth::id();
-    
+        $userId = Auth::id();
+
+        Log::debug($userId);
         // $token = Str::random(60);
 
         // $result->update(['remember_token' => $token]);
@@ -63,7 +64,7 @@ class UserController extends Controller
             // Log::debug($sessionDataUser);
             // Log::debug($sessionDataUserName);
             // Log::debug($sessionDataUserEmail);
-
+            Log::debug($sessionDataUserEmail);
             return response()->json([
                 'success' => true,
                 'message' => '로그인이 성공적으로 수행되었습니다.',
