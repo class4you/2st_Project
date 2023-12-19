@@ -53,7 +53,7 @@ const store = createStore({
             // 라라벨 데이터 저장용
             laravelData: [],
             // 수강평 데이터 저장용
-            classReviewData: [],
+            // classReviewData: [],
 
 
 
@@ -131,11 +131,11 @@ const store = createStore({
 			state.laravelData = data;
 		},
         // 작성된 글 삽입용 
-		setUnshiftReviewData(state, data) {
-			// unshift() : js 의 배열 메소드.
-			// 배열의 맨 앞에 하나 이상의 요소를 추가해줌.
-			state.classReviewData.unshift(data);
-		},
+		// setUnshiftReviewData(state, data) {
+		// 	// unshift() : js 의 배열 메소드.
+		// 	// 배열의 맨 앞에 하나 이상의 요소를 추가해줌.
+		// 	state.classReviewData.unshift(data);
+		// },
 		
 
 

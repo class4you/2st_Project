@@ -115,7 +115,8 @@
                     <fieldset>
 
                         <div class="class_detail_rating_form_text">
-                            <textarea name="myform" id="" cols="30" rows="10" placeholder="수강평을 작성해주세요."></textarea>
+                            <textarea v-model="userClassReviewComment" name="myform" id="" cols="30" rows="10" placeholder="수강평을 작성해주세요."></textarea>
+                            <!-- <textarea name="myform" id="" cols="30" rows="10" placeholder="수강평을 작성해주세요."></textarea> -->
                         </div>
 
                         <div class="class_detail_rating_form_content">
@@ -414,7 +415,9 @@ export default {
         return {
             clickFlgTab: 0,
 			detailClassItems: [],
-			reviewComment: Object,
+			reviewClassItems: [],
+			// classReviewComment: [],
+			userClassReviewComment: '',
         }
     },
 	mounted() {
@@ -448,7 +451,16 @@ export default {
 		},
 
 		addClassReview() {
-			this.$store.dispatch('actionClassReviewAdd');
+			axios.post('/classboarddetailreview/' + this.ClassID)
+				.then(reviewResponse => {
+                    // 두 번째 API 응답에 대한 로직 수행
+                    console.log(reviewResponse.data);
+					this.userClassReviewComment = reviewResponse.data;
+                })
+                .catch(reviewError => {
+                    // 두 번째 API 에러 처리
+                    console.error(reviewError);
+                });
     	},
 	},
     

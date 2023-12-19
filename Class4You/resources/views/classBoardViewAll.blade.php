@@ -34,7 +34,7 @@
 					<ul class="class_main_container_new">
 					@forelse($data as $item)
 						
-						<a href="{{ route('classboardall', ['ClassDifficultyID' => $item->ClassDifficultyID, 'ClassLanguageName' => $item->ClassLanguageName]) }}">
+					<a href="/classboarddetail/{{ $item->ClassID }}">
 						<li class="class_main_container_new_card">
 							<div class="class_main_container_new_card_img">
 								<img src="{{ asset($item->ClassImg) }}" alt="">
@@ -53,7 +53,7 @@
 						@endforelse		
 							</ul>
 						</li>
-						</a>
+					</a>
 					@empty
 					@endforelse
 
