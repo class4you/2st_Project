@@ -108,8 +108,8 @@
 								<ul class="question_list">
 									<li class="question_container">
 									<a href="">
-										<div class="question">
-										<div v-for="item in newBoardItems" class="question_info">
+										<div v-for="item in newBoardItems" class="question">
+										<div class="question_info">
 											<div class="question_title">
 											<div class="title_sub_text">
 												<div class="question_status_tag">
@@ -131,7 +131,7 @@
 											<div class="question_info_footer">
 											<div class="question_info_detail">
 												<span class="question_info_user_name">작성자</span>
-												<span> · </span>
+												<span style="margin: 0 5px 0 5px;">·</span>
 												<span class="question_info_user_name">작성시간</span>
 											</div>
 											<div class="question_info_user_data">

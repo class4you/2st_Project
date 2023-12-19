@@ -2351,10 +2351,6 @@ option {
     cursor: pointer;
 }
 
-.question_info {
-    border: 1px solid #000;
-}
-
 .question_info_footer {
     /* overflow: hidden; */
     text-overflow: ellipsis;
@@ -2388,7 +2384,6 @@ option {
     display: inline-block;
     color: #868e96;
     font-size: 14px;
-    margin-right: 10px;
 }
 
 .question_info_user_name span {
