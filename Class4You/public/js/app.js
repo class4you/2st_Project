@@ -19485,6 +19485,9 @@ __webpack_require__.r(__webpack_exports__);
         // 에러 처리
         console.error(error);
       });
+    },
+    addClassReview: function addClassReview() {
+      this.$store.dispatch('actionClassReviewAdd');
     }
   }
 });
@@ -21662,7 +21665,10 @@ var store = (0,vuex__WEBPACK_IMPORTED_MODULE_3__.createStore)({
       userLoginChk: null,
       shouldShowCarousel: false,
       // 최현희
-      laravelData: null
+      // 라라벨 데이터 저장용
+      laravelData: [],
+      // 수강평 데이터 저장용
+      classReviewData: []
 
       // 김민정
     };
@@ -21695,8 +21701,15 @@ var store = (0,vuex__WEBPACK_IMPORTED_MODULE_3__.createStore)({
       state.shouldShowCarousel = value;
     },
     // 최현희
+    // 라라벨에서 받은 초기데이터 셋팅
     setLaravelData: function setLaravelData(state, data) {
       state.laravelData = data;
+    },
+    // 작성된 글 삽입용 
+    setUnshiftReviewData: function setUnshiftReviewData(state, data) {
+      // unshift() : js 의 배열 메소드.
+      // 배열의 맨 앞에 하나 이상의 요소를 추가해줌.
+      state.classReviewData.unshift(data);
     } // 김민정
   },
   // actions : ajax로 서버에 데이터를 요청할 때나 시간 함수등 비동기 처리는 actions에 정의
@@ -21793,8 +21806,9 @@ var store = (0,vuex__WEBPACK_IMPORTED_MODULE_3__.createStore)({
       } else {
         context.commit('setShowCarousel', false);
       }
-    } // 최현희
-    // 김민정
+    },
+    // 최현희
+    actionClassReviewAdd: function actionClassReviewAdd() {} // 김민정
   }
 });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (store);

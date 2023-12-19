@@ -50,7 +50,11 @@ const store = createStore({
 
 
             // 최현희
-            laravelData: null,
+            // 라라벨 데이터 저장용
+            laravelData: [],
+            // 수강평 데이터 저장용
+            classReviewData: [],
+
 
 
 
@@ -116,10 +120,28 @@ const store = createStore({
 
 
 
+
+
+
+
+
         // 최현희
+        // 라라벨에서 받은 초기데이터 셋팅
         setLaravelData(state, data) {
 			state.laravelData = data;
-		}
+		},
+        // 작성된 글 삽입용 
+		setUnshiftReviewData(state, data) {
+			// unshift() : js 의 배열 메소드.
+			// 배열의 맨 앞에 하나 이상의 요소를 추가해줌.
+			state.classReviewData.unshift(data);
+		},
+		
+
+
+
+
+
 
 
 
@@ -263,8 +285,11 @@ const store = createStore({
 
 
 
+
         // 최현희
-        
+        actionClassReviewAdd() {
+            
+        }
 
 
 
