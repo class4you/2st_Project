@@ -116,7 +116,6 @@
 
                         <div class="class_detail_rating_form_text">
                             <textarea name="myform" id="" cols="30" rows="10" placeholder="수강평을 작성해주세요."></textarea>
-                            <!-- <input type="text" placeholder="수강평을 작성해주세요."> -->
                         </div>
 
                         <div class="class_detail_rating_form_content">
@@ -139,7 +138,7 @@
                             </div>
 
                             <div class="class_detail_rating_form_button">
-                                <button type="submit">수강평 작성</button>
+                                <button @click="addClassReview">수강평 작성</button>
                             </div>
                         </div>
 
@@ -415,7 +414,7 @@ export default {
         return {
             clickFlgTab: 0,
 			detailClassItems: [],
-			reviewClassItems: Object,
+			reviewComment: Object,
         }
     },
 	mounted() {

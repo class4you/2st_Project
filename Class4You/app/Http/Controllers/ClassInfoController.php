@@ -206,19 +206,64 @@ class ClassInfoController extends Controller
     // }
 
     // 해당 단계별 언어 전체보기
-    public function getClassBoardShow($classdiffinum, $ClassLanguageName) {
+    // public function getClassBoardShow($ClassDiffinum, $ClassLanguageName) {
+
+    //     $msg = "";
+    
+    //     $result = ClassInfo::join('class_languagelinks', 'class_infos.ClassID', 'class_languagelinks.ClassID')
+    //         ->join('class_languages', 'class_languagelinks.ClassLanguageID', 'class_languages.ClassLanguageID')
+    //         ->where('class_languages.ClassLanguageName', $ClassLanguageName)
+    //         ->where('class_infos.ClassDifficultyID', $ClassDiffinum)
+    //         ->get();
+        
+    //     // var_dump($result);
+    //     foreach ($result as $item) {
+    //         $classdiffinumValue = $item->ClassDiffinum;
+
+    //         $classID = $item->ClassID;
+
+    //         $langData = ClassInfo::select('class_languages.ClassLanguageName')
+    //         ->join('class_languagelinks', 'class_infos.ClassID', 'class_languagelinks.ClassID')
+    //         ->join('class_languages', 'class_languagelinks.ClassLanguageID', 'class_languages.ClassLanguageID')
+    //         ->where('class_infos.ClassID', $classID)
+    //         ->get();
+
+    //         $item->languages = $langData;
+
+    //         if($classdiffinumValue === "1") {
+    //             $msg = "아직 방향성을 찾지 못한 분들을 위한 1단계";
+    //         } else if($classdiffinumValue === "2") {
+    //             $msg = "이제 첫발을 뗀 당신을 위한 2단계";
+    //         } else if($classdiffinumValue === "3") {
+    //             $msg = "1단계와 2단계를 완강한 당신을 위한 3단계";
+    //         } else if($classdiffinumValue === "4") {
+    //             $msg = "3단계까지 완강한 당신 이제 현업 기술을 위한 4단계";
+    //         }
+    //     }
+
+    //     $resultBanner = ClassDiffiBanner::select('ClassDiffiBanner')
+    //         ->where('ClassDifficultyID', $ClassDiffinum)
+    //         ->get();
+
+    //         // Log::debug($resultBanner);
+        
+    //     return view('classBoardViewAll',['data' => $result, 'msg' => $msg, 'banner' => $resultBanner]);
+    // }
+
+    // test 해당 단계별 언어 전체보기
+    public function getClassBoardShow($ClassDifficultyID, $ClassLanguageName) {
 
         $msg = "";
     
         $result = ClassInfo::join('class_languagelinks', 'class_infos.ClassID', 'class_languagelinks.ClassID')
             ->join('class_languages', 'class_languagelinks.ClassLanguageID', 'class_languages.ClassLanguageID')
             ->where('class_languages.ClassLanguageName', $ClassLanguageName)
-            ->where('class_infos.ClassDifficultyID', $classdiffinum)
+            ->where('class_infos.ClassDifficultyID', $ClassDifficultyID)
             ->get();
         
         // var_dump($result);
         foreach ($result as $item) {
-            $classdiffinumValue = $item->classdiffinum;
+            $classdiffinumValue = $item->ClassDifficultyID;
 
             $classID = $item->ClassID;
 
@@ -230,19 +275,19 @@ class ClassInfoController extends Controller
 
             $item->languages = $langData;
 
-            if($classdiffinum === "1") {
+            if($classdiffinumValue === 1) {
                 $msg = "아직 방향성을 찾지 못한 분들을 위한 1단계";
-            } else if($classdiffinum === "2") {
+            } else if($classdiffinumValue === 2) {
                 $msg = "이제 첫발을 뗀 당신을 위한 2단계";
-            } else if($classdiffinum === "3") {
+            } else if($classdiffinumValue === 3) {
                 $msg = "1단계와 2단계를 완강한 당신을 위한 3단계";
-            } else if($classdiffinum === "4") {
+            } else if($classdiffinumValue === 4) {
                 $msg = "3단계까지 완강한 당신 이제 현업 기술을 위한 4단계";
             }
         }
 
         $resultBanner = ClassDiffiBanner::select('ClassDiffiBanner')
-            ->where('ClassDifficultyID', $classdiffinum)
+            ->where('ClassDifficultyID', $ClassDifficultyID)
             ->get();
 
             // Log::debug($resultBanner);

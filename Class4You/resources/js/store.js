@@ -287,9 +287,9 @@ const store = createStore({
 
 
         // 최현희
-        actionClassReviewAdd() {
+        // actionClassReviewAdd() {
             
-        }
+        // }
 
 
 

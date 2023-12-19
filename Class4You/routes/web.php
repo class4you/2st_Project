@@ -43,7 +43,7 @@ Route::get('/classBoardDetail/{ClassID}', [ClassInfoController::class, 'getClass
 
 Route::get('/classboarddetailreview/{ClassID}', [ReviewController::class, 'getClassReviewIndex']);
 
-Route::get('/classBoardViewAll/{ClassDifficulty}/{ClassLanguageName}', [ClassInfoController::class, 'getClassBoardShow'])->name('classboardall');
+Route::get('/classBoardViewAll/{ClassDifficultyID}/{ClassLanguageName}', [ClassInfoController::class, 'getClassBoardShow'])->name('classboardall');
 
 Route::get('/board', [BoardController::class, 'getBoardMainData']);
 
