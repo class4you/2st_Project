@@ -2384,10 +2384,12 @@ option {
     display: inline-block;
     color: #868e96;
     font-size: 14px;
+    margin-right: 10px;
 }
 
 .question_info_user_name span {
     font-size: 14px;
+   
 }
 .question_info_user_data {
     font-size: 0;
@@ -2871,7 +2873,6 @@ option {
 
 /* 상세 게시판 등 스타일 */
 .question {
-    display: flex;
     padding: 18px 16px;
     border-bottom: 1px solid #dee2e6;
 }
