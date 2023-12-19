@@ -447,6 +447,10 @@ export default {
 			console.error(error);
 			});
 		},
+
+		addClassReview() {
+			this.$store.dispatch('actionClassReviewAdd');
+    	},
 	},
     
 }

@@ -36,19 +36,26 @@ class ReviewController extends Controller
     //강의게시판_수강평작성
     public function postClassReviewStore(Request $request) {
         // $reviewUserData = User::find(auth()->id());
+        $validator = Validator::make(request()->all(), [
+            'UserID' => 'required',
+            'ReviewComment' => 'required|max:200'
+        ]);
 
         $reviewData = [
-            'ReviewContent' => $request->input('ReviewContent'),
+            'ReviewComment' => $request->input('ReviewComment'),
             'ReviewRating' => $request->input('ReviewRating'),
             'UserID' => auth()->id(), // 현재 로그인한 사용자의 ID
         ];
 
         //$reviewUserData에 가져올 다른 데이터가 있다면 여기서 처리
         //예시
-        //$reviewUserData['UserName'] = $reviewUserData->name;
+        // $reviewUserData['UserID'] = $reviewData->UserID;
 
-        // $result = Review::create($reviewData);
+        $result = Review::create($reviewData);
 
-        // return response()->json($review);
+        // $reviewData['data'] = $result;
+
+        // return response()->json($reviewData);
+        return response()->json(['reviewData' => $reviewData, 'result' => $result]);
     }
 }
