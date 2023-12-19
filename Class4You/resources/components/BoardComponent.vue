@@ -108,8 +108,8 @@
 								<ul class="question_list">
 									<li class="question_container">
 									<a href="">
-										<div v-for="item in newBoardItems" class="question">
-										<div class="question_info">
+										<div class="question">
+										<div v-for="item in newBoardItems" class="question_info">
 											<div class="question_title">
 											<div class="title_sub_text">
 												<div class="question_status_tag">
@@ -131,7 +131,7 @@
 											<div class="question_info_footer">
 											<div class="question_info_detail">
 												<span class="question_info_user_name">작성자</span>
-												<span style="margin: 0 5px 0 5px;">·</span>
+												<span> · </span>
 												<span class="question_info_user_name">작성시간</span>
 											</div>
 											<div class="question_info_user_data">
@@ -139,17 +139,17 @@
 												<dt class="visually_hidden">투표점수</dt>
 												<dd class="comment_count">
 													<i>추천순</i>
-													<span>0</span>
+													<span>{{item.Boardgoodcount}}</span>
 												</dd>
 												<dt class="visually_hidden">투표점수</dt>
 												<dd class="comment_count">
 													<i>비추천순</i>
-													<span>0</span>
+													<span>{{item.Boardbadcount}}</span>
 												</dd>
 												<dt class="visually_hidden">조회수</dt>
 												<dd class="comment_count">
 													<i>조회순</i>
-													<span>0</span>
+													<span>{{item.Boardhitscount}}</span>
 												</dd>
 												<dt class="visually_hidden">답변</dt>
 												<dd class="comment_count">
@@ -218,6 +218,7 @@ export default {
         },
 	}
 }
+
 </script>
 <style>
 	
