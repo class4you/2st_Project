@@ -65,7 +65,8 @@
                             <carousel v-if="$store.state.shouldShowCarousel" :per-page="4" :navigation-enabled="true" :autoplay=0 :transition="500" >
                                 <Slide v-for="item in newClassItems" :key="item.id">
                                 <div>
-                                    <router-link :to="{ name: 'classboarddetail', params: { ClassID: item.ClassID } }">
+                                    <!-- <router-link :to="{ name: 'classboarddetail', params: { ClassID: item.ClassID } }"> -->
+                                    <a href="/classboarddetail/ + item.ClassID">
                                         <li class="main_container_new_card">
                                             <div class="main_container_new_card_img">
                                                 <img :src="item.ClassImg" alt="">
@@ -80,12 +81,14 @@
                                                 <li v-for="item2 in item.languages" :key="item2.id">{{ item2.ClassLanguageName }}</li>
                                             </ul>
                                         </li>
-                                    </router-link>
+                                    </a>
+                                    <!-- </router-link> -->
                                 </div>
                                 </Slide>
                             </carousel>
                                 <div @click="handleClassImageClick(item.ClassID)" v-if="!$store.state.shouldShowCarousel" v-for="item in newClassItems" :key="item.id" href="">
-                                    <router-link :to="{ name: 'classboarddetail', params: { ClassID: item.ClassID } }">
+                                    <!-- <router-link :to="{ name: 'classboarddetail', params: { ClassID: item.ClassID } }"> -->
+                                    <a :href="'/classboarddetail/' + item.ClassID">
                                         <li class="main_container_new_card">
                                             <div class="main_container_new_card_img">
                                                 <img :src=item.ClassImg />
@@ -101,7 +104,8 @@
                                                 <li v-for="item2 in item.languages" :key="item2.id">{{ item2.ClassLanguageName }}</li>
                                             </ul>
                                         </li>
-                                    </router-link>
+                                    </a>
+                                    <!-- </router-link> -->
                                 </div>
                         </ul>
                     </div>

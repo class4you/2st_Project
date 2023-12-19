@@ -5,6 +5,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\ClassBoardController;
 use App\Http\Controllers\ClassInfoController;
 use App\Http\Controllers\ReviewController;
+use App\Http\Controllers\BoardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -43,6 +44,9 @@ Route::get('/classBoardDetail/{ClassID}', [ClassInfoController::class, 'getClass
 Route::get('/classboarddetailreview/{ClassID}', [ReviewController::class, 'getClassReviewIndex']);
 
 Route::get('/classBoardViewAll/{ClassDifficulty}/{ClassLanguageName}', [ClassInfoController::class, 'getClassBoardShow'])->name('classboardall');
+
+Route::get('/board', [BoardController::class, 'getBoardMainData']);
+
 
 
 // Route::get('/classboarddetail/{ClassID}', [ClassInfoController::class, 'getClassBoardDetailShow']);
