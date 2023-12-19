@@ -165,7 +165,7 @@
 									</li>
 								</ul>
 								<div v-for="page in pagination" >
-									<a href="">{{ page.url }}</a>
+									<a href="">{{ page }}</a>
 								</div>
 								</div>
 							</div>
@@ -211,7 +211,7 @@ export default {
     },
 	methods: {
 		fetchData() {
-        axios.get('/api/board')
+        axios.get('/board')
             .then(response => {
 				console.log(response.data.links);
                 this.newBoardItems = response.data.data;
