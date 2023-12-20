@@ -29,7 +29,8 @@
                     <!-- <li><a href="">추천 강의</a></li> -->
                     <!-- <li><a href="">신규 강의</a></li> -->
                     <li>|</li>
-                    <li><a href="/Board/">커뮤니티</a></li>
+                    <li><a href="/board">커뮤니티</a></li>
+                    <li><router-link to="/board">커뮤니티2</router-link></li>
                 </ul>
                 <h1>
                     <a href="/">

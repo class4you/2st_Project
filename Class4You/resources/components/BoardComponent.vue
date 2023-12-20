@@ -202,7 +202,7 @@ export default {
 	data() {
 		return {
 			newBoardItems: [],
-			// pagination: {},
+			pagination: {},
 			// page: {},
 		}
 	},
@@ -214,10 +214,11 @@ export default {
 		fetchData() {
         axios.get('/board')
             .then(response => {
-				// console.log(response.data.links);
+				console.log(response.data);
+				console.log(response.data.links);
 				console.log(response.data.data);
                 this.newBoardItems = response.data.data;
-				// this.pagination = response.data.links;    
+				this.pagination = response.data.links;    
             })
             .catch(error => {
                 console.error('Error fetching data:', error);
