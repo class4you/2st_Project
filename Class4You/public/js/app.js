@@ -19616,7 +19616,9 @@ __webpack_require__.r(__webpack_exports__);
       this.$store.dispatch('putClassReview', this.classReviewData);
     },
     // 수강평 삭제 함수
-    deletClassReview: function deletClassReview() {}
+    deleteClassReview: function deleteClassReview() {
+      this.$store.dispatch('deleteClassReview', this.classReviewData);
+    }
   }
 });
 
@@ -20738,7 +20740,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       })
     }, "수정")]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_55, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
       onClick: _cache[12] || (_cache[12] = function ($event) {
-        return $options.deletClassReview();
+        return $options.deleteClassReview();
       })
     }, "삭제")])])]);
   }), 128 /* KEYED_FRAGMENT */))]), _hoisted_56])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" 커뮤니티 "), $data.clickFlgTab === 2 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_57, [].concat(_hoisted_60))) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" 공지사항 "), $data.clickFlgTab === 3 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_61, [].concat(_hoisted_64))) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])]);
@@ -22199,7 +22201,38 @@ var store = (0,vuex__WEBPACK_IMPORTED_MODULE_3__.createStore)({
       });
     },
     // 수강평 삭제
-    deleteClassReview: function deleteClassReview() {},
+    // deleteClassReview(context, data) {
+    //     const url = '/classboarddetailreview'
+    //     const header = {
+    //         headers: {
+    //             "Content-Type": 'multipart/form-data',
+    //             'X-CSRF-TOKEN': document.head.querySelector('meta[name="csrf-token"]').content,
+    //         },
+    //     }
+    //     let frm = new FormData();
+    //     console.log(data);
+    //     frm.append('ClassID',data.ClassID);
+    //     frm.append('ClassID',data.ClassID);
+    //     frm.append('ReviewComment',data.ReviewComment);
+    //     frm.append('ReviewRating',data.ReviewRating);
+    //     // console.log(frm);
+    //     axios.delete(url, frm, header)
+    //     .then(res => { 
+    //         console.log(res.data);
+    //         // router.push('/classBoardDetail/' + this.ClassID); 
+    //         // router.push('/classBoardDetail/' + data.ClassID); 
+    //         const index = this.$store.commit(data => data.ReviewID === todoToDelete.id)
+    //         this.todos.splice(index, 1)
+    //         //
+    // 		// context.commit(data.clickFlgTab , 1);
+    //     })
+    //     .catch(err => {
+    //         console.log(err.response.data.errors)
+    //         context.commit('setRegistrationErrorMessage', err.response.data.errors);
+    //     })
+    // },
+    // 수강평 삭제
+    deleteClassReview: function deleteClassReview(context, data) {},
     // 커뮤니티 작성
     // 김민정
     submitBoardData: function submitBoardData(context, data) {
