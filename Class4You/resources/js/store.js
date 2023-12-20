@@ -315,7 +315,7 @@ const store = createStore({
 
             console.log(data);
 
-            frm.append('ReviewID',data.ReviewID);
+            frm.append('ClassID',data.ClassID);
             frm.append('UserID',data.UserID);
             frm.append('ReviewComment',data.ReviewComment);
             frm.append('ReviewRating',data.ReviewRating);
@@ -325,7 +325,11 @@ const store = createStore({
             axios.post(url, frm, header)
             .then(res => { 
                 // console.log(res.data);
-                router.push('/classBoardDetail/' + this.ClassID); 
+                // router.push('/classBoardDetail/' + this.ClassID); 
+                router.push('/classBoardDetail/' + data.ClassID); 
+
+                //
+				// context.commit(data.clickFlgTab , 1);
             })
             .catch(err => {
                 console.log(err.response.data.errors)
