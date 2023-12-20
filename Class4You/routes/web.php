@@ -66,6 +66,11 @@ Route::post('/boardInsert', [BoardController::class, 'postBoardData']);
 
 
 
+
+
+
+// 자유게시판 디테일페이지로 이동 라우터
+Route::get('/boardDetail', [BoardController::class, 'getBoardDetailShow']);
 // Route::get('/classboarddetail/{ClassID}', [ClassInfoController::class, 'getClassBoardDetailShow']);
 
 

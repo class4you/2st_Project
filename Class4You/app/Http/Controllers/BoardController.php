@@ -27,4 +27,14 @@ class BoardController extends Controller
         
         $result = Board::create($data);
     }
+
+    
+    // 자유게시판 디테일페이지로 이동
+    public function getBoardDetailShow($BoardID) {
+
+        $data = Board::where('BoardID', $BoardID)->first();
+
+        return response()->json($data);
+    }
+
 }

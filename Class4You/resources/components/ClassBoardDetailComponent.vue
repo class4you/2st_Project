@@ -139,7 +139,7 @@
                             </div>
 
                             <div class="class_detail_rating_form_button">
-                                <button @click="addClassReview">수강평 작성</button>
+                                <button @click="addClassReview()">수강평 작성</button>
                             </div>
                         </div>
 
@@ -458,18 +458,18 @@ export default {
 			});
 		},
 
-		// addClassReview() {
-		// 	axios.post('classBoardViewAll' + this.ClassID)
-		// 		.then(reviewResponse => {
-        //             // 두 번째 API 응답에 대한 로직 수행
-        //             console.log(reviewResponse.data);
-		// 			this.userClassReviewComment = reviewResponse.data;
-        //         })
-        //         .catch(reviewError => {
-        //             // 두 번째 API 에러 처리
-        //             console.error(reviewError);
-        //         });
-    	// },
+		addClassReview() {
+			axios.post('/classboarddetailreview/' + this.ClassID)
+				.then(reviewResponse => {
+                    // 두 번째 API 응답에 대한 로직 수행
+                    console.log(reviewResponse.data);
+					this.userClassReviewComment = reviewResponse.data;
+                })
+                .catch(reviewError => {
+                    // 두 번째 API 에러 처리
+                    console.error(reviewError);
+                });
+    	},
 	},
     
 }
