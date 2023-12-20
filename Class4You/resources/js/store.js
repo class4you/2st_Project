@@ -290,6 +290,70 @@ const store = createStore({
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+        // 김민정
+        // 댓글 작성 함수
+        addBoardComment(context, data) {
+            const url = '/boarddetailcomments'
+            const header = {
+                headers: {
+                    "Content-Type": 'multipart/form-data',
+                    'X-CSRF-TOKEN': document.head.querySelector('meta[name="csrf-token"]').content,
+                },
+            }
+            let frm = new FormData();
+            console.log(data);
+
+            frm.append('BoardID',data.BoardID);
+            frm.append('UserID',data.UserID);
+            frm.append('CommentD',data.CommentID);
+            frm.append('InstructorID',data.InstructorID);
+            frm.append('CommentContent',data.CommentContent);
+            
+            // console.log(frm);
+
+            axios.post(url, frm, header)
+            .then(res => {
+                console.log(res.data);
+            })
+            .catch(err => {
+                console.log(err.response.data.errors)
+                context.commit('setRegistrationErrorMessage', err.response.data.errors);
+            })
+        }, 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
             
 
 

@@ -19434,27 +19434,58 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: 'BoardDetailComponent',
   props: ['BoardID'],
   data: function data() {
     return {
-      newBoardItem: []
+      clickFlgTab: 0,
+      newBoardItem: [],
+      commentsItems: [],
+      // 댓글 출력시 필요한 데이터
+      BoardCommentData: {
+        BoardID: this.BoardID,
+        UserID: this.$store.state.UserID,
+        CommentID: this.CommentID,
+        InstructorID: this.InstructorID,
+        CommentsContent: ''
+      },
+      EnrollChk: {}
     };
   },
   mounted: function mounted() {
     this.fetchData();
   },
+  updated: function updated() {},
   methods: {
     fetchData: function fetchData() {
       var _this = this;
-      axios.get('/boarddetail/' + this.BoardID).then(function (response) {
+      axios__WEBPACK_IMPORTED_MODULE_0___default().get('/boarddetail/' + this.BoardID).then(function (response) {
         console.log(response.data);
         _this.newBoardItem = response.data;
+
+        // 댓글을 받아오는 axios 처리
+        axios__WEBPACK_IMPORTED_MODULE_0___default().get('/boarddetailcomments/' + _this.BoardID)
+        // 두번째 API 응답에 대한 로직 수행
+        .then(function (commentsResponse) {
+          console.log(commentsResponse.data);
+          _this.commentsItems = commentsResponse.data;
+          _this.EnrollChk = commentsResponse.data.EnrollChk;
+        })["catch"](function (contentsError) {
+          // 두번째 API 에러처리
+          console.error(contentsError);
+        });
       })["catch"](function (error) {
         console.error('Error fetching data:', error);
       });
-    }
+    },
+    addBoardComment: function addBoardComment() {
+      this.$store.dispatch('addBoardComment', this.BoardCommentData);
+    },
+    putBoardComment: function putBoardComment() {}
   }
 });
 
@@ -20231,7 +20262,7 @@ var _hoisted_22 = {
 var _hoisted_23 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("작성자"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, " 정미야옹호")], -1 /* HOISTED */);
 var _hoisted_24 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"commentText\"><span>냥냥냥냥냥냥ss내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용</span></div><div class=\"commentActions row aiC\"><div><button class=\"editBtn\">수정</button><button class=\"deleteBtn\">삭제</button><button class=\"reportBtn\">신고</button></div><div class=\"Board_good_bad\"><button type=\"button\" class=\"Board_Good\" aria-label=\"좋아요\"><i class=\"fa-solid fa-thumbs-up\"></i></button><p class=\"vote-count e-vote-count\" aria-label=\"투표수\">0</p><button type=\"button\" class=\"Board_Bad\" aria-label=\"싫어요\"><i class=\"fa-solid fa-thumbs-down\"></i></button></div></div>", 2);
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, [_hoisted_2, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" whr "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("section", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("section", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("작성자"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.newBoardItem.UserEmail), 1 /* TEXT */)])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, [_hoisted_8, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("조회수"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.newBoardItem.Boardㅋ), 1 /* TEXT */)]), _hoisted_9])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_10, [_hoisted_11, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_12, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.newBoardItem.BoardTitle), 1 /* TEXT */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_13, [_hoisted_14, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_15, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.newBoardItem.BoardComment), 1 /* TEXT */)]), _hoisted_16]), _hoisted_18, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_19, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_20, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_21, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_22, [_hoisted_23, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("작성일"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.newBoardItem.created_at), 1 /* TEXT */)])]), _hoisted_24, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <div class=\"Board_good_bad\">\r\n                                <button type=\"button\" class=\"Board_Good \" aria-label=\"좋아요\">\r\n                                  <i class=\"fa-solid fa-thumbs-up\"></i>\r\n                                </button>\r\n                                <p class=\"vote-count e-vote-count\" aria-label=\"투표수\">0</p>\r\n                                <button type=\"button\" class=\"Board_Bad\" aria-label=\"싫어요\">\r\n                                  <i class=\"fa-solid fa-thumbs-down\"></i>\r\n                                </button>\r\n                              </div> ")]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" 다른 댓글들도 유사한 구조로 추가할 수 있습니다 ")])])])])])]);
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, [_hoisted_2, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" whr "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("section", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("section", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("작성자"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.newBoardItem.UserEmail), 1 /* TEXT */)])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, [_hoisted_8, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("조회수"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.newBoardItem.Board), 1 /* TEXT */)]), _hoisted_9])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_10, [_hoisted_11, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_12, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.newBoardItem.BoardTitle), 1 /* TEXT */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_13, [_hoisted_14, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_15, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.newBoardItem.BoardComment), 1 /* TEXT */)]), _hoisted_16]), _hoisted_18, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_19, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_20, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_21, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_22, [_hoisted_23, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("작성일"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.newBoardItem.created_at), 1 /* TEXT */)])]), _hoisted_24, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <div class=\"Board_good_bad\">\r\n                                <button type=\"button\" class=\"Board_Good \" aria-label=\"좋아요\">\r\n                                  <i class=\"fa-solid fa-thumbs-up\"></i>\r\n                                </button>\r\n                                <p class=\"vote-count e-vote-count\" aria-label=\"투표수\">0</p>\r\n                                <button type=\"button\" class=\"Board_Bad\" aria-label=\"싫어요\">\r\n                                  <i class=\"fa-solid fa-thumbs-down\"></i>\r\n                                </button>\r\n                              </div> ")]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" 다른 댓글들도 유사한 구조로 추가할 수 있습니다 ")])])])])])]);
 }
 
 /***/ }),
@@ -22054,6 +22085,33 @@ var store = (0,vuex__WEBPACK_IMPORTED_MODULE_3__.createStore)({
       } else {
         context.commit('setShowCarousel', false);
       }
+    },
+    // 김민정
+    // 댓글 작성 함수
+    addBoardComment: function addBoardComment(context, data) {
+      var url = '/boarddetailcomments';
+      var header = {
+        headers: {
+          "Content-Type": 'multipart/form-data',
+          'X-CSRF-TOKEN': document.head.querySelector('meta[name="csrf-token"]').content
+        }
+      };
+      var frm = new FormData();
+      console.log(data);
+      frm.append('BoardID', data.BoardID);
+      frm.append('UserID', data.UserID);
+      frm.append('CommentD', data.CommentID);
+      frm.append('InstructorID', data.InstructorID);
+      frm.append('CommentContent', data.CommentContent);
+
+      // console.log(frm);
+
+      axios__WEBPACK_IMPORTED_MODULE_0___default().post(url, frm, header).then(function (res) {
+        console.log(res.data);
+      })["catch"](function (err) {
+        console.log(err.response.data.errors);
+        context.commit('setRegistrationErrorMessage', err.response.data.errors);
+      });
     },
     // 최현희
     // 수강평 작성 함수
