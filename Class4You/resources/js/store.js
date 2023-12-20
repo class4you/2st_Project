@@ -300,9 +300,7 @@ const store = createStore({
 
 
         // 최현희
-        // actionClassReviewAdd() {
-            
-        // }
+        // 수강평 작성 함수
         addClassReview(context, data) {
             const url = '/classboarddetailreview'
             const header = {
@@ -336,6 +334,44 @@ const store = createStore({
                 context.commit('setRegistrationErrorMessage', err.response.data.errors);
             })
         },
+        
+        // 수강평 수정 함수
+        putClassReview(context, data) {
+            const url = '/classboarddetailreview'
+            const header = {
+                headers: {
+                    "Content-Type": 'multipart/form-data',
+                    'X-CSRF-TOKEN': document.head.querySelector('meta[name="csrf-token"]').content,
+                },
+            }
+            let frm = new FormData();
+
+            console.log(data);
+
+            frm.append('ClassID',data.ClassID);
+            frm.append('UserID',data.UserID);
+            frm.append('ReviewComment',data.ReviewComment);
+            frm.append('ReviewRating',data.ReviewRating);
+
+            // console.log(frm);
+
+            axios.put(url, frm, header)
+            .then(res => { 
+                console.log(res.data);
+                // router.push('/classBoardDetail/' + this.ClassID); 
+                // router.push('/classBoardDetail/' + data.ClassID); 
+
+                //
+				// context.commit(data.clickFlgTab , 1);
+            })
+            .catch(err => {
+                console.log(err.response.data.errors)
+                context.commit('setRegistrationErrorMessage', err.response.data.errors);
+            })
+        },
+
+
+
 
 
 

@@ -170,7 +170,7 @@
 					<div v-for="data in reviewClassItems" :key="data.ReviewID" id="class_tab1" class="class_detail_rating_list_div">
 						<div class="class_detail_rating_list_user">
 							<div class="class_detail_rating_user_id">
-								<p>{{ data.ReviewID }}</p>
+								<p>{{ data.ReviewID }} | {{ data.ReviewRating }}점</p>
 							</div>
 							<div class="class_detail_rating_user_date">
 								<p>{{ data.created_at }}</p>
@@ -181,7 +181,7 @@
 						</div>
 						<div class="class_detail_rating_user_button">
 							<div class="class_detail_rating_user_update_button">
-								<button>수정</button>
+								<button @click="putClassReview()">수정</button>
 							</div>
 							<div class="class_detail_rating_user_delete_button">
 								<button>삭제</button>
@@ -420,7 +420,7 @@ export default {
             clickFlgTab: 0,
 			detailClassItems: [],
 			reviewClassItems: [],
-			// classReviewComment: [],
+			// 글작성시 필요한 데이터?
 			classReviewData: {
 				ClassID: this.ClassID,
         		UserID: this.$store.state.UserID,
@@ -482,8 +482,14 @@ export default {
         //         });
     	// },
 
+		// 수강평 작성 함수
 		addClassReview() {
 			this.$store.dispatch('addClassReview', this.classReviewData);
+		},
+		
+		// 수강평 수정 함수
+		putClassReview() {
+
 		},
 	},
     
