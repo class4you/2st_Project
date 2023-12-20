@@ -22034,8 +22034,8 @@ var store = (0,vuex__WEBPACK_IMPORTED_MODULE_3__.createStore)({
       var url = '/classboarddetail';
       var header = {
         headers: {
-          "Content-Type": 'multipart/form-data'
-          // 'X-CSRF-TOKEN': document.head.querySelector('meta[name="csrf-token"]').content,
+          "Content-Type": 'multipart/form-data',
+          'X-CSRF-TOKEN': document.head.querySelector('meta[name="csrf-token"]').content
         }
       };
       var frm = new FormData();
