@@ -4154,7 +4154,7 @@ option {
     min-width: 0px;
     justify-content: center;
     font-size: 20px;
-    padding: 10px 20px;
+    padding: 10px 10px;
 }
 
 .users_basic_information_title_name {
@@ -4162,9 +4162,10 @@ option {
     color: #fff;
     background-color: #3D64BF;
     display: inline-block;
+    font-size: 15px;
     /* width: 25%; */
     /* margin: auto; */
-    padding: 10px 30px;
+    padding: 5px 20px;
     border-radius: 5px;
     margin-bottom: 10px;
 }
@@ -4179,10 +4180,10 @@ option {
     margin: auto;
     border: 1px solid #dadada;
     color: #000;
-    padding: 10px 30px;
+    padding: 5px 10px;
     border-radius: 5px;
     text-align: left;
-    font-size: 20px;
+    font-size: 15px;
     font-weight: 500;
     /* background-color: #16264c; */
 }
@@ -4194,7 +4195,7 @@ option {
     color: #000;
     border-radius: 5px;
     text-align: left;
-    font-size: 20px;
+    font-size: 15px;
     font-weight: 500;
     /* background-color: #16264c; */
     outline: none;
@@ -4208,10 +4209,10 @@ option {
 .users_basic_information_button button {
     background-color: transparent;
     border: none;
-    padding: 10px 50px;
-    background-color:#3D64BF;
+    padding: 10px 30px;
+    background-color:#5e8af2;
     border-radius: 10px;
-    color: #fff;
+    color: #ffffffe9;
     font-size: 15px;
     font-weight: 700;
 }
@@ -4221,8 +4222,8 @@ option {
 
 @media only screen and (max-width: 1250px) {
     /* 화면 너비가 600px 이하일 때 적용되는 스타일 */
-    .my_page_dashboard_box_cover {
-        grid-template-columns: 1fr;
+    .my_page_users_box_cover {
+        grid-template-columns: 1fr 1fr;
     }
 
     .dashboard_annual_study_class {
@@ -4254,4 +4255,10 @@ option {
 
 .laguage_gap_10 {
     gap: 10px;
+}
+
+@media only screen and (max-width: 850px) {
+    .my_page_users_box_cover {
+        grid-template-columns: 1fr;
+    }
 }

@@ -65,7 +65,11 @@ Route::get('/classBoardViewAll/{ClassDifficultyID}/{ClassLanguageName}', [ClassI
 
 // Route::get('/board/{page}', [BoardController::class, 'getBoardMainData']);
 
-Route::get('/board', [BoardController::class, 'getBoardMainData']);
+Route::get('/board', function () {
+    return view('welcome');
+});
+
+Route::get('/board/data', [BoardController::class, 'getBoardMainData']);
 
 Route::post('/boardInsert', [BoardController::class, 'postBoardData']);
 
