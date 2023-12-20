@@ -34,7 +34,6 @@ Route::get('/logout', [UserController::class, 'logout']);
 // Route::get('/classBoard', function () {
 //     return view('classBoardMain');
 // });
-
 Route::get('/classBoard/{ClassLanguageName}', [ClassInfoController::class, 'classBoardIndex'])->name('classboardmain');
 
 Route::get('/getNewClassMainData', [ClassInfoController::class, 'getNewClassMainData']);
@@ -42,7 +41,10 @@ Route::get('/getNewClassMainData', [ClassInfoController::class, 'getNewClassMain
 Route::get('/classBoardDetail/{ClassID}', [ClassInfoController::class, 'getClassBoardDetailShow'])->name('classboarddetail');
 // Route::get('/classBoardDetail/{ClassID}', [ClassBoardController::class, 'getClassBoardDetailShow']);
 
+Route::post('/classboarddetailreview', [ReviewController::class, 'postClassReviewData']);
 Route::get('/classboarddetailreview/{ClassID}', [ReviewController::class, 'getClassReviewIndex']);
+
+
 
 // test
 // Route::prefix('reviews')->group(function () {

@@ -212,7 +212,7 @@ export default {
     },
 	methods: {
 		fetchData() {
-        axios.get('/board/')
+        axios.get('/board')
             .then(response => {
 				console.log(response.data.links);
 				console.log(response.data.data);

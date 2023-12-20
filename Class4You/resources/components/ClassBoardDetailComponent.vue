@@ -419,7 +419,7 @@ export default {
 			// classReviewComment: [],
 			classReviewData: {
 				
-				ClassID: this.$store.state.ClassID,
+				ClassID: this.ClassID,
         		UserID: this.$store.state.UserID,
         		ReviewComment: '',
         		ReviewRating: '',
@@ -445,16 +445,16 @@ export default {
 			this.detailClassItems = response.data;
 
 			// if(this.clickFlgTab === 1) {
-				// axios.get('/classboarddetailreview/' + this.ClassID)
-				// .then(reviewResponse => {
-                //     // 두 번째 API 응답에 대한 로직 수행
-                //     console.log(reviewResponse.data);
-				// 	this.reviewClassItems = reviewResponse.data;
-                // })
-                // .catch(reviewError => {
-                //     // 두 번째 API 에러 처리
-                //     console.error(reviewError);
-                // });
+				axios.get('/classboarddetailreview/' + this.ClassID)
+				.then(reviewResponse => {
+                    // 두 번째 API 응답에 대한 로직 수행
+                    console.log(reviewResponse.data);
+					this.reviewClassItems = reviewResponse.data;
+                })
+                .catch(reviewError => {
+                    // 두 번째 API 에러 처리
+                    console.error(reviewError);
+                });
 			// }
 
 			})

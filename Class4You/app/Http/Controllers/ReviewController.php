@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Review;
 use App\Models\User;
+use App\Models\Enrollment;
 use App\Models\ClassInfo;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
@@ -66,7 +67,21 @@ class ReviewController extends Controller
 
     // 강의게시판_수강평
     public function postClassReviewData(Request $request) {
-        $data = $request->only('ReviewID', 'UserID', 'ReviewComment', 'ReviewRating');
+
+        // Log::debug($request->UserID);
+        // Log::debug($request->ClassID);
+
+        $EnrollmentData = Enrollment::select('EnrollmentID')
+            ->where('UserID', $request->UserID) 
+            ->where('ClassID', $request->ClassID) 
+            ->first();
+
+            
+        $request->merge(['EnrollmentID' => $EnrollmentData->EnrollmentID]);
+        $data = $request->only('EnrollmentID', 'ReviewComment', 'ReviewRating');
+    
+        Log::debug($data);
+
         
         $result = Review::create($data);
     }
