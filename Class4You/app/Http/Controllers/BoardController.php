@@ -14,10 +14,12 @@ use Illuminate\Support\Facades\DB;
 
 class BoardController extends Controller
 {
-    public function getBoardMainData()
+    public function getBoardMainData(Request $request)
     {
         $data = Board::orderBy('created_at', 'desc')
         ->paginate(10);
+
+        Log::debug($request);
 
         Log::debug($data);
         return response()->json($data);

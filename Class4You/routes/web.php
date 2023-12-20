@@ -62,6 +62,8 @@ Route::get('/classBoardViewAll/{ClassDifficultyID}/{ClassLanguageName}', [ClassI
 // 게시판 작업
 Route::get('/board', [BoardController::class, 'getBoardMainData']);
 
+// Route::get('/board/{page}', [BoardController::class, 'getBoardMainData']);
+
 Route::post('/boardInsert', [BoardController::class, 'postBoardData']);
 
 Route::get('/boarddetail/{BoardID}', [BoardController::class, 'getBoardDetailShow']);
