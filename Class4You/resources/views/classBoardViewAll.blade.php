@@ -33,7 +33,8 @@
 				<div class="main_container_new_box">
 					<ul class="class_main_container_new">
 					@forelse($data as $item)
-						<a href="{{ route('classboarddetail', ['ClassID' => $item->ClassID]) }}">
+						{{-- <a href="{{ route('classboarddetail', ['ClassID' => $item->ClassID]) }}"> --}}
+							<a href="/classboarddetail/{{ $item->ClassID }}">
 						<li class="class_main_container_new_card">
 							<div class="class_main_container_new_card_img">
 								<img src="{{ asset($item->ClassImg) }}" alt="">
