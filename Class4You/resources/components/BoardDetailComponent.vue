@@ -10,9 +10,9 @@
                             <p>작성자<span>{{ newBoardItem.UserEmail }}</span></p>
                         </div>
                         <div class="row aiC">
-                            <p>작성일<span>{{ newBoardItem.created_at }}</span></p>
-                            <p>조회수<span>{{newBoardItem.BoardView}}</span></p>
-                            <p>좋아요<span>{{newBoardItem.Recommended}}</span></p>
+                            <p>작성일<span>2023.12.11</span></p>
+                            <p>조회수<span>{{newBoardItem.Boardㅋ}}</span></p>
+                            <p>좋아요<span>9999</span></p>
                         </div>
                     </div>
                     <div class="postTitBox row aiC">
@@ -62,7 +62,7 @@
                         <div class="item">
                             <div class="commentInfo row aiC jcB">
                                 <p>작성자<span> 정미야옹호</span></p>
-                                <p>작성일<span>2000-01-14</span></p>
+                                <p>작성일<span>{{ newBoardItem.created_at }}</span></p>
                             </div>
                             <div class="commentText">
                              <span>냥냥냥냥냥냥ss내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용</span>   
