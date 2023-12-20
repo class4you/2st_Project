@@ -14,9 +14,9 @@ class ReviewController extends Controller
 {
     //강의게시판_수강평불러오기
     public function getClassReviewIndex($ClassID) {
-        Log::debug(Auth::check());
-        Log::debug(Auth::user());
-        Log::debug($ClassID);
+        // Log::debug(Auth::check());
+        // Log::debug(Auth::user());
+        // Log::debug($ClassID);
         $result = Review::select('reviews.ReviewID',
                 'reviews.EnrollmentID',
                 'reviews.ReviewComment',
@@ -31,6 +31,7 @@ class ReviewController extends Controller
         ->orderBy('enrollments.created_at', 'desc')
         ->get();
 
+        Log::debug($result);
 
         // Log::debug($result);
         return response()->json($result);

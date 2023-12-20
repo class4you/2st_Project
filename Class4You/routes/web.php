@@ -42,14 +42,15 @@ Route::get('/getNewClassMainData', [ClassInfoController::class, 'getNewClassMain
 Route::get('/classBoardDetail/{ClassID}', [ClassInfoController::class, 'getClassBoardDetailShow'])->name('classboarddetail');
 // Route::get('/classBoardDetail/{ClassID}', [ClassBoardController::class, 'getClassBoardDetailShow']);
 
+Route::get('/classboarddetailreview/{ClassID}', [ReviewController::class, 'getClassReviewIndex']);
+
 // test
-Route::prefix('reviews')->group(function () {
-    Route::get('/classboarddetailreview/{ClassID}', [ReviewController::class, 'getClassReviewIndex']);
-    Route::post('/classboarddetailreview/{ClassID}', [ReviewController::class, 'postClassReviewStore']);
-});
+// Route::prefix('reviews')->group(function () {
+//     Route::get('/classboarddetailreview/{ClassID}', [ReviewController::class, 'getClassReviewIndex']);
+//     Route::post('/classboarddetailreview/{ClassID}', [ReviewController::class, 'postClassReviewStore']);
+// });
 
 // 기존
-// Route::get('/classboarddetailreview/{ClassID}', [ReviewController::class, 'getClassReviewIndex']);
 
 Route::get('/classBoardViewAll/{ClassDifficultyID}/{ClassLanguageName}', [ClassInfoController::class, 'getClassBoardShow'])->name('classboardall');
 

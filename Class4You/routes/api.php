@@ -34,4 +34,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 // Route::get('/classboarddetailreview/{ClassID}', [ReviewController::class, 'getClassReviewIndex']);
 
-Route::get('/board', [BoardController::class, 'getBoardMainData']);
+// Route::get('/board', [BoardController::class, 'getBoardMainData']);

@@ -19487,18 +19487,18 @@ __webpack_require__.r(__webpack_exports__);
         // 에러 처리
         console.error(error);
       });
-    },
-    addClassReview: function addClassReview() {
-      var _this2 = this;
-      axios__WEBPACK_IMPORTED_MODULE_0___default().post('/classboarddetailreview/' + this.ClassID).then(function (reviewResponse) {
-        // 두 번째 API 응답에 대한 로직 수행
-        console.log(reviewResponse.data);
-        _this2.userClassReviewComment = reviewResponse.data;
-      })["catch"](function (reviewError) {
-        // 두 번째 API 에러 처리
-        console.error(reviewError);
-      });
-    }
+    } // addClassReview() {
+    // 	axios.post('classBoardViewAll' + this.ClassID)
+    // 		.then(reviewResponse => {
+    //             // 두 번째 API 응답에 대한 로직 수행
+    //             console.log(reviewResponse.data);
+    // 			this.userClassReviewComment = reviewResponse.data;
+    //         })
+    //         .catch(reviewError => {
+    //             // 두 번째 API 에러 처리
+    //             console.error(reviewError);
+    //         });
+    // },
   }
 });
 
@@ -19893,9 +19893,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 /* harmony import */ var vue3_carousel__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue3-carousel */ "./node_modules/vue3-carousel/dist/carousel.es.js");
-/* harmony import */ var _img_html_1st_html1_png__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../img/html/1st/html1.png */ "./public/img/html/1st/html1.png");
-/* harmony import */ var _img_html_1st_html2_png__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../../img/html/1st/html2.png */ "./public/img/html/1st/html2.png");
-/* harmony import */ var _img_html_1st_html3_png__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../../../img/html/1st/html3.png */ "./public/img/html/1st/html3.png");
+/* harmony import */ var _img_html_1st_html1_png__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../img/html/1st/html1.png */ "./public/img/html/1st/html1.png");
+/* harmony import */ var _img_html_1st_html2_png__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../img/html/1st/html2.png */ "./public/img/html/1st/html2.png");
+/* harmony import */ var _img_html_1st_html3_png__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../../img/html/1st/html3.png */ "./public/img/html/1st/html3.png");
 /* harmony import */ var vue3_carousel_dist_carousel_css__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! vue3-carousel/dist/carousel.css */ "./node_modules/vue3-carousel/dist/carousel.css");
 
 
@@ -20423,7 +20423,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     placeholder: "수강평을 작성해주세요."
   }, null, 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.userClassReviewComment]]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <textarea name=\"myform\" id=\"\" cols=\"30\" rows=\"10\" placeholder=\"수강평을 작성해주세요.\"></textarea> ")]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_37, [_hoisted_38, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_39, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
     onClick: _cache[5] || (_cache[5] = function () {
-      return $options.addClassReview && $options.addClassReview.apply($options, arguments);
+      return _ctx.addClassReview && _ctx.addClassReview.apply(_ctx, arguments);
     })
   }, "수강평 작성")])])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_40, [_hoisted_41, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.reviewClassItems, function (data) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {

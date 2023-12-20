@@ -450,18 +450,18 @@ export default {
 			});
 		},
 
-		addClassReview() {
-			axios.post('/classboarddetailreview/' + this.ClassID)
-				.then(reviewResponse => {
-                    // 두 번째 API 응답에 대한 로직 수행
-                    console.log(reviewResponse.data);
-					this.userClassReviewComment = reviewResponse.data;
-                })
-                .catch(reviewError => {
-                    // 두 번째 API 에러 처리
-                    console.error(reviewError);
-                });
-    	},
+		// addClassReview() {
+		// 	axios.post('classBoardViewAll' + this.ClassID)
+		// 		.then(reviewResponse => {
+        //             // 두 번째 API 응답에 대한 로직 수행
+        //             console.log(reviewResponse.data);
+		// 			this.userClassReviewComment = reviewResponse.data;
+        //         })
+        //         .catch(reviewError => {
+        //             // 두 번째 API 에러 처리
+        //             console.error(reviewError);
+        //         });
+    	// },
 	},
     
 }
