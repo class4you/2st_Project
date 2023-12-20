@@ -144,8 +144,10 @@ export default {
         },
         loadUserLoginStatus() {
             const userLoginChk = localStorage.getItem('userCheck');
+            const UserID = localStorage.getItem('UserID');
             if (userLoginChk !== null) {
                 this.$store.commit('setUserLoginChk', userLoginChk);
+                this.$store.commit('setUserID', UserID);
             }
         },
     }

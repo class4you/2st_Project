@@ -21,43 +21,10 @@ class BoardController extends Controller
         Log::debug($data);
         return response()->json($data);
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     
-    
-    
-    // 자유게시판 디테일 페이지 이동
-    public function getBoardDetailShow($BoardID) {
-
-        $data = Board::where('BoardID', $BoardID)->first();
-
-        return response()->json($data);
+    public function postBoardData(Request $request) {
+        $data = $request->only('BoardCategoryID', 'UserID', 'BoardTitle', 'BoardComment');
+        
+        $result = Board::create($data);
     }
 }

@@ -54,7 +54,15 @@ Route::get('/classboarddetailreview/{ClassID}', [ReviewController::class, 'getCl
 
 Route::get('/classBoardViewAll/{ClassDifficultyID}/{ClassLanguageName}', [ClassInfoController::class, 'getClassBoardShow'])->name('classboardall');
 
+
+
+
+
+
+// 게시판 작업
 Route::get('/board', [BoardController::class, 'getBoardMainData']);
+
+Route::post('/boardInsert', [BoardController::class, 'postBoardData']);
 
 
 
@@ -72,6 +80,7 @@ Route::get('/boardDetail', [BoardController::class, 'getBoardDetailShow']);
 // Route::get('/classdetailboard', function () {
 //     return view('classBoardDetail');
 // });
+
 
 
 
