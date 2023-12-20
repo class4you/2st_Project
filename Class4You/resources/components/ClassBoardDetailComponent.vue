@@ -111,7 +111,7 @@
             <!-- 수강평 -->
         <div v-if="clickFlgTab === 1">    
             <div id="class_tab1" class="class_current class_detail_rating_form">
-                <form name="myform" id="myform" method="post">
+                <!-- <form name="myform" id="myform" method="post"> -->
                     <fieldset>
 
                         <div class="class_detail_rating_form_text">
@@ -139,12 +139,12 @@
                             </div>
 
                             <div class="class_detail_rating_form_button">
-                                <button type="button" @click="addClassReview()">수강평 작성</button>
+                                <button @click="addClassReview()">수강평 작성</button>
                             </div>
                         </div>
 
                     </fieldset>
-                </form>
+                <!-- </form> -->
             </div>
 
             <div class="class_detail_rating_list">
@@ -418,7 +418,8 @@ export default {
 			reviewClassItems: [],
 			// classReviewComment: [],
 			classReviewData: {
-				ReviewID: Number,
+				
+				ClassID: this.$store.state.ClassID,
         		UserID: this.$store.state.UserID,
         		ReviewComment: '',
         		ReviewRating: '',
@@ -444,16 +445,16 @@ export default {
 			this.detailClassItems = response.data;
 
 			// if(this.clickFlgTab === 1) {
-				axios.get('/classboarddetailreview/' + this.ClassID)
-				.then(reviewResponse => {
-                    // 두 번째 API 응답에 대한 로직 수행
-                    console.log(reviewResponse.data);
-					this.reviewClassItems = reviewResponse.data;
-                })
-                .catch(reviewError => {
-                    // 두 번째 API 에러 처리
-                    console.error(reviewError);
-                });
+				// axios.get('/classboarddetailreview/' + this.ClassID)
+				// .then(reviewResponse => {
+                //     // 두 번째 API 응답에 대한 로직 수행
+                //     console.log(reviewResponse.data);
+				// 	this.reviewClassItems = reviewResponse.data;
+                // })
+                // .catch(reviewError => {
+                //     // 두 번째 API 에러 처리
+                //     console.error(reviewError);
+                // });
 			// }
 
 			})
