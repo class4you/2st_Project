@@ -16,22 +16,34 @@ class ReviewController extends Controller
     //강의게시판_수강평불러오기
     public function getClassReviewIndex($ClassID) {
         // Log::debug(Auth::check());
-        // Log::debug(Auth::user());
+        // Log::debug(Auth::id());
         // Log::debug($ClassID);
-        $result = Review::select('reviews.ReviewID',
-                'reviews.EnrollmentID',
-                'reviews.ReviewComment',
-                'reviews.ReviewRating',
-                'reviews.created_at',
-                'users.UserID',
-                'class_infos.ClassID')
-        ->join('enrollments','reviews.EnrollmentID','enrollments.EnrollmentID')
-        ->join('class_infos','class_infos.ClassID','enrollments.ClassID')
-        ->join('users','enrollments.UserID','users.UserID')
-        ->where('enrollments.ClassID', $ClassID)
-        ->orderBy('enrollments.created_at', 'desc')
-        ->get();
+        $UserID = Auth::id();
 
+        $EnrollmentData = Enrollment::select('EnrollmentID')
+            ->where('UserID', $UserID) 
+            ->where('ClassID', $ClassID)
+            ->first();
+            
+        $EnrollmentData =  $EnrollmentData ? true : false;
+
+        $result = Review::select('reviews.ReviewID',
+            'reviews.EnrollmentID',
+            'reviews.ReviewComment',
+            'reviews.ReviewRating',
+            'reviews.created_at',
+            'users.UserID',
+            'class_infos.ClassID')
+            ->join('enrollments','reviews.EnrollmentID','enrollments.EnrollmentID')
+            ->join('class_infos','class_infos.ClassID','enrollments.ClassID')
+            ->join('users','enrollments.UserID','users.UserID')
+            ->where('enrollments.ClassID', $ClassID)
+            ->orderBy('enrollments.created_at', 'desc')
+            ->get();
+
+        $result['EnrollChk'] = $EnrollmentData;
+
+        Log::debug($EnrollmentData);
         Log::debug($result);
 
         // Log::debug($result);
@@ -81,7 +93,8 @@ class ReviewController extends Controller
         $request->merge(['EnrollmentID' => $EnrollmentData->EnrollmentID]);
         $data = $request->only('EnrollmentID', 'ReviewComment', 'ReviewRating');
     
-        Log::debug($data);
+        // Log::debug($data);
+
         
         $result = Review::create($data);
     }

@@ -110,7 +110,7 @@
 
             <!-- 수강평 -->
         <div v-if="clickFlgTab === 1">    
-            <div id="class_tab1" class="class_current class_detail_rating_form">
+            <div v-if="EnrollChk" id="class_tab1" class="class_current class_detail_rating_form">
                 <!-- <form name="myform" id="myform" method="post"> -->
                     <fieldset>
 
@@ -146,6 +146,10 @@
                     </fieldset>
                 <!-- </form> -->
             </div>
+
+			<div v-if="!EnrollChk">
+				로그인 바람
+			</div>
 
             <div class="class_detail_rating_list">
 				<div class="class_detail_rating_view_tab">
@@ -423,7 +427,7 @@ export default {
         		ReviewComment: '',
         		ReviewRating: '',
 			},
-			// 수강평 수정 데이터
+			EnrollChk: {},
         }
     },
 	mounted() {
@@ -450,6 +454,7 @@ export default {
                     // 두 번째 API 응답에 대한 로직 수행
                     console.log(reviewResponse.data);
 					this.reviewClassItems = reviewResponse.data;
+					this.EnrollChk = reviewResponse.data.EnrollChk;
                 })
                 .catch(reviewError => {
                     // 두 번째 API 에러 처리
