@@ -20633,6 +20633,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     value: "1",
     id: "rate5"
   }, null, 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelRadio, $data.classReviewData.ReviewRating]]), _hoisted_45])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_46, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+    type: "button",
     onClick: _cache[10] || (_cache[10] = function ($event) {
       return $options.addClassReview();
     })
@@ -22014,16 +22015,19 @@ var store = (0,vuex__WEBPACK_IMPORTED_MODULE_3__.createStore)({
       var url = '/classboarddetail';
       var header = {
         headers: {
-          "Content-Type": 'multipart/form-data',
-          'X-CSRF-TOKEN': document.head.querySelector('meta[name="csrf-token"]').content
+          "Content-Type": 'multipart/form-data'
+          // 'X-CSRF-TOKEN': document.head.querySelector('meta[name="csrf-token"]').content,
         }
       };
       var frm = new FormData();
+      console.log(data);
       frm.append('ReviewID', data.ReviewID);
       frm.append('UserID', data.UserID);
       frm.append('ReviewComment', data.ReviewComment);
       frm.append('ReviewRating', data.ReviewRating);
-      console.log(frm);
+
+      // console.log(frm);
+
       axios__WEBPACK_IMPORTED_MODULE_0___default().post(url, frm, header).then(function (res) {
         // console.log(res.data);
         _router_js__WEBPACK_IMPORTED_MODULE_1__["default"].push('/classBoardDetail/' + _this.ClassID);

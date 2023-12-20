@@ -313,12 +313,14 @@ const store = createStore({
             }
             let frm = new FormData();
 
+            console.log(data);
+
             frm.append('ReviewID',data.ReviewID);
             frm.append('UserID',data.UserID);
             frm.append('ReviewComment',data.ReviewComment);
             frm.append('ReviewRating',data.ReviewRating);
 
-            console.log(frm);
+            // console.log(frm);
 
             axios.post(url, frm, header)
             .then(res => { 

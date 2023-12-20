@@ -139,7 +139,7 @@
                             </div>
 
                             <div class="class_detail_rating_form_button">
-                                <button @click="addClassReview()">수강평 작성</button>
+                                <button type="button" @click="addClassReview()">수강평 작성</button>
                             </div>
                         </div>
 
