@@ -4,8 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Review;
+use App\Models\User;
+use App\Models\ClassInfo;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class ReviewController extends Controller
 {
@@ -36,10 +39,10 @@ class ReviewController extends Controller
     //강의게시판_수강평작성
     public function postClassReviewStore(Request $request) {
         // $reviewUserData = User::find(auth()->id());
-        $validator = Validator::make(request()->all(), [
-            'UserID' => 'required',
-            'ReviewComment' => 'required|max:200'
-        ]);
+        // $validator = Validator::make(request()->all(), [
+        //     'UserID' => 'required',
+        //     'ReviewComment' => 'required|max:200'
+        // ]);
 
         $reviewData = [
             'ReviewComment' => $request->input('ReviewComment'),
@@ -56,6 +59,7 @@ class ReviewController extends Controller
         // $reviewData['data'] = $result;
 
         // return response()->json($reviewData);
-        return response()->json(['reviewData' => $reviewData, 'result' => $result]);
+        // return response()->json(['reviewData' => $reviewData, 'result' => $result]);
+        return response()->json(['result' => $result]);
     }
 }

@@ -11,7 +11,7 @@
 					<div class="main_visual_slider_track_slick">
 						<div class="main_visual_slider_track_slick_item">
 							<a href="">
-								<img src={{asset($banner[0]['ClassDiffiBanner'])}} alt="">
+								<img src= "{{ asset($banner[0]['ClassDiffiBanner']) }}" alt="">
 							</a>
 						</div>
 					</div>
@@ -53,7 +53,7 @@
 						@endforelse		
 							</ul>
 						</li>
-						</a>
+					</a>
 					@empty
 					@endforelse
 

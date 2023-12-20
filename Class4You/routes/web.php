@@ -39,11 +39,19 @@ Route::get('/classBoard/{ClassLanguageName}', [ClassInfoController::class, 'clas
 
 Route::get('/getNewClassMainData', [ClassInfoController::class, 'getNewClassMainData']);
 
-Route::get('/classBoardDetail/{ClassID}', [ClassInfoController::class, 'getClassBoardDetailShow']);
+Route::get('/classBoardDetail/{ClassID}', [ClassInfoController::class, 'getClassBoardDetailShow'])->name('classboarddetail');
+// Route::get('/classBoardDetail/{ClassID}', [ClassBoardController::class, 'getClassBoardDetailShow']);
 
-Route::get('/classboarddetailreview/{ClassID}', [ReviewController::class, 'getClassReviewIndex']);
+// test
+Route::prefix('reviews')->group(function () {
+    Route::get('/classboarddetailreview/{ClassID}', [ReviewController::class, 'getClassReviewIndex']);
+    Route::post('/classboarddetailreview/{ClassID}', [ReviewController::class, 'postClassReviewStore']);
+});
 
-Route::get('/classBoardViewAll/{ClassDifficulty}/{ClassLanguageName}', [ClassInfoController::class, 'getClassBoardShow'])->name('classboardall');
+// 기존
+// Route::get('/classboarddetailreview/{ClassID}', [ReviewController::class, 'getClassReviewIndex']);
+
+Route::get('/classBoardViewAll/{ClassDifficultyID}/{ClassLanguageName}', [ClassInfoController::class, 'getClassBoardShow'])->name('classboardall');
 
 Route::get('/board', [BoardController::class, 'getBoardMainData']);
 
