@@ -110,7 +110,7 @@
 
             <!-- 수강평 -->
         <div v-if="clickFlgTab === 1">    
-            <div id="class_tab1" class="class_current class_detail_rating_form">
+            <div v-if="EnrollChk" id="class_tab1" class="class_current class_detail_rating_form">
                 <!-- <form name="myform" id="myform" method="post"> -->
                     <fieldset>
 
@@ -147,6 +147,10 @@
                 <!-- </form> -->
             </div>
 
+			<div v-if="!EnrollChk">
+				로그인 바람
+			</div>
+
             <div class="class_detail_rating_list">
 				<div class="class_detail_rating_view_tab">
 					<div class="class_detail_rating_tab_title">
@@ -166,7 +170,7 @@
 					<div v-for="data in reviewClassItems" :key="data.ReviewID" id="class_tab1" class="class_detail_rating_list_div">
 						<div class="class_detail_rating_list_user">
 							<div class="class_detail_rating_user_id">
-								<p>{{ data.ReviewID }}</p>
+								<p>{{ data.ReviewID }} | {{ data.ReviewRating }}점</p>
 							</div>
 							<div class="class_detail_rating_user_date">
 								<p>{{ data.created_at }}</p>
@@ -177,7 +181,7 @@
 						</div>
 						<div class="class_detail_rating_user_button">
 							<div class="class_detail_rating_user_update_button">
-								<button>수정</button>
+								<button @click="putClassReview()">수정</button>
 							</div>
 							<div class="class_detail_rating_user_delete_button">
 								<button>삭제</button>
@@ -416,14 +420,14 @@ export default {
             clickFlgTab: 0,
 			detailClassItems: [],
 			reviewClassItems: [],
-			// classReviewComment: [],
+			// 글작성시 필요한 데이터?
 			classReviewData: {
-				
 				ClassID: this.ClassID,
         		UserID: this.$store.state.UserID,
         		ReviewComment: '',
         		ReviewRating: '',
 			},
+			EnrollChk: {},
         }
     },
 	mounted() {
@@ -450,6 +454,7 @@ export default {
                     // 두 번째 API 응답에 대한 로직 수행
                     console.log(reviewResponse.data);
 					this.reviewClassItems = reviewResponse.data;
+					this.EnrollChk = reviewResponse.data.EnrollChk;
                 })
                 .catch(reviewError => {
                     // 두 번째 API 에러 처리
@@ -477,8 +482,14 @@ export default {
         //         });
     	// },
 
+		// 수강평 작성 함수
 		addClassReview() {
 			this.$store.dispatch('addClassReview', this.classReviewData);
+		},
+		
+		// 수강평 수정 함수
+		putClassReview() {
+
 		},
 	},
     
