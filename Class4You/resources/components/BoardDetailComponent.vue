@@ -10,18 +10,18 @@
                             <p>작성자<span>{{ newBoardItem.UserEmail }}</span></p>
                         </div>
                         <div class="row aiC">
-                            <p>작성일<span>2023.12.11</span></p>
-                            <p>조회수<span>9999</span></p>
-                            <p>좋아요<span>9999</span></p>
+                            <p>작성일<span>{{ newBoardItem.created_at }}</span></p>
+                            <p>조회수<span>{{newBoardItem.BoardView}}</span></p>
+                            <p>좋아요<span>{{newBoardItem.Recommended}}</span></p>
                         </div>
                     </div>
                     <div class="postTitBox row aiC">
-                        <label for="postTit">제목</label>
-                        <p type="text" id="postTit"></p>
+                        <label for="postTit">제목: </label>
+                        <p type="text" id="postTit">{{ newBoardItem.BoardTitle }}</p>
                     </div>
                     <div class="postContBox row">
                         <label for="postCont">내용</label>
-                        <p class="postCont">내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용</p>
+                        <p class="postCont">{{ newBoardItem.BoardComment }}</p>
                     </div>
                     <div class="laguage">
                         <ul class="row aiC laguage_gap_10">
@@ -62,7 +62,7 @@
                         <div class="item">
                             <div class="commentInfo row aiC jcB">
                                 <p>작성자<span> 정미야옹호</span></p>
-                                <p>작성일<span>2023.12.12</span></p>
+                                <p>작성일<span>2000-01-14</span></p>
                             </div>
                             <div class="commentText">
                              <span>냥냥냥냥냥냥ss내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용</span>   

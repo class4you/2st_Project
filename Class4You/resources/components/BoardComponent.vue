@@ -139,17 +139,14 @@
 												<dt class="visually_hidden">투표점수</dt>
 												<dd class="comment_count">
 													<i>추천수 {{ item.BoardRecommended }}</i>
-													<span>{{item.Boardgoodcount}}</span>
 												</dd>
 												<dt class="visually_hidden">투표점수</dt>
 												<dd class="comment_count">
 													<i>비추천: {{ item.BoardNotRecommended }}</i>
-													<span>{{item.Boardbadcount}}</span>
 												</dd>
 												<dt class="visually_hidden">조회수</dt>
 												<dd class="comment_count">
 													<i>조회수 : {{ item.BoardView }}</i>
-													<span>{{item.Boardhitscount}}</span>
 												</dd>
 												<dt class="visually_hidden">답변</dt>
 												<dd class="comment_count">
@@ -164,8 +161,8 @@
 									</a>
 									</li>
 								</ul>
-								<div v-for="page in pagination" >
-									<a href="">{{ page.url }}</a>
+								<div v-for="(page, index) in pagination" :key="index">
+									<a :href="page.url">{{ page.url }}</a>
 								</div>
 								</div>
 							</div>
@@ -199,10 +196,14 @@
 export default {
 	name: 'BoardComponent',
 
+	computed: {
+	},
+
 	data() {
 		return {
 			newBoardItems: [],
-			pagination: [],
+			pagination: {},
+			page: {},
 		}
 	},
 	
@@ -211,11 +212,12 @@ export default {
     },
 	methods: {
 		fetchData() {
-        axios.get('/board')
+        axios.get('/board/')
             .then(response => {
 				console.log(response.data.links);
+				console.log(response.data.data);
                 this.newBoardItems = response.data.data;
-				this.pagination = response.data.links;
+				this.pagination = response.data.links;    
             })
             .catch(error => {
                 console.error('Error fetching data:', error);
