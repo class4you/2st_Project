@@ -318,7 +318,7 @@ const store = createStore({
 
             frm.append('BoardID',data.BoardID);
             frm.append('UserID',data.UserID);
-            frm.append('CommentD',data.CommentID);
+            frm.append('CommentID',data.CommentID);
             frm.append('InstructorID',data.InstructorID);
             frm.append('CommentContent',data.CommentContent);
             

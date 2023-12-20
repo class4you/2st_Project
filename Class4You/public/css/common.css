@@ -3663,21 +3663,17 @@ option {
     margin-top: 10px;
     margin-bottom: 10px;
 }
+/* 게시판 리스트 페이징 */
+.qustuon_list_pageing {
+    display: flex;
+    font-size: 15px;
+    margin-top: 15px;
+    color: #000;
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+.qustuon_list_pageing a {
+    color: #000;
+}
 
 
 

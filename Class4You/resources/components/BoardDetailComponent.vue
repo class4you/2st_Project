@@ -61,11 +61,11 @@
                     <div class="reviewList">
                         <div class="item">
                             <div class="commentInfo row aiC jcB">
-                                <p>작성자<span> 정미야옹호</span></p>
-                                <p>작성일<span>{{ newBoardItem.created_at }}</span></p>
+                                <p>작성자<span> {{data.CommentID}}</span></p>
+                                <p>작성일<span>{{ data.created_at }}</span></p>
                             </div>
                             <div class="commentText">
-                             <span>냥냥냥냥냥냥ss내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용</span>   
+                             <span>{{ data.CommentContent }}</span>   
                             </div>
                             
                             <div class="commentActions row aiC">
@@ -112,7 +112,7 @@ import axios from 'axios'
 
 export default {
     name: 'BoardDetailComponent',
-    props: ['BoardID'],
+    props: ['BoardID', 'CommentID'],
     
     data() {
         return {
@@ -122,7 +122,7 @@ export default {
             // 댓글 출력시 필요한 데이터
             BoardCommentData: {
                 BoardID: this.BoardID,
-                UserID: this.$store.state.UserID,
+                UserID: this.UserID,
                 CommentID: this.CommentID,
                 InstructorID: this.InstructorID,
                 CommentContent: '',
