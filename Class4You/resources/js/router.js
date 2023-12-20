@@ -23,6 +23,11 @@ const routes = [
         path: '/board',
         component: BoardComponent,
     },
+    // {
+    //     path: '/board/:page',
+    //     component: BoardComponent,
+    //     name: 'board-page'
+    // },
     {
         path: '/boardinsert',
         component: BoardInsertComponent,

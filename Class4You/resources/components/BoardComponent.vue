@@ -164,8 +164,8 @@
 									</a>
 									</li>
 								</ul>
-								<div v-for="page in pagination" >
-									<a href="">{{ page.url }}</a>
+								<div v-for="(page, index) in pagination" :key="index">
+									<a :href="page.url">{{ page.url }}</a>
 								</div>
 								</div>
 							</div>
@@ -199,10 +199,14 @@
 export default {
 	name: 'BoardComponent',
 
+	computed: {
+	},
+
 	data() {
 		return {
 			newBoardItems: [],
-			pagination: [],
+			pagination: {},
+			page: {},
 		}
 	},
 	
@@ -211,11 +215,12 @@ export default {
     },
 	methods: {
 		fetchData() {
-        axios.get('/board')
+        axios.get('/board/')
             .then(response => {
 				console.log(response.data.links);
+				console.log(response.data.data);
                 this.newBoardItems = response.data.data;
-				this.pagination = response.data.links;
+				this.pagination = response.data.links;    
             })
             .catch(error => {
                 console.error('Error fetching data:', error);
