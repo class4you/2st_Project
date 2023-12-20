@@ -6,6 +6,7 @@ use App\Http\Controllers\ClassBoardController;
 use App\Http\Controllers\ClassInfoController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\BoardController;
+use App\Http\Controllers\MyPageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -79,7 +80,8 @@ Route::get('/boarddetail/{BoardID}', [BoardController::class, 'getBoardDetailSho
 
 
 
-
+// 마이페이지 작업
+Route::get('/getmypagedashboard', [MyPageController::class, 'getUserClassData']);
 
 // 자유게시판 디테일페이지로 이동 라우터
 // Route::get('/boardDetail', [BoardController::class, 'getBoardDetailShow']);

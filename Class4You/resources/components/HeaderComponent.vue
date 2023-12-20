@@ -45,7 +45,8 @@
                     </div>
                 </div>
                 <div v-if="$store.state.userLoginChk" class="side_nav">
-                    <router-link to="/">MY PAGE</router-link>
+                    <!-- <router-link to="/">MY PAGE</router-link> -->
+                    <a href="/usermypage">MY PAGE</a>
                     <a @click="logout" style="cursor: pointer;">LOGOUT</a>
                     <div class="search_box">
                         <input type="text" placeholder="SEARCH">
