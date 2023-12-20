@@ -32,7 +32,10 @@ class BoardController extends Controller
     // 자유게시판 디테일페이지로 이동
     public function getBoardDetailShow($BoardID) {
 
-        $data = Board::where('BoardID', $BoardID)->first();
+
+        $data = Board::join('users', 'boards.UserID', 'users.UserID')
+            ->where('BoardID', $BoardID)
+            ->first();
 
         return response()->json($data);
     }

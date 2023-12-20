@@ -107,8 +107,8 @@
 								</div>
 								<ul class="question_list">
 									<li class="question_container">
-									<a href="">
-										<div v-for="item in newBoardItems" class="question">
+									<a v-for="item in newBoardItems" :href="'/boardDetail/' + item.BoardID">
+										<div  class="question">
 										<div class="question_info">
 											<div class="question_title">
 											<div class="title_sub_text">

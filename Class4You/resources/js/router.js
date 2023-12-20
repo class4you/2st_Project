@@ -5,6 +5,7 @@ import MainComponent from '../components/MainComponent.vue';
 import TestComponent from '../components/TestComponent.vue';
 import BoardComponent from '../components/BoardComponent.vue';
 import BoardInsertComponent from '../components/BoardInsertComponent.vue';
+import BoardDetailComponent from '../components/BoardDetailComponent.vue';
 import ClassBoardDetailComponent from '../components/ClassBoardDetailComponent.vue';
 // import ClassBoardMainComponent from '../components/ClassBoardMainComponent.vue';
 import store from './store';
@@ -30,6 +31,12 @@ const routes = [
         path: '/classboarddetail/:ClassID',
         // name: 'classboarddetail',
         component: ClassBoardDetailComponent,
+        props: true
+    },
+    {
+        path: '/boarddetail/:BoardID',
+        // name: 'classboarddetail',
+        component: BoardDetailComponent,
         props: true
     },
     // {
