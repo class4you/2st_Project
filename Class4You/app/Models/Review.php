@@ -20,10 +20,12 @@ class Review extends Model
 
     protected $table = 'reviews';
 
+    protected $primaryKey = 'ReviewID';
+
     protected $fillable = [
         'ReviewID',
         'UserID',
-        'ReviewContent',
+        'ReviewComment',
         'ReviewRating',
     ];
 
