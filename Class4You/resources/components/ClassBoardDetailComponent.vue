@@ -428,6 +428,11 @@ export default {
 	mounted() {
         this.fetchData();
     },
+
+	updated() {
+
+	},
+
 	methods: {
 		fetchData() {
 		// 여기에서 정보를 추가로 조회하는 로직을 구현
@@ -438,7 +443,8 @@ export default {
 			console.log(response.data);
 			this.detailClassItems = response.data;
 
-			axios.get('/classboarddetailreview/' + this.ClassID)
+			// if(this.clickFlgTab === 1) {
+				axios.get('/classboarddetailreview/' + this.ClassID)
 				.then(reviewResponse => {
                     // 두 번째 API 응답에 대한 로직 수행
                     console.log(reviewResponse.data);
@@ -448,6 +454,8 @@ export default {
                     // 두 번째 API 에러 처리
                     console.error(reviewError);
                 });
+			// }
+
 			})
 			.catch(error => {
 			// 에러 처리
