@@ -147,9 +147,9 @@
                 <!-- </form> -->
             </div>
 
-			<div v-if="!EnrollChk">
+			<!-- <div v-if="!EnrollChk">
 				로그인 바람
-			</div>
+			</div> -->
 
             <div class="class_detail_rating_list">
 				<div class="class_detail_rating_view_tab">
@@ -184,7 +184,7 @@
 								<button @click="putClassReview()">수정</button>
 							</div>
 							<div class="class_detail_rating_user_delete_button">
-								<button>삭제</button>
+								<button @click="deletClassReview()">삭제</button>
 							</div>
 						</div>
 					</div>
@@ -428,6 +428,9 @@ export default {
         		ReviewRating: '',
 			},
 			EnrollChk: {},
+			putReviewData: {
+
+			},
         }
     },
 	mounted() {
@@ -489,7 +492,12 @@ export default {
 		
 		// 수강평 수정 함수
 		putClassReview() {
+			this.$store.dispatch('putClassReview', this.classReviewData);
+		},
 
+		// 수강평 삭제 함수
+		deletClassReview() {
+			
 		},
 	},
     

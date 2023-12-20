@@ -11,7 +11,7 @@
                         </div>
                         <div class="row aiC">
                             <p>작성일<span>2023.12.11</span></p>
-                            <p>조회수<span>{{newBoardItem.Boardㅋ}}</span></p>
+                            <p>조회수<span>{{newBoardItem.Board}}</span></p>
                             <p>좋아요<span>9999</span></p>
                         </div>
                     </div>
@@ -108,19 +108,34 @@
     </div>
 </template>
 <script>
+import axios from 'axios'
+
 export default {
     name: 'BoardDetailComponent',
-
     props: ['BoardID'],
     
     data() {
         return {
+            clickFlgTab: 0,
             newBoardItem: [],
+            commentItems: [],
+            // 댓글 출력시 필요한 데이터
+            BoardCommentData: {
+                BoardID: this.BoardID,
+                UserID: this.$store.state.UserID,
+                CommentID: this.CommentID,
+                InstructorID: this.InstructorID,
+                CommentContent: '',
+            },
+            EnrollChk:{},
         }
     },
 
     mounted() {
         this.fetchData();
+    },
+    updated() {
+
     },
 
     methods: {
@@ -129,13 +144,35 @@ export default {
             .then(response => {
                 console.log(response.data);
                 this.newBoardItem = response.data;
+
+                // 댓글을 받아오는 axios 처리
+                axios.get('/boarddetailcomments/' + this.BoardID)
+                // 두번째 API 응답에 대한 로직 수행
+                .then(commentResponse => {
+                console.log(commentResponse.data);
+                this.commentItems = commentResponse.data;
+                this.EnrollChk = commentResponse.data.EnrollChk; 
             })
+            .catch(contentsError => {
+                // 두번째 API 에러처리
+                console.error(contentsError);
+            });
+        })
             .catch(error => {
                 console.error('Error fetching data:', error);
             });
         },
+        addBoardComment() {
+            this.$store.dispatch('addBoardComment', this.BoardCommentData);
+        },
+        putBoardComment() {
+
+        },
     },
 }
+    
+    
+
 </script>
 <style>
     
