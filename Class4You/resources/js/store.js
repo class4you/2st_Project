@@ -303,6 +303,52 @@ const store = createStore({
         // actionClassReviewAdd() {
             
         // }
+        addClassReview(context, data) {
+            const url = '/classboarddetail/'
+            const header = {
+                headers: {
+                    "Content-Type": 'multipart/form-data',
+                    'X-CSRF-TOKEN': document.head.querySelector('meta[name="csrf-token"]').content,
+                },
+            }
+            let frm = new FormData();
+
+            frm.append('ReviewID',data.ReviewID);
+            frm.append('UserID',data.UserID);
+            frm.append('ReviewComment',data.ReviewComment);
+            frm.append('ReviewRating',data.ReviewRating);
+
+            console.log(frm);
+
+            axios.post(url, frm, header)
+            .then(res => { 
+                // console.log(res.data);
+                router.push('/classBoardDetail/' + this.ClassID); 
+            })
+            .catch(err => {
+                console.log(err.response.data.errors)
+                context.commit('setRegistrationErrorMessage', err.response.data.errors);
+            })
+        },
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

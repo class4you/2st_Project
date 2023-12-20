@@ -111,11 +111,11 @@
             <!-- 수강평 -->
         <div v-if="clickFlgTab === 1">    
             <div id="class_tab1" class="class_current class_detail_rating_form">
-                <form name="myform" id="myform" method="post" action="./save">
+                <form name="myform" id="myform" method="post">
                     <fieldset>
 
                         <div class="class_detail_rating_form_text">
-                            <textarea v-model="userClassReviewComment" name="myform" id="" cols="30" rows="10" placeholder="수강평을 작성해주세요."></textarea>
+                            <textarea v-model="classReviewData.ReviewComment" name="myform" id="" cols="30" rows="10" placeholder="수강평을 작성해주세요."></textarea>
                             <!-- <textarea name="myform" id="" cols="30" rows="10" placeholder="수강평을 작성해주세요."></textarea> -->
                         </div>
 
@@ -124,15 +124,15 @@
 								
                                     <fieldset class="class_detail_rating_star_form" name="myform">
                                         <legend class="class_detail_rating_star_form_title">별점</legend>
-                                            <input class="class_detail_rating_star_input" type="radio" name="rating" value="5" id="rate1">
+                                            <input v-model="classReviewData.ReviewRating" class="class_detail_rating_star_input" type="radio" name="rating" value="5" id="rate1">
                                                 <label class="class_detail_rating_star_label" for="rate1">⭐</label>
-                                            <input class="class_detail_rating_star_input" type="radio" name="rating" value="4" id="rate2">
+                                            <input v-model="classReviewData.ReviewRating" class="class_detail_rating_star_input" type="radio" name="rating" value="4" id="rate2">
                                                 <label class="class_detail_rating_star_label" for="rate2">⭐</label>
-                                            <input class="class_detail_rating_star_input" type="radio" name="rating" value="3" id="rate3">
+                                            <input v-model="classReviewData.ReviewRating" class="class_detail_rating_star_input" type="radio" name="rating" value="3" id="rate3">
                                                 <label class="class_detail_rating_star_label" for="rate3">⭐</label>
-                                            <input class="class_detail_rating_star_input" type="radio" name="rating" value="2" id="rate4">
+                                            <input v-model="classReviewData.ReviewRating" class="class_detail_rating_star_input" type="radio" name="rating" value="2" id="rate4">
                                                 <label class="class_detail_rating_star_label" for="rate4">⭐</label>
-                                            <input class="class_detail_rating_star_input" type="radio" name="rating" value="1" id="rate5">
+                                            <input v-model="classReviewData.ReviewRating" class="class_detail_rating_star_input" type="radio" name="rating" value="1" id="rate5">
                                                 <label class="class_detail_rating_star_label" for="rate5">⭐</label>
                                     </fieldset>
                                 
@@ -417,7 +417,12 @@ export default {
 			detailClassItems: [],
 			reviewClassItems: [],
 			// classReviewComment: [],
-			userClassReviewComment: '',
+			classReviewData: {
+				ReviewID: Number,
+        		UserID: this.$store.state.UserID,
+        		ReviewComment: '',
+        		ReviewRating: '',
+			},
         }
     },
 	mounted() {
@@ -458,18 +463,22 @@ export default {
 			});
 		},
 
+		// addClassReview() {
+		// 	axios.post('/classboarddetailreview/' + this.ClassID)
+		// 		.then(reviewResponse => {
+        //             // 두 번째 API 응답에 대한 로직 수행
+        //             console.log(reviewResponse.data);
+		// 			this.userClassReviewComment = reviewResponse.data;
+        //         })
+        //         .catch(reviewError => {
+        //             // 두 번째 API 에러 처리
+        //             console.error(reviewError);
+        //         });
+    	// },
+
 		addClassReview() {
-			axios.post('/classboarddetailreview/' + this.ClassID)
-				.then(reviewResponse => {
-                    // 두 번째 API 응답에 대한 로직 수행
-                    console.log(reviewResponse.data);
-					this.userClassReviewComment = reviewResponse.data;
-                })
-                .catch(reviewError => {
-                    // 두 번째 API 에러 처리
-                    console.error(reviewError);
-                });
-    	},
+			this.$store.dispatch('addClassReview', this.classReviewData);
+		},
 	},
     
 }
