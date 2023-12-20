@@ -22011,7 +22011,7 @@ var store = (0,vuex__WEBPACK_IMPORTED_MODULE_3__.createStore)({
     // }
     addClassReview: function addClassReview(context, data) {
       var _this = this;
-      var url = '/classboarddetail/';
+      var url = '/classboarddetail';
       var header = {
         headers: {
           "Content-Type": 'multipart/form-data',

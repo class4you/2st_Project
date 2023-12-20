@@ -304,7 +304,7 @@ const store = createStore({
             
         // }
         addClassReview(context, data) {
-            const url = '/classboarddetail/'
+            const url = '/classboarddetail'
             const header = {
                 headers: {
                     "Content-Type": 'multipart/form-data',
