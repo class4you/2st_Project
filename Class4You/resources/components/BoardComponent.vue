@@ -139,17 +139,14 @@
 												<dt class="visually_hidden">투표점수</dt>
 												<dd class="comment_count">
 													<i>추천수 {{ item.BoardRecommended }}</i>
-													<span>{{item.Boardgoodcount}}</span>
 												</dd>
 												<dt class="visually_hidden">투표점수</dt>
 												<dd class="comment_count">
 													<i>비추천: {{ item.BoardNotRecommended }}</i>
-													<span>{{item.Boardbadcount}}</span>
 												</dd>
 												<dt class="visually_hidden">조회수</dt>
 												<dd class="comment_count">
 													<i>조회수 : {{ item.BoardView }}</i>
-													<span>{{item.Boardhitscount}}</span>
 												</dd>
 												<dt class="visually_hidden">답변</dt>
 												<dd class="comment_count">
