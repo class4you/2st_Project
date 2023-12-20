@@ -103,7 +103,7 @@
 									</li>
 									</ul>
 									<div class="posts_container_header_button_cover"></div>
-									<router-link class="ac_button" to="/boardinsert" >글쓰기</router-link>
+									<router-link v-if="$store.state.UserID" class="ac_button" to="/boardinsert" >글쓰기</router-link>
 								</div>
 								<ul class="question_list">
 									<li class="question_container">

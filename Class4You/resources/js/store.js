@@ -28,8 +28,10 @@ const store = createStore({
                 userCheck: '',
                 userName: '',
                 userEmail: '',
+                UserID: null,
             },
             userLoginChk: null,
+            UserID: null,
             shouldShowCarousel: false,
 
 
@@ -88,16 +90,24 @@ const store = createStore({
             state.loginShowModal = false;
         },
         setSaveToLocalStorage(state, data) {
-            // state.userData.userCheck = data.sessionDataCheck
+            // console.log(data);
+            state.userData.userCheck = data.sessionDataCheck;
+            localStorage.setItem('userCheck', data.sessionDataCheck);
+            state.userData.UserID = data.UserID;
+            localStorage.setItem('UserID', data.userId);
+            // console.log(localStorage.getItem('UserID'));
+            // console.log(data);
             // state.userData.userName = data.sessionCheckUserName
             // state.userData.userEmail = data.sessionCheckUserEmail
-            localStorage.setItem('userCheck', data.sessionDataCheck);
-            localStorage.setItem('userName', data.sessionCheckUserName);
-            localStorage.setItem('userEmail', data.sessionCheckUserEmail);
+            // localStorage.setItem('userName', data.sessionCheckUserName);
+            // localStorage.setItem('userEmail', data.sessionCheckUserEmail);
             // state.userData.userCheck = localStorage.getItem('userCheck');
         },
         setUserLoginChk(state, userLoginChk) {
             state.userLoginChk = userLoginChk;
+        },
+        setUserID(state, UserID) {
+            state.UserID = UserID;
         },
         setShowCarousel(state, value) {
             state.shouldShowCarousel = value;
@@ -223,11 +233,14 @@ const store = createStore({
 
             axios.post(url, requestData, header)
             .then(res => { 
-                console.log(res);
+                // console.log(res);
                 if (res.data.success) {
                     context.commit('setSaveToLocalStorage', res.data);
                     context.commit('setUserLoginChk', res.data.sessionDataCheck);
-                    console.log(res.data.sessionDataCheck)
+                    context.commit('setUserID', res.data.userId);
+                    // context.commit('setUserLoginChk', {sessionDataCheck:res.data.sessionDataCheck, UserID:res.data.userId});
+                    // console.log(res.data.sessionDataCheck)
+                    // console.log(res.data)
                     // router.push('/'); 
                 } else {
                     console.log(err.response.data.errors)
@@ -305,8 +318,34 @@ const store = createStore({
 
 
 
-
         // 김민정
+        submitBoardData(context, data) {
+            const url = '/boardInsert'
+            const header = {
+                headers: {
+                    "Content-Type": 'multipart/form-data',
+                    'X-CSRF-TOKEN': document.head.querySelector('meta[name="csrf-token"]').content,
+                },
+            }
+            let frm = new FormData();
+
+            frm.append('BoardCategoryID',data.BoardCategoryID);
+            frm.append('UserID',data.UserID);
+            frm.append('BoardTitle',data.BoardTitle);
+            frm.append('BoardComment',data.BoardComment);
+
+            console.log(frm);
+
+            axios.post(url, frm, header)
+            .then(res => { 
+                console.log(res.data);
+                // router.push('/'); 
+            })
+            .catch(err => {
+                console.log(err.response.data.errors)
+                context.commit('setRegistrationErrorMessage', err.response.data.errors);
+            })
+        },
     }, 
 });
 

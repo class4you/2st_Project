@@ -41,7 +41,7 @@
 
         <div class="mantine-InputWrapper-root mantine-Textarea-root mantine-1y7fzyr">
             <div class="mantine-Input-wrapper mantine-Textarea-wrapper mantine-1v7s5f8">
-                <textarea class="mantine-Input-input mantine-Textarea-input mantine-goibal" id="title" name="title" aria-label="title" placeholder="제목에 핵심 내용을 요약해보세요." aria-invalid="false" style="height: 39px;"></textarea>
+                <textarea class="mantine-Input-input mantine-Textarea-input mantine-goibal" v-model="frmBoardData.BoardTitle"  id="title" name="title" aria-label="title" placeholder="제목에 핵심 내용을 요약해보세요." aria-invalid="false" style="height: 39px;"></textarea>
             </div>
         </div>
 
@@ -57,7 +57,7 @@
                     <div class="editor-toolbar-container sticky ">
                         <div tabindex="0" class="toolbar-group">
                             <!-- 게시물 입력 부분 -->
-                            <textarea placeholder="게시물을 입력하세요..." style="width: 100%; height: 100%; border: none; resize: none; padding: 8px 0px; font-size: 14px; line-height: 1.5; outline: none; padding-left: 100px;"></textarea>
+                            <textarea v-model="frmBoardData.BoardComment" placeholder="게시물을 입력하세요..." style="width: 100%; border: none; resize: none; padding: 8px 0px; font-size: 14px; line-height: 1.5;"></textarea>
                         </div>
                     </div>
                 </div>
@@ -72,7 +72,7 @@
             </button>
             <button class="mantine-UnstyledButton-root mantine-Button-root mantine-1276sa2" type="submit" data-button="true">
                 <div class="mantine-1yjkc96 mantine-Button-inner">
-                    <span class="mantine-1ryt1ht mantine-Button-label">등록</span>
+                    <span class="mantine-1ryt1ht mantine-Button-label" @click="submitBoardData()">등록</span>
                 </div>
             </button>
         </div>
@@ -83,6 +83,33 @@
 <script>
 export default {
     name:'BoardInsertComponent',
+
+    mounted() {
+        // this.frmUserBoardData.UserID
+        // console.log(localStorage.getItem('UserID'));
+        // for (let i = 0; i < localStorage.length; i++) {
+        //     const key = localStorage.key(i);
+        //     const value = localStorage.getItem(key);
+        //     console.log(`${key}: ${value}`);
+        // }
+    },
+
+    data() {
+        return {
+            frmBoardData: {
+                BoardCategoryID: 1,
+                UserID: this.$store.state.UserID,
+                BoardTitle: '',
+                BoardComment: '',
+            },
+        }
+    },
+
+    methods: {
+        submitBoardData() {
+            this.$store.dispatch('submitBoardData', this.frmBoardData);
+        },
+    }
 }
 </script>
 <style>

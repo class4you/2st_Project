@@ -21,4 +21,10 @@ class BoardController extends Controller
         Log::debug($data);
         return response()->json($data);
     }
+    
+    public function postBoardData(Request $request) {
+        $data = $request->only('BoardCategoryID', 'UserID', 'BoardTitle', 'BoardComment');
+        
+        $result = Board::create($data);
+    }
 }
