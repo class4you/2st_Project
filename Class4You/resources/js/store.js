@@ -304,7 +304,7 @@ const store = createStore({
             
         // }
         addClassReview(context, data) {
-            const url = '/classboarddetail'
+            const url = '/classboarddetailreview'
             const header = {
                 headers: {
                     "Content-Type": 'multipart/form-data',
@@ -324,9 +324,9 @@ const store = createStore({
 
             axios.post(url, frm, header)
             .then(res => { 
-                // console.log(res.data);
+                console.log(res.data);
                 // router.push('/classBoardDetail/' + this.ClassID); 
-                router.push('/classBoardDetail/' + data.ClassID); 
+                // router.push('/classBoardDetail/' + data.ClassID); 
 
                 //
 				// context.commit(data.clickFlgTab , 1);

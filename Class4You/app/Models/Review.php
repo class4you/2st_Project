@@ -24,7 +24,6 @@ class Review extends Model
 
     protected $fillable = [
         'EnrollmentID',
-        'UserID',
         'ReviewComment',
         'ReviewRating',
     ];

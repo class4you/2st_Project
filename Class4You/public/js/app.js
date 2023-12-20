@@ -19409,7 +19409,7 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     fetchData: function fetchData() {
       var _this = this;
-      axios.get('/board/').then(function (response) {
+      axios.get('/board').then(function (response) {
         console.log(response.data.links);
         console.log(response.data.data);
         _this.newBoardItems = response.data.data;
@@ -19525,7 +19525,7 @@ __webpack_require__.r(__webpack_exports__);
       reviewClassItems: [],
       // classReviewComment: [],
       classReviewData: {
-        ClassID: this.$store.state.ClassID,
+        ClassID: this.ClassID,
         UserID: this.$store.state.UserID,
         ReviewComment: '',
         ReviewRating: ''
@@ -19547,16 +19547,14 @@ __webpack_require__.r(__webpack_exports__);
         _this.detailClassItems = response.data;
 
         // if(this.clickFlgTab === 1) {
-        // axios.get('/classboarddetailreview/' + this.ClassID)
-        // .then(reviewResponse => {
-        //     // 두 번째 API 응답에 대한 로직 수행
-        //     console.log(reviewResponse.data);
-        // 	this.reviewClassItems = reviewResponse.data;
-        // })
-        // .catch(reviewError => {
-        //     // 두 번째 API 에러 처리
-        //     console.error(reviewError);
-        // });
+        axios__WEBPACK_IMPORTED_MODULE_0___default().get('/classboarddetailreview/' + _this.ClassID).then(function (reviewResponse) {
+          // 두 번째 API 응답에 대한 로직 수행
+          console.log(reviewResponse.data);
+          _this.reviewClassItems = reviewResponse.data;
+        })["catch"](function (reviewError) {
+          // 두 번째 API 에러 처리
+          console.error(reviewError);
+        });
         // }
       })["catch"](function (error) {
         // 에러 처리
@@ -22037,7 +22035,7 @@ var store = (0,vuex__WEBPACK_IMPORTED_MODULE_3__.createStore)({
     // actionClassReviewAdd() {
     // }
     addClassReview: function addClassReview(context, data) {
-      var url = '/classboarddetail';
+      var url = '/classboarddetailreview';
       var header = {
         headers: {
           "Content-Type": 'multipart/form-data',
@@ -22054,9 +22052,9 @@ var store = (0,vuex__WEBPACK_IMPORTED_MODULE_3__.createStore)({
       // console.log(frm);
 
       axios__WEBPACK_IMPORTED_MODULE_0___default().post(url, frm, header).then(function (res) {
-        // console.log(res.data);
+        console.log(res.data);
         // router.push('/classBoardDetail/' + this.ClassID); 
-        _router_js__WEBPACK_IMPORTED_MODULE_1__["default"].push('/classBoardDetail/' + data.ClassID);
+        // router.push('/classBoardDetail/' + data.ClassID); 
 
         //
         // context.commit(data.clickFlgTab , 1);
