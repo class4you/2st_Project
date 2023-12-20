@@ -338,8 +338,8 @@ const store = createStore({
 
             axios.post(url, frm, header)
             .then(res => { 
-                console.log(res.data);
-                // router.push('/'); 
+                // console.log(res.data);
+                router.push('/board'); 
             })
             .catch(err => {
                 console.log(err.response.data.errors)

@@ -21853,8 +21853,8 @@ var store = (0,vuex__WEBPACK_IMPORTED_MODULE_3__.createStore)({
       frm.append('BoardComment', data.BoardComment);
       console.log(frm);
       axios__WEBPACK_IMPORTED_MODULE_0___default().post(url, frm, header).then(function (res) {
-        console.log(res.data);
-        // router.push('/'); 
+        // console.log(res.data);
+        _router_js__WEBPACK_IMPORTED_MODULE_1__["default"].push('/board');
       })["catch"](function (err) {
         console.log(err.response.data.errors);
         context.commit('setRegistrationErrorMessage', err.response.data.errors);
