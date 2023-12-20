@@ -44,6 +44,7 @@ Route::get('/classBoardDetail/{ClassID}', [ClassInfoController::class, 'getClass
 
 Route::post('/classboarddetailreview', [ReviewController::class, 'postClassReviewData']);
 Route::get('/classboarddetailreview/{ClassID}', [ReviewController::class, 'getClassReviewIndex']);
+Route::put('/classboarddetailreview/{ClassID}', [ReviewController::class, 'putClassReviewData']);
 
 
 

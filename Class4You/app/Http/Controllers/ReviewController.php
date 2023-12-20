@@ -83,25 +83,31 @@ class ReviewController extends Controller
         // Log::debug($request->UserID);
         // Log::debug($request->ClassID);
 
-        // 수강아이디 조건에 맞춰서(UserID,ClassID) 선택
+        // 유저가 제출한 리뷰 데이터의 사용자 ID와 클래스 ID에 해당하는 수강 아이디 조회
+        // 유저가 수강한 강의 조회
         $EnrollmentData = Enrollment::select('EnrollmentID')
             ->where('UserID', $request->UserID) 
             ->where('ClassID', $request->ClassID) 
             ->first();
 
-            
+        // 조회한 수강 아이디($EnrollmentData)를 리뷰 데이터($request)에 추가    
         $request->merge(['EnrollmentID' => $EnrollmentData->EnrollmentID]);
         $data = $request->only('EnrollmentID', 'ReviewComment', 'ReviewRating');
     
         // Log::debug($data);
 
-        
+        // 리뷰 데이터($data)를 Review모델을 사용해 데이터베이스에 저장.
+        // Review::create($data)데이터 베이스에 레코드 추가해줌.
         $result = Review::create($data);
     }
 
     // 강의게시판_수강평수정
-    public function putClassReviewData() {
+    public function putClassReviewData(Request $request, $ReviewID) {
 
+        $classReviewData = $request->only('ReviewComment', 'ReviewRating');
+        $result = Review::find($ReviewID);
+
+        $result->update($ReviewID);
     }
 
     // 강의게시판_수강평삭제

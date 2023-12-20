@@ -413,8 +413,10 @@ const store = createStore({
             console.log(data);
 
             frm.append('ClassID',data.ClassID);
+            frm.append('UserID',data.UserID);
             frm.append('ReviewComment',data.ReviewComment);
             frm.append('ReviewRating',data.ReviewRating);
+            frm.append('ReviewID',data.ReviewID);
 
             // console.log(frm);
 

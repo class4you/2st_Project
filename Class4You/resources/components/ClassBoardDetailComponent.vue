@@ -181,13 +181,46 @@
 						</div>
 						<div class="class_detail_rating_user_button">
 							<div class="class_detail_rating_user_update_button">
-								<button @click="putClassReview()">수정</button>
+								<button @click="classReviewUpdate(data)">수정</button>
 							</div>
 							<div class="class_detail_rating_user_delete_button">
-								<button @click="deleteClassReview()">삭제</button>
+								<button>삭제</button>
 							</div>
 						</div>
 					</div>
+				</div>
+				<!-- 수정폼 -->
+				<div v-if="editReview" id="class_tab1" class="class_detail_rating_list_div">
+						<div class="class_detail_rating_list_user">
+							<div class="class_detail_rating_form_star">
+								
+								<fieldset class="class_detail_rating_star_form" name="myform">
+									<legend class="class_detail_rating_star_form_title">별점</legend>
+										<input v-model="classReviewData.ReviewRating" class="class_detail_rating_star_input" type="radio" name="rating" value="5" id="rate1">
+											<label class="class_detail_rating_star_label" for="rate1">⭐</label>
+										<input v-model="classReviewData.ReviewRating" class="class_detail_rating_star_input" type="radio" name="rating" value="4" id="rate2">
+											<label class="class_detail_rating_star_label" for="rate2">⭐</label>
+										<input v-model="classReviewData.ReviewRating" class="class_detail_rating_star_input" type="radio" name="rating" value="3" id="rate3">
+											<label class="class_detail_rating_star_label" for="rate3">⭐</label>
+										<input v-model="classReviewData.ReviewRating" class="class_detail_rating_star_input" type="radio" name="rating" value="2" id="rate4">
+											<label class="class_detail_rating_star_label" for="rate4">⭐</label>
+										<input v-model="classReviewData.ReviewRating" class="class_detail_rating_star_input" type="radio" name="rating" value="1" id="rate5">
+											<label class="class_detail_rating_star_label" for="rate5">⭐</label>
+								</fieldset>
+							
+							</div>
+						</div>
+						<div class="class_detail_rating_list_text">
+							<textarea v-model="editReviewData.ReviewComment"></textarea>
+						</div>
+						<div class="class_detail_rating_user_button">
+							<div class="class_detail_rating_user_update_button">
+								<button @click="putClassReview()">수정</button>
+							</div>
+							<div class="class_detail_rating_user_delete_button">
+								<button>취소</button>
+							</div>
+						</div>
 				</div>
 			
 			<hr>
@@ -428,9 +461,11 @@ export default {
         		ReviewRating: '',
 			},
 			EnrollChk: {},
-			putReviewData: {
-
+			editReviewData: {
+				ReviewComment: '',
+        		ReviewRating: '',
 			},
+			editReview: false,
         }
     },
 	mounted() {
@@ -488,6 +523,15 @@ export default {
 		// 수강평 작성 함수
 		addClassReview() {
 			this.$store.dispatch('addClassReview', this.classReviewData);
+		},
+
+		//
+		classReviewUpdate(classReviewData) {
+			this.editReview = true;
+
+			console.log(reviewData.ReviewID);
+       		console.log(reviewData.ReviewComment);
+        	console.log(reviewData.ReviewRating);
 		},
 		
 		// 수강평 수정 함수
