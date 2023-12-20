@@ -38,29 +38,36 @@ class ReviewController extends Controller
     }
     
     //강의게시판_수강평작성
-    public function postClassReviewStore(Request $request) {
-        // $reviewUserData = User::find(auth()->id());
-        // $validator = Validator::make(request()->all(), [
-        //     'UserID' => 'required',
-        //     'ReviewComment' => 'required|max:200'
-        // ]);
+    // public function postClassReviewStore(Request $request) {
+    //     // $reviewUserData = User::find(auth()->id());
+    //     // $validator = Validator::make(request()->all(), [
+    //     //     'UserID' => 'required',
+    //     //     'ReviewComment' => 'required|max:200'
+    //     // ]);
 
-        $reviewData = [
-            'ReviewComment' => $request->input('ReviewComment'),
-            'ReviewRating' => $request->input('ReviewRating'),
-            'UserID' => auth()->id(), // 현재 로그인한 사용자의 ID
-        ];
+    //     $reviewData = [
+    //         'ReviewComment' => $request->input('ReviewComment'),
+    //         'ReviewRating' => $request->input('ReviewRating'),
+    //         'UserID' => auth()->id(), // 현재 로그인한 사용자의 ID
+    //     ];
 
-        //$reviewUserData에 가져올 다른 데이터가 있다면 여기서 처리
-        //예시
-        // $reviewUserData['UserID'] = $reviewData->UserID;
+    //     //$reviewUserData에 가져올 다른 데이터가 있다면 여기서 처리
+    //     //예시
+    //     // $reviewUserData['UserID'] = $reviewData->UserID;
 
-        $result = Review::create($reviewData);
+    //     $result = Review::create($reviewData);
 
-        // $reviewData['data'] = $result;
+    //     // $reviewData['data'] = $result;
 
-        // return response()->json($reviewData);
-        // return response()->json(['reviewData' => $reviewData, 'result' => $result]);
-        return response()->json(['result' => $result]);
+    //     // return response()->json($reviewData);
+    //     // return response()->json(['reviewData' => $reviewData, 'result' => $result]);
+    //     return response()->json(['result' => $result]);
+    // }
+
+    // 강의게시판_수강평
+    public function postClassReviewData(Request $request) {
+        $data = $request->only('ReviewID', 'UserID', 'ReviewComment', 'ReviewRating');
+        
+        $result = Review::create($data);
     }
 }
