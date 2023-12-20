@@ -19444,14 +19444,14 @@ __webpack_require__.r(__webpack_exports__);
     return {
       clickFlgTab: 0,
       newBoardItem: [],
-      commentsItems: [],
+      commentItems: [],
       // 댓글 출력시 필요한 데이터
       BoardCommentData: {
         BoardID: this.BoardID,
         UserID: this.$store.state.UserID,
         CommentID: this.CommentID,
         InstructorID: this.InstructorID,
-        CommentsContent: ''
+        CommentContent: ''
       },
       EnrollChk: {}
     };
@@ -19470,10 +19470,10 @@ __webpack_require__.r(__webpack_exports__);
         // 댓글을 받아오는 axios 처리
         axios__WEBPACK_IMPORTED_MODULE_0___default().get('/boarddetailcomments/' + _this.BoardID)
         // 두번째 API 응답에 대한 로직 수행
-        .then(function (commentsResponse) {
-          console.log(commentsResponse.data);
-          _this.commentsItems = commentsResponse.data;
-          _this.EnrollChk = commentsResponse.data.EnrollChk;
+        .then(function (commentResponse) {
+          console.log(commentResponse.data);
+          _this.commentItems = commentResponse.data;
+          _this.EnrollChk = commentResponse.data.EnrollChk;
         })["catch"](function (contentsError) {
           // 두번째 API 에러처리
           console.error(contentsError);

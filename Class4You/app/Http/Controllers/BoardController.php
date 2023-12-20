@@ -40,4 +40,12 @@ class BoardController extends Controller
         return response()->json($data);
     }
 
+    // 자유게시판 디테일 페이지 댓글 불러오기
+    public function getboarddeetailcomments($BoardID) {
+        $UserID = Auth::id();
+
+        $EnrollmentData = Enrollment::select('EnrollmentID')
+        ->where('')
+    }
+
 }
