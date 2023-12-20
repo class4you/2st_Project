@@ -161,10 +161,19 @@
 									</a>
 									</li>
 								</ul>
-								<!-- <div v-for="(page, index) in pagination" :key="index">
-									<a :href="page.url">{{ page.url }}</a>
-								</div> -->
 								</div>
+
+								<div class="qustuon_list_pageing">
+									<div v-for="(page, index) in pagination" :key="index">
+										<template v-if="page.url !== null">
+											<a @click.prevent="fetchData(page.label)" href="#">{{ page.label }}</a>
+										</template>
+										<template v-else>
+											<span>{{ page.label }}</span>
+										</template>
+									</div>
+								</div>
+
 							</div>
 							<div class="community_right_side">
 								<div class="ranking_container">
@@ -203,7 +212,7 @@ export default {
 		return {
 			newBoardItems: [],
 			pagination: {},
-			// page: {},
+			page: {},
 		}
 	},
 	
@@ -211,19 +220,18 @@ export default {
         this.fetchData();
     },
 	methods: {
-		fetchData() {
-        axios.get('/board')
+		fetchData(page) {
+        axios.get(`/board/data?page=${page}`)
             .then(response => {
-				console.log(response.data);
-				console.log(response.data.links);
-				console.log(response.data.data);
                 this.newBoardItems = response.data.data;
-				this.pagination = response.data.links;    
+                this.pagination = response.data.links;
+                this.page = response.data.current_page;
+				console.log(response.data.current_page);
             })
             .catch(error => {
                 console.error('Error fetching data:', error);
             });
-        },
+    },
 	}
 }
 
