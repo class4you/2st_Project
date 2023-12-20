@@ -334,7 +334,7 @@ const store = createStore({
                 context.commit('setRegistrationErrorMessage', err.response.data.errors);
             })
         },
-        
+
         // 수강평 수정 함수
         putClassReview(context, data) {
             const url = '/classboarddetailreview'
@@ -349,7 +349,6 @@ const store = createStore({
             console.log(data);
 
             frm.append('ClassID',data.ClassID);
-            frm.append('UserID',data.UserID);
             frm.append('ReviewComment',data.ReviewComment);
             frm.append('ReviewRating',data.ReviewRating);
 
@@ -369,6 +368,14 @@ const store = createStore({
                 context.commit('setRegistrationErrorMessage', err.response.data.errors);
             })
         },
+
+        // 수강평 삭제
+        deleteClassReview() {
+
+        },
+
+        // 커뮤니티 작성
+
 
 
 

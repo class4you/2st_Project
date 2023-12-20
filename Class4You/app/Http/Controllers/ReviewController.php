@@ -77,7 +77,7 @@ class ReviewController extends Controller
     //     return response()->json(['result' => $result]);
     // }
 
-    // 강의게시판_수강평
+    // 강의게시판_수강평작성
     public function postClassReviewData(Request $request) {
 
         // Log::debug($request->UserID);
@@ -97,5 +97,17 @@ class ReviewController extends Controller
 
         
         $result = Review::create($data);
+    }
+
+    // 강의게시판_수강평수정
+    public function putClassReviewData() {
+
+    }
+
+    // 강의게시판_수강평삭제
+    public function deletClassReviewData() {
+
+
+        
     }
 }
