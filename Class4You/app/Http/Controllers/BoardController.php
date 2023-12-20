@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Comment; 
 use App\Models\Board;
 use App\Models\BoardCategory;
 use App\Models\BoardLanguagelink;
@@ -40,12 +41,30 @@ class BoardController extends Controller
         return response()->json($data);
     }
 
-    // 자유게시판 디테일 페이지 댓글 불러오기
-    public function getboarddeetailcomments($BoardID) {
+// 자유게시판 디테일 페이지 댓글 불러오기
+    public function getBoardDetailComments($BoardID) {
         $UserID = Auth::id();
 
-        $EnrollmentData = Enrollment::select('EnrollmentID')
-        ->where('')
+        // 댓글 불러오기
+        $comments = Comment::select(
+                'comment.CommentID',
+                'comment.UserID',
+                'comment.InstructorID',
+                'comment.Comment_Content',
+                'comment.created_at',
+                'comment.updated_at',
+                'comment.deleted_at',
+                'Boards.UserID as BoardUserID', // 수정된 부분
+                'Boards.InstructorID as BoardInstructorID' // 수정된 부분
+            )
+            ->join('Boards', 'comment.BoardID', '=', 'Boards.BoardID') // 수정된 부분
+            ->where('comment.BoardID', $BoardID)
+            ->orderBy('comment.created_at', 'desc')
+            ->get();
+
+        return response()->json($comments);
     }
+
+
 
 }
