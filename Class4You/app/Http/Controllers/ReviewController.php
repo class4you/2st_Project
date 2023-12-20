@@ -71,6 +71,7 @@ class ReviewController extends Controller
         // Log::debug($request->UserID);
         // Log::debug($request->ClassID);
 
+        // 수강아이디 조건에 맞춰서(UserID,ClassID) 선택
         $EnrollmentData = Enrollment::select('EnrollmentID')
             ->where('UserID', $request->UserID) 
             ->where('ClassID', $request->ClassID) 
@@ -81,7 +82,6 @@ class ReviewController extends Controller
         $data = $request->only('EnrollmentID', 'ReviewComment', 'ReviewRating');
     
         Log::debug($data);
-
         
         $result = Review::create($data);
     }

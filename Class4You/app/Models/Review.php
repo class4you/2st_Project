@@ -22,6 +22,7 @@ class Review extends Model
 
     protected $primaryKey = 'ReviewID';
 
+    // erd보고 확인해야함.
     protected $fillable = [
         'EnrollmentID',
         'ReviewComment',
