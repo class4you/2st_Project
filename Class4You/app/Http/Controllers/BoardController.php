@@ -7,19 +7,16 @@ use App\Models\Board;
 use App\Models\BoardCategory;
 use App\Models\BoardLanguagelink;
 use App\Models\User;
-use App\Models\comments;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\DB;
 
 class BoardController extends Controller
 {
-    public function getBoardMainData(Request $request)
+    public function getBoardMainData()
     {
         $data = Board::orderBy('created_at', 'desc')
         ->paginate(10);
-
-        Log::debug($request);
 
         Log::debug($data);
         return response()->json($data);
@@ -41,13 +38,6 @@ class BoardController extends Controller
             ->first();
 
         return response()->json($data);
-    }
-
-    // 자유게시판 디테일 페이지 댓글 출력
-    public function getBoardDetailCommentShow($BoardID)
-    {
-        $data = Board::join('boards.UserID')
-            ->w ('comment.CommentID', 'users.UserID', 'boards.BoardID', 'Comment.InstruductorID')
     }
 
 }
