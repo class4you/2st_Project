@@ -165,7 +165,7 @@
 									</li>
 								</ul>
 								<div v-for="page in pagination" >
-									<a href="">{{ page }}</a>
+									<a href="">{{ page.url }}</a>
 								</div>
 								</div>
 							</div>
