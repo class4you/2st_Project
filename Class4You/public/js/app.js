@@ -19490,6 +19490,7 @@ __webpack_require__.r(__webpack_exports__);
   mounted: function mounted() {
     this.fetchData();
   },
+  updated: function updated() {},
   methods: {
     fetchData: function fetchData() {
       var _this = this;
@@ -19499,6 +19500,8 @@ __webpack_require__.r(__webpack_exports__);
         // API 응답에 대한 로직 수행
         console.log(response.data);
         _this.detailClassItems = response.data;
+
+        // if(this.clickFlgTab === 1) {
         axios__WEBPACK_IMPORTED_MODULE_0___default().get('/classboarddetailreview/' + _this.ClassID).then(function (reviewResponse) {
           // 두 번째 API 응답에 대한 로직 수행
           console.log(reviewResponse.data);
@@ -19507,6 +19510,7 @@ __webpack_require__.r(__webpack_exports__);
           // 두 번째 API 에러 처리
           console.error(reviewError);
         });
+        // }
       })["catch"](function (error) {
         // 에러 처리
         console.error(error);
