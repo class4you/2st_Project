@@ -10,9 +10,9 @@
                             <p>작성자<span>{{ newBoardItem.UserEmail }}</span></p>
                         </div>
                         <div class="row aiC">
-                            <p>작성일<span>2023.12.11</span></p>
-                            <p>조회수<span>{{newBoardItem.Board}}</span></p>
-                            <p>좋아요<span>9999</span></p>
+                            <p>작성일<span>{{ newBoardItem.created_at }}</span></p>
+                            <p>조회수<span>{{newBoardItem.BoardView}}</span></p>
+                            <p>좋아요<span>{{newBoardItem.Recommended}}</span></p>
                         </div>
                     </div>
                     <div class="postTitBox row aiC">
@@ -61,11 +61,11 @@
                     <div class="reviewList">
                         <div class="item">
                             <div class="commentInfo row aiC jcB">
-                                <p>작성자<span> {{data.CommentID}}</span></p>
-                                <p>작성일<span>{{ data.created_at }}</span></p>
+                                <p>작성자<span> 정미야옹호</span></p>
+                                <p>작성일<span>2000-01-14</span></p>
                             </div>
                             <div class="commentText">
-                             <span>{{ data.CommentContent }}</span>   
+                             <span>냥냥냥냥냥냥ss내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용</span>   
                             </div>
                             
                             <div class="commentActions row aiC">
@@ -108,72 +108,52 @@
     </div>
 </template>
 <script>
-import axios from 'axios'
-
 export default {
     name: 'BoardDetailComponent',
-    props: ['BoardID', 'CommentID'],
-    
+
+    props: ['BoardID'],
+
     data() {
         return {
-            clickFlgTab: 0,
-            newBoardItem: [],
-            commentItems: [],
-            // 댓글 출력시 필요한 데이터
-            BoardCommentData: {
-                BoardID: this.BoardID,
-                UserID: this.UserID,
-                CommentID: this.CommentID,
-                InstructorID: this.InstructorID,
-                CommentContent: '',
-            },
-            EnrollChk:{},
-        }
+        newBoardItem: {
+            comments: [],
+        },
+        newComment: '', 
+        };
     },
 
     mounted() {
         this.fetchData();
-    },
-    updated() {
-
     },
 
     methods: {
         fetchData() {
         axios.get('/boarddetail/' + this.BoardID)
             .then(response => {
-                console.log(response.data);
-                this.newBoardItem = response.data;
-
-                // 댓글을 받아오는 axios 처리
-                axios.get('/boarddetailcomments/' + this.BoardID)
-                // 두번째 API 응답에 대한 로직 수행
-                .then(commentResponse => {
-                console.log(commentResponse.data);
-                this.commentItems = commentResponse.data;
-                this.EnrollChk = commentResponse.data.EnrollChk; 
+            console.log(response.data);
+            this.newBoardItem = response.data;
             })
-            .catch(contentsError => {
-                // 두번째 API 에러처리
-                console.error(contentsError);
-            });
-        })
             .catch(error => {
-                console.error('Error fetching data:', error);
+            console.error('Error fetching data:', error);
             });
         },
-        addBoardComment() {
-            this.$store.dispatch('addBoardComment', this.BoardCommentData);
+
+        submitComment() {
+        axios.post('/api/comment', {
+            boardId: this.BoardID,
+            text: this.newComment,
+        })
+            .then(response => {
+            this.fetchData();
+            this.newComment = '';
+            })
+            .catch(error => {
+            console.error('Error submitting comment:', error);
+            });
         },
-        // putBoardComment() {
-
-        // },
     },
-}
-    
-    
-
-</script>
+    };
+    </script>
 <style>
     
 </style>
