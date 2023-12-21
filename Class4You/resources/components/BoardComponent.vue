@@ -130,8 +130,8 @@
 											</div>
 											<div class="question_info_footer">
 											<div class="question_info_detail">
-												<span class="question_info_user_name">작성자</span>
-												<span> · </span>
+												<span class="question_info_user_name">작성자 : {{ hideEmail(item.UserEmail) }}</span>
+												<span style="margin: 0px 10px 0px 10px;"> / </span>
 												<span class="question_info_user_name">작성시간 : {{ item.created_at }}</span>
 											</div>
 											<div class="question_info_user_data">
@@ -227,7 +227,7 @@ export default {
                 this.pagination = response.data.boardData.links;
                 this.page = response.data.boardData.current_page;
 				// console.log(response.data.current_page);
-				// console.log(response.data);
+				console.log(response.data);
 				console.log(response.data.userCntData);
             })
             .catch(error => {

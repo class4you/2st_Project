@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Board;
 use App\Models\BoardCategory;
 use App\Models\BoardLanguagelink;
+use App\Models\Comment;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
@@ -15,7 +16,8 @@ class BoardController extends Controller
 {
     public function getBoardMainData()
     {
-        $boardData = Board::orderBy('created_at', 'desc')
+        $boardData = Board::join('users', 'boards.UserID', 'users.UserID')
+            ->orderBy('boards.created_at', 'desc')
             ->paginate(10);
 
         $userCntData = User::select('users.UserEmail', DB::raw('count(*) as cnt'))
@@ -26,7 +28,7 @@ class BoardController extends Controller
 
         // Log::debug($UserCntData);
 
-        // Log::debug($boarddata);
+        Log::debug($boardData);
 
         return response()->json([
             'boardData' => $boardData,
@@ -44,12 +46,29 @@ class BoardController extends Controller
     // 자유게시판 디테일페이지로 이동
     public function getBoardDetailShow($BoardID) {
 
+        $UserID = Auth::id();
 
-        $data = Board::join('users', 'boards.UserID', 'users.UserID')
+        $userData = User::select('UserEmail')
+            ->where('UserID', $UserID)
+            ->first();
+
+        $boardData = Board::join('users', 'boards.UserID', 'users.UserID')
             ->where('BoardID', $BoardID)
             ->first();
 
-        return response()->json($data);
+        $boardComment = Comment::select('users.UserEmail', 'comments.CommentContent', 'comments.created_at')
+            ->join('boards', 'comments.BoardID', 'boards.BoardID')
+            ->join('users', 'boards.UserID', 'users.UserID')
+            ->where('comments.BoardID', $BoardID)
+            ->get();
+
+            Log::debug($boardComment);
+
+        return response()->json([
+            'boardData' => $boardData,
+            'userID' => $userData,
+            'commentData' => $boardComment
+        ]);
     }
     // 자유게시판 디테일 페이지 댓글 불러오기
     // public function getBoardDetailComments($BoardID) {

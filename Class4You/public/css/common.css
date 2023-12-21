@@ -2369,6 +2369,7 @@ option {
     color: #868e96;
     font-size: 12px;
     font-weight: 400;
+    line-height: 20px;
 }
 
 .question_info_detail {
@@ -3229,7 +3230,12 @@ option {
     transform: translate(-50%, -50%);
     border-radius: 10px;
 }
-
+@media (max-width: 1350px) {
+    .question_info_footer {
+        display: block;
+        line-height: 20px;
+    }
+}
 
 /* 추가된 모바일 레이아웃 스타일 */
 @media (max-width: 767px) {
@@ -3676,6 +3682,7 @@ option {
 .board_detail_user_id {
     margin-top: 10px;
     margin-bottom: 10px;
+    line-height: 20px;
 }
 /* 게시판 리스트 페이징 */
 .qustuon_list_pageing {
