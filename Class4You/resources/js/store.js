@@ -33,6 +33,7 @@ const store = createStore({
             userLoginChk: null,
             UserID: null,
             shouldShowCarousel: false,
+            myPageClickFlgTab: 1,
 
 
 
@@ -111,6 +112,9 @@ const store = createStore({
         },
         setShowCarousel(state, value) {
             state.shouldShowCarousel = value;
+        },
+        setMyPageTab(state, tab) {
+            state.myPageClickFlgTab = tab;
         },
         
 
@@ -194,15 +198,15 @@ const store = createStore({
 
             data.UserPrivacy = data.UserPrivacy ? 1 : 0;
 
-            data.UserAddress = data.UserAddress + ' ' + data.detailedAddress;
-
             frm.append('UserEmail',data.UserEmail);
             frm.append('UserPassword',data.UserPassword);
             frm.append('UserPasswordChk',data.UserPasswordChk);
             frm.append('UserName',data.UserName);
             frm.append('UserPhoneNumber',UserPhoneNumber);
             frm.append('UserBirthDate',data.UserBirthDate);
-            frm.append('UserAddress',data.UserAddress);
+            frm.append('UserPostcode',data.UserPostcode);
+            frm.append('UserRoadAddress',data.UserRoadAddress);
+            frm.append('UserDetailedAddress',data.UserDetailedAddress);
             frm.append('UserTermsofUse',data.UserTermsofUse);
             frm.append('UserPrivacy',data.UserPrivacy);
 

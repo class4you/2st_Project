@@ -38,7 +38,8 @@ class ReviewController extends Controller
             ->join('class_infos','class_infos.ClassID','enrollments.ClassID')
             ->join('users','enrollments.UserID','users.UserID')
             ->where('enrollments.ClassID', $ClassID)
-            ->orderBy('enrollments.created_at', 'desc')
+            // ->orderBy('enrollments.created_at', 'desc')
+            ->orderBy('reviews.created_at', 'desc')
             ->get();
 
         $result['EnrollChk'] = $EnrollmentData;

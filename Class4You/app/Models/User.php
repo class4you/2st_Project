@@ -24,11 +24,12 @@ class User extends Authenticatable
         'UserPhoneNumber',
         'UserName',
         'UserBirthDate',
-        'UserAddress',
+        'UserPostcode',
+        'UserRoadAddress',
+        'UserDetailedAddress',
         'UserTermsofUse',
         'UserPrivacy',
     ];
-
     /**
      * The attributes that should be hidden for serialization.
      *
