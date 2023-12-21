@@ -147,9 +147,9 @@
                 <!-- </form> -->
             </div>
 
-			<!-- <div v-if="!EnrollChk">
+			<div v-if="!EnrollChk">
 				로그인 바람
-			</div> -->
+			</div>
 
             <div class="class_detail_rating_list">
 				<div class="class_detail_rating_view_tab">
