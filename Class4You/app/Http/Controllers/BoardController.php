@@ -58,7 +58,7 @@ class BoardController extends Controller
 
         $boardComment = Comment::select('users.UserEmail', 'comments.CommentContent', 'comments.created_at', 'comments.CommentID', 'users.UserID')
             ->join('boards', 'comments.BoardID', 'boards.BoardID')
-            ->join('users', 'boards.UserID', 'users.UserID')
+            ->join('users', 'comments.UserID', 'users.UserID')
             ->where('comments.BoardID', $BoardID)
             ->orderBy('comments.created_at', 'desc')
             ->get();

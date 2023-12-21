@@ -330,11 +330,8 @@ const store = createStore({
             axios.post(url, frm, header)
             .then(res => {
                 console.log(res.data);
-                this.newCommentItem.push(response.data);
+                window.location.reload();
 
-                // 댓글 입력창 초기화
-                this.frmCommentData.CommentContent = "";
-                router.push('/boardDetail/' + data.BoardID); 
             })
             .catch(err => {
                 console.log(err.response.data.errors)

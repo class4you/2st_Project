@@ -4,6 +4,7 @@
 	padding: 0;
 	box-sizing: border-box;
     font-family: 'Noto Sans KR', sans-serif;
+    font-weight: 700;
 }
 /* reset.css */
 html, body, div, span, applet, object, iframe,
@@ -2102,6 +2103,9 @@ ul.class_tabs li.class_current {
     line-height: 30px;
     color: #000;
 }
+.community_aside_menu a:hover {
+    color: #002affba;
+}
 
 
 
@@ -2243,6 +2247,8 @@ ul.class_tabs li.class_current {
     text-align: left;
     display: none;
 }
+
+
 
 @media screen and (max-width: 1000px) {
     .posts_container_header select{
@@ -2478,6 +2484,9 @@ option {
     clip: rect(1px,1px,1px,1px);
     white-space: nowrap;
 }
+.comment_writer{
+    color: #006effdc!important;
+}
 
 .comment_count {
     margin-right: 12px;
@@ -2492,6 +2501,8 @@ option {
     font-size: 12px;
     font-weight: 700;
 }
+
+/* 수정삭제 토글 */
 
 .ranking_container {
     display: flex;
@@ -3078,12 +3089,21 @@ option {
 }
 
 /* 포스트 관련 스타일 */
-.postBox{
-    width: 100%;
+/* .postBox{
     padding: 30px;
-    background: #eee;
-    border: 1px solid #999;
+    background: var(--card-bg);
+    border-radius: 1rem;
+    border: 1rem solid var(--border-color);
+    width: 100%;
+} */
+.postBox {
+    padding: 30px;
+    background: var(--card-bg);
+    border-radius: 0.3rem;
+    border: 2px solid rgba(169, 169, 169, 0.3);
+    width: 100%;
 }
+
 .postBox label{
     display: block;
     width: 50px;
@@ -3097,9 +3117,8 @@ option {
 .postTitBox p{
     width: calc(100% - 50px);
     height: 40px;
-    border: none;
-    background: #ccc;
     padding: 10px;
+    border: 1px solid rgba(169, 169, 169, 0.3);
 }
 .postInfo{
     margin-bottom: 10px;
@@ -3131,14 +3150,13 @@ option {
 }
 .postContBox p{
     width: calc(100% - 50px);
-    border: none;
-    background: #ccc;
     resize: none;
     padding: 10px;
     font-size: 15px;
     line-height: 20px;
-}
-.laguage{
+    border: 1px solid rgba(169, 169, 169, 0.3);
+    }
+    .laguage{
     margin: 0 0 30px 50px;
 }
 .laguage li{
@@ -3168,7 +3186,7 @@ option {
 }
 .reviewBox {
     width: 100%;
-    padding: 30px 0px;
+    padding: 10px 10px;
     border-bottom: 1px solid #999;
     font-size: 15px;
 }
@@ -3750,14 +3768,23 @@ option {
     font-size: 15px;
     margin-top: 15px;
     color: #000;
+    justify-content: space-between;
+    margin: 0.75rem;
 }
 
 .qustuon_list_pageing a {
     color: #000;
+    display: inline-block;
+    padding: 8px 7px;
+    border-radius: 8px;
+    border: 2px solid #3d64bf80;
+    text-decoration: none;
 }
 
-
-
+.qustuon_list_pageing a:hover {
+    background-color: #3d414151; /* 호버 시 밝은 초록색 배경색으로 변경 */
+    color: #ffffff; /* 호버 시 검은색 글자색으로 변경 */
+}
 
 
 
@@ -4601,6 +4628,15 @@ option {
 
 .laguage_gap_10 {
     gap: 10px;
+    
+}
+.laguage li{
+    font-size: 12px;
+    margin-right: 5px;
+    padding: 5px 10px;
+    background-color: #1749ffa8;
+    border-radius: 2.5px;
+    color: white;
 }
 
 @media only screen and (max-width: 850px) {
