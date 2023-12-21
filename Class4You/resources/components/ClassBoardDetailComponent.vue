@@ -159,9 +159,9 @@
 					<div class="class_detail_rating_tab_title">
 						<span><a href="">인기순</a></span>
 					</div>
-					<div class="class_detail_rating_tab_title">
+					<!-- <div class="class_detail_rating_tab_title">
 						<span><a href="">조회순</a></span>
-					</div>
+					</div> -->
 				</div>
 
 			<hr>
@@ -181,7 +181,7 @@
 						</div>
 						<div class="class_detail_rating_user_button">
 							<div class="class_detail_rating_user_update_button">
-								<button @click="classReviewUpdate(data)">수정</button>
+								<!-- <button @click="classReviewUpdate(data)">수정</button> -->
 							</div>
 							<div class="class_detail_rating_user_delete_button">
 								<button>삭제</button>
@@ -189,8 +189,9 @@
 						</div>
 					</div>
 				</div>
+
 				<!-- 수정폼 -->
-				<div v-if="editReview" id="class_tab1" class="class_detail_rating_list_div">
+				<!-- <div v-if="editReview" id="class_tab1" class="class_detail_rating_list_div">
 						<div class="class_detail_rating_list_user">
 							<div class="class_detail_rating_form_star">
 								
@@ -221,7 +222,7 @@
 								<button>취소</button>
 							</div>
 						</div>
-				</div>
+				</div> -->
 			
 			<hr>
 
@@ -491,8 +492,8 @@ export default {
 				.then(reviewResponse => {
                     // 두 번째 API 응답에 대한 로직 수행
                     console.log(reviewResponse.data);
-					this.reviewClassItems = reviewResponse.data;
-					this.EnrollChk = reviewResponse.data.EnrollChk;
+					this.reviewClassItems = reviewResponse.data.reviewsData;
+					this.EnrollChk = reviewResponse.data.enrollmentData;
                 })
                 .catch(reviewError => {
                     // 두 번째 API 에러 처리
@@ -526,13 +527,13 @@ export default {
 		},
 
 		//
-		classReviewUpdate(classReviewData) {
-			this.editReview = true;
+		// classReviewUpdate(classReviewData) {
+		// 	this.editReview = true;
 
-			console.log(reviewData.ReviewID);
-       		console.log(reviewData.ReviewComment);
-        	console.log(reviewData.ReviewRating);
-		},
+		// 	console.log(reviewData.ReviewID);
+       	// 	console.log(reviewData.ReviewComment);
+        // 	console.log(reviewData.ReviewRating);
+		// },
 		
 		// 수강평 수정 함수
 		putClassReview() {

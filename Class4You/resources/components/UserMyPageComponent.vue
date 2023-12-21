@@ -539,9 +539,9 @@
                             <div class="users_class_thread_cover">
                                 <div class="users_class_thread_content_box">
                                     <span class="users_class_thread_content">{{ item.created_at }}</span>
-                                    <span class="users_class_thread_content">{{ item.BoardFlg }}</span>
+                                    <span class="users_class_thread_content">{{ item.BoardFlg === 0 ? '해결' : '미해결' }}</span>
                                     <span class="users_class_thread_content">{{ item.BoardTitle }}</span>
-                                    <button class="users_class_thread_button">게시판 이동</button>
+                                    <a :href="'/boardDetail/' + item.BoardID" class="users_class_thread_button">게시판 이동</a>
                                 </div>
                             </div>
                         </div>
