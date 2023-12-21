@@ -50,31 +50,31 @@
                         <p>답변<span>0</span></p>
                     </div>
                     <div class="reviewList">
-                        <p class="board_detail_user_id">유저 아이디</p>
+                        <p class="board_detail_user_id">{{nowUserID.UserEmail}}</p>
                     </div>
                     <div class="reviewPost row jcB">
-                        <textarea placeholder="댓글을 입력해주세요."></textarea>
-                        <button type="button">저장</button>
+                        <textarea placeholder="댓글을 입력해주세요." v-model="frmCommentData.CommentContent"></textarea>
+                        <button type="button" @click="submitCommentData()">저장</button>
                     </div>
                 </div>
                 <div class="reviewBox border-t-none">
-                    <div class="reviewList">
-                        <div class="item">
+                    <div v-for="item in newCommentItem" class="reviewList">
+                        <div  class="item">
                             <div class="commentInfo row aiC jcB">
-                                <p class="comment_writer">작성자<span> 정미야옹호</span></p>
-                                <p>작성일<span>2000-01-14</span></p>
+                                <p>작성자<span>{{ hideEmail(item.UserEmail) }}</span></p>
+                                <p>작성일<span>{{ item.created_at }}</span></p>
                             </div>
                             <div class="commentText">
-                             <span>냥냥냥냥냥냥ss내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용</span>   
+                             <span>{{ item.CommentContent }}</span>   
                             </div>
                             
                             <div class="commentActions row aiC">
-                                <div>
+                                <div style="margin-left: auto;">
                                     <button class="editBtn">수정</button>
                                     <button class="deleteBtn">삭제</button>
                                     <button class="reportBtn">신고</button>
                                 </div>
-                                <div class="Board_good_bad">
+                                <!-- <div class="Board_good_bad">
                                     <button type="button" class="Board_Good " aria-label="좋아요">
                                       <i class="fa-solid fa-thumbs-up"></i>
                                     </button>
@@ -82,7 +82,7 @@
                                     <button type="button" class="Board_Bad" aria-label="싫어요">
                                       <i class="fa-solid fa-thumbs-down"></i>
                                     </button>
-                                  </div>
+                                  </div> -->
                                 
                             
                             </div>
@@ -116,10 +116,18 @@ export default {
 
     data() {
         return {
-        newBoardItem: {
-            comments: [],
-        },
-        newComment: '', 
+            newBoardItem: {
+            },
+            nowUserID: {},
+            newCommentItem: {
+            },
+            newComment: '', 
+
+            frmCommentData: {
+                UserID: this.$store.state.UserID,
+                BoardID: this.BoardID,
+                CommentContent: '',
+            },
         };
     },
 
@@ -132,29 +140,27 @@ export default {
         axios.get('/boarddetail/' + this.BoardID)
             .then(response => {
             console.log(response.data);
-            this.newBoardItem = response.data;
+                this.newBoardItem = response.data.boardData;
+                this.nowUserID = response.data.userID;
+                this.newCommentItem = response.data.commentData;
+                console.log(response.data.commentData);
             })
             .catch(error => {
             console.error('Error fetching data:', error);
             });
         },
-
-        submitComment() {
-        axios.post('/api/comment', {
-            boardId: this.BoardID,
-            text: this.newComment,
-        })
-            .then(response => {
-            this.fetchData();
-            this.newComment = '';
-            })
-            .catch(error => {
-            console.error('Error submitting comment:', error);
-            });
+        hideEmail(email) {
+			const atIndex = email.indexOf('@');
+			const username = email.substring(0, Math.min(4, atIndex));
+			const asterisks = '*'.repeat(atIndex - 4);
+			return username + asterisks;
+		},
+        submitCommentData() {
+            this.$store.dispatch('submitCommentData', this.frmCommentData);
         },
     },
-    };
-    </script>
+};
+</script>
 <style>
     
 </style>

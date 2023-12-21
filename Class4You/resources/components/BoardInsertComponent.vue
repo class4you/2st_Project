@@ -45,11 +45,11 @@
             </div>
         </div>
 
-        <div class="css-140imd4">
+        <!-- <div class="css-140imd4">
             <ul class="css-5kov97">
                 <input aria-label="tag" placeholder="태그를 설정하세요 (최대 10개)" name="tag" class="css-1ryum8s">
             </ul>
-        </div>
+        </div> -->
 
         <div class="css-1utzp2z">
             <div class="editor-container" style="display: flex; flex-direction: column; height: 100%; max-height: 100%; min-height: 480px; border-radius: 8px;">
