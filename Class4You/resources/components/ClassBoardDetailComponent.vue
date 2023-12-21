@@ -56,7 +56,7 @@
                                 </div>
                                 <div class="class_detail_container_r_payment_classes">
 									<a v-if="EnrollChk" :href="'/classwatch/' + detailClassItems.ClassID">강의 시청</a>
-                                    <button v-else @click="addEnrollApp()">수강 신청</button>
+                                    <button v-else @click="postEnrollApp()">수강 신청</button>
                                 </div>
                             </div>
                         </div>
@@ -575,8 +575,8 @@ export default {
 		deleteClassReview() {
 			this.$store.dispatch('deleteClassReview', this.classReviewData);
 		},
-		addEnrollApp() {
-			this.$store.dispatch('addClassEnrollApp', this.classEnrollData);
+		postEnrollApp() {
+			this.$store.dispatch('postClassEnrollApp', this.classEnrollData);
 		}
 		
 	},

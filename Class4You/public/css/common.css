@@ -1530,6 +1530,22 @@ th:last-child, td:last-child {
     font-weight: 700;
 }
 
+.class_detail_container_r_payment_classes button {
+    background-color: transparent;
+    border: none;
+    color: #ffffff74;
+    padding: 10px 30px;
+    background-color: #3d64bf76;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.class_detail_container_r_payment_classes button:hover {
+    color: #fff;
+    background-color: #3D64BF;
+}
+
+
 .class_detail_container_r_payment_classes a {
     background-color: transparent;
     border: none;
@@ -2682,11 +2698,11 @@ option {
 }
 
 .question_status_tag_badge {
-    background-color: #f46d6dde;
+    background-color: #728ae9;
     border-radius: 50rem!important;
     display: inline-block;
-    padding: 0.35em 0.65em;
-    font-size: 10px;
+    padding: 5px 10px;
+    font-size: 12px;
     font-weight: 700;
     line-height: 1;
     color: #fff;
@@ -2695,16 +2711,25 @@ option {
     vertical-align: baseline;
 }
 
+.question_tag_unresolved {
+    background-color: #f46d6dde;
+}
+
+.question_tag_resolved {
+    border-color: #5d7cf8;
+}
+
 .title_text {
     flex: 1;
-    font-size: 15px;
+    font-size: 16px;
     color: #212529;
     font-weight: 700;
     /* overflow: hidden; */
     text-overflow: ellipsis;
     -webkit-line-clamp: 1;
     -webkit-box-orient: vertical;
-    line-height: 20px;
+    line-height: 25px;
+
 }
 
 .question_content_body {
@@ -2757,7 +2782,7 @@ option {
     -webkit-box-orient: vertical;
     white-space: nowrap;
     display: flex;
-    margin-top: 1rem;
+    /* margin-top: 1rem; */
     justify-content: space-between;
     color: #868e96;
     font-size: 12px;

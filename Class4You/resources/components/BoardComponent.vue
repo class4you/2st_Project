@@ -113,7 +113,7 @@
 											<div class="question_title">
 											<div class="title_sub_text">
 												<div class="question_status_tag">
-												<span class="question_status_tag_badge">{{ item.BoardFlg === '0' ? '미해결' : '해결' }}</span>
+												<span :class="{'question_status_tag_badge': true, 'question_tag_unresolved': item.BoardFlg === '0', 'question_tag_resolved': item.BoardFlg === '1'}">{{ item.BoardFlg === '0' ? '미해결' : '해결' }}</span>
 												</div>
 											</div>
 											<h3 class="title_text">

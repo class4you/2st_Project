@@ -10,27 +10,12 @@ use Illuminate\Support\Facades\Log;
 
 class EnrollmentController extends Controller
 {
-    public function getNewClassWatchData($ClassID) {
+    public function postClassEnrollData(Request $request) {
 
-        // $UserID = Auth::id();
+        Log::debug($request);
 
-        $classData = Classinfo::where('ClassID', $ClassID)
-            ->first();
-
-        $chapterData = Chapter::join('lessons', 'lessons.ChapterID', 'chapters.ChapterID')
-            ->where('chapters.ClassID', $ClassID)
-            ->get();
-
-        // $lessonData = Lesson::
-
-        Log::debug($ClassID);
-        Log::debug($classData);
-        Log::debug($ClassID);
-        Log::debug($chapterData);
-
-        return response()->json([
-            'boardData' => $classData,
-            'userID' => $chapterData,
-        ]);
+        $data = $request->only('UserID', 'ClassID');
+        
+        $result = Enrollment::create($data);
     }
 }

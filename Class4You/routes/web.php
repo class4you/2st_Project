@@ -47,6 +47,11 @@ Route::get('/classBoardDetail/{ClassID}', [ClassInfoController::class, 'getClass
 // 수강 정보 확인 컨트롤러
 // Route::get('/classBoardDetail/{ClassID}', [ClassBoardController::class, 'getClassBoardDetailShow']);
 
+// 수강 신청 컨트롤러
+Route::post('/classEnrollAppPost', [EnrollmentController::class, 'postClassEnrollData']);
+
+// 강의 수강평
+
 Route::post('/classboarddetailreview', [ReviewController::class, 'postClassReviewData']);
 Route::get('/classboarddetailreview/{ClassID}', [ReviewController::class, 'getClassReviewIndex']);
 Route::put('/classboarddetailreview/{ClassID}', [ReviewController::class, 'putClassReviewData']);
