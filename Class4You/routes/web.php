@@ -7,6 +7,7 @@ use App\Http\Controllers\ClassInfoController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\BoardController;
 use App\Http\Controllers\MyPageController;
+use App\Http\Controllers\CommentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -76,6 +77,11 @@ Route::get('/board/data', [BoardController::class, 'getBoardMainData']);
 Route::post('/boardInsert', [BoardController::class, 'postBoardData']);
 
 Route::get('/boarddetail/{BoardID}', [BoardController::class, 'getBoardDetailShow']);
+
+
+// 코멘트 작업
+Route::post('/comments', [CommentController::class, 'postCommentData']);
+
 
 
 

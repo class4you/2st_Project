@@ -271,6 +271,7 @@ const store = createStore({
                 // 쿠키 삭제
                 console.log(res.data)
                 context.commit('setUserLoginChk', res.data.sessionDataCheck);
+                localStorage.clear();
                 router.push('/'); 
                 // window.location.href = '/';
             })
@@ -309,34 +310,37 @@ const store = createStore({
 
         // 김민정
         // 댓글 작성 함수
-        // addBoardComment(context, data) {
-        //     const url = '/boarddetailcomments'
-        //     const header = {
-        //         headers: {
-        //             "Content-Type": 'multipart/form-data',
-        //             'X-CSRF-TOKEN': document.head.querySelector('meta[name="csrf-token"]').content,
-        //         },
-        //     }
-        //     let frm = new FormData();
-        //     console.log(data);
+        submitCommentData(context, data) {
+            const url = '/comments'
+            const header = {
+                headers: {
+                    "Content-Type": 'multipart/form-data',
+                    'X-CSRF-TOKEN': document.head.querySelector('meta[name="csrf-token"]').content,
+                },
+            }
+            let frm = new FormData();
+            console.log(data);
 
-        //     frm.append('BoardID',data.BoardID);
-        //     frm.append('UserID',data.UserID);
-        //     frm.append('CommentID',data.CommentID);
-        //     frm.append('InstructorID',data.InstructorID);
-        //     frm.append('CommentContent',data.CommentContent);
-            
-        //     // console.log(frm);
+            frm.append('BoardID',data.BoardID);
+            frm.append('UserID',data.UserID);
+            frm.append('CommentContent',data.CommentContent);
 
-        //     axios.post(url, frm, header)
-        //     .then(res => {
-        //         console.log(res.data);
-        //     })
-        //     .catch(err => {
-        //         console.log(err.response.data.errors)
-        //         context.commit('setRegistrationErrorMessage', err.response.data.errors);
-        //     })
-        // }, 
+            // console.log(frm);
+
+            axios.post(url, frm, header)
+            .then(res => {
+                console.log(res.data);
+                this.newCommentItem.push(response.data);
+
+                // 댓글 입력창 초기화
+                this.frmCommentData.CommentContent = "";
+                router.push('/boardDetail/' + data.BoardID); 
+            })
+            .catch(err => {
+                console.log(err.response.data.errors)
+                context.commit('setRegistrationErrorMessage', err.response.data.errors);
+            })
+        }, 
 
 
 
