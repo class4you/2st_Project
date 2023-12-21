@@ -1,5 +1,6 @@
 <template>
-    <div> 
+    <div>
+		<div style="padding: 0 10vw;" class="whr"><span>게시판</span><span>&gt;</span><span>게시판</span></div>
         <div class="class_detail_visual">
             <div class="class_detail_container_box">
                 
@@ -51,7 +52,7 @@
                             </div>
                             <div class="class_detail_container_r_payment_box">
                                 <div class="class_detail_container_r_payment_price">
-                                    <span>가격: {{ detailClassItems.ClassPrice }}원</span>
+                                    <span>가격: {{ detailClassItems.ClassPrice === 0 ? '무료' : detailClassItems.ClassPrice + '원' }}</span>
                                 </div>
                                 <div class="class_detail_container_r_payment_classes">
                                     <button>수강 신청</button>

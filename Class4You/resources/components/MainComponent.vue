@@ -122,20 +122,20 @@
 
                             <carousel v-if="$store.state.shouldShowCarousel" :per-page="4" :navigation-enabled="true" :autoplay=0 :transition="500" >
                                 <Slide v-for="item in hot_banners" :key="item.id">
-                                    <a href="">
+                                    <a :href="item.url">
                                         <li class="main_container_hot_card">
                                             <div class="main_container_hot_card_img">
-                                                <img :src="item" alt="">
+                                                <img :src="item.img" alt="">
                                             </div>
                                         </li>
                                     </a>
                                 </Slide>
                             </carousel>
                             
-                            <a v-if="!$store.state.shouldShowCarousel" v-for="item in hot_banners" :key="item.id" href="">
+                            <a v-if="!$store.state.shouldShowCarousel" v-for="item in hot_banners" :key="item.id" :href="item.url">
                                 <li class="main_container_hot_card">
                                     <div class="main_container_hot_card_img">
-                                        <img :src="item" alt="">
+                                        <img :src="item.img" alt="">
                                     </div>
                                 </li>
                             </a>
@@ -153,20 +153,20 @@
                         <ul class="main_container_keyword">
                             <carousel v-if="$store.state.shouldShowCarousel" :per-page="4" :navigation-enabled="true" :autoplay=0 :transition="500" >
                                 <Slide v-for="item in guide_banners" :key="item.id">
-                                    <a href="">
+                                    <a :href="item.url">
                                         <li class="main_container_keyword_card">
                                             <div class="main_container_keyword_card_img">
-                                                <img :src="item" alt="">
+                                                <img :src="item.img" alt="">
                                             </div>
                                         </li>
                                     </a>
                                 </Slide>
                             </carousel>
 
-                            <a v-if="!$store.state.shouldShowCarousel" v-for="item in guide_banners" :key="item.id" href="">
+                            <a v-if="!$store.state.shouldShowCarousel" v-for="item in guide_banners" :key="item.id" :href="item.url">
                                 <li class="main_container_keyword_card">
                                     <div class="main_container_keyword_card_img">
-                                        <img :src="item" alt="">
+                                        <img :src="item.img" alt="">
                                     </div>
                                 </li>
                             </a>
@@ -197,12 +197,36 @@ export default {
 		Pagination,
         Navigation,
 	},
-
+    // href="/classBoard/HTML"
     data() {
         return {
             newClassItems: [],
-            hot_banners: ['/img/hot_banner/hot_banner_1.png', '/img/hot_banner/hot_banner_2.png', '/img/hot_banner/hot_banner_3.png', '/img/hot_banner/hot_banner_4.png', '/img/hot_banner/hot_banner_5.png', '/img/hot_banner/hot_banner_6.png', '/img/hot_banner/hot_banner_7.png' , '/img/hot_banner/hot_banner_8.png'],
-            guide_banners: ['/img/guide/html.png', '/img/guide/css.png', '/img/guide/js.png', '/img/guide/php.png', '/img/guide/java.png', '/img/guide/db.png', '/img/guide/jira.png', '/img/guide/figma.png',],
+            // hot_banners: ['/img/hot_banner/hot_banner_1.png', '/img/hot_banner/hot_banner_2.png', '/img/hot_banner/hot_banner_3.png', '/img/hot_banner/hot_banner_4.png', '/img/hot_banner/hot_banner_5.png', '/img/hot_banner/hot_banner_6.png', '/img/hot_banner/hot_banner_7.png' , '/img/hot_banner/hot_banner_8.png'],
+            
+            hot_banners: [
+                { url: ['/classboarddetail/5'], img: ['/img/hot_banner/hot_banner_1.png']},
+                { url: ['/classboarddetail/5'], img: ['/img/hot_banner/hot_banner_2.png']},
+                { url: ['/classboarddetail/5'], img: ['/img/hot_banner/hot_banner_3.png']},
+                { url: ['/classboarddetail/5'], img: ['/img/hot_banner/hot_banner_4.png']},
+                { url: ['/classboarddetail/5'], img: ['/img/hot_banner/hot_banner_5.png']},
+                { url: ['/classboarddetail/5'], img: ['/img/hot_banner/hot_banner_6.png']},
+                { url: ['/classboarddetail/5'], img: ['/img/hot_banner/hot_banner_7.png']},
+                { url: ['/classboarddetail/5'], img: ['/img/hot_banner/hot_banner_8.png']},
+            ],
+            
+            // guide_banners: ['/img/guide/html.png', '/img/guide/css.png', '/img/guide/js.png', '/img/guide/php.png', '/img/guide/java.png', '/img/guide/db.png', '/img/guide/jira.png', '/img/guide/figma.png',],
+
+            guide_banners: [
+                { url: ['/classBoard/HTML'], img: ['/img/guide/html.png']},
+                { url: ['/classBoard/CSS'], img: ['/img/guide/css.png']},
+                { url: ['/classBoard/JavaScript'], img: ['/img/guide/js.png']},
+                { url: ['/classBoard/PHP'], img: ['/img/guide/php.png']},
+                { url: ['/classBoard/JAVA'], img: ['/img/guide/java.png']},
+                { url: ['/classBoard/DataBase'], img: ['/img/guide/db.png']},
+                { url: ['/classBoard/HTML'], img: ['/img/guide/jira.png']},
+                { url: ['/classBoard/HTML'], img: ['/img/guide/figma.png']},
+            ],
+
             autoplay: true,
             autoplayDuration: 2500,
             giftItems: [

@@ -31,6 +31,7 @@ const routes = [
     // },
     {
         path: '/boardinsert',
+        name: 'BoardInsert',
         component: BoardInsertComponent,
     },
     {

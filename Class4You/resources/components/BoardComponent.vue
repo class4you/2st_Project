@@ -33,7 +33,7 @@
 											자유게시판
 										</a>
 										</li>
-										<li class="community_aside_menu">
+										<!-- <li class="community_aside_menu">
 										<a href="">질문게시판</a>
 											<ul class="community_dropdown">
 											<li><a href="/classBoard/HTML">HTML</a></li>
@@ -43,7 +43,7 @@
 											<li><a href="/classBoard/JAVA">JAVA</a></li>
 											<li><a href="/classBoard/DataBase">DataBase</a></li>
 											</ul> 
-										</li>
+										</li> -->
 									</ul>
 									</li>
 								</ul>
@@ -113,7 +113,7 @@
 											<div class="question_title">
 											<div class="title_sub_text">
 												<div class="question_status_tag">
-												<span class="question_status_tag_badge">미해결</span>
+												<span class="question_status_tag_badge">{{ item.BoardFlg === '0' ? '미해결' : '해결' }}</span>
 												</div>
 											</div>
 											<h3 class="title_text">
@@ -180,14 +180,12 @@
 								<p class="weeklyranking">주간 인기 순위</p>
 								<ul class="ranking_weekly_popular_writes_list">
 									<li class="ranking_weekly_popular_write">
-									<a href="">
-										<ol class="ranking_weekly_popular_write_list">
-										<li class="ranking_weekly_popular_write_writer">1. 작성자 아이디</li>
-										<li class="ranking_weekly_popular_write_writer">2. 작성자 아이디</li>
-										<li class="ranking_weekly_popular_write_writer">3. 작성자 아이디</li>
+									<div>
+										<ol v-for="(item, index) in newUserCntItems" :key="item.id" class="ranking_weekly_popular_write_list">
+											<li class="ranking_weekly_popular_write_writer">{{ index + 1 }}. {{ hideEmail(item.UserEmail) }}</li>
+											<li class="ranking_weekly_popular_write_writer">답변 수 : {{ item.cnt }}</li>
 										</ol>
-										
-									</a>
+									</div>
 									</li>
 								</ul>
 								</div>
@@ -211,6 +209,7 @@ export default {
 	data() {
 		return {
 			newBoardItems: [],
+			newUserCntItems: [],
 			pagination: {},
 			page: {},
 		}
@@ -223,15 +222,24 @@ export default {
 		fetchData(page) {
         axios.get(`/board/data?page=${page}`)
             .then(response => {
-                this.newBoardItems = response.data.data;
-                this.pagination = response.data.links;
-                this.page = response.data.current_page;
-				console.log(response.data.current_page);
+                this.newBoardItems = response.data.boardData.data;
+                this.newUserCntItems = response.data.userCntData;
+                this.pagination = response.data.boardData.links;
+                this.page = response.data.boardData.current_page;
+				// console.log(response.data.current_page);
+				// console.log(response.data);
+				console.log(response.data.userCntData);
             })
             .catch(error => {
                 console.error('Error fetching data:', error);
             });
-    },
+    	},
+		hideEmail(email) {
+			const atIndex = email.indexOf('@');
+			const username = email.substring(0, Math.min(4, atIndex));
+			const asterisks = '*'.repeat(atIndex - 4);
+			return username + asterisks;
+		},
 	}
 }
 

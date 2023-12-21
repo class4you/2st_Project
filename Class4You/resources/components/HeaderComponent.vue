@@ -48,10 +48,10 @@
                     <!-- <router-link to="/">MY PAGE</router-link> -->
                     <a href="/usermypage">MY PAGE</a>
                     <a @click="logout" style="cursor: pointer;">LOGOUT</a>
-                    <div class="search_box">
+                    <!-- <div class="search_box">
                         <input type="text" placeholder="SEARCH">
                         <button><img src="/img/SEARCH.png" alt=""></button>
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </header>
