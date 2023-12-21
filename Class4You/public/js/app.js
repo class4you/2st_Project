@@ -22711,7 +22711,6 @@ var store = (0,vuex__WEBPACK_IMPORTED_MODULE_3__.createStore)({
     // 김민정
     // 댓글 작성 함수
     submitCommentData: function submitCommentData(context, data) {
-      var _this = this;
       var url = '/comments';
       var header = {
         headers: {
@@ -22729,11 +22728,7 @@ var store = (0,vuex__WEBPACK_IMPORTED_MODULE_3__.createStore)({
 
       axios__WEBPACK_IMPORTED_MODULE_0___default().post(url, frm, header).then(function (res) {
         console.log(res.data);
-        _this.newCommentItem.push(response.data);
-
-        // 댓글 입력창 초기화
-        _this.frmCommentData.CommentContent = "";
-        _router_js__WEBPACK_IMPORTED_MODULE_1__["default"].push('/boardDetail/' + data.BoardID);
+        window.location.reload();
       })["catch"](function (err) {
         console.log(err.response.data.errors);
         context.commit('setRegistrationErrorMessage', err.response.data.errors);
