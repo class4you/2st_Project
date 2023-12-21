@@ -1422,16 +1422,17 @@ ul.class_tabs li.class_current {
 
 .class_detail_rating_user_delete_button>button {
     padding: 5px 20px;
-    background-color: #3D64BF;
+    background-color: #cdc9c9;
     border-radius: 5px;
-    border: none;
-    color: #ffffff74;
+    border: 0.8px solid #cdc9c9;
+    color: #ffffff;
     cursor: pointer;
 }
 
 .class_detail_rating_user_delete_button>button:hover {
     color: #fff;
-    background-color: #3D64BF;
+    background-color: #a19f9f;
+    border: none;
 }
 
 .class_detail_rating_star_form>fieldset{
