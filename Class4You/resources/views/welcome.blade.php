@@ -7,12 +7,20 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <script src="{{ asset('js/app.js') }}" defer></script>
     <title>Document</title>
+    <style>
+        .wrapper {
+            height:auto;
+            min-height: 100%;
+            padding-bottom: 150px; // 현재 푸터의 높이
+        }
+    </style>
 </head>
 <body>
     <div id="app">
-        <Header-Component></Header-Component>
-        <App-Component></App-Component>
-        {{-- <Main-Component></Main-Component> --}}
+        <div class="wrapper">
+            <Header-Component></Header-Component>
+            <App-Component></App-Component>
+        </div>
         <Footer-Component></Footer-Component>
     </div>
 </body>

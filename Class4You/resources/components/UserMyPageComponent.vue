@@ -2,16 +2,16 @@
     <div>
         <div class="my_page_main">
             <div class="my_page_main_tap_uis">
-                <div @click="clickFlgTab = 1;" class="my_page_main_tap_ui">대시보드</div>
-                <div @click="clickFlgTab = 2;" class="my_page_main_tap_ui">계정정보</div>
-                <div @click="clickFlgTab = 3;" class="my_page_main_tap_ui">나의학습</div>
-                <div @click="clickFlgTab = 4;" class="my_page_main_tap_ui">강의노트</div>
-                <div @click="clickFlgTab = 5;" class="my_page_main_tap_ui">작성 게시글</div>
-                <div @click="clickFlgTab = 6;" class="my_page_main_tap_ui">구매내역</div>
+                <div @click="handleTabClick(1)" class="my_page_main_tap_ui">대시보드</div>
+                <div @click="handleTabClick(2)" class="my_page_main_tap_ui">계정정보</div>
+                <div @click="handleTabClick(3)" class="my_page_main_tap_ui">나의학습</div>
+                <div @click="handleTabClick(4)" class="my_page_main_tap_ui">강의노트</div>
+                <div @click="handleTabClick(5)" class="my_page_main_tap_ui">작성 게시글</div>
+                <div @click="handleTabClick(6)" class="my_page_main_tap_ui">구매내역</div>
                 <!-- <div class="my_page_main_tap_ui" onclick="showDashboardContent('공란')">공란</div> -->
             </div>
 
-            <div v-if="clickFlgTab === 1" class="my_page_dashboard_box">
+            <div v-if="$store.state.myPageClickFlgTab === 1" class="my_page_dashboard_box">
                 <div class="my_page_dashboard_box_cover">
                     <div class="dashboard_recent_learning_class">
                         <div class="dashboard_recent_learning_class_title">
@@ -256,7 +256,7 @@
             </div>
 
 
-            <div v-if="clickFlgTab === 2" class="my_page_users_box">
+            <div v-if="$store.state.myPageClickFlgTab === 2" class="my_page_users_box">
                 <div class="my_page_users_box_cover">
                     <div class="users_basic_information">
                         <div class="users_basic_information_title">
@@ -307,12 +307,17 @@
                         </div>
                         <div class="users_basic_information_box">
                             <div class="users_basic_information_cover">
-                                <div class="users_basic_information_title_name">
-                                    <a>우편 번호</a>
+                                <div class="users_basic_address_cover">
+                                    <div class="users_basic_information_title_name">
+                                        <a>우편 번호</a>
+                                    </div>
+                                    <div class="users_basic_information_title_name">
+                                        <button type="button" class="user_address_button">주소 찾기</button>
+                                    </div>
                                 </div>
                                 <div class="users_basic_information_content_cover">
                                     <div>
-                                        <p>34893</p>
+                                        <input type="text" :value="newUserInfoItems.UserPostcode">
                                     </div>
                                 </div>
                             </div>
@@ -322,7 +327,7 @@
                                 </div>
                                 <div class="users_basic_information_content_cover">
                                     <div>
-                                        <input type="text" name="" id="" value="대구광역시 중구 공평로 105">
+                                        <input type="text" :value="newUserInfoItems.UserRoadAddress">
                                     </div>
                                 </div>
                             </div>
@@ -332,7 +337,7 @@
                                 </div>
                                 <div class="users_basic_information_content_cover">
                                     <div>
-                                        <input type="text" name="" id="" value="노마즈하우스 1528호">
+                                        <input type="text" :value="newUserInfoItems.UserDetailedAddress">
                                         <!-- <p>대구광역시 중구 공평로 105, 노마즈하우스 1528호</p> -->
                                     </div>
                                 </div>
@@ -365,14 +370,14 @@
                                 </div>
                                 <div class="users_basic_information_content_cover">
                                     <div>
-                                        <input type="text" name="" id="" value="">
+                                        <input type="password">
                                     </div>
                                 </div>
                             </div>
                             <div class="users_basic_information_cover" style="margin-bottom: 12px;">
                                 <div class="users_basic_information_content_cover">
                                     <div>
-                                        <input type="text" name="" id="" value="" placeholder="변경할 비밀번호를 입력해주세요.">
+                                        <input type="password" placeholder="변경할 비밀번호를 입력해주세요.">
                                         <!-- <p>대구광역시 중구 공평로 105, 노마즈하우스 1528호</p> -->
                                     </div>
                                 </div>
@@ -380,7 +385,7 @@
                             <div class="users_basic_information_cover">
                                 <div class="users_basic_information_content_cover">
                                     <div>
-                                        <input type="text" name="" id="" value=""  placeholder="변경할 비밀번호를 확인을 입력해주세요.">
+                                        <input type="password" placeholder="변경할 비밀번호를 확인을 입력해주세요.">
                                         <!-- <p>대구광역시 중구 공평로 105, 노마즈하우스 1528호</p> -->
                                     </div>
                                 </div>
@@ -401,9 +406,9 @@
                             <div class="users_basic_password_cover">
                                 <div class="users_basic_password_title">
                                     <span class="users_password_titel">비밀번호</span>
-                                    <input class="users_password_input" type="text" placeholder="비밀번호를 입력하세요">
+                                    <input class="users_password_input" type="password" placeholder="비밀번호를 입력하세요">
                                     <span class="users_password_titel">비밀번호 확인</span>
-                                    <input class="users_password_input" type="text" placeholder="비밀번호를 입력하세요">
+                                    <input class="users_password_input" type="password" placeholder="비밀번호를 입력하세요">
                                 </div>
                             </div>
                         </div>
@@ -415,7 +420,7 @@
 
 
 
-            <div v-if="clickFlgTab === 3" class="my_page_class_box">
+            <div v-if="$store.state.myPageClickFlgTab === 3" class="my_page_class_box">
                 <div class="my_page_class_box_cover">
                     <div class="class_basic_information">
                         <div class="class_basic_information_title">
@@ -425,77 +430,20 @@
     
                     <div class="my_page_container_new_box">
                         <ul class="my_page_container_new">
-                            <a href="">
+                            <a v-for="item in newUserClassInfoItem" :href="'/classboarddetail/' + item.ClassID">
                                 <li class="my_page_container_new_card">
                                     <div class="my_page_container_new_card_img">
-                                        <img src="/img/html/1st/html1.png" alt="">
+                                        <img :src="'/' + item.ClassImg" alt="">
                                     </div>
                                 </li>
                             </a>
-    
-                            <a href="">
-                                <li class="my_page_container_new_card">
-                                    <div class="my_page_container_new_card_img">
-                                        <img src="/img/html/1st/html1.png" alt="">
-                                    </div>
-                                </li>
-                            </a>
-    
-                            <a href="">
-                                <li class="my_page_container_new_card">
-                                    <div class="my_page_container_new_card_img">
-                                        <img src="/img/html/1st/html1.png" alt="">
-                                    </div>
-                                </li>
-                            </a>
-    
-                            <a href="">
-                                <li class="my_page_container_new_card">
-                                    <div class="my_page_container_new_card_img">
-                                        <img src="/img/html/1st/html1.png" alt="">
-                                    </div>
-                                </li>
-                            </a>
-    
-                            <a href="">
-                                <li class="my_page_container_new_card">
-                                    <div class="my_page_container_new_card_img">
-                                        <img src="/img/html/1st/html1.png" alt="">
-                                    </div>
-                                </li>
-                            </a>
-    
-                            <a href="">
-                                <li class="my_page_container_new_card">
-                                    <div class="my_page_container_new_card_img">
-                                        <img src="/img/html/1st/html1.png" alt="">
-                                    </div>
-                                </li>
-                            </a>
-    
-                            <a href="">
-                                <li class="my_page_container_new_card">
-                                    <div class="my_page_container_new_card_img">
-                                        <img src="/img/html/1st/html1.png" alt="">
-                                    </div>
-                                </li>
-                            </a>
-    
-                            <a href="">
-                                <li class="my_page_container_new_card">
-                                    <div class="my_page_container_new_card_img">
-                                        <img src="/img/html/1st/html1.png" alt="">
-                                    </div>
-                                </li>
-                            </a>
-    
                         </ul>
                     </div>
                 </div>
             </div>
 
 
-            <div v-if="clickFlgTab === 4" class="my_page_class_box">
+            <div v-if="$store.state.myPageClickFlgTab === 4" class="my_page_class_box">
                 <div class="my_page_class_box_cover">
                     <div class="class_basic_information">
                         <div class="class_basic_information_title">
@@ -578,7 +526,7 @@
             </div>
 
 
-            <div v-if="clickFlgTab === 5" class="my_page_class_box">
+            <div v-if="$store.state.myPageClickFlgTab === 5" class="my_page_class_box">
                 <div class="my_page_class_box_cover">
                     <div class="class_basic_information">
                         <div class="class_basic_information_title">
@@ -586,100 +534,23 @@
                         </div>
                     </div>
 
-                    <div class="users_class_thread_full_cover">
+                    <div v-for="item in newUserBoardInfoItem" class="users_class_thread_full_cover">
                         <div class="users_class_thread_box">
                             <div class="users_class_thread_cover">
                                 <div class="users_class_thread_content_box">
-                                    <span class="users_class_thread_content">작성일자</span>
-                                    <span class="users_class_thread_content">해결</span>
-                                    <span class="users_class_thread_content">질문 내용</span>
+                                    <span class="users_class_thread_content">{{ item.created_at }}</span>
+                                    <span class="users_class_thread_content">{{ item.BoardFlg }}</span>
+                                    <span class="users_class_thread_content">{{ item.BoardTitle }}</span>
                                     <button class="users_class_thread_button">게시판 이동</button>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <div class="users_class_thread_full_cover">
-                        <div class="users_class_thread_box">
-                            <div class="users_class_thread_cover">
-                                <div class="users_class_thread_content_box">
-                                    <span class="users_class_thread_content">작성일자</span>
-                                    <span class="users_class_thread_content">해결</span>
-                                    <span class="users_class_thread_content">질문 내용</span>
-                                    <button class="users_class_thread_button">게시판 이동</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="users_class_thread_full_cover">
-                        <div class="users_class_thread_box">
-                            <div class="users_class_thread_cover">
-                                <div class="users_class_thread_content_box">
-                                    <span class="users_class_thread_content">작성일자</span>
-                                    <span class="users_class_thread_content">해결</span>
-                                    <span class="users_class_thread_content">질문 내용</span>
-                                    <button class="users_class_thread_button">게시판 이동</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="users_class_thread_full_cover">
-                        <div class="users_class_thread_box">
-                            <div class="users_class_thread_cover">
-                                <div class="users_class_thread_content_box">
-                                    <span class="users_class_thread_content">작성일자</span>
-                                    <span class="users_class_thread_content">해결</span>
-                                    <span class="users_class_thread_content">질문 내용</span>
-                                    <button class="users_class_thread_button">게시판 이동</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="users_class_thread_full_cover">
-                        <div class="users_class_thread_box">
-                            <div class="users_class_thread_cover">
-                                <div class="users_class_thread_content_box">
-                                    <span class="users_class_thread_content">작성일자</span>
-                                    <span class="users_class_thread_content">해결</span>
-                                    <span class="users_class_thread_content">질문 내용</span>
-                                    <button class="users_class_thread_button">게시판 이동</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="users_class_thread_full_cover">
-                        <div class="users_class_thread_box">
-                            <div class="users_class_thread_cover">
-                                <div class="users_class_thread_content_box">
-                                    <span class="users_class_thread_content">작성일자</span>
-                                    <span class="users_class_thread_content">해결</span>
-                                    <span class="users_class_thread_content">질문 내용</span>
-                                    <button class="users_class_thread_button">게시판 이동</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="users_class_thread_full_cover">
-                        <div class="users_class_thread_box">
-                            <div class="users_class_thread_cover">
-                                <div class="users_class_thread_content_box">
-                                    <span class="users_class_thread_content">작성일자</span>
-                                    <span class="users_class_thread_content">해결</span>
-                                    <span class="users_class_thread_content">질문 내용</span>
-                                    <button class="users_class_thread_button">게시판 이동</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
 
-            <div v-if="clickFlgTab === 6" class="my_page_class_box">
+            <div v-if="$store.state.myPageClickFlgTab === 6" class="my_page_class_box">
                 <div class="my_page_class_box_cover">
                     <div class="class_basic_information">
                         <div class="class_basic_information_title">
@@ -777,8 +648,9 @@ export default {
 
     data() {
         return {
-            clickFlgTab: 1,
             newUserInfoItems: [],
+            newUserClassInfoItem: [],
+            newUserBoardInfoItem: [],
         }
     },
 
@@ -791,11 +663,18 @@ export default {
         axios.get('/getmypagedashboard')
             .then(response => {
                 console.log(response.data);
-                this.newUserInfoItems = response.data;
+                // console.log(response.data.userData);
+                // console.log(response.data.ClassData);
+                this.newUserInfoItems = response.data.userData;
+                this.newUserClassInfoItem = response.data.classData;
+                this.newUserBoardInfoItem = response.data.boardData;
             })
             .catch(error => {
                 console.error('Error fetching data:', error);
             });
+        },
+        handleTabClick(tabNumber) {
+            this.$store.commit('setMyPageTab', tabNumber);
         },
     }
 }

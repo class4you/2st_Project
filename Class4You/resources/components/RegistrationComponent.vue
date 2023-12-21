@@ -270,12 +270,12 @@
                                 <th><label for="sample4_postcode">Address</label><span style="color: red;">*</span></th>
                                 <td>
                                     <div class="regist_table_address_box">
-                                        <input class="regist_table_address_postcode" type="text" id="sample4_postcode" name="UserAddress1" v-model="sampleData.postcode" placeholder="우편번호">
+                                        <input class="regist_table_address_postcode" type="text" id="sample4_postcode" name="UserAddress1" v-model="frmUserData.UserPostcode" placeholder="우편번호">
                                         <button class="regist_table_address_button" type="button" @click="openDaumPostcode">우편번호 찾기</button>
                                     </div>
                                         <br>
-                                    <input type="text" id="sample4_roadAddress" name="UserAddress2" v-model="sampleData.roadAddress" placeholder="도로명주소">
-                                    <input style="margin-top: 10px;" type="text" id="sample4_detailAddress"  name="UserAddress3" v-model="frmUserData.detailedAddress" placeholder="상세주소">
+                                    <input type="text" id="sample4_roadAddress" name="UserAddress2" v-model="frmUserData.UserRoadAddress" placeholder="도로명주소">
+                                    <input style="margin-top: 10px;" type="text" id="sample4_detailAddress"  name="UserAddress3" v-model="frmUserData.UserDetailedAddress" placeholder="상세주소">
                                 </td>
                             </tr>
                         </table>
@@ -311,17 +311,18 @@ export default {
                 UserPhoneNumber2: '',
                 UserPhoneNumber3: '',
                 UserBirthDate: '',
-                UserAddress: '',
+                UserPostcode: '',
+                UserRoadAddress: '',
+                UserDetailedAddress: '',
                 UserTermsofUse: '',
                 UserPrivacy: '',
                 UserTermsofUse: '',
                 UserPrivacy: '',
-                detailedAddress: '',
             },
 
             sampleData: {
-                postcode: '',
-                roadAddress: '',
+                UserPostcode: '',
+                UserRoadAddress: '',
             },
 
             errors: {},
@@ -432,7 +433,13 @@ export default {
                 roadAddress: roadAddr,
             };
 
-            this.frmUserData.UserAddress = `${this.sampleData.postcode} ${this.sampleData.roadAddress}`;
+            
+            this.frmUserData = {
+                UserPostcode: data.zonecode,
+                UserRoadAddress: roadAddr,
+            };
+
+            // this.frmUserData.UserAddress = `${this.sampleData.postcode} ${this.sampleData.roadAddress}`;
         },
     },
 

@@ -66,7 +66,7 @@
                                 <Slide v-for="item in newClassItems" :key="item.id">
                                 <div>
                                     <!-- <router-link :to="{ name: 'classboarddetail', params: { ClassID: item.ClassID } }"> -->
-                                    <a href="/classboarddetail/ + item.ClassID">
+                                    <a :href="'/classboarddetail/' + item.ClassID">
                                         <li class="main_container_new_card">
                                             <div class="main_container_new_card_img">
                                                 <img :src="item.ClassImg" alt="">
