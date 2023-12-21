@@ -48,7 +48,7 @@ class BoardController extends Controller
 
         $UserID = Auth::id();
 
-        $userData = User::select('UserEmail')
+        $userData = User::select('UserEmail', 'UserID')
             ->where('UserID', $UserID)
             ->first();
 
@@ -56,13 +56,14 @@ class BoardController extends Controller
             ->where('BoardID', $BoardID)
             ->first();
 
-        $boardComment = Comment::select('users.UserEmail', 'comments.CommentContent', 'comments.created_at')
+        $boardComment = Comment::select('users.UserEmail', 'comments.CommentContent', 'comments.created_at', 'comments.CommentID', 'users.UserID')
             ->join('boards', 'comments.BoardID', 'boards.BoardID')
             ->join('users', 'boards.UserID', 'users.UserID')
             ->where('comments.BoardID', $BoardID)
+            ->orderBy('comments.created_at', 'desc')
             ->get();
 
-            Log::debug($boardComment);
+        Log::debug($boardComment);
 
         return response()->json([
             'boardData' => $boardData,

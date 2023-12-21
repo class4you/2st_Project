@@ -53,8 +53,8 @@
                         <p class="board_detail_user_id">{{nowUserID.UserEmail}}</p>
                     </div>
                     <div class="reviewPost row jcB">
-                        <textarea placeholder="댓글을 입력해주세요."></textarea>
-                        <button type="button">저장</button>
+                        <textarea placeholder="댓글을 입력해주세요." v-model="frmCommentData.CommentContent"></textarea>
+                        <button type="button" @click="submitCommentData()">저장</button>
                     </div>
                 </div>
                 <div class="reviewBox border-t-none">
@@ -121,6 +121,12 @@ export default {
             newCommentItem: {
             },
             newComment: '', 
+
+            frmCommentData: {
+                UserID: this.$store.state.UserID,
+                BoardID: this.BoardID,
+                CommentContent: '',
+            },
         };
     },
 
@@ -136,6 +142,7 @@ export default {
                 this.newBoardItem = response.data.boardData;
                 this.nowUserID = response.data.userID;
                 this.newCommentItem = response.data.commentData;
+                console.log(response.data.commentData);
             })
             .catch(error => {
             console.error('Error fetching data:', error);
@@ -147,6 +154,9 @@ export default {
 			const asterisks = '*'.repeat(atIndex - 4);
 			return username + asterisks;
 		},
+        submitCommentData() {
+            this.$store.dispatch('submitCommentData', this.frmCommentData);
+        },
     },
 };
 </script>
