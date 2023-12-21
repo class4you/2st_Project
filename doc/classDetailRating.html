@@ -113,65 +113,68 @@
 
         <div class="class_container">
 
-            <ul class="class_tabs class_detail_rating_tab">
-                <li class="class_tab_link current" data-tab="class_tab1"><a href="#">강의 소개</a></li>
-                <li class="class_tab_link" data-tab="class_tab2"><a href="">수강평</a></li>
-                <li class="class_tab_link" data-tab="class_tab3"><a href="">커뮤니티</a></li>
-                <li class="class_tab_link" data-tab="class_tab4"><a href="">공지사항</a></li>
-            </ul>
-            
-            <div id="class_tab1" class="class_current class_detail_rating_form">
-                <form name="myform" id="myform" method="post" action="./save">
-                    <fieldset>
-
-                        <div class="class_detail_rating_form_text">
-                            <textarea name="" id="" cols="30" rows="10" placeholder="수강평을 작성해주세요."></textarea>
-                        </div>
-
-                        <div class="class_detail_rating_form_content">
-                            <div class="class_detail_rating_form_star">
-                                    <fieldset class="class_detail_rating_star_form">
-                                        
-                                        <legend class="class_detail_rating_star_form_title">별점</legend>
-                                            <input class="class_detail_rating_star_input" type="radio" name="rating" value="5" id="rate1">
-                                                <label class="class_detail_rating_star_label" for="rate1">⭐</label>
-                                            <input class="class_detail_rating_star_input" type="radio" name="rating" value="4" id="rate2">
-                                                <label class="class_detail_rating_star_label" for="rate2">⭐</label>
-                                            <input class="class_detail_rating_star_input" type="radio" name="rating" value="3" id="rate3">
-                                                <label class="class_detail_rating_star_label" for="rate3">⭐</label>
-                                            <input class="class_detail_rating_star_input" type="radio" name="rating" value="2" id="rate4">
-                                                <label class="class_detail_rating_star_label" for="rate4">⭐</label>
-                                            <input class="class_detail_rating_star_input" type="radio" name="rating" value="1" id="rate5">
-                                                <label class="class_detail_rating_star_label" for="rate5">⭐</label>
-                                    </fieldset>
-                                
-                            </div>
-
-                            <div class="class_detail_rating_form_button">
-                                <button>수강평 작성</button>
-                            </div>
-                        </div>
-
-                    </fieldset>
-                </form>
+            <div class="class_tab_menu_div">
+                <ul class="class_tabs class_detail_rating_tab">
+                    <li class="class_tab_link current" data-tab="class_tab1">강의 소개</li>
+                    <li class="class_tab_link" data-tab="class_tab2">수강평</li>
+                    <li class="class_tab_link" data-tab="class_tab3">커뮤니티</li>
+                    <li class="class_tab_link" data-tab="class_tab4">공지사항</li>
+                </ul>
             </div>
+            
+                <div id="class_tab1" class="class_current class_detail_rating_form">
+                    <form name="myform" id="myform" method="post" action="./save">
+                        <fieldset>
+
+                            <div class="class_detail_rating_form_text">
+                                <textarea name="" id="" cols="30" rows="10" placeholder="수강평을 작성해주세요."></textarea>
+                            </div>
+
+                            <div class="class_detail_rating_form_content">
+                                <div class="class_detail_rating_form_star">
+                                        <fieldset class="class_detail_rating_star_form">
+                                            
+                                            <legend class="class_detail_rating_star_form_title">별점</legend>
+                                                <input class="class_detail_rating_star_input" type="radio" name="rating" value="5" id="rate1">
+                                                    <label class="class_detail_rating_star_label" for="rate1">⭐</label>
+                                                <input class="class_detail_rating_star_input" type="radio" name="rating" value="4" id="rate2">
+                                                    <label class="class_detail_rating_star_label" for="rate2">⭐</label>
+                                                <input class="class_detail_rating_star_input" type="radio" name="rating" value="3" id="rate3">
+                                                    <label class="class_detail_rating_star_label" for="rate3">⭐</label>
+                                                <input class="class_detail_rating_star_input" type="radio" name="rating" value="2" id="rate4">
+                                                    <label class="class_detail_rating_star_label" for="rate4">⭐</label>
+                                                <input class="class_detail_rating_star_input" type="radio" name="rating" value="1" id="rate5">
+                                                    <label class="class_detail_rating_star_label" for="rate5">⭐</label>
+                                        
+                                        </fieldset>
+                                </div>
+
+                                <div class="class_detail_rating_form_button">
+                                    <button>수강평 작성</button>
+                                </div>
+                            </div>
+
+                        </fieldset>
+                    </form>
+                </div>
 
             <div class="class_detail_rating_list">
 				<div class="class_detail_rating_view_tab">
-					<div class="class_detail_rating_tab_title">
-						<span><a href="">최신순</a></span>
+                    <div class="class_detail_rating_tab_title_view">
+						<span>VIEW</span>
+					</div>
+                    <div class="class_detail_rating_tab_title">
+						<span>|</span>
 					</div>
 					<div class="class_detail_rating_tab_title">
-						<span><a href="">인기순</a></span>
+						<span>최신순</span>
 					</div>
 					<div class="class_detail_rating_tab_title">
-						<span><a href="">조회순</a></span>
+						<span>인기순</span>
 					</div>
 				</div>
 
-			<hr>
-
-				<div id="class_tab1" class="class_detail_rating_list_div">
+				<div id="class_tab1" class="class_detail_rating_list_div class_tab_content_div">
 					<div class="class_detail_rating_list_user">
 						<div class="class_detail_rating_user_id">
 							<p>작성자ID</p>
@@ -196,9 +199,7 @@
 					</div>
 				</div>
 			
-			<hr>
-
-				<div id="class_tab1" class="class_detail_rating_list_div">
+				<div id="class_tab1" class="class_detail_rating_list_div class_tab_content_div">
 					<div class="class_detail_rating_list_user">
 						<div class="class_detail_rating_user_id">
 							<p>작성자ID</p>
@@ -212,9 +213,7 @@
 					</div>
 				</div>
 
-			<hr>	
-
-				<div id="class_tab1" class="class_detail_rating_list_div">
+				<div id="class_tab1" class="class_detail_rating_list_div class_tab_content_div">
 					<div class="class_detail_rating_list_user">
 						<div class="class_detail_rating_user_id">
 							<p>작성자ID</p>
@@ -228,9 +227,7 @@
 					</div>
 				</div>
 
-			<hr>
-
-				<div id="class_tab1" class="class_detail_rating_list_div">
+				<div id="class_tab1" class="class_detail_rating_list_div class_tab_content_div">
 					<div class="class_detail_rating_list_user">
 						<div class="class_detail_rating_user_id">
 							<p>작성자ID</p>

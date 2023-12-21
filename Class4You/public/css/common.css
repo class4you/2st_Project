@@ -1590,6 +1590,7 @@ ul.class_tabs li {
 
 ul.class_tabs li:hover {
     color: #222;
+    border-bottom: 2px solid #000;
     /* text-decoration: underline; */
     /* text-decoration-color: #0000007e; */
     /* text-decoration-thickness: 2px; */
@@ -1643,9 +1644,9 @@ ul.class_tabs li.class_current {
 }
 
 .class_detail_rating_form {
-    background: #ededed;
+    /* background: #ededed; */
     margin-top: 8px;
-    margin-bottom: 40px;
+    margin-bottom: 20px;
     padding: 20px;
     line-height: 20px;
     
@@ -1655,6 +1656,11 @@ ul.class_tabs li.class_current {
     background-color: transparent;
     width: 100%;
     resize: none;
+    border: 1px solid #ededed;
+    padding: 10px;
+    border-radius: 4px;
+    outline-color: #858484;
+    outline-width: thin;
 }
 
 .class_detail_rating_form_content {
@@ -1666,27 +1672,50 @@ ul.class_tabs li.class_current {
 
 .class_detail_rating_form_button>button {
     padding: 10px 30px;
+    background-color: #3D64BF;
+    border-radius: 5px;
+    border: none;
+    color: #ffffff74;
+    cursor: pointer;
+}
+
+.class_detail_rating_form_button>button:hover {
+    color: #fff;
+    background-color: #3D64BF;
 }
 
 .class_detail_rating_view_tab {
     display: flex;
     padding: 10px;
+    border-bottom: 1px solid #525252;
 }
 
 .class_detail_rating_tab_title {
     margin: 10px;
+    color: #858484;
+    font-weight: bold;
+}
+
+.class_detail_rating_tab_title_view {
+    margin: 10px;
+    color: #525252;
+    font-weight: bold;
+}
+
+.class_detail_rating_star_form_title {
+    color: #858484;
 }
 
 .class_detail_rating_tab_title>span>a {
     cursor: pointer;
 }
 
-.class_detail_rating_tab_title>span>a:hover {
-    color: red;
+.class_detail_rating_tab_title>span:hover {
+    color: #222;
 }
 
 .class_detail_rating_list_div {
-    background: #ededed;
+    /* background: #ededed; */
     margin: 10px 0;
     padding: 20px;
     line-height: 20px;
@@ -1711,10 +1740,30 @@ ul.class_tabs li.class_current {
 .class_detail_rating_user_update_button>button {
     padding: 5px 20px;
     margin-right: 5px;
+    background-color: #3D64BF;
+    border-radius: 5px;
+    border: none;
+    color: #ffffff74;
+    cursor: pointer;
+}
+
+.class_detail_rating_user_update_button>button:hover {
+    color: #fff;
+    background-color: #3D64BF;
 }
 
 .class_detail_rating_user_delete_button>button {
     padding: 5px 20px;
+    background-color: #3D64BF;
+    border-radius: 5px;
+    border: none;
+    color: #ffffff74;
+    cursor: pointer;
+}
+
+.class_detail_rating_user_delete_button>button:hover {
+    color: #fff;
+    background-color: #3D64BF;
 }
 
 /* 별점 기능 */
