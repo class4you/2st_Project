@@ -16,11 +16,23 @@ class BoardController extends Controller
 {
     public function getBoardMainData()
     {
-        $data = Board::orderBy('created_at', 'desc')
-        ->paginate(10);
+        $boardData = Board::orderBy('created_at', 'desc')
+            ->paginate(10);
 
-        Log::debug($data);
-        return response()->json($data);
+        $userCntData = User::select('users.UserEmail', DB::raw('count(*) as cnt'))
+            ->join('comments', 'users.UserID', 'comments.UserID')
+            ->groupBy('users.UserEmail')
+            ->limit(10)
+            ->get();
+
+        // Log::debug($UserCntData);
+
+        // Log::debug($boarddata);
+
+        return response()->json([
+            'boardData' => $boardData,
+            'userCntData' => $userCntData
+        ]);
     }
     
     public function postBoardData(Request $request) {

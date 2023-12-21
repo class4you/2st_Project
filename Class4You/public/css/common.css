@@ -69,6 +69,10 @@ hr {
 }
 
 html, body {height:100%}
+
+.class_detail_visual {
+    margin-top: 10px;
+}
 /* ============================================================================================= */
 /* 공통 헤더 영역 */
 
@@ -414,6 +418,7 @@ footer {
     padding: 0 10vw;
     position:relative;
 	bottom: 0;
+    /* margin-top: 100px; */
 }
 
 
@@ -1254,7 +1259,8 @@ th:last-child, td:last-child {
     display: grid; 
     transition: all 0.2s;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 20px
+    gap: 20px;
+    margin-bottom: 150px;
 }
 
 .class_main_container_new_card {
@@ -2070,7 +2076,6 @@ ul.class_tabs li.class_current {
 
 .weeklyranking{
     padding: 0 12px;
-    margin-bottom: 10px;
     letter-spacing: -.3px;
     font-size: 18px;
     font-weight: 700;
@@ -2439,9 +2444,9 @@ option {
 }
 
 .ranking_weekly_popular_writes_list {
-    display: flex;
+    /* display: flex; */
     justify-content: space-between;
-    padding: 4px 12px;
+    padding: 0px 12px;
     width: 100%;
     border-radius: 2px;
         list-style: none;
@@ -2450,8 +2455,8 @@ option {
 
 
 
-.ranking_weekly_popular_write a{
-    padding: 10px 12px;
+.ranking_weekly_popular_write div{
+    padding: 0px 12px;
     display: block;
 }
 
@@ -2479,12 +2484,19 @@ option {
 .ranking_weekly_popular_write_list {
     list-style: none;
     padding: 0;
+    border-bottom: 1px solid #bdbdbd;
+    padding: 10px 0px;
   }
+
+  .ranking_weekly_popular_write_list:last-child {
+    border: none;
+  }
+
   .ranking_weekly_popular_write_writer {
     width: 140px;
     height: 22px;
     font-weight: 700;
-    font-size: 17px;
+    font-size: 13px;
     color: #495057;
     text-overflow: ellipsis;
     overflow: hidden;
@@ -4581,6 +4593,9 @@ option {
 
 .my_page_container_new_card {
     display: block;
+    border-radius: 15px;
+    background-color: #cadaff;
+    padding: 10px;
 }
 
 .my_page_container_new_card_img {

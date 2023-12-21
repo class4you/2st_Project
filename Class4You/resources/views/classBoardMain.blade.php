@@ -14,7 +14,7 @@
 								<div class="main_visual_slider_track_slick">
 									<div class="main_visual_slider_track_slick_item">
 										<a href="">
-											<img src="/img/banner/banner1.png">
+											<img src="/img/classBoardBanner.png">
 										</a>
 									</div>
 								</div>
