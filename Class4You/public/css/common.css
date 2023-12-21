@@ -1266,6 +1266,14 @@ th:last-child, td:last-child {
 
 .class_main_container_new_card {
     display: block;
+    padding: 15px;
+    border-radius: 10px;
+}
+
+.class_main_container_new_card:hover {
+    position: relative;
+    top: -5px;
+    box-shadow: 0px 15px 20px 2px rgba(125, 125, 125, 0.2);
 }
 
 .class_main_container_new_card_img {
@@ -1311,12 +1319,13 @@ th:last-child, td:last-child {
 }
 
 .class_main_container_new_card_tag li {
-    padding: 0px 15px;
+    padding: 5px 15px;
     margin-right: 10px;
     border-radius: 5px;
-    color: #6e6e73;
-    background: #f2f2f2;
+    color: #fff;
+    background: #346ba3;
     font-size: 10px;
+    font-weight: 700;
 }
 
 .class_main_container_new_box {
@@ -1774,7 +1783,8 @@ ul.class_tabs li.class_current {
     padding: 5px 20px;
     background-color: #cdc9c9;
     border-radius: 5px;
-    border: 0.8px solid #cdc9c9;
+    /* border: 0.8px solid #cdc9c9; */
+    border: none;
     color: #ffffff74;
     cursor: pointer;
 }

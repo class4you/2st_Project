@@ -204,7 +204,7 @@
 								<!-- <button @click="classReviewUpdate(data)">수정</button> -->
 							</div>
 							<div class="class_detail_rating_user_delete_button">
-								<button>삭제</button>
+								<button @click="deleteClassReview()">삭제</button>
 							</div>
 						</div>
 					</div>

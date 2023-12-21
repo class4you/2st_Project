@@ -105,18 +105,30 @@ class ReviewController extends Controller
     }
 
     // 강의게시판_수강평수정
-    public function putClassReviewData(Request $request, $ReviewID) {
+    // public function putClassReviewData(Request $request, $ReviewID) {
 
-        $classReviewData = $request->only('ReviewComment', 'ReviewRating');
-        $result = Review::find($ReviewID);
+    //     $classReviewData = $request->only('ReviewComment', 'ReviewRating');
+    //     $result = Review::find($ReviewID);
 
-        $result->update($ReviewID);
-    }
+    //     $result->update($ReviewID);
+    // }
 
     // 강의게시판_수강평삭제
-    public function deletClassReviewData() {
+    public function deletClassReview($ReviewID) {
 
+        // $result = Review::find($ReviewID);
+        // 리뷰아이디를 찾아서 첫번째 값을 삭제해주면되나?
 
+        $result = Review::select('ReviewID')
+            ->join('Enrollments','reviews.EnrollmentID','enrollments.EnrollmentID')
+            ->where('UserID', $UserID) 
+            ->where('ClassID', $ClassID) 
+            ->first();
         
+        // 컨트롤러까지 못오는것 같음 로그 아예 안찍힘
+        Log::debug($result);
+
+        $result->delete();
+        // $result->destroy();
     }
 }

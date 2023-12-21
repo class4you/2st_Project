@@ -405,40 +405,40 @@ const store = createStore({
         },
 
         // 수강평 수정 함수
-        putClassReview(context, data) {
-            const url = '/classboarddetailreview'
-            const header = {
-                headers: {
-                    "Content-Type": 'multipart/form-data',
-                    'X-CSRF-TOKEN': document.head.querySelector('meta[name="csrf-token"]').content,
-                },
-            }
-            let frm = new FormData();
+        // putClassReview(context, data) {
+        //     const url = '/classboarddetailreview'
+        //     const header = {
+        //         headers: {
+        //             "Content-Type": 'multipart/form-data',
+        //             'X-CSRF-TOKEN': document.head.querySelector('meta[name="csrf-token"]').content,
+        //         },
+        //     }
+        //     let frm = new FormData();
 
-            console.log(data);
+        //     console.log(data);
 
-            frm.append('ClassID',data.ClassID);
-            frm.append('UserID',data.UserID);
-            frm.append('ReviewComment',data.ReviewComment);
-            frm.append('ReviewRating',data.ReviewRating);
-            frm.append('ReviewID',data.ReviewID);
+        //     frm.append('ClassID',data.ClassID);
+        //     frm.append('UserID',data.UserID);
+        //     frm.append('ReviewComment',data.ReviewComment);
+        //     frm.append('ReviewRating',data.ReviewRating);
+        //     frm.append('ReviewID',data.ReviewID);
 
-            // console.log(frm);
+        //     // console.log(frm);
 
-            axios.put(url, frm, header)
-            .then(res => { 
-                console.log(res.data);
-                // router.push('/classBoardDetail/' + this.ClassID); 
-                // router.push('/classBoardDetail/' + data.ClassID); 
+        //     axios.put(url, frm, header)
+        //     .then(res => { 
+        //         console.log(res.data);
+        //         // router.push('/classBoardDetail/' + this.ClassID); 
+        //         // router.push('/classBoardDetail/' + data.ClassID); 
 
-                //
-				// context.commit(data.clickFlgTab , 1);
-            })
-            .catch(err => {
-                console.log(err.response.data.errors)
-                context.commit('setRegistrationErrorMessage', err.response.data.errors);
-            })
-        },
+        //         //
+		// 		// context.commit(data.clickFlgTab , 1);
+        //     })
+        //     .catch(err => {
+        //         console.log(err.response.data.errors)
+        //         context.commit('setRegistrationErrorMessage', err.response.data.errors);
+        //     })
+        // },
 
         // 수강평 삭제
         // deleteClassReview(context, data) {
@@ -479,7 +479,38 @@ const store = createStore({
         //     })
         // },
         // 수강평 삭제
-        deleteClassReview(context, data) {},
+        deleteClassReview(context, data) {
+            const url = '/classboarddetailreview'
+            const header = {
+                headers: {
+                    "Content-Type": 'multipart/form-data',
+                    'X-CSRF-TOKEN': document.head.querySelector('meta[name="csrf-token"]').content,
+                },
+            }
+
+            // let frm = new FormData();
+            const requestData = {
+                ReviewID: data.ReviewID,
+            };
+
+            // console에 자꾸 config url에러가남. 
+            console.log();
+
+            axios.delete(url, requestData)
+            .then(res => { 
+                console.log(res.data);
+                // router.push('/classBoardDetail/' + this.ClassID); 
+                // router.push('/classBoardDetail/' + data.ClassID); 
+                //
+				// context.commit(data.clickFlgTab , 1);
+            })
+            .catch(err => {
+                console.log(err.response.data.errors)
+                context.commit('setRegistrationErrorMessage', err.response.data.errors);
+            })
+
+
+        },
             
 
 
