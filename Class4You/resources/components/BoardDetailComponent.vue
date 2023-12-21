@@ -61,7 +61,7 @@
                     <div v-for="item in newCommentItem" class="reviewList">
                         <div  class="item">
                             <div class="commentInfo row aiC jcB">
-                                <p>작성자<span>{{ hideEmail(item.UserEmail) }}</span></p>
+                                <p class="comment_writer">작성자<span>{{ hideEmail(item.UserEmail) }}</span></p>
                                 <p>작성일<span>{{ item.created_at }}</span></p>
                             </div>
                             <div class="commentText">
