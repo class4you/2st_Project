@@ -66,46 +66,60 @@
 
         <div class="class_container">
             <!-- 강의 소개 -->
-            <ul class="class_tabs">
-                <li @click="clickFlgTab = 0;" class="class_tab_link current" data-tab="class_tab1">강의 소개</li>
-                <li @click="clickFlgTab = 1;" class="class_tab_link" data-tab="class_tab2">수강평</li>
-                <li @click="clickFlgTab = 2;" class="class_tab_link" data-tab="class_tab3">커뮤니티</li>
-                <li @click="clickFlgTab = 3;" class="class_tab_link" data-tab="class_tab4">공지사항</li>
-            </ul>
+			<div class="class_tab_menu_div">
+				<ul class="class_tabs">
+					<li @click="clickFlgTab = 0;" class="class_tab_link current" data-tab="class_tab1">강의 소개</li>
+					<li @click="clickFlgTab = 1;" class="class_tab_link" data-tab="class_tab2">수강평</li>
+					<li @click="clickFlgTab = 2;" class="class_tab_link" data-tab="class_tab3">커뮤니티</li>
+					<li @click="clickFlgTab = 3;" class="class_tab_link" data-tab="class_tab4">공지사항</li>
+				</ul>
+			</div>	
 
         <div v-if="clickFlgTab === 0">
-            <div id="class_tab1" class="class_tab_content class_current">
-                <p>ClassIntroduction 입니다</p>
-                <p>{{ detailClassItems.ClassIntroduction }}</p>
-            </div>
-            
-            <div class="class_tab_content_title">
-                <p>기초 설명</p>
-            </div>
-            <div id="class_tab1" class="class_tab_content">
-                <p>{{ detailClassItems.ClassDescription }}</p>
-            </div>
+			<div class="class_tab_content_div">
+				<div id="class_tab1" class="class_tab_content class_current">
+					<p>{{ detailClassItems.ClassIntroduction }}</p>
+					<p>{{ detailClassItems.ClassIntroduction }}</p>
+					<p>{{ detailClassItems.ClassIntroduction }}</p>
+				</div>
+			</div>
+        
+			<div class="class_tab_content_div">
+				<div class="class_tab_content_title">
+					<p>기초 설명</p>
+				</div>
+				<div id="class_tab1" class="class_tab_content">
+					<p>{{ detailClassItems.ClassDescription }}</p>
+				</div>
+			</div>
 
-            <div class="class_tab_content_title">
-                <p>커리큘럼</p>
-            </div>
-            <div id="class_tab1" class="class_tab_content">
-                <p>커리큘럼</p>
-            </div>
+			<div class="class_tab_content_div">
+				<div class="class_tab_content_title">
+					<p>커리큘럼</p>
+				</div>
+				<div id="class_tab1" class="class_tab_content">
+					<p>커리큘럼</p>
+				</div>
+			</div>	
 
-            <div class="class_tab_content_title">
-                <p>강의 특징</p>
-            </div>
-            <div id="class_tab1" class="class_tab_content">
-                <p>{{detailClassItems.ClassPoint}}</p>
-            </div>
+			<div class="class_tab_content_div">
+				<div class="class_tab_content_title">
+					<p>강의 특징</p>
+				</div>
+				<div id="class_tab1" class="class_tab_content">
+					<p>{{detailClassItems.ClassPoint}}</p>
+				</div>
+			</div>	
 
-            <div class="class_tab_content_title">
-                <p>강사 이력</p>
-            </div>
-            <div id="class_tab1" class="class_tab_content">
-                <p>강사 소개란 입니다.</p>
-            </div>
+			<div class="class_tab_content_div">
+				<div class="class_tab_content_title">
+					<p>강사 이력</p>
+				</div>
+				<div id="class_tab1" class="class_tab_content">
+					<p>강사 소개란 입니다.</p>
+				</div>
+			</div>	
+
         </div>
 
             <!-- 수강평 -->
