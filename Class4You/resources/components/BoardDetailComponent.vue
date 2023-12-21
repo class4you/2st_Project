@@ -165,9 +165,9 @@ export default {
         addBoardComment() {
             this.$store.dispatch('addBoardComment', this.BoardCommentData);
         },
-        putBoardComment() {
+        // putBoardComment() {
 
-        },
+        // },
     },
 }
     

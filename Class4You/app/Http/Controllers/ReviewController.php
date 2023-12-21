@@ -42,13 +42,14 @@ class ReviewController extends Controller
             ->orderBy('reviews.created_at', 'desc')
             ->get();
 
-        $result['EnrollChk'] = $EnrollmentData;
-
-        Log::debug($EnrollmentData);
-        Log::debug($result);
+        // Log::debug($EnrollmentData);
+        // Log::debug($result);
 
         // Log::debug($result);
-        return response()->json($result);
+        return response()->json([
+            'reviewsData' => $result,
+            'enrollmentData' => $EnrollmentData
+        ]);
     }
     
     //강의게시판_수강평작성
