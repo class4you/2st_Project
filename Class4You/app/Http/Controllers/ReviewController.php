@@ -33,6 +33,7 @@ class ReviewController extends Controller
             'reviews.ReviewRating',
             'reviews.created_at',
             'users.UserID',
+            'users.UserEmail',
             'class_infos.ClassID')
             ->join('enrollments','reviews.EnrollmentID','enrollments.EnrollmentID')
             ->join('class_infos','class_infos.ClassID','enrollments.ClassID')
