@@ -55,7 +55,8 @@
                                     <span>가격: {{ detailClassItems.ClassPrice === 0 ? '무료' : detailClassItems.ClassPrice + '원' }}</span>
                                 </div>
                                 <div class="class_detail_container_r_payment_classes">
-                                    <button>수강 신청</button>
+									<a v-if="EnrollChk" :href="'/classwatch/' + detailClassItems.ClassID">강의 시청</a>
+                                    <button v-else @click="addEnrollApp()">수강 신청</button>
                                 </div>
                             </div>
                         </div>
@@ -484,6 +485,10 @@ export default {
         		ReviewRating: '',
 			},
 			editReview: false,
+			classEnrollData: {
+				ClassID: this.ClassID,
+				UserID: this.$store.state.UserID
+			}
         }
     },
 	mounted() {
@@ -511,6 +516,8 @@ export default {
                     console.log(reviewResponse.data);
 					this.reviewClassItems = reviewResponse.data.reviewsData;
 					this.EnrollChk = reviewResponse.data.enrollmentData;
+
+					axios.get()
                 })
                 .catch(reviewError => {
                     // 두 번째 API 에러 처리
@@ -561,6 +568,9 @@ export default {
 		deleteClassReview() {
 			this.$store.dispatch('deleteClassReview', this.classReviewData);
 		},
+		addEnrollApp() {
+			this.$store.dispatch('addClassEnrollApp', this.classEnrollData);
+		}
 		
 	},
     

@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use App\Models\Chapter;
 
 class ChapterSeeder extends Seeder
 {
@@ -14,6 +15,9 @@ class ChapterSeeder extends Seeder
      */
     public function run()
     {
-        //
+        Chapter::create([
+            'ClassID' => 50,
+            'ChapterTitle' => '기초부터 배우는 PHP 1강',
+        ]);
     }
 }

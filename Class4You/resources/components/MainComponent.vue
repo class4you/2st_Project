@@ -86,7 +86,7 @@
                                 </div>
                                 </Slide>
                             </carousel>
-                                <div @click="handleClassImageClick(item.ClassID)" v-if="!$store.state.shouldShowCarousel" v-for="item in newClassItems" :key="item.id" href="">
+                                <div v-if="!$store.state.shouldShowCarousel" v-for="item in newClassItems" :key="item.id" href="">
                                     <!-- <router-link :to="{ name: 'classboarddetail', params: { ClassID: item.ClassID } }"> -->
                                     <a :href="'/classboarddetail/' + item.ClassID">
                                         <li class="main_container_new_card">

@@ -12,7 +12,6 @@
             height:auto;
             min-height: 100%;
             padding-bottom: 150px; // 현재 푸터의 높이
-            /* margin-top: 100px; */
         }
     </style>
 </head>

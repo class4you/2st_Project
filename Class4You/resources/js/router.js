@@ -7,6 +7,7 @@ import BoardComponent from '../components/BoardComponent.vue';
 import BoardInsertComponent from '../components/BoardInsertComponent.vue';
 import BoardDetailComponent from '../components/BoardDetailComponent.vue';
 import ClassBoardDetailComponent from '../components/ClassBoardDetailComponent.vue';
+import ClassDatailWatchComponent from '../components/ClassDatailWatchComponent.vue';
 import UserMyPageComponent from '../components/UserMyPageComponent.vue';
 // import ClassBoardMainComponent from '../components/ClassBoardMainComponent.vue';
 import store from './store';
@@ -54,6 +55,11 @@ const routes = [
     {
         path: '/usermypage',
         component: UserMyPageComponent,
+    },
+    {
+        path: '/classwatch/:ClassID',
+        component: ClassDatailWatchComponent,
+        props: true
     },
     {
         path: '/test',

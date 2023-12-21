@@ -1563,13 +1563,43 @@ ul.class_tabs li.class_current {
     display: flex;
 } */
 
+.class_detail_watch_list {
+    display: flex;
+    justify-content: space-between;  
+    font-size: 20px;
+    font-weight: 700;
+    color: #fff;
+}
+
+
 .class_detail_watch {
-    background-color: #e3d9d9;
+    background-color: #222222;
     box-sizing: border-box;
     margin: 0;
     width: 100vw;
     height: 100vh;
     display: flex;
+}
+
+.class_datail_watch_chapter {
+    background-color:  #474747;
+    position: relative;
+    padding: 20px 30px;
+}
+
+.class_datail_watch_chapter::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: -30px;
+    transform: translateY(-50%);
+    border-style: solid;
+    border-width: 25px 0 25px 30px; /* 삼각형의 크기 조절 */
+    border-color: transparent transparent transparent #474747; /* 배경 색상 조절 */
+}
+
+.class_detail_watch_list div {
+    padding: 20px 30px;
 }
 
 .class_detail_watch_contents {
@@ -1581,18 +1611,25 @@ ul.class_tabs li.class_current {
 }
 
 .class_detail_watch_main {
-    overflow: hidden auto;
-    flex: 1 1 0%;
+    /* overflow: hidden auto; */
+    height: 100%;
+    /* flex: 1 1 0%; */
     background-color: rgb(255, 255, 255);
 }
 
 .class_detail_watch_main_content {
     position: relative;
-    overflow: hidden;
-    background-color: rgb(20, 21, 23);
-    display: flex;
-    flex-direction: column;
-    height: 42vw;
+    /* overflow: hidden; */
+    /* background-color: rgb(20, 21, 23); */
+    /* display: flex; */
+    /* flex-direction: column; */
+    /* height: 42vw; */
+    padding: 35px 0px;
+}
+
+.class_detail_watch_main_content iframe{
+    width: 100%;
+    height: 80vh;
 }
 
 .class_detail_watch_main_content_bar {
@@ -1611,9 +1648,9 @@ ul.class_tabs li.class_current {
     justify-content: center;
     -webkit-box-align: center;
     align-items: center;
-    margin-top: auto;
+    /* margin-top: auto; */
     width: 100%;
-    height: 52px;
+    padding: 15px ;
     background-color: rgb(134, 142, 150);
 }
 
@@ -1624,49 +1661,162 @@ ul.class_tabs li.class_current {
     flex-shrink: 0;
     -webkit-box-pack: justify;
     justify-content: space-between;
-    width: 300px;
+    width: 500px;
     height: 100%;
     min-height: calc(var(--vh, 1vh) * 100);
-    padding-top: 12px;
+    padding: 20px 0px;
     background-color: rgb(248, 249, 250);
     box-shadow: rgba(0, 0, 0, 0.56) 0px 0px 1px 0px;
     z-index: 100;
+    overflow-y: auto; /* 수직 스크롤만 생성 */
+    scrollbar-width: thin; /* 스크롤 바 너비 */
+    scrollbar-color: #6c8bf3 #f0f0f0; /* 스크롤 바 색상 */
 }
+
+/* Webkit 브라우저를 위한 스크롤 바 스타일 */
+.class_detail_watch_right_side::-webkit-scrollbar {
+    width: 4px; /* 스크롤 바 너비 */
+}
+
+.class_detail_watch_right_side::-webkit-scrollbar-thumb {
+    background-color: #6c8bf3; /* 스크롤 바 색상 */
+    border-radius: 4px; /* 스크롤 바 모서리 둥글게 */
+}
+
+.class_detail_watch_right_side::-webkit-scrollbar-track {
+    background-color: #f0f0f0; /* 스크롤 바 배경색 */
+}
+
 
 .class_detail_watch_right_side_tab_nav {
     display: flex;
-    flex-direction: column;
-    height: 100%;
-    gap: 4px;
+    gap: 20px;
+    font-size: 15px;
+    font-weight: 700;
+    padding: 0px 20px;
+    border-bottom: 1px solid #dedede ;
 }
 
+.class_detail_watch_side_tab1 {
+    margin-bottom: 15px;
+}
 
+.class_detail_watch_side_tab2 {
+    margin-bottom: 15px;
+}
 
+.class_datail_watch_side_content {
+    margin-top: 10px;
+    width: 100%;
+}
 
+.class_side_content_curriculum {
+    width: 100%;
+    height: 20px;
+    /* background-color: #0300c4; */
+}
 
+.side_content_curriculum_title {
+    width: 100%;
+    background-color: #eceffd;
+    /* border-top: 1px solid #dedede ;
+    border-bottom: 1px solid #dedede ; */
+    padding: 20px 20px;
+    margin-bottom: 10px;
+}
 
+.side_curriculum_top {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    font-size: 16px;
+    line-height: 20px;
+}
 
+.side_curriculum_bottom {
+    margin-top: 10px;
+    font-size: 18px;
+    line-height: 25px;
+    font-weight: 500;
+}
 
+.class_datail_watch_side_title_box {
+    margin-top: 30px;
+    width: 100%;
+    padding: 10px 0px;
+    padding: 0px 20px;  
+}
 
+.class_datail_watch_side_title h3 {
+    font-size: 18px;
+    font-weight: 500;
+    margin-bottom: 20px;
+    color: #4f4f4f;
+}
 
+.class_datail_watch_side_title p {
+    font-size: 15px;
+    margin-bottom: 10px;
+    color: #4f4f4f;
+}
 
+.recent_learning_class_progress {
+    display: flex;
+    min-width: 0px;
+    
+}
 
+.class_datail_watch_progress_bar_cover {
+    position: relative;
+    height: 5px;
+    background-color: rgb(233, 236, 239);
+    border-radius: 0.25rem;
+    overflow: hidden;
+    margin-bottom: 30px;
+}
 
+.class_datail_watchs_progress_bar {
+    width: 10%;
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    height: 100%;
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+    background-color: rgb(0, 108, 196);
+    transition: width 100ms linear 0s;
+}
 
+.side_content_curriculum_content {
+    border-left: 10px solid #585bff;
+    /* margin: 10px 0px 10px 0px; */
+    padding: 20px 40px;
+    background-color: #c0f8e1;
+    
+}
 
+.side_content_curriculum_top {
+    display: flex;
+    font-size: 15px;
+    font-weight: 700;
+    gap: 10px;
+}
 
+.side_content_curriculum_bottom {
+    display: flex;
+    font-size: 13px;
+    margin-top: 10px;
+    padding: 0px 20px;
+    gap: 10px;
+}
 
-
-
-
-
-
-
-
-
-
-
-
+.side_content_curriculum_cover {
+    padding: 10px 0px 10px 0px;
+}
 
 
 

@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div v-if="$route.fullPath !== '/classwatch/' && $route.fullPath !== '/classwatch'">
         <div id="top_banner" class="top_banner">
             <div class="desc">
                 <ul id="list_txt" class="list_txt">

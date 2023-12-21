@@ -8,6 +8,8 @@ use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\BoardController;
 use App\Http\Controllers\MyPageController;
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\ChapterController;
+use App\Http\Controllers\EnrollmentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -41,11 +43,23 @@ Route::get('/classBoard/{ClassLanguageName}', [ClassInfoController::class, 'clas
 Route::get('/getNewClassMainData', [ClassInfoController::class, 'getNewClassMainData']);
 
 Route::get('/classBoardDetail/{ClassID}', [ClassInfoController::class, 'getClassBoardDetailShow'])->name('classboarddetail');
+
+// 수강 정보 확인 컨트롤러
 // Route::get('/classBoardDetail/{ClassID}', [ClassBoardController::class, 'getClassBoardDetailShow']);
 
 Route::post('/classboarddetailreview', [ReviewController::class, 'postClassReviewData']);
 Route::get('/classboarddetailreview/{ClassID}', [ReviewController::class, 'getClassReviewIndex']);
 Route::put('/classboarddetailreview/{ClassID}', [ReviewController::class, 'putClassReviewData']);
+
+
+Route::get('/classwatch/{ClassID}', function () {
+    return view('welcome');
+});
+
+Route::get('/classwatchview/{ClassID}', [ChapterController::class, 'getNewClassWatchData']);
+
+
+// 강의 시청
 
 
 
