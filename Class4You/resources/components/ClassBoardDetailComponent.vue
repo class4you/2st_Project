@@ -162,30 +162,34 @@
                 <!-- </form> -->
             </div>
 
-			<div v-if="!EnrollChk">
+			<!-- <div v-if="!EnrollChk">
 				로그인 바람
-			</div>
+			</div> -->
 
             <div class="class_detail_rating_list">
 				<div class="class_detail_rating_view_tab">
-					<div class="class_detail_rating_tab_title">
-						<span><a href="">최신순</a></span>
+					<div class="class_detail_rating_tab_title_view">
+						<span>VIEW</span>
+					</div>
+                    <div class="class_detail_rating_tab_title">
+						<span>|</span>
 					</div>
 					<div class="class_detail_rating_tab_title">
-						<span><a href="">인기순</a></span>
+						<span>최신순</span>
+					</div>
+					<div class="class_detail_rating_tab_title">
+						<span>인기순</span>
 					</div>
 					<!-- <div class="class_detail_rating_tab_title">
 						<span><a href="">조회순</a></span>
 					</div> -->
 				</div>
 
-			<hr>
-
 				<div>
-					<div v-for="data in reviewClassItems" :key="data.ReviewID" id="class_tab1" class="class_detail_rating_list_div">
+					<div v-for="data in reviewClassItems" :key="data.ReviewID" id="class_tab1" class="class_detail_rating_list_div class_tab_content_div">
 						<div class="class_detail_rating_list_user">
 							<div class="class_detail_rating_user_id">
-								<p>{{ data.ReviewID }} | {{ data.ReviewRating }}점</p>
+								<p>{{ data.UserID }} | {{ data.ReviewRating }}점</p>
 							</div>
 							<div class="class_detail_rating_user_date">
 								<p>{{ data.created_at }}</p>
@@ -239,8 +243,6 @@
 						</div>
 				</div> -->
 			
-			<hr>
-
 				
         	</div>
         </div>
