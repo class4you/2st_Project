@@ -61,7 +61,7 @@
                     <div class="reviewList">
                         <div class="item">
                             <div class="commentInfo row aiC jcB">
-                                <p>작성자<span> 정미야옹호</span></p>
+                                <p class="comment_writer">작성자<span> 정미야옹호</span></p>
                                 <p>작성일<span>2000-01-14</span></p>
                             </div>
                             <div class="commentText">
@@ -86,6 +86,7 @@
                                 
                             
                             </div>
+                            
                             <!-- <div class="Board_good_bad">
                                 <button type="button" class="Board_Good " aria-label="좋아요">
                                   <i class="fa-solid fa-thumbs-up"></i>
