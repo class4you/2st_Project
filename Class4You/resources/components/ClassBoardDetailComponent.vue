@@ -189,7 +189,7 @@
 					<div v-for="data in reviewClassItems" :key="data.ReviewID" id="class_tab1" class="class_detail_rating_list_div class_tab_content_div">
 						<div class="class_detail_rating_list_user">
 							<div class="class_detail_rating_user_id">
-								<p>{{ data.UserID }} | {{ data.ReviewRating }}점</p>
+								<p>{{ data.UserEmail }} | {{ data.ReviewRating }}점</p>
 							</div>
 							<div class="class_detail_rating_user_date">
 								<p>{{ data.created_at }}</p>
@@ -475,6 +475,7 @@ export default {
 			classReviewData: {
 				ClassID: this.ClassID,
         		UserID: this.$store.state.UserID,
+        		UserEmail: this.$store.state.UserEmail,
         		ReviewComment: '',
         		ReviewRating: '',
 			},
@@ -541,6 +542,12 @@ export default {
 		// 수강평 작성 함수
 		addClassReview() {
 			this.$store.dispatch('addClassReview', this.classReviewData);
+		},
+		hideEmail(email) {
+			const atIndex = email.indexOf('@');
+			const username = email.substring(0, Math.min(4, atIndex));
+			const asterisks = '*'.repeat(atIndex - 4);
+			return username + asterisks;
 		},
 
 		//
