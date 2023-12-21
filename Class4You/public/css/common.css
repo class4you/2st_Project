@@ -1586,7 +1586,7 @@ ul.class_tabs li {
     color: #858484;
     display: inline-block;
     padding: 10px 15px;
-    margin-bottom: 5px;
+    /* margin-bottom: 5px; */
 }
 
 ul.class_tabs li:hover {
@@ -1741,30 +1741,32 @@ ul.class_tabs li.class_current {
 .class_detail_rating_user_update_button>button {
     padding: 5px 20px;
     margin-right: 5px;
-    background-color: #3D64BF;
+    background-color: #cdc9c9;
     border-radius: 5px;
-    border: none;
+    border: 0.8px solid #cdc9c9;
     color: #ffffff74;
     cursor: pointer;
 }
 
 .class_detail_rating_user_update_button>button:hover {
     color: #fff;
-    background-color: #3D64BF;
+    background-color: #a19f9f;
+    border: none;
 }
 
 .class_detail_rating_user_delete_button>button {
     padding: 5px 20px;
-    background-color: #3D64BF;
+    background-color: #cdc9c9;
     border-radius: 5px;
-    border: none;
+    border: 0.8px solid #cdc9c9;
     color: #ffffff74;
     cursor: pointer;
 }
 
 .class_detail_rating_user_delete_button>button:hover {
     color: #fff;
-    background-color: #3D64BF;
+    background-color: #a19f9f;
+    border: none;
 }
 
 /* 별점 기능 */
@@ -2529,9 +2531,9 @@ ul.class_tabs li.class_current {
     min-width: 96px;
     margin-left: 16px;
     height: 48px;
-    border-color: #00c471;
+    border-color: #7371fc;
     font-weight: 700;
-    background-color: #00c471;
+    background-color: #7371fc;
     border: 1px solid;
     color: #fff;
     padding: 0 12px;
@@ -2544,6 +2546,10 @@ ul.class_tabs li.class_current {
     justify-content: center;
     border-radius: 4px;
     cursor: pointer;
+}
+.search_item_button:hover {
+    background-color: #0400ff6d;
+    color: #fff;
 }
 
 .question-list-container {
@@ -2622,6 +2628,12 @@ option {
     margin-left: auto;
 }
 
+.ac_button:hover{
+    background-color: #3e3e42c5;
+    color: #fff;
+}
+
+
 .ac_button {
     background-color: #3e4042;
     border-color: #868e96;
@@ -2642,13 +2654,7 @@ option {
     cursor: pointer;
 }
 
-.question_list {
 
-}
-
-.question_container {
-
-}
 
 .question {
     padding: 18px 16px;
@@ -2676,7 +2682,7 @@ option {
 }
 
 .question_status_tag_badge {
-    background-color: #ced4da;
+    background-color: #f46d6dde;
     border-radius: 50rem!important;
     display: inline-block;
     padding: 0.35em 0.65em;
@@ -2724,11 +2730,10 @@ option {
 }
 
 .question_tags_button {
-    background-color: #eff3fa;
+    background-color: #1749ff40;
     margin-right: 8px;
     margin-bottom: 5px;
     padding: 4px 8px;
-    width: -webkit-fit-content;
     width: fit-content;
     height: 26px;
     border: none;
@@ -2740,7 +2745,7 @@ option {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    border-radius: 4px;
+    border-radius: 20px;
     font-weight: 500;
     cursor: pointer;
 }
@@ -3522,6 +3527,8 @@ option {
 
 .reviewList .item:nth-child(odd) {
     background: none;
+    border-bottom: 1px solid #99999940;
+    padding-bottom: 17px;
 }
 
 .reviewList p {
@@ -3600,20 +3607,23 @@ option {
 }
 
 .reviewPost textarea {
-    width: calc(100% - 110px);
-    height: 100px;
+     width: calc(100% - 110px);
     resize: none;
-    padding: 10px;
+    padding: 10px 10px;
     font-size: 14px;
     border: none;
-    margin-bottom: 10px;
-}
+    }
+
 
 .reviewPost button {
     height: 110px;
     width: 100px;
     border: none;
     cursor: pointer;
+}
+.reviewPost button:hover {
+    background-color: rgba(16, 36, 251, 0.468);
+    color: white;
 }
 
 .bannerImg{
