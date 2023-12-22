@@ -30,6 +30,7 @@ class Review extends Model
         'EnrollmentID',
         'ReviewComment',
         'ReviewRating',
+        'created_at',
     ];
 
     // 현재시간 변경

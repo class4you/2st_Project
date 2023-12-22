@@ -141,7 +141,7 @@
                         <div class="class_detail_rating_form_content">
                             <div class="class_detail_rating_form_star">
 								
-                                    <fieldset class="class_detail_rating_star_form" name="myform">
+								<fieldset class="class_detail_rating_star_form" name="myform">
                                         <legend class="class_detail_rating_star_form_title">별점</legend>
                                             <input v-model="classReviewData.ReviewRating" class="class_detail_rating_star_input" type="radio" name="rating" value="5" id="rate1">
                                                 <label class="class_detail_rating_star_label" for="rate1">⭐</label>
@@ -153,7 +153,7 @@
                                                 <label class="class_detail_rating_star_label" for="rate4">⭐</label>
                                             <input v-model="classReviewData.ReviewRating" class="class_detail_rating_star_input" type="radio" name="rating" value="1" id="rate5">
                                                 <label class="class_detail_rating_star_label" for="rate5">⭐</label>
-                                    </fieldset>
+                                    </fieldset>    
                                 
                             </div>
 
@@ -551,7 +551,34 @@ export default {
 
 		// 수강평 작성 함수
 		addClassReview() {
-			this.$store.dispatch('addClassReview', this.classReviewData);
+			// this.$store.dispatch('addClassReview', this.classReviewData);
+            const url = '/classboarddetailreview'
+            const header = {
+                headers: {
+                    "Content-Type": 'multipart/form-data',
+                    // 'X-CSRF-TOKEN': document.head.querySelector('meta[name="csrf-token"]').content,
+                },
+            }
+            let frm = new FormData();
+            frm.append('ClassID',this.classReviewData.ClassID);
+            frm.append('UserID',this.classReviewData.UserID);
+            frm.append('ReviewComment',this.classReviewData.ReviewComment);
+            frm.append('ReviewRating',this.classReviewData.ReviewRating);
+
+            // console.log(frm);
+
+            axios.post(url, frm, header)
+            .then(res => {
+				// console.log(this.reviewClassItems);
+                // console.log(res.data[0]);
+
+				// 기존 수강평 데이터의 [0]번 방에 작성한 수강평 추가
+                this.reviewClassItems.unshift(res.data[0]);
+            })
+            .catch(err => {
+                console.log(err.response.data.errors)
+                context.commit('setRegistrationErrorMessage', err.response.data.errors);
+            })
 		},
 		hideEmail(email) {
 			const atIndex = email.indexOf('@');

@@ -102,6 +102,26 @@ class ReviewController extends Controller
         // 리뷰 데이터($data)를 Review모델을 사용해 데이터베이스에 저장.
         // Review::create($data)데이터 베이스에 레코드 추가해줌.
         $result = Review::create($data);
+
+        // 작성한 리뷰 데이터 획득
+        $responseData = Review::select('reviews.ReviewID',
+            'reviews.EnrollmentID',
+            'reviews.ReviewComment',
+            'reviews.ReviewRating',
+            'reviews.created_at',
+            'users.UserID',
+            'users.UserEmail',
+            'class_infos.ClassID')
+            ->join('enrollments','reviews.EnrollmentID','enrollments.EnrollmentID')
+            ->join('class_infos','class_infos.ClassID','enrollments.ClassID')
+            ->join('users','enrollments.UserID','users.UserID')
+            ->where('reviews.ReviewID', $result->ReviewID)
+            // ->orderBy('enrollments.created_at', 'desc')
+            ->orderBy('reviews.created_at', 'desc')
+            ->get();
+        
+
+        return response()->json($responseData);
     }
 
     // 강의게시판_수강평수정
