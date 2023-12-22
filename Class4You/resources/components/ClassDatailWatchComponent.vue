@@ -36,28 +36,30 @@
             </div>
 
             <!-- 탭 UI 될부분 -->
-                <div class="class_detail_watch_right_side">
-                    <div class="class_detail_watch_right_side_tab_nav">
-                        <div class="class_detail_watch_side_tab1">
-                            <span>커리큘럼</span>
-                        </div>
-                        <div class="class_detail_watch_side_tab2">
-                            <span>강의노트</span>
+            <div class="class_detail_watch_right_side">
+                <div class="class_detail_watch_right_side_tab_nav">
+                    <div class="class_detail_watch_side_tab1">
+                        <span>커리큘럼</span>
+                    </div>
+                    <div class="class_detail_watch_side_tab2">
+                        <span>강의노트</span>
+                    </div>
+                </div>
+                <div class="class_datail_watch_side_title_box">
+                    <div class="class_datail_watch_side_title">
+                        <h3>스스로 키우는 PHP 문법</h3>
+                        <p>진도율 :</p>
+                        <div class="class_datail_watch_progress_bar_cover">
+                            <div role="progressbar" aria-valuemax="100" aria-valuemin="0" aria-valuenow="10.53" aria-label="진도율" class="class_datail_watchs_progress_bar"></div>
                         </div>
                     </div>
-                    <div class="class_datail_watch_side_title_box">
-                        <div class="class_datail_watch_side_title">
-                            <h3>스스로 키우는 PHP 문법</h3>
-                            <p>진도율 :</p>
-                            <div class="class_datail_watch_progress_bar_cover">
-                                <div role="progressbar" aria-valuemax="100" aria-valuemin="0" aria-valuenow="10.53" aria-label="진도율" class="class_datail_watchs_progress_bar"></div>
-                            </div>
-                        </div>
-                    </div>
-                    <hr>
-                    <div class="class_datail_watch_side_content">
-                        <div class="class_side_content_curriculum">
-                            <div v-for="(chapter, chapterIndex) in ChapterDataItem" :key="chapter.ChapterID">
+                </div>
+                <hr>
+                <div class="class_datail_watch_side_content">
+                    <div class="class_side_content_curriculum">
+                        <div v-for="(chapter, chapterIndex) in ChapterDataItem" :key="chapter.ChapterID">
+                            <details>
+                            <summary>
                                 <div  class="side_content_curriculum_title">
                                     <div class="side_curriculum_top">
                                         <p> {{ chapter.ChapterTitle }}</p>
@@ -67,7 +69,8 @@
                                         <p>강의 소개</p>
                                     </div>
                                 </div>
-
+                            </summary>
+                            
                                 <div v-for="lesson in LessonDataItem[chapter.ChapterID]" :key="lesson.LessonID" class="side_content_curriculum_content" @click="selectLesson(lesson)">
                                     <div class="side_content_curriculum_top">
                                         <p>{{lesson.LessonTitle}}</p>
@@ -77,7 +80,8 @@
                                         <p>10분</p>
                                     </div> -->
                                 </div>
-                            </div>
+                            </details>
+                        </div>
                     </div>
                 </div>
             </div>
