@@ -57,7 +57,9 @@
                     <div class="editor-toolbar-container sticky ">
                         <div tabindex="0" class="toolbar-group">
                             <!-- 게시물 입력 부분 -->
-                            <textarea v-model="frmBoardData.BoardComment" placeholder="게시물을 입력하세요..." style="width: display: flex;flex-direction: column;height: 100%;width: 100%; min-height: 480px;border-radius: 8px; border: 1px solid #ccc; /* 희미한 회색 테두리 */"></textarea>
+                            <textarea v-model="frmBoardData.BoardComment" placeholder="게시물을 입력하세요..."
+    style="display: flex; flex-direction: column; height: 100%; width: 100%; min-height: 480px; max-height: 480px; border-radius: 8px; border: 1px solid #ccc; resize: none;">
+</textarea>
                         </div>
                     </div>
                 </div>
