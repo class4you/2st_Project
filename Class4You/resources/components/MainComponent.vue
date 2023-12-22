@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="wrapper">
         <div class="container">
             <main class="contents">
                 <div class="main_mrap">

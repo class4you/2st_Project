@@ -20,8 +20,10 @@
         {{-- <div class="wrapper"> --}}
             <Header-Component></Header-Component>
             <App-Component></App-Component>
-        {{-- </div> --}}
+            {{-- </div> --}}
         <Footer-Component></Footer-Component>
     </div>
+    
+    <script src="https://www.youtube.com/iframe_api"></script>
 </body>
 </html>

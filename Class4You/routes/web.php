@@ -10,6 +10,7 @@ use App\Http\Controllers\MyPageController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ChapterController;
 use App\Http\Controllers\EnrollmentController;
+use App\Http\Controllers\LessonController;
 
 /*
 |--------------------------------------------------------------------------
@@ -58,15 +59,17 @@ Route::put('/classboarddetailreview/{ClassID}', [ReviewController::class, 'putCl
 Route::delete('/classboarddetailreview/{ReviewID}', [ReviewController::class, 'deletClassReview']);
 
 
+
+
+// 강의 시청
+
 Route::get('/classwatch/{ClassID}', function () {
     return view('welcome');
 });
 
 Route::get('/classwatchview/{ClassID}', [ChapterController::class, 'getNewClassWatchData']);
 
-
-// 강의 시청
-
+Route::put('/lessonprogress', [LessonController::class, 'updateLessonProgress']);
 
 
 // test

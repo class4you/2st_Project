@@ -16,8 +16,10 @@
                     <!-- <div v-for="item in ChapterDataItem" class="class_detail_watch_main_content">
                         <div v-html="selectedLesson.LessonVideo"></div>
                     </div> -->
-                    <div v-if="selectedLesson" class="video-container class_detail_watch_main_content">
-                        <div v-html="selectedLesson.LessonVideo"></div>
+                    <!-- <div v-if="selectedLesson" class="video-container class_detail_watch_main_content"> -->
+                    <div class="video-container class_detail_watch_main_content">
+                        <div id="youtube-player"></div>
+                        <!-- <div v-html="selectedLesson.LessonVideo"></div> -->
                     </div>
                     <!-- <div class="class_detail_watch_main_content_bar">
                         <span>재생바</span>
@@ -102,14 +104,26 @@ export default {
             ChapterDataItem: {},
             LessonDataItem: {},
             selectedChapter: null,
-            selectedLesson: null,
+            selectedLesson: 1,
+            // YouTube 동영상 ID
+            videoId: '_pgXmFIihAk',
+            // YouTube Player 객체
+            player: null,
+            LessonProgress: null,
+            LessonFlg: 0,
         }
     },
 
+    
+    beforeDestroy() {
+        // 컴포넌트가 파괴되기 전에 호출되는 훅
+        this.saveLessonProgress();
+    },
+
     methods: {
-        disableWheel(event) {
-            event.preventDefault();
-        },
+        // disableWheel(event) {
+        //     event.preventDefault();
+        // },
         fetchData() {
 		// 여기에서 정보를 추가로 조회하는 로직을 구현
 		// 예시: API를 호출하여 데이터를 가져옴\
@@ -132,18 +146,117 @@ export default {
         },
         selectLesson(lessonID) {
             this.selectedLesson = lessonID;
+            // console.log(this.selectedLesson.LessonVideoID);
+            this.videoId = this.selectedLesson.LessonVideoID;
         },
         getLessonVideo(lessonID) {
-            return this.lessonDataItem.lessonVideo
+            return this.lessonDataItem.lessonVideoID
         },
         isSelectedLesson(lesson) {
             return this.selectedLesson === lesson;
+        },
+
+        initYoutubePlayer() {
+            // YouTube Player 생성
+            this.player = new window.YT.Player('youtube-player', {
+            height: '750',
+            width: '1300',
+            videoId: this.videoId,
+            events: {
+                'onReady': this.onPlayerReady,
+                'onStateChange': this.onPlayerStateChange,
+            },
+            playerVars: {
+                'origin': 'http://127.0.0.1:8000', // 여기에는 웹사이트의 실제 origin을 넣어야 합니다.
+                'key': 'AIzaSyCZuYGiU9g-_nslcbFnWRd9ZSxkEu9bltg',
+            },
+        });
+        },
+        onPlayerReady(event) {
+            // 동영상이 준비되면 추가 작업 수행
+            console.log('영상 시작');
+            // console.log(this.player);
+        },
+        getCurrentTime() {
+            // YouTube API의 getCurrentTime() 메서드를 사용하여 동영상의 현재 위치(시간)를 가져옴
+            if (this.player) {
+                this.currentTime = this.player.getCurrentTime();
+                console.log('현재 동영상 위치:', this.currentTime);
+                
+                // 동영상 총 길이 가져오기
+                this.duration = this.player.getDuration();
+                // 진행도 계산
+                this.progressPercentage = (this.currentTime / this.duration) * 100;
+                // LessonProgress 업데이트
+                this.LessonProgress = this.progressPercentage;
+            }
+        },
+        onPlayerStateChange(event) {
+            // 동영상 상태 변경 이벤트 처리
+            if (event.data === window.YT.PlayerState.ENDED) {
+                // 동영상이 종료되면 완료 체크 수행
+                this.handleVideoCompletion();
+            } else if (event.data === window.YT.PlayerState.PLAYING) {
+                // 동영상이 재생 중일 때 5초 간격으로 현재 동영상 위치 콘솔에 출력
+                    this.progressInterval = setInterval(() => {
+                    this.getCurrentTime();
+                }, 1000);
+            } else if (event.data === window.YT.PlayerState.PAUSED) {
+                // 동영상이 일시 정지 상태일 때 갱신 중지
+                clearInterval(this.progressInterval);
+                this.saveLessonProgress();
+            }
+        },
+        handleVideoCompletion() {
+            // 동영상이 끝났을 때 실행할 작업 수행
+            this.LessonFlg = 1;
+            this.saveLessonProgress();
+            console.log('영상 끝');
+        },
+        saveLessonProgress() {
+            // 예시: Axios를 사용하여 서버에 데이터 업데이트 (PUT 요청)
+            axios.put('/lessonprogress', {
+                lessonId: this.selectedLesson.LessonID,
+                lessonFlg: this.LessonFlg,
+                progressPercentage: this.LessonProgress,  // Vuex Store에서 상태 가져오기
+                // 다른 필요한 데이터 추가 가능
+            })
+            .then(response => {
+                // 서버 응답에 대한 로직 수행
+                console.log(response.data);
+            })
+            .catch(error => {
+                // 에러 처리
+                console.error(error);
+            });
         },
     },
     
     mounted() {
         this.fetchData();
+            if (window.YT && window.YT.Player) {
+            this.initYoutubePlayer();
+            } else {
+            // YouTube IFrame API 로드 후 초기화
+            window.onYouTubeIframeAPIReady = () => {
+                this.initYoutubePlayer();
+            };
+        }    
     },
+
+    watch: {
+        // videoId가 변경될 때마다 YT.Player 재생성
+        videoId(newVideoId) {
+        if (this.player) {
+            // 이미 플레이어가 있는 경우 중지하고 파괴
+            this.player.stopVideo();
+            this.player.destroy();
+        }
+        // 새로운 videoId로 플레이어 생성
+        this.initYoutubePlayer();
+        },
+    },
+
 }
 </script>
 <style>

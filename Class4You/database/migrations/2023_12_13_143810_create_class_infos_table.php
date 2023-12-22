@@ -24,6 +24,7 @@ return new class extends Migration
             $table->string('ClassIntroduction');
             $table->string('ClassPoint');
             $table->integer('ClassPrice')->nullable();
+            $table->char('ClassFlg', 1)->default(0);
             $table->timestamps();
             $table->softDeletes();
         });

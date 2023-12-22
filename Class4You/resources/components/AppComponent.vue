@@ -1,6 +1,6 @@
 <template>
     <div>
-        <router-view></router-view>
+        <router-view to="/youtube"></router-view>
     </div>
 </template>
 
