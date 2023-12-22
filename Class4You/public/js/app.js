@@ -19595,8 +19595,6 @@ __webpack_require__.r(__webpack_exports__);
           _this.reviewClassItems = reviewResponse.data.reviewsData;
           _this.EnrollChk = reviewResponse.data.enrollmentData;
           // this.newReviewData = reviewResponse.data.classReviewData;
-
-          axios__WEBPACK_IMPORTED_MODULE_0___default().get();
         })["catch"](function (reviewError) {
           // 두 번째 API 에러 처리
           console.error(reviewError);
