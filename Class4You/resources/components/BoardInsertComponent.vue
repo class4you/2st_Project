@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="wrapper">
         <div style="padding: 0 10vw;" class="whr"><span>게시판</span><span>&gt;</span><span>게시판</span></div>
         <div class="main_visual">
 					<div class="main_visual_slider">

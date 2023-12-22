@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="wrapper">
         <div class="board_detail_wrap">
         <div class="whr"><span>게시판</span><span>></span><span>게시판</span></div><!-- whr -->
         <section class="mainSectionpost">

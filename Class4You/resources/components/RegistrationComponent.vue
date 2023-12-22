@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="wrapper">
         <div class="container" :class="{ 'container-registration-none': regiflg1 }">
             <main class="contents">
                 <div class="regist_mrap">

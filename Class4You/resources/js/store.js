@@ -93,9 +93,10 @@ const store = createStore({
         setSaveToLocalStorage(state, data) {
             // console.log(data);
             state.userData.userCheck = data.sessionDataCheck;
-            localStorage.setItem('userCheck', data.sessionDataCheck);
+            localStorage.setItem('userCheck', {value:data.sessionDataCheck, expire: Date.now() + 7200000});
+            // console.log(Date.now() + 7200000);
             state.userData.UserID = data.UserID;
-            localStorage.setItem('UserID', data.userId);
+            localStorage.setItem('UserID', {value:data.userId, expire: Date.now() + 7200000});
             // console.log(localStorage.getItem('UserID'));
             // console.log(data);
             // state.userData.userName = data.sessionCheckUserName
