@@ -48,9 +48,18 @@ class BoardController extends Controller
 
         $UserID = Auth::id();
 
-        $userData = User::select('UserEmail', 'UserID')
+        if(isset($UserID)) {
+            // $userData = '로그인을 해주세요.';
+            $userData = User::select('UserEmail', 'UserID')
             ->where('UserID', $UserID)
             ->first();
+        } else {
+            $userData = [
+                'UserEmail' => '게스트입니다. 로그인해주세요',
+                'UserID' => null
+            ];
+        }
+        
 
         $boardData = Board::join('users', 'boards.UserID', 'users.UserID')
             ->where('BoardID', $BoardID)
