@@ -1,5 +1,5 @@
 <template>
-    <div v-if="$route.fullPath != '/classwatch'&&$route.fullPath">
+    <div v-if="$route.fullPath.indexOf('classwatch') === -1">
         <footer>
 
         </footer>

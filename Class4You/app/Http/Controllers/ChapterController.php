@@ -18,20 +18,28 @@ class ChapterController extends Controller
         $classData = Classinfo::where('ClassID', $ClassID)
             ->first();
 
-        $chapterData = Chapter::join('lessons', 'lessons.ChapterID', 'chapters.ChapterID')
-            ->where('chapters.ClassID', $ClassID)
+        $chapterData = Chapter::where('chapters.ClassID', $ClassID)
             ->get();
+
+        foreach($chapterData as $chapterLessonData) {
+            $lessonData = Lesson::where('ChapterID', $chapterLessonData -> ChapterID)
+                ->get();
+            $allLessonData[$chapterLessonData->ChapterID] = $lessonData;
+        };
+        
+        return response()->json([
+            'classData' => $classData,  
+            'chapterData' => $chapterData,
+            'lessonData' => $allLessonData,
+        ]);
 
         // $lessonData = Lesson::
 
-        Log::debug($ClassID);
-        Log::debug($classData);
-        Log::debug($ClassID);
-        Log::debug($chapterData);
+        // Log::debug($ClassID);
+        // Log::debug($classData);
+        // Log::debug($ClassID);
+        // Log::debug($chapterData);
+        // Log::debug($aaa);
 
-        return response()->json([
-            'boardData' => $classData,
-            'userID' => $chapterData,
-        ]);
     }
 }

@@ -70,9 +70,12 @@
                     <div class="reviewList">
                         <p class="board_detail_user_id">{{nowUserID.UserEmail}}</p>
                     </div>
-                    <div class="reviewPost row jcB">
+                    <div v-if="nowUserID.UserID !== null" class="reviewPost row jcB">
                         <textarea placeholder="댓글을 입력해주세요." v-model="frmCommentData.CommentContent"></textarea>
                         <button type="button" @click="submitCommentData()">저장</button>
+                    </div>
+                    <div v-else class="reviewPost row jcB">
+                        <p>로그인 후 작성 가능합니다.</p>
                     </div>
                 </div>
                 <div class="reviewBox border-t-none">
