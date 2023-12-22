@@ -22,16 +22,22 @@ class ChapterController extends Controller
             ->where('chapters.ClassID', $ClassID)
             ->get();
 
+        // foreach($chapterData as $chapterData) {
+        //     $aaa = $chapterData -> ChapterID;
+        //     $lessonData = Lesson::join('chapters', 'chapters.ChapterID', '')
+        // }
+
         // $lessonData = Lesson::
 
-        Log::debug($ClassID);
-        Log::debug($classData);
-        Log::debug($ClassID);
-        Log::debug($chapterData);
+        // Log::debug($ClassID);
+        // Log::debug($classData);
+        // Log::debug($ClassID);
+        // Log::debug($chapterData);
+        // Log::debug($aaa);
 
         return response()->json([
-            'boardData' => $classData,
-            'userID' => $chapterData,
+            'classData' => $classData,
+            'ChapterData' => $chapterData,
         ]);
     }
 }

@@ -1,5 +1,6 @@
 <template>
-    <div v-if="$route.fullPath !== '/classwatch/' && $route.fullPath !== '/classwatch'">
+    <div v-if="$route.fullPath.indexOf('classwatch') === -1">
+    <!-- <div v-if="$route.fullPath !== '/classwatch/' && $route.fullPath !== '/classwatch'"> -->
         <div id="top_banner" class="top_banner">
             <div class="desc">
                 <ul id="list_txt" class="list_txt">

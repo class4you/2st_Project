@@ -1,5 +1,6 @@
 <template>
-    <div @wheel.prevent="disableWheel">
+    <!-- <div @wheel.prevent="disableWheel"> -->
+    <div>
         <div class="class_detail_watch">
             <div class="class_detail_watch_contents">
                 <div class="class_detail_watch_nav">
@@ -10,8 +11,9 @@
                     </div>
                 </div>
                 <div class="class_detail_watch_main">
-                    <div class="class_detail_watch_main_content">
-                        <iframe src="https://www.youtube.com/embed/iDjQSdN_ig8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <div v-for="item in ChapterWatchItem" class="class_detail_watch_main_content">
+                        <!-- <iframe src="https://www.youtube.com/embed/iDjQSdN_ig8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
+                        <div v-html="item.LessonVideo"></div>
                     </div>
                     <!-- <div class="class_detail_watch_main_content_bar">
                         <span>재생바</span>
@@ -161,6 +163,14 @@ export default {
 
     props: ['ClassID'],
 
+    data() {
+        return {
+            ClasswatchItem: {},
+            ChapterWatchItem: {},
+            LessonWatchItem: {},
+        }
+    },
+
     methods: {
         disableWheel(event) {
             event.preventDefault();
@@ -172,18 +182,19 @@ export default {
 			.then(response => {
 			// API 응답에 대한 로직 수행
 			console.log(response.data);
-			// this.detailClassItems = response.data;
+			this.ClasswatchItem = response.data.classData;
+			this.ChapterWatchItem = response.data.ChapterData;
 			})
 			.catch(error => {
 			// 에러 처리
 			console.error(error);
 			});
 		},
+    },
     
-        mounted() {
-            this.fetchData();
-        },
-    }
+    mounted() {
+        this.fetchData();
+    },
 }
 </script>
 <style>
