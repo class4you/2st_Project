@@ -40,10 +40,10 @@
                 <div v-if="!$store.state.userLoginChk" class="side_nav">
                     <router-link to="/registration">SIGN UP</router-link>
                     <a @click="loginOpenModal" style="cursor: pointer;">LOGIN</a>
-                    <div class="search_box">
+                    <!-- <div class="search_box">
                         <input type="text" placeholder="SEARCH">
                         <button><img src="/img/SEARCH.png" alt=""></button>
-                    </div>
+                    </div> -->
                 </div>
                 <div v-if="$store.state.userLoginChk" class="side_nav">
                     <!-- <router-link to="/">MY PAGE</router-link> -->

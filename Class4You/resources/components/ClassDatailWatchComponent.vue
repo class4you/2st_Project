@@ -143,5 +143,9 @@ export default {
 }
 </script>
 <style>
-    
+    .wrapper {
+        height:auto;
+        min-height: 100%;
+        /* padding-bottom: 0px; */
+    }
 </style>

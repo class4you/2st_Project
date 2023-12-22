@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="wrapper">
         <div class="my_page_main">
             <div class="my_page_main_tap_uis">
                 <div @click="handleTabClick(1)" class="my_page_main_tap_ui">대시보드</div>
