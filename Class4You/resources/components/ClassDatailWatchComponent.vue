@@ -6,14 +6,17 @@
                 <div class="class_detail_watch_nav">
                     <div class="class_detail_watch_list">
                         <div class="class_datail_watch_chapter">PHP 기초 문법 학습</div>
-                        <div>강의 제목</div>
-                        <div>전체 진도율</div>
+                        <div>{{ClassDataItem.ClassTitle}}</div>
+                        <!-- <div>전체 진도율</div> -->
+                        <a :href="'/classboarddetail/' + this.ClassID">이전으로</a>
                     </div>
                 </div>
                 <div class="class_detail_watch_main">
-                    <div v-for="item in ChapterWatchItem" class="class_detail_watch_main_content">
-                        <!-- <iframe src="https://www.youtube.com/embed/iDjQSdN_ig8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
-                        <div v-html="item.LessonVideo"></div>
+                    <!-- <div v-for="item in ChapterDataItem" class="class_detail_watch_main_content">
+                        <div v-html="selectedLesson.LessonVideo"></div>
+                    </div> -->
+                    <div v-if="selectedLesson" class="video-container class_detail_watch_main_content">
+                        <div v-html="selectedLesson.LessonVideo"></div>
                     </div>
                     <!-- <div class="class_detail_watch_main_content_bar">
                         <span>재생바</span>
@@ -54,10 +57,10 @@
                     <hr>
                     <div class="class_datail_watch_side_content">
                         <div class="class_side_content_curriculum">
-                            <div>
-                                <div class="side_content_curriculum_title">
+                            <div v-for="(chapter, chapterIndex) in ChapterDataItem" :key="chapter.ChapterID">
+                                <div  class="side_content_curriculum_title">
                                     <div class="side_curriculum_top">
-                                        <p>섹션</p>
+                                        <p> {{ chapter.ChapterTitle }}</p>
                                         <p>시간</p>
                                     </div>
                                     <div class="side_curriculum_bottom">
@@ -65,91 +68,16 @@
                                     </div>
                                 </div>
 
-                                <div class="side_content_curriculum_content">
+                                <div v-for="lesson in LessonDataItem[chapter.ChapterID]" :key="lesson.LessonID" class="side_content_curriculum_content" @click="selectLesson(lesson)">
                                     <div class="side_content_curriculum_top">
-                                        <p>아이콘</p>
-                                        <p>스스로 프로그래밍을 할 수 있는 능력을 키우는 방법</p>
+                                        <p>{{lesson.LessonTitle}}</p>
                                     </div>
-                                    <div class="side_content_curriculum_bottom">
+                                    <!-- <div class="side_content_curriculum_bottom">
                                         <p>아이콘</p>
                                         <p>10분</p>
-                                    </div>
+                                    </div> -->
                                 </div>
                             </div>
-
-                            <div class="side_content_curriculum_cover">
-                                <div class="side_content_curriculum_title">
-                                    <div class="side_curriculum_top">
-                                        <p>섹션</p>
-                                        <p>시간</p>
-                                    </div>
-                                    <div class="side_curriculum_bottom">
-                                        <p>강의 소개</p>
-                                    </div>
-                            </div>
-
-                            <div class="side_content_curriculum_content">
-                                <div class="side_content_curriculum_top">
-                                    <p>아이콘</p>
-                                    <p>스스로 프로그래밍을 할 수 있는 능력을 키우는 방법</p>
-                                </div>
-                                <div class="side_content_curriculum_bottom">
-                                    <p>아이콘</p>
-                                    <p>10분</p>
-                                </div>
-                            </div>
-                            <div class="side_content_curriculum_content">
-                                <div class="side_content_curriculum_top">
-                                    <p>아이콘</p>
-                                    <p>스스로 프로그래밍을 할 수 있는 능력을 키우는 방법</p>
-                                </div>
-                                <div class="side_content_curriculum_bottom">
-                                    <p>아이콘</p>
-                                    <p>10분</p>
-                                </div>
-                            </div>
-                            <div class="side_content_curriculum_content">
-                                <div class="side_content_curriculum_top">
-                                    <p>아이콘</p>
-                                    <p>스스로 프로그래밍을 할 수 있는 능력을 키우는 방법</p>
-                                </div>
-                                <div class="side_content_curriculum_bottom">
-                                    <p>아이콘</p>
-                                    <p>10분</p>
-                                </div>
-                            </div>
-                            <div class="side_content_curriculum_content">
-                                <div class="side_content_curriculum_top">
-                                    <p>아이콘</p>
-                                    <p>스스로 프로그래밍을 할 수 있는 능력을 키우는 방법</p>
-                                </div>
-                                <div class="side_content_curriculum_bottom">
-                                    <p>아이콘</p>
-                                    <p>10분</p>
-                                </div>
-                            </div>
-                            <div class="side_content_curriculum_content">
-                                <div class="side_content_curriculum_top">
-                                    <p>아이콘</p>
-                                    <p>스스로 프로그래밍을 할 수 있는 능력을 키우는 방법</p>
-                                </div>
-                                <div class="side_content_curriculum_bottom">
-                                    <p>아이콘</p>
-                                    <p>10분</p>
-                                </div>
-                            </div>
-                            <div class="side_content_curriculum_content">
-                                <div class="side_content_curriculum_top">
-                                    <p>아이콘</p>
-                                    <p>스스로 프로그래밍을 할 수 있는 능력을 키우는 방법</p>
-                                </div>
-                                <div class="side_content_curriculum_bottom">
-                                    <p>아이콘</p>
-                                    <p>10분</p>
-                                </div>
-                            </div>
-                        </div>
-
                     </div>
                 </div>
             </div>
@@ -165,9 +93,11 @@ export default {
 
     data() {
         return {
-            ClasswatchItem: {},
-            ChapterWatchItem: {},
-            LessonWatchItem: {},
+            ClassDataItem: {},
+            ChapterDataItem: {},
+            LessonDataItem: {},
+            selectedChapter: null,
+            selectedLesson: null,
         }
     },
 
@@ -182,14 +112,25 @@ export default {
 			.then(response => {
 			// API 응답에 대한 로직 수행
 			console.log(response.data);
-			this.ClasswatchItem = response.data.classData;
-			this.ChapterWatchItem = response.data.ChapterData;
+                this.ClassDataItem = response.data.classData;
+                this.ChapterDataItem = response.data.chapterData;
+                this.LessonDataItem = response.data.lessonData;
 			})
 			.catch(error => {
 			// 에러 처리
-			console.error(error);
+			    console.error(error);
 			});
 		},
+        selectChapter(chapterID) {
+            this.selectedChapter = chapterID;
+            this.selectedLesson = null;
+        },
+        selectLesson(lessonID) {
+            this.selectedLesson = lessonID;
+        },
+        getLessonVideo(lessonID) {
+            return this.lessonDataItem.lessonVideo
+        },
     },
     
     mounted() {

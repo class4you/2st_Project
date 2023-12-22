@@ -1970,6 +1970,11 @@ ul.class_tabs li.class_current {
     padding: 20px 30px;
 }
 
+.class_detail_watch_list a {
+    color: #fff;
+    padding: 20px 30px;
+}
+
 .class_detail_watch_contents {
     display: flex;
     position: relative;
@@ -2161,7 +2166,7 @@ ul.class_tabs li.class_current {
 
 .side_content_curriculum_content {
     border-left: 10px solid #585bff;
-    /* margin: 10px 0px 10px 0px; */
+    margin: 10px 0px 10px 0px;
     padding: 20px 40px;
     background-color: #c0f8e1;
     
