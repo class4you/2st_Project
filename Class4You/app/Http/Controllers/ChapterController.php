@@ -26,7 +26,7 @@ class ChapterController extends Controller
                 ->get();
             $allLessonData[$chapterLessonData->ChapterID] = $lessonData;
         };
-        
+
         return response()->json([
             'classData' => $classData,  
             'chapterData' => $chapterData,
@@ -42,4 +42,10 @@ class ChapterController extends Controller
         // Log::debug($aaa);
 
     }
+
+    // public function postvideochkData($lessonID) {
+
+    //     Log::debug($lessonID);
+
+    // }
 }

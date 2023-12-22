@@ -9,4 +9,15 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Lesson extends Model
 {
     use HasFactory;
+
+    protected $primaryKey = 'LessonID';
+
+    protected $fillable = [
+        'ChapterID',
+        'LessonTitle',
+        'LessonContent',
+        'LessonVideoID',
+        'LessonProgress',
+        'LessonFlg',
+    ];
 }

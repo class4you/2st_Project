@@ -1,52 +1,56 @@
+<!-- components/YouTubePlayer.vue -->
 <template>
-	<div class="wrapper">
-		<Carousel :autoplay="3000" :wrap-around="true" :i18n="{
-    'ariaNextSlide': 'Zur nächsten Slide',
-    'ariaPreviousSlide': 'Zur vorherigen Slide',
-    'ariaNavigateToSlide': 'Springe zu Slide {slideNumber}',
-    'ariaGallery': 'Galerie',
-    'itemXofY': 'Slide {currentSlide} von {slidesCount}',
-    'iconArrowUp': 'Pfeil nach oben',
-    'iconArrowDown': 'Pfeil nach unten',
-    'iconArrowRight': 'Pfeil nach rechts',
-    'iconArrowLeft': 'Pfeil nach links',
-  }">
-			<Slide v-for="slide in slides" :key="slide">
-				<div class="carousel__item">
-					<img class="slideImg" :src="slide" />
-				</div>
-			</Slide>
-
-			<template #addons>
-				<Pagination />
-			</template>
-		</Carousel>
+	<div>
+	  <div id="youtube-player"></div>
 	</div>
   </template>
   
   <script>
-  import { defineComponent } from "vue";
-  import { Carousel, Pagination, Slide } from "vue3-carousel";
-  import home_1 from "/img/html/1st/html1.png";
-  import home_2 from "/img/html/1st/html2.png";
-  import home_3 from "/img/html/1st/html3.png";
-
-  import "vue3-carousel/dist/carousel.css"; 
-
-export default defineComponent({
-	name: "Autoplay",
-	components: {
-		Carousel,
-		Slide,
-		Pagination,
-	},
+  export default {
 	data() {
-		return {
-			slides: [home_1, home_2, home_3],
-		};
+	  return {
+		// YouTube 동영상 ID
+		videoId: 'KUXO_swGPMk',
+		// YouTube Player 객체
+		player: null,
+	  };
 	},
-});
-</script>
-
-<style>
-</style>
+	mounted() {
+	  // YouTube IFrame API 초기화
+	  this.initYoutubePlayer();
+	},
+	methods: {
+	  initYoutubePlayer() {
+		// YouTube Player 생성
+		this.player = new window.YT.Player('youtube-player', {
+		  height: '315',
+		  width: '560',
+		  videoId: this.videoId,
+		  events: {
+			'onReady': this.onPlayerReady,
+			'onStateChange': this.onPlayerStateChange,
+		  },
+		});
+	  },
+	  onPlayerReady(event) {
+		// 동영상이 준비되면 추가 작업 수행
+		console.log('영상 시작');
+	  },
+	  onPlayerStateChange(event) {
+		// 동영상 상태 변경 이벤트 처리
+		if (event.data === window.YT.PlayerState.ENDED) {
+		  // 동영상이 종료되면 완료 체크 수행
+		  this.handleVideoCompletion();
+		}
+	  },
+	  handleVideoCompletion() {
+		// TODO: 동영상 완료 시 실행할 작업 수행
+		console.log('영상 끝');
+	  },
+	},
+  };
+  </script>
+  
+  <style scoped>
+  /* 필요한 스타일 추가 */
+  </style>
