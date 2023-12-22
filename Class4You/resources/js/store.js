@@ -91,11 +91,15 @@ const store = createStore({
             state.loginShowModal = false;
         },
         setSaveToLocalStorage(state, data) {
-            // console.log(data);
             state.userData.userCheck = data.sessionDataCheck;
-            localStorage.setItem('userCheck', data.sessionDataCheck);
             state.userData.UserID = data.UserID;
             localStorage.setItem('UserID', data.userId);
+            localStorage.setItem('userCheck', data.sessionDataCheck);
+            // console.log(data);
+            // localStorage.setItem('UserID', {value:data.userId, expire: Date.now() + 7200000});
+            // localStorage.setItem('userCheck', {value:data.sessionDataCheck, expire: Date.now() + 7200000});
+            // console.log(Date.now() + 7200000);
+            // console.log(data);
             // console.log(localStorage.getItem('UserID'));
             // console.log(data);
             // state.userData.userName = data.sessionCheckUserName

@@ -6,9 +6,10 @@
                 <div class="class_detail_watch_nav">
                     <div class="class_detail_watch_list">
                         <div class="class_datail_watch_chapter">PHP 기초 문법 학습</div>
-                        <div>{{ClassDataItem.ClassTitle}}</div>
+                        <!-- <div>{{ClassDataItem.ClassTitle}}</div> -->
                         <!-- <div>전체 진도율</div> -->
-                        <a :href="'/classboarddetail/' + this.ClassID">이전으로</a>
+                        <a :href="'/classboarddetail/' + this.ClassID">{{ClassDataItem.ClassTitle}}</a>
+                        <div></div>
                     </div>
                 </div>
                 <div class="class_detail_watch_main">
@@ -71,7 +72,7 @@
                                 </div>
                             </summary>
                             
-                                <div v-for="lesson in LessonDataItem[chapter.ChapterID]" :key="lesson.LessonID" class="side_content_curriculum_content" @click="selectLesson(lesson)">
+                                <div v-for="lesson in LessonDataItem[chapter.ChapterID]" :key="lesson.LessonID" :class="{'side_content_curriculum_content_1': selectedLesson, 'side_content_curriculum_content_2': !selectedLesson}" @click="selectLesson(lesson)">
                                     <div class="side_content_curriculum_top">
                                         <p>{{lesson.LessonTitle}}</p>
                                     </div>
@@ -135,6 +136,9 @@ export default {
         getLessonVideo(lessonID) {
             return this.lessonDataItem.lessonVideo
         },
+        isSelectedLesson(lesson) {
+            return this.selectedLesson === lesson;
+        },
     },
     
     mounted() {
@@ -143,5 +147,9 @@ export default {
 }
 </script>
 <style>
-    
+    .wrapper {
+        height:auto;
+        min-height: 100%;
+        /* padding-bottom: 0px; */
+    }
 </style>

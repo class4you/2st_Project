@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('InstructorPassword');
             $table->string('InstructorFullName', 50);
             $table->string('InstructorPhoneNumber', 20);
+            $table->string('InstructorHistory');
             $table->timestamps();
             $table->softDeletes();
         });

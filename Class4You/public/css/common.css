@@ -81,6 +81,11 @@ summary::-webkit-details-marker { /* Safari 브라우저용 사용자 정의 스
 summary {
     list-style-type: none; /* 그 외의 브라우저용 사용자 정의 스타일 */
 }
+.wrapper {
+    height:auto;
+    min-height: 100%;
+    padding-bottom: 150px;
+}
 /* ============================================================================================= */
 /* 공통 헤더 영역 */
 
@@ -1737,8 +1742,6 @@ ul.class_tabs li.class_current {
 
 .class_detail_rating_star_form_title {
     color: #858484;
-    padding-left: 5px;
-    font-size: 0.9em;
 }
 
 .class_detail_rating_tab_title>span>a {
@@ -1979,9 +1982,9 @@ ul.class_tabs li.class_current {
     padding: 20px 30px;
 }
 
-.class_detail_watch_list a {
-    color: #fff;
+.class_detail_watch_list a{
     padding: 20px 30px;
+    color: #fff;
 }
 
 .class_detail_watch_contents {
@@ -2173,12 +2176,17 @@ ul.class_tabs li.class_current {
     transition: width 100ms linear 0s;
 }
 
-.side_content_curriculum_content {
+.side_content_curriculum_content_1 {
     border-left: 10px solid #585bff;
-    margin: 10px 0px 10px 0px;
+    /* margin: 10px 0px 10px 0px; */
     padding: 20px 40px;
     background-color: #c0f8e1;
     
+}
+
+.side_content_curriculum_content_2 {
+    /* margin: 10px 0px 10px 0px; */
+    padding: 20px 40px;
 }
 
 .side_content_curriculum_top {
@@ -3478,6 +3486,8 @@ option {
     border-radius: 0.3rem;
     border: 2px solid rgba(169, 169, 169, 0.3);
     width: 100%;
+    box-sizing: border-box;
+    margin-bottom: 50px;
 }
 
 .postBox label{
@@ -3524,14 +3534,27 @@ option {
         font-size: 15px;
     padding: 10px 0;
 }
-.postContBox p{
+/* .postContBox p{
     width: calc(100% - 50px);
     resize: none;
     padding: 10px;
     font-size: 15px;
     line-height: 20px;
     border: 1px solid rgba(169, 169, 169, 0.3);
+    box-sizing: border-box;
+    } */
+    .postContBox p {
+        width: calc(100% - 50px);
+        resize: none;
+        padding: 10px;
+        font-size: 15px;
+        line-height: 20px;
+        border: 1px solid rgba(169, 169, 169, 0.3);
+        box-sizing: border-box;
+        min-height: 250px; /* 최소 높이 설정 */
+        overflow: hidden; /* 내용이 너무 많아질 경우 스크롤바가 아닌 내용이 숨겨지도록 함 */
     }
+    
     .laguage{
     margin: 0 0 30px 50px;
 }
@@ -3562,12 +3585,27 @@ option {
 }
 .reviewBox {
     width: 100%;
-    padding: 10px 10px;
+    padding: 10px 0px;
     border-bottom: 1px solid #999;
     font-size: 15px;
 }
+/* 수정 삭제 버튼 */
+.board_button {
+    display: flex;
+    justify-content: flex-end;
+    gap: 15px;
+}
+.board_rewrite {
 
+}
+.board_delete {
 
+    }
+
+.reviewList {
+    margin-top: 20px
+}
+    
 .reviewList .item {
     background: #f1f1f1;
     font-size: 14px;
@@ -3576,8 +3614,9 @@ option {
 
 .reviewList .item:nth-child(odd) {
     background: none;
-    border-bottom: 1px solid #99999940;
-    padding-bottom: 17px;
+    /* border-top: 1px solid #99999940; */
+    /* border-bottom: 1px solid #99999940; */
+    /* padding: 20px 0 20px 0; */
 }
 
 .reviewList p {
@@ -3651,6 +3690,10 @@ option {
     cursor: pointer;
 }
 
+.commentActions button:last-child {
+    margin-right: 0px;
+}
+
 .reviewPost {
     border: 1px solid #ccc;
 }
@@ -3663,11 +3706,6 @@ option {
     border: none;
     }
 
-.reviewPost  p {
-    width: 100%;
-    height: 100px;
-    padding: 10px 10px;
-}
 
 .reviewPost button {
     height: 110px;
@@ -4009,6 +4047,12 @@ option {
         border: 1px solid rgb(206, 212, 218);
         border-radius: 7px;
     }
+
+
+    .mantine-1uni1zy:hover{
+        background-color: rgba(126, 121, 121, 0.538);
+        color: rgb(0, 0, 0);
+    }
     
 .mantine-1276sa2 {
     padding: 0px 1.375rem;
@@ -4032,6 +4076,17 @@ option {
     background-color: rgb(0, 196, 113);
     border-radius: 7px;
 }
+
+.mantine-1276sa2:hover{ 
+    background-color: rgba(53, 180, 127, 0.567);/* 호버 시 밝은 초록색 배경색으로 변경 */
+    color: #ffffff; /* 호버 시 검은색 글자색으로 변경 */
+}
+
+
+
+
+
+
 
 
 /*  랭킹 부분  */

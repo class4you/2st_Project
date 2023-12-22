@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="wrapper">
         <div class="board_detail_wrap">
         <div class="whr"><span>게시판</span><span>></span><span>게시판</span></div><!-- whr -->
         <section class="mainSectionpost">
@@ -20,7 +20,7 @@
                         <p type="text" id="postTit">{{ newBoardItem.BoardTitle }}</p>
                     </div>
                     <div class="postContBox row">
-                        <label for="postCont">내용</label>
+                        <label for="postCont">내용</label> 
                         <p class="postCont">{{ newBoardItem.BoardComment }}</p>
                     </div>
                     <div class="laguage">
@@ -43,6 +43,14 @@
                             <p>0</p>
                         </div>
                     </div>
+                    <div class="board_button">
+                    <div class="row aiC">
+                            <button><i class="board_rewrite">수정</i></button>
+                        </div>
+                        <div class="row aiC">
+                            <button><i class="board_delete">삭제</i></button>
+                        </div>
+                        </div>
                 </div>
         
                 <div class="reviewBox border-t-none">
@@ -52,17 +60,14 @@
                     <div class="reviewList">
                         <p class="board_detail_user_id">{{nowUserID.UserEmail}}</p>
                     </div>
-                    <div v-if="nowUserID.UserID !== null" class="reviewPost row jcB">
+                    <div class="reviewPost row jcB">
                         <textarea placeholder="댓글을 입력해주세요." v-model="frmCommentData.CommentContent"></textarea>
                         <button type="button" @click="submitCommentData()">저장</button>
                     </div>
-                    <div v-else class="reviewPost row jcB">
-                        <p>로그인 후 작성 가능합니다.</p>
-                    </div>
                 </div>
-                <div class="reviewBox border-t-none">
+                <div class="reviewBox border-t-none" style="padding: 10px 0px;">
                     <div v-for="item in newCommentItem" class="reviewList">
-                        <div  class="item">
+                        <div class="item">
                             <div class="commentInfo row aiC jcB">
                                 <p class="comment_writer">작성자<span>{{ hideEmail(item.UserEmail) }}</span></p>
                                 <p>작성일<span>{{ item.created_at }}</span></p>
@@ -89,6 +94,7 @@
                                 
                             
                             </div>
+                            <hr style="margin-top: 20px;">
                             
                             <!-- <div class="Board_good_bad">
                                 <button type="button" class="Board_Good " aria-label="좋아요">
@@ -146,7 +152,7 @@ export default {
                 this.newBoardItem = response.data.boardData;
                 this.nowUserID = response.data.userID;
                 this.newCommentItem = response.data.commentData;
-                // console.log(response.data.commentData);
+                console.log(response.data.commentData);
             })
             .catch(error => {
             console.error('Error fetching data:', error);

@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="wrapper">
 		<div style="padding: 0 10vw;" class="whr"><span>게시판</span><span>&gt;</span><span>게시판</span></div>
         <div class="class_detail_visual">
             <div class="class_detail_container_box">
@@ -57,6 +57,7 @@
                                 <div class="class_detail_container_r_payment_classes">
 									<a v-if="EnrollChk" :href="'/classwatch/' + detailClassItems.ClassID">강의 시청</a>
                                     <button v-else @click="postEnrollApp()">수강 신청</button>
+                                    <!-- <button v-else @click="postEnrollApp()">{{ classEnrollData.value }}</button> -->
                                 </div>
                             </div>
                         </div>
