@@ -522,7 +522,6 @@ export default {
 						this.reviewClassItems = reviewResponse.data.reviewsData;
 						this.EnrollChk = reviewResponse.data.enrollmentData;
 						// this.newReviewData = reviewResponse.data.classReviewData;
-
                 })
                 .catch(reviewError => {
                     // 두 번째 API 에러 처리
