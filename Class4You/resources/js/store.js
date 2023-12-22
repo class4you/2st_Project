@@ -480,7 +480,7 @@ const store = createStore({
         // },
         // 수강평 삭제
         deleteClassReview(context, data) {
-            const url = '/classboarddetailreview'
+            const url = '/classboarddetailreview/' + data
             const header = {
                 headers: {
                     "Content-Type": 'multipart/form-data',
@@ -494,9 +494,9 @@ const store = createStore({
             };
 
             // console에 자꾸 config url에러가남. 
-            console.log();
+            console.log(data);
 
-            axios.delete(url, requestData)
+            axios.delete(url, requestData, header)
             .then(res => { 
                 console.log(res.data);
                 // router.push('/classBoardDetail/' + this.ClassID); 

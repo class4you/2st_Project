@@ -190,7 +190,7 @@
 					<div v-for="data in reviewClassItems" :key="data.ReviewID" id="class_tab1" class="class_detail_rating_list_div class_tab_content_div">
 						<div class="class_detail_rating_list_user">
 							<div class="class_detail_rating_user_id">
-								<p>{{ data.UserEmail }} | {{ data.ReviewRating }}점</p>
+								<p>{{ hideEmail(data.UserEmail) }} | {{ data.ReviewRating }}점</p>
 							</div>
 							<div class="class_detail_rating_user_date">
 								<p>{{ data.created_at }}</p>
@@ -204,7 +204,7 @@
 								<!-- <button @click="classReviewUpdate(data)">수정</button> -->
 							</div>
 							<div class="class_detail_rating_user_delete_button">
-								<button @click="deleteClassReview()">삭제</button>
+								<button @click="deleteClassReview(data.ReviewID)">삭제</button>
 							</div>
 						</div>
 					</div>
@@ -479,11 +479,11 @@ export default {
         		UserEmail: this.$store.state.UserEmail,
         		ReviewComment: '',
         		ReviewRating: '',
+				ReviewID: this.ReviewID,
 			},
 			EnrollChk: {},
-			editReviewData: {
-				ReviewComment: '',
-        		ReviewRating: '',
+			delReviewData: {
+				ReviewID: this.ReviewID
 			},
 			editReview: false,
 			classEnrollData: {
@@ -515,8 +515,8 @@ export default {
 				.then(reviewResponse => {
                     // 두 번째 API 응답에 대한 로직 수행
                     console.log(reviewResponse.data);
-					this.reviewClassItems = reviewResponse.data.reviewsData;
-					this.EnrollChk = reviewResponse.data.enrollmentData;
+						this.reviewClassItems = reviewResponse.data.reviewsData;
+						this.EnrollChk = reviewResponse.data.enrollmentData;
 
 					axios.get()
                 })
@@ -567,13 +567,13 @@ export default {
 		// },
 		
 		// 수강평 수정 함수
-		putClassReview() {
-			this.$store.dispatch('putClassReview', this.classReviewData);
-		},
+		// putClassReview() {
+		// 	this.$store.dispatch('putClassReview', this.classReviewData);
+		// },
 
 		// 수강평 삭제 함수
-		deleteClassReview() {
-			this.$store.dispatch('deleteClassReview', this.classReviewData);
+		deleteClassReview(data) {
+			this.$store.dispatch('deleteClassReview', data);
 		},
 		postEnrollApp() {
 			this.$store.dispatch('postClassEnrollApp', this.classEnrollData);

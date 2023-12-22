@@ -119,16 +119,16 @@ class ReviewController extends Controller
         // $result = Review::find($ReviewID);
         // 리뷰아이디를 찾아서 첫번째 값을 삭제해주면되나?
 
-        $result = Review::select('ReviewID')
-            ->join('Enrollments','reviews.EnrollmentID','enrollments.EnrollmentID')
-            ->where('UserID', $UserID) 
-            ->where('ClassID', $ClassID) 
-            ->first();
+        // $result = Review::select('ReviewID')
+        //     ->join('Enrollments','reviews.EnrollmentID','enrollments.EnrollmentID')
+        //     ->where('enrollments.UserID', $UserID) 
+        //     ->where('enrollments.ClassID', $ClassID) 
+        //     ->get();
         
         // 컨트롤러까지 못오는것 같음 로그 아예 안찍힘
-        Log::debug($result);
+        // Log::debug($result);
 
-        $result->delete();
+        Review::destroy($ReviewID);
         // $result->destroy();
     }
 }
