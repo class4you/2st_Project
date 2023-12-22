@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\ClassInfo;
+use App\Models\Instructor;
 use App\Models\ClassLanguagelink;
 use App\Models\ClassDiffiBanner;
 use Illuminate\Support\Facades\Auth;
@@ -348,10 +349,21 @@ class ClassInfoController extends Controller
     // 강의 디테일페이지 불러오기
     public function getClassBoardDetailShow($ClassID) {
         // Log::debug('***** getClassBoardDetailShow Start *****');
-        $result = ClassInfo::where('ClassID', $ClassID)->first();
+        // $result = ClassInfo::where('class_infos.ClassID', $ClassID)->first();
+
+        $result = ClassInfo::join('instructors','instructors.InstructorID','class_infos.InstructorID')
+            ->where('class_infos.ClassID', $ClassID)
+            ->first();
+        
+            // $result = ClassInfo::select('class_infos.ClassID',
+        //     'instructors.InstructorID',
+        //     'instructors.InstructorFullName',
+        //     'instructors.InstructorHistory')
+        //     ->join('instructors','instructors.InstructorID','class_infos.InstructorID')
+        //     ->where('class_infos.ClassID', $ClassID)->first();
 
         // Log::debug($ClassID);
-        // Log::debug($result);
+        Log::debug($result);
         // classboardshow와 다르게 한가지 정보만 가지고 오기 때문에 if문 사용
         if ($result) {
             $classID = $result->ClassID;

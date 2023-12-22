@@ -79,7 +79,7 @@
                             <div class="commentActions row aiC">
                                 <div style="margin-left: auto;">
                                     <button class="editBtn">수정</button>
-                                    <button class="deleteBtn">삭제</button>
+                                    <button @click="deleteCommentData(item.CommentID)" class="deleteBtn">삭제</button>
                                     <button class="reportBtn">신고</button>
                                 </div>
                                 <!-- <div class="Board_good_bad">
@@ -166,6 +166,9 @@ export default {
 		},
         submitCommentData() {
             this.$store.dispatch('submitCommentData', this.frmCommentData);
+        },
+        deleteCommentData(data) {
+            this.$store.dispatch('deleteCommentData', this.frmCommentData);
         },
     },
 };

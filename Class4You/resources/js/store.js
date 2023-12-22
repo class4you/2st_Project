@@ -343,6 +343,42 @@ const store = createStore({
             })
         }, 
 
+        // 댓글 삭제 함수
+        // deleteCommentData(context, data) {
+        //     const url = '/comments/' + data
+        //     const header = {
+        //         headers: {
+        //             "Content-Type": 'multipart/form-data',
+        //             'X-CSRF-TOKEN': document.head.querySelector('meta[name="csrf-token"]').content,
+        //         },
+        //     }
+
+        //     // let frm = new FormData();
+        //     const requestData = {
+        //         CommentID: data.CommentID,
+        //     };
+
+        //     console.log(data);
+
+        //     axios.delete(url, requestData, header)
+        //     .then(res => { 
+        //         console.log(res.data);
+        //         // 해당 처리가 끝나면 리로드함
+        //         window.location.reload();
+                
+        //     })
+        //     .catch(err => {
+        //         console.log(err.response.data.errors)
+        //         context.commit('setRegistrationErrorMessage', err.response.data.errors);
+        //     })
+
+
+        // },
+
+
+
+
+
 
 
 
@@ -506,8 +542,8 @@ const store = createStore({
             .then(res => { 
                 console.log(res.data);
                 // 해당 처리가 끝나면 리로드함
-                // window.location.reload();
-                localStorage.clear();
+                window.location.reload();
+                // localStorage.clear();
                 // router.push('/classBoardDetail/' + this.ClassID); 
                 // router.push('/classBoardDetail/' + data.ClassID); 
                 //
@@ -593,6 +629,10 @@ const store = createStore({
 
 
 
+
+
+
+
         // 김민정
         submitBoardData(context, data) {
             const url = '/boardInsert'
@@ -621,6 +661,10 @@ const store = createStore({
                 context.commit('setRegistrationErrorMessage', err.response.data.errors);
             })
         },
+
+
+
+
     }, 
 });
 

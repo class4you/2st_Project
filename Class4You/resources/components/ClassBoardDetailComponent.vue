@@ -119,7 +119,9 @@
 					<p>강사 이력</p>
 				</div>
 				<div id="class_tab1" class="class_tab_content">
-					<p>강사 소개란 입니다.</p>
+					<p>{{detailClassItems.InstructorID}}</p>
+					<p>{{detailClassItems.InstructorFullName}}</p>
+					<p>{{detailClassItems.InstructorHistory}}</p>
 				</div>
 			</div>	
 
