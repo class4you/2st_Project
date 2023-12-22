@@ -20,7 +20,7 @@
                         <p type="text" id="postTit">{{ newBoardItem.BoardTitle }}</p>
                     </div>
                     <div class="postContBox row">
-                        <label for="postCont">내용</label>
+                        <label for="postCont">내용</label> 
                         <p class="postCont">{{ newBoardItem.BoardComment }}</p>
                     </div>
                     <div class="laguage">
@@ -43,6 +43,24 @@
                             <p>0</p>
                         </div>
                     </div>
+                    <!-- <div class="board_button">
+                    <div class="row aiC">
+                            <button><i class="board_rewrite">수정</i></button>
+                        </div>
+                        <div class="row aiC">
+                            <button><i class="board_delete">삭제</i></button>
+                        </div>
+                    </div> -->
+                    <div class="board_button">
+                    <div class="row aiC">
+                    <button @click="toggleDropdown"><i class="board_rewrite">수정</i></button>
+                    <div class="dropdown-content" v-show="isDropdownVisible">
+                        <button>Edit</button>
+                        <button>Delete</button>
+                    </div>
+                    </div>
+                </div>
+                    
                 </div>
         
                 <div class="reviewBox border-t-none">
@@ -109,58 +127,112 @@
     </div>
 </template>
 <script>
+
 export default {
-    name: 'BoardDetailComponent',
+  name: 'BoardDetailComponent',
 
-    props: ['BoardID'],
+  props: ['BoardID'],
 
-    data() {
-        return {
-            newBoardItem: {
-            },
-            nowUserID: {},
-            newCommentItem: {
-            },
-            newComment: '', 
+  data() {
+    return {
+      newBoardItem: {},
+      nowUserID: {},
+      newCommentItem: {},
+      newComment: '',
+      frmCommentData: {
+        UserID: this.$store.state.UserID,
+        BoardID: this.BoardID,
+        CommentContent: '',
+      },
+      isDropdownVisible: false, // 드롭다운 토글 상태
+    };
+  },
 
-            frmCommentData: {
-                UserID: this.$store.state.UserID,
-                BoardID: this.BoardID,
-                CommentContent: '',
-            },
-        };
+  mounted() {
+    this.fetchData();
+  },
+
+  methods: {
+    fetchData() {
+      axios.get('/boarddetail/' + this.BoardID)
+        .then(response => {
+          console.log(response.data);
+          this.newBoardItem = response.data.boardData;
+          this.nowUserID = response.data.userID;
+          this.newCommentItem = response.data.commentData;
+          console.log(response.data.commentData);
+        })
+        .catch(error => {
+          console.error('Error fetching data:', error);
+        });
     },
-
-    mounted() {
-        this.fetchData();
+    hideEmail(email) {
+      const atIndex = email.indexOf('@');
+      const username = email.substring(0, Math.min(4, atIndex));
+      const asterisks = '*'.repeat(atIndex - 4);
+      return username + asterisks;
     },
-
-    methods: {
-        fetchData() {
-        axios.get('/boarddetail/' + this.BoardID)
-            .then(response => {
-            console.log(response.data);
-                this.newBoardItem = response.data.boardData;
-                this.nowUserID = response.data.userID;
-                this.newCommentItem = response.data.commentData;
-                console.log(response.data.commentData);
-            })
-            .catch(error => {
-            console.error('Error fetching data:', error);
-            });
-        },
-        hideEmail(email) {
-			const atIndex = email.indexOf('@');
-			const username = email.substring(0, Math.min(4, atIndex));
-			const asterisks = '*'.repeat(atIndex - 4);
-			return username + asterisks;
-		},
-        submitCommentData() {
-            this.$store.dispatch('submitCommentData', this.frmCommentData);
-        },
+    submitCommentData() {
+      this.$store.dispatch('submitCommentData', this.frmCommentData);
     },
+    toggleDropdown() {
+      this.isDropdownVisible = !this.isDropdownVisible;
+    },
+  },
 };
+// export default {
+//     name: 'BoardDetailComponent',
+
+//     props: ['BoardID'],
+
+//     data() {
+//         return {
+//             newBoardItem: {
+//             },
+//             nowUserID: {},
+//             newCommentItem: {
+//             },
+//             newComment: '', 
+
+//             frmCommentData: {
+//                 UserID: this.$store.state.UserID,
+//                 BoardID: this.BoardID,
+//                 CommentContent: '',
+//             },
+//         };
+//     },
+
+//     mounted() {
+//         this.fetchData();
+//     },
+
+//     methods: {
+//         fetchData() {
+//         axios.get('/boarddetail/' + this.BoardID)
+//             .then(response => {
+//             console.log(response.data);
+//                 this.newBoardItem = response.data.boardData;
+//                 this.nowUserID = response.data.userID;
+//                 this.newCommentItem = response.data.commentData;
+//                 console.log(response.data.commentData);
+//             })
+//             .catch(error => {
+//             console.error('Error fetching data:', error);
+//             });
+//         },
+//         hideEmail(email) {
+// 			const atIndex = email.indexOf('@');
+// 			const username = email.substring(0, Math.min(4, atIndex));
+// 			const asterisks = '*'.repeat(atIndex - 4);
+// 			return username + asterisks;
+// 		},
+//         submitCommentData() {
+//             this.$store.dispatch('submitCommentData', this.frmCommentData);
+//         },
+//     },
+// };
 </script>
 <style>
-    
+
+
 </style>

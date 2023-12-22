@@ -3464,6 +3464,7 @@ option {
     border-radius: 0.3rem;
     border: 2px solid rgba(169, 169, 169, 0.3);
     width: 100%;
+    box-sizing: border-box;
 }
 
 .postBox label{
@@ -3510,14 +3511,27 @@ option {
         font-size: 15px;
     padding: 10px 0;
 }
-.postContBox p{
+/* .postContBox p{
     width: calc(100% - 50px);
     resize: none;
     padding: 10px;
     font-size: 15px;
     line-height: 20px;
     border: 1px solid rgba(169, 169, 169, 0.3);
+    box-sizing: border-box;
+    } */
+    .postContBox p {
+        width: calc(100% - 50px);
+        resize: none;
+        padding: 10px;
+        font-size: 15px;
+        line-height: 20px;
+        border: 1px solid rgba(169, 169, 169, 0.3);
+        box-sizing: border-box;
+        min-height: 250px; /* 최소 높이 설정 */
+        overflow: hidden; /* 내용이 너무 많아질 경우 스크롤바가 아닌 내용이 숨겨지도록 함 */
     }
+    
     .laguage{
     margin: 0 0 30px 50px;
 }
@@ -3552,6 +3566,62 @@ option {
     border-bottom: 1px solid #999;
     font-size: 15px;
 }
+/* 수정 삭제 버튼 */
+/* .board_button{
+    display: flex;
+    justify-content: flex-end;
+    gap: 15px;
+}
+
+ */
+
+ .board_button {
+    display: flex;
+    justify-content: flex-end;
+    gap: 15px;
+  }
+  
+  #dropdownBtn {
+    cursor: pointer;
+  }
+  
+  .dropdown-content {
+    display: none;
+  }
+  
+  .dropdown-content button {
+    display: block;
+    width: 100%;
+    text-align: left;
+    border: none;
+    background: none;
+    padding: 5px;
+    cursor: pointer;
+  }
+  
+  .dropdown-content.show {
+    display: flex;
+    flex-direction: column;
+  }  
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+ 
 
 
 .reviewList .item {
@@ -3990,6 +4060,12 @@ option {
         border: 1px solid rgb(206, 212, 218);
         border-radius: 7px;
     }
+
+
+    .mantine-1uni1zy:hover{
+        background-color: rgba(126, 121, 121, 0.538);
+        color: rgb(0, 0, 0);
+    }
     
 .mantine-1276sa2 {
     padding: 0px 1.375rem;
@@ -4013,6 +4089,17 @@ option {
     background-color: rgb(0, 196, 113);
     border-radius: 7px;
 }
+
+.mantine-1276sa2:hover{ 
+    background-color: rgba(53, 180, 127, 0.567);/* 호버 시 밝은 초록색 배경색으로 변경 */
+    color: #ffffff; /* 호버 시 검은색 글자색으로 변경 */
+}
+
+
+
+
+
+
 
 
 /*  랭킹 부분  */
