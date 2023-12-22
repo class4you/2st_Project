@@ -48,7 +48,7 @@
                             <button><i class="board_rewrite">수정</i></button>
                         </div>
                         <div class="row aiC">
-                            <button><i class="board_delete">삭제</i></button>
+                            <button @click="deleteBoardData(newBoardItem.BoardID)"><i class="board_delete">삭제</i></button>
                         </div>
                         </div>
                 </div>
@@ -135,6 +135,7 @@ export default {
             frmCommentData: {
                 UserID: this.$store.state.UserID,
                 BoardID: this.BoardID,
+                CommentID: this.CommnetID,
                 CommentContent: '',
             },
         };
@@ -148,11 +149,11 @@ export default {
         fetchData() {
         axios.get('/boarddetail/' + this.BoardID)
             .then(response => {
-            console.log(response.data);
+            // console.log(response.data);
                 this.newBoardItem = response.data.boardData;
                 this.nowUserID = response.data.userID;
                 this.newCommentItem = response.data.commentData;
-                console.log(response.data.commentData);
+                // console.log(response.data.commentData);
             })
             .catch(error => {
             console.error('Error fetching data:', error);
@@ -164,11 +165,20 @@ export default {
 			const asterisks = '*'.repeat(atIndex - 4);
 			return username + asterisks;
 		},
+
+        // 댓글 작성 불러오기
         submitCommentData() {
             this.$store.dispatch('submitCommentData', this.frmCommentData);
         },
+
+        // 댓글 삭제 불러오기
         deleteCommentData(data) {
-            this.$store.dispatch('deleteCommentData', this.frmCommentData);
+            this.$store.dispatch('deleteCommentData', data);
+        },
+
+        // 게시판 삭제 불러오기
+        deleteBoardData(data) {
+            this.$store.dispatch('delBoardData', data);
         },
     },
 };

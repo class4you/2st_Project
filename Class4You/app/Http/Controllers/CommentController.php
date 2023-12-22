@@ -12,14 +12,14 @@ class CommentController extends Controller
     public function postCommentData(Request $request) {
         // $userId = Auth::id();
         // Log::debug($request);
-        $data = $request->only('UserID', 'BoardID', 'CommentContent');
+        $data = $request->only('UserID', 'BoardID', 'CommentContent', 'CommentID');
 
         Log::debug($request);
         $result = Comment::create($data);
     }
 
     public function delCommentData($CommentID) {
-
+        Log::debug($CommentID);
         Comment::destroy($CommentID);
     }
 }

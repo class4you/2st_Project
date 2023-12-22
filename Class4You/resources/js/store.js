@@ -344,37 +344,65 @@ const store = createStore({
         }, 
 
         // 댓글 삭제 함수
-        // deleteCommentData(context, data) {
-        //     const url = '/comments/' + data
-        //     const header = {
-        //         headers: {
-        //             "Content-Type": 'multipart/form-data',
-        //             'X-CSRF-TOKEN': document.head.querySelector('meta[name="csrf-token"]').content,
-        //         },
-        //     }
+        deleteCommentData(context, data) {
+            const url = '/comments/' + data
+            const header = {
+                headers: {
+                    "Content-Type": 'multipart/form-data',
+                    'X-CSRF-TOKEN': document.head.querySelector('meta[name="csrf-token"]').content,
+                },
+            }
 
-        //     // let frm = new FormData();
-        //     const requestData = {
-        //         CommentID: data.CommentID,
-        //     };
+            // let frm = new FormData();
+            const requestData = {
+                CommentID: data.CommentID,
+            };
 
-        //     console.log(data);
+            // console.log(data);
 
-        //     axios.delete(url, requestData, header)
-        //     .then(res => { 
-        //         console.log(res.data);
-        //         // 해당 처리가 끝나면 리로드함
-        //         window.location.reload();
+            axios.delete(url, requestData, header)
+            .then(res => { 
+                console.log(res.data);
+                // 해당 처리가 끝나면 리로드함
+                window.location.reload();
                 
-        //     })
-        //     .catch(err => {
-        //         console.log(err.response.data.errors)
-        //         context.commit('setRegistrationErrorMessage', err.response.data.errors);
-        //     })
+            })
+            .catch(err => {
+                console.log(err.response.data.errors)
+                context.commit('setRegistrationErrorMessage', err.response.data.errors);
+            })
+        },
 
+        // 게시판 삭제 함수
+        delBoardData(context, data) {
+            const url = '/boarddetail/' + data
+            const header = {
+                headers: {
+                    "Content-Type": 'multipart/form-data',
+                    'X-CSRF-TOKEN': document.head.querySelector('meta[name="csrf-token"]').content,
+                },
+            }
 
-        // },
+            // let frm = new FormData();
+            const requestData = {
+                BoardID: data.BoardID,
+            };
 
+            // console.log(data);
+
+            axios.delete(url, requestData, header)
+            .then(res => { 
+                console.log(res.data);
+                // 해당 처리가 끝나면 리로드함
+                // window.location.reload();
+                router.push('/board'); 
+                
+            })
+            .catch(err => {
+                console.log(err.response.data.errors)
+                context.commit('setRegistrationErrorMessage', err.response.data.errors);
+            })
+        },
 
 
 
@@ -433,9 +461,10 @@ const store = createStore({
             .then(res => { 
                 console.log(res.data);
                 // 해당 처리가 끝나면 리로드함
-                window.location.reload();
+                // window.location.reload();
                 // router.push('/classBoardDetail/' + this.ClassID); 
                 // router.push('/classboarddetailreview/' + this.ClassID); 
+                router.push('/classboarddetail/' + this.ClassID); 
 
                 //
 				// context.commit(data.clickFlgTab , 1);
@@ -535,7 +564,6 @@ const store = createStore({
                 ReviewID: data.ReviewID,
             };
 
-            // console에 자꾸 config url에러가남. 
             console.log(data);
 
             axios.delete(url, requestData, header)
@@ -545,7 +573,7 @@ const store = createStore({
                 window.location.reload();
                 // localStorage.clear();
                 // router.push('/classBoardDetail/' + this.ClassID); 
-                // router.push('/classBoardDetail/' + data.ClassID); 
+                // router.push('/classboarddetailreview'); 
                 //
 				// context.commit(data.clickFlgTab , 1);
             })
