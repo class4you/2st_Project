@@ -461,10 +461,10 @@ const store = createStore({
             .then(res => { 
                 console.log(res.data);
                 // 해당 처리가 끝나면 리로드함
-                // window.location.reload();
+                window.location.reload();
                 // router.push('/classBoardDetail/' + this.ClassID); 
                 // router.push('/classboarddetailreview/' + this.ClassID); 
-                router.push('/classboarddetail/' + this.ClassID); 
+                // router.push('/classboarddetail/' + this.ClassID); 
 
                 //
 				// context.commit(data.clickFlgTab , 1);

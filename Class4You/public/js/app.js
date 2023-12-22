@@ -23070,7 +23070,6 @@ var store = (0,vuex__WEBPACK_IMPORTED_MODULE_3__.createStore)({
     // 최현희
     // 수강평 작성 함수
     addClassReview: function addClassReview(context, data) {
-      var _this = this;
       var url = '/classboarddetailreview';
       var header = {
         headers: {
@@ -23090,10 +23089,10 @@ var store = (0,vuex__WEBPACK_IMPORTED_MODULE_3__.createStore)({
       axios__WEBPACK_IMPORTED_MODULE_0___default().post(url, frm, header).then(function (res) {
         console.log(res.data);
         // 해당 처리가 끝나면 리로드함
-        // window.location.reload();
+        window.location.reload();
         // router.push('/classBoardDetail/' + this.ClassID); 
         // router.push('/classboarddetailreview/' + this.ClassID); 
-        _router_js__WEBPACK_IMPORTED_MODULE_1__["default"].push('/classboarddetail/' + _this.ClassID);
+        // router.push('/classboarddetail/' + this.ClassID); 
 
         //
         // context.commit(data.clickFlgTab , 1);
