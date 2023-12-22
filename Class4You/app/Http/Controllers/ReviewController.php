@@ -136,7 +136,7 @@ class ReviewController extends Controller
     // 강의게시판_수강평삭제
     public function deletClassReview($ReviewID) {
 
-        // $result = Review::find($ReviewID);
+        $result = Review::find($ReviewID);
         // 리뷰아이디를 찾아서 첫번째 값을 삭제해주면되나?
 
         // $result = Review::select('ReviewID')
@@ -148,7 +148,9 @@ class ReviewController extends Controller
         // 컨트롤러까지 못오는것 같음 로그 아예 안찍힘
         // Log::debug($result);
 
-        Review::destroy($ReviewID);
-        // $result->destroy();
+        // Review::destroy($ReviewID);
+        Review::destroy($result);
+
+        return response()->json($result);
     }
 }

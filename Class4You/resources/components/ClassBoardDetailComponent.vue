@@ -574,6 +574,10 @@ export default {
 
 				// 기존 수강평 데이터의 [0]번 방에 작성한 수강평 추가
                 this.reviewClassItems.unshift(res.data[0]);
+				// 수강평 등록시 기록된 데이터 삭제?
+				if(this.deleteClassReview) {
+					return this.classReviewData = '';
+				}
             })
             .catch(err => {
                 console.log(err.response.data.errors)
@@ -587,27 +591,53 @@ export default {
 			return username + asterisks;
 		},
 
-		//
-		// classReviewUpdate(classReviewData) {
-		// 	this.editReview = true;
-
-		// 	console.log(reviewData.ReviewID);
-       	// 	console.log(reviewData.ReviewComment);
-        // 	console.log(reviewData.ReviewRating);
-		// },
-		
-		// 수강평 수정 함수
-		// putClassReview() {
-		// 	this.$store.dispatch('putClassReview', this.classReviewData);
-		// },
-
 		// 수강평 삭제 함수
-		deleteClassReview(data) {
-			this.$store.dispatch('deleteClassReview', data);
-		},
+		// deleteClassReview(data) {
+		// 	this.$store.dispatch('deleteClassReview', data);
+		// },
+
+		deleteClassReview(context, data) {
+            const url = '/classboarddetailreview/' + data
+            const header = {
+                headers: {
+                    "Content-Type": 'multipart/form-data',
+                    'X-CSRF-TOKEN': document.head.querySelector('meta[name="csrf-token"]').content,
+                },
+            }
+
+            // let frm = new FormData();
+            const requestData = {
+                ReviewID: data.ReviewID,
+            };
+
+            console.log(data);
+
+            axios.delete(url, requestData, header)
+            .then(res => { 
+                console.log(res.data);
+
+				this.reviewClassItems.shift(res.requestData[0]);
+                // 해당 처리가 끝나면 리로드함
+                // window.location.reload();
+                // localStorage.clear();
+                // router.push('/classBoardDetail/' + this.ClassID); 
+                // router.push('/classboarddetailreview'); 
+                //
+				// context.commit(data.clickFlgTab , 1);
+            })
+            .catch(err => {
+                console.log(err.response.data.errors)
+                context.commit('setRegistrationErrorMessage', err.response.data.errors);
+            })
+        },
+
+
+
+
 		postEnrollApp() {
 			this.$store.dispatch('postClassEnrollApp', this.classEnrollData);
 		}
+		
 		
 	},
     

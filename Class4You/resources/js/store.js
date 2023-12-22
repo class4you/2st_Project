@@ -396,7 +396,6 @@ const store = createStore({
                 // 해당 처리가 끝나면 리로드함
                 // window.location.reload();
                 router.push('/board'); 
-                
             })
             .catch(err => {
                 console.log(err.response.data.errors)
@@ -551,40 +550,38 @@ const store = createStore({
         //     })
         // },
         // 수강평 삭제
-        deleteClassReview(context, data) {
-            const url = '/classboarddetailreview/' + data
-            const header = {
-                headers: {
-                    "Content-Type": 'multipart/form-data',
-                    'X-CSRF-TOKEN': document.head.querySelector('meta[name="csrf-token"]').content,
-                },
-            }
+        // deleteClassReview(context, data) {
+        //     const url = '/classboarddetailreview/' + data
+        //     const header = {
+        //         headers: {
+        //             "Content-Type": 'multipart/form-data',
+        //             'X-CSRF-TOKEN': document.head.querySelector('meta[name="csrf-token"]').content,
+        //         },
+        //     }
 
-            // let frm = new FormData();
-            const requestData = {
-                ReviewID: data.ReviewID,
-            };
+        //     // let frm = new FormData();
+        //     const requestData = {
+        //         ReviewID: data.ReviewID,
+        //     };
 
-            console.log(data);
+        //     console.log(data);
 
-            axios.delete(url, requestData, header)
-            .then(res => { 
-                console.log(res.data);
-                // 해당 처리가 끝나면 리로드함
-                window.location.reload();
-                // localStorage.clear();
-                // router.push('/classBoardDetail/' + this.ClassID); 
-                // router.push('/classboarddetailreview'); 
-                //
-				// context.commit(data.clickFlgTab , 1);
-            })
-            .catch(err => {
-                console.log(err.response.data.errors)
-                context.commit('setRegistrationErrorMessage', err.response.data.errors);
-            })
-
-
-        },
+        //     axios.delete(url, requestData, header)
+        //     .then(res => { 
+        //         console.log(res.data);
+        //         // 해당 처리가 끝나면 리로드함
+        //         window.location.reload();
+        //         // localStorage.clear();
+        //         // router.push('/classBoardDetail/' + this.ClassID); 
+        //         // router.push('/classboarddetailreview'); 
+        //         //
+		// 		// context.commit(data.clickFlgTab , 1);
+        //     })
+        //     .catch(err => {
+        //         console.log(err.response.data.errors)
+        //         context.commit('setRegistrationErrorMessage', err.response.data.errors);
+        //     })
+        // },
             
 
 
