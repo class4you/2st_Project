@@ -485,6 +485,7 @@ export default {
 			delReviewData: {
 				ReviewID: this.ReviewID
 			},
+			newReviewData: '',
 			editReview: false,
 			classEnrollData: {
 				ClassID: this.ClassID,
@@ -517,6 +518,7 @@ export default {
                     console.log(reviewResponse.data);
 						this.reviewClassItems = reviewResponse.data.reviewsData;
 						this.EnrollChk = reviewResponse.data.enrollmentData;
+						// this.newReviewData = reviewResponse.data.classReviewData;
 
 					axios.get()
                 })

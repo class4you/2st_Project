@@ -1730,6 +1730,8 @@ ul.class_tabs li.class_current {
 
 .class_detail_rating_star_form_title {
     color: #858484;
+    padding-left: 5px;
+    font-size: 0.9em;
 }
 
 .class_detail_rating_tab_title>span>a {
