@@ -101,6 +101,7 @@ Route::get('/boarddetail/{BoardID}', [BoardController::class, 'getBoardDetailSho
 
 // 코멘트 작업
 Route::post('/comments', [CommentController::class, 'postCommentData']);
+Route::delete('/comments', [CommentController::class, 'delCommentData']);
 
 
 

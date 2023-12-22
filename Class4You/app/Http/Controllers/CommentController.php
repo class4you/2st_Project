@@ -17,4 +17,9 @@ class CommentController extends Controller
         Log::debug($request);
         $result = Comment::create($data);
     }
+
+    public function delCommentData($CommentID) {
+
+        Comment::destroy($CommentID);
+    }
 }
