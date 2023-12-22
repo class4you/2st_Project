@@ -103,6 +103,11 @@ class BoardController extends Controller
 
     //     return response()->json($comments);
     // }
+    
+    // 자유게시판 삭제
+    public function delBoardDetailData($BoardID) {
 
+        Board::destroy($BoardID);
+    }
 
 }

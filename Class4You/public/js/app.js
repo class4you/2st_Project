@@ -19456,6 +19456,7 @@ __webpack_require__.r(__webpack_exports__);
       frmCommentData: {
         UserID: this.$store.state.UserID,
         BoardID: this.BoardID,
+        CommentID: this.CommnetID,
         CommentContent: ''
       }
     };
@@ -19467,11 +19468,11 @@ __webpack_require__.r(__webpack_exports__);
     fetchData: function fetchData() {
       var _this = this;
       axios.get('/boarddetail/' + this.BoardID).then(function (response) {
-        console.log(response.data);
+        // console.log(response.data);
         _this.newBoardItem = response.data.boardData;
         _this.nowUserID = response.data.userID;
         _this.newCommentItem = response.data.commentData;
-        console.log(response.data.commentData);
+        // console.log(response.data.commentData);
       })["catch"](function (error) {
         console.error('Error fetching data:', error);
       });
@@ -19482,11 +19483,17 @@ __webpack_require__.r(__webpack_exports__);
       var asterisks = '*'.repeat(atIndex - 4);
       return username + asterisks;
     },
+    // 댓글 작성 불러오기
     submitCommentData: function submitCommentData() {
       this.$store.dispatch('submitCommentData', this.frmCommentData);
     },
+    // 댓글 삭제 불러오기
     deleteCommentData: function deleteCommentData(data) {
-      this.$store.dispatch('deleteCommentData', this.frmCommentData);
+      this.$store.dispatch('deleteCommentData', data);
+    },
+    // 게시판 삭제 불러오기
+    deleteBoardData: function deleteBoardData(data) {
+      this.$store.dispatch('delBoardData', data);
     }
   }
 });
@@ -20631,81 +20638,100 @@ var _hoisted_13 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
 var _hoisted_14 = {
   "class": "postCont"
 };
-var _hoisted_15 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"laguage\"><ul class=\"row aiC laguage_gap_10\"><li>React</li><li>JS</li><li>CSS</li><li>HTML</li><li>LARAVEL</li><li>React</li></ul></div><div class=\"reco row jcC\"><div class=\"row aiC\"><p>0</p><button><i class=\"fas fa-thumbs-up\" style=\"font-size:20px;\"></i></button></div><div class=\"row aiC\"><button><i class=\"fas fa-thumbs-down\" style=\"font-size:20px;\"></i></button><p>0</p></div></div><div class=\"board_button\"><div class=\"row aiC\"><button><i class=\"board_rewrite\">수정</i></button></div><div class=\"row aiC\"><button><i class=\"board_delete\">삭제</i></button></div></div>", 3);
-var _hoisted_18 = {
+var _hoisted_15 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"laguage\"><ul class=\"row aiC laguage_gap_10\"><li>React</li><li>JS</li><li>CSS</li><li>HTML</li><li>LARAVEL</li><li>React</li></ul></div><div class=\"reco row jcC\"><div class=\"row aiC\"><p>0</p><button><i class=\"fas fa-thumbs-up\" style=\"font-size:20px;\"></i></button></div><div class=\"row aiC\"><button><i class=\"fas fa-thumbs-down\" style=\"font-size:20px;\"></i></button><p>0</p></div></div>", 2);
+var _hoisted_17 = {
+  "class": "board_button"
+};
+var _hoisted_18 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+  "class": "row aiC"
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
+  "class": "board_rewrite"
+}, "수정")])], -1 /* HOISTED */);
+var _hoisted_19 = {
+  "class": "row aiC"
+};
+var _hoisted_20 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
+  "class": "board_delete"
+}, "삭제", -1 /* HOISTED */);
+var _hoisted_21 = [_hoisted_20];
+var _hoisted_22 = {
   "class": "reviewBox border-t-none"
 };
-var _hoisted_19 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+var _hoisted_23 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "number"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("답변"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "0")])], -1 /* HOISTED */);
-var _hoisted_20 = {
+var _hoisted_24 = {
   "class": "reviewList"
 };
-var _hoisted_21 = {
+var _hoisted_25 = {
   "class": "board_detail_user_id"
 };
-var _hoisted_22 = {
+var _hoisted_26 = {
   "class": "reviewPost row jcB"
 };
-var _hoisted_23 = {
+var _hoisted_27 = {
   "class": "reviewBox border-t-none",
   style: {
     "padding": "10px 0px"
   }
 };
-var _hoisted_24 = {
+var _hoisted_28 = {
   "class": "reviewList"
 };
-var _hoisted_25 = {
+var _hoisted_29 = {
   "class": "item"
 };
-var _hoisted_26 = {
+var _hoisted_30 = {
   "class": "commentInfo row aiC jcB"
 };
-var _hoisted_27 = {
+var _hoisted_31 = {
   "class": "comment_writer"
 };
-var _hoisted_28 = {
+var _hoisted_32 = {
   "class": "commentText"
 };
-var _hoisted_29 = {
+var _hoisted_33 = {
   "class": "commentActions row aiC"
 };
-var _hoisted_30 = {
+var _hoisted_34 = {
   style: {
     "margin-left": "auto"
   }
 };
-var _hoisted_31 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+var _hoisted_35 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
   "class": "editBtn"
 }, "수정", -1 /* HOISTED */);
-var _hoisted_32 = ["onClick"];
-var _hoisted_33 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+var _hoisted_36 = ["onClick"];
+var _hoisted_37 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
   "class": "reportBtn"
 }, "신고", -1 /* HOISTED */);
-var _hoisted_34 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("hr", {
+var _hoisted_38 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("hr", {
   style: {
     "margin-top": "20px"
   }
 }, null, -1 /* HOISTED */);
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [_hoisted_3, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" whr "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("section", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("section", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("작성자"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.newBoardItem.UserEmail), 1 /* TEXT */)])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_8, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("작성일"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.newBoardItem.created_at), 1 /* TEXT */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("조회수"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.newBoardItem.BoardView), 1 /* TEXT */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("좋아요"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.newBoardItem.Recommended), 1 /* TEXT */)])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_9, [_hoisted_10, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_11, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.newBoardItem.BoardTitle), 1 /* TEXT */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_12, [_hoisted_13, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_14, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.newBoardItem.BoardComment), 1 /* TEXT */)]), _hoisted_15]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_18, [_hoisted_19, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_20, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_21, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.nowUserID.UserEmail), 1 /* TEXT */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_22, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("textarea", {
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [_hoisted_3, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" whr "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("section", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("section", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("작성자"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.newBoardItem.UserEmail), 1 /* TEXT */)])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_8, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("작성일"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.newBoardItem.created_at), 1 /* TEXT */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("조회수"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.newBoardItem.BoardView), 1 /* TEXT */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("좋아요"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.newBoardItem.Recommended), 1 /* TEXT */)])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_9, [_hoisted_10, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_11, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.newBoardItem.BoardTitle), 1 /* TEXT */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_12, [_hoisted_13, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_14, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.newBoardItem.BoardComment), 1 /* TEXT */)]), _hoisted_15, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_17, [_hoisted_18, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_19, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+    onClick: _cache[0] || (_cache[0] = function ($event) {
+      return $options.deleteBoardData($data.newBoardItem.BoardID);
+    })
+  }, [].concat(_hoisted_21))])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_22, [_hoisted_23, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_24, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_25, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.nowUserID.UserEmail), 1 /* TEXT */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_26, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("textarea", {
     placeholder: "댓글을 입력해주세요.",
-    "onUpdate:modelValue": _cache[0] || (_cache[0] = function ($event) {
+    "onUpdate:modelValue": _cache[1] || (_cache[1] = function ($event) {
       return $data.frmCommentData.CommentContent = $event;
     })
   }, null, 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.frmCommentData.CommentContent]]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
     type: "button",
-    onClick: _cache[1] || (_cache[1] = function ($event) {
+    onClick: _cache[2] || (_cache[2] = function ($event) {
       return $options.submitCommentData();
     })
-  }, "저장")])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_23, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.newCommentItem, function (item) {
-    return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_24, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_25, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_26, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_27, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("작성자"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.hideEmail(item.UserEmail)), 1 /* TEXT */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("작성일"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.created_at), 1 /* TEXT */)])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_28, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.CommentContent), 1 /* TEXT */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_29, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_30, [_hoisted_31, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+  }, "저장")])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_27, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.newCommentItem, function (item) {
+    return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_28, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_29, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_30, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_31, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("작성자"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.hideEmail(item.UserEmail)), 1 /* TEXT */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("작성일"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.created_at), 1 /* TEXT */)])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_32, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.CommentContent), 1 /* TEXT */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_33, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_34, [_hoisted_35, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
       onClick: function onClick($event) {
         return $options.deleteCommentData(item.CommentID);
       },
       "class": "deleteBtn"
-    }, "삭제", 8 /* PROPS */, _hoisted_32), _hoisted_33]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <div class=\"Board_good_bad\">\r\n                                    <button type=\"button\" class=\"Board_Good \" aria-label=\"좋아요\">\r\n                                      <i class=\"fa-solid fa-thumbs-up\"></i>\r\n                                    </button>\r\n                                    <p class=\"vote-count e-vote-count\" aria-label=\"투표수\">0</p>\r\n                                    <button type=\"button\" class=\"Board_Bad\" aria-label=\"싫어요\">\r\n                                      <i class=\"fa-solid fa-thumbs-down\"></i>\r\n                                    </button>\r\n                                  </div> ")]), _hoisted_34, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <div class=\"Board_good_bad\">\r\n                                <button type=\"button\" class=\"Board_Good \" aria-label=\"좋아요\">\r\n                                  <i class=\"fa-solid fa-thumbs-up\"></i>\r\n                                </button>\r\n                                <p class=\"vote-count e-vote-count\" aria-label=\"투표수\">0</p>\r\n                                <button type=\"button\" class=\"Board_Bad\" aria-label=\"싫어요\">\r\n                                  <i class=\"fa-solid fa-thumbs-down\"></i>\r\n                                </button>\r\n                              </div> ")]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" 다른 댓글들도 유사한 구조로 추가할 수 있습니다 ")]);
+    }, "삭제", 8 /* PROPS */, _hoisted_36), _hoisted_37]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <div class=\"Board_good_bad\">\r\n                                    <button type=\"button\" class=\"Board_Good \" aria-label=\"좋아요\">\r\n                                      <i class=\"fa-solid fa-thumbs-up\"></i>\r\n                                    </button>\r\n                                    <p class=\"vote-count e-vote-count\" aria-label=\"투표수\">0</p>\r\n                                    <button type=\"button\" class=\"Board_Bad\" aria-label=\"싫어요\">\r\n                                      <i class=\"fa-solid fa-thumbs-down\"></i>\r\n                                    </button>\r\n                                  </div> ")]), _hoisted_38, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <div class=\"Board_good_bad\">\r\n                                <button type=\"button\" class=\"Board_Good \" aria-label=\"좋아요\">\r\n                                  <i class=\"fa-solid fa-thumbs-up\"></i>\r\n                                </button>\r\n                                <p class=\"vote-count e-vote-count\" aria-label=\"투표수\">0</p>\r\n                                <button type=\"button\" class=\"Board_Bad\" aria-label=\"싫어요\">\r\n                                  <i class=\"fa-solid fa-thumbs-down\"></i>\r\n                                </button>\r\n                              </div> ")]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" 다른 댓글들도 유사한 구조로 추가할 수 있습니다 ")]);
   }), 256 /* UNKEYED_FRAGMENT */))])])])])]);
 }
 
@@ -23070,30 +23096,58 @@ var store = (0,vuex__WEBPACK_IMPORTED_MODULE_3__.createStore)({
       });
     },
     // 댓글 삭제 함수
-    // deleteCommentData(context, data) {
-    //     const url = '/comments/' + data
-    //     const header = {
-    //         headers: {
-    //             "Content-Type": 'multipart/form-data',
-    //             'X-CSRF-TOKEN': document.head.querySelector('meta[name="csrf-token"]').content,
-    //         },
-    //     }
-    //     // let frm = new FormData();
-    //     const requestData = {
-    //         CommentID: data.CommentID,
-    //     };
-    //     console.log(data);
-    //     axios.delete(url, requestData, header)
-    //     .then(res => { 
-    //         console.log(res.data);
-    //         // 해당 처리가 끝나면 리로드함
-    //         window.location.reload();
-    //     })
-    //     .catch(err => {
-    //         console.log(err.response.data.errors)
-    //         context.commit('setRegistrationErrorMessage', err.response.data.errors);
-    //     })
-    // },
+    deleteCommentData: function deleteCommentData(context, data) {
+      var url = '/comments/' + data;
+      var header = {
+        headers: {
+          "Content-Type": 'multipart/form-data',
+          'X-CSRF-TOKEN': document.head.querySelector('meta[name="csrf-token"]').content
+        }
+      };
+
+      // let frm = new FormData();
+      var requestData = {
+        CommentID: data.CommentID
+      };
+
+      // console.log(data);
+
+      axios__WEBPACK_IMPORTED_MODULE_0___default()["delete"](url, requestData, header).then(function (res) {
+        console.log(res.data);
+        // 해당 처리가 끝나면 리로드함
+        window.location.reload();
+      })["catch"](function (err) {
+        console.log(err.response.data.errors);
+        context.commit('setRegistrationErrorMessage', err.response.data.errors);
+      });
+    },
+    // 게시판 삭제 함수
+    delBoardData: function delBoardData(context, data) {
+      var url = '/boarddetail/' + data;
+      var header = {
+        headers: {
+          "Content-Type": 'multipart/form-data',
+          'X-CSRF-TOKEN': document.head.querySelector('meta[name="csrf-token"]').content
+        }
+      };
+
+      // let frm = new FormData();
+      var requestData = {
+        BoardID: data.BoardID
+      };
+
+      // console.log(data);
+
+      axios__WEBPACK_IMPORTED_MODULE_0___default()["delete"](url, requestData, header).then(function (res) {
+        console.log(res.data);
+        // 해당 처리가 끝나면 리로드함
+        // window.location.reload();
+        _router_js__WEBPACK_IMPORTED_MODULE_1__["default"].push('/board');
+      })["catch"](function (err) {
+        console.log(err.response.data.errors);
+        context.commit('setRegistrationErrorMessage', err.response.data.errors);
+      });
+    },
     // 최현희
     // 수강평 작성 함수
     addClassReview: function addClassReview(context, data) {
@@ -23119,6 +23173,7 @@ var store = (0,vuex__WEBPACK_IMPORTED_MODULE_3__.createStore)({
         window.location.reload();
         // router.push('/classBoardDetail/' + this.ClassID); 
         // router.push('/classboarddetailreview/' + this.ClassID); 
+        // router.push('/classboarddetail/' + this.ClassID); 
 
         //
         // context.commit(data.clickFlgTab , 1);
@@ -23202,8 +23257,6 @@ var store = (0,vuex__WEBPACK_IMPORTED_MODULE_3__.createStore)({
       var requestData = {
         ReviewID: data.ReviewID
       };
-
-      // console에 자꾸 config url에러가남. 
       console.log(data);
       axios__WEBPACK_IMPORTED_MODULE_0___default()["delete"](url, requestData, header).then(function (res) {
         console.log(res.data);
@@ -23211,7 +23264,7 @@ var store = (0,vuex__WEBPACK_IMPORTED_MODULE_3__.createStore)({
         window.location.reload();
         // localStorage.clear();
         // router.push('/classBoardDetail/' + this.ClassID); 
-        // router.push('/classBoardDetail/' + data.ClassID); 
+        // router.push('/classboarddetailreview'); 
         //
         // context.commit(data.clickFlgTab , 1);
       })["catch"](function (err) {
