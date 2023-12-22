@@ -65,9 +65,9 @@
                         <button type="button" @click="submitCommentData()">저장</button>
                     </div>
                 </div>
-                <div class="reviewBox border-t-none">
+                <div class="reviewBox border-t-none" style="padding: 10px 0px;">
                     <div v-for="item in newCommentItem" class="reviewList">
-                        <div  class="item">
+                        <div class="item">
                             <div class="commentInfo row aiC jcB">
                                 <p class="comment_writer">작성자<span>{{ hideEmail(item.UserEmail) }}</span></p>
                                 <p>작성일<span>{{ item.created_at }}</span></p>
@@ -94,6 +94,7 @@
                                 
                             
                             </div>
+                            <hr style="margin-top: 20px;">
                             
                             <!-- <div class="Board_good_bad">
                                 <button type="button" class="Board_Good " aria-label="좋아요">

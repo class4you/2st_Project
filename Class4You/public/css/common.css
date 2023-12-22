@@ -1982,6 +1982,11 @@ ul.class_tabs li.class_current {
     padding: 20px 30px;
 }
 
+.class_detail_watch_list a{
+    padding: 20px 30px;
+    color: #fff;
+}
+
 .class_detail_watch_contents {
     display: flex;
     position: relative;
@@ -2171,12 +2176,17 @@ ul.class_tabs li.class_current {
     transition: width 100ms linear 0s;
 }
 
-.side_content_curriculum_content {
+.side_content_curriculum_content_1 {
     border-left: 10px solid #585bff;
     /* margin: 10px 0px 10px 0px; */
     padding: 20px 40px;
     background-color: #c0f8e1;
     
+}
+
+.side_content_curriculum_content_2 {
+    /* margin: 10px 0px 10px 0px; */
+    padding: 20px 40px;
 }
 
 .side_content_curriculum_top {
@@ -3477,6 +3487,7 @@ option {
     border: 2px solid rgba(169, 169, 169, 0.3);
     width: 100%;
     box-sizing: border-box;
+    margin-bottom: 50px;
 }
 
 .postBox label{
@@ -3574,7 +3585,7 @@ option {
 }
 .reviewBox {
     width: 100%;
-    padding: 10px 10px;
+    padding: 10px 0px;
     border-bottom: 1px solid #999;
     font-size: 15px;
 }
@@ -3591,6 +3602,10 @@ option {
 
     }
 
+.reviewList {
+    margin-top: 20px
+}
+    
 .reviewList .item {
     background: #f1f1f1;
     font-size: 14px;
@@ -3599,8 +3614,9 @@ option {
 
 .reviewList .item:nth-child(odd) {
     background: none;
-    border-bottom: 1px solid #99999940;
-    padding-bottom: 17px;
+    /* border-top: 1px solid #99999940; */
+    /* border-bottom: 1px solid #99999940; */
+    /* padding: 20px 0 20px 0; */
 }
 
 .reviewList p {
@@ -3672,6 +3688,10 @@ option {
     border: none;
     padding: 5px 10px;
     cursor: pointer;
+}
+
+.commentActions button:last-child {
+    margin-right: 0px;
 }
 
 .reviewPost {
