@@ -74,6 +74,13 @@ html, body {height:100%}
 .class_detail_visual {
     margin-top: 10px;
 }
+
+summary::-webkit-details-marker { /* Safari 브라우저용 사용자 정의 스타일 */
+    display: none;
+}
+summary {
+    list-style-type: none; /* 그 외의 브라우저용 사용자 정의 스타일 */
+}
 /* ============================================================================================= */
 /* 공통 헤더 영역 */
 
@@ -1972,6 +1979,11 @@ ul.class_tabs li.class_current {
     padding: 20px 30px;
 }
 
+.class_detail_watch_list a {
+    color: #fff;
+    padding: 20px 30px;
+}
+
 .class_detail_watch_contents {
     display: flex;
     position: relative;
@@ -2163,7 +2175,7 @@ ul.class_tabs li.class_current {
 
 .side_content_curriculum_content {
     border-left: 10px solid #585bff;
-    /* margin: 10px 0px 10px 0px; */
+    margin: 10px 0px 10px 0px;
     padding: 20px 40px;
     background-color: #c0f8e1;
     
