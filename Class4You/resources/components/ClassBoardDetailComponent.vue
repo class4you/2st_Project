@@ -489,7 +489,25 @@ export default {
 			delReviewData: {
 				ReviewID: this.ReviewID
 			},
-			newReviewData: '',
+			newReviewData() {
+				return {
+					ClassID: this.ClassID,
+					UserID: this.$store.state.UserID,
+					UserEmail: this.$store.state.UserEmail,
+					ReviewComment: '',
+					ReviewRating: Number,
+					ReviewID: this.ReviewID,
+				};
+			},
+			// 질문하기. 함수로 객체만드는것과 데이터자체를 객체로 만드는것은 어떤 차이가 있는가
+			// newReviewData: {
+			// 	ClassID: this.ClassID,
+        	// 	UserID: this.$store.state.UserID,
+        	// 	UserEmail: this.$store.state.UserEmail,
+        	// 	ReviewComment: '',
+        	// 	ReviewRating: Number,
+			// 	ReviewID: this.ReviewID,
+			// },
 			editReview: false,
 			classEnrollData: {
 				ClassID: this.ClassID,
@@ -572,15 +590,21 @@ export default {
             .then(res => {
 				// console.log(this.reviewClassItems);
                 // console.log(res.data[0]);
-
+				
 				// 기존 수강평 데이터의 [0]번 방에 작성한 수강평 추가
                 this.reviewClassItems.unshift(res.data[0]);
 				// 수강평 등록시 기록된 데이터 삭제?
 				// if(this.deleteClassReview) {
-				if(this.addClassReview) {
-					return this.classReviewData = '';
-				}
-            })
+				// if(this.addClassReview) {
+				// 	return this.classReviewData = '';
+				// }
+				this.classReviewData = this.newReviewData();
+				// this.classReviewData = this.newReviewData ;
+				
+			})
+			// .then(res => {
+			// 	this.newReviewData();
+			// })
             .catch(err => {
                 console.log(err.response.data.errors)
                 context.commit('setRegistrationErrorMessage', err.response.data.errors);
