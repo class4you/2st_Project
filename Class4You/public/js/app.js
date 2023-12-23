@@ -19569,7 +19569,7 @@ __webpack_require__.r(__webpack_exports__);
         UserID: this.$store.state.UserID,
         UserEmail: this.$store.state.UserEmail,
         ReviewComment: '',
-        ReviewRating: '',
+        ReviewRating: Number,
         ReviewID: this.ReviewID
       },
       EnrollChk: {},
@@ -19653,7 +19653,8 @@ __webpack_require__.r(__webpack_exports__);
         // 기존 수강평 데이터의 [0]번 방에 작성한 수강평 추가
         _this2.reviewClassItems.unshift(res.data[0]);
         // 수강평 등록시 기록된 데이터 삭제?
-        if (_this2.deleteClassReview) {
+        // if(this.deleteClassReview) {
+        if (_this2.addClassReview) {
           return _this2.classReviewData = '';
         }
       })["catch"](function (err) {
@@ -19671,9 +19672,9 @@ __webpack_require__.r(__webpack_exports__);
     // deleteClassReview(data) {
     // 	this.$store.dispatch('deleteClassReview', data);
     // },
-    deleteClassReview: function deleteClassReview(context, data) {
+    deleteClassReview: function deleteClassReview(data) {
       var _this3 = this;
-      var url = '/classboarddetailreview/' + data;
+      var url = '/classboarddetailreview/' + data.ReviewID;
       var header = {
         headers: {
           "Content-Type": 'multipart/form-data',
@@ -19682,20 +19683,19 @@ __webpack_require__.r(__webpack_exports__);
       };
 
       // let frm = new FormData();
-      var requestData = {
-        ReviewID: data.ReviewID
-      };
+      // const data = {
+      //     ReviewID: data.ReviewID,
+      // };
+
+      // 데이터값이 옴
       console.log(data);
-      axios__WEBPACK_IMPORTED_MODULE_0___default()["delete"](url, requestData, header).then(function (res) {
-        console.log(res.data);
-        _this3.reviewClassItems.shift(res.requestData[0]);
-        // 해당 처리가 끝나면 리로드함
-        // window.location.reload();
-        // localStorage.clear();
-        // router.push('/classBoardDetail/' + this.ClassID); 
-        // router.push('/classboarddetailreview'); 
-        //
-        // context.commit(data.clickFlgTab , 1);
+      // console.log(data.ReviewID);
+
+      axios__WEBPACK_IMPORTED_MODULE_0___default()["delete"](url, data, header).then(function (res) {
+        // console.log(this.reviewClassItems);
+        // console.log(res.data[0]);
+
+        _this3.reviewClassItems.shift(res.data[0]);
       })["catch"](function (err) {
         console.log(err.response.data.errors);
         context.commit('setRegistrationErrorMessage', err.response.data.errors);
@@ -21244,9 +21244,9 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       key: data.ReviewID,
       id: "class_tab1",
       "class": "class_detail_rating_list_div class_tab_content_div"
-    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_54, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_55, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.hideEmail(data.UserEmail)) + " | " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(data.ReviewRating) + "점", 1 /* TEXT */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_56, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(data.created_at), 1 /* TEXT */)])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_57, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(data.ReviewComment), 1 /* TEXT */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_58, [_hoisted_59, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_60, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_54, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_55, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.hideEmail(data.UserEmail)) + " | " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(data.ReviewRating) + "점", 1 /* TEXT */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_56, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(data.created_at), 1 /* TEXT */)])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_57, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(data.ReviewComment), 1 /* TEXT */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_58, [_hoisted_59, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_60, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <button @click=\"deleteClassReview(data.ReviewID)\">삭제</button> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
       onClick: function onClick($event) {
-        return $options.deleteClassReview(data.ReviewID);
+        return $options.deleteClassReview(data);
       }
     }, "삭제", 8 /* PROPS */, _hoisted_61)])])]);
   }), 128 /* KEYED_FRAGMENT */))]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" 수정폼 "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <div v-if=\"editReview\" id=\"class_tab1\" class=\"class_detail_rating_list_div\">\r\n\t\t\t\t\t\t<div class=\"class_detail_rating_list_user\">\r\n\t\t\t\t\t\t\t<div class=\"class_detail_rating_form_star\">\r\n\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t<fieldset class=\"class_detail_rating_star_form\" name=\"myform\">\r\n\t\t\t\t\t\t\t\t\t<legend class=\"class_detail_rating_star_form_title\">별점</legend>\r\n\t\t\t\t\t\t\t\t\t\t<input v-model=\"classReviewData.ReviewRating\" class=\"class_detail_rating_star_input\" type=\"radio\" name=\"rating\" value=\"5\" id=\"rate1\">\r\n\t\t\t\t\t\t\t\t\t\t\t<label class=\"class_detail_rating_star_label\" for=\"rate1\">⭐</label>\r\n\t\t\t\t\t\t\t\t\t\t<input v-model=\"classReviewData.ReviewRating\" class=\"class_detail_rating_star_input\" type=\"radio\" name=\"rating\" value=\"4\" id=\"rate2\">\r\n\t\t\t\t\t\t\t\t\t\t\t<label class=\"class_detail_rating_star_label\" for=\"rate2\">⭐</label>\r\n\t\t\t\t\t\t\t\t\t\t<input v-model=\"classReviewData.ReviewRating\" class=\"class_detail_rating_star_input\" type=\"radio\" name=\"rating\" value=\"3\" id=\"rate3\">\r\n\t\t\t\t\t\t\t\t\t\t\t<label class=\"class_detail_rating_star_label\" for=\"rate3\">⭐</label>\r\n\t\t\t\t\t\t\t\t\t\t<input v-model=\"classReviewData.ReviewRating\" class=\"class_detail_rating_star_input\" type=\"radio\" name=\"rating\" value=\"2\" id=\"rate4\">\r\n\t\t\t\t\t\t\t\t\t\t\t<label class=\"class_detail_rating_star_label\" for=\"rate4\">⭐</label>\r\n\t\t\t\t\t\t\t\t\t\t<input v-model=\"classReviewData.ReviewRating\" class=\"class_detail_rating_star_input\" type=\"radio\" name=\"rating\" value=\"1\" id=\"rate5\">\r\n\t\t\t\t\t\t\t\t\t\t\t<label class=\"class_detail_rating_star_label\" for=\"rate5\">⭐</label>\r\n\t\t\t\t\t\t\t\t</fieldset>\r\n\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t<div class=\"class_detail_rating_list_text\">\r\n\t\t\t\t\t\t\t<textarea v-model=\"editReviewData.ReviewComment\"></textarea>\r\n\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t<div class=\"class_detail_rating_user_button\">\r\n\t\t\t\t\t\t\t<div class=\"class_detail_rating_user_update_button\">\r\n\t\t\t\t\t\t\t\t<button @click=\"putClassReview()\">수정</button>\r\n\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t<div class=\"class_detail_rating_user_delete_button\">\r\n\t\t\t\t\t\t\t\t<button>취소</button>\r\n\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t</div>\r\n\t\t\t\t</div> ")])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" 커뮤니티 "), $data.clickFlgTab === 2 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_62, [].concat(_hoisted_65))) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" 공지사항 "), $data.clickFlgTab === 3 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_66, [].concat(_hoisted_69))) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])]);
