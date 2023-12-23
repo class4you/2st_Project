@@ -207,7 +207,8 @@
 								<!-- <button @click="classReviewUpdate(data)">수정</button> -->
 							</div>
 							<div class="class_detail_rating_user_delete_button">
-								<button @click="deleteClassReview(data.ReviewID)">삭제</button>
+								<!-- <button @click="deleteClassReview(data.ReviewID)">삭제</button> -->
+								<button @click="deleteClassReview(data)">삭제</button>
 							</div>
 						</div>
 					</div>
@@ -481,14 +482,32 @@ export default {
         		UserID: this.$store.state.UserID,
         		UserEmail: this.$store.state.UserEmail,
         		ReviewComment: '',
-        		ReviewRating: '',
+        		ReviewRating: Number,
 				ReviewID: this.ReviewID,
 			},
 			EnrollChk: {},
 			delReviewData: {
 				ReviewID: this.ReviewID
 			},
-			newReviewData: '',
+			newReviewData() {
+				return {
+					ClassID: this.ClassID,
+					UserID: this.$store.state.UserID,
+					UserEmail: this.$store.state.UserEmail,
+					ReviewComment: '',
+					ReviewRating: Number,
+					ReviewID: this.ReviewID,
+				};
+			},
+			// 질문하기. 함수로 객체만드는것과 데이터자체를 객체로 만드는것은 어떤 차이가 있는가
+			// newReviewData: {
+			// 	ClassID: this.ClassID,
+        	// 	UserID: this.$store.state.UserID,
+        	// 	UserEmail: this.$store.state.UserEmail,
+        	// 	ReviewComment: '',
+        	// 	ReviewRating: Number,
+			// 	ReviewID: this.ReviewID,
+			// },
 			editReview: false,
 			classEnrollData: {
 				ClassID: this.ClassID,
@@ -571,14 +590,21 @@ export default {
             .then(res => {
 				// console.log(this.reviewClassItems);
                 // console.log(res.data[0]);
-
+				
 				// 기존 수강평 데이터의 [0]번 방에 작성한 수강평 추가
                 this.reviewClassItems.unshift(res.data[0]);
 				// 수강평 등록시 기록된 데이터 삭제?
-				if(this.deleteClassReview) {
-					return this.classReviewData = '';
-				}
-            })
+				// if(this.deleteClassReview) {
+				// if(this.addClassReview) {
+				// 	return this.classReviewData = '';
+				// }
+				this.classReviewData = this.newReviewData();
+				// this.classReviewData = this.newReviewData ;
+				
+			})
+			// .then(res => {
+			// 	this.newReviewData();
+			// })
             .catch(err => {
                 console.log(err.response.data.errors)
                 context.commit('setRegistrationErrorMessage', err.response.data.errors);
@@ -596,8 +622,8 @@ export default {
 		// 	this.$store.dispatch('deleteClassReview', data);
 		// },
 
-		deleteClassReview(context, data) {
-            const url = '/classboarddetailreview/' + data
+		deleteClassReview(data) {
+            const url = '/classboarddetailreview/' + data.ReviewID
             const header = {
                 headers: {
                     "Content-Type": 'multipart/form-data',
@@ -606,33 +632,34 @@ export default {
             }
 
             // let frm = new FormData();
-            const requestData = {
-                ReviewID: data.ReviewID,
-            };
+            // const data = {
+            //     ReviewID: data.ReviewID,
+            // };
 
+			// 데이터값이 옴
             console.log(data);
+            // console.log(data.ReviewID);
 
-            axios.delete(url, requestData, header)
+            axios.delete(url,data, header)
             .then(res => { 
-                console.log(res.data);
+                // console.log(this.reviewClassItems);
+                // console.log(res.data[0]);
 
-				this.reviewClassItems.shift(res.requestData[0]);
-                // 해당 처리가 끝나면 리로드함
-                // window.location.reload();
-                // localStorage.clear();
-                // router.push('/classBoardDetail/' + this.ClassID); 
-                // router.push('/classboarddetailreview'); 
-                //
-				// context.commit(data.clickFlgTab , 1);
+				// this.reviewClassItems.shift(res.data);
+				// if(this.deleteClassReview) {
+				// 	return this.classReviewData = '';
+				// }
+
+				// this.reviewClassItems 배열에서 삭제 대상인 항목을 제외한 새로운 배열을 생성하여 할당합니다. 
+				// 이렇게 하면 삭제된 항목이 제외된 배열이 this.reviewClassItems에 다시 할당되어 뷰에 반영됩니다.
+				this.reviewClassItems = this.reviewClassItems.filter(item => item.ReviewID !== data.ReviewID);
+    
             })
             .catch(err => {
                 console.log(err.response.data.errors)
                 context.commit('setRegistrationErrorMessage', err.response.data.errors);
             })
         },
-
-
-
 
 		postEnrollApp() {
 			this.$store.dispatch('postClassEnrollApp', this.classEnrollData);

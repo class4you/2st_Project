@@ -1295,7 +1295,7 @@ ul.class_tabs li.class_current {
 }
 
 .class_tab_content>p {
-    text-align: center;
+    text-align: start;
 }
 
 .class_tab_content_title {
@@ -1316,9 +1316,18 @@ ul.class_tabs li.class_current {
     border-bottom: 1px solid #ededed;
 }
 
-.class_tab_link {
 
-}
+
+
+
+
+
+
+
+
+
+
+
 
 /* ============================================================================================================ */
 /* 강의게시판rating */
@@ -1444,14 +1453,20 @@ ul.class_tabs li.class_current {
     border: none;
 }
 
+.class_detail_rating_star_form {
+    display: flex;
+    flex-direction: row-reverse;
+    padding-bottom: 5px;
+}
+
 .class_detail_rating_star_form>fieldset{
     display: inline-block; /* 하위 별점 이미지들이 있는 영역만 자리를 차지함.*/
-    direction: rtl;
     border: 0; /* 필드셋 테두리 제거 */
 }
 
 .class_detail_rating_star_form_title {
     text-align: left;
+    margin-left: 3px;
 }
 
 .class_detail_rating_star_input {
@@ -1462,6 +1477,7 @@ ul.class_tabs li.class_current {
     font-size: 1.2em; /* 이모지 크기 */
     color: transparent; 
     text-shadow: 0 0 0 #858484; 
+    
 }
 
 .class_detail_rating_star_label:hover{

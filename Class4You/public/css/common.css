@@ -1652,7 +1652,7 @@ ul.class_tabs li.class_current {
     }
 
 .class_tab_content>p {
-    text-align: center;
+    text-align: start;
 }
 
 .class_tab_content_title {
@@ -1808,6 +1808,12 @@ ul.class_tabs li.class_current {
 }
 
 /* 별점 기능 */
+.class_detail_rating_star_form {
+    display: flex;
+    flex-direction: row-reverse;
+    padding-bottom: 5px;
+}
+
 .class_detail_rating_star_form>fieldset{
     display: inline-block; /* 하위 별점 이미지들이 있는 영역만 자리를 차지함.*/
     /* direction: rtl; */
@@ -1816,6 +1822,7 @@ ul.class_tabs li.class_current {
 
 .class_detail_rating_star_form_title {
     text-align: left;
+    margin-left: 3px;
 }
 
 .class_detail_rating_star_input {
@@ -2034,9 +2041,21 @@ ul.class_tabs li.class_current {
     -webkit-box-align: center;
     align-items: center;
     /* margin-top: auto; */
-    width: 100%;
+    /* width: 100%; */
     padding: 15px ;
     background-color: rgb(134, 142, 150);
+    gap: 100px;
+}
+
+.class_detail_watch_next_btn {
+    background-color: transparent;
+    border: none;
+    background-color: #000000;
+    color: #fff;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 10px;
+
 }
 
 .class_detail_watch_right_side {
