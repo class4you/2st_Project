@@ -1295,7 +1295,7 @@ ul.class_tabs li.class_current {
 }
 
 .class_tab_content>p {
-    text-align: center;
+    text-align: start;
 }
 
 .class_tab_content_title {
@@ -1316,9 +1316,18 @@ ul.class_tabs li.class_current {
     border-bottom: 1px solid #ededed;
 }
 
-.class_tab_link {
 
-}
+
+
+
+
+
+
+
+
+
+
+
 
 /* ============================================================================================================ */
 /* 강의게시판rating */
