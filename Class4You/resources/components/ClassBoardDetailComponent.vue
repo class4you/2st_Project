@@ -621,7 +621,14 @@ export default {
                 // console.log(this.reviewClassItems);
                 // console.log(res.data[0]);
 
-				this.reviewClassItems.shift(res.data[0]);
+				// this.reviewClassItems.shift(res.data);
+				// if(this.deleteClassReview) {
+				// 	return this.classReviewData = '';
+				// }
+
+				// this.reviewClassItems 배열에서 삭제 대상인 항목을 제외한 새로운 배열을 생성하여 할당합니다. 
+				// 이렇게 하면 삭제된 항목이 제외된 배열이 this.reviewClassItems에 다시 할당되어 뷰에 반영됩니다.
+				this.reviewClassItems = this.reviewClassItems.filter(item => item.ReviewID !== data.ReviewID);
     
             })
             .catch(err => {
@@ -629,9 +636,6 @@ export default {
                 context.commit('setRegistrationErrorMessage', err.response.data.errors);
             })
         },
-
-
-
 
 		postEnrollApp() {
 			this.$store.dispatch('postClassEnrollApp', this.classEnrollData);
