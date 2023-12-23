@@ -23,6 +23,7 @@ class ReviewController extends Controller
         $EnrollmentData = Enrollment::select('EnrollmentID')
             ->where('UserID', $UserID) 
             ->where('ClassID', $ClassID)
+            // ->paginate(10);
             ->first();
             
         $EnrollmentData =  $EnrollmentData ? true : false;
@@ -41,6 +42,7 @@ class ReviewController extends Controller
             ->where('enrollments.ClassID', $ClassID)
             // ->orderBy('enrollments.created_at', 'desc')
             ->orderBy('reviews.created_at', 'desc')
+            // ->paginate(10);
             ->get();
 
         // Log::debug($EnrollmentData);

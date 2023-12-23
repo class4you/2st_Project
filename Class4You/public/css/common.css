@@ -1575,6 +1575,7 @@ th:last-child, td:last-child {
     background-color: #3d64bf76;
     border-radius: 5px;
     cursor: pointer;
+    font-size: 1rem;
 }
 
 .class_detail_container_r_payment_classes a:hover {
