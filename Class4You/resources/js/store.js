@@ -513,44 +513,6 @@ const store = createStore({
 
         // 수강평 삭제
         // deleteClassReview(context, data) {
-        //     const url = '/classboarddetailreview'
-            
-        
-        //     const header = {
-        //         headers: {
-        //             "Content-Type": 'multipart/form-data',
-        //             'X-CSRF-TOKEN': document.head.querySelector('meta[name="csrf-token"]').content,
-        //         },
-        //     }
-        //     let frm = new FormData();
-
-        //     console.log(data);
-
-        //     frm.append('ClassID',data.ClassID);
-        //     frm.append('ClassID',data.ClassID);
-        //     frm.append('ReviewComment',data.ReviewComment);
-        //     frm.append('ReviewRating',data.ReviewRating);
-
-        //     // console.log(frm);
-
-        //     axios.delete(url, frm, header)
-        //     .then(res => { 
-        //         console.log(res.data);
-        //         // router.push('/classBoardDetail/' + this.ClassID); 
-        //         // router.push('/classBoardDetail/' + data.ClassID); 
-        //         const index = this.$store.commit(data => data.ReviewID === todoToDelete.id)
-        //         this.todos.splice(index, 1)
-
-        //         //
-		// 		// context.commit(data.clickFlgTab , 1);
-        //     })
-        //     .catch(err => {
-        //         console.log(err.response.data.errors)
-        //         context.commit('setRegistrationErrorMessage', err.response.data.errors);
-        //     })
-        // },
-        // 수강평 삭제
-        // deleteClassReview(context, data) {
         //     const url = '/classboarddetailreview/' + data
         //     const header = {
         //         headers: {
