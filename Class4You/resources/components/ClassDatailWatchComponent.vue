@@ -27,14 +27,14 @@
                 </div>
                 <div class="class_detail_watch_footer">
                     <!-- 근데 이전강의 버튼은 필요없나? -->
-                    <div>
-                        <button>
-                            <span>이전강의</span>
+
+                        <button class="class_detail_watch_next_btn">
+                            이전강의
                         </button>
                         <button class="class_detail_watch_next_btn">
-                            <span>다음강의</span>
+                            다음강의
                         </button>
-                    </div>
+
                 </div>
             </div>
 

@@ -16,13 +16,13 @@ class ChapterSeeder extends Seeder
     public function run()
     {
         // Chapter::create([
-        //     'ClassID' => 50,
-        //     'ChapterTitle' => '기초부터 배우는 PHP 1강',
+        //     'ClassID' => 51,
+        //     'ChapterTitle' => '기초부터 안 배우는 PHP 1강',
         // ]);
 
         // Chapter::create([
-        //     'ClassID' => 50,
-        //     'ChapterTitle' => '기초부터 배우는 PHP 2강',
+        //     'ClassID' => 51,
+        //     'ChapterTitle' => '기초부터 안 배우는 PHP 2강',
         // ]);
     }
 }

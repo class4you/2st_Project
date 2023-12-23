@@ -2034,9 +2034,21 @@ ul.class_tabs li.class_current {
     -webkit-box-align: center;
     align-items: center;
     /* margin-top: auto; */
-    width: 100%;
+    /* width: 100%; */
     padding: 15px ;
     background-color: rgb(134, 142, 150);
+    gap: 100px;
+}
+
+.class_detail_watch_next_btn {
+    background-color: transparent;
+    border: none;
+    background-color: #000000;
+    color: #fff;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 10px;
+
 }
 
 .class_detail_watch_right_side {
