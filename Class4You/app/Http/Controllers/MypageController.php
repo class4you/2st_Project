@@ -50,11 +50,12 @@ class MypageController extends Controller
                     $chapter->Lessons = $Lessons->toArray();
 
                     // $chapter 객체에는 현재 챕터와 그에 대한 리슨 값들이 별도의 배열로 포함됨
-                    Log::debug($chapter);
+                    $chapters->push($chapter);
+                    // Log::debug($chapter);
                 }
             }
         }
-        Log::debug($chapter);
+        Log::debug($chapters);
         // Log::debug($chapters);
         
         
