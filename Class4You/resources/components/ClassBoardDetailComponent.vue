@@ -43,6 +43,7 @@
                                     <span>(5.0)</span>
                                 </span>
                                 <span>수강생 수</span>
+                                <span>{{ enrollmentCnt }}</span>
                             </div>
                             <div class="class_detail_container_r_language">
                                 <span class="class_detail_container_r_language_icon">#</span>
@@ -513,6 +514,7 @@ export default {
 				ClassID: this.ClassID,
 				UserID: this.$store.state.UserID
 			},
+			enrollmentCnt: {},
 			// pagination: {},
 			// page: {},
         }
@@ -533,7 +535,8 @@ export default {
 			.then(response => {
 			// API 응답에 대한 로직 수행
 			console.log(response.data);
-			this.detailClassItems = response.data;
+			this.detailClassItems = response.data.result;
+			this.enrollmentCnt = response.data.userCnt.user_count;
 
 			// if(this.clickFlgTab === 1) {
 				axios.get('/classboarddetailreview/' + this.ClassID)

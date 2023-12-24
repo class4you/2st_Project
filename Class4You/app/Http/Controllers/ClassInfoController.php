@@ -357,11 +357,31 @@ class ClassInfoController extends Controller
             ->where('class_infos.ClassID', $ClassID)
             ->first();
 
+        Log::debug($result);
+        
+        $userCnt = Enrollment::select(DB::raw('COUNT(UserID) as user_count'))
+        ->where('ClassID', $ClassID)
+        ->groupBy('ClassID') 
+        ->first();
+        
+        Log::debug($userCnt);
         // $result = ClassInfo::select('class_infos.*', DB::raw(count(enrollments.UserID)))
 		// 	->join('instructors','instructors.InstructorID','class_infos.InstructorID')
         //     ->join('enrollments','enrollments.ClassID','class_infos.ClassID')
         //     ->where('class_infos.ClassID', $ClassID)
 		// 	->groupBy('class_infos.ClassID')
+        //     ->first();
+        // $result = ClassInfo::select('class_infos.*', DB::raw('COUNT(enrollments.UserID) as enrollment_count'))
+        // ->join('enrollments', 'enrollments.ClassID', '=', 'class_infos.ClassID')
+        // ->groupBy('class_infos.ClassID',)
+        // ->get();
+
+
+        // $result = ClassInfo::join('instructors', 'instructors.InstructorID', 'class_infos.InstructorID')
+        //     ->join('enrollments', 'enrollments.ClassID', 'class_infos.ClassID')
+        //     ->select('class_infos.*', 'instructors.*', DB::raw('COUNT(enrollments.UserID) as total_users'))
+        //     ->where('class_infos.ClassID', $ClassID)
+        //     ->groupBy('class_infos.ClassID')
         //     ->first();
 
         // 선택한 강의 디테일 정보 + 수강한 UserID가져오기
@@ -385,7 +405,6 @@ class ClassInfoController extends Controller
         
 
         // Log::debug($ClassID);
-        Log::debug($result);
 
         // 해당 강의 태그 정보 가져오기
         // classboardshow와 다르게 한가지 정보만 가지고 오기 때문에 if문 사용
@@ -412,7 +431,10 @@ class ClassInfoController extends Controller
 
             // return view('classBoardDetail', ['data' => $result]);
         // Log::debug('***** getClassBoardDetailShow End *****');
-            return response()->json($result);
+            return response()->json([
+                'result' => $result,
+                'userCnt' => $userCnt
+            ]);
         }    
     }
 
