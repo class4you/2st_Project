@@ -35,27 +35,38 @@ class MypageController extends Controller
 
         $classIDs = $enrollments->pluck('ClassID');
 
-        $chapters = collect();
+        // $chapters = collect();
+
+        // foreach ($classIDs as $classID) {
+        //     $classChapters = Chapter::where('ClassID', $classID)->get();
+        //     if (!$classChapters->isEmpty()) {
+        //         foreach ($classChapters as $chapter) {
+        //             $chapterID = $chapter->ChapterID;
+        
+        //             // 챕터 아이디를 기반으로 해당 챕터에 속하는 리슨을 가져옴
+        //             $Lessons = Lesson::where('ChapterID', $chapterID)->get();
+
+        //             // 현재 챕터에 대한 리슨 값을 별도의 배열로 저장
+        //             $chapter->Lessons = $Lessons->toArray();
+
+        //             // $chapter 객체에는 현재 챕터와 그에 대한 리슨 값들이 별도의 배열로 포함됨
+        //             $chapters->push($chapter);
+        //             // Log::debug($chapter);
+        //         }
+        //     }
+        // }
 
         foreach ($classIDs as $classID) {
-            $classChapters = Chapter::where('ClassID', $classID)->get();
-            if (!$classChapters->isEmpty()) {
-                foreach ($classChapters as $chapter) {
-                    $chapterID = $chapter->ChapterID;
-        
-                    // 챕터 아이디를 기반으로 해당 챕터에 속하는 리슨을 가져옴
-                    $Lessons = Lesson::where('ChapterID', $chapterID)->get();
-
-                    // 현재 챕터에 대한 리슨 값을 별도의 배열로 저장
-                    $chapter->Lessons = $Lessons->toArray();
-
-                    // $chapter 객체에는 현재 챕터와 그에 대한 리슨 값들이 별도의 배열로 포함됨
-                    $chapters->push($chapter);
-                    // Log::debug($chapter);
-                }
-            }
+            $chapters = Classinfo::join('Chapters', 'class_info.ClassID', '=', 'Chapters.ClassID')
+            ->join('Lessons', 'Chapters.ChapterID', '=', 'Lessons.ChapterID')
+            ->select('Chapters.*', 'Lessons.*')
+            ->where('class_info.ClassID', $classID)
+            ->where('Lessons.LessonFlg', '1') // LessonFlg가 1인 강의만 필터링
+            ->get();
+            Log::debug($chapters);
         }
-        Log::debug($chapters);
+
+
         // Log::debug($chapters);
         
         
