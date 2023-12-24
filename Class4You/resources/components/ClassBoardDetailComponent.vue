@@ -1,6 +1,6 @@
 <template>
     <div class="wrapper">
-		<div style="padding: 0 10vw;" class="whr"><span>게시판</span><span>&gt;</span><span>게시판</span></div>
+		<div style="padding: 0 10vw;" class="whr"><span>전체강의</span><span>&gt;</span><span>{{ detailClassItems.languages[0].ClassLanguageName }}</span></div>
         <div class="class_detail_visual">
             <div class="class_detail_container_box">
                 
@@ -475,7 +475,14 @@ export default {
     data() {
         return {
             clickFlgTab: 0,
-			detailClassItems: [],
+			// detailClassItems: [],
+			detailClassItems: {
+				languages: [
+				{ ClassLanguageName: 'HTML' },
+            	{ ClassLanguageName: 'CSS' },
+            	{ ClassLanguageName: 'JavaScript' },
+				]
+			},
 			reviewClassItems: [],
 			// 글작성시 필요한 데이터?
 			classReviewData: {

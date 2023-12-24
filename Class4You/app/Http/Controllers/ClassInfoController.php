@@ -46,7 +46,7 @@ class ClassInfoController extends Controller
         $result3 = $this->getDataForThirdSection();
         $result4 = $this->getDataForFourthSection();
 
-    
+        Log::debug($ClassLanguageName);
         // $resultLang = $this->classBoardLangName();
 
     //  뷰로 전달하는 배열을 올바르게 구성하려면 데이터와 메시지 변수를 각각 분리하고, 
@@ -352,7 +352,7 @@ class ClassInfoController extends Controller
         // Log::debug('***** getClassBoardDetailShow Start *****');
         // $result = ClassInfo::where('class_infos.ClassID', $ClassID)->first();
 
-        // 선택한 강의 디테일 정보 가져오기
+        // 기존 선택한 강의 디테일 정보 가져오기
         $result = ClassInfo::join('instructors','instructors.InstructorID','class_infos.InstructorID')
             ->where('class_infos.ClassID', $ClassID)
             ->first();

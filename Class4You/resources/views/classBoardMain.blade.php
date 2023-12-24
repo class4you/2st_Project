@@ -3,7 +3,7 @@
 @section('classBoardMain')
 <!-- section: 아래의 코드 출력 -->
 <div id="wrap">
-
+<div style="padding: 0 10vw;" class="whr"><span>전체강의</span><span>&gt;</span><span>게시판</span></div>
 	<div class="class_container_main">
 		<main class="class_contents">
 			<div class="class_main_mrap">
