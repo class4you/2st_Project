@@ -3,7 +3,7 @@
 @section('classBoardMain')
 <!-- section: 아래의 코드 출력 -->
 <div id="wrap">
-<div style="padding: 0 10vw;" class="whr"><span>전체강의</span><span>&gt;</span><span>게시판</span></div>
+<div style="padding: 0 10vw;" class="whr"><span>전체강의</span><span>&gt;</span><span>{{$classLanguageName}}</span></div>
 	<div class="class_container_main">
 		<main class="class_contents">
 			<div class="class_main_mrap">
@@ -43,7 +43,8 @@
 
 					@forelse($classInfo1 as $item)
 						@if ($loop->iteration <= 4)
-
+						<!-- iteration: 루프반복의 인덱스, loop: 블레이드에서 제공하는 루프정보를 가지고 있는 객체 -->
+						<!-- classInfo1의 배열의 [0]~[3]까지 출력하겠다는 의미  -->
 						<a href="/classboarddetail/{{ $item->ClassID }}">
 						<li class="class_main_container_new_card">
 							<div class="class_main_container_new_card_img">

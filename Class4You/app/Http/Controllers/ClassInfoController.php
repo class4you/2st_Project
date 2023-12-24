@@ -38,6 +38,10 @@ class ClassInfoController extends Controller
         return response()->json($data);
     }
 
+    public function getSharedData() {
+        return $this->sharedData;
+    }
+
     // 강의 게시판 메인페이지 불러오기
     public function classBoardIndex($ClassLanguageName) {
         $this->sharedData = $ClassLanguageName;
@@ -57,7 +61,7 @@ class ClassInfoController extends Controller
             'msg2' => $result2['msg2'],
             'classInfo3' => $result3, 
             'classInfo4' => $result4,
-            
+            'classLanguageName' => $this->getSharedData(),
         ]);
 
         // return response()->json([
@@ -358,7 +362,7 @@ class ClassInfoController extends Controller
             ->first();
 
         Log::debug($result);
-        
+        // 수강한 유저 수 불러오기
         $userCnt = Enrollment::select(DB::raw('COUNT(UserID) as user_count'))
         ->where('ClassID', $ClassID)
         ->groupBy('ClassID') 
