@@ -512,7 +512,9 @@ export default {
 			classEnrollData: {
 				ClassID: this.ClassID,
 				UserID: this.$store.state.UserID
-			}
+			},
+			// pagination: {},
+			// page: {},
         }
     },
 	mounted() {
@@ -535,10 +537,16 @@ export default {
 
 			// if(this.clickFlgTab === 1) {
 				axios.get('/classboarddetailreview/' + this.ClassID)
+				// axios.get(`/classboarddetailreview/data`, {
+				// 	params: {
+				// 		page: this.pagination.current_page
+				// 	}
+				// })
 				.then(reviewResponse => {
                     // 두 번째 API 응답에 대한 로직 수행
                     console.log(reviewResponse.data);
 						this.reviewClassItems = reviewResponse.data.reviewsData;
+						// this.pagination = reviewResponse.data.links;
 						this.EnrollChk = reviewResponse.data.enrollmentData;
 						// this.newReviewData = reviewResponse.data.classReviewData;
                 })

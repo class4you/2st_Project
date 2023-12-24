@@ -12,6 +12,10 @@ class ClassInfo extends Model
         return $this->belongsTo(ClassLanguageLink::class, 'ClassLanguageID');
     }
 
+    public function enrollments() {
+        return $this->belongsTo(Enrollment::class, 'UserID');
+    }
+
     protected $table = 'class_infos';
 
     protected $fillable = [

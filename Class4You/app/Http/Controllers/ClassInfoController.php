@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\ClassInfo;
 use App\Models\Instructor;
+use App\Models\Enrollment;
 use App\Models\ClassLanguagelink;
 use App\Models\ClassDiffiBanner;
 use Illuminate\Support\Facades\Auth;
@@ -351,19 +352,42 @@ class ClassInfoController extends Controller
         // Log::debug('***** getClassBoardDetailShow Start *****');
         // $result = ClassInfo::where('class_infos.ClassID', $ClassID)->first();
 
+        // 선택한 강의 디테일 정보 가져오기
         $result = ClassInfo::join('instructors','instructors.InstructorID','class_infos.InstructorID')
             ->where('class_infos.ClassID', $ClassID)
             ->first();
+
+        // $result = ClassInfo::select('class_infos.*', DB::raw(count(enrollments.UserID)))
+		// 	->join('instructors','instructors.InstructorID','class_infos.InstructorID')
+        //     ->join('enrollments','enrollments.ClassID','class_infos.ClassID')
+        //     ->where('class_infos.ClassID', $ClassID)
+		// 	->groupBy('class_infos.ClassID')
+        //     ->first();
+
+        // 선택한 강의 디테일 정보 + 수강한 UserID가져오기
+        // $result = ClassInfo::join('instructors','instructors.InstructorID','class_infos.InstructorID')
+        //     ->join('enrollments','enrollments.ClassID','class_infos.ClassID')
+        //     ->where('class_infos.ClassID', $ClassID)
+        //     ->get();
+
+        //     foreach ($result as $classInfo) {
+        //         $classID = $classInfo->ClassID; // 강의의 정보
+        //         $instructorID = $classInfo->InstructorID; // 강의의 강사 ID
+            
+        //         // enrollments 테이블의 UserID 등의 정보
+        //         $enrolledUsers = $classInfo->enrollments; // enrollments 모델의 컬렉션
+            
+        //         foreach ($enrolledUsers as $enrollment) {
+        //             $userID = $enrollment->UserID; // 각 수강생의 ID 등의 정보
+                    
+        //         }
+        //     }
         
-            // $result = ClassInfo::select('class_infos.ClassID',
-        //     'instructors.InstructorID',
-        //     'instructors.InstructorFullName',
-        //     'instructors.InstructorHistory')
-        //     ->join('instructors','instructors.InstructorID','class_infos.InstructorID')
-        //     ->where('class_infos.ClassID', $ClassID)->first();
 
         // Log::debug($ClassID);
         Log::debug($result);
+
+        // 해당 강의 태그 정보 가져오기
         // classboardshow와 다르게 한가지 정보만 가지고 오기 때문에 if문 사용
         if ($result) {
             $classID = $result->ClassID;
