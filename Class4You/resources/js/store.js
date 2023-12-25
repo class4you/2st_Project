@@ -95,6 +95,11 @@ const store = createStore({
             state.userData.UserID = data.UserID;
             localStorage.setItem('UserID', data.userId);
             localStorage.setItem('userCheck', data.sessionDataCheck);
+
+            setTimeout(function() {
+                localStorage.removeItem('UserID');
+                localStorage.removeItem('userCheck');
+            }, 2 * 60 * 60 * 1000);
             // console.log(data);
             // localStorage.setItem('UserID', {value:data.userId, expire: Date.now() + 7200000});
             // localStorage.setItem('userCheck', {value:data.sessionDataCheck, expire: Date.now() + 7200000});

@@ -35,6 +35,10 @@ class MypageController extends Controller
 
         $classIDs = $enrollments->pluck('ClassID');
 
+        // Log::debug($UserID);
+        // Log::debug($userData);
+        // Log::debug($classData);
+
         // $chapters = collect();
 
         // foreach ($classIDs as $classID) {
@@ -56,15 +60,56 @@ class MypageController extends Controller
         //     }
         // }
 
+        $chapters = collect();
+
         foreach ($classIDs as $classID) {
-            $chapters = Classinfo::join('Chapters', 'class_info.ClassID', '=', 'Chapters.ClassID')
+            $chapter = Classinfo::join('Chapters', 'class_infos.ClassID', '=', 'Chapters.ClassID')
             ->join('Lessons', 'Chapters.ChapterID', '=', 'Lessons.ChapterID')
             ->select('Chapters.*', 'Lessons.*')
-            ->where('class_info.ClassID', $classID)
-            ->where('Lessons.LessonFlg', '1') // LessonFlg가 1인 강의만 필터링
+            ->where('class_infos.ClassID', $classID)
+            // ->where('Lessons.LessonFlg', '1')
             ->get();
-            Log::debug($chapters);
+            
+            if ($chapter->isNotEmpty()) {
+                $chapters[$classID] = $chapter;
+            }
         }
+
+        // 클래스별 챕터 수와 플래그가 1인 챕터의 퍼센트를 저장할 배열
+        $classInfo = [];
+
+        foreach ($chapters as $classChapters) {
+            $totalChapters = count($classChapters);
+
+            // Log::debug($classChapters);
+
+            // Log::debug($totalChapters);
+
+            if ($totalChapters > 0) {
+                $flaggedChapters = $classChapters->filter(function ($chapter) {
+                    return $chapter->LessonFlg === '1';
+                });
+
+                // Log::debug($flaggedChapters);
+                
+                $totalFlaggedChapters = $flaggedChapters->count();
+                
+                // Log::debug($totalFlaggedChapters);
+                // 퍼센트 계산
+                $percent = ($totalFlaggedChapters / $totalChapters) * 100;
+
+                // Log::debug($percent);
+                // 결과를 배열에 저장
+                $classInfo[] = [
+                    'ClassID' => $classChapters->first()->ClassID,
+                    'TotalChapters' => $totalChapters,
+                    'TotalFlaggedChapters' => $totalFlaggedChapters,
+                    'Percent' => $percent,
+                ];
+
+            }
+        }
+        Log::debug($classInfo);
 
 
         // Log::debug($chapters);
