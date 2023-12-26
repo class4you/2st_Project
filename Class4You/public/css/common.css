@@ -2680,8 +2680,12 @@ option {
     background-color: #3e3e42c5;
     color: #fff;
 }
-
-
+.qustuon_list_pageing {
+display: flex;
+flex-wrap: wrap;
+justify-content: center;
+font-size: 15px;
+}
 .ac_button {
     background-color: #3e4042;
     border-color: #868e96;
@@ -3595,20 +3599,24 @@ option {
     justify-content: flex-end;
     gap: 15px;
 }
-.board_rewrite {  
+.board_rewrite {    
     margin-right: 10px;
     background-color: #ccc;
     border: none;
-    padding: 13.8px 12px;
     cursor: pointer;
+    width: 44px;
+    height: 28.5px;
+    font-size: 13px;
+    padding-top: 10px;
+    padding-left: 9px;
+    color: black;
     box-sizing: border-box;
     font-family: 'Noto Sans KR', sans-serif;
     font-weight: 700;
-    font-size: 13px;
-    padding-top: 13px
 }
 
-.board_delete {    margin-right: 10px;
+.board_delete {    
+    margin-right: 10px;
     background-color: #ccc;
     border: none;
     padding: 5px 10px;
@@ -3720,7 +3728,7 @@ option {
 }
 
 .reviewPost textarea {
-     width: calc(100% - 110px);
+    width: calc(100% - 100px);
     resize: none;
     padding: 10px 10px;
     font-size: 14px;
@@ -3769,9 +3777,8 @@ option {
     }
     
     .board_button {
-        color: red;
+        padding-top: 20px;
     }
-
     .mantine-1zsxti {display: flex;
     flex-flow: nowrap;
     justify-content: center;
@@ -3783,6 +3790,21 @@ option {
         max-width: none;
 
         
+    }
+    .board_rewrite {
+        margin-right: 10px;
+        background-color: #ccc;
+        border: none;
+        cursor: pointer;
+        width: 44px;
+        height: 28.5px;
+        font-size: 13px;
+        padding-top: 13px;
+        padding-left: 9px;
+        color: black;
+        box-sizing: border-box;
+        font-family: 'Noto Sans KR', sans-serif;
+        font-weight: 700;
     }
 
     .leftNav {

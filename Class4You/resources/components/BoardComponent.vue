@@ -138,11 +138,11 @@
 												<dl>
 												<dt class="visually_hidden">투표점수</dt>
 												<dd class="comment_count">
-													<i>추천수 {{ item.BoardRecommended }}</i>
+													<i>추천수 : {{ item.BoardRecommended }}</i>
 												</dd>
 												<dt class="visually_hidden">투표점수</dt>
 												<dd class="comment_count">
-													<i>비추천: {{ item.BoardNotRecommended }}</i>
+													<i>비추천 : {{ item.BoardNotRecommended }}</i>
 												</dd>
 												<dt class="visually_hidden">조회수</dt>
 												<dd class="comment_count">
@@ -150,7 +150,7 @@
 												</dd>
 												<dt class="visually_hidden">답변</dt>
 												<dd class="comment_count">
-													<i>답변순</i>
+													<i>답변수 :</i>
 													<span>0</span>
 												</dd>
 												</dl>
