@@ -4757,6 +4757,18 @@ option {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 /* ============================================================================================= */
 /* 공통 푸터 영역 */
 
@@ -4770,11 +4782,34 @@ footer {
 	bottom: 0;
 }
 
+.footer_info_btn_div {
+    font-size: 0.8rem;
+}
+
 .footer_main {
     color: #858484;
     display: flex;
+    flex-direction: row;
+    line-height: 1.5;
+    justify-content: flex-start;
+    padding-top: 25px;
 }
 
 .footer_info_btn {
     display: flex;
+    flex-direction: row;
+    text-align: center;
+    align-items: center;
+}
+
+.footer_info_btn {
+    text-decoration: none;
+}
+
+.footer_info_btn>li>a:visited {
+    color: #858484;
+}
+
+.footer_info_buttom {
+    font-size: 0.6rem;
 }

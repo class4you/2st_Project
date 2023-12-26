@@ -148,7 +148,6 @@ export default {
                 // 서버 응답에 대한 로직 수행
                 // this.$router.push('/board');
                 this.$router.push('/boarddetail/' + this.BoardID);
-                
             })
             .catch(error => {
                 // 에러 처리

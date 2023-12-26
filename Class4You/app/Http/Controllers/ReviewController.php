@@ -150,8 +150,11 @@ class ReviewController extends Controller
         // 컨트롤러까지 못오는것 같음 로그 아예 안찍힘
         // Log::debug($result);
 
+        if(Auth::check()) {
+            $result = Review::destroy($ReviewID);
+        }
         // Review::destroy($ReviewID);
-        $result = Review::destroy($ReviewID);
+        // $result = Review::destroy($ReviewID);
 
         return response()->json($result);
     }

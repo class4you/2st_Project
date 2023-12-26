@@ -478,9 +478,7 @@ export default {
 			// detailClassItems: [],
 			detailClassItems: {
 				languages: [
-				{ ClassLanguageName: 'HTML' },
-            	{ ClassLanguageName: 'CSS' },
-            	{ ClassLanguageName: 'JavaScript' },
+					{ ClassLanguageName: '' },
 				]
 			},
 			reviewClassItems: [],

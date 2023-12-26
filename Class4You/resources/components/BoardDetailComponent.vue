@@ -23,7 +23,6 @@
                         <label for="postCont">내용</label> 
                         <p class="postCont">{{ newBoardItem.BoardComment }}</p>
                     </div>
-                    {{ newBoardItem }}
                     <div class="laguage">
                         <ul class="row aiC laguage_gap_10">
                             <li>React</li>
