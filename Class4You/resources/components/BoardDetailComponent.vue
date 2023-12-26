@@ -77,10 +77,11 @@
                             </div>
                             
                             <div class="commentActions row aiC">
-                                <div style="margin-left: auto;">
+                                <div v-if="item.UserID == $store.state.UserID" style="margin-left: auto;">
                                     <button class="editBtn">수정</button>
                                     <button @click="deleteCommentData(item.CommentID)" class="deleteBtn">삭제</button>
                                     <button class="reportBtn">신고</button>
+                                    <!-- {{ item }} -->
                                 </div>
                                 <!-- <div class="Board_good_bad">
                                     <button type="button" class="Board_Good " aria-label="좋아요">
