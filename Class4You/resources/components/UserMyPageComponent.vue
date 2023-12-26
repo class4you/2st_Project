@@ -55,65 +55,23 @@
                         <div class="dashboard_weekly_study_class_box">
                             <div class="weekly_study_class_title_cover">
                                 <div class="weekly_study_class_title">
-                                    <button class="weekly_study_class_title_button">&lt;</button>
+                                    <button class="weekly_study_class_btn" @click="decrementWeek">◀</button>
                                     <div class="weekly_study_class_title_input_cover">
                                         <div class="weekly_study_class_title_input_label">
                                             <label for="">주차선택</label>
                                         </div>
                                         <div class="weekly_study_class_title_input_label_button">
-                                            <button style="display: none;">2023. 12. 05</button>
+                                            <input type="date" v-model="selectedDate" @change="handleDateChange">
+                                            <span>{{ currentWeek }}</span>
                                         </div>
-                                        <p>23년 12월 1주차</p>
                                     </div>
                                     <input type="hidden" value="">
-                                    <button class="weekly_study_class_title_button">></button>
+                                    <button class="weekly_study_class_btn" @click="incrementWeek">▶</button>
                                 </div>
                             </div>
                             <div class="weekly_study_class_data_cover">
-                                <div class="weekly_study_class_data">
-                                    <span>월요일 :</span>
-                                    <span>학습시간</span>
-                                    <span>(20분)</span>
-                                    <span>학습강의</span>
-                                    <span>(2개)</span>
-                                </div>
-                                <div class="weekly_study_class_data">
-                                    <span>화요일 :</span>
-                                    <span>학습시간</span>
-                                    <span>(20분)</span>
-                                    <span>학습강의</span>
-                                    <span>(2개)</span>
-                                </div>
-                                <div class="weekly_study_class_data">
-                                    <span>수요일 :</span>
-                                    <span>학습시간</span>
-                                    <span>(20분)</span>
-                                    <span>학습강의</span>
-                                    <span>(2개)</span>
-                                </div>
-                                <div class="weekly_study_class_data">
-                                    <span>목요일 :</span>
-                                    <span>학습시간</span>
-                                    <span>(20분)</span>
-                                    <span>학습강의</span>
-                                    <span>(2개)</span>
-                                </div>
-                                <div class="weekly_study_class_data">
-                                    <span>금요일 :</span>
-                                    <span>학습시간</span>
-                                    <span>(20분)</span>
-                                    <span>학습강의</span>
-                                    <span>(2개)</span>
-                                </div>
-                                <div class="weekly_study_class_data">
-                                    <span>토요일 :</span>
-                                    <span>학습시간</span>
-                                    <span>(20분)</span>
-                                    <span>학습강의</span>
-                                    <span>(2개)</span>
-                                </div>
-                                <div class="weekly_study_class_data">
-                                    <span>일요일 :</span>
+                                <div v-for="(weekday, index) in weekdays" :key="index" class="weekly_study_class_data">
+                                    <span>{{ weekday }} : </span>
                                     <span>학습시간</span>
                                     <span>(20분)</span>
                                     <span>학습강의</span>
@@ -651,11 +609,19 @@ export default {
             newUserInfoItems: [],
             newUserClassInfoItem: [],
             newUserBoardInfoItem: [],
+
+            // 마이페이지 날짜 입력 칸 데이터 바인딩
+            selectedDate: this.getCurrentDate(),
+            weekdays: [],
+            currentWeek: '',
         }
     },
 
     mounted() {
         this.fetchData();
+
+        this.calculateWeekdays();
+	    this.calculateCurrentWeek();
     },
 
     methods: {
@@ -676,9 +642,116 @@ export default {
         handleTabClick(tabNumber) {
             this.$store.commit('setMyPageTab', tabNumber);
         },
+
+        getCurrentDate() {
+            const today = new Date();
+            const year = today.getFullYear();
+            const month = today.getMonth() + 1; // 월은 0부터 시작하므로 1을 더하기
+            const day = today.getDate();
+
+            return `${year}-${month.toString().padStart(2, '0')}-${day.toString().padStart(2, '0')}`;
+        },
+        handleDateChange() {
+            this.calculateWeekdays();
+            this.calculateCurrentWeek();
+        },
+        calculateWeekdays() {
+            const currentDate = this.selectedDate ? new Date(this.selectedDate) : new Date();
+            const startDate = new Date(currentDate);
+            startDate.setDate(currentDate.getDate() - (currentDate.getDay() + 6) % 7); // 주의 첫 날로 설정
+
+            const weekdays = [];
+            for (let i = 0; i < 7; i++) {
+                const currentDate = new Date(startDate);
+                currentDate.setDate(startDate.getDate() + i);
+                weekdays.push(this.formatDate(currentDate));
+            }
+
+            this.weekdays = weekdays;
+        },
+        calculateCurrentWeek() {
+            const currentDate = this.selectedDate ? new Date(this.selectedDate) : new Date();
+            const startOfMonth = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1);
+            const startOfWeek = new Date(startOfMonth);
+
+        // 요일이 월요일(1)부터 일요일(7)까지인 경우를 생각
+            const offset = (startOfWeek.getDay() + 6) % 7;
+
+            startOfWeek.setDate(startOfWeek.getDate() - offset);
+
+            const days = Math.floor((currentDate - startOfWeek) / (24 * 60 * 60 * 1000)) + 1;
+            const currentMonthWeek = Math.ceil(days / 7);
+            this.currentWeek = `${(currentDate.getFullYear() % 100)}년 ${currentDate.getMonth() + 1}월 ${currentMonthWeek}주차`;
+        },
+        formatDate(date) {
+            if (date instanceof Date) {
+                const options = { weekday: 'short', locale: 'ko-KR' };
+                return date.toLocaleDateString('ko-KR', options);
+            } else {
+                return '';
+            }
+        },
+        incrementWeek() {
+            const currentDate = this.selectedDate ? new Date(this.selectedDate) : new Date();
+            currentDate.setDate(currentDate.getDate() + 7);
+            this.selectedDate = `${currentDate.getFullYear()}-${(currentDate.getMonth() + 1).toString().padStart(2, '0')}-${currentDate.getDate().toString().padStart(2, '0')}`;
+            this.calculateWeekdays();
+            this.calculateCurrentWeek();
+        },
+        decrementWeek() {
+            const currentDate = this.selectedDate ? new Date(this.selectedDate) : new Date();
+            currentDate.setDate(currentDate.getDate() - 7);
+            this.selectedDate = `${currentDate.getFullYear()}-${(currentDate.getMonth() + 1).toString().padStart(2, '0')}-${currentDate.getDate().toString().padStart(2, '0')}`;
+            this.calculateWeekdays();
+            this.calculateCurrentWeek();
+        },
     }
 }
 </script>
 <style>
-    
+input[type='date'] {
+    border: none;
+    position: relative;
+    width: 100%;
+    padding: 10px;
+    background-color: none;
+    border-radius: 8px;
+    text-align: center;
+    font-size: 100%;
+}
+
+input[type='date']::-webkit-calendar-picker-indicator {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    color: transparent;
+    cursor: pointer;
+}
+
+input[type='date']::before {
+    content: attr(placeholder);
+    width: 100%;
+    height: 100%;
+}
+
+.weekly_study_class_title_input_label_button input {
+    position: relative;
+    outline: none;
+}
+
+.weekly_study_class_title_input_label_button span{
+    position: absolute;
+    left: 10px;
+    top: 15px;
+    z-index: -1;
+}
+
+.weekly_study_class_btn {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
 </style>

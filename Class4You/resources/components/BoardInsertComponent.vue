@@ -41,7 +41,7 @@
 
         <div class="mantine-InputWrapper-root mantine-Textarea-root mantine-1y7fzyr">
             <div class="mantine-Input-wrapper mantine-Textarea-wrapper mantine-1v7s5f8">
-                <textarea class="mantine-Input-input mantine-Textarea-input mantine-goibal" v-model="frmBoardData.BoardTitle"  id="title" name="title" aria-label="title" placeholder="제목에 핵심 내용을 요약해보세요." aria-invalid="false" style="height: 39px;"></textarea>
+                <textarea class="mantine-Input-input mantine-Textarea-input mantine-goibal" v-model="frmBoardData.BoardTitle"  id="title" name="title" aria-label="title" placeholder="제목에 핵심 내용을 요약해보세요." aria-invalid="false" style=" "></textarea>
             </div>
         </div>
 
