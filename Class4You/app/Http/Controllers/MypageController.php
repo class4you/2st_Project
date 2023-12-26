@@ -10,11 +10,14 @@ use App\Models\Enrollment;
 use App\Models\Classinfo;
 use App\Models\Chapter;
 use App\Models\Lesson;
+use Illuminate\Support\Facades\DB;
 // use App\Models\Board;
 
 class MypageController extends Controller
 {
-    function getUserClassData () {
+    function getUserClassData (Request $request) {
+
+        Log::debug($request);
         $UserID = Auth::id();
 
         $userData = User::where('UserID', $UserID)
@@ -34,6 +37,80 @@ class MypageController extends Controller
         $enrollments = Enrollment::where('UserID', $UserID)->get();
 
         $classIDs = $enrollments->pluck('ClassID');
+
+
+        $chapters = collect();
+        foreach ($classIDs as $classID) {
+            $chapterCount = Classinfo::join('Chapters', 'class_infos.ClassID', '=', 'Chapters.ClassID')
+                ->select('class_infos.ClassID')
+                ->where('class_infos.ClassID', $classID)
+                ->whereBetween('Chapters.updated_at', ['2023-12-25', '2023-12-31'])
+                ->count();
+        
+            // 챕터가 하나 이상 있는 경우에만 추가
+            if ($chapterCount > 0) {
+                $classCount = Classinfo::where('ClassID', $classID)
+                    ->where('ClassFlg', 1)
+                    ->count();
+        
+                $chapters[$classID] = [
+                    'classCount' => $classCount,
+                    'chapterCount' => $chapterCount
+                ];
+            }
+        }
+        
+        
+        Log::debug($chapters);
+
+
+        // foreach ($classIDs as $classID) {
+        //     $chapter = Classinfo::join('Chapters', 'class_infos.ClassID', '=', 'Chapters.ClassID')
+        //     ->join('Lessons', 'Chapters.ChapterID', '=', 'Lessons.ChapterID')
+        //     ->select('Chapters.*', 'Lessons.*')
+        //     ->where('class_infos.ClassID', $classID)
+        //     // ->where('Lessons.LessonFlg', '1')
+        //     ->get();
+            
+        //     if ($chapter->isNotEmpty()) {
+        //         $chapters[$classID] = $chapter;
+        //     }
+        // }
+
+        // // 클래스별 챕터 수와 플래그가 1인 챕터의 퍼센트를 저장할 배열
+        // $classInfo = [];
+
+        // foreach ($chapters as $classChapters) {
+        //     $totalChapters = count($classChapters);
+
+        //     // Log::debug($classChapters);
+
+        //     // Log::debug($totalChapters);
+
+        //     if ($totalChapters > 0) {
+        //         $flaggedChapters = $classChapters->filter(function ($chapter) {
+        //             return $chapter->LessonFlg === '1';
+        //         });
+
+        //         // Log::debug($flaggedChapters);
+                
+        //         $totalFlaggedChapters = $flaggedChapters->count();
+                
+        //         // Log::debug($totalFlaggedChapters);
+        //         // 퍼센트 계산
+        //         $percent = ($totalFlaggedChapters / $totalChapters) * 100;
+
+        //         // Log::debug($percent);
+        //         // 결과를 배열에 저장
+        //         $classInfo[] = [
+        //             'ClassID' => $classChapters->first()->ClassID,
+        //             'TotalChapters' => $totalChapters,
+        //             'TotalFlaggedChapters' => $totalFlaggedChapters,
+        //             'Percent' => $percent,
+        //         ];
+
+        //     }
+        // }
 
         // Log::debug($UserID);
         // Log::debug($userData);
@@ -59,57 +136,6 @@ class MypageController extends Controller
         //         }
         //     }
         // }
-
-        $chapters = collect();
-
-        foreach ($classIDs as $classID) {
-            $chapter = Classinfo::join('Chapters', 'class_infos.ClassID', '=', 'Chapters.ClassID')
-            ->join('Lessons', 'Chapters.ChapterID', '=', 'Lessons.ChapterID')
-            ->select('Chapters.*', 'Lessons.*')
-            ->where('class_infos.ClassID', $classID)
-            // ->where('Lessons.LessonFlg', '1')
-            ->get();
-            
-            if ($chapter->isNotEmpty()) {
-                $chapters[$classID] = $chapter;
-            }
-        }
-
-        // 클래스별 챕터 수와 플래그가 1인 챕터의 퍼센트를 저장할 배열
-        $classInfo = [];
-
-        foreach ($chapters as $classChapters) {
-            $totalChapters = count($classChapters);
-
-            // Log::debug($classChapters);
-
-            // Log::debug($totalChapters);
-
-            if ($totalChapters > 0) {
-                $flaggedChapters = $classChapters->filter(function ($chapter) {
-                    return $chapter->LessonFlg === '1';
-                });
-
-                // Log::debug($flaggedChapters);
-                
-                $totalFlaggedChapters = $flaggedChapters->count();
-                
-                // Log::debug($totalFlaggedChapters);
-                // 퍼센트 계산
-                $percent = ($totalFlaggedChapters / $totalChapters) * 100;
-
-                // Log::debug($percent);
-                // 결과를 배열에 저장
-                $classInfo[] = [
-                    'ClassID' => $classChapters->first()->ClassID,
-                    'TotalChapters' => $totalChapters,
-                    'TotalFlaggedChapters' => $totalFlaggedChapters,
-                    'Percent' => $percent,
-                ];
-
-            }
-        }
-        Log::debug($classInfo);
 
 
         // Log::debug($chapters);
@@ -137,11 +163,17 @@ class MypageController extends Controller
     
 
         // Log::debug($boardData);
+        
 
         return response()->json([
             'userData' => $userData,
             'classData' => $classData,
             'boardData' => $boardData,
+            'chapters' => $chapters,
         ]);
+    }
+
+    function getUserClassTotalData() {
+
     }
 }

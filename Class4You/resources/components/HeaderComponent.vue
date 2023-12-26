@@ -74,16 +74,16 @@
                     <button type="button" @click="submitUserLoginData()" style="cursor: pointer;">로그인</button>
                 </div>
                 <div class="login_modal_find_box">
-                    <span><a href="">비밀번호 찾기</a></span>
-                    <span>&#124;</span>
+                    <!-- <span><a href="">비밀번호 찾기</a></span>
+                    <span>&#124;</span> -->
                     <span><a href="">회원가입 하기</a></span>
                 </div>
-                <div class="login_modal_easy_box">
+                <!-- <div class="login_modal_easy_box">
                     <p>간편 로그인</p>
                 </div>
                 <div class="login_modal_easy_login">
 
-                </div>
+                </div> -->
             </div>
         </div>
 

@@ -614,6 +614,8 @@ export default {
             selectedDate: this.getCurrentDate(),
             weekdays: [],
             currentWeek: '',
+            weekStart: [],
+            weekEnd: [],
         }
     },
 
@@ -643,23 +645,39 @@ export default {
             this.$store.commit('setMyPageTab', tabNumber);
         },
 
+        // 현재 날짜를 가져오는 메서드
         getCurrentDate() {
-            const today = new Date();
-            const year = today.getFullYear();
+            const today = new Date(); // 현재 날짜를 투데이에 넣어줌
+            const year = today.getFullYear(); // 현재 년도를 넣어줌
             const month = today.getMonth() + 1; // 월은 0부터 시작하므로 1을 더하기
-            const day = today.getDate();
+            const day = today.getDate(); // 현재 일을 넣어줌
 
+            // 해당 값을 계산해서 리턴 해 줌
             return `${year}-${month.toString().padStart(2, '0')}-${day.toString().padStart(2, '0')}`;
         },
+
+        // 날짜가 변경됐을 때 호출하는 메소드로 주차와 요일을 다시 계산 후 화면 출력
         handleDateChange() {
+            // 선택된 날짜 주차 계산
             this.calculateWeekdays();
+            // 현재 날짜 주차 계산
             this.calculateCurrentWeek();
         },
+
+        // 선택된 날짜의 주차를 계산함
         calculateWeekdays() {
+            // 현재 선택된 날짜를 넣어줌, 값이 없을 경우에는 현재 데이터 값을 넣어줌
             const currentDate = this.selectedDate ? new Date(this.selectedDate) : new Date();
+
+            // 햔재 날짜에서 (currentDate.getDay() + 6) % 7) 값을 빼서 주의 첫 날을 계산
             const startDate = new Date(currentDate);
             startDate.setDate(currentDate.getDate() - (currentDate.getDay() + 6) % 7); // 주의 첫 날로 설정
 
+            // 현재 날짜에서 (currentDate.getDay() + 6) % 7 값을 더해서 주의 마지막 날을 계산
+            const endDate = new Date(currentDate);
+            endDate.setDate(currentDate.getDate() + (6 - (currentDate.getDay() + 6) % 7)); // 주의 마지막 날로 설정
+
+            // 주의 첫 날 부터 7일 동안을 계산해서 해당 요일을 출력
             const weekdays = [];
             for (let i = 0; i < 7; i++) {
                 const currentDate = new Date(startDate);
@@ -667,8 +685,20 @@ export default {
                 weekdays.push(this.formatDate(currentDate));
             }
 
+            const yearStart = startDate.getFullYear();
+            const monthStart = (startDate.getMonth() + 1).toString().padStart(2, '0');
+            const dayStart = startDate.getDate().toString().padStart(2, '0');
+            this.weekStart = `${yearStart}${monthStart}${dayStart}`;
+
+            const yearEnd = endDate.getFullYear();
+            const monthEnd = (endDate.getMonth() + 1).toString().padStart(2, '0');
+            const dayEnd = endDate.getDate().toString().padStart(2, '0');
+            this.weekEnd = `${yearEnd}${monthEnd}${dayEnd}`;
+
             this.weekdays = weekdays;
         },
+
+        // 현재 날짜의 주차를 계산함
         calculateCurrentWeek() {
             const currentDate = this.selectedDate ? new Date(this.selectedDate) : new Date();
             const startOfMonth = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1);
@@ -683,6 +713,8 @@ export default {
             const currentMonthWeek = Math.ceil(days / 7);
             this.currentWeek = `${(currentDate.getFullYear() % 100)}년 ${currentDate.getMonth() + 1}월 ${currentMonthWeek}주차`;
         },
+
+        // 날짜를 주어진 형식으로 포맷하는 메서드
         formatDate(date) {
             if (date instanceof Date) {
                 const options = { weekday: 'short', locale: 'ko-KR' };
@@ -691,6 +723,8 @@ export default {
                 return '';
             }
         },
+
+        // 아래 두 메소드는 주차를 증감 시키는 것, 현재 선택된 날을 기준으로 +-7일을 해줌
         incrementWeek() {
             const currentDate = this.selectedDate ? new Date(this.selectedDate) : new Date();
             currentDate.setDate(currentDate.getDate() + 7);
@@ -713,7 +747,7 @@ input[type='date'] {
     border: none;
     position: relative;
     width: 100%;
-    padding: 10px;
+    padding: 10px 20px;
     background-color: none;
     border-radius: 8px;
     text-align: center;
@@ -744,7 +778,7 @@ input[type='date']::before {
 
 .weekly_study_class_title_input_label_button span{
     position: absolute;
-    left: 10px;
+    left: 20px;
     top: 15px;
     z-index: -1;
 }
