@@ -4772,4 +4772,9 @@ footer {
 
 .footer_main {
     color: #858484;
+    display: flex;
+}
+
+.footer_info_btn {
+    display: flex;
 }
