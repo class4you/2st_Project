@@ -1,6 +1,6 @@
 <template>
-	<VDatePicker v-model="date" mode="date" />
 	{{ date }}
+	<VDatePicker v-model="date" mode="date" />
 </template>
 
 <script>
@@ -16,7 +16,7 @@ components: {
 },
 data() {
 	return {
-	date: new Date(),
+		date: new Date(),
 	};
 },
 }
