@@ -3864,7 +3864,7 @@ option {
     
     .commentActions {
         display: grid;
-        grid-template-columns: 1fr 0.5fr;
+        /* grid-template-columns: 1fr 0.5fr; */
         /* justify-content: right; */
         vertical-align: middle;
     }
@@ -3953,6 +3953,7 @@ option {
         margin-bottom: 1.25rem;
         font-size: 13px;
         font-style: bold;
+        line-height: 20px;
     }
     
     .mantine-1y7fzyr {
