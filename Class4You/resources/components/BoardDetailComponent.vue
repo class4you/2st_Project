@@ -44,13 +44,13 @@
                         </div>
                     </div>
                     <div class="board_button">
-                    <div class="row aiC">
-                            <button><i class="board_rewrite">수정</i></button>
+                        <div  v-if="item.UserID == $store.state.UserID"  class="row aiC">
+                            <button @click="completeBoardData(newBoardItem.BoardID)" class="board_complete">해결</button>
+                            <button @click="rewriteBoardData(newBoardItem.BoardID)" class="board_rewrite">수정</button>
+                            <button @click="deleteBoardData(newBoardItem.BoardID)" class="board_delete">삭제</button>
                         </div>
-                        <div class="row aiC">
-                            <button @click="deleteBoardData(newBoardItem.BoardID)"><i class="board_delete">삭제</i></button>
-                        </div>
-                        </div>
+                        <!-- {{ newBoardItem }} -->
+                    </div>
                 </div>
         
                 <div class="reviewBox border-t-none">
@@ -77,10 +77,11 @@
                             </div>
                             
                             <div class="commentActions row aiC">
-                                <div style="margin-left: auto;">
+                                <div v-if="item.UserID == $store.state.UserID" style="margin-left: auto;">
                                     <button class="editBtn">수정</button>
                                     <button @click="deleteCommentData(item.CommentID)" class="deleteBtn">삭제</button>
                                     <button class="reportBtn">신고</button>
+                                    <!-- {{ item }} -->
                                 </div>
                                 <!-- <div class="Board_good_bad">
                                     <button type="button" class="Board_Good " aria-label="좋아요">

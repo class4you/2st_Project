@@ -110,4 +110,9 @@ class BoardController extends Controller
         Board::destroy($BoardID);
     }
 
+    // 자유게시판 수정
+    public function boardDetail() {
+        
+    }
+
 }
