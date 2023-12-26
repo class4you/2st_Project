@@ -109,7 +109,9 @@ export default {
             videoId: '_pgXmFIihAk',
             // YouTube Player 객체
             player: null,
-            LessonProgress: null,
+            LessonAllRunningTime: 0,
+            LessonRunningTime: 0,
+            LessonProgress: 0,
             LessonFlg: 0,
         }
     },
@@ -175,12 +177,14 @@ export default {
         onPlayerReady(event) {
             // 동영상이 준비되면 추가 작업 수행
             console.log('영상 시작');
+            this.LessonAllRunningTime = this.player.getDuration();
             // console.log(this.player);
         },
         getCurrentTime() {
             // YouTube API의 getCurrentTime() 메서드를 사용하여 동영상의 현재 위치(시간)를 가져옴
             if (this.player) {
                 this.currentTime = this.player.getCurrentTime();
+                this.LessonRunningTime = this.currentTime;
                 console.log('현재 동영상 위치:', this.currentTime);
                 
                 // 동영상 총 길이 가져오기
@@ -197,7 +201,7 @@ export default {
                 // 동영상이 종료되면 완료 체크 수행
                 this.handleVideoCompletion();
             } else if (event.data === window.YT.PlayerState.PLAYING) {
-                // 동영상이 재생 중일 때 5초 간격으로 현재 동영상 위치 콘솔에 출력
+                // 동영상이 재생 중일 때 1초 간격으로 현재 동영상 위치 콘솔에 출력
                     this.progressInterval = setInterval(() => {
                     this.getCurrentTime();
                 }, 1000);
@@ -216,6 +220,8 @@ export default {
         saveLessonProgress() {
             // 예시: Axios를 사용하여 서버에 데이터 업데이트 (PUT 요청)
             axios.put('/lessonprogress', {
+                lessonAllRunningTime: this.LessonAllRunningTime,
+                lessonRunningTime: this.LessonRunningTime,
                 lessonId: this.selectedLesson.LessonID,
                 lessonFlg: this.LessonFlg,
                 progressPercentage: this.LessonProgress,  // Vuex Store에서 상태 가져오기

@@ -7,7 +7,7 @@
                 <div @click="handleTabClick(3)" class="my_page_main_tap_ui">나의학습</div>
                 <!-- <div @click="handleTabClick(4)" class="my_page_main_tap_ui">강의노트</div> -->
                 <div @click="handleTabClick(5)" class="my_page_main_tap_ui">작성 게시글</div>
-                <div @click="handleTabClick(6)" class="my_page_main_tap_ui">구매내역</div>
+                <!-- <div @click="handleTabClick(6)" class="my_page_main_tap_ui">구매내역</div> -->
                 <!-- <div class="my_page_main_tap_ui" onclick="showDashboardContent('공란')">공란</div> -->
             </div>
 
