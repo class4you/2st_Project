@@ -44,10 +44,9 @@
                         </div>
                     </div>
                     <div class="board_button">
-                    <div class="row aiC">
-                            <button><i class="board_rewrite">수정</i></button>
-                        </div>
                         <div class="row aiC">
+                            <button @click="deleteBoardData(newBoardItem.BoardID)"><i class="board_complete">해결</i></button>
+                            <button @click="deleteBoardData(newBoardItem.BoardID)"><i class="board_rewrite">수정</i></button>
                             <button @click="deleteBoardData(newBoardItem.BoardID)"><i class="board_delete">삭제</i></button>
                         </div>
                         </div>

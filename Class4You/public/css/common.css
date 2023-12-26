@@ -1575,7 +1575,6 @@ th:last-child, td:last-child {
     background-color: #3d64bf76;
     border-radius: 5px;
     cursor: pointer;
-    font-size: 1rem;
 }
 
 .class_detail_container_r_payment_classes a:hover {
@@ -1809,12 +1808,6 @@ ul.class_tabs li.class_current {
 }
 
 /* 별점 기능 */
-.class_detail_rating_star_form {
-    display: flex;
-    flex-direction: row-reverse;
-    padding-bottom: 5px;
-}
-
 .class_detail_rating_star_form>fieldset{
     display: inline-block; /* 하위 별점 이미지들이 있는 영역만 자리를 차지함.*/
     /* direction: rtl; */
@@ -1823,7 +1816,6 @@ ul.class_tabs li.class_current {
 
 .class_detail_rating_star_form_title {
     text-align: left;
-    margin-left: 3px;
 }
 
 .class_detail_rating_star_input {
@@ -2042,21 +2034,9 @@ ul.class_tabs li.class_current {
     -webkit-box-align: center;
     align-items: center;
     /* margin-top: auto; */
-    /* width: 100%; */
+    width: 100%;
     padding: 15px ;
     background-color: rgb(134, 142, 150);
-    gap: 100px;
-}
-
-.class_detail_watch_next_btn {
-    background-color: transparent;
-    border: none;
-    background-color: #000000;
-    color: #fff;
-    padding: 10px 20px;
-    cursor: pointer;
-    border-radius: 10px;
-
 }
 
 .class_detail_watch_right_side {
@@ -3615,12 +3595,27 @@ option {
     justify-content: flex-end;
     gap: 15px;
 }
-.board_rewrite {
+/* .board_rewrite {    margin-right: 10px;
+    background-color: #ccc;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
 
 }
-.board_delete {
-
+.board_delete {    margin-right: 10px;
+    background-color: #ccc;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
     }
+
+.board_complete{
+    margin-right: 10px;
+    background-color: #ccc;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+}     */
 
 .reviewList {
     margin-top: 20px
