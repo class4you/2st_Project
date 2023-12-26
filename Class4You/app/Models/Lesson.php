@@ -17,6 +17,8 @@ class Lesson extends Model
         'LessonTitle',
         'LessonContent',
         'LessonVideoID',
+        'LessonAllRunningTime',
+        'LessonRunningTime',
         'LessonProgress',
         'LessonFlg',
     ];

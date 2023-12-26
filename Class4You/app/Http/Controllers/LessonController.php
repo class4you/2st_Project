@@ -15,6 +15,8 @@ class LessonController extends Controller
 
         Lesson::where('LessonID', $request->lessonId)
         ->update([
+            'LessonAllRunningTime' => $request->lessonAllRunningTime,
+            'LessonRunningTime' => $request->lessonRunningTime,
             'LessonProgress' => $request->progressPercentage,
             'LessonFlg' => $request->lessonFlg,
         ]);
