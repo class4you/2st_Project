@@ -44,9 +44,10 @@
                         </div>
                     </div>
                     <div class="board_button">
-                        <div  v-if="item.UserID == $store.state.UserID"  class="row aiC">
+                        <div  v-if="newBoardItem.UserID == $store.state.UserID"  class="row aiC">
                             <button @click="completeBoardData(newBoardItem.BoardID)" class="board_complete">해결</button>
-                            <button @click="rewriteBoardData(newBoardItem.BoardID)" class="board_rewrite">수정</button>
+                            <!-- <button @click="updateBoardData(newBoardItem.BoardID)" class="board_rewrite">수정</button> -->
+                            <a :href="'/boardupdate/' + newBoardItem.BoardID" v-if="$store.state.UserID" class="board_rewrite">수정</a>
                             <button @click="deleteBoardData(newBoardItem.BoardID)" class="board_delete">삭제</button>
                         </div>
                         <!-- {{ newBoardItem }} -->
@@ -180,6 +181,11 @@ export default {
         // 게시판 삭제 불러오기
         deleteBoardData(data) {
             this.$store.dispatch('delBoardData', data);
+        },
+
+        // 
+        updateBoardData(data) {
+            this.$store.dispatch('updateBoardData', data);
         },
     },
 };

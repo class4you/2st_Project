@@ -6,6 +6,7 @@ import TestComponent from '../components/TestComponent.vue';
 import BoardComponent from '../components/BoardComponent.vue';
 import BoardInsertComponent from '../components/BoardInsertComponent.vue';
 import BoardDetailComponent from '../components/BoardDetailComponent.vue';
+import BoardUpdateComponent from '../components/BoardUpdateComponent.vue';
 import ClassBoardDetailComponent from '../components/ClassBoardDetailComponent.vue';
 import ClassDatailWatchComponent from '../components/ClassDatailWatchComponent.vue';
 import UserMyPageComponent from '../components/UserMyPageComponent.vue';
@@ -34,6 +35,12 @@ const routes = [
         path: '/boardinsert',
         name: 'BoardInsert',
         component: BoardInsertComponent,
+    },
+    {
+        path: '/boardupdate/:BoardID',
+        name: 'BoardUpdate',
+        component: BoardUpdateComponent,
+        props: true
     },
     {
         path: '/classboarddetail/:ClassID',
