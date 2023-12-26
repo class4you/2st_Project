@@ -70,7 +70,7 @@
                                 </div>
                             </div>
                             <div class="weekly_study_class_data_cover">
-                                <div v-for="(dayData, day) in chapters" :key="day" class="weekly_study_class_data">
+                                <div v-for="(dayData, day) in weeklyStats" :key="day" class="weekly_study_class_data">
                                     <span>{{ convertToKoreanDay(day) }} : </span>
                                     <span>학습 강의 : </span>
                                     <span> {{ dayData.classFlagCount }}개</span>
@@ -112,96 +112,13 @@
                                 </div>
                             </div>
                             <div class="weekly_study_class_data_cover">
-                                <div class="weekly_study_class_data">
-                                    <span>1월 :</span>
-                                    <span>학습시간</span>
-                                    <span>(20분)</span>
-                                    <span>학습강의</span>
-                                    <span>(2개)</span>
-                                </div>
-                                <div class="weekly_study_class_data">
-                                    <span>2월 :</span>
-                                    <span>학습시간</span>
-                                    <span>(20분)</span>
-                                    <span>학습강의</span>
-                                    <span>(2개)</span>
-                                </div>
-                                <div class="weekly_study_class_data">
-                                    <span>3월 :</span>
-                                    <span>학습시간</span>
-                                    <span>(20분)</span>
-                                    <span>학습강의</span>
-                                    <span>(2개)</span>
-                                </div>
-                                <div class="weekly_study_class_data">
-                                    <span>3월 :</span>
-                                    <span>학습시간</span>
-                                    <span>(20분)</span>
-                                    <span>학습강의</span>
-                                    <span>(2개)</span>
-                                </div>
-                                <div class="weekly_study_class_data">
-                                    <span>4월 :</span>
-                                    <span>학습시간</span>
-                                    <span>(20분)</span>
-                                    <span>학습강의</span>
-                                    <span>(2개)</span>
-                                </div>
-                                <div class="weekly_study_class_data">
-                                    <span>5월 :</span>
-                                    <span>학습시간</span>
-                                    <span>(20분)</span>
-                                    <span>학습강의</span>
-                                    <span>(2개)</span>
-                                </div>
-                                <div class="weekly_study_class_data">
-                                    <span>6월 :</span>
-                                    <span>학습시간</span>
-                                    <span>(20분)</span>
-                                    <span>학습강의</span>
-                                    <span>(2개)</span>
-                                </div>
-                                <div class="weekly_study_class_data">
-                                    <span>7월 :</span>
-                                    <span>학습시간</span>
-                                    <span>(20분)</span>
-                                    <span>학습강의</span>
-                                    <span>(2개)</span>
-                                </div>
-                                <div class="weekly_study_class_data">
-                                    <span>8월 :</span>
-                                    <span>학습시간</span>
-                                    <span>(20분)</span>
-                                    <span>학습강의</span>
-                                    <span>(2개)</span>
-                                </div>
-                                <div class="weekly_study_class_data">
-                                    <span>9월 :</span>
-                                    <span>학습시간</span>
-                                    <span>(20분)</span>
-                                    <span>학습강의</span>
-                                    <span>(2개)</span>
-                                </div>
-                                <div class="weekly_study_class_data">
-                                    <span>10월 :</span>
-                                    <span>학습시간</span>
-                                    <span>(20분)</span>
-                                    <span>학습강의</span>
-                                    <span>(2개)</span>
-                                </div>
-                                <div class="weekly_study_class_data">
-                                    <span>11월 :</span>
-                                    <span>학습시간</span>
-                                    <span>(20분)</span>
-                                    <span>학습강의</span>
-                                    <span>(2개)</span>
-                                </div>
-                                <div class="weekly_study_class_data">
-                                    <span>12월 :</span>
-                                    <span>학습시간</span>
-                                    <span>(20분)</span>
-                                    <span>학습강의</span>
-                                    <span>(2개)</span>
+                                <div v-for="(data, month) in monthlyStats" :key="month" class="weekly_study_class_data">
+                                    <span>{{ month }}월 : </span>
+                                    <span>학습 강의 : </span>
+                                    <span>{{ data.classFlagCount }}개</span>
+                                    <span> / </span>
+                                    <span>학습 챕터 : </span>
+                                    <span>{{ data.chapterFlagCount }}개</span>
                                 </div>
                             </div>
                             <div class="weekly_study_class_total_cover">
@@ -619,7 +536,8 @@ export default {
             currentWeek: '',
             weekStart: [],
             weekEnd: [],
-            chapters: {},
+            weeklyStats: {},
+            monthlyStats: {},
             lectures: {},
             totalClassCount: 0,
             totalChapterCount: 0,
@@ -648,7 +566,8 @@ export default {
                 this.newUserInfoItems = response.data.userData;
                 this.newUserClassInfoItem = response.data.classData;
                 this.newUserBoardInfoItem = response.data.boardData;
-                this.chapters = response.data.chapters;
+                this.weeklyStats = response.data.weeklyStats;
+                this.monthlyStats = response.data.monthlyStats;
                 this.calculateTotals();
             })
             .catch(error => {
@@ -768,10 +687,10 @@ export default {
             return dayMap[day] || day;
         },
         calculateTotals() {
-        this.totalClassCount = Object.values(this.chapters)
+        this.totalClassCount = Object.values(this.weeklyStats)
             .reduce((total, dayData) => total + dayData.classFlagCount, 0);
 
-        this.totalChapterCount = Object.values(this.chapters)
+        this.totalChapterCount = Object.values(this.weeklyStats)
             .reduce((total, dayData) => total + dayData.chapterFlagCount, 0);
         },
     }

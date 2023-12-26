@@ -56,19 +56,22 @@ class MypageController extends Controller
         //     }
         // }
 
-        $chapters = collect();
+        // ==============================================================================================
+        // 주간 통계
+        $weeklyStats = collect();
 
         // 클래스 플래그가 1인 요일 정보
         $classFlagDays = Classinfo::join('Chapters', 'class_infos.ClassID', '=', 'Chapters.ClassID')
-            ->select(
-                DB::raw('DATE_FORMAT(Chapters.updated_at, "%a") as day'),
-                DB::raw('SUM(class_infos.ClassFlg) as classFlagCount'),
-                DB::raw('SUM(Chapters.ChapterFlg) as chapterFlagCount')
-            )
-            ->whereIn('class_infos.ClassID', $classIDs) // Use whereIn instead of a loop
-            ->whereBetween('Chapters.updated_at', [$request->weekStart, $request->weekEnd])
-            ->groupBy('day')
-            ->get();
+        ->select(
+            'class_infos.ClassID',
+            DB::raw('DATE_FORMAT(Chapters.updated_at, "%a") as day'),
+            DB::raw('SUM(class_infos.ClassFlg) as classFlagCount'),
+            DB::raw('COUNT(DISTINCT Chapters.ChapterID) as chapterFlagCount')
+        )
+        ->whereIn('class_infos.ClassID', $classIDs)
+        ->whereBetween('Chapters.updated_at', [$request->weekStart, $request->weekEnd])
+        ->groupBy('class_infos.ClassID', 'day')
+        ->get();
         
         // 월 화 수 목 금 토 일에 해당하는 요일 목록
         $weekDays = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
@@ -93,11 +96,58 @@ class MypageController extends Controller
         
         // 챕터 값이 있는 경우에만 추가
         if (!empty($classFlagDays) || !empty($chapterFlagDays)) {
-            $chapters = $groupedData;
+            $weeklyStats = $groupedData;
         }
         
         
-        Log::debug($chapters);
+        Log::debug( $weeklyStats);
+        // ==============================================================================================
+
+
+
+        // ==============================================================================================
+        $yearStart = '2023-01-01';
+        $yearEnd = '2023-12-31';
+        // 연간 통계
+        $monthlyStats = collect();
+
+        // 클래스 플래그가 1인 월별 정보
+        $classFlagMonths = Classinfo::join('Chapters', 'class_infos.ClassID', '=', 'Chapters.ClassID')
+            ->select(
+                DB::raw('YEAR(Chapters.updated_at) as year'),
+                DB::raw('MONTH(Chapters.updated_at) as month'),
+                DB::raw('SUM(class_infos.ClassFlg) as classFlagCount'),
+                DB::raw('SUM(Chapters.ChapterFlg) as chapterFlagCount')
+            )
+            ->whereIn('class_infos.ClassID', $classIDs)
+            ->whereBetween('Chapters.updated_at', [$yearStart, $yearEnd])
+            ->groupBy('year', 'month')
+            ->get();
+        
+        // 1월부터 12월까지의 데이터 그룹화
+        $monthlyStatsData = [];
+        for ($month = 1; $month <= 12; $month++) {
+            $monthlyStatsData[$month] = [
+                'classFlagCount' => 0,
+                'chapterFlagCount' => 0,
+            ];
+        }
+        
+        // 결과 반영
+        foreach ($classFlagMonths as $result) {
+            $month = $result->month;
+            $monthlyStatsData[$month]['classFlagCount'] = $result->classFlagCount;
+            $monthlyStatsData[$month]['chapterFlagCount'] = $result->chapterFlagCount;
+        }
+        
+        // 챕터 값이 있는 경우에만 추가
+        if (!empty($classFlagMonths) || !empty($chapterFlagMonths)) {
+            $monthlyStats = $monthlyStatsData;
+        }
+        Log::debug($monthlyStats);
+        // ==============================================================================================
+
+
         // $chapters = collect();
         // foreach ($classIDs as $classID) {
         //     $result = Classinfo::join('Chapters', 'class_infos.ClassID', 'Chapters.ClassID')
@@ -224,7 +274,8 @@ class MypageController extends Controller
             'userData' => $userData,
             'classData' => $classData,
             'boardData' => $boardData,
-            'chapters' => $chapters,
+            'weeklyStats' =>  $weeklyStats,
+            'monthlyStats' =>  $monthlyStats,
         ]);
     }
 
