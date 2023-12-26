@@ -19599,6 +19599,7 @@ __webpack_require__.r(__webpack_exports__);
     //     this.$store.dispatch('updateBoardData', this.newBoardItem);
     // },
     updateBoardData: function updateBoardData() {
+      var _this2 = this;
       axios.put('/boardUpdate', {
         BoardID: this.newBoardItem.BoardID,
         BoardCategoryID: this.newBoardItem.BoardCategoryID,
@@ -19606,8 +19607,10 @@ __webpack_require__.r(__webpack_exports__);
         BoardTitle: this.newBoardItem.BoardTitle,
         BoardComment: this.newBoardItem.BoardComment
       }).then(function (response) {
+        console.log(response.data);
         // 서버 응답에 대한 로직 수행
-        // console.log(response.data);
+        // this.$router.push('/board');
+        _this2.$router.push('/boarddetail/' + _this2.BoardID);
       })["catch"](function (error) {
         // 에러 처리
         console.error(error);
@@ -21301,7 +21304,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     onClick: _cache[2] || (_cache[2] = function ($event) {
       return $options.updateBoardData($data.newBoardItem);
     })
-  }, "등록")])])])])]);
+  }, "등록"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <span class=\"mantine-1ryt1ht mantine-Button-label\" @click=\"putBoardDataBtn(newBoardItem)\">등록</span> ")])])])])]);
 }
 
 /***/ }),

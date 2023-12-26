@@ -75,6 +75,7 @@
             <button class="mantine-UnstyledButton-root mantine-Button-root mantine-1276sa2" type="submit" data-button="true">
                 <div class="mantine-1yjkc96 mantine-Button-inner">
                     <span class="mantine-1ryt1ht mantine-Button-label" @click="updateBoardData(newBoardItem)">등록</span>
+                    <!-- <span class="mantine-1ryt1ht mantine-Button-label" @click="putBoardDataBtn(newBoardItem)">등록</span> -->
                 </div>
             </button>
         </div>
@@ -110,6 +111,7 @@ export default {
                 BoardComment: '',
                 BoardTitle: '',
             },
+            
         }
     },
 
@@ -142,8 +144,11 @@ export default {
                 BoardComment: this.newBoardItem.BoardComment,
             })
             .then(response => {
+                console.log(response.data);
                 // 서버 응답에 대한 로직 수행
-                // console.log(response.data);
+                // this.$router.push('/board');
+                this.$router.push('/boarddetail/' + this.BoardID);
+                
             })
             .catch(error => {
                 // 에러 처리
