@@ -11,9 +11,6 @@ import RegistrationComponent from '../components/RegistrationComponent.vue';
 import ClassBoardDetailComponent from '../components/ClassBoardDetailComponent.vue';
 // import ClassBoardMainComponent from '../components/ClassBoardMainComponent.vue';
 
-// import "v-calendar/dist/style.css";
-// import VCalendar from "v-calendar";
-
 
 createApp({
     components: {
@@ -28,5 +25,4 @@ createApp({
 })
     .use(router)
     .use(store)
-    // .use(VCalendar, {})
     .mount("#app");

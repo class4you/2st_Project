@@ -23149,9 +23149,6 @@ __webpack_require__(/*! ./bootstrap.js */ "./resources/js/bootstrap.js");
 
 // import ClassBoardMainComponent from '../components/ClassBoardMainComponent.vue';
 
-// import "v-calendar/dist/style.css";
-// import VCalendar from "v-calendar";
-
 (0,vue__WEBPACK_IMPORTED_MODULE_0__.createApp)({
   components: {
     AppComponent: _components_AppComponent_vue__WEBPACK_IMPORTED_MODULE_3__["default"],
@@ -23162,9 +23159,7 @@ __webpack_require__(/*! ./bootstrap.js */ "./resources/js/bootstrap.js");
     ClassBoardDetailComponent: _components_ClassBoardDetailComponent_vue__WEBPACK_IMPORTED_MODULE_8__["default"]
     // ClassBoardMainComponent,
   }
-}).use(_router_js__WEBPACK_IMPORTED_MODULE_1__["default"]).use(_store_js__WEBPACK_IMPORTED_MODULE_2__["default"])
-// .use(VCalendar, {})
-.mount("#app");
+}).use(_router_js__WEBPACK_IMPORTED_MODULE_1__["default"]).use(_store_js__WEBPACK_IMPORTED_MODULE_2__["default"]).mount("#app");
 
 /***/ }),
 

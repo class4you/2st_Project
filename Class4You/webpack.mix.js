@@ -1,6 +1,5 @@
 const mix = require('laravel-mix');
 
-require('vuetifyjs-mix-extension');
 
 mix.setPublicPath('public');
 /*
@@ -15,7 +14,6 @@ mix.setPublicPath('public');
  */
 
 mix.js('resources/js/app.js', 'public/js')
-.vuetufy()
 .vue({
     version: 3,
 })
