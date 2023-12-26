@@ -20711,7 +20711,9 @@ __webpack_require__.r(__webpack_exports__);
       weekStart: [],
       weekEnd: [],
       chapters: {},
-      lectures: {}
+      lectures: {},
+      totalClassCount: 0,
+      totalChapterCount: 0
     };
   },
   mounted: function mounted() {
@@ -20734,6 +20736,7 @@ __webpack_require__.r(__webpack_exports__);
         _this.newUserClassInfoItem = response.data.classData;
         _this.newUserBoardInfoItem = response.data.boardData;
         _this.chapters = response.data.chapters;
+        _this.calculateTotals();
       })["catch"](function (error) {
         console.error('Error fetching data:', error);
       });
@@ -20829,27 +20832,25 @@ __webpack_require__.r(__webpack_exports__);
       this.calculateWeekdays();
       this.calculateCurrentWeek();
     },
-    convertEnglishToKoreanDay: function convertEnglishToKoreanDay(day) {
+    convertToKoreanDay: function convertToKoreanDay(day) {
       var dayMap = {
-        Mon: '월',
-        Tue: '화',
-        Wed: '수',
-        Thu: '목',
-        Fri: '금',
-        Sat: '토',
-        Sun: '일'
+        'Mon': '월요일',
+        'Tue': '화요일',
+        'Wed': '수요일',
+        'Thu': '목요일',
+        'Fri': '금요일',
+        'Sat': '토요일',
+        'Sun': '일요일'
       };
       return dayMap[day] || day;
     },
-    // 특정 요일의 강의 개수 반환
-    getLectureCount: function getLectureCount(weekday) {
-      var day = convertEnglishToKoreanDay(weekday); // 요일 변환
-      return this.lectures[day] ? this.lectures[day].length : 0;
-    },
-    // 특정 요일의 챕터 개수 반환
-    getChapterCount: function getChapterCount(weekday) {
-      var day = convertEnglishToKoreanDay(weekday); // 요일 변환
-      return this.chapters[day] ? this.chapters[day].length : 0;
+    calculateTotals: function calculateTotals() {
+      this.totalClassCount = Object.values(this.chapters).reduce(function (total, dayData) {
+        return total + dayData.classFlagCount;
+      }, 0);
+      this.totalChapterCount = Object.values(this.chapters).reduce(function (total, dayData) {
+        return total + dayData.chapterFlagCount;
+      }, 0);
     }
   }
 });
@@ -23086,78 +23087,80 @@ var _hoisted_16 = {
   "class": "weekly_study_class_data_cover"
 };
 var _hoisted_17 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "학습 강의 : ", -1 /* HOISTED */);
-var _hoisted_18 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, " 개", -1 /* HOISTED */);
-var _hoisted_19 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, " / ", -1 /* HOISTED */);
-var _hoisted_20 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "학습 챕터 : ", -1 /* HOISTED */);
-var _hoisted_21 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, " 개", -1 /* HOISTED */);
-var _hoisted_22 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+var _hoisted_18 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, " / ", -1 /* HOISTED */);
+var _hoisted_19 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "학습 챕터 : ", -1 /* HOISTED */);
+var _hoisted_20 = {
   "class": "weekly_study_class_total_cover"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+};
+var _hoisted_21 = {
   "class": "weekly_study_class_total"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "총 학습 강의 :"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "1"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "총 학습 챕터 :"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "1")])], -1 /* HOISTED */);
-var _hoisted_23 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"dashboard_annual_study_class\"><div class=\"dashboard_annual_study_class_title\"><p>연간 학습 정보</p></div><div class=\"dashboard_annual_study_class_box\"><div class=\"weekly_study_class_title_cover\"><div class=\"weekly_study_class_title\"><button class=\"weekly_study_class_title_button\">&lt;</button><div class=\"weekly_study_class_title_input_cover\"><div class=\"weekly_study_class_title_input_label\"><label for=\"\">주차선택</label></div><div class=\"weekly_study_class_title_input_label_button\"><button style=\"display:none;\">2023. 12. 05</button></div><p>2023년</p></div><input type=\"hidden\" value=\"\"><button class=\"weekly_study_class_title_button\">&gt;</button></div></div><div class=\"weekly_study_class_data_cover\"><div class=\"weekly_study_class_data\"><span>1월 :</span><span>학습시간</span><span>(20분)</span><span>학습강의</span><span>(2개)</span></div><div class=\"weekly_study_class_data\"><span>2월 :</span><span>학습시간</span><span>(20분)</span><span>학습강의</span><span>(2개)</span></div><div class=\"weekly_study_class_data\"><span>3월 :</span><span>학습시간</span><span>(20분)</span><span>학습강의</span><span>(2개)</span></div><div class=\"weekly_study_class_data\"><span>3월 :</span><span>학습시간</span><span>(20분)</span><span>학습강의</span><span>(2개)</span></div><div class=\"weekly_study_class_data\"><span>4월 :</span><span>학습시간</span><span>(20분)</span><span>학습강의</span><span>(2개)</span></div><div class=\"weekly_study_class_data\"><span>5월 :</span><span>학습시간</span><span>(20분)</span><span>학습강의</span><span>(2개)</span></div><div class=\"weekly_study_class_data\"><span>6월 :</span><span>학습시간</span><span>(20분)</span><span>학습강의</span><span>(2개)</span></div><div class=\"weekly_study_class_data\"><span>7월 :</span><span>학습시간</span><span>(20분)</span><span>학습강의</span><span>(2개)</span></div><div class=\"weekly_study_class_data\"><span>8월 :</span><span>학습시간</span><span>(20분)</span><span>학습강의</span><span>(2개)</span></div><div class=\"weekly_study_class_data\"><span>9월 :</span><span>학습시간</span><span>(20분)</span><span>학습강의</span><span>(2개)</span></div><div class=\"weekly_study_class_data\"><span>10월 :</span><span>학습시간</span><span>(20분)</span><span>학습강의</span><span>(2개)</span></div><div class=\"weekly_study_class_data\"><span>11월 :</span><span>학습시간</span><span>(20분)</span><span>학습강의</span><span>(2개)</span></div><div class=\"weekly_study_class_data\"><span>12월 :</span><span>학습시간</span><span>(20분)</span><span>학습강의</span><span>(2개)</span></div></div><div class=\"weekly_study_class_total_cover\"><div class=\"weekly_study_class_total\"><span>총 학습시간 :</span><span>총 학습강의 :</span><span>1</span></div></div></div></div>", 1);
-var _hoisted_24 = {
+};
+var _hoisted_22 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "총 학습 강의 : ", -1 /* HOISTED */);
+var _hoisted_23 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, " / ", -1 /* HOISTED */);
+var _hoisted_24 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "총 학습 챕터 : ", -1 /* HOISTED */);
+var _hoisted_25 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"dashboard_annual_study_class\"><div class=\"dashboard_annual_study_class_title\"><p>연간 학습 정보</p></div><div class=\"dashboard_annual_study_class_box\"><div class=\"weekly_study_class_title_cover\"><div class=\"weekly_study_class_title\"><button class=\"weekly_study_class_title_button\">&lt;</button><div class=\"weekly_study_class_title_input_cover\"><div class=\"weekly_study_class_title_input_label\"><label for=\"\">주차선택</label></div><div class=\"weekly_study_class_title_input_label_button\"><button style=\"display:none;\">2023. 12. 05</button></div><p>2023년</p></div><input type=\"hidden\" value=\"\"><button class=\"weekly_study_class_title_button\">&gt;</button></div></div><div class=\"weekly_study_class_data_cover\"><div class=\"weekly_study_class_data\"><span>1월 :</span><span>학습시간</span><span>(20분)</span><span>학습강의</span><span>(2개)</span></div><div class=\"weekly_study_class_data\"><span>2월 :</span><span>학습시간</span><span>(20분)</span><span>학습강의</span><span>(2개)</span></div><div class=\"weekly_study_class_data\"><span>3월 :</span><span>학습시간</span><span>(20분)</span><span>학습강의</span><span>(2개)</span></div><div class=\"weekly_study_class_data\"><span>3월 :</span><span>학습시간</span><span>(20분)</span><span>학습강의</span><span>(2개)</span></div><div class=\"weekly_study_class_data\"><span>4월 :</span><span>학습시간</span><span>(20분)</span><span>학습강의</span><span>(2개)</span></div><div class=\"weekly_study_class_data\"><span>5월 :</span><span>학습시간</span><span>(20분)</span><span>학습강의</span><span>(2개)</span></div><div class=\"weekly_study_class_data\"><span>6월 :</span><span>학습시간</span><span>(20분)</span><span>학습강의</span><span>(2개)</span></div><div class=\"weekly_study_class_data\"><span>7월 :</span><span>학습시간</span><span>(20분)</span><span>학습강의</span><span>(2개)</span></div><div class=\"weekly_study_class_data\"><span>8월 :</span><span>학습시간</span><span>(20분)</span><span>학습강의</span><span>(2개)</span></div><div class=\"weekly_study_class_data\"><span>9월 :</span><span>학습시간</span><span>(20분)</span><span>학습강의</span><span>(2개)</span></div><div class=\"weekly_study_class_data\"><span>10월 :</span><span>학습시간</span><span>(20분)</span><span>학습강의</span><span>(2개)</span></div><div class=\"weekly_study_class_data\"><span>11월 :</span><span>학습시간</span><span>(20분)</span><span>학습강의</span><span>(2개)</span></div><div class=\"weekly_study_class_data\"><span>12월 :</span><span>학습시간</span><span>(20분)</span><span>학습강의</span><span>(2개)</span></div></div><div class=\"weekly_study_class_total_cover\"><div class=\"weekly_study_class_total\"><span>총 학습시간 :</span><span>총 학습강의 :</span><span>1</span></div></div></div></div>", 1);
+var _hoisted_26 = {
   key: 1,
   "class": "my_page_users_box"
 };
-var _hoisted_25 = {
+var _hoisted_27 = {
   "class": "my_page_users_box_cover"
 };
-var _hoisted_26 = {
+var _hoisted_28 = {
   "class": "users_basic_information"
 };
-var _hoisted_27 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+var _hoisted_29 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "users_basic_information_title"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, "기본 정보")], -1 /* HOISTED */);
-var _hoisted_28 = {
+var _hoisted_30 = {
   "class": "users_basic_information_box"
 };
-var _hoisted_29 = {
+var _hoisted_31 = {
   "class": "users_basic_information_cover"
 };
-var _hoisted_30 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+var _hoisted_32 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "users_basic_information_title_name"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", null, "이름")], -1 /* HOISTED */);
-var _hoisted_31 = {
+var _hoisted_33 = {
   "class": "users_basic_information_content_cover"
 };
-var _hoisted_32 = {
+var _hoisted_34 = {
   "class": "users_basic_information_cover"
 };
-var _hoisted_33 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+var _hoisted_35 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "users_basic_information_title_name"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", null, "생년월일")], -1 /* HOISTED */);
-var _hoisted_34 = {
+var _hoisted_36 = {
   "class": "users_basic_information_content_cover"
 };
-var _hoisted_35 = {
+var _hoisted_37 = {
   "class": "users_basic_information_cover"
 };
-var _hoisted_36 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+var _hoisted_38 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "users_basic_information_title_name"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", null, "전화번호")], -1 /* HOISTED */);
-var _hoisted_37 = {
+var _hoisted_39 = {
   "class": "users_basic_information_content_cover"
 };
-var _hoisted_38 = ["value"];
-var _hoisted_39 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+var _hoisted_40 = ["value"];
+var _hoisted_41 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "users_basic_information_button_cover"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "users_basic_information_button"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", null, "전화번호 수정 하기")])], -1 /* HOISTED */);
-var _hoisted_40 = {
+var _hoisted_42 = {
   "class": "users_basic_information"
 };
-var _hoisted_41 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+var _hoisted_43 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "users_basic_information_title"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, "주소 정보")], -1 /* HOISTED */);
-var _hoisted_42 = {
+var _hoisted_44 = {
   "class": "users_basic_information_box"
 };
-var _hoisted_43 = {
+var _hoisted_45 = {
   "class": "users_basic_information_cover"
 };
-var _hoisted_44 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+var _hoisted_46 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "users_basic_address_cover"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "users_basic_information_title_name"
@@ -23167,193 +23170,198 @@ var _hoisted_44 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
   type: "button",
   "class": "user_address_button"
 }, "주소 찾기")])], -1 /* HOISTED */);
-var _hoisted_45 = {
+var _hoisted_47 = {
   "class": "users_basic_information_content_cover"
 };
-var _hoisted_46 = ["value"];
-var _hoisted_47 = {
+var _hoisted_48 = ["value"];
+var _hoisted_49 = {
   "class": "users_basic_information_cover"
 };
-var _hoisted_48 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+var _hoisted_50 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "users_basic_information_title_name"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", null, "도로명 주소")], -1 /* HOISTED */);
-var _hoisted_49 = {
+var _hoisted_51 = {
   "class": "users_basic_information_content_cover"
 };
-var _hoisted_50 = ["value"];
-var _hoisted_51 = {
+var _hoisted_52 = ["value"];
+var _hoisted_53 = {
   "class": "users_basic_information_cover"
 };
-var _hoisted_52 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+var _hoisted_54 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "users_basic_information_title_name"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", null, "상세 주소")], -1 /* HOISTED */);
-var _hoisted_53 = {
+var _hoisted_55 = {
   "class": "users_basic_information_content_cover"
 };
-var _hoisted_54 = ["value"];
-var _hoisted_55 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+var _hoisted_56 = ["value"];
+var _hoisted_57 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "users_basic_information_button_cover"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "users_basic_information_button"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", null, "주소 수정 하기")])], -1 /* HOISTED */);
-var _hoisted_56 = {
+var _hoisted_58 = {
   "class": "users_basic_information"
 };
-var _hoisted_57 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+var _hoisted_59 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "users_basic_information_title"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, "계정 정보")], -1 /* HOISTED */);
-var _hoisted_58 = {
+var _hoisted_60 = {
   "class": "users_basic_information_box"
 };
-var _hoisted_59 = {
+var _hoisted_61 = {
   "class": "users_basic_information_cover"
 };
-var _hoisted_60 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+var _hoisted_62 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "users_basic_information_title_name"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", null, "이메일")], -1 /* HOISTED */);
-var _hoisted_61 = {
+var _hoisted_63 = {
   "class": "users_basic_information_content_cover"
 };
-var _hoisted_62 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"users_basic_information_cover\" style=\"margin-bottom:12px;\"><div class=\"users_basic_information_title_name\"><a>비밀번호</a></div><div class=\"users_basic_information_content_cover\"><div><input type=\"password\"></div></div></div><div class=\"users_basic_information_cover\" style=\"margin-bottom:12px;\"><div class=\"users_basic_information_content_cover\"><div><input type=\"password\" placeholder=\"변경할 비밀번호를 입력해주세요.\"><!-- &lt;p&gt;대구광역시 중구 공평로 105, 노마즈하우스 1528호&lt;/p&gt; --></div></div></div><div class=\"users_basic_information_cover\"><div class=\"users_basic_information_content_cover\"><div><input type=\"password\" placeholder=\"변경할 비밀번호를 확인을 입력해주세요.\"><!-- &lt;p&gt;대구광역시 중구 공평로 105, 노마즈하우스 1528호&lt;/p&gt; --></div></div></div><div class=\"users_basic_information_button_cover\"><div class=\"users_basic_information_button\"><button>비밀번호 수정 하기</button></div></div>", 4);
-var _hoisted_66 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"users_basic_information_password_cover\"><div class=\"users_basic_information_title\"><p>탈퇴 확인</p></div><div class=\"users_basic_password_box\"><div class=\"users_basic_password_cover\"><div class=\"users_basic_password_title\"><span class=\"users_password_titel\">비밀번호</span><input class=\"users_password_input\" type=\"password\" placeholder=\"비밀번호를 입력하세요\"><span class=\"users_password_titel\">비밀번호 확인</span><input class=\"users_password_input\" type=\"password\" placeholder=\"비밀번호를 입력하세요\"></div></div></div><button type=\"button\" class=\"users_password_button\" style=\"margin-right:50px;\">비밀번호 확인</button><button type=\"button\" class=\"users_password_button\">탈퇴하기</button></div>", 1);
-var _hoisted_67 = {
+var _hoisted_64 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"users_basic_information_cover\" style=\"margin-bottom:12px;\"><div class=\"users_basic_information_title_name\"><a>비밀번호</a></div><div class=\"users_basic_information_content_cover\"><div><input type=\"password\"></div></div></div><div class=\"users_basic_information_cover\" style=\"margin-bottom:12px;\"><div class=\"users_basic_information_content_cover\"><div><input type=\"password\" placeholder=\"변경할 비밀번호를 입력해주세요.\"><!-- &lt;p&gt;대구광역시 중구 공평로 105, 노마즈하우스 1528호&lt;/p&gt; --></div></div></div><div class=\"users_basic_information_cover\"><div class=\"users_basic_information_content_cover\"><div><input type=\"password\" placeholder=\"변경할 비밀번호를 확인을 입력해주세요.\"><!-- &lt;p&gt;대구광역시 중구 공평로 105, 노마즈하우스 1528호&lt;/p&gt; --></div></div></div><div class=\"users_basic_information_button_cover\"><div class=\"users_basic_information_button\"><button>비밀번호 수정 하기</button></div></div>", 4);
+var _hoisted_68 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"users_basic_information_password_cover\"><div class=\"users_basic_information_title\"><p>탈퇴 확인</p></div><div class=\"users_basic_password_box\"><div class=\"users_basic_password_cover\"><div class=\"users_basic_password_title\"><span class=\"users_password_titel\">비밀번호</span><input class=\"users_password_input\" type=\"password\" placeholder=\"비밀번호를 입력하세요\"><span class=\"users_password_titel\">비밀번호 확인</span><input class=\"users_password_input\" type=\"password\" placeholder=\"비밀번호를 입력하세요\"></div></div></div><button type=\"button\" class=\"users_password_button\" style=\"margin-right:50px;\">비밀번호 확인</button><button type=\"button\" class=\"users_password_button\">탈퇴하기</button></div>", 1);
+var _hoisted_69 = {
   key: 2,
   "class": "my_page_class_box"
 };
-var _hoisted_68 = {
+var _hoisted_70 = {
   "class": "my_page_class_box_cover"
 };
-var _hoisted_69 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+var _hoisted_71 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "class_basic_information"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "class_basic_information_title"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, "수강 정보")])], -1 /* HOISTED */);
-var _hoisted_70 = {
+var _hoisted_72 = {
   "class": "my_page_container_new_box"
 };
-var _hoisted_71 = {
+var _hoisted_73 = {
   "class": "my_page_container_new"
 };
-var _hoisted_72 = ["href"];
-var _hoisted_73 = {
+var _hoisted_74 = ["href"];
+var _hoisted_75 = {
   "class": "my_page_container_new_card"
 };
-var _hoisted_74 = {
+var _hoisted_76 = {
   "class": "my_page_container_new_card_img"
 };
-var _hoisted_75 = ["src"];
-var _hoisted_76 = {
+var _hoisted_77 = ["src"];
+var _hoisted_78 = {
   key: 3,
   "class": "my_page_class_box"
 };
-var _hoisted_77 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"my_page_class_box_cover\"><div class=\"class_basic_information\"><div class=\"class_basic_information_title\"><p>강의 노트</p></div></div><div class=\"users_class_note_full_cover\"><div class=\"users_class_note_box\"><div class=\"users_class_note_cover\"><div class=\"users_class_note_content_box\"><span class=\"users_class_note_content\">강의명</span><span class=\"users_class_note_content\">챕터명</span><span class=\"users_class_note_content\">노트내용</span><button class=\"users_class_note_button\">강의 이동</button></div></div></div><div class=\"users_class_note_box\"><div class=\"users_class_note_cover\"><div class=\"users_class_note_content_box\"><span class=\"users_class_note_content\">강의명</span><span class=\"users_class_note_content\">챕터명</span><span class=\"users_class_note_content\">노트내용</span><button class=\"users_class_note_button\">강의 이동</button></div></div></div><div class=\"users_class_note_box\"><div class=\"users_class_note_cover\"><div class=\"users_class_note_content_box\"><span class=\"users_class_note_content\">강의명</span><span class=\"users_class_note_content\">챕터명</span><span class=\"users_class_note_content\">노트내용</span><button class=\"users_class_note_button\">강의 이동</button></div></div></div><div class=\"users_class_note_box\"><div class=\"users_class_note_cover\"><div class=\"users_class_note_content_box\"><span class=\"users_class_note_content\">강의명</span><span class=\"users_class_note_content\">챕터명</span><span class=\"users_class_note_content\">노트내용</span><button class=\"users_class_note_button\">강의 이동</button></div></div></div><div class=\"users_class_note_box\"><div class=\"users_class_note_cover\"><div class=\"users_class_note_content_box\"><span class=\"users_class_note_content\">강의명</span><span class=\"users_class_note_content\">챕터명</span><span class=\"users_class_note_content\">노트내용</span><button class=\"users_class_note_button\">강의 이동</button></div></div></div><div class=\"users_class_note_box\"><div class=\"users_class_note_cover\"><div class=\"users_class_note_content_box\"><span class=\"users_class_note_content\">강의명</span><span class=\"users_class_note_content\">챕터명</span><span class=\"users_class_note_content\">노트내용</span><button class=\"users_class_note_button\">강의 이동</button></div></div></div></div></div>", 1);
-var _hoisted_78 = [_hoisted_77];
-var _hoisted_79 = {
+var _hoisted_79 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"my_page_class_box_cover\"><div class=\"class_basic_information\"><div class=\"class_basic_information_title\"><p>강의 노트</p></div></div><div class=\"users_class_note_full_cover\"><div class=\"users_class_note_box\"><div class=\"users_class_note_cover\"><div class=\"users_class_note_content_box\"><span class=\"users_class_note_content\">강의명</span><span class=\"users_class_note_content\">챕터명</span><span class=\"users_class_note_content\">노트내용</span><button class=\"users_class_note_button\">강의 이동</button></div></div></div><div class=\"users_class_note_box\"><div class=\"users_class_note_cover\"><div class=\"users_class_note_content_box\"><span class=\"users_class_note_content\">강의명</span><span class=\"users_class_note_content\">챕터명</span><span class=\"users_class_note_content\">노트내용</span><button class=\"users_class_note_button\">강의 이동</button></div></div></div><div class=\"users_class_note_box\"><div class=\"users_class_note_cover\"><div class=\"users_class_note_content_box\"><span class=\"users_class_note_content\">강의명</span><span class=\"users_class_note_content\">챕터명</span><span class=\"users_class_note_content\">노트내용</span><button class=\"users_class_note_button\">강의 이동</button></div></div></div><div class=\"users_class_note_box\"><div class=\"users_class_note_cover\"><div class=\"users_class_note_content_box\"><span class=\"users_class_note_content\">강의명</span><span class=\"users_class_note_content\">챕터명</span><span class=\"users_class_note_content\">노트내용</span><button class=\"users_class_note_button\">강의 이동</button></div></div></div><div class=\"users_class_note_box\"><div class=\"users_class_note_cover\"><div class=\"users_class_note_content_box\"><span class=\"users_class_note_content\">강의명</span><span class=\"users_class_note_content\">챕터명</span><span class=\"users_class_note_content\">노트내용</span><button class=\"users_class_note_button\">강의 이동</button></div></div></div><div class=\"users_class_note_box\"><div class=\"users_class_note_cover\"><div class=\"users_class_note_content_box\"><span class=\"users_class_note_content\">강의명</span><span class=\"users_class_note_content\">챕터명</span><span class=\"users_class_note_content\">노트내용</span><button class=\"users_class_note_button\">강의 이동</button></div></div></div></div></div>", 1);
+var _hoisted_80 = [_hoisted_79];
+var _hoisted_81 = {
   key: 4,
   "class": "my_page_class_box"
 };
-var _hoisted_80 = {
+var _hoisted_82 = {
   "class": "my_page_class_box_cover"
 };
-var _hoisted_81 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+var _hoisted_83 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "class_basic_information"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "class_basic_information_title"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, "작성 게시글")])], -1 /* HOISTED */);
-var _hoisted_82 = {
+var _hoisted_84 = {
   "class": "users_class_thread_full_cover"
 };
-var _hoisted_83 = {
+var _hoisted_85 = {
   "class": "users_class_thread_box"
 };
-var _hoisted_84 = {
+var _hoisted_86 = {
   "class": "users_class_thread_cover"
 };
-var _hoisted_85 = {
-  "class": "users_class_thread_content_box"
-};
-var _hoisted_86 = {
-  "class": "users_class_thread_content"
-};
 var _hoisted_87 = {
-  "class": "users_class_thread_content"
+  "class": "users_class_thread_content_box"
 };
 var _hoisted_88 = {
   "class": "users_class_thread_content"
 };
-var _hoisted_89 = ["href"];
+var _hoisted_89 = {
+  "class": "users_class_thread_content"
+};
 var _hoisted_90 = {
+  "class": "users_class_thread_content"
+};
+var _hoisted_91 = ["href"];
+var _hoisted_92 = {
   key: 5,
   "class": "my_page_class_box"
 };
-var _hoisted_91 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"my_page_class_box_cover\"><div class=\"class_basic_information\"><div class=\"class_basic_information_title\"><p>구매 내역</p></div></div><div class=\"users_class_thread_full_cover\"><div class=\"users_class_thread_box\"><div class=\"users_class_thread_cover\"><div class=\"users_class_thread_content_box\"><span class=\"users_class_thread_content\">구매일자</span><span class=\"users_class_thread_content\">강의진행률</span><span class=\"users_class_thread_content\">강의제목</span><button class=\"users_class_thread_button\">강의 이동</button></div></div></div></div><div class=\"users_class_thread_full_cover\"><div class=\"users_class_thread_box\"><div class=\"users_class_thread_cover\"><div class=\"users_class_thread_content_box\"><span class=\"users_class_thread_content\">구매일자</span><span class=\"users_class_thread_content\">강의진행률</span><span class=\"users_class_thread_content\">강의제목</span><button class=\"users_class_thread_button\">강의 이동</button></div></div></div></div><div class=\"users_class_thread_full_cover\"><div class=\"users_class_thread_box\"><div class=\"users_class_thread_cover\"><div class=\"users_class_thread_content_box\"><span class=\"users_class_thread_content\">구매일자</span><span class=\"users_class_thread_content\">강의진행률</span><span class=\"users_class_thread_content\">강의제목</span><button class=\"users_class_thread_button\">강의 이동</button></div></div></div></div><div class=\"users_class_thread_full_cover\"><div class=\"users_class_thread_box\"><div class=\"users_class_thread_cover\"><div class=\"users_class_thread_content_box\"><span class=\"users_class_thread_content\">구매일자</span><span class=\"users_class_thread_content\">강의진행률</span><span class=\"users_class_thread_content\">강의제목</span><button class=\"users_class_thread_button\">강의 이동</button></div></div></div></div><div class=\"users_class_thread_full_cover\"><div class=\"users_class_thread_box\"><div class=\"users_class_thread_cover\"><div class=\"users_class_thread_content_box\"><span class=\"users_class_thread_content\">구매일자</span><span class=\"users_class_thread_content\">강의진행률</span><span class=\"users_class_thread_content\">강의제목</span><button class=\"users_class_thread_button\">강의 이동</button></div></div></div></div><div class=\"users_class_thread_full_cover\"><div class=\"users_class_thread_box\"><div class=\"users_class_thread_cover\"><div class=\"users_class_thread_content_box\"><span class=\"users_class_thread_content\">구매일자</span><span class=\"users_class_thread_content\">강의진행률</span><span class=\"users_class_thread_content\">강의제목</span><button class=\"users_class_thread_button\">강의 이동</button></div></div></div></div></div>", 1);
-var _hoisted_92 = [_hoisted_91];
+var _hoisted_93 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"my_page_class_box_cover\"><div class=\"class_basic_information\"><div class=\"class_basic_information_title\"><p>구매 내역</p></div></div><div class=\"users_class_thread_full_cover\"><div class=\"users_class_thread_box\"><div class=\"users_class_thread_cover\"><div class=\"users_class_thread_content_box\"><span class=\"users_class_thread_content\">구매일자</span><span class=\"users_class_thread_content\">강의진행률</span><span class=\"users_class_thread_content\">강의제목</span><button class=\"users_class_thread_button\">강의 이동</button></div></div></div></div><div class=\"users_class_thread_full_cover\"><div class=\"users_class_thread_box\"><div class=\"users_class_thread_cover\"><div class=\"users_class_thread_content_box\"><span class=\"users_class_thread_content\">구매일자</span><span class=\"users_class_thread_content\">강의진행률</span><span class=\"users_class_thread_content\">강의제목</span><button class=\"users_class_thread_button\">강의 이동</button></div></div></div></div><div class=\"users_class_thread_full_cover\"><div class=\"users_class_thread_box\"><div class=\"users_class_thread_cover\"><div class=\"users_class_thread_content_box\"><span class=\"users_class_thread_content\">구매일자</span><span class=\"users_class_thread_content\">강의진행률</span><span class=\"users_class_thread_content\">강의제목</span><button class=\"users_class_thread_button\">강의 이동</button></div></div></div></div><div class=\"users_class_thread_full_cover\"><div class=\"users_class_thread_box\"><div class=\"users_class_thread_cover\"><div class=\"users_class_thread_content_box\"><span class=\"users_class_thread_content\">구매일자</span><span class=\"users_class_thread_content\">강의진행률</span><span class=\"users_class_thread_content\">강의제목</span><button class=\"users_class_thread_button\">강의 이동</button></div></div></div></div><div class=\"users_class_thread_full_cover\"><div class=\"users_class_thread_box\"><div class=\"users_class_thread_cover\"><div class=\"users_class_thread_content_box\"><span class=\"users_class_thread_content\">구매일자</span><span class=\"users_class_thread_content\">강의진행률</span><span class=\"users_class_thread_content\">강의제목</span><button class=\"users_class_thread_button\">강의 이동</button></div></div></div></div><div class=\"users_class_thread_full_cover\"><div class=\"users_class_thread_box\"><div class=\"users_class_thread_cover\"><div class=\"users_class_thread_content_box\"><span class=\"users_class_thread_content\">구매일자</span><span class=\"users_class_thread_content\">강의진행률</span><span class=\"users_class_thread_content\">강의제목</span><button class=\"users_class_thread_button\">강의 이동</button></div></div></div></div></div>", 1);
+var _hoisted_94 = [_hoisted_93];
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <div @click=\"handleTabClick(1)\" class=\"my_page_main_tap_ui\">대시보드</div> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
     onClick: _cache[0] || (_cache[0] = function ($event) {
+      return $options.handleTabClick(1);
+    }),
+    "class": "my_page_main_tap_ui"
+  }, "대시보드"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+    onClick: _cache[1] || (_cache[1] = function ($event) {
       return $options.handleTabClick(2);
     }),
     "class": "my_page_main_tap_ui"
   }, "계정정보"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-    onClick: _cache[1] || (_cache[1] = function ($event) {
+    onClick: _cache[2] || (_cache[2] = function ($event) {
       return $options.handleTabClick(3);
     }),
     "class": "my_page_main_tap_ui"
   }, "나의학습"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <div @click=\"handleTabClick(4)\" class=\"my_page_main_tap_ui\">강의노트</div> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-    onClick: _cache[2] || (_cache[2] = function ($event) {
+    onClick: _cache[3] || (_cache[3] = function ($event) {
       return $options.handleTabClick(5);
     }),
     "class": "my_page_main_tap_ui"
   }, "작성 게시글"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <div @click=\"handleTabClick(6)\" class=\"my_page_main_tap_ui\">구매내역</div> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <div class=\"my_page_main_tap_ui\" onclick=\"showDashboardContent('공란')\">공란</div> ")]), _ctx.$store.state.myPageClickFlgTab === 1 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [_hoisted_6, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, [_hoisted_8, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_9, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_10, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_11, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
     "class": "weekly_study_class_btn",
-    onClick: _cache[3] || (_cache[3] = function () {
+    onClick: _cache[4] || (_cache[4] = function () {
       return $options.decrementWeek && $options.decrementWeek.apply($options, arguments);
     })
   }, "◀"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_12, [_hoisted_13, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_14, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     type: "date",
-    "onUpdate:modelValue": _cache[4] || (_cache[4] = function ($event) {
+    "onUpdate:modelValue": _cache[5] || (_cache[5] = function ($event) {
       return $data.selectedDate = $event;
     }),
-    onChange: _cache[5] || (_cache[5] = function () {
+    onChange: _cache[6] || (_cache[6] = function () {
       return $options.handleDateChange && $options.handleDateChange.apply($options, arguments);
     })
   }, null, 544 /* NEED_HYDRATION, NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.selectedDate]]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.currentWeek), 1 /* TEXT */)])]), _hoisted_15, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
     "class": "weekly_study_class_btn",
-    onClick: _cache[6] || (_cache[6] = function () {
+    onClick: _cache[7] || (_cache[7] = function () {
       return $options.incrementWeek && $options.incrementWeek.apply($options, arguments);
     })
-  }, "▶")])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_16, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.weekdays, function (weekday, index) {
+  }, "▶")])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_16, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.chapters, function (dayData, day) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
-      key: index,
+      key: day,
       "class": "weekly_study_class_data"
-    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(weekday) + " : ", 1 /* TEXT */), _hoisted_17, _hoisted_18, _hoisted_19, _hoisted_20, _hoisted_21]);
-  }), 128 /* KEYED_FRAGMENT */))]), _hoisted_22])]), _hoisted_23])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), _ctx.$store.state.myPageClickFlgTab === 2 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_24, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_25, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_26, [_hoisted_27, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_28, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_29, [_hoisted_30, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_31, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.newUserInfoItems.UserName), 1 /* TEXT */)])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_32, [_hoisted_33, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_34, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.newUserInfoItems.UserBirthDate), 1 /* TEXT */)])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_35, [_hoisted_36, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_37, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.convertToKoreanDay(day)) + " : ", 1 /* TEXT */), _hoisted_17, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(dayData.classFlagCount) + "개", 1 /* TEXT */), _hoisted_18, _hoisted_19, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(dayData.chapterFlagCount) + "개", 1 /* TEXT */)]);
+  }), 128 /* KEYED_FRAGMENT */))]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_20, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_21, [_hoisted_22, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.totalClassCount), 1 /* TEXT */), _hoisted_23, _hoisted_24, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.totalChapterCount), 1 /* TEXT */)])])])]), _hoisted_25])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), _ctx.$store.state.myPageClickFlgTab === 2 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_26, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_27, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_28, [_hoisted_29, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_30, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_31, [_hoisted_32, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_33, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.newUserInfoItems.UserName), 1 /* TEXT */)])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_34, [_hoisted_35, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_36, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.newUserInfoItems.UserBirthDate), 1 /* TEXT */)])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_37, [_hoisted_38, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_39, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     type: "text",
     name: "",
     id: "",
     value: $data.newUserInfoItems.UserPhoneNumber
-  }, null, 8 /* PROPS */, _hoisted_38)])])]), _hoisted_39])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_40, [_hoisted_41, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_42, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_43, [_hoisted_44, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_45, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+  }, null, 8 /* PROPS */, _hoisted_40)])])]), _hoisted_41])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_42, [_hoisted_43, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_44, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_45, [_hoisted_46, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_47, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     type: "text",
     value: $data.newUserInfoItems.UserPostcode
-  }, null, 8 /* PROPS */, _hoisted_46)])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_47, [_hoisted_48, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_49, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+  }, null, 8 /* PROPS */, _hoisted_48)])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_49, [_hoisted_50, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_51, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     type: "text",
     value: $data.newUserInfoItems.UserRoadAddress
-  }, null, 8 /* PROPS */, _hoisted_50)])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_51, [_hoisted_52, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_53, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+  }, null, 8 /* PROPS */, _hoisted_52)])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_53, [_hoisted_54, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_55, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     type: "text",
     value: $data.newUserInfoItems.UserDetailedAddress
-  }, null, 8 /* PROPS */, _hoisted_54), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <p>대구광역시 중구 공평로 105, 노마즈하우스 1528호</p> ")])])]), _hoisted_55])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_56, [_hoisted_57, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_58, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_59, [_hoisted_60, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_61, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.newUserInfoItems.UserEmail), 1 /* TEXT */)])])]), _hoisted_62])]), _hoisted_66])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), _ctx.$store.state.myPageClickFlgTab === 3 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_67, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_68, [_hoisted_69, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_70, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("ul", _hoisted_71, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.newUserClassInfoItem, function (item) {
+  }, null, 8 /* PROPS */, _hoisted_56), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <p>대구광역시 중구 공평로 105, 노마즈하우스 1528호</p> ")])])]), _hoisted_57])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_58, [_hoisted_59, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_60, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_61, [_hoisted_62, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_63, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.newUserInfoItems.UserEmail), 1 /* TEXT */)])])]), _hoisted_64])]), _hoisted_68])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), _ctx.$store.state.myPageClickFlgTab === 3 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_69, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_70, [_hoisted_71, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_72, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("ul", _hoisted_73, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.newUserClassInfoItem, function (item) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("a", {
       href: '/classboarddetail/' + item.ClassID
-    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", _hoisted_73, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_74, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
+    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", _hoisted_75, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_76, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
       src: '/' + item.ClassImg,
       alt: ""
-    }, null, 8 /* PROPS */, _hoisted_75)])])], 8 /* PROPS */, _hoisted_72);
-  }), 256 /* UNKEYED_FRAGMENT */))])])])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), _ctx.$store.state.myPageClickFlgTab === 4 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_76, [].concat(_hoisted_78))) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), _ctx.$store.state.myPageClickFlgTab === 5 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_79, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_80, [_hoisted_81, ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.newUserBoardInfoItem, function (item) {
-    return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_82, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_83, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_84, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_85, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_86, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.created_at), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_87, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.BoardFlg === '0' ? '미해결' : '해결'), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_88, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.BoardTitle), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
+    }, null, 8 /* PROPS */, _hoisted_77)])])], 8 /* PROPS */, _hoisted_74);
+  }), 256 /* UNKEYED_FRAGMENT */))])])])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), _ctx.$store.state.myPageClickFlgTab === 4 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_78, [].concat(_hoisted_80))) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), _ctx.$store.state.myPageClickFlgTab === 5 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_81, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_82, [_hoisted_83, ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.newUserBoardInfoItem, function (item) {
+    return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_84, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_85, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_86, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_87, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_88, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.created_at), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_89, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.BoardFlg === '0' ? '미해결' : '해결'), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_90, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.BoardTitle), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
       href: '/boardDetail/' + item.BoardID,
       "class": "users_class_thread_button"
-    }, "게시판 이동", 8 /* PROPS */, _hoisted_89)])])])]);
-  }), 256 /* UNKEYED_FRAGMENT */))])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), _ctx.$store.state.myPageClickFlgTab === 6 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_90, [].concat(_hoisted_92))) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])]);
+    }, "게시판 이동", 8 /* PROPS */, _hoisted_91)])])])]);
+  }), 256 /* UNKEYED_FRAGMENT */))])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), _ctx.$store.state.myPageClickFlgTab === 6 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_92, [].concat(_hoisted_94))) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])]);
 }
 
 /***/ }),
@@ -23586,7 +23594,7 @@ var store = (0,vuex__WEBPACK_IMPORTED_MODULE_3__.createStore)({
       userLoginChk: null,
       UserID: null,
       shouldShowCarousel: false,
-      myPageClickFlgTab: 2,
+      myPageClickFlgTab: 1,
       // 최현희
       // 라라벨 데이터 저장용
       laravelData: []

@@ -33,7 +33,7 @@ const store = createStore({
             userLoginChk: null,
             UserID: null,
             shouldShowCarousel: false,
-            myPageClickFlgTab: 2,
+            myPageClickFlgTab: 1,
 
 
 

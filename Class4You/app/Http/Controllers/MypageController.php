@@ -58,40 +58,44 @@ class MypageController extends Controller
 
         $chapters = collect();
 
-        foreach ($classIDs as $classID) {
-            // 클래스 플래그가 1인 요일 정보
-            $classFlagDays = Classinfo::join('Chapters', 'class_infos.ClassID', '=', 'Chapters.ClassID')
-                ->select(DB::raw('DATE_FORMAT(Chapters.updated_at, "%a") as day'))
-                ->where('class_infos.ClassID', $classID)
-                ->where('class_infos.ClassFlg', 1)
-                ->whereBetween('Chapters.updated_at', [$request->weekStart, $request->weekEnd])
-                ->pluck('day')
-                ->unique()
-                ->toArray();
+        // 클래스 플래그가 1인 요일 정보
+        $classFlagDays = Classinfo::join('Chapters', 'class_infos.ClassID', '=', 'Chapters.ClassID')
+            ->select(
+                DB::raw('DATE_FORMAT(Chapters.updated_at, "%a") as day'),
+                DB::raw('SUM(class_infos.ClassFlg) as classFlagCount'),
+                DB::raw('SUM(Chapters.ChapterFlg) as chapterFlagCount')
+            )
+            ->whereIn('class_infos.ClassID', $classIDs) // Use whereIn instead of a loop
+            ->whereBetween('Chapters.updated_at', [$request->weekStart, $request->weekEnd])
+            ->groupBy('day')
+            ->get();
         
-            // 챕터 플래그가 1인 요일 정보
-            $chapterFlagDays = Classinfo::join('Chapters', 'class_infos.ClassID', '=', 'Chapters.ClassID')
-                ->select(DB::raw('DATE_FORMAT(Chapters.updated_at, "%a") as day'))
-                ->where('class_infos.ClassID', $classID)
-                ->where('Chapters.ChapterFlg', 1)
-                ->whereBetween('Chapters.updated_at', [$request->weekStart, $request->weekEnd])
-                ->pluck('day')
-                ->toArray();
-                
+        // 월 화 수 목 금 토 일에 해당하는 요일 목록
+        $weekDays = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
         
-            // 챕터 값이 있는 경우에만 추가
-            if (!empty($classFlagDays) || !empty($chapterFlagDays)) {
-                $classFlagCount = count($classFlagDays);
-                $chapterFlagCount = count($chapterFlagDays);
-        
-                $chapters[$classID] = [
-                    'classFlagCount' => $classFlagCount,
-                    'chapterFlagCount' => $chapterFlagCount,
-                    'classFlagDays' => $classFlagDays,
-                    'chapterFlagDays' => $chapterFlagDays,
-                ];
-            }
+        // 월 화 수 목 금 토 일에 해당하는 데이터 그룹화
+        $groupedData = [];
+        foreach ($weekDays as $day) {
+            $groupedData[$day] = [
+                'classFlagCount' => 0,
+                'chapterFlagCount' => 0,
+                'classFlagDays' => [],
+                'chapterFlagDays' => [],
+            ];
         }
+        
+        // 결과 반영
+        foreach ($classFlagDays as $result) {
+            $day = $result->day;
+            $groupedData[$day]['classFlagCount'] = $result->classFlagCount;
+            $groupedData[$day]['chapterFlagCount'] = $result->chapterFlagCount;
+        }
+        
+        // 챕터 값이 있는 경우에만 추가
+        if (!empty($classFlagDays) || !empty($chapterFlagDays)) {
+            $chapters = $groupedData;
+        }
+        
         
         Log::debug($chapters);
         // $chapters = collect();
