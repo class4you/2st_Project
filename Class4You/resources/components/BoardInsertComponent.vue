@@ -1,6 +1,6 @@
 <template>
     <div class="wrapper">
-        <div style="padding: 0 10vw;" class="whr"><span>게시판</span><span>&gt;</span><span>게시판</span></div>
+        <div style="padding: 0 10vw;" class="whr"><span>게시판</span><span>&gt;</span><span>작성 게시판</span></div>
         <div class="main_visual">
 					<div class="main_visual_slider">
 						<div class="main_visual_slider_list">
