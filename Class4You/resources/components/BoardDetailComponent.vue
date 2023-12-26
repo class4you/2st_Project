@@ -47,7 +47,7 @@
                         <div  v-if="newBoardItem.UserID == $store.state.UserID"  class="row aiC">
                             <button @click="completeBoardData(newBoardItem.BoardID)" class="board_complete">해결</button>
                             <!-- <button @click="updateBoardData(newBoardItem.BoardID)" class="board_rewrite">수정</button> -->
-                            <router-link to="/boardupdate" v-if="$store.state.UserID" class="board_rewrite">수정</router-link>
+                            <a :href="'/boardupdate/' + newBoardItem.BoardID" v-if="$store.state.UserID" class="board_rewrite">수정</a>
                             <button @click="deleteBoardData(newBoardItem.BoardID)" class="board_delete">삭제</button>
                         </div>
                         <!-- {{ newBoardItem }} -->
