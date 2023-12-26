@@ -1287,16 +1287,36 @@ ul.class_tabs li.class_current {
     margin-bottom: 30px;
     padding: 20px;
     line-height: 20px;
-    
+    /* background-color: #2e2e2e; */
+    /* color: #858484;  */
     }
+
+/* .class_current_tab:hover {
+    color: #222;
+    border-bottom: 2px solid #000;
+} */
 
 .class_current {
     text-align: start;
+    border: 1px solid #ededed;
+    border-radius: 3px;
+    margin-top: 30px;
 }
 
-.class_tab_content>p {
-    text-align: start;
+.class_tab_content_basic {
+    background-color: #5b5b5b;
+    color: #858484; 
+    border-radius: 3px;
+    margin-top: 15px;
 }
+
+.class_tab_content_basic>p {
+    text-align: center;
+}
+
+/* .class_tab_content>p {
+    text-align: start;
+} */
 
 .class_tab_content_title {
     /* margin: 5px; */
