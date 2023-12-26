@@ -207,7 +207,7 @@
 							<div class="class_detail_rating_user_update_button">
 								<!-- <button @click="classReviewUpdate(data)">수정</button> -->
 							</div>
-							<div class="class_detail_rating_user_delete_button">
+							<div v-if="data.UserID == $store.state.UserID" class="class_detail_rating_user_delete_button">
 								<!-- <button @click="deleteClassReview(data.ReviewID)">삭제</button> -->
 								<button @click="deleteClassReview(data)">삭제</button>
 							</div>
