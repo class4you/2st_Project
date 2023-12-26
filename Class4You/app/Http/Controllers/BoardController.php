@@ -72,7 +72,7 @@ class BoardController extends Controller
             ->orderBy('comments.created_at', 'desc')
             ->get();
 
-        Log::debug($boardComment);
+        // Log::debug($boardComment);
 
         return response()->json([
             'boardData' => $boardData,
@@ -120,14 +120,69 @@ class BoardController extends Controller
 
     public function putBoardUpdate(Request $request) {
 
-        Log::debug($request);
+        // Log::debug($request);
         $data = $request->only('BoardCategoryID', 'BoardID', 'UserID', 'BoardTitle', 'BoardComment');
         
         // $result = Board::find($BoardID);
 
         Board::where('BoardID', $request->BoardID)->update($data);
 
-        Log::debug($data);
+        // Log::debug($data);
+    }
+
+    public function putBoardCompleteUpdate(Request $request) {
+        // Log::debug($request);
+        // $UserID = Auth::id();
+        $boardId = $request->input('BoardID');
+
+        $board = Board::find($boardId);
+
+        if(Auth::check()) {
+            $loggedInUserId = Auth::id(); // 현재 로그인된 사용자의 ID를 가져옴
+            $requestUserId = $request->UserID; // 예시로 리퀘스트에서 user_id를 가져옴
+            if ($loggedInUserId == $requestUserId) {
+                $board->update(['BoardFlg' => 1]);
+                return response()->json(['message' => 'Board Flag Updated'], 200);
+            }
+        }
+    }
+
+    public function putBoardRecommendedUpdate(Request $request) { 
+        $boardId = $request->input('BoardID');
+        
+        $board = Board::find($boardId);
+        Log::debug($board);
+        
+        
+        if ($board) {
+            // 보드가 존재하는 경우, 추천 수를 1 증가시키고 저장
+            // 업데이트된 추천 수를 응답
+            $board->BoardRecommended += 1;
+            $board->save();
+            return response()->json(['updated_recommendation' => $board->BoardRecommended]);
+        } else {
+            // 보드가 존재하지 않는 경우
+            return response()->json(['error' => 'Board not found'], 404);
+        }
+
+    }
+    public function putBoardNotRecommendedUpdate(Request $request) { 
+        $boardId = $request->input('BoardID');
+        
+        $board = Board::find($boardId);
+        Log::debug($board);
+        
+        
+        if ($board) {
+            // 보드가 존재하는 경우, 추천 수를 1 증가시키고 저장
+            // 업데이트된 추천 수를 응답
+            $board->BoardNotRecommended += 1;
+            $board->save();
+            return response()->json(['updated_recommendation' => $board->BoardRecommended]);
+        } else {
+            // 보드가 존재하지 않는 경우
+            return response()->json(['error' => 'Board not found'], 404);
+        }
     }
 
 }

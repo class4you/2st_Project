@@ -103,13 +103,19 @@ Route::get('/boarddetail/{BoardID}', [BoardController::class, 'getBoardDetailSho
 
 Route::delete('/boarddetail/{BoardID}', [BoardController::class, 'delBoardDetailData']);
 
+
 Route::put('/boardUpdate', [BoardController::class, 'putBoardUpdate']);
 // 코멘트 작업
 Route::post('/comments', [CommentController::class, 'postCommentData']);
 Route::delete('/comments/{CommentID}', [CommentController::class, 'delCommentData']);
 
+// 해결 처리
+Route::put('/boardCompleteUpdate', [BoardController::class, 'putBoardCompleteUpdate']);
 
+// 추천 비추천 처리
 
+Route::put('/boardRecommendedUpdate', [BoardController::class, 'putBoardRecommendedUpdate']);
+Route::put('/boardNotRecommendedUpdate', [BoardController::class, 'putBoardNotRecommendedUpdate']);
 
 
 

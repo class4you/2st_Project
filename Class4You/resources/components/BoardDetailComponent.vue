@@ -35,20 +35,20 @@
                     </div>
                     <div class="reco row jcC">
                         <div class="row aiC">
-                            <p>0</p>
-                            <button><i class="fas fa-thumbs-up" style="font-size: 20px;"></i></button>
+                            <p>{{newBoardItem.BoardRecommended}}</p>
+                            <button type="button" @click="updateRecommendedBoardData()"><i class="fas fa-thumbs-up" style="font-size: 20px;"></i></button>
                         </div>
                         <div class="row aiC">
-                            <button><i class="fas fa-thumbs-down" style="font-size: 20px;"></i></button>
-                            <p>0</p>
+                            <button type="button" @click="updateNotRecommendedBoardData()"><i class="fas fa-thumbs-down" style="font-size: 20px;"></i></button>
+                            <p>{{newBoardItem.BoardNotRecommended}}</p>
                         </div>
                     </div>
                     <div class="board_button">
                         <div  v-if="newBoardItem.UserID == $store.state.UserID"  class="row aiC">
-                            <button @click="completeBoardData(newBoardItem.BoardID)" class="board_complete">해결</button>
+                            <a v-if="newBoardItem.BoardFlg == '0'" @click="updatecompleteBoardData()" class="board_complete">해결</a>
                             <!-- <button @click="updateBoardData(newBoardItem.BoardID)" class="board_rewrite">수정</button> -->
                             <a :href="'/boardupdate/' + newBoardItem.BoardID" v-if="$store.state.UserID" class="board_rewrite">수정</a>
-                            <button @click="deleteBoardData(newBoardItem.BoardID)" class="board_delete">삭제</button>
+                            <a @click="deleteBoardData(newBoardItem.BoardID)" class="board_delete">삭제</a>
                         </div>
                         <!-- {{ newBoardItem }} -->
                     </div>
@@ -151,7 +151,7 @@ export default {
         fetchData() {
         axios.get('/boarddetail/' + this.BoardID)
             .then(response => {
-            // console.log(response.data);
+            console.log(response.data);
                 this.newBoardItem = response.data.boardData;
                 this.nowUserID = response.data.userID;
                 this.newCommentItem = response.data.commentData;
@@ -186,6 +186,55 @@ export default {
         // 게시판 수정 게시판 페이지
         updateBoardData(data) {
             this.$store.dispatch('updateBoardData', data);
+        },
+        updatecompleteBoardData() {
+            axios.put('/boardCompleteUpdate', {
+                BoardID : this.newBoardItem.BoardID,
+                UserID: this.newBoardItem.UserID,
+                BoardFlg: 1,
+            })
+            .then(response => {
+                console.log(response.data);
+                // 서버 응답에 대한 로직 수행
+                // this.$router.push('/board');
+                location.reload();
+            })
+            .catch(error => {
+                // 에러 처리
+                console.error(error);
+            });
+        },
+        updateRecommendedBoardData() {
+            axios.put('/boardRecommendedUpdate', {
+                BoardID : this.newBoardItem.BoardID,
+                UserID: this.newBoardItem.UserID,
+            })
+            .then(response => {
+                console.log(response.data);
+                // 서버 응답에 대한 로직 수행
+                // this.$router.push('/board');
+                location.reload();
+            })
+            .catch(error => {
+                // 에러 처리
+                console.error(error);
+            });
+        },
+        updateNotRecommendedBoardData() {
+            axios.put('/boardNotRecommendedUpdate', {
+                BoardID : this.newBoardItem.BoardID,
+                UserID: this.newBoardItem.UserID,
+            })
+            .then(response => {
+                console.log(response.data);
+                // 서버 응답에 대한 로직 수행
+                // this.$router.push('/board');
+                location.reload();
+            })
+            .catch(error => {
+                // 에러 처리
+                console.error(error);
+            });
         },
     },
 };

@@ -3666,37 +3666,54 @@ font-size: 15px;
     justify-content: flex-end;
     gap: 15px;
 }
+
 .board_rewrite {    
     margin-right: 10px;
-    background-color: #ccc;
+    background-color: #0400ff6d;
     border: none;
+    padding: 10px 20px;
     cursor: pointer;
-    width: 44px;
-    height: 28.5px;
-    font-size: 13px;
-    padding-top: 10px;
-    padding-left: 9px;
-    color: black;
-    box-sizing: border-box;
-    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 14px;
     font-weight: 700;
+    color: #fff;
+    border-radius: 5px;
+}
+
+.board_rewrite:hover {
+    background-color: #7371fc
 }
 
 .board_delete {    
     margin-right: 10px;
-    background-color: #ccc;
+    background-color: #ff00626d;
     border: none;
-    padding: 5px 10px;
+    padding: 10px 20px;
     cursor: pointer;
-    }
+    font-size: 14px;
+    font-weight: 700;
+    color: #fff;
+    border-radius: 5px;
+}
+
+.board_delete:hover {
+    background-color: #951844f1;
+}
 
 .board_complete{
     margin-right: 10px;
-    background-color: #ccc;
+    background-color: #0400ff6d;
     border: none;
-    padding: 5px 10px;
+    padding: 10px 20px;
     cursor: pointer;
-}    
+    font-size: 14px;
+    font-weight: 700;
+    color: #fff;
+    border-radius: 5px;
+}   
+
+.board_complete:hover {
+    background-color: #7371fc
+}
 
 .reviewList {
     margin-top: 20px
