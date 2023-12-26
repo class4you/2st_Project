@@ -72,9 +72,9 @@
 								<div class="e_search">
 									<div class="search_item">
 									<div class="ac_input_with_item">
-										<input type="text">
+										<input type="text" v-model="search_item">
 									</div>
-									<button class="search_item_button">
+									<button type="button" @click="boardSearch()" class="search_item_button">
 										검색
 									</button>
 									</div>
@@ -212,6 +212,7 @@ export default {
 			newUserCntItems: [],
 			pagination: {},
 			page: {},
+			search_item: '',
 		}
 	},
 	
@@ -240,6 +241,22 @@ export default {
 			const asterisks = '*'.repeat(atIndex - 4);
 			return username + asterisks;
 		},
+		// boardSearch() {
+		// 	axios.get('/search', {
+		// 		params: {
+		// 		search_item: this.search_item
+		// 		}
+		// 	})
+		// 		.then(response => {
+		// 	// 서버 응답에 대한 로직 수행
+		// 	console.log(response.data);
+		// })
+		// .catch(error => {
+		// 	// 에러 처리
+		// 	console.error(error);
+		// });
+
+		// }
 	}
 }
 
