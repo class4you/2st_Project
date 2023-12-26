@@ -19586,12 +19586,7 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       frmBoardData: {},
-      newBoardItem: {
-        UserID: this.$store.state.UserID,
-        BoardID: this.BoardID,
-        BoardTitle: '',
-        BoardComment: ''
-      },
+      newBoardItem: {},
       boardData: {
         UserID: this.$store.state.UserID,
         BoardID: this.BoardID,
@@ -19614,8 +19609,23 @@ __webpack_require__.r(__webpack_exports__);
         console.error('Error fetching data:', error);
       });
     },
-    updateBoardData: function updateBoardData(data) {
-      this.$store.dispatch('updateBoardData', this.newBoardItem);
+    // updateBoardData(data) {
+    //     this.$store.dispatch('updateBoardData', this.newBoardItem);
+    // },
+    updateBoardData: function updateBoardData() {
+      axios.put('/boardUpdate', {
+        BoardID: this.newBoardItem.BoardID,
+        BoardCategoryID: this.newBoardItem.BoardCategoryID,
+        UserID: this.newBoardItem.UserID,
+        BoardTitle: this.newBoardItem.BoardTitle,
+        BoardComment: this.newBoardItem.BoardComment
+      }).then(function (response) {
+        // 서버 응답에 대한 로직 수행
+        console.log(response.data);
+      })["catch"](function (error) {
+        // 에러 처리
+        console.error(error);
+      });
     }
   }
 });
@@ -23673,31 +23683,33 @@ var store = (0,vuex__WEBPACK_IMPORTED_MODULE_3__.createStore)({
         console.log(err.response.data.errors);
         context.commit('setRegistrationErrorMessage', err.response.data.errors);
       });
-    },
-    updateBoardData: function updateBoardData(context, data) {
-      var url = '/boardUpdate';
-      var header = {
-        headers: {
-          "Content-Type": 'multipart/form-data',
-          'X-CSRF-TOKEN': document.head.querySelector('meta[name="csrf-token"]').content
-        }
-      };
-      var frm = new FormData();
-      frm.append('BoardCategoryID', data.BoardCategoryID);
-      frm.append('UserID', data.UserID);
-      frm.append('BoardTitle', data.BoardTitle);
-      frm.append('BoardComment', data.BoardComment);
-      // console.log(this.newBoardItem);
-      // data.BoardTitle;
-
-      axios__WEBPACK_IMPORTED_MODULE_0___default().put(url, frm, header).then(function (res) {
-        // console.log(res.data);
-        // router.push('/boarddetail/:BoardID'); 
-      })["catch"](function (err) {
-        console.log(err.response.data.errors);
-        context.commit('setRegistrationErrorMessage', err.response.data.errors);
-      });
-    }
+    } // updateBoardData(context, data) {
+    //     const url = '/boardUpdate'
+    //     const header = {
+    //         headers: {
+    //             "Content-Type": 'multipart/form-data',
+    //             'X-CSRF-TOKEN': document.head.querySelector('meta[name="csrf-token"]').content,
+    //         },
+    //     }
+    //     console.log(data)
+    //     let frm = new FormData();
+    //     frm.append('BoardID',data.BoardID);
+    //     frm.append('BoardCategoryID',data.BoardCategoryID);
+    //     frm.append('UserID',data.UserID);
+    //     frm.append('BoardTitle',data.BoardTitle);
+    //     frm.append('BoardComment',data.BoardComment);
+    //     // console.log(this.newBoardItem);
+    //     // data.BoardTitle;
+    //     axios.put(url, frm, header)
+    //     .then(res => { 
+    //         // console.log(res.data);
+    //         // router.push('/boarddetail/:BoardID'); 
+    //     })
+    //     .catch(err => {
+    //         console.log(err.response.data.errors)
+    //         context.commit('setRegistrationErrorMessage', err.response.data.errors);
+    //     })
+    // },
   }
 });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (store);
