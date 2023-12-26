@@ -41,7 +41,7 @@
 
         <div class="mantine-InputWrapper-root mantine-Textarea-root mantine-1y7fzyr">
             <div class="mantine-Input-wrapper mantine-Textarea-wrapper mantine-1v7s5f8">
-                <textarea class="mantine-Input-input mantine-Textarea-input mantine-goibal" v-model="frmBoardData.BoardTitle"  id="title" name="title" aria-label="title" placeholder="제목에 핵심 내용을 요약해보세요." aria-invalid="false" style="height: 39px;"></textarea>
+                <textarea class="mantine-Input-input mantine-Textarea-input mantine-goibal" v-model="newBoardItem.BoardTitle"  id="title" name="title" aria-label="title" aria-invalid="false" style="height: 39px;"></textarea>
             </div>
         </div>
 
@@ -57,9 +57,9 @@
                     <div class="editor-toolbar-container sticky ">
                         <div tabindex="0" class="toolbar-group">
                             <!-- 게시물 입력 부분 -->
-                            <textarea v-model="frmBoardData.BoardComment" placeholder="게시물을 입력하세요..."
-    style="display: flex; flex-direction: column; height: 100%; width: 100%; min-height: 480px; max-height: 480px; border-radius: 8px; border: 1px solid #ccc; resize: none;">
-</textarea>
+                            <textarea v-model="newBoardItem.BoardComment"
+                                style="display: flex; flex-direction: column; height: 100%; width: 100%; min-height: 480px; max-height: 480px; border-radius: 8px; border: 1px solid #ccc; resize: none;">
+                            </textarea>
                         </div>
                     </div>
                 </div>
@@ -74,7 +74,7 @@
             </button>
             <button class="mantine-UnstyledButton-root mantine-Button-root mantine-1276sa2" type="submit" data-button="true">
                 <div class="mantine-1yjkc96 mantine-Button-inner">
-                    <span class="mantine-1ryt1ht mantine-Button-label" @click="submitBoardData()">등록</span>
+                    <span class="mantine-1ryt1ht mantine-Button-label" @click="updateBoardData(newBoardItem)">등록</span>
                 </div>
             </button>
         </div>
@@ -86,6 +86,8 @@
 export default {
     name:'BoardUpdateComponent',
 
+    props: ['BoardID'],
+
     mounted() {
         // this.frmUserBoardData.UserID
         // console.log(localStorage.getItem('UserID'));
@@ -94,23 +96,45 @@ export default {
         //     const value = localStorage.getItem(key);
         //     console.log(`${key}: ${value}`);
         // }
+        this.fetchData();
     },
 
     data() {
         return {
-            frmBoardData: {
-                BoardCategoryID: 1,
+            frmBoardData: {},
+            newBoardItem: {
                 UserID: this.$store.state.UserID,
+                BoardID: this.BoardID,
                 BoardTitle: '',
                 BoardComment: '',
             },
-            putBoardData: {},
+            boardData: {
+                UserID: this.$store.state.UserID,
+                BoardID: this.BoardID,
+                BoardComment: '',
+                BoardTitle: '',
+            },
         }
     },
 
     methods: {
-        updateBoardData() {
-            this.$store.dispatch('updateBoardData', this.frmBoardData);
+        fetchData() {
+            axios.get('/boarddetail/' + this.BoardID)
+            .then(response => {
+            // console.log(response.data);
+            // console.log(this.newBoardItem);
+                this.newBoardItem = response.data.boardData;
+                this.nowUserID = response.data.userID;
+                this.newCommentItem = response.data.commentData;
+                // console.log(response.data.commentData);
+            })
+            .catch(error => {
+            console.error('Error fetching data:', error);
+            });
+        },
+        
+        updateBoardData(data) {
+            this.$store.dispatch('updateBoardData', this.newBoardItem);
         },
     }
 }

@@ -103,7 +103,7 @@ Route::get('/boarddetail/{BoardID}', [BoardController::class, 'getBoardDetailSho
 
 Route::delete('/boarddetail/{BoardID}', [BoardController::class, 'delBoardDetailData']);
 
-Route::put('/boarddetail/{BoardID}', [BoardController::class, 'putBoardUpdate']);
+Route::put('/boardUpdate', [BoardController::class, 'putBoardUpdate']);
 // 코멘트 작업
 Route::post('/comments', [CommentController::class, 'postCommentData']);
 Route::delete('/comments/{CommentID}', [CommentController::class, 'delCommentData']);

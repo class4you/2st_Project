@@ -118,12 +118,17 @@ class BoardController extends Controller
         return response()->json($result);
     }
 
-    public function putBoardUpdate(Request $request, $BoardID) {
-        $data = $request->only('BoardCategoryID', 'BoardID', 'UserID', 'BoardTitle', 'BoardComment');
-        
-        $result = Board::update($data);
+    public function putBoardUpdate(Request $request) {
 
-        return response()->json($result);
+        Log::debug($request);
+        // $data = $request->only('BoardCategoryID', 'BoardID', 'UserID', 'BoardTitle', 'BoardComment');
+        
+        // // $result = Board::find($BoardID);
+
+        // $result->update($data);
+
+        // Log::debug($data);
+        // return response()->json($result);
     }
 
 }

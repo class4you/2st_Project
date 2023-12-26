@@ -656,7 +656,7 @@ const store = createStore({
         },
 
         updateBoardData(context, data) {
-            const url = '/boardUpdate/' + data.BoardID
+            const url = '/boardUpdate'
             const header = {
                 headers: {
                     "Content-Type": 'multipart/form-data',
@@ -669,13 +669,14 @@ const store = createStore({
             frm.append('UserID',data.UserID);
             frm.append('BoardTitle',data.BoardTitle);
             frm.append('BoardComment',data.BoardComment);
+            // console.log(this.newBoardItem);
+            // data.BoardTitle;
 
-            console.log(frm);
 
             axios.put(url, frm, header)
             .then(res => { 
                 // console.log(res.data);
-                router.push('/board'); 
+                // router.push('/boarddetail/:BoardID'); 
             })
             .catch(err => {
                 console.log(err.response.data.errors)
