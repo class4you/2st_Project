@@ -103,10 +103,6 @@ export default {
         return {
             frmBoardData: {},
             newBoardItem: {
-                UserID: this.$store.state.UserID,
-                BoardID: this.BoardID,
-                BoardTitle: '',
-                BoardComment: '',
             },
             boardData: {
                 UserID: this.$store.state.UserID,
@@ -133,8 +129,26 @@ export default {
             });
         },
         
-        updateBoardData(data) {
-            this.$store.dispatch('updateBoardData', this.newBoardItem);
+        // updateBoardData(data) {
+        //     this.$store.dispatch('updateBoardData', this.newBoardItem);
+        // },
+
+        updateBoardData() {
+            axios.put('/boardUpdate', {
+                BoardID : this.newBoardItem.BoardID,
+                BoardCategoryID: this.newBoardItem.BoardCategoryID,
+                UserID: this.newBoardItem.UserID,
+                BoardTitle: this.newBoardItem.BoardTitle,
+                BoardComment: this.newBoardItem.BoardComment,
+            })
+            .then(response => {
+                // 서버 응답에 대한 로직 수행
+                console.log(response.data);
+            })
+            .catch(error => {
+                // 에러 처리
+                console.error(error);
+            });
         },
     }
 }
