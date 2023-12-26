@@ -1,7 +1,7 @@
 <template>
     <div class="wrapper">
         <div class="board_detail_wrap">
-        <div class="whr"><span>게시판</span><span>></span><span>게시판</span></div><!-- whr -->
+        <div class="whr"><span>게시판</span><span>></span><span>상세 게시판</span></div><!-- whr -->
         <section class="mainSectionpost">
             <section class="mainSec row jcB">
                 <div class="postBox">
@@ -183,7 +183,7 @@ export default {
             this.$store.dispatch('delBoardData', data);
         },
 
-        // 
+        // 게시판 수정 게시판 페이지
         updateBoardData(data) {
             this.$store.dispatch('updateBoardData', data);
         },

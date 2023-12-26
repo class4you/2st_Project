@@ -1,6 +1,6 @@
 <template>
     <div class="wrapper">
-        <div style="padding: 0 10vw;" class="whr"><span>게시판</span><span>&gt;</span><span>게시판</span></div>
+        <div style="padding: 0 10vw;" class="whr"><span>게시판</span><span>&gt;</span><span>수정 게시판</span></div>
         <div class="main_visual">
 					<div class="main_visual_slider">
 						<div class="main_visual_slider_list">
@@ -19,7 +19,7 @@
         <div class="Board_Insert_Box">
         <div class="mantine-Tabs-tabsList mantine-1zsxti" role="tablist" aria-orientation="horizontal">
             <button class="mantine-UnstyledButton-root mantine-Tabs-tab mantine-11amb58" type="button" data-active="true" role="tab" id="mantine-1ig8a3r50-tab-question" aria-selected="true" tabindex="0">
-                <span class="mantine-480qv8 mantine-Tabs-tabLabel">질문</span>
+                <span class="mantine-480qv8 mantine-Tabs-tabLabel">수정</span>
             </button>
             <!-- <button class="mantine-UnstyledButton-root mantine-Tabs-tab mantine-11amb58" type="button" role="tab" id="mantine-1ig8a3r50-tab-chat" aria-selected="false" tabindex="-1">
                 <span class="mantine-480qv8 mantine-Tabs-tabLabel">고민있어요</span>
@@ -33,7 +33,7 @@
             <div class="mantine-14n9mxy mantine-Alert-wrapper">
                 <div class="mantine-1rnkhfs mantine-Alert-body">
                     <div class="mantine-1wq983h mantine-Alert-title">
-                        <span id="mantine-iilfjlpyb-title" class="mantine-17rhxsu mantine-Alert-label">예시를 참고해 작성해주세요. 서로 아이디어를 주고 받아요.</span>
+                        <span id="mantine-iilfjlpyb-title" class="mantine-17rhxsu mantine-Alert-label">수정 할 게시물을 입력해주세요.</span>
                     </div>
                 </div>
             </div>
