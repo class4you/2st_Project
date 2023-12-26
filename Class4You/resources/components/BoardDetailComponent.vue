@@ -44,10 +44,10 @@
                         </div>
                     </div>
                     <div class="board_button">
-                        <div class="row aiC">
-                            <button @click="deleteBoardData(newBoardItem.BoardID)"><i class="board_complete">해결</i></button>
-                            <button @click="deleteBoardData(newBoardItem.BoardID)"><i class="board_rewrite">수정</i></button>
-                            <button @click="deleteBoardData(newBoardItem.BoardID)"><i class="board_delete">삭제</i></button>
+                        <div  v-if="item.UserID == $store.state.UserID"  class="row aiC">
+                            <button @click="completeBoardData(newBoardItem.BoardID)" class="board_complete">해결</button>
+                            <button @click="rewriteBoardData(newBoardItem.BoardID)" class="board_rewrite">수정</button>
+                            <button @click="deleteBoardData(newBoardItem.BoardID)" class="board_delete">삭제</button>
                         </div>
                         </div>
                 </div>
