@@ -625,7 +625,8 @@ export default {
 			// })
             .catch(err => {
                 console.log(err.response.data.errors)
-                context.commit('setRegistrationErrorMessage', err.response.data.errors);
+                // context.commit('setRegistrationErrorMessage', err.response.data.errors);
+				alert('별점을 체크해주세요!');
             })
 		},
 		hideEmail(email) {
@@ -675,7 +676,8 @@ export default {
             })
             .catch(err => {
                 console.log(err.response.data.errors)
-                context.commit('setRegistrationErrorMessage', err.response.data.errors);
+                // context.commit('setRegistrationErrorMessage', err.response.data.errors);
+				// alert('별점을 체크해주세요!');
             })
         },
 
