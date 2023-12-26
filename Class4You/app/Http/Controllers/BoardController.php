@@ -14,8 +14,10 @@ use Illuminate\Support\Facades\DB;
 
 class BoardController extends Controller
 {
-    public function getBoardMainData()
+    public function getBoardMainData(Request $request)
     {
+
+        Log::debug($request);
         $boardData = Board::join('users', 'boards.UserID', 'users.UserID')
             ->orderBy('boards.created_at', 'desc')
             ->paginate(10);
