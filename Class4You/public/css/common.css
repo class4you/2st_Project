@@ -3595,7 +3595,7 @@ option {
     justify-content: flex-end;
     gap: 15px;
 }
-/* .board_rewrite {    margin-right: 10px;
+.board_rewrite {    margin-right: 10px;
     background-color: #ccc;
     border: none;
     padding: 5px 10px;
@@ -3615,7 +3615,7 @@ option {
     border: none;
     padding: 5px 10px;
     cursor: pointer;
-}     */
+}    
 
 .reviewList {
     margin-top: 20px
