@@ -2,7 +2,7 @@
     <div class="wrapper">
         <div class="my_page_main">
             <div class="my_page_main_tap_uis">
-                <div @click="handleTabClick(1)" class="my_page_main_tap_ui">대시보드</div>
+                <!-- <div @click="handleTabClick(1)" class="my_page_main_tap_ui">대시보드</div> -->
                 <div @click="handleTabClick(2)" class="my_page_main_tap_ui">계정정보</div>
                 <div @click="handleTabClick(3)" class="my_page_main_tap_ui">나의학습</div>
                 <!-- <div @click="handleTabClick(4)" class="my_page_main_tap_ui">강의노트</div> -->
@@ -72,16 +72,18 @@
                             <div class="weekly_study_class_data_cover">
                                 <div v-for="(weekday, index) in weekdays" :key="index" class="weekly_study_class_data">
                                     <span>{{ weekday }} : </span>
-                                    <span>학습시간</span>
-                                    <span>(20분)</span>
-                                    <span>학습강의</span>
-                                    <span>(2개)</span>
+                                    <span>학습 강의 : </span>
+                                    <span> 개</span>
+                                    <span> / </span>
+                                    <span>학습 챕터 : </span>
+                                    <span> 개</span>
                                 </div>
                             </div>
                             <div class="weekly_study_class_total_cover">
                                 <div class="weekly_study_class_total">
-                                    <span>총 학습시간 :</span>
-                                    <span>총 학습강의 :</span>
+                                    <span>총 학습 강의 :</span>
+                                    <span>1</span>
+                                    <span>총 학습 챕터 :</span>
                                     <span>1</span>
                                 </div>
                             </div>
@@ -616,11 +618,13 @@ export default {
             currentWeek: '',
             weekStart: [],
             weekEnd: [],
+            chapters: {},
+            lectures: {}
         }
     },
 
     mounted() {
-        this.fetchData();
+        
 
         this.calculateWeekdays();
 	    this.calculateCurrentWeek();
@@ -628,7 +632,12 @@ export default {
 
     methods: {
         fetchData() {
-        axios.get('/getmypagedashboard')
+            axios.get('/getmypagedashboard', {
+                params: {
+                    weekStart: this.weekStart,
+                    weekEnd: this.weekEnd,
+                }
+            })
             .then(response => {
                 console.log(response.data);
                 // console.log(response.data.userData);
@@ -636,6 +645,7 @@ export default {
                 this.newUserInfoItems = response.data.userData;
                 this.newUserClassInfoItem = response.data.classData;
                 this.newUserBoardInfoItem = response.data.boardData;
+                this.chapters = response.data.chapters;
             })
             .catch(error => {
                 console.error('Error fetching data:', error);
@@ -696,6 +706,7 @@ export default {
             this.weekEnd = `${yearEnd}${monthEnd}${dayEnd}`;
 
             this.weekdays = weekdays;
+            this.fetchData();
         },
 
         // 현재 날짜의 주차를 계산함
@@ -738,6 +749,29 @@ export default {
             this.selectedDate = `${currentDate.getFullYear()}-${(currentDate.getMonth() + 1).toString().padStart(2, '0')}-${currentDate.getDate().toString().padStart(2, '0')}`;
             this.calculateWeekdays();
             this.calculateCurrentWeek();
+        },
+        convertEnglishToKoreanDay(day) {
+            const dayMap = {
+                Mon: '월',
+                Tue: '화',
+                Wed: '수',
+                Thu: '목',
+                Fri: '금',
+                Sat: '토',
+                Sun: '일',
+            };
+            return dayMap[day] || day;
+        },
+        // 특정 요일의 강의 개수 반환
+        getLectureCount(weekday) {
+            const day = convertEnglishToKoreanDay(weekday); // 요일 변환
+            return this.lectures[day] ? this.lectures[day].length : 0;
+        },
+
+        // 특정 요일의 챕터 개수 반환
+        getChapterCount(weekday) {
+            const day = convertEnglishToKoreanDay(weekday); // 요일 변환
+            return this.chapters[day] ? this.chapters[day].length : 0;
         },
     }
 }

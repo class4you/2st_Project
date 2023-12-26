@@ -3,15 +3,16 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use App\Models\Lesson;
 use App\Models\Chapter;
 use App\Models\Classinfo;
+use App\Models\Enrollment;
 
 class LessonController extends Controller
 {
     public function updateLessonProgress(Request $request) {
-        Log::debug($request);
 
         Lesson::where('LessonID', $request->lessonId)
         ->update([

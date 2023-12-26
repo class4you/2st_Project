@@ -18,6 +18,10 @@ class Board extends Model
         'UserID',
         'BoardTitle',
         'BoardComment',
+        'BoardView',
+        'BoardRecommended',
+        'BoardNotRecommended',
+        'BoardFlg',
     ];
 
 
