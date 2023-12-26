@@ -59,14 +59,17 @@
 	  calculateCurrentWeek() {
 		const currentDate = this.selectedDate ? new Date(this.selectedDate) : new Date();
 		const startOfMonth = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1);
-  
+		const startOfWeek = new Date(startOfMonth);
+
 		// 요일이 월요일(1)부터 일요일(7)까지인 경우를 고려하여 조정합니다.
-		const offset = (startOfMonth.getDay() + 6) % 7;
-  
-		const days = Math.floor((currentDate - startOfMonth + offset) / (24 * 60 * 60 * 1000)) + 1;
+		const offset = (startOfWeek.getDay() + 6) % 7;
+
+		startOfWeek.setDate(startOfWeek.getDate() - offset);
+
+		const days = Math.floor((currentDate - startOfWeek) / (24 * 60 * 60 * 1000)) + 1;
 		const currentMonthWeek = Math.ceil(days / 7);
 		this.currentWeek = `${currentDate.getMonth() + 1}월 ${currentMonthWeek}주차`;
-	  },
+	},
 	  formatDate(date) {
 		if (date instanceof Date) {
 		  const options = { weekday: 'short', locale: 'ko-KR' };
