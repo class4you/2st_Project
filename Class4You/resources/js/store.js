@@ -655,7 +655,33 @@ const store = createStore({
             })
         },
 
+        updateBoardData(context, data) {
+            const url = '/boardUpdate/' + data.BoardID
+            const header = {
+                headers: {
+                    "Content-Type": 'multipart/form-data',
+                    'X-CSRF-TOKEN': document.head.querySelector('meta[name="csrf-token"]').content,
+                },
+            }
+            let frm = new FormData();
 
+            frm.append('BoardCategoryID',data.BoardCategoryID);
+            frm.append('UserID',data.UserID);
+            frm.append('BoardTitle',data.BoardTitle);
+            frm.append('BoardComment',data.BoardComment);
+
+            console.log(frm);
+
+            axios.put(url, frm, header)
+            .then(res => { 
+                // console.log(res.data);
+                router.push('/board'); 
+            })
+            .catch(err => {
+                console.log(err.response.data.errors)
+                context.commit('setRegistrationErrorMessage', err.response.data.errors);
+            })
+        },
 
 
     }, 

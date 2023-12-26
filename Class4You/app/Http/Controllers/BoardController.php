@@ -110,9 +110,20 @@ class BoardController extends Controller
         Board::destroy($BoardID);
     }
 
-    // 자유게시판 수정
-    public function boardDetail() {
+    // 자유게시판 수정페이지 이동
+    public function putBoardShow($BoardID) {
+
+        $result = Board::find($BoardID);
+
+        return response()->json($result);
+    }
+
+    public function putBoardUpdate(Request $request, $BoardID) {
+        $data = $request->only('BoardCategoryID', 'BoardID', 'UserID', 'BoardTitle', 'BoardComment');
         
+        $result = Board::update($data);
+
+        return response()->json($result);
     }
 
 }
