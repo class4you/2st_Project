@@ -16,8 +16,6 @@ use Illuminate\Support\Facades\DB;
 class MypageController extends Controller
 {
     function getUserClassData (Request $request) {
-
-        Log::debug($request);
         $UserID = Auth::id();
 
         $userData = User::where('UserID', $UserID)
@@ -38,30 +36,83 @@ class MypageController extends Controller
 
         $classIDs = $enrollments->pluck('ClassID');
 
+        // $chapters = collect();
+        // foreach ($classIDs as $classID) {
+        //     $chapterCount = Classinfo::join('Chapters', 'class_infos.ClassID', '=', 'Chapters.ClassID')
+        //         ->select(DB::raw('DATE_FORMAT(Chapters.updated_at, "%a") as day'), 'class_infos.ClassID')
+        //         ->where('class_infos.ClassID', $classID)
+        //         ->whereBetween('Chapters.updated_at', [$request->weekStart, $request->weekEnd])
+        //         ->count();
+        
+        //     if ($chapterCount > 0) {
+        //         $classCount = Classinfo::where('ClassID', $classID)
+        //             ->where('ClassFlg', 1)
+        //             ->count();
+        
+        //         $chapters[$classID] = [
+        //             'classCount' => $classCount,
+        //             'chapterCount' => $chapterCount
+        //         ];
+        //     }
+        // }
 
         $chapters = collect();
+
         foreach ($classIDs as $classID) {
-            $chapterCount = Classinfo::join('Chapters', 'class_infos.ClassID', '=', 'Chapters.ClassID')
-                ->select('class_infos.ClassID')
+            // 클래스 플래그가 1인 요일 정보
+            $classFlagDays = Classinfo::join('Chapters', 'class_infos.ClassID', '=', 'Chapters.ClassID')
+                ->select(DB::raw('DATE_FORMAT(Chapters.updated_at, "%a") as day'))
                 ->where('class_infos.ClassID', $classID)
-                ->whereBetween('Chapters.updated_at', ['2023-12-25', '2023-12-31'])
-                ->count();
+                ->where('class_infos.ClassFlg', 1)
+                ->whereBetween('Chapters.updated_at', [$request->weekStart, $request->weekEnd])
+                ->pluck('day')
+                ->unique()
+                ->toArray();
         
-            // 챕터가 하나 이상 있는 경우에만 추가
-            if ($chapterCount > 0) {
-                $classCount = Classinfo::where('ClassID', $classID)
-                    ->where('ClassFlg', 1)
-                    ->count();
+            // 챕터 플래그가 1인 요일 정보
+            $chapterFlagDays = Classinfo::join('Chapters', 'class_infos.ClassID', '=', 'Chapters.ClassID')
+                ->select(DB::raw('DATE_FORMAT(Chapters.updated_at, "%a") as day'))
+                ->where('class_infos.ClassID', $classID)
+                ->where('Chapters.ChapterFlg', 1)
+                ->whereBetween('Chapters.updated_at', [$request->weekStart, $request->weekEnd])
+                ->pluck('day')
+                ->toArray();
+                
+        
+            // 챕터 값이 있는 경우에만 추가
+            if (!empty($classFlagDays) || !empty($chapterFlagDays)) {
+                $classFlagCount = count($classFlagDays);
+                $chapterFlagCount = count($chapterFlagDays);
         
                 $chapters[$classID] = [
-                    'classCount' => $classCount,
-                    'chapterCount' => $chapterCount
+                    'classFlagCount' => $classFlagCount,
+                    'chapterFlagCount' => $chapterFlagCount,
+                    'classFlagDays' => $classFlagDays,
+                    'chapterFlagDays' => $chapterFlagDays,
                 ];
             }
         }
         
-        
         Log::debug($chapters);
+        // $chapters = collect();
+        // foreach ($classIDs as $classID) {
+        //     $result = Classinfo::join('Chapters', 'class_infos.ClassID', 'Chapters.ClassID')
+        //         ->select(DB::raw('DATE_FORMAT(Chapters.updated_at, "%a") as day'), 'class_infos.ClassID')
+        //         ->where('class_infos.ClassID', $classID)
+        //         ->whereBetween('Chapters.updated_at', [$request->weekStart, $request->weekEnd])
+        //         // ->groupBy(DB::raw('DATE_FORMAT(Chapters.updated_at, "%a")'))
+        //         ->get();
+
+        //     $groupedData = $result->groupBy('day')->map(function ($group) {
+        //         return [
+        //             'classCount' => $group->where('ClassFlg', 1)->count(),
+        //             'chapterCount' => $group->count(),
+        //         ];
+        //     });
+
+        //     $chapters[$classID] = $groupedData;
+        // }
+        
 
 
         // foreach ($classIDs as $classID) {

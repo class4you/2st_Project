@@ -26,15 +26,8 @@
                     </div> -->
                 </div>
                 <div class="class_detail_watch_footer">
-                    <!-- 근데 이전강의 버튼은 필요없나? -->
-
-                        <button class="class_detail_watch_next_btn">
-                            이전강의
-                        </button>
-                        <button class="class_detail_watch_next_btn">
-                            다음강의
-                        </button>
-
+                    <button class="class_detail_watch_next_btn" @click="goToPreviousLesson">이전강의</button>
+                    <button class="class_detail_watch_next_btn" @click="goToNextLesson">다음강의</button>
                 </div>
             </div>
 
@@ -44,17 +37,18 @@
                     <div class="class_detail_watch_side_tab1">
                         <span>커리큘럼</span>
                     </div>
-                    <div class="class_detail_watch_side_tab2">
+                    <!-- <div class="class_detail_watch_side_tab2">
                         <span>강의노트</span>
-                    </div>
+                    </div> -->
                 </div>
                 <div class="class_datail_watch_side_title_box">
                     <div class="class_datail_watch_side_title">
                         <h3>스스로 키우는 PHP 문법</h3>
                         <p>진도율 :</p>
-                        <div class="class_datail_watch_progress_bar_cover">
-                            <div role="progressbar" aria-valuemax="100" aria-valuemin="0" aria-valuenow="10.53" aria-label="진도율" class="class_datail_watchs_progress_bar"></div>
-                        </div>
+                        <progress class="class_datail_watch_progress_bar_progress" :value="classProgressData"  min="0" max="100" id="progress"></progress>
+                        <!-- <div class="class_datail_watch_progress_bar_cover">
+                            <div role="progressbar" aria-valuemax="100" aria-valuemin="0" :aria-valuenow="classProgressData" aria-label="진도율" class="class_datail_watchs_progress_bar"></div>
+                        </div> -->
                     </div>
                 </div>
                 <hr>
@@ -66,17 +60,20 @@
                                 <div  class="side_content_curriculum_title">
                                     <div class="side_curriculum_top">
                                         <p> {{ chapter.ChapterTitle }}</p>
-                                        <p>시간</p>
+                                        <!-- <p>시간</p> -->
                                     </div>
-                                    <div class="side_curriculum_bottom">
-                                        <p>강의 소개</p>
-                                    </div>
+                                    <!-- <div class="side_curriculum_bottom">
+                                        <p>{{ chapter.ChapterTitle }}</p>
+                                    </div> -->
                                 </div>
                             </summary>
                             
-                                <div v-for="lesson in LessonDataItem[chapter.ChapterID]" :key="lesson.LessonID" :class="{'side_content_curriculum_content_1': selectedLesson, 'side_content_curriculum_content_2': !selectedLesson}" @click="selectLesson(lesson)">
+                                <div v-for="lesson in LessonDataItem[chapter.ChapterID]" :key="lesson.LessonID" :class="{'side_content_curriculum_content_1': selectedLesson.LessonID == lesson.LessonID, 'side_content_curriculum_content_2': selectedLesson.LessonID !== lesson.LessonID}" @click="selectLesson(lesson)">
                                     <div class="side_content_curriculum_top">
                                         <p>{{lesson.LessonTitle}}</p>
+                                    </div>
+                                    <div class="side_content_curriculum_buttom">
+                                        <p>{{lesson.LessonContent}}</p>
                                     </div>
                                     <!-- <div class="side_content_curriculum_bottom">
                                         <p>아이콘</p>
@@ -106,13 +103,15 @@ export default {
             selectedChapter: null,
             selectedLesson: 1,
             // YouTube 동영상 ID
-            videoId: '_pgXmFIihAk',
+            videoId: '',
             // YouTube Player 객체
             player: null,
             LessonAllRunningTime: 0,
             LessonRunningTime: 0,
             LessonProgress: 0,
             LessonFlg: 0,
+            classProgressData: '',
+
         }
     },
 
@@ -136,6 +135,19 @@ export default {
                 this.ClassDataItem = response.data.classData;
                 this.ChapterDataItem = response.data.chapterData;
                 this.LessonDataItem = response.data.lessonData;
+                this.classProgressData = response.data.classProgressData;
+
+                const firstChapterId = Object.keys(response.data.lessonData)[0];
+                const firstChapterLessons = response.data.lessonData[firstChapterId];
+
+                if (firstChapterLessons && firstChapterLessons.length > 0) {
+                    const firstLessonVideoId = firstChapterLessons[0].LessonVideoID;
+                    console.log(firstLessonVideoId);
+                    this.videoId = firstLessonVideoId;
+                    // 여기에서 필요한 작업 수행
+                }
+                // console.log(response.data.lessonData);
+                // this.videoId = response.data.lessonData
 			})
 			.catch(error => {
 			// 에러 처리
@@ -161,8 +173,8 @@ export default {
         initYoutubePlayer() {
             // YouTube Player 생성
             this.player = new window.YT.Player('youtube-player', {
-            height: '750',
-            width: '1300',
+            height: '600',
+            width: '1000',
             videoId: this.videoId,
             events: {
                 'onReady': this.onPlayerReady,
@@ -236,6 +248,56 @@ export default {
                 console.error(error);
             });
         },
+        goToNextLesson() {
+        if (this.selectedLesson !== null) {
+                const allLessons = Object.values(this.LessonDataItem).flat();
+                const currentIndex = allLessons.findIndex(lesson => lesson.LessonID === this.selectedLesson);
+
+                if (currentIndex !== -1 && currentIndex < allLessons.length - 1) {
+                // 현재 리슨이 배열의 범위 내에 있고, 다음 리슨이 있다면
+                const nextLesson = allLessons[currentIndex + 1];
+
+                // 다음 리슨으로 전환
+                this.selectedLesson = nextLesson.LessonID;
+                this.videoId = nextLesson.LessonVideoID;
+
+                // YouTube 플레이어 초기화
+                this.player.destroy();
+                this.initYoutubePlayer();
+                } else {
+                console.log('더 이상 다음 강의가 없습니다.');
+                alert('더 이상 다음 강의가 없습니다.');
+                }
+            } else {
+                console.log('선택된 리슨이 없습니다.');
+                alert('선택된 리슨이 없습니다.');
+            }
+        },
+        goToPreviousLesson() {
+        if (this.selectedLesson !== null) {
+                const allLessons = Object.values(this.LessonDataItem).flat();
+                const currentIndex = allLessons.findIndex(lesson => lesson.LessonID === this.selectedLesson);
+
+                if (currentIndex !== -1 && currentIndex > 0) {
+                // 현재 리슨이 배열의 첫 번째보다 더 앞에 있고, 이전 리슨이 있다면
+                const previousLesson = allLessons[currentIndex - 1];
+
+                // 이전 리슨으로 전환
+                this.selectedLesson = previousLesson.LessonID;
+                this.videoId = previousLesson.LessonVideoID;
+
+                // YouTube 플레이어 초기화
+                this.player.destroy();
+                this.initYoutubePlayer();
+                } else {
+                console.log('더 이상 이전 강의가 없습니다.');
+                alert('더 이상 이전 강의가 없습니다.');
+                }
+            } else {
+                console.log('선택된 리슨이 없습니다.');
+                alert('선택된 리슨이 없습니다.');
+            }
+        },
     },
     
     mounted() {
@@ -255,7 +317,7 @@ export default {
         videoId(newVideoId) {
         if (this.player) {
             // 이미 플레이어가 있는 경우 중지하고 파괴
-            this.player.stopVideo();
+            // this.player.stopVideo();
             this.player.destroy();
         }
         // 새로운 videoId로 플레이어 생성
@@ -271,4 +333,5 @@ export default {
         min-height: 100%;
         /* padding-bottom: 0px; */
     }
+    
 </style>

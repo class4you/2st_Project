@@ -22,5 +22,6 @@ class ClassInfo extends Model
         'ClassTitle',
         'ClassDescription',
         'ClassImg',
+        'updated_at',
     ];
 }

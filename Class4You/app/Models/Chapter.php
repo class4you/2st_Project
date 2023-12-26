@@ -9,4 +9,11 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Chapter extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'ClassID',
+        'ChapterTitle',
+        'ChapterFlg',
+        'updated_at',
+    ];
 }
