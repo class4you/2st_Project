@@ -4777,6 +4777,7 @@ font-size: 15px;
     -webkit-box-pack: center;
     justify-content: center;
     gap: 0rem;
+    margin-bottom: 10px;
 }
 
 .weekly_study_class_title {
@@ -4788,8 +4789,11 @@ font-size: 15px;
     -webkit-box-pack: center;
     justify-content: center;
     gap: 10px;
-    margin-bottom: 15px;
 } 
+
+.weekly_study_class_title button{
+    color: #000;
+}
 
 .weekly_study_class_title_button {
     -webkit-tap-highlight-color: transparent;
@@ -4830,11 +4834,12 @@ font-size: 15px;
 }
 
 .weekly_study_class_title_input_cover p {
-    color: rgb(73, 80, 87);
-    font-size: 1rem;
-    text-decoration: none;
-    font-weight: 500;
-    line-height: 1.5;
+    box-sizing: border-box;
+    color: rgb(0, 0, 0);
+    display: block;
+    border: none;
+    cursor: pointer;
+    padding: 0px 20px;
 }
 
 .weekly_study_class_title_input_label {

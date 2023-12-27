@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\DB;
 class MypageController extends Controller
 {
     function getUserClassData (Request $request) {
+        Log::debug($request);
         $UserID = Auth::id();
 
         $userData = User::where('UserID', $UserID)
@@ -61,18 +62,28 @@ class MypageController extends Controller
         $weeklyStats = collect();
 
         // 클래스 플래그가 1인 요일 정보
-        $classFlagDays = Classinfo::join('Chapters', 'class_infos.ClassID', '=', 'Chapters.ClassID')
-        ->select(
-            'class_infos.ClassID',
-            DB::raw('DATE_FORMAT(Chapters.updated_at, "%a") as day'),
-            DB::raw('SUM(class_infos.ClassFlg) as classFlagCount'),
-            DB::raw('COUNT(DISTINCT Chapters.ChapterID) as chapterFlagCount')
-        )
-        ->whereIn('class_infos.ClassID', $classIDs)
-        ->whereBetween('Chapters.updated_at', [$request->weekStart, $request->weekEnd])
-        ->groupBy('class_infos.ClassID', 'day')
-        ->get();
+        $classFlagDays = Classinfo::select(
+                'class_infos.ClassID',
+                DB::raw('DATE_FORMAT(class_infos.updated_at, "%a") as day'),
+                DB::raw('SUM(class_infos.ClassFlg) as classFlagCount'),
+            )
+            ->whereIn('class_infos.ClassID', $classIDs)
+            ->whereBetween('class_infos.updated_at', [$request->weekStart, $request->weekEnd])
+            ->groupBy('class_infos.ClassID', 'day')
+            ->get();
+
+        $chaptersFlagDays = Classinfo::join('Chapters', 'class_infos.ClassID', 'Chapters.ClassID')
+            ->select('Chapters.ChapterID',
+                DB::raw('DATE_FORMAT(Chapters.updated_at, "%a") as day'),
+                DB::raw('SUM(Chapters.ChapterFlg) as chapterFlagCount')
+            )
+            ->whereIn('class_infos.ClassID', $classIDs)
+            ->whereBetween('Chapters.updated_at', [$request->weekStart, $request->weekEnd])
+            ->groupBy('class_infos.ClassID', 'day', 'Chapters.ChapterID')
+            ->get();
+            
         
+        // Log::debug($chaptersFlagDays);
         // 월 화 수 목 금 토 일에 해당하는 요일 목록
         $weekDays = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
         
@@ -82,16 +93,22 @@ class MypageController extends Controller
             $groupedData[$day] = [
                 'classFlagCount' => 0,
                 'chapterFlagCount' => 0,
-                'classFlagDays' => [],
-                'chapterFlagDays' => [],
             ];
         }
         
         // 결과 반영
         foreach ($classFlagDays as $result) {
+            // Log::debug($result);
             $day = $result->day;
-            $groupedData[$day]['classFlagCount'] = $result->classFlagCount;
-            $groupedData[$day]['chapterFlagCount'] = $result->chapterFlagCount;
+            $groupedData[$day]['classFlagCount'] = ($groupedData[$day]['classFlagCount'] ?? 0) + $result->classFlagCount;
+        }
+
+        foreach ($chaptersFlagDays as $result) {
+            // Log::debug($result);
+            $day = $result->day;
+        
+            // 날짜가 배열에 이미 존재하면 기존 값을 더하고, 없으면 현재 값으로 초기화
+            $groupedData[$day]['chapterFlagCount'] = ($groupedData[$day]['chapterFlagCount'] ?? 0) + $result->chapterFlagCount;
         }
         
         // 챕터 값이 있는 경우에만 추가
@@ -100,27 +117,49 @@ class MypageController extends Controller
         }
         
         
-        Log::debug( $weeklyStats);
+        // Log::debug($weeklyStats);
         // ==============================================================================================
 
 
 
         // ==============================================================================================
-        $yearStart = '2023-01-01';
-        $yearEnd = '2023-12-31';
+
         // 연간 통계
         $monthlyStats = collect();
 
         // 클래스 플래그가 1인 월별 정보
-        $classFlagMonths = Classinfo::join('Chapters', 'class_infos.ClassID', '=', 'Chapters.ClassID')
+        // $classFlagMonths = Classinfo::join('Chapters', 'class_infos.ClassID', '=', 'Chapters.ClassID')
+        //     ->select(
+        //         DB::raw('YEAR(Chapters.updated_at) as year'),
+        //         DB::raw('MONTH(Chapters.updated_at) as month'),
+        //         DB::raw('SUM(class_infos.ClassFlg) as classFlagCount'),
+        //         DB::raw('SUM(Chapters.ChapterFlg) as chapterFlagCount')
+        //     )
+        //     ->whereIn('class_infos.ClassID', $classIDs)
+        //     ->whereBetween('Chapters.updated_at', [$yearStart, $yearEnd])
+        //     ->groupBy('year', 'month')
+        //     ->get();
+
+        $classFlagMonths = Classinfo::select(
+                'class_infos.ClassID',
+                DB::raw('YEAR(class_infos.updated_at) as year'),
+                DB::raw('MONTH(class_infos.updated_at) as month'),
+                DB::raw('SUM(class_infos.ClassFlg) as classFlagCount'),
+            )
+            ->whereIn('class_infos.ClassID', $classIDs)
+            ->whereBetween('class_infos.updated_at', [$request->yearStart, $request->yearEnd])
+            ->groupBy('class_infos.ClassID', 'year', 'month')  // class_infos.ClassID 추가
+            ->get();
+
+
+        $chaptersFlagMonths =  Classinfo::join('Chapters', 'class_infos.ClassID', '=', 'Chapters.ClassID')
             ->select(
                 DB::raw('YEAR(Chapters.updated_at) as year'),
                 DB::raw('MONTH(Chapters.updated_at) as month'),
-                DB::raw('SUM(class_infos.ClassFlg) as classFlagCount'),
                 DB::raw('SUM(Chapters.ChapterFlg) as chapterFlagCount')
             )
             ->whereIn('class_infos.ClassID', $classIDs)
-            ->whereBetween('Chapters.updated_at', [$yearStart, $yearEnd])
+            ->whereBetween('Chapters.updated_at', [$request->yearStart, $request->yearEnd])
             ->groupBy('year', 'month')
             ->get();
         
@@ -135,8 +174,14 @@ class MypageController extends Controller
         
         // 결과 반영
         foreach ($classFlagMonths as $result) {
+            // Log::debug($result);
             $month = $result->month;
-            $monthlyStatsData[$month]['classFlagCount'] = $result->classFlagCount;
+            $monthlyStatsData[$month]['classFlagCount'] = ($monthlyStatsData[$month]['classFlagCount'] ?? 0) + $result->classFlagCount;
+        }
+
+        foreach ($chaptersFlagMonths as $result) {
+            // Log::debug($result);
+            $month = $result->month;
             $monthlyStatsData[$month]['chapterFlagCount'] = $result->chapterFlagCount;
         }
         
@@ -144,7 +189,6 @@ class MypageController extends Controller
         if (!empty($classFlagMonths) || !empty($chapterFlagMonths)) {
             $monthlyStats = $monthlyStatsData;
         }
-        Log::debug($monthlyStats);
         // ==============================================================================================
 
 

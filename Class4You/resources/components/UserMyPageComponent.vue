@@ -97,18 +97,17 @@
                         <div class="dashboard_annual_study_class_box">
                             <div class="weekly_study_class_title_cover">
                                 <div class="weekly_study_class_title">
-                                    <button class="weekly_study_class_title_button">&lt;</button>
+                                    <button @click="prevYear" class="weekly_study_class_title_button">◀</button>
                                     <div class="weekly_study_class_title_input_cover">
                                         <div class="weekly_study_class_title_input_label">
-                                            <label for="">주차선택</label>
                                         </div>
                                         <div class="weekly_study_class_title_input_label_button">
                                             <button style="display: none;">2023. 12. 05</button>
                                         </div>
-                                        <p>2023년</p>
+                                        <p>{{ selectedYear }}년</p>
                                     </div>
                                     <input type="hidden" value="">
-                                    <button class="weekly_study_class_title_button">></button>
+                                    <button  @click="nextYear" :disabled="isNextYearDisabled" class="weekly_study_class_title_button">▶</button>
                                 </div>
                             </div>
                             <div class="weekly_study_class_data_cover">
@@ -123,9 +122,9 @@
                             </div>
                             <div class="weekly_study_class_total_cover">
                                 <div class="weekly_study_class_total">
-                                    <span>총 학습시간 :</span>
-                                    <span>총 학습강의 :</span>
-                                    <span>1</span>
+                                    <span>총 학습 강의 : {{ totalClassCount }}</span>
+                                    <span> / </span>
+                                    <span>총 학습 챕터 : {{ totalChapterCount }}</span>
                                 </div>
                             </div>
                         </div>
@@ -541,12 +540,23 @@ export default {
             lectures: {},
             totalClassCount: 0,
             totalChapterCount: 0,
+            selectedYear: new Date().getFullYear(),
+            yearStart: '',
+            yearEnd: '',
         }
     },
 
-    mounted() {
-        
+    computed: {
+        isNextYearDisabled() {
+            const currentYear = new Date().getFullYear();
+            this.yearStart = `${this.selectedYear}0101`;
+		    this.yearEnd = `${this.selectedYear}1231`;
+            return this.selectedYear === currentYear;
+        },
+	},
 
+
+    mounted() {
         this.calculateWeekdays();
 	    this.calculateCurrentWeek();
     },
@@ -557,6 +567,8 @@ export default {
                 params: {
                     weekStart: this.weekStart,
                     weekEnd: this.weekEnd,
+                    yearStart: this.yearStart,
+                    yearEnd: this.yearEnd,
                 }
             })
             .then(response => {
@@ -603,29 +615,29 @@ export default {
             const currentDate = this.selectedDate ? new Date(this.selectedDate) : new Date();
 
             // 햔재 날짜에서 (currentDate.getDay() + 6) % 7) 값을 빼서 주의 첫 날을 계산
-            const startDate = new Date(currentDate);
-            startDate.setDate(currentDate.getDate() - (currentDate.getDay() + 6) % 7); // 주의 첫 날로 설정
+            const startYearDate = new Date(currentDate);
+            startYearDate.setDate(currentDate.getDate() - (currentDate.getDay() + 6) % 7); // 주의 첫 날로 설정
 
             // 현재 날짜에서 (currentDate.getDay() + 6) % 7 값을 더해서 주의 마지막 날을 계산
-            const endDate = new Date(currentDate);
-            endDate.setDate(currentDate.getDate() + (6 - (currentDate.getDay() + 6) % 7)); // 주의 마지막 날로 설정
+            const endYearDate = new Date(currentDate);
+            endYearDate.setDate(currentDate.getDate() + (6 - (currentDate.getDay() + 6) % 7)); // 주의 마지막 날로 설정
 
             // 주의 첫 날 부터 7일 동안을 계산해서 해당 요일을 출력
             const weekdays = [];
             for (let i = 0; i < 7; i++) {
-                const currentDate = new Date(startDate);
-                currentDate.setDate(startDate.getDate() + i);
+                const currentDate = new Date(startYearDate);
+                currentDate.setDate(startYearDate.getDate() + i);
                 weekdays.push(this.formatDate(currentDate));
             }
 
-            const yearStart = startDate.getFullYear();
-            const monthStart = (startDate.getMonth() + 1).toString().padStart(2, '0');
-            const dayStart = startDate.getDate().toString().padStart(2, '0');
+            const yearStart = startYearDate.getFullYear();
+            const monthStart = (startYearDate.getMonth() + 1).toString().padStart(2, '0');
+            const dayStart = startYearDate.getDate().toString().padStart(2, '0');
             this.weekStart = `${yearStart}${monthStart}${dayStart}`;
 
-            const yearEnd = endDate.getFullYear();
-            const monthEnd = (endDate.getMonth() + 1).toString().padStart(2, '0');
-            const dayEnd = endDate.getDate().toString().padStart(2, '0');
+            const yearEnd = endYearDate.getFullYear();
+            const monthEnd = (endYearDate.getMonth() + 1).toString().padStart(2, '0');
+            const dayEnd = endYearDate.getDate().toString().padStart(2, '0');
             this.weekEnd = `${yearEnd}${monthEnd}${dayEnd}`;
 
             this.weekdays = weekdays;
@@ -687,11 +699,33 @@ export default {
             return dayMap[day] || day;
         },
         calculateTotals() {
-        this.totalClassCount = Object.values(this.weeklyStats)
-            .reduce((total, dayData) => total + dayData.classFlagCount, 0);
+            this.totalClassCount = Object.values(this.weeklyStats)
+                .reduce((total, dayData) => total + dayData.classFlagCount, 0);
 
-        this.totalChapterCount = Object.values(this.weeklyStats)
-            .reduce((total, dayData) => total + dayData.chapterFlagCount, 0);
+            this.totalChapterCount = Object.values(this.weeklyStats)
+                .reduce((total, dayData) => total + dayData.chapterFlagCount, 0);
+        },
+        prevYear() {
+            this.selectedYear--;
+            this.yearStart = `${this.selectedYear}0101`;
+		    this.yearEnd = `${this.selectedYear}1231`;
+            this.fetchData();
+	    },
+        nextYear() {
+            if (!this.isNextYearDisabled) {
+                this.selectedYear++;
+                this.yearStart = `${this.selectedYear}0101`;
+		        this.yearEnd = `${this.selectedYear}1231`;
+                this.fetchData();
+            }
+	    },
+        totalClassCount() {
+        // 총 학습 강의 개수 계산
+        return Object.values(this.monthlyStats).reduce((total, data) => total + data.classFlagCount, 0);
+        },
+        totalChapterCount() {
+        // 총 학습 챕터 개수 계산
+        return Object.values(this.monthlyStats).reduce((total, data) => total + data.chapterFlagCount, 0);
         },
     }
 }
@@ -701,7 +735,7 @@ input[type='date'] {
     border: none;
     position: relative;
     width: 100%;
-    padding: 10px 20px;
+    padding: 0px 20px;
     background-color: none;
     border-radius: 8px;
     text-align: center;
@@ -733,7 +767,7 @@ input[type='date']::before {
 .weekly_study_class_title_input_label_button span{
     position: absolute;
     left: 20px;
-    top: 15px;
+    top: 8px;
     z-index: -1;
 }
 
