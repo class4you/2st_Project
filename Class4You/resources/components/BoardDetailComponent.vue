@@ -1,7 +1,12 @@
 <template>
     <div class="wrapper">
         <div class="board_detail_wrap">
-        <div class="whr"><span>게시판</span><span>></span><span>상세 게시판</span></div><!-- whr -->
+        <!-- <div class="whr"><span>게시판</span><span>></span><span>상세 게시판</span></div> -->
+        <div class="whr">
+  <router-link to="/board">게시판</router-link>
+  <span>></span>
+  <span>상세 게시판</span>
+        </div>
         <section class="mainSectionpost">
             <section class="mainSec row jcB">
                 <div class="postBox">
@@ -16,11 +21,11 @@
                         </div>
                     </div>
                     <div class="postTitBox row aiC">
-                        <label for="postTit">제목: </label>
+                        <label for="postTit">제목 : </label>
                         <p type="text" id="postTit">{{ newBoardItem.BoardTitle }}</p>
                     </div>
                     <div class="postContBox row">
-                        <label for="postCont">내용</label> 
+                        <label for="postCont">내용 : </label> 
                         <p class="postCont">{{ newBoardItem.BoardComment }}</p>
                     </div>
                     <div class="laguage">
@@ -46,18 +51,20 @@
                     <div class="board_button">
                         <div  v-if="newBoardItem.UserID == $store.state.UserID"  class="row aiC">
                             <a v-if="newBoardItem.BoardFlg == '0'" @click="updatecompleteBoardData()" class="board_complete">해결</a>
-                            <!-- <button @click="updateBoardData(newBoardItem.BoardID)" class="board_rewrite">수정</button> -->
                             <a :href="'/boardupdate/' + newBoardItem.BoardID" v-if="$store.state.UserID" class="board_rewrite">수정</a>
                             <a @click="deleteBoardData(newBoardItem.BoardID)" class="board_delete">삭제</a>
                         </div>
-                        <!-- {{ newBoardItem }} -->
+
                     </div>
                 </div>
         
                 <div class="reviewBox border-t-none">
-                    <div class="number">
+                    <!-- <div class="number">
                         <p>답변<span>0</span></p>
-                    </div>
+                    </div> -->
+                        <div class="number">
+                            <p>답변 :<span>{{ newCommentItem.length }}</span></p>
+                        </div>
                     <div class="reviewList">
                         <p class="board_detail_user_id">{{nowUserID.UserEmail}}</p>
                     </div>
@@ -74,41 +81,19 @@
                                 <p>작성일<span>{{ item.created_at }}</span></p>
                             </div>
                             <div class="commentText">
-                             <span>{{ item.CommentContent }}</span>   
+                            <span>{{ item.CommentContent }}</span>   
                             </div>
                             
                             <div class="commentActions row aiC">
                                 <div v-if="item.UserID == $store.state.UserID" style="margin-left: auto;">
-                                    <button class="editBtn">수정</button>
-                                    <button @click="deleteCommentData(item.CommentID)" class="deleteBtn">삭제</button>
-                                    <button class="reportBtn">신고</button>
-                                    <!-- {{ item }} -->
+                                    <button class="comment_editBtn">수정</button>
+                                    <button @click="deleteCommentData(item.CommentID)" class="commentActions_deleteBtn">삭제</button>
+                                    <button class="commentActions_reportBtn">신고</button>
+
                                 </div>
-                                <!-- <div class="Board_good_bad">
-                                    <button type="button" class="Board_Good " aria-label="좋아요">
-                                      <i class="fa-solid fa-thumbs-up"></i>
-                                    </button>
-                                    <p class="vote-count e-vote-count" aria-label="투표수">0</p>
-                                    <button type="button" class="Board_Bad" aria-label="싫어요">
-                                      <i class="fa-solid fa-thumbs-down"></i>
-                                    </button>
-                                  </div> -->
-                                
-                            
                             </div>
                             <hr style="margin-top: 20px;">
-                            
-                            <!-- <div class="Board_good_bad">
-                                <button type="button" class="Board_Good " aria-label="좋아요">
-                                  <i class="fa-solid fa-thumbs-up"></i>
-                                </button>
-                                <p class="vote-count e-vote-count" aria-label="투표수">0</p>
-                                <button type="button" class="Board_Bad" aria-label="싫어요">
-                                  <i class="fa-solid fa-thumbs-down"></i>
-                                </button>
-                              </div> -->
-                        </div>
-                        <!-- 다른 댓글들도 유사한 구조로 추가할 수 있습니다 -->
+                        </div>       
                     </div>
 
                 
@@ -118,6 +103,14 @@
         </section>
     </div>
     </div>
+    <div v-if="showEditModalFlag" class="modal">
+    <div class="modal-content">
+        <span class="close" @click="closeEditModal">&times;</span>
+        <textarea v-model="editCommentContent"></textarea>
+        <button @click="updateCommentData(editingCommentId)">저장</button>
+    </div>
+</div>
+
 </template>
 <script>
 export default {
@@ -140,6 +133,7 @@ export default {
                 CommentID: this.CommnetID,
                 CommentContent: '',
             },
+            
         };
     },
 
@@ -239,6 +233,15 @@ export default {
     },
 };
 </script>
-<style>
-    
+<style scoped>
+
+.whr a {
+    width: 100%;
+    margin: 20px auto 10px auto;
+    font-size: 14px;
+    color: #999;
+}
+.whr a:hover {
+    color: rgb(59, 59, 252);
+}
 </style>
