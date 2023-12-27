@@ -2,7 +2,7 @@
     <div class="wrapper">
         <div class="my_page_main">
             <div class="my_page_main_tap_uis">
-                <!-- <div @click="handleTabClick(1)" class="my_page_main_tap_ui">대시보드</div> -->
+                <div @click="handleTabClick(1)" class="my_page_main_tap_ui">대시보드</div>
                 <div @click="handleTabClick(2)" class="my_page_main_tap_ui">계정정보</div>
                 <div @click="handleTabClick(3)" class="my_page_main_tap_ui">나의학습</div>
                 <!-- <div @click="handleTabClick(4)" class="my_page_main_tap_ui">강의노트</div> -->
@@ -70,21 +70,22 @@
                                 </div>
                             </div>
                             <div class="weekly_study_class_data_cover">
-                                <div v-for="(weekday, index) in weekdays" :key="index" class="weekly_study_class_data">
-                                    <span>{{ weekday }} : </span>
+                                <div v-for="(dayData, day) in weeklyStats" :key="day" class="weekly_study_class_data">
+                                    <span>{{ convertToKoreanDay(day) }} : </span>
                                     <span>학습 강의 : </span>
-                                    <span> 개</span>
+                                    <span> {{ dayData.classFlagCount }}개</span>
                                     <span> / </span>
                                     <span>학습 챕터 : </span>
-                                    <span> 개</span>
+                                    <span> {{ dayData.chapterFlagCount }}개</span>
                                 </div>
                             </div>
                             <div class="weekly_study_class_total_cover">
                                 <div class="weekly_study_class_total">
-                                    <span>총 학습 강의 :</span>
-                                    <span>1</span>
-                                    <span>총 학습 챕터 :</span>
-                                    <span>1</span>
+                                    <span>총 학습 강의 : </span>
+                                    <span>{{ totalClassCount }}</span>
+                                    <span> / </span>
+                                    <span>총 학습 챕터 : </span>
+                                    <span>{{ totalChapterCount }}</span>
                                 </div>
                             </div>
                         </div>
@@ -111,96 +112,13 @@
                                 </div>
                             </div>
                             <div class="weekly_study_class_data_cover">
-                                <div class="weekly_study_class_data">
-                                    <span>1월 :</span>
-                                    <span>학습시간</span>
-                                    <span>(20분)</span>
-                                    <span>학습강의</span>
-                                    <span>(2개)</span>
-                                </div>
-                                <div class="weekly_study_class_data">
-                                    <span>2월 :</span>
-                                    <span>학습시간</span>
-                                    <span>(20분)</span>
-                                    <span>학습강의</span>
-                                    <span>(2개)</span>
-                                </div>
-                                <div class="weekly_study_class_data">
-                                    <span>3월 :</span>
-                                    <span>학습시간</span>
-                                    <span>(20분)</span>
-                                    <span>학습강의</span>
-                                    <span>(2개)</span>
-                                </div>
-                                <div class="weekly_study_class_data">
-                                    <span>3월 :</span>
-                                    <span>학습시간</span>
-                                    <span>(20분)</span>
-                                    <span>학습강의</span>
-                                    <span>(2개)</span>
-                                </div>
-                                <div class="weekly_study_class_data">
-                                    <span>4월 :</span>
-                                    <span>학습시간</span>
-                                    <span>(20분)</span>
-                                    <span>학습강의</span>
-                                    <span>(2개)</span>
-                                </div>
-                                <div class="weekly_study_class_data">
-                                    <span>5월 :</span>
-                                    <span>학습시간</span>
-                                    <span>(20분)</span>
-                                    <span>학습강의</span>
-                                    <span>(2개)</span>
-                                </div>
-                                <div class="weekly_study_class_data">
-                                    <span>6월 :</span>
-                                    <span>학습시간</span>
-                                    <span>(20분)</span>
-                                    <span>학습강의</span>
-                                    <span>(2개)</span>
-                                </div>
-                                <div class="weekly_study_class_data">
-                                    <span>7월 :</span>
-                                    <span>학습시간</span>
-                                    <span>(20분)</span>
-                                    <span>학습강의</span>
-                                    <span>(2개)</span>
-                                </div>
-                                <div class="weekly_study_class_data">
-                                    <span>8월 :</span>
-                                    <span>학습시간</span>
-                                    <span>(20분)</span>
-                                    <span>학습강의</span>
-                                    <span>(2개)</span>
-                                </div>
-                                <div class="weekly_study_class_data">
-                                    <span>9월 :</span>
-                                    <span>학습시간</span>
-                                    <span>(20분)</span>
-                                    <span>학습강의</span>
-                                    <span>(2개)</span>
-                                </div>
-                                <div class="weekly_study_class_data">
-                                    <span>10월 :</span>
-                                    <span>학습시간</span>
-                                    <span>(20분)</span>
-                                    <span>학습강의</span>
-                                    <span>(2개)</span>
-                                </div>
-                                <div class="weekly_study_class_data">
-                                    <span>11월 :</span>
-                                    <span>학습시간</span>
-                                    <span>(20분)</span>
-                                    <span>학습강의</span>
-                                    <span>(2개)</span>
-                                </div>
-                                <div class="weekly_study_class_data">
-                                    <span>12월 :</span>
-                                    <span>학습시간</span>
-                                    <span>(20분)</span>
-                                    <span>학습강의</span>
-                                    <span>(2개)</span>
+                                <div v-for="(data, month) in monthlyStats" :key="month" class="weekly_study_class_data">
+                                    <span>{{ month }}월 : </span>
+                                    <span>학습 강의 : </span>
+                                    <span>{{ data.classFlagCount }}개</span>
+                                    <span> / </span>
+                                    <span>학습 챕터 : </span>
+                                    <span>{{ data.chapterFlagCount }}개</span>
                                 </div>
                             </div>
                             <div class="weekly_study_class_total_cover">
@@ -618,8 +536,11 @@ export default {
             currentWeek: '',
             weekStart: [],
             weekEnd: [],
-            chapters: {},
-            lectures: {}
+            weeklyStats: {},
+            monthlyStats: {},
+            lectures: {},
+            totalClassCount: 0,
+            totalChapterCount: 0,
         }
     },
 
@@ -645,7 +566,9 @@ export default {
                 this.newUserInfoItems = response.data.userData;
                 this.newUserClassInfoItem = response.data.classData;
                 this.newUserBoardInfoItem = response.data.boardData;
-                this.chapters = response.data.chapters;
+                this.weeklyStats = response.data.weeklyStats;
+                this.monthlyStats = response.data.monthlyStats;
+                this.calculateTotals();
             })
             .catch(error => {
                 console.error('Error fetching data:', error);
@@ -750,28 +673,25 @@ export default {
             this.calculateWeekdays();
             this.calculateCurrentWeek();
         },
-        convertEnglishToKoreanDay(day) {
-            const dayMap = {
-                Mon: '월',
-                Tue: '화',
-                Wed: '수',
-                Thu: '목',
-                Fri: '금',
-                Sat: '토',
-                Sun: '일',
+        convertToKoreanDay(day) {
+        const dayMap = {
+                'Mon': '월요일',
+                'Tue': '화요일',
+                'Wed': '수요일',
+                'Thu': '목요일',
+                'Fri': '금요일',
+                'Sat': '토요일',
+                'Sun': '일요일',
             };
+
             return dayMap[day] || day;
         },
-        // 특정 요일의 강의 개수 반환
-        getLectureCount(weekday) {
-            const day = convertEnglishToKoreanDay(weekday); // 요일 변환
-            return this.lectures[day] ? this.lectures[day].length : 0;
-        },
+        calculateTotals() {
+        this.totalClassCount = Object.values(this.weeklyStats)
+            .reduce((total, dayData) => total + dayData.classFlagCount, 0);
 
-        // 특정 요일의 챕터 개수 반환
-        getChapterCount(weekday) {
-            const day = convertEnglishToKoreanDay(weekday); // 요일 변환
-            return this.chapters[day] ? this.chapters[day].length : 0;
+        this.totalChapterCount = Object.values(this.weeklyStats)
+            .reduce((total, dayData) => total + dayData.chapterFlagCount, 0);
         },
     }
 }
