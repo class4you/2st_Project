@@ -94,7 +94,7 @@ summary {
     overflow: hidden;
     height: 30px;
     text-align: center;
-    background: #3D64BF;
+    background: #4e81f8;
 }
 
 .top_banner .desc {
@@ -262,7 +262,7 @@ header .navigation {
 }
 
 .dropdown a:hover {
-    color: #3D64BF;
+    color: #4e81f8;
 }
 
 hr {
@@ -310,7 +310,7 @@ hr {
     width: 50%;
     margin: auto;
     margin-top: 20px;
-    /* background-color: #3D64BF; */
+    /* background-color: #4e81f8; */
 }
 
 .login_modal_logo img {
@@ -321,13 +321,13 @@ hr {
 .login_modal_input_box {
     margin-top: 10px;
     width: 100%;
-    /* background-color: #3D64BF; */
+    /* background-color: #4e81f8; */
 }
 
 .login_modal_input_box input {
     width: 100%;
     height: 50px;
-    border: 1px solid #ABABAB;
+    border: 1px solid #324e96;
     border-radius: 5px;
     padding: 10px 15px;
     font-size: 15px;
@@ -354,7 +354,7 @@ hr {
     width: 100%;
     height: 50px;
     border: none;
-    background-color: #3D64BF;
+    background-color: #4e81f8;
     border-radius: 5px;
     font-size: 15px;
     color: #fff;
@@ -382,7 +382,7 @@ hr {
     display: flex;
     flex-basis: 100%;
     align-items: center;
-    color: #ABABAB;
+    color: #324e96;
     font-size: 15px;
     margin: 20px 0;
 }
@@ -413,7 +413,7 @@ hr {
     margin-top: 20px;
     width: 100%;
     height: 50px;
-    background-color: #3D64BF;
+    background-color: #4e81f8;
 }
 /* ============================================================================================= */
 
@@ -1084,7 +1084,7 @@ th:last-child, td:last-child {
 }
 
 .success_message {
-    color: #3D64BF;
+    color: #4e81f8;
     font-size: 12px;
     margin-top: 5px;
 }
@@ -1382,7 +1382,7 @@ th:last-child, td:last-child {
 /* 강의 게시판_detail */
 .class_detail_container_box {
     position: relative;
-    padding: 50px 0;
+    padding: 30px 0;
     background: #002333;
 }
 
@@ -1492,7 +1492,7 @@ th:last-child, td:last-child {
     padding: 0 10px;
     color: #fff;
     font-weight: 700;
-    background-color: #3D64BF;
+    background-color: #4e81f8;
 }
 
 .class_detail_container_r_banner span {
@@ -1563,7 +1563,7 @@ th:last-child, td:last-child {
 
 .class_detail_container_r_payment_classes button:hover {
     color: #fff;
-    background-color: #3D64BF;
+    background-color: #4e81f8;
 }
 
 
@@ -1580,7 +1580,7 @@ th:last-child, td:last-child {
 
 .class_detail_container_r_payment_classes a:hover {
     color: #fff;
-    background-color: #3D64BF;
+    background-color: #4e81f8;
 }
 
 @media screen and (max-width: 1000px) {
@@ -1742,7 +1742,7 @@ ul.class_tabs li.class_current {
 
 .class_detail_rating_form_button>button {
     padding: 10px 30px;
-    background-color: #3D64BF;
+    background-color: #4e81f8;
     border-radius: 5px;
     border: none;
     color: #ffffff74;
@@ -1751,7 +1751,7 @@ ul.class_tabs li.class_current {
 
 .class_detail_rating_form_button>button:hover {
     color: #fff;
-    background-color: #3D64BF;
+    background-color: #4e81f8;
 }
 
 .class_detail_rating_view_tab {
@@ -2298,7 +2298,7 @@ progress[value]::-webkit-progress-bar{
 }
 
 .class_detail_watch_next_btn:hover {
-    background-color:#3d64bf;
+    background-color:#4e81f8;
     padding: 10px 20px;
     border-radius: 10px;
     border: none;
@@ -4816,7 +4816,7 @@ font-size: 15px;
     background-color: transparent;
     border: none;
     padding: 10px 50px;
-    background-color:#3D64BF;
+    background-color:#4e81f8;
     border-radius: 10px;
     color: #fff;
     font-size: 15px;
@@ -4827,11 +4827,17 @@ font-size: 15px;
     background-color: transparent;
     border: none;
     padding: 10px 50px;
-    background-color:#3D64BF;
+    background-color:#4e81f8;
     border-radius: 10px;
     color: #fff;
     font-size: 15px;
     font-weight: 700;
+    opacity: 0.8;
+    margin-top: 13px;
+}
+
+.recent_learning_class_button a:hover {
+    opacity: 1;
 }
 
 
@@ -4958,16 +4964,27 @@ font-size: 15px;
     height: 0px;
 }
 
+.weekly_study_class_title_input_label_button {
+    opacity: 0.8;
+}
+
+.weekly_study_class_title_input_label_button:hover {
+    opacity: 1;
+}
+
 .weekly_study_class_data_cover {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     text-align: center;
     justify-content: center;
+    gap: 10px;
 }
 
 .weekly_study_class_data {
     margin-bottom: 5px;
     font-size: 13px;
+    border: 1px solid #e7e7e7;
+    background-color: #fafafa;
 }
 
 .weekly_study_class_data span:not(:nth-child(1)) {
@@ -4997,7 +5014,7 @@ font-size: 15px;
     text-align: center;
     font-size: 15px;
     padding: 10px 30px;
-    background-color:#3D64BF;
+    background-color:#324e96;
     display: inline-block;
     border-radius: 10px;
     color: #fff;
@@ -5121,8 +5138,8 @@ font-size: 15px;
 
 .users_basic_information_title_name {
     /* text-align: center; */
-    color: #fff;
-    background-color: #ababab;
+    color: #5a5a5a;
+    background-color: #e7e7e7;
     display: inline-block;
     font-size: 15px;
     /* width: 25%; */
@@ -5234,7 +5251,7 @@ font-size: 15px;
 }
 
 .users_password_titel {
-    background-color:#ababab;
+    background-color:#324e96;
     padding: 10px 15px;
     font-size: 15px;
     color: #fff;
@@ -5264,7 +5281,7 @@ font-size: 15px;
 .user_address_button {
     /* text-align: center; */
     color: #fff;
-    background-color: #5191ff;
+    background-color: #4e81f8;
     display: inline-block;
     font-size: 15px;
     /* width: 25%; */
@@ -5454,7 +5471,7 @@ font-size: 15px;
 
 .users_class_note_button {
     border: none;
-    background-color: #3D64BF;
+    background-color: #4e81f8;
     font-weight: 700;
     color: #fff;
     padding: 5px 5px;
@@ -5522,7 +5539,7 @@ font-size: 15px;
 
 .users_class_thread_button {
     border: none;
-    background-color: #3D64BF;
+    background-color: #4e81f8;
     font-size: 20px;
     font-weight: 700;
     color: #fff;

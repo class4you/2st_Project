@@ -32,13 +32,15 @@
                                 <div class="recent_learning_class_progress">
                                     <span>진도율 :</span>
                                     <span>{{ flaggedChaptersCount }}강</span>
-                                    <span>/</span>
+                                    <span style="margin-left: 5px; margin-right: 5px;">/</span>
                                     <span>{{ totalChaptersCount }}강</span>
                                     <span>({{ percentageFlaggedChapters }}%)</span>
                                 </div>
                                 <p>{{ getRelativeTime(item.updated_at) }}</p>
                             </div>
-                            <progress class="class_datail_watch_progress_bar_progress" :value="percentageFlaggedChapters"  min="0" max="100" id="progress"></progress>
+                            <div>
+                                <progress class="class_datail_watch_progress_bar_progress" :value="percentageFlaggedChapters"  min="0" max="100" id="progress"></progress>
+                            </div>
                             <!-- <div class="recent_learning_class_progress_bar_cover">
                                 <div role="progressbar" aria-valuemax="100" aria-valuemin="0" aria-valuenow="10.53" aria-label="진도율" class="recent_learning_class_progress_bar"></div>
                             </div> -->
@@ -75,7 +77,7 @@
                                     <span>{{ convertToKoreanDay(day) }} : </span>
                                     <span>학습 강의 : </span>
                                     <span> {{ dayData.classFlagCount }}개</span>
-                                    <span> / </span>
+                                    <span style="margin-left: 5px; margin-right: 5px;">/</span>
                                     <span>학습 챕터 : </span>
                                     <span> {{ dayData.chapterFlagCount }}개</span>
                                 </div>
@@ -117,7 +119,7 @@
                                     <span>{{ month }}월 : </span>
                                     <span>학습 강의 : </span>
                                     <span>{{ data.classFlagCount }}개</span>
-                                    <span> / </span>
+                                    <span style="margin-left: 5px; margin-right: 5px;">/</span>
                                     <span>학습 챕터 : </span>
                                     <span>{{ data.chapterFlagCount }}개</span>
                                 </div>
@@ -735,13 +737,13 @@ export default {
         },
         convertToKoreanDay(day) {
         const dayMap = {
-                'Mon': '월요일',
-                'Tue': '화요일',
-                'Wed': '수요일',
-                'Thu': '목요일',
-                'Fri': '금요일',
-                'Sat': '토요일',
-                'Sun': '일요일',
+                'Mon': '월',
+                'Tue': '화',
+                'Wed': '수',
+                'Thu': '목',
+                'Fri': '금',
+                'Sat': '토',
+                'Sun': '일',
             };
 
             return dayMap[day] || day;
