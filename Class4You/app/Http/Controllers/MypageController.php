@@ -34,6 +34,7 @@ class MypageController extends Controller
             ->where('boards.UserID', $UserID)
             ->get();
 
+
         $enrollments = Enrollment::where('UserID', $UserID)->get();
 
         $classIDs = $enrollments->pluck('ClassID');
@@ -124,7 +125,6 @@ class MypageController extends Controller
 
 
         // ==============================================================================================
-
         // 연간 통계
         $monthlyStats = collect();
 
@@ -192,6 +192,31 @@ class MypageController extends Controller
         }
         // ==============================================================================================
 
+
+        // ==============================================================================================
+        // 최근 강의 결과
+        $recentClassData = User::join('enrollments', 'users.UserID', 'enrollments.UserID')
+            ->join('class_infos', 'enrollments.ClassID', 'class_infos.ClassID')
+            ->join('chapters', 'class_infos.ClassID', 'chapters.ClassID')
+            // ->join('lessons', 'chapters.ChapterID', 'lessons.ChapterID')
+            ->where('users.UserID', $UserID)
+            ->whereRaw('class_infos.updated_at = (SELECT MAX(class_infos.updated_at) FROM class_infos)')
+            ->get();
+
+        // 플래그가 1인 챕터 개수 세기
+        $flaggedChaptersCount =  $recentClassData->where('ChapterFlg', 1)->count();
+
+        Log::debug($flaggedChaptersCount);
+        // 전체 챕터 개수 세기
+        $totalChaptersCount =  $recentClassData->where('ChapterID')->count();
+        Log::debug($totalChaptersCount);
+
+        // 퍼센트 계산
+        $percentageFlaggedChapters = ($totalChaptersCount > 0) ? ($flaggedChaptersCount / $totalChaptersCount) * 100 : 0;
+
+        Log::debug($percentageFlaggedChapters);
+        
+        // ==============================================================================================
 
         // $chapters = collect();
         // foreach ($classIDs as $classID) {
@@ -321,6 +346,10 @@ class MypageController extends Controller
             'boardData' => $boardData,
             'weeklyStats' =>  $weeklyStats,
             'monthlyStats' =>  $monthlyStats,
+            'recentClassData' => $recentClassData,
+            'flaggedChaptersCount' =>  $flaggedChaptersCount,
+            'totalChaptersCount' =>  $totalChaptersCount,
+            'percentageFlaggedChapters' =>  $percentageFlaggedChapters,
         ]);
     }
 

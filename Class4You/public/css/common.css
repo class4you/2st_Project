@@ -4652,6 +4652,10 @@ font-size: 15px;
     border-bottom: 1px solid #969393; /* 아래에 1px 높이의 회색 선 추가 */
 }
 
+.my_page_main_tap_ui_on {
+    border-bottom: 2px solid #3056ed;
+    color: #3056ed;
+}
 
 	
 .my_page_main_tap_ui:hover {
