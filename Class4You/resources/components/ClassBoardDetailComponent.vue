@@ -93,7 +93,13 @@
 					<p>기초 설명</p>
 				</div>
 				<div id="class_tab1" class="class_tab_content class_tab_content_basic">
-					<p><strong>추천드려요</strong></p>
+					<p><strong>
+						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+  						<path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+  						<path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
+						</svg>
+						추천드려요
+					</strong></p>
 					<p>✔코딩의 기초를 다지고싶은 분</p>
 					<p>✔코딩 스터디를 원하시는 분</p>
 					<p>✔학습 성취감을 느끼고 싶은 분</p>
@@ -108,9 +114,9 @@
 					<p>커리큘럼</p>
 				</div>
 				<div id="class_tab1" class="class_tab_content">
-					<div class="class_tab_content_curriculum">
+					<div class="class_tab_content_curriculum" style="display: inline-block;">
 						<div class="class_tab_content_curriculm_title">
-							<p>{{ classCuriData.ChapterTitle }}</p>
+							<span>{{ classCuriData.ChapterTitle }}</span>
 						</div>
 						<div>
 							<p>{{ classCuriData.LessonTitle }}</p>

@@ -1702,7 +1702,17 @@ ul.class_tabs li.class_current {
     border-bottom: 1px solid #ededed;
 }
 
+.class_tab_content_curriculm {
 
+}
+
+.class_tab_content_curriculm_title {
+    font-size: 20px;
+    font-weight: bold;
+    padding: 5px;
+    border-radius: 3px;
+    background-color: #ecd5e3;
+}
 
 /* ============================================================================================================ */
 /* 강의게시판rating */
@@ -5584,6 +5594,7 @@ footer {
     line-height: 1.5;
     justify-content: flex-start;
     padding-top: 30px;
+    gap: 15%;
 }
 
 .footer_info_btn {
@@ -5593,15 +5604,23 @@ footer {
     align-items: center;
 }
 
-.footer_info_btn {
+/* .footer_info_btn {
     text-decoration: none;
-}
+} */
 
-.footer_info_btn>li>a:visited {
+/* .footer_info_btn>li>a:visited {
     color: #858484;
+} */
+
+.footer_info_icon {
+    display: flex;
+    align-items: center;
+    flex-direction: row-reverse;
 }
 
-
+/* .footer_info_icon, .footer_info {
+    flex-grow: 1;
+} */
 
 
 

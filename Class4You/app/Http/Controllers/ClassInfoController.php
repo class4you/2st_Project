@@ -373,6 +373,7 @@ class ClassInfoController extends Controller
         Log::debug($userCnt);
 
         // 챕터 레슨 값 받아오기
+        
         $classCuri = Chapter::select('chapters.ChapterTitle','lessons.LessonTitle','lessons.LessonContent')
                 ->join('lessons','chapters.ChapterID','lessons.ChapterID')
                 ->join('class_infos','class_infos.ClassID','chapters.ClassID')
