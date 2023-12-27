@@ -11,7 +11,10 @@ class Chapter extends Model
 {
     use HasFactory;
 
+    protected $primaryKey = 'ChapterID';
+
     protected $fillable = [
+        'ChapterID',
         'ClassID',
         'ChapterTitle',
         'ChapterFlg',
