@@ -25,6 +25,7 @@
                         <p type="text" id="postTit">{{ newBoardItem.BoardTitle }}</p>
                     </div>
                     <div class="postContBox row">
+
                         <label for="postCont">내용 : </label> 
                         <p class="postCont">{{ newBoardItem.BoardComment }}</p>
                     </div>
@@ -88,7 +89,7 @@
                                 <div v-if="item.UserID == $store.state.UserID" style="margin-left: auto;">
                                     <button class="comment_editBtn">수정</button>
                                     <button @click="deleteCommentData(item.CommentID)" class="commentActions_deleteBtn">삭제</button>
-                                    <button class="commentActions_reportBtn">신고</button>
+                                    <!-- <button class="commentActions_reportBtn">신고</button> -->
 
                                 </div>
                             </div>
