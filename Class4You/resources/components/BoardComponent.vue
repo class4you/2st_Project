@@ -54,17 +54,17 @@
 								<div class="search_filter">
 								<ul class="search_filter_status">
 									<li class="e_status_active">
-									<button class="e_status_active_tap_button">
+									<button type="button" @click="fetchData(page = 1, searchQuery, solve = null)" class="e_status_active_tap_button" :class="{ 'e_status_active_tap_button_border_bottom': solve == null}">
 										전체
 									</button>
 									</li>
 									<li class="e_status_active">
-									<button type="button" @click="fetchData(page = 1, searchQuery, solve = 0)" class="e_status_active_tap_button">
+									<button type="button" @click="fetchData(page = 1, searchQuery, solve = 0)" class="e_status_active_tap_button" :class="{ 'e_status_active_tap_button_border_bottom': solve == 0}">
 										미해결
 									</button>
 									</li>
 									<li class="e_status_active">
-									<button type="button" @click="fetchData(page = 1, searchQuery, solve = 1)" class="e_status_active_tap_button">
+									<button type="button" @click="fetchData(page = 1, searchQuery, solve = 1)" class="e_status_active_tap_button" :class="{ 'e_status_active_tap_button_border_bottom': solve == 1}">
 										해결
 									</button>
 									</li>
@@ -93,16 +93,16 @@
 									</select>
 									<ul class="order_pc">
 									<li class="e_order active">
-										<button type="button" @click="fetchData(page = 1, searchQuery, solve = null, sortData = 1)" class="order_pc_button">최신순</button>
+										<button type="button" @click="fetchData(page = 1, searchQuery, solve = null, sortData = 1)" class="order_pc_button" :class="{ 'order_pc_button_on': sortData == 1}">최신순</button>
 									</li>
 									<!-- <li class="e_order active">
 										<button type="button" @click="fetchData(page = 1, searchQuery, solve = null, sortData = 2)" class="order_pc_button">답변많은순</button>
 									</li> -->
 									<li class="e_order active">
-										<button type="button" @click="fetchData(page = 1, searchQuery, solve = null, sortData = 3)" class="order_pc_button">좋아요순</button>
+										<button type="button" @click="fetchData(page = 1, searchQuery, solve = null, sortData = 3)" class="order_pc_button" :class="{ 'order_pc_button_on': sortData == 3}">좋아요순</button>
 									</li>
 									<li class="e_order active">
-										<button type="button" @click="fetchData(page = 1, searchQuery, solve = null, sortData = 4)" class="order_pc_button">조회순</button>
+										<button type="button" @click="fetchData(page = 1, searchQuery, solve = null, sortData = 4)" class="order_pc_button" :class="{ 'order_pc_button_on': sortData == 4}">조회순</button>
 									</li>
 									</ul>
 									<div class="posts_container_header_button_cover"></div>
