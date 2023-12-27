@@ -5014,11 +5014,11 @@ font-size: 15px;
     text-align: center;
     font-size: 15px;
     padding: 10px 30px;
-    background-color:#324e96;
+    color: #5a5a5a;
+    background-color: #f3f3f3;
     display: inline-block;
     border-radius: 10px;
-    color: #fff;
-    font-weight: 500;
+    font-weight: 700;
 }
 
 @media only screen and (max-width: 900px) {
@@ -5139,7 +5139,7 @@ font-size: 15px;
 .users_basic_information_title_name {
     /* text-align: center; */
     color: #5a5a5a;
-    background-color: #e7e7e7;
+    background-color: #f3f3f3;
     display: inline-block;
     font-size: 15px;
     /* width: 25%; */
