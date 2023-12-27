@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 use App\Models\Enrollment;
 use App\Models\Classinfo;
@@ -355,6 +356,29 @@ class MypageController extends Controller
                 return response()->json($user);
             }
         }
+    }
 
+    function putUserpasswordData(Request $request) {
+        // Log::debug($request);
+
+        $result = User::find($request->UserID);
+        if(Auth::check()) {
+            $loggedInUserId = Auth::id(); // 현재 로그인된 사용자의 ID를 가져옴
+            $requestUserId = $request->UserID; // 예시로 리퀘스트에서 user_id를 가져옴
+            if ($loggedInUserId == $requestUserId) {
+                if(!$result || !(Hash::check($request->UserPassword, $result->UserPassword))) {
+                    return response()->json([
+                        'success' => false,
+                        'message' => '아이디와 비밀번호를 확인해주세요.',
+                    ]);
+                }
+                $request->NewUserPassword = Hash::make($request->NewUserPassword);
+                $result->update(['UserPassword' => $request->NewUserPassword]);
+                return response()->json([
+                    'success' => true,
+                    'message' => '비밀번호 변경하셨습니다.',
+                ]);
+            }
+        }
     }
 }

@@ -190,7 +190,7 @@
                                     <div class="users_basic_information_title_name">
                                         <a>우편 번호</a>
                                     </div>
-                                    <div class="users_basic_information_title_name">
+                                    <div>
                                         <button type="button" class="user_address_button" @click="openDaumPostcode">주소 찾기</button>
                                     </div>
                                 </div>
@@ -249,14 +249,14 @@
                                 </div>
                                 <div class="users_basic_information_content_cover">
                                     <div>
-                                        <input type="password">
+                                        <input type="password" placeholder="현재 비밀번호를 입력해주세요." v-model="UserPassword">
                                     </div>
                                 </div>
                             </div>
                             <div class="users_basic_information_cover" style="margin-bottom: 12px;">
                                 <div class="users_basic_information_content_cover">
                                     <div>
-                                        <input type="password" placeholder="변경할 비밀번호를 입력해주세요.">
+                                        <input type="password" placeholder="변경할 비밀번호를 입력해주세요." v-model="NewUserPassword">
                                         <!-- <p>대구광역시 중구 공평로 105, 노마즈하우스 1528호</p> -->
                                     </div>
                                 </div>
@@ -264,14 +264,14 @@
                             <div class="users_basic_information_cover">
                                 <div class="users_basic_information_content_cover">
                                     <div>
-                                        <input type="password" placeholder="변경할 비밀번호를 확인을 입력해주세요.">
+                                        <input type="password" placeholder="변경할 비밀번호를 확인을 입력해주세요." v-model="NewUserPasswordChk">
                                         <!-- <p>대구광역시 중구 공평로 105, 노마즈하우스 1528호</p> -->
                                     </div>
                                 </div>
                             </div>
                             <div class="users_basic_information_button_cover">
                                 <div class="users_basic_information_button">
-                                    <button>비밀번호 수정 하기</button>
+                                    <button type="button" @click="updateUserPasswordData()">비밀번호 수정 하기</button>
                                 </div>
                             </div>
                         </div>
@@ -553,6 +553,11 @@ export default {
             },
             UserPhoneNumber: '',
 
+
+            UserPassword: '',
+            NewUserPassword: '',
+            NewUserPasswordChk: '',
+
         }
     },
 
@@ -800,6 +805,7 @@ export default {
                 UserDetailedAddress: this.frmAddressData.UserDetailedAddress,
             })
             .then(response => {
+                alert('주소 변경이 완료되었습니다.');
                 // console.log(response.data.UserPostcode);
                 // this.frmAddressData.UserPostcode.unshift(res.data.UserPostcode);
                 // 서버 응답에 대한 로직 수행
@@ -817,6 +823,7 @@ export default {
             })
             .then(response => {
                 console.log(response.data);
+                alert('전화번호 변경이 완료되었습니다.');
                 // this.frmAddressData.UserPostcode.unshift(res.data.UserPostcode);
                 // 서버 응답에 대한 로직 수행
                 // this.$router.push('/board');
@@ -825,7 +832,34 @@ export default {
                 // 에러 처리
                 console.error(error);
             });
-        },                
+        }, 
+        updateUserPasswordData() {
+            axios.put('/userpassworddataupdate', {
+                UserID : this.newUserInfoItems.UserID,
+                UserPassword : this.UserPassword,
+                NewUserPassword: this.NewUserPassword,
+                NewUserPasswordChk: this.NewUserPasswordChk,
+            })
+
+            .then(response => {
+                console.log(response.data);
+                if(response.data.success) {
+                    alert('비밀번호 변경에 성공하셨습니다.');
+                    window.location.reload();
+                } else {
+                    alert('비밀번호 변경에 실패하셨습니다.');
+                    window.location.reload();
+                }
+                // this.frmAddressData.UserPostcode.unshift(res.data.UserPostcode);
+                // 서버 응답에 대한 로직 수행
+                // this.$router.push('/board');
+            })
+            .catch(error => {
+                // 에러 처리
+                console.log(error);
+                alert('비밀번호 변경에 실패하셨습니다.');
+            });
+        },                   
     }
 }
 </script>

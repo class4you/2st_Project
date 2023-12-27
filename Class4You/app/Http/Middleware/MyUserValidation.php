@@ -31,6 +31,8 @@ class MyUserValidation
             'UserAddress',
             'UserTermsofUse',
             'UserPrivacy',
+            'NewUserPassword',
+            'NewUserPasswordChk',
         ];
 
         $arrBaseValidation = [
@@ -43,6 +45,8 @@ class MyUserValidation
             ,'UserAddress' => 'required|string|min:5|max:255'
             ,'UserTermsofUse' => 'required|numeric|in:1'
             ,'UserPrivacy' => 'required|numeric|in:1'
+            ,'NewUserPassword' => 'required|string|min:8|max:16|regex:/^(?=.*[a-zA-Z])(?=.*[!@#]).+$/'
+            ,'NewUserPasswordChk' => 'required|string|same:NewUserPassword'
         ];
 
         $arrRequestParam = [];

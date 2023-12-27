@@ -18,9 +18,31 @@ class BoardController extends Controller
     {
 
         Log::debug($request);
-        $boardData = Board::join('users', 'boards.UserID', 'users.UserID')
-            ->orderBy('boards.created_at', 'desc')
-            ->paginate(10);
+        // $boardData = Board::join('users', 'boards.UserID', 'users.UserID')
+        //     ->orderBy('boards.created_at', 'desc')
+        //     ->paginate(10);
+
+        $boardDataQuery = Board::join('users', 'boards.UserID', 'users.UserID')
+            ->orderBy('boards.created_at', 'desc');
+        
+        if ($request->has('search')) {
+            $searchTerm = $request->input('search');
+            $boardDataQuery->where(function ($query) use ($searchTerm) {
+                $query->orWhere('boards.BoardTitle', 'LIKE', "%{$searchTerm}%")
+                        ->orWhere('boards.BoardComment', 'LIKE', "%{$searchTerm}%");
+            });
+        }
+
+        if ($request->has('solve')) {
+            $solveState = $request->input('solve');
+            if ($solveState == 1) {
+                $boardDataQuery->where('BoardFlg', 1);
+            } else if ($solveState == 0) {
+                $boardDataQuery->where('BoardFlg', 0);
+            }
+        }
+        
+        $boardData = $boardDataQuery->paginate(10);
 
         $userCntData = User::select('users.UserEmail', DB::raw('count(*) as cnt'))
             ->join('comments', 'users.UserID', 'comments.UserID')
