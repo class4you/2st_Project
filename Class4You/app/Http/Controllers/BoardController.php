@@ -22,8 +22,8 @@ class BoardController extends Controller
         //     ->orderBy('boards.created_at', 'desc')
         //     ->paginate(10);
 
-        $boardDataQuery = Board::join('users', 'boards.UserID', 'users.UserID')
-            ->orderBy('boards.created_at', 'desc');
+        $boardDataQuery = Board::join('users', 'boards.UserID', 'users.UserID');
+            // ->orderBy('boards.created_at', 'desc');
         
         if ($request->has('search')) {
             $searchTerm = $request->input('search');
@@ -39,6 +39,22 @@ class BoardController extends Controller
                 $boardDataQuery->where('BoardFlg', 1);
             } else if ($solveState == 0) {
                 $boardDataQuery->where('BoardFlg', 0);
+            }
+        }
+
+        if ($request->has('sort')) {
+            $sortData = $request->input('sort');
+            if($sortData == 1) {
+                $boardDataQuery->orderBy('boards.created_at', 'desc');
+            // } else if($sortData == 2) {
+            //     $boardDataQuery = Board::join('comments', 'boards.BoardID', '=', 'comments.BoardID')
+            //         ->selectRaw('COUNT(comments.CommentID) as comment_count')
+            //         ->groupBy('boards.BoardID') // 각 게시물에 대한 그룹화
+            //         ->orderBy('comment_count', 'desc');
+            } else if($sortData == 3) {
+                $boardDataQuery->orderBy('boards.BoardRecommended', 'desc');
+            } else if($sortData == 4) {
+                $boardDataQuery->orderBy('boards.BoardView', 'desc');
             }
         }
         
