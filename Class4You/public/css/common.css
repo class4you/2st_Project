@@ -1644,9 +1644,9 @@ ul.class_tabs li.class_current {
 
 .class_tab_content {
     margin: 5px;
-    margin-bottom: 40px;
+    margin-bottom: 30px;
     padding: 20px;
-    line-height: 20px;
+    line-height: 30px;
 }
 
 .class_current {
@@ -1702,17 +1702,27 @@ ul.class_tabs li.class_current {
     border-bottom: 1px solid #ededed;
 }
 
-.class_tab_content_curriculm {
-
-}
-
-.class_tab_content_curriculm_title {
+.class_tab_content_chapter_title,
+.class_tab_content_chapter_span {
     font-size: 20px;
     font-weight: bold;
     padding: 5px;
     border-radius: 3px;
     background-color: #ecd5e3;
+    margin-left: 5px;
 }
+
+.class_tab_content_lesson_title {
+    padding: 10px;
+}
+
+.class_tab_content_lesson_content {
+    border: 1px solid #ededed;
+    border-radius: 3px;
+    padding: 10px;
+}
+
+
 
 /* ============================================================================================================ */
 /* 강의게시판rating */
@@ -5664,10 +5674,9 @@ footer {
     display: flex;
     flex-direction: row;
     line-height: 1.5;
-    justify-content: flex-start;
+    justify-content: space-between;
     padding-top: 30px;
     padding-bottom: 30px;
-    gap: 15%;
 }
 
 .footer_info_btn {
@@ -5677,23 +5686,14 @@ footer {
     align-items: center;
 }
 
-/* .footer_info_btn {
-    text-decoration: none;
-} */
-
-/* .footer_info_btn>li>a:visited {
-    color: #858484;
-} */
-
 .footer_info_icon {
     display: flex;
+    justify-content: space-between;
     align-items: center;
-    flex-direction: row-reverse;
+    width: 10%;
 }
 
-/* .footer_info_icon, .footer_info {
-    flex-grow: 1;
-} */
+
 
 
 

@@ -82,8 +82,10 @@
         <div v-if="clickFlgTab === 0">
 			<div class="class_tab_content_div">
 				<div id="class_tab1" class="class_tab_content class_current">
-					<p>{{ detailClassItems.ClassIntroduction }}</p>
-					<p>{{ detailClassItems.ClassIntroduction }}</p>
+					<p>
+						<strong>{{ detailClassItems.languages[0].ClassLanguageName }}</strong>
+						강의는,
+					</p>
 					<p>{{ detailClassItems.ClassIntroduction }}</p>
 				</div>
 			</div>
@@ -114,15 +116,19 @@
 					<p>커리큘럼</p>
 				</div>
 				<div id="class_tab1" class="class_tab_content">
-					<div class="class_tab_content_curriculum" style="display: inline-block;">
-						<div class="class_tab_content_curriculm_title">
-							<span>{{ classCuriData.ChapterTitle }}</span>
+					<div class="class_tab_content_curriculum">
+						<div style="display: inline-block;">
+							<span class="class_tab_content_chapter_span">Chapter.</span>
+							<span class="class_tab_content_chapter_title">
+								{{ classCuriData.ChapterTitle }}
+							</span>
 						</div>
-						<div>
+						<div class="class_tab_content_lesson_title">
 							<p>{{ classCuriData.LessonTitle }}</p>
 						</div>
-						<div>
-							<p>{{ classCuriData.LessonContent }}</p>
+						<div class="class_tab_content_lesson_content" style="display: inline-block;">
+							<p>🔘{{ classCuriData.LessonContent }}</p>
+							<p>🔘{{ classCuriData.LessonContent }}</p>
 						</div>
 					</div>
 				</div>
