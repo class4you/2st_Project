@@ -1663,10 +1663,12 @@ ul.class_tabs li.class_current {
     margin-top: 30px;
 } */
 
-/* .class_tab_link {
+.class_tab_link_on {
     cursor: pointer;
+    font-weight: bold;
+    color: #000;
     border-bottom: 2px solid #000;
-} */
+}
 
 .class_tab_content_basic {
     background-color: #5b5b5b;
@@ -1699,6 +1701,8 @@ ul.class_tabs li.class_current {
 .class_tab_menu_div {
     border-bottom: 1px solid #ededed;
 }
+
+
 
 /* ============================================================================================================ */
 /* 강의게시판rating */
