@@ -33,17 +33,19 @@
                                 <span class="class_detail_container_r_info_star_box">
                                     <div class="class_detail_container_r_info_star">
                                         <div class="class_detail_container_r_info_star_inr">
-                                            <span>☆</span>
-                                            <span>☆</span>
-                                            <span>☆</span>
-                                            <span>☆</span>
-                                            <span>☆</span>
+                                            <!-- <span>☆</span> -->
+                                            <!-- <span>☆</span> -->
+                                            <!-- <span>☆</span> -->
+                                            <!-- <span>☆</span> -->
+                                            <!-- <span>☆</span> -->
+                                            <span>⭐평점</span>
+											<span>{{ classRatingData }}.0</span>
                                         </div>
                                     </div>
-                                    <span>(5.0)</span>
+                                    <!-- <span>{{ classRatingData }}</span> -->
                                 </span>
-                                <span>수강생 수</span>
-                                <span>{{ enrollmentCnt }}</span>
+                                <span>🙍‍♂️🙍‍♀️</span>
+                                <span>{{ enrollmentCnt }}명</span>
                             </div>
                             <div class="class_detail_container_r_language">
                                 <span class="class_detail_container_r_language_icon">#</span>
@@ -82,8 +84,9 @@
         <div v-if="clickFlgTab === 0">
 			<div class="class_tab_content_div">
 				<div id="class_tab1" class="class_tab_content class_current">
-					<p>{{ detailClassItems.ClassIntroduction }}</p>
-					<p>{{ detailClassItems.ClassIntroduction }}</p>
+					<p style="font-weight: bold;">
+						💡{{ detailClassItems.languages[0].ClassLanguageName }}란,
+					</p>
 					<p>{{ detailClassItems.ClassIntroduction }}</p>
 				</div>
 			</div>
@@ -116,12 +119,15 @@
 				<div id="class_tab1" class="class_tab_content">
 					<div class="class_tab_content_curriculum" style="display: inline-block;">
 						<div class="class_tab_content_curriculm_title">
-							<span>{{ classCuriData.ChapterTitle }}</span>
+							<span class="class_tab_content_chapter_title">Charpter.</span>
+							<span class="class_tab_content_chapter_title" style="margin-left: 5px;">
+								{{ classCuriData.ChapterTitle }}
+							</span>
 						</div>
-						<div>
+						<div class="class_tab_content_lesson_title">
 							<p>{{ classCuriData.LessonTitle }}</p>
 						</div>
-						<div>
+						<div class="class_tab_content_lesson_content">
 							<p>{{ classCuriData.LessonContent }}</p>
 						</div>
 					</div>
@@ -547,6 +553,7 @@ export default {
 			solve: null,
 			sortData: 0,
 			classCuriData: {},
+			classRatingData: {},
         }
     },
 	mounted() {
@@ -568,6 +575,7 @@ export default {
 			this.detailClassItems = response.data.result;
 			this.enrollmentCnt = response.data.userCnt.user_count;
 			this.classCuriData = response.data.classCuri;
+			this.classRatingData = response.data.avgReviewRating.avgRating;
 
 			// if(this.clickFlgTab === 1) {
 				axios.get('/classboarddetailreview/' + this.ClassID)
