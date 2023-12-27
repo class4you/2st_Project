@@ -59,12 +59,12 @@
 									</button>
 									</li>
 									<li class="e_status_active">
-									<button class="e_status_active_tap_button">
+									<button type="button" @click="fetchData(page = 1, '', solve = 0)" class="e_status_active_tap_button">
 										미해결
 									</button>
 									</li>
 									<li class="e_status_active">
-									<button class="e_status_active_tap_button">
+									<button type="button" @click="fetchData(page = 1, '', solve = 1)" class="e_status_active_tap_button">
 										해결
 									</button>
 									</li>
@@ -72,9 +72,9 @@
 								<div class="e_search">
 									<div class="search_item">
 									<div class="ac_input_with_item">
-										<input type="text" v-model="search_item">
+										<input type="text" v-model="searchQuery">
 									</div>
-									<button type="button" @click="boardSearch()" class="search_item_button">
+									<button type="button" @click="fetchData(1, searchQuery)" class="search_item_button">
 										검색
 									</button>
 									</div>
@@ -212,7 +212,8 @@ export default {
 			newUserCntItems: [],
 			pagination: {},
 			page: {},
-			search_item: '',
+			searchQuery: '',
+			solve: null,
 		}
 	},
 	
@@ -220,8 +221,8 @@ export default {
         this.fetchData();
     },
 	methods: {
-		fetchData(page) {
-        axios.get(`/board/data?page=${page}`)
+		fetchData(page = 1, searchQuery = '', solve = null,) {
+        axios.get(`/board/data?page=${page}&search=${searchQuery}&solve=${solve}`)
             .then(response => {
                 this.newBoardItems = response.data.boardData.data;
                 this.newUserCntItems = response.data.userCntData;
