@@ -170,7 +170,7 @@
                                     <a>전화번호</a>
                                 </div>
                                 <div class="users_basic_information_content_cover">
-                                    <div>
+                                    <div style="border: 1px solid #979797;">
                                         <input type="text" name="" id="" v-model="UserPhoneNumber">
                                     </div>
                                 </div>
@@ -198,7 +198,7 @@
                                     </div>
                                 </div>
                                 <div class="users_basic_information_content_cover">
-                                    <div>
+                                    <div style="border: 1px solid #979797;">
                                         <input type="text" :value="frmAddressData.UserPostcode">
                                     </div>
                                 </div>
@@ -208,7 +208,7 @@
                                     <a>도로명 주소</a>
                                 </div>
                                 <div class="users_basic_information_content_cover">
-                                    <div>
+                                    <div style="border: 1px solid #979797;">
                                         <input type="text" :value="frmAddressData.UserRoadAddress">
                                     </div>
                                 </div>
@@ -218,7 +218,7 @@
                                     <a>상세 주소</a>
                                 </div>
                                 <div class="users_basic_information_content_cover">
-                                    <div>
+                                    <div style="border: 1px solid #979797;">
                                         <input type="text" v-model="frmAddressData.UserDetailedAddress">
                                         <!-- <p>대구광역시 중구 공평로 105, 노마즈하우스 1528호</p> -->
                                     </div>
@@ -251,14 +251,14 @@
                                     <a>비밀번호</a>
                                 </div>
                                 <div class="users_basic_information_content_cover">
-                                    <div>
+                                    <div style="border: 1px solid #979797;">
                                         <input type="password" placeholder="현재 비밀번호를 입력해주세요." v-model="UserPassword">
                                     </div>
                                 </div>
                             </div>
                             <div class="users_basic_information_cover" style="margin-bottom: 12px;">
                                 <div class="users_basic_information_content_cover">
-                                    <div>
+                                    <div style="border: 1px solid #979797;">
                                         <input type="password" placeholder="변경할 비밀번호를 입력해주세요." v-model="NewUserPassword">
                                         <!-- <p>대구광역시 중구 공평로 105, 노마즈하우스 1528호</p> -->
                                     </div>
@@ -266,7 +266,7 @@
                             </div>
                             <div class="users_basic_information_cover">
                                 <div class="users_basic_information_content_cover">
-                                    <div>
+                                    <div style="border: 1px solid #979797;">
                                         <input type="password" placeholder="변경할 비밀번호를 확인을 입력해주세요." v-model="NewUserPasswordChk">
                                         <!-- <p>대구광역시 중구 공평로 105, 노마즈하우스 1528호</p> -->
                                     </div>
