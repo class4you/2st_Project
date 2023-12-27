@@ -17,7 +17,7 @@
                                 <div class="class_detail_container_r_banner_label">
                                     <span>NEW</span>
                                 </div>
-                                <span>게임 개발</span>
+                                <span>{{detailClassItems.languages[0].ClassLanguageName}}</span>
                             </div>
                             <div class="class_detail_container_r_title_box">
                                 <h2 class="class_detail_container_r_title">
@@ -188,9 +188,9 @@
 					<div class="class_detail_rating_tab_title">
 						<span>최신순</span>
 					</div>
-					<div class="class_detail_rating_tab_title">
+					<!-- <div class="class_detail_rating_tab_title">
 						<span>인기순</span>
-					</div>
+					</div> -->
 					<!-- <div class="class_detail_rating_tab_title">
 						<span><a href="">조회순</a></span>
 					</div> -->

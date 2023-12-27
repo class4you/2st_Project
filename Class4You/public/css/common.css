@@ -1663,9 +1663,10 @@ ul.class_tabs li.class_current {
     margin-top: 30px;
 } */
 
-.class_tab_link {
+/* .class_tab_link {
     cursor: pointer;
-}
+    border-bottom: 2px solid #000;
+} */
 
 .class_tab_content_basic {
     background-color: #5b5b5b;
@@ -5527,7 +5528,11 @@ footer {
 }
 
 .footer_info_btn_div {
-    font-size: 0.8rem;
+    color: rgb(230, 228, 228);
+}
+
+.footer_info {
+    font-size: 15px;
 }
 
 .footer_main {
@@ -5554,9 +5559,7 @@ footer {
     color: #858484;
 }
 
-.footer_info_buttom {
-    font-size: 0.6rem;
-}
+
 
 
 
