@@ -2250,7 +2250,7 @@ ul.class_tabs li.class_current {
 
 progress[value]::-webkit-progress-bar{
     background-color: whitesmoke;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.25) inset;
+    box-shadow: 0 1px 5px rgba(0,0,0,0.1) inset;
 }
 
     #progress[value]{
@@ -4844,6 +4844,7 @@ font-size: 15px;
     justify-content: space-between;
     margin-bottom: 10px;
     font-size: 13px;
+    padding: 0px 10px;
 }
 
 .recent_learning_class_progress {
@@ -5051,7 +5052,7 @@ font-size: 15px;
     grid-template-columns: 1fr 1fr 1fr;
     text-align: center;
     justify-content: center;
-    gap: 10px;
+    gap: 5px;
 }
 
 .weekly_study_class_data {
@@ -5059,6 +5060,8 @@ font-size: 15px;
     font-size: 13px;
     border: 1px solid #e7e7e7;
     background-color: #fafafa;
+    border-radius: 5px;
+    padding: 2px 0px;
 }
 
 .weekly_study_class_data span:not(:nth-child(1)) {
@@ -5078,7 +5081,6 @@ font-size: 15px;
 
 .weekly_study_class_total_cover {
     margin-top: 15px;
-    margin-bottom: 15px;
     display: flex;
     gap: 20px;
     justify-content: center;
@@ -5289,6 +5291,11 @@ font-size: 15px;
     font-size: 15px;
     font-weight: 700;
     cursor: pointer;
+    opacity: 0.8;
+}
+
+.users_basic_information_button button:hover {
+    opacity: 1;
 }
 
 .users_basic_information_password_cover {
@@ -5325,18 +5332,18 @@ font-size: 15px;
 }
 
 .users_password_titel {
-    background-color:#324e96;
+    background-color:#f3f3f3;
     padding: 10px 15px;
     font-size: 15px;
-    color: #fff;
+    color: #5a5a5a;
     border-radius: 5px;
     text-align: center;
 }
 
 .users_password_input {
     width: 100%;
-    border: 1px solid #e2e2e2;
-    border-radius: 10px;
+    border: 1px solid #979797;
+    border-radius: 5px;
     padding: 10px 15px;
 }
 
@@ -5350,12 +5357,18 @@ font-size: 15px;
     font-weight: 700;
     border-radius: 5px;
     padding: 10px 15px;
+    cursor: pointer;
+    opacity: 0.8;
+}
+
+.users_password_button:hover {
+    opacity: 1;
 }
 
 .user_address_button {
     /* text-align: center; */
     color: #fff;
-    background-color: #4e81f8;
+    background-color: #5e8af2;
     display: inline-block;
     font-size: 15px;
     /* width: 25%; */
@@ -5366,6 +5379,11 @@ font-size: 15px;
     justify-content: space-between;
     border: none;
     cursor: pointer;
+    opacity: 0.8;
+}
+
+.user_address_button:hover {
+    opacity: 1;
 }
 
 .users_basic_address_cover {
@@ -5477,8 +5495,15 @@ font-size: 15px;
 .my_page_container_new_card {
     display: block;
     border-radius: 15px;
-    background-color: #cadaff;
+    background-color: #ebf1ff;
     padding: 10px;
+    transition: top 0.3s ease;
+}
+
+.my_page_container_new_card:hover {
+    position: relative;
+    top: -5px;
+    box-shadow: 0px 15px 20px 2px rgba(125, 125, 125, 0.2);
 }
 
 .my_page_container_new_card_img {
@@ -5613,7 +5638,7 @@ font-size: 15px;
 
 .users_class_thread_button {
     border: none;
-    background-color: #4e81f8;
+    background-color: #4E81F8;
     font-size: 20px;
     font-weight: 700;
     color: #fff;
@@ -5623,6 +5648,11 @@ font-size: 15px;
     border-radius: 5px;
     margin: auto;
     font-size: 15px;
+    opacity: 0.8;
+}
+
+.users_class_thread_button:hover {
+    opacity: 1;
 }
 
 @media only screen and (max-width: 900px) {
