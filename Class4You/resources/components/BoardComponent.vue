@@ -59,12 +59,12 @@
 									</button>
 									</li>
 									<li class="e_status_active">
-									<button type="button" @click="fetchData(page = 1, '', solve = 0)" class="e_status_active_tap_button">
+									<button type="button" @click="fetchData(page = 1, searchQuery, solve = 0)" class="e_status_active_tap_button">
 										미해결
 									</button>
 									</li>
 									<li class="e_status_active">
-									<button type="button" @click="fetchData(page = 1, '', solve = 1)" class="e_status_active_tap_button">
+									<button type="button" @click="fetchData(page = 1, searchQuery, solve = 1)" class="e_status_active_tap_button">
 										해결
 									</button>
 									</li>
@@ -74,7 +74,7 @@
 									<div class="ac_input_with_item">
 										<input type="text" v-model="searchQuery">
 									</div>
-									<button type="button" @click="fetchData(1, searchQuery)" class="search_item_button">
+									<button type="button" @click="fetchData(1, searchQuery, solve = null)" class="search_item_button">
 										검색
 									</button>
 									</div>
@@ -93,13 +93,16 @@
 									</select>
 									<ul class="order_pc">
 									<li class="e_order active">
-										<button class="order_pc_button">최신순</button>
+										<button type="button" @click="fetchData(page = 1, searchQuery, solve = null, sortData = 1)" class="order_pc_button">최신순</button>
+									</li>
+									<!-- <li class="e_order active">
+										<button type="button" @click="fetchData(page = 1, searchQuery, solve = null, sortData = 2)" class="order_pc_button">답변많은순</button>
+									</li> -->
+									<li class="e_order active">
+										<button type="button" @click="fetchData(page = 1, searchQuery, solve = null, sortData = 3)" class="order_pc_button">좋아요순</button>
 									</li>
 									<li class="e_order active">
-										<button class="order_pc_button">답변많은순</button>
-									</li>
-									<li class="e_order active">
-										<button class="order_pc_button">좋아요순</button>
+										<button type="button" @click="fetchData(page = 1, searchQuery, solve = null, sortData = 4)" class="order_pc_button">조회순</button>
 									</li>
 									</ul>
 									<div class="posts_container_header_button_cover"></div>
@@ -214,6 +217,7 @@ export default {
 			page: {},
 			searchQuery: '',
 			solve: null,
+			sortData: 1,
 		}
 	},
 	
@@ -221,8 +225,8 @@ export default {
         this.fetchData();
     },
 	methods: {
-		fetchData(page = 1, searchQuery = '', solve = null,) {
-        axios.get(`/board/data?page=${page}&search=${searchQuery}&solve=${solve}`)
+		fetchData(page = 1, searchQuery = '', solve = null, sortData = 1,) {
+        axios.get(`/board/data?page=${page}&search=${searchQuery}&solve=${solve}&sort=${sortData}`)
             .then(response => {
                 this.newBoardItems = response.data.boardData.data;
                 this.newUserCntItems = response.data.userCntData;
