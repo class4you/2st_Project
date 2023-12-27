@@ -2,11 +2,11 @@
     <div class="wrapper">
         <div class="my_page_main">
             <div class="my_page_main_tap_uis">
-                <div @click="handleTabClick(1)" class="my_page_main_tap_ui">대시보드</div>
-                <div @click="handleTabClick(2)" class="my_page_main_tap_ui">계정정보</div>
-                <div @click="handleTabClick(3)" class="my_page_main_tap_ui">나의학습</div>
+                <div @click="handleTabClick(1)" class="my_page_main_tap_ui" :class="{ 'my_page_main_tap_ui_on': $store.state.myPageClickFlgTab == 1}">대시보드</div>
+                <div @click="handleTabClick(2)" class="my_page_main_tap_ui" :class="{ 'my_page_main_tap_ui_on': $store.state.myPageClickFlgTab == 2}">계정정보</div>
+                <div @click="handleTabClick(3)" class="my_page_main_tap_ui" :class="{ 'my_page_main_tap_ui_on': $store.state.myPageClickFlgTab == 3}">나의학습</div>
                 <!-- <div @click="handleTabClick(4)" class="my_page_main_tap_ui">강의노트</div> -->
-                <div @click="handleTabClick(5)" class="my_page_main_tap_ui">작성 게시글</div>
+                <div @click="handleTabClick(5)" class="my_page_main_tap_ui" :class="{ 'my_page_main_tap_ui_on': $store.state.myPageClickFlgTab == 5}">작성 게시글</div>
                 <!-- <div @click="handleTabClick(6)" class="my_page_main_tap_ui">구매내역</div> -->
                 <!-- <div class="my_page_main_tap_ui" onclick="showDashboardContent('공란')">공란</div> -->
             </div>
@@ -17,33 +17,36 @@
                         <div class="dashboard_recent_learning_class_title">
                             <p>최근 학습 강의</p>
                         </div>
-                        <div class="dashboard_recent_learning_class_box">
+                        <div v-for="item in recentClassInfoData" class="dashboard_recent_learning_class_box">
                             <div class="recent_learning_class_title_cover">
                                 <div class="recent_learning_class_title">
-                                    <a>강의명 : 스스로 배우는 php 뭐시기뭐시기</a>
+                                    <a>강의명 : {{ item.ClassTitle }}</a>
                                 </div>
                             </div>
                             <div class="recent_learning_class_content_cover">
                                 <div class="recent_learning_class_content">
-                                    <p>강의내용 : 스스로 배우는 php 뭐시기뭐시기</p>
+                                    <p>강의내용 : {{ item.ClassDescription }}</p>
                                 </div>
                             </div>
                             <div class="recent_learning_class_progress_cover">
                                 <div class="recent_learning_class_progress">
                                     <span>진도율 :</span>
-                                    <span>2강</span>
-                                    <span>/</span>
-                                    <span>19강</span>
-                                    <span>(10.47%)</span>
+                                    <span>{{ flaggedChaptersCount }}강</span>
+                                    <span style="margin-left: 5px; margin-right: 5px;">/</span>
+                                    <span>{{ totalChaptersCount }}강</span>
+                                    <span>({{ percentageFlaggedChapters }}%)</span>
                                 </div>
-                                <p>며칠전</p>
+                                <p>{{ getRelativeTime(item.updated_at) }}</p>
                             </div>
-                            <div class="recent_learning_class_progress_bar_cover">
+                            <div>
+                                <progress class="class_datail_watch_progress_bar_progress" :value="percentageFlaggedChapters"  min="0" max="100" id="progress"></progress>
+                            </div>
+                            <!-- <div class="recent_learning_class_progress_bar_cover">
                                 <div role="progressbar" aria-valuemax="100" aria-valuemin="0" aria-valuenow="10.53" aria-label="진도율" class="recent_learning_class_progress_bar"></div>
-                            </div>
+                            </div> -->
                             <div class="recent_learning_class_button_cover">
                                 <div class="recent_learning_class_button">
-                                    <button>바로 학습</button>
+                                    <a :href="'/classboarddetail/' + item.ClassID">바로 학습</a>
                                 </div>
                             </div>
                         </div>
@@ -74,7 +77,7 @@
                                     <span>{{ convertToKoreanDay(day) }} : </span>
                                     <span>학습 강의 : </span>
                                     <span> {{ dayData.classFlagCount }}개</span>
-                                    <span> / </span>
+                                    <span style="margin-left: 5px; margin-right: 5px;">/</span>
                                     <span>학습 챕터 : </span>
                                     <span> {{ dayData.chapterFlagCount }}개</span>
                                 </div>
@@ -116,17 +119,17 @@
                                     <span>{{ month }}월 : </span>
                                     <span>학습 강의 : </span>
                                     <span>{{ data.classFlagCount }}개</span>
-                                    <span> / </span>
+                                    <span style="margin-left: 5px; margin-right: 5px;">/</span>
                                     <span>학습 챕터 : </span>
                                     <span>{{ data.chapterFlagCount }}개</span>
                                 </div>
                             </div>
                             <div class="weekly_study_class_total_cover">
                                 <div class="weekly_study_class_total">
-                                    <span>총 학습 강의 : {{ totalClassCount }}</span>
+                                    <span>총 학습 강의 : {{ monthTotalClassCount }}</span>
                                 </div>
                                 <div class="weekly_study_class_total">
-                                    <span>총 학습 챕터 : {{ totalChapterCount }}</span>
+                                    <span>총 학습 챕터 : {{ monthTotalChapterCount }}</span>
                                 </div>
                             </div>
                         </div>
@@ -558,6 +561,15 @@ export default {
             NewUserPassword: '',
             NewUserPasswordChk: '',
 
+            monthTotalClassCount: 0,
+            monthTotalChapterCount: 0,
+
+            flaggedChaptersCount: 0,
+            totalChaptersCount: 0,
+            percentageFlaggedChapters: 0,
+            recentClassInfoData: {},
+
+
         }
     },
 
@@ -613,7 +625,12 @@ export default {
                 this.frmAddressData.UserPostcode = response.data.userData.UserPostcode;
                 this.frmAddressData.UserRoadAddress = response.data.userData.UserRoadAddress;
                 this.frmAddressData.UserDetailedAddress = response.data.userData.UserDetailedAddress;
+                this.flaggedChaptersCount = response.data.flaggedChaptersCount;
+                this.totalChaptersCount = response.data.totalChaptersCount;
+                this.percentageFlaggedChapters = response.data.percentageFlaggedChapters;
+                this.recentClassInfoData = response.data.recentClassInfoData;
                 this.calculateTotals();
+                this.monthcalculateTotals();
             })
             .catch(error => {
                 console.error('Error fetching data:', error);
@@ -720,13 +737,13 @@ export default {
         },
         convertToKoreanDay(day) {
         const dayMap = {
-                'Mon': '월요일',
-                'Tue': '화요일',
-                'Wed': '수요일',
-                'Thu': '목요일',
-                'Fri': '금요일',
-                'Sat': '토요일',
-                'Sun': '일요일',
+                'Mon': '월',
+                'Tue': '화',
+                'Wed': '수',
+                'Thu': '목',
+                'Fri': '금',
+                'Sat': '토',
+                'Sun': '일',
             };
 
             return dayMap[day] || day;
@@ -752,13 +769,12 @@ export default {
                 this.fetchData();
             }
 	    },
-        totalClassCount() {
-        // 총 학습 강의 개수 계산
-        return Object.values(this.monthlyStats).reduce((total, data) => total + data.classFlagCount, 0);
-        },
-        totalChapterCount() {
-        // 총 학습 챕터 개수 계산
-        return Object.values(this.monthlyStats).reduce((total, data) => total + data.chapterFlagCount, 0);
+        monthcalculateTotals() {
+            this.monthTotalClassCount = Object.values(this.monthlyStats)
+                .reduce((total, data) => total + data.classFlagCount, 0);
+
+            this.monthTotalChapterCount = Object.values(this.monthlyStats)
+                .reduce((total, data) => total + data.chapterFlagCount, 0);
         },
         openDaumPostcode() {
             new daum.Postcode({
@@ -860,6 +876,27 @@ export default {
                 alert('비밀번호 변경에 실패하셨습니다.');
             });
         },                   
+        getRelativeTime(updatedAt) {
+            const now = new Date();
+            const updatedDate = new Date(updatedAt);
+            const timeDiff = now - updatedDate;
+            
+            // 밀리초(ms)를 일(day), 시간(hour), 분(minute) 등으로 변환
+            const seconds = Math.floor(timeDiff / 1000);
+            const minutes = Math.floor(seconds / 60);
+            const hours = Math.floor(minutes / 60);
+            const days = Math.floor(hours / 24);
+
+            if (days > 0) {
+                return `${days}일 전`;
+            } else if (hours > 0) {
+                return `${hours}시간 전`;
+            } else if (minutes > 0) {
+                return `${minutes}분 전`;
+            } else {
+                return '방금 전';
+            }
+        },
     }
 }
 </script>

@@ -72,8 +72,8 @@
             <!-- 강의 소개 -->
 			<div class="class_tab_menu_div">
 				<ul class="class_tabs">
-					<li @click="clickFlgTab = 0;" class="class_tab_link current" data-tab="class_tab1">강의 소개</li>
-					<li @click="clickFlgTab = 1;" class="class_tab_link" data-tab="class_tab2">수강평</li>
+					<li @click="clickFlgTab = 0; solve = null; sortData = 0;" :class="{'class_tab_link_on': sortData == 0}" class="class_tab_link current" data-tab="class_tab1">강의 소개</li>
+					<li @click="clickFlgTab = 1; solve = null; sortData = 1;" :class="{'class_tab_link_on': sortData == 1}" class="class_tab_link" data-tab="class_tab2">수강평</li>
 					<!-- <li @click="clickFlgTab = 2;" class="class_tab_link" data-tab="class_tab3">커뮤니티</li> -->
 					<!-- <li @click="clickFlgTab = 3;" class="class_tab_link" data-tab="class_tab4">공지사항</li> -->
 				</ul>
@@ -108,7 +108,17 @@
 					<p>커리큘럼</p>
 				</div>
 				<div id="class_tab1" class="class_tab_content">
-					<p>커리큘럼</p>
+					<div class="class_tab_content_curriculum">
+						<div class="class_tab_content_curriculm_title">
+							<p>{{ classCuriData.ChapterTitle }}</p>
+						</div>
+						<div>
+							<p>{{ classCuriData.LessonTitle }}</p>
+						</div>
+						<div>
+							<p>{{ classCuriData.LessonContent }}</p>
+						</div>
+					</div>
 				</div>
 			</div>	
 
@@ -528,7 +538,9 @@ export default {
 			enrollmentCnt: {},
 			// pagination: {},
 			// page: {},
-			hovered: false,
+			solve: null,
+			sortData: 0,
+			classCuriData: {},
         }
     },
 	mounted() {
@@ -549,6 +561,7 @@ export default {
 			console.log(response.data);
 			this.detailClassItems = response.data.result;
 			this.enrollmentCnt = response.data.userCnt.user_count;
+			this.classCuriData = response.data.classCuri;
 
 			// if(this.clickFlgTab === 1) {
 				axios.get('/classboarddetailreview/' + this.ClassID)

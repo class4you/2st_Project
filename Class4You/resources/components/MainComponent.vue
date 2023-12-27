@@ -17,7 +17,7 @@
                                                         </a>
                                                     </Slide>
                                                     <template #addons>
-                                                        <Navigation />
+                                                        <!-- <Navigation /> -->
                                                         <Pagination />
                                                         <div style="margin-bottom: 10px;"></div>
                                                     </template>

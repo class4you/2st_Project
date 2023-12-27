@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\ClassInfo;
 use App\Models\Instructor;
 use App\Models\Enrollment;
+use App\Models\Chapter;
+use App\Models\Lesson;
 use App\Models\ClassLanguagelink;
 use App\Models\ClassDiffiBanner;
 use Illuminate\Support\Facades\Auth;
@@ -369,6 +371,15 @@ class ClassInfoController extends Controller
         ->first();
         
         Log::debug($userCnt);
+
+        // 챕터 레슨 값 받아오기
+        $classCuri = Chapter::select('chapters.ChapterTitle','lessons.LessonTitle','lessons.LessonContent')
+                ->join('lessons','chapters.ChapterID','lessons.ChapterID')
+                ->join('class_infos','class_infos.ClassID','chapters.ClassID')
+                ->where('class_infos.ClassID', $ClassID)
+                ->first();
+
+        Log::debug($classCuri);
         // $result = ClassInfo::select('class_infos.*', DB::raw(count(enrollments.UserID)))
 		// 	->join('instructors','instructors.InstructorID','class_infos.InstructorID')
         //     ->join('enrollments','enrollments.ClassID','class_infos.ClassID')
@@ -437,7 +448,8 @@ class ClassInfoController extends Controller
         // Log::debug('***** getClassBoardDetailShow End *****');
             return response()->json([
                 'result' => $result,
-                'userCnt' => $userCnt
+                'userCnt' => $userCnt,
+                'classCuri' => $classCuri,
             ]);
         }    
     }
