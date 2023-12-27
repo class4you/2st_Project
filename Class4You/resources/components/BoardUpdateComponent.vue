@@ -41,7 +41,7 @@
 
         <div class="mantine-InputWrapper-root mantine-Textarea-root mantine-1y7fzyr">
             <div class="mantine-Input-wrapper mantine-Textarea-wrapper mantine-1v7s5f8">
-                <textarea class="mantine-Input-input mantine-Textarea-input mantine-goibal" v-model="newBoardItem.BoardTitle"  id="title" name="title" aria-label="title" aria-invalid="false" style="height: 39px;"></textarea>
+                <textarea class="mantine-Input-input mantine-Textarea-input mantine-goibal" v-model="newBoardItem.BoardTitle"  id="title" name="title" aria-label="title" placeholder="제목에 핵심 내용을 요약해보세요." aria-invalid="false"></textarea>
             </div>
         </div>
 
@@ -57,9 +57,7 @@
                     <div class="editor-toolbar-container sticky ">
                         <div tabindex="0" class="toolbar-group">
                             <!-- 게시물 입력 부분 -->
-                            <textarea v-model="newBoardItem.BoardComment"
-                                style="display: flex; flex-direction: column; height: 100%; width: 100%; min-height: 480px; max-height: 480px; border-radius: 8px; border: 1px solid #ccc; resize: none;">
-                            </textarea>
+                            <textarea class="board_insert_textarea" v-model="newBoardItem.BoardComment" placeholder="게시물을 입력하세요..."></textarea>
                         </div>
                     </div>
                 </div>
