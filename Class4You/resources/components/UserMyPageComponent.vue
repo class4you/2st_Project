@@ -55,7 +55,7 @@
                         <div class="dashboard_weekly_study_class_box">
                             <div class="weekly_study_class_title_cover">
                                 <div class="weekly_study_class_title">
-                                    <button class="weekly_study_class_btn" @click="decrementWeek">◀</button>
+                                    <button class="weekly_study_class_btn" @click="decrementWeek"><svg xmlns="http://www.w3.org/2000/svg" style="margin-top: 7px;" width="16" height="16" fill="currentColor" class="bi bi-chevron-left" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/></svg></button>
                                     <div class="weekly_study_class_title_input_cover">
                                         <div class="weekly_study_class_title_input_label">
                                             <label for="">주차선택</label>
@@ -66,7 +66,7 @@
                                         </div>
                                     </div>
                                     <input type="hidden" value="">
-                                    <button class="weekly_study_class_btn" @click="incrementWeek">▶</button>
+                                    <button class="weekly_study_class_btn" @click="incrementWeek"><svg xmlns="http://www.w3.org/2000/svg" style="margin-top: 7px;" width="16" height="16" fill="currentColor" class="bi bi-chevron-right" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/></svg></button>
                                 </div>
                             </div>
                             <div class="weekly_study_class_data_cover">
@@ -98,7 +98,7 @@
                         <div class="dashboard_annual_study_class_box">
                             <div class="weekly_study_class_title_cover">
                                 <div class="weekly_study_class_title">
-                                    <button @click="prevYear" class="weekly_study_class_title_button">◀</button>
+                                    <button @click="prevYear" class="weekly_study_class_title_button"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-left" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/></svg></button>
                                     <div class="weekly_study_class_title_input_cover">
                                         <div class="weekly_study_class_title_input_label">
                                         </div>
@@ -108,7 +108,7 @@
                                         <p>{{ selectedYear }}년</p>
                                     </div>
                                     <input type="hidden" value="">
-                                    <button  @click="nextYear" :disabled="isNextYearDisabled" class="weekly_study_class_title_button">▶</button>
+                                    <button  @click="nextYear" :disabled="isNextYearDisabled" class="weekly_study_class_title_button"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-right" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/></svg></button>
                                 </div>
                             </div>
                             <div class="weekly_study_class_data_cover">

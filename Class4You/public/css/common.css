@@ -5461,10 +5461,21 @@ font-size: 15px;
 }
 
 
+.weekly_study_class_btn {
+    opacity: 0.3;
+}
 
+.weekly_study_class_btn:hover {
+    opacity: 1;
+}
 
+.weekly_study_class_title_button {
+    opacity: 0.3;
+}
 
-
+.weekly_study_class_title_button:hover {
+    opacity: 1;
+}
 
 
 
