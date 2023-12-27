@@ -23580,7 +23580,7 @@ var store = (0,vuex__WEBPACK_IMPORTED_MODULE_3__.createStore)({
       userLoginChk: null,
       UserID: null,
       shouldShowCarousel: false,
-      myPageClickFlgTab: 2,
+      myPageClickFlgTab: 1,
       // 최현희
       // 라라벨 데이터 저장용
       laravelData: []
