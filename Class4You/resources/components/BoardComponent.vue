@@ -180,7 +180,7 @@
 							</div>
 							<div class="community_right_side">
 								<div class="ranking_container">
-								<p class="weeklyranking">주간 인기 순위</p>
+								<p class="weeklyranking">주간 답변 랭킹</p>
 								<ul class="ranking_weekly_popular_writes_list">
 									<li class="ranking_weekly_popular_write">
 									<div>
