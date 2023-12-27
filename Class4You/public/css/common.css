@@ -2605,7 +2605,7 @@ progress[value]::-webkit-progress-bar{
 }
 
 .weeklyranking{
-    padding: 1rem 2.5rem 0.7rem;
+    padding: 1rem 2rem 0rem;
     color: #333236;
     font-weight: 700;
     line-height: 2.8rem;
@@ -2976,6 +2976,8 @@ font-size: 15px;
     clip: rect(1px,1px,1px,1px);
     white-space: nowrap;
 }
+.edith
+
 .comment_writer{
     color: #006effdc!important;
 }
@@ -3173,6 +3175,12 @@ font-size: 15px;
 
 
 /* 게시판 컨테이너 스타일 */
+
+
+
+
+
+
 .board_container{
     width: 100%;
     max-width: calc(100% - 440px); /* 예시로 440px 감안 */
@@ -3591,7 +3599,7 @@ font-size: 15px;
     padding: 30px;
     background: var(--card-bg);
     border-radius: 0.3rem;
-    border: 2px solid rgba(169, 169, 169, 0.3);
+    border: 2px solid rgb(139 147 255 / 30%);
     width: 100%;
     box-sizing: border-box;
     margin-bottom: 50px;
@@ -3616,7 +3624,7 @@ font-size: 15px;
 .postInfo{
     margin-bottom: 10px;
     padding-bottom: 10px;
-    border-bottom: 1px solid #999;
+    border-bottom: 2px solid rgb(139 147 255 / 30%);
 }
 .postInfo p{
     font-size: 12px;
@@ -3705,7 +3713,7 @@ font-size: 15px;
 .reviewBox {
     width: 100%;
     padding: 10px 0px;
-    border-bottom: 1px solid #999;
+    border-bottom: 2px solid rgb(139 147 255 / 30%);
     font-size: 15px;
 }
 /* 수정 삭제 버튼 */
@@ -3841,22 +3849,52 @@ font-size: 15px;
     line-height: 1.5;
     margin-bottom: 10px;
 }
-
+.comment_editBtn{
+    margin-right: 10px;
+    background-color: #0400ff6d;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 700;
+    color: #fff;
+    border-radius: 5px;
+}
 
 .commentActions button {
     margin-right: 10px;
-    background-color: #ccc;
     border: none;
     padding: 5px 10px;
     cursor: pointer;
 }
-
+.commentActions_deleteBtn{
+    margin-right: 10px;
+    background-color: #002cff6d;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 700;
+    color: #fff;
+    border-radius: 5px;
+}
+.commentActions_reportBtn{
+    margin-right: 10px;
+    background-color: #ff00006d;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 700;
+    color: #fff;
+    border-radius: 5px;
+}
 .commentActions button:last-child {
     margin-right: 0px;
 }
 
 .reviewPost {
-    border: 1px solid #ccc;
+    border: 2px solid rgb(139 147 255 / 30%);
 }
 
 .reviewPost textarea {
@@ -3868,11 +3906,15 @@ font-size: 15px;
     }
 
 
+
+
 .reviewPost button {
     height: 110px;
     width: 100px;
     border: none;
     cursor: pointer;
+    background-color: rgba(55, 71, 246, 0.468);
+    color: white;
 }
 .reviewPost button:hover {
     background-color: rgba(16, 36, 251, 0.468);
@@ -3923,7 +3965,7 @@ font-size: 15px;
 
         
     }
-    .board_rewrite {
+    /* .board_rewrite {
         margin-right: 10px;
         background-color: #ccc;
         border: none;
@@ -3937,7 +3979,7 @@ font-size: 15px;
         box-sizing: border-box;
         font-family: 'Noto Sans KR', sans-serif;
         font-weight: 700;
-    }
+    } */
 
     .leftNav {
         width: 100%;
