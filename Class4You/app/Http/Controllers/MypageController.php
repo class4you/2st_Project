@@ -27,11 +27,13 @@ class MypageController extends Controller
             ->join('enrollments', 'users.UserID', 'enrollments.UserID')
             ->join('class_infos', 'class_infos.ClassID', 'enrollments.ClassID')
             ->where('enrollments.UserID', $UserID)
+            ->orderBy('enrollments.created_at', 'desc')
             ->get();
 
         $boardData = User::select('boards.BoardTitle', 'boards.BoardFlg', 'boards.created_at', 'boards.BoardID')
             ->join('boards', 'boards.UserID', 'users.UserID')
             ->where('boards.UserID', $UserID)
+            ->orderBy('boards.created_at', 'desc')
             ->get();
 
 
