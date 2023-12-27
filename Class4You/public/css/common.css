@@ -1706,13 +1706,18 @@ ul.class_tabs li.class_current {
 
 }
 
+<<<<<<< HEAD
 .class_tab_content_chapter_title {
+=======
+.class_tab_content_curriculm_title {
+>>>>>>> d7e5258a03b3dfa265c2f4bc471a8605ec30a503
     font-size: 20px;
     font-weight: bold;
     padding: 5px;
     border-radius: 3px;
     background-color: #ecd5e3;
 }
+<<<<<<< HEAD
 
 .class_tab_content_lesson_title {
     padding: 10px;
@@ -1723,6 +1728,8 @@ ul.class_tabs li.class_current {
     border-radius: 3px;
     padding: 10px;
 }
+=======
+>>>>>>> d7e5258a03b3dfa265c2f4bc471a8605ec30a503
 
 /* ============================================================================================================ */
 /* 강의게시판rating */
@@ -5081,11 +5088,11 @@ font-size: 15px;
     text-align: center;
     font-size: 15px;
     padding: 10px 30px;
-    background-color:#324e96;
+    color: #5a5a5a;
+    background-color: #f3f3f3;
     display: inline-block;
     border-radius: 10px;
-    color: #fff;
-    font-weight: 500;
+    font-weight: 700;
 }
 
 @media only screen and (max-width: 900px) {
@@ -5206,7 +5213,7 @@ font-size: 15px;
 .users_basic_information_title_name {
     /* text-align: center; */
     color: #5a5a5a;
-    background-color: #e7e7e7;
+    background-color: #f3f3f3;
     display: inline-block;
     font-size: 15px;
     /* width: 25%; */
@@ -5682,6 +5689,7 @@ footer {
     justify-content: space-between;
     padding-top: 30px;
     padding-bottom: 30px;
+    gap: 15%;
 }
 
 .footer_info_btn {
@@ -5691,14 +5699,31 @@ footer {
     align-items: center;
 }
 
+<<<<<<< HEAD
 .footer_info_icon {
     display: flex;
     justify-content: space-between;
     align-items: center;
     width: 10%;
+=======
+/* .footer_info_btn {
+    text-decoration: none;
+} */
+
+/* .footer_info_btn>li>a:visited {
+    color: #858484;
+} */
+
+.footer_info_icon {
+    display: flex;
+    align-items: center;
+    flex-direction: row-reverse;
+>>>>>>> d7e5258a03b3dfa265c2f4bc471a8605ec30a503
 }
 
-
+/* .footer_info_icon, .footer_info {
+    flex-grow: 1;
+} */
 
 
 
