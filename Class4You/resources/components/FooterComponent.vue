@@ -26,6 +26,9 @@
                         <p>©INFLAB. ALL RIGHTS RESERVED</p>
                     </div>
                 </div>
+                <div class="footer_info_icon">
+
+                </div>
 
             </div>
         </footer>
