@@ -4369,6 +4369,7 @@ font-size: 15px;
     color: #000;
     justify-content: space-between;
     margin: 0.75rem;
+    align-items: center;
 }
 
 .qustuon_list_pageing a {
@@ -4376,12 +4377,11 @@ font-size: 15px;
     display: inline-block;
     padding: 8px 7px;
     border-radius: 8px;
-    border: 2px solid #3d64bf80;
     text-decoration: none;
 }
 
 .qustuon_list_pageing a:hover {
-    background-color: #3d414151; /* 호버 시 밝은 초록색 배경색으로 변경 */
+    background-color: #3d3d4151; /* 호버 시 밝은 초록색 배경색으로 변경 */
     color: #ffffff; /* 호버 시 검은색 글자색으로 변경 */
 }
 

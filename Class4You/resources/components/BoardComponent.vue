@@ -169,10 +169,10 @@
 								<div class="qustuon_list_pageing">
 									<div v-for="(page, index) in pagination" :key="index">
 										<template v-if="page.url !== null">
-											<a @click.prevent="fetchData(page.label)" href="#">{{ page.label }}</a>
+											<a @click.prevent="fetchData(page.label)" href="#">{{ replaceString(page.label) }}</a>
 										</template>
 										<template v-else>
-											<span>{{ page.label }}</span>
+											<span>{{ replaceString(page.label) }}</span>
 										</template>
 									</div>
 								</div>
@@ -232,9 +232,10 @@ export default {
                 this.newUserCntItems = response.data.userCntData;
                 this.pagination = response.data.boardData.links;
                 this.page = response.data.boardData.current_page;
-				// console.log(response.data.current_page);
-				console.log(response.data);
-				console.log(response.data.userCntData);
+				// console.log(response.data.boardData.links);
+				// console.log(response.data.boardData.current_page);
+				// console.log(response.data);
+				// console.log(response.data.userCntData);
             })
             .catch(error => {
                 console.error('Error fetching data:', error);
@@ -262,6 +263,18 @@ export default {
 		// });
 
 		// }
+		replaceString(str) {
+			const arrList = {
+				'&laquo;': '≪',
+				'&raquo;': '≫'
+			}
+			//  &laquo; 이전
+			//  다음 &raquo;
+			str = str.replace('&laquo;', '≪');
+			str = str.replace('&raquo;', '≫');
+			console.log(str);
+			return str;
+		},
 	}
 }
 
