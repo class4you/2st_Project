@@ -2670,7 +2670,9 @@ progress[value]::-webkit-progress-bar{
     font-size: 14px;
     border: 0;
     background: none;
+    outline: none;
 }
+
 
 .search_item_button {
     min-width: 96px;
@@ -3685,8 +3687,20 @@ font-size: 15px;
     height: 40px;
     border-radius: 50%;
     border: none;
-    background: #ccc;
+    /* background-color:#346ba3 ; */
+    /* border: 1px solid #000; */
     cursor: pointer;
+    background-color: transparent;
+}
+
+.reco button svg {
+    color: #1749ffa8;
+    opacity: 0.5;
+}
+
+.reco button svg:hover {
+    color: #1749ffa8;
+    opacity: 1;
 }
 .reviewBox {
     width: 100%;
@@ -4044,7 +4058,6 @@ font-size: 15px;
 
     /* 글 작성 페이지 */
     .Board_Insert_Box{
-        /* margin-left: 5px; */
         margin-top: 20px;
         padding: 0 10vw;
     }
@@ -4107,7 +4120,6 @@ font-size: 15px;
     }
     
     .mantine-1y7fzyr {
-        font-family: Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
         line-height: 1.5;
     }
     
@@ -4116,24 +4128,25 @@ font-size: 15px;
     }
     
     .mantine-goibal {
-        font-family: Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
-        -webkit-tap-highlight-color: transparent;
-        appearance: none;
-        resize: none;
         box-sizing: border-box;
         color: rgb(0, 0, 0);
         display: block;
-        text-align: left;
-        border-width: 0px;
         background-color: transparent;
-        min-height: 1.75rem;
         outline: 0px;
         margin-bottom: 16px;
         width: 100%;
         font-size: 24px;
         font-weight: 700;
-        line-height: 1.35;
-        padding: 0px !important;
+        /* line-height: 1.35; */
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        padding: 10px 10px;
+        height: 60px;
+        resize: none;
+    }
+
+    .mantine-goibal:focus {
+        outline: 1px solid #949494;
     }
     
     .css-140imd4 {
@@ -4393,8 +4406,23 @@ font-size: 15px;
     color: #ffffff; /* 호버 시 검은색 글자색으로 변경 */
 }
 
+.board_insert_textarea {
+    display: flex; 
+    flex-direction: column; 
+    height: 100%; 
+    width: 100%; 
+    min-height: 480px; 
+    max-height: 480px; 
+    border-radius: 8px; 
+    border: 1px solid #ccc; 
+    resize: none;
+    padding: 10px 10px;
+    font-size: 18px;
+}
 
-
+.board_insert_textarea:focus {
+    outline: 1px solid #949494;
+}
 
 
 
