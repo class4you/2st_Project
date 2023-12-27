@@ -195,6 +195,11 @@ class MypageController extends Controller
 
         // ==============================================================================================
         // 최근 강의 결과
+
+        $recentClassInfoData = DB::table('class_infos')
+            ->where('updated_at', '=', DB::table('class_infos')->max('updated_at'))
+            ->get();
+
         $recentClassData = User::join('enrollments', 'users.UserID', 'enrollments.UserID')
             ->join('class_infos', 'enrollments.ClassID', 'class_infos.ClassID')
             ->join('chapters', 'class_infos.ClassID', 'chapters.ClassID')
@@ -346,7 +351,7 @@ class MypageController extends Controller
             'boardData' => $boardData,
             'weeklyStats' =>  $weeklyStats,
             'monthlyStats' =>  $monthlyStats,
-            'recentClassData' => $recentClassData,
+            'recentClassInfoData' => $recentClassInfoData,
             'flaggedChaptersCount' =>  $flaggedChaptersCount,
             'totalChaptersCount' =>  $totalChaptersCount,
             'percentageFlaggedChapters' =>  $percentageFlaggedChapters,
