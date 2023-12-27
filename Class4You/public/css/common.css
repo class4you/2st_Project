@@ -5687,26 +5687,11 @@ footer {
     align-items: center;
 }
 
-<<<<<<< HEAD
 .footer_info_icon {
     display: flex;
     justify-content: space-between;
     align-items: center;
     width: 10%;
-=======
-/* .footer_info_btn {
-    text-decoration: none;
-} */
-
-/* .footer_info_btn>li>a:visited {
-    color: #858484;
-} */
-
-.footer_info_icon {
-    display: flex;
-    align-items: center;
-    flex-direction: row-reverse;
->>>>>>> d7e5258a03b3dfa265c2f4bc471a8605ec30a503
 }
 
 /* .footer_info_icon, .footer_info {
