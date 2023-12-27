@@ -5,11 +5,11 @@
             <div class="class_detail_watch_contents">
                 <div class="class_detail_watch_nav">
                     <div class="class_detail_watch_list">
-                        <div class="class_datail_watch_chapter">PHP 기초 문법 학습</div>
+                        <a class="class_datail_watch_chapter" :href="'/classboarddetail/' + this.ClassID">강의 대시보드 가기</a>
                         <!-- <div>{{ClassDataItem.ClassTitle}}</div> -->
                         <!-- <div>전체 진도율</div> -->
-                        <a :href="'/classboarddetail/' + this.ClassID">{{ClassDataItem.ClassTitle}}</a>
-                        <div></div>
+                        <a>{{ClassDataItem.ClassTitle}}</a>
+                        <button>수강평 작성</button>
                     </div>
                 </div>
                 <div class="class_detail_watch_main">
@@ -173,7 +173,7 @@ export default {
         initYoutubePlayer() {
             // YouTube Player 생성
             this.player = new window.YT.Player('youtube-player', {
-            height: '600',
+            height: '550',
             width: '1000',
             videoId: this.videoId,
             events: {

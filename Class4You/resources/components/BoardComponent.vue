@@ -17,7 +17,6 @@
 						</div>
 					</div>
 				</div>
-				
 				<div class="board_container_main">
 					<div class="board_contents">
 						<div class="main_mrap">

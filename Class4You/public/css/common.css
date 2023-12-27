@@ -2005,9 +2005,20 @@ ul.class_tabs li.class_current {
     color: #fff;
 }
 
+.class_detail_watch_list button {
+    height: 40px;
+    padding: 10px 20px;
+    border: none;
+    margin-top: 5px;
+    margin-right: 30px;
+    border-radius: 5px;
+    background-color: #474747;
+    color: #fff;
+    cursor: pointer;
+}
 
 .class_detail_watch {
-    background-color: #222222;
+    background-color: rgb(124, 124, 124);
     box-sizing: border-box;
     margin: 0;
     width: 100vw;
@@ -2062,7 +2073,7 @@ ul.class_tabs li.class_current {
     /* display: flex; */
     /* flex-direction: column; */
     /* height: 42vw; */
-    padding: 35px 0px;
+    padding: 34px 0px;
 }
 
 .class_detail_watch_main_content iframe{
@@ -2090,7 +2101,9 @@ ul.class_tabs li.class_current {
     width: 100%;
     padding: 15px ;
     gap: 50px;
-    background-color: rgb(134, 142, 150);
+    background-color: rgb(241, 243, 245);
+    border-top: 1px solid rgb(222, 226, 230);
+    border-bottom: 1px solid rgb(222, 226, 230);
 }
 
 .class_detail_watch_right_side {
@@ -2157,7 +2170,9 @@ ul.class_tabs li.class_current {
 
 .side_content_curriculum_title {
     width: 100%;
-    background-color: #eceffd;
+    background-color: rgb(241, 243, 245);
+    border-top: 1px solid rgb(222, 226, 230);
+    border-bottom: 1px solid rgb(222, 226, 230);
     /* border-top: 1px solid #dedede ;
     border-bottom: 1px solid #dedede ; */
     padding: 20px 20px;
@@ -2170,6 +2185,10 @@ ul.class_tabs li.class_current {
     justify-content: space-between;
     font-size: 16px;
     line-height: 20px;
+}
+
+.side_curriculum_top p {
+    font-weight: 700;
 }
 
 .side_curriculum_bottom {
@@ -2187,8 +2206,8 @@ ul.class_tabs li.class_current {
 }
 
 .class_datail_watch_side_title h3 {
-    font-size: 18px;
-    font-weight: 500;
+    font-size: 20px;
+    font-weight: 700;
     margin-bottom: 20px;
     color: #4f4f4f;
 }
@@ -2232,7 +2251,7 @@ ul.class_tabs li.class_current {
 
 .class_datail_watch_progress_bar_progress {
     width: 100%;
-    height: 20px;
+    height: 10px;
     margin-bottom: 20px;
 }
 
@@ -2251,16 +2270,16 @@ progress[value]::-webkit-progress-bar{
 }
 
 #progress[value]::-webkit-progress-value{
-    background-image: linear-gradient(to left, #2ecc71, #3498db);
+    background-image: linear-gradient(to left, #4E81F8, #9dbaff);
 }
 
 
 .side_content_curriculum_content_1 {
-    border-left: 10px solid #585bff;
+    border-left: 10px solid #85aaff;
     /* margin: 10px 0px 10px 0px; */
     padding: 20px 40px;
     font-weight: 700;
-    background-color: #c0f8e1;
+    background-color: #e4ecfc;
     /* margin-bottom: 20px; */
 }
 
@@ -2304,22 +2323,22 @@ progress[value]::-webkit-progress-bar{
 }
 
 .class_detail_watch_next_btn {
-    background-color:#3d64bf80;
+    background-color:#474747;
     padding: 10px 20px;
     border-radius: 10px;
     border: none;
     gap: 20px;
-    color: #ffffff76;
+    color: #fff;
+    opacity: 0.8;
 }
 
 .class_detail_watch_next_btn:hover {
-    background-color:#4e81f8;
     padding: 10px 20px;
     border-radius: 10px;
     border: none;
     gap: 20px;
-    color: #ffffff;
     cursor: pointer;
+    opacity: 1;
 }
 
 
@@ -3112,6 +3131,7 @@ font-size: 15px;
     margin: 20px auto 10px auto;
     font-size: 14px;
     color: #999;
+    padding: 0 10vw;
 }
 .whr span:last-child{
     font-weight: 700;
@@ -3122,7 +3142,7 @@ font-size: 15px;
 }
 
 .board_detail_wrap {
-    padding: 0 10vw;
+    
 }
 
 /* 배너 스타일 */
@@ -3143,6 +3163,7 @@ font-size: 15px;
 .mainSec{
     width: 100%;
     margin: 0 auto;
+    padding: 0 10vw;
 }
 .mainSectionpost {
     width: 100%;
