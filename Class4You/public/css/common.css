@@ -1651,14 +1651,25 @@ ul.class_tabs li.class_current {
 
 .class_current {
     text-align: start;
-    border: 1px solid #ededed;
+    border: 1px solid #e7e1e1;
     border-radius: 3px;
     margin-top: 30px;
 }
 
+/* .class_current_rating {
+    text-align: start;
+    border: 1px solid #e7e1e1;
+    border-radius: 3px;
+    margin-top: 30px;
+} */
+
+.class_tab_link {
+    cursor: pointer;
+}
+
 .class_tab_content_basic {
     background-color: #5b5b5b;
-    color: #858484; 
+    color: #aba9a9; 
     border-radius: 3px;
     margin-top: 15px;
 }

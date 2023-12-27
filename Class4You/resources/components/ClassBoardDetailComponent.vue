@@ -93,6 +93,12 @@
 					<p>기초 설명</p>
 				</div>
 				<div id="class_tab1" class="class_tab_content class_tab_content_basic">
+					<p><strong>추천드려요</strong></p>
+					<p>✔코딩의 기초를 다지고싶은 분</p>
+					<p>✔코딩 스터디를 원하시는 분</p>
+					<p>✔학습 성취감을 느끼고 싶은 분</p>
+				</div>
+				<div class="class_tab_content">
 					<p>{{ detailClassItems.ClassDescription }}</p>
 				</div>
 			</div>
