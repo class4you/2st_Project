@@ -4677,7 +4677,7 @@ font-size: 15px;
     border-radius: 10px;
     display: flex;
     flex-direction: column;
-    padding: 30px 20px;
+    padding: 15px 20px;
 }
 
 .recent_learning_class_title_cover {
@@ -4777,7 +4777,7 @@ font-size: 15px;
     -webkit-box-pack: center;
     justify-content: center;
     gap: 0rem;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
 }
 
 .weekly_study_class_title {
@@ -4918,8 +4918,11 @@ font-size: 15px;
 }
 
 .weekly_study_class_total_cover {
-    margin-top: 25px;
+    margin-top: 15px;
     margin-bottom: 15px;
+    display: flex;
+    gap: 20px;
+    justify-content: center;
 }
 
 .weekly_study_class_total {
@@ -5030,6 +5033,7 @@ font-size: 15px;
     display: flex;
     flex-direction: column;
     padding: 30px 20px;
+    height: 365px;
 }
 
 .users_basic_information_cover {
@@ -5039,7 +5043,6 @@ font-size: 15px;
     color: rgb(255, 255, 255);
     text-align: left;
 }
-
 .users_basic_information_title {
     display: flex;
     min-width: 0px;
@@ -5068,7 +5071,6 @@ font-size: 15px;
 
 .users_basic_information_content_cover div {
     width: 100%;
-    display: inline-block;
     margin: auto;
     border: 1px solid #dadada;
     color: #000;
@@ -5078,6 +5080,10 @@ font-size: 15px;
     font-size: 15px;
     font-weight: 500;
     /* background-color: #16264c; */
+}
+
+.users_basic_information_content_cover div p {
+    font-size: 15px;
 }
 
 .users_basic_information_content_cover input {
@@ -5107,6 +5113,7 @@ font-size: 15px;
     color: #ffffffe9;
     font-size: 15px;
     font-weight: 700;
+    cursor: pointer;
 }
 
 .users_basic_information_password_cover {
@@ -5179,6 +5186,7 @@ font-size: 15px;
     font-weight: 700;
     color: #fff;
     font-family: 'Noto Sans KR', sans-serif;
+    cursor: pointer;
 }
 
 .users_basic_address_cover {

@@ -122,6 +122,11 @@ Route::put('/boardNotRecommendedUpdate', [BoardController::class, 'putBoardNotRe
 // 마이페이지 작업
 Route::get('/getmypagedashboard', [MyPageController::class, 'getUserClassData']);
 
+Route::put('/useraddressdataupdate', [MyPageController::class, 'putUserAddressData']);
+Route::put('/userbasicdataupdate', [MyPageController::class, 'putUserbasicData']);
+
+
+
 // 자유게시판 디테일페이지로 이동 라우터
 // Route::get('/boardDetail', [BoardController::class, 'getBoardDetailShow']);
 // Route::get('/classboarddetail/{ClassID}', [ClassInfoController::class, 'getClassBoardDetailShow']);

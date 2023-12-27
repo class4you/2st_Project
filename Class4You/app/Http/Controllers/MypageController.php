@@ -323,7 +323,38 @@ class MypageController extends Controller
         ]);
     }
 
-    function getUserClassTotalData() {
+    function putUserAddressData(Request $request) {
+
+        $user = User::find($request->UserID);
+        if(Auth::check()) {
+            $loggedInUserId = Auth::id(); // 현재 로그인된 사용자의 ID를 가져옴
+            $requestUserId = $request->UserID; // 예시로 리퀘스트에서 user_id를 가져옴
+            if ($loggedInUserId == $requestUserId) {
+                $user->update([
+                    'UserPostcode' => $request->UserPostcode,
+                    'UserRoadAddress' => $request->UserRoadAddress,
+                    'UserDetailedAddress' => $request->UserDetailedAddress,
+                ]);
+                return response()->json($user);
+            }
+        }
+
+    }
+
+    function putUserbasicData(Request $request) {
+        Log::debug($request->UserPhoneNumber);
+
+        $user = User::find($request->UserID);
+
+        if(Auth::check()) {
+            $loggedInUserId = Auth::id(); // 현재 로그인된 사용자의 ID를 가져옴
+            $requestUserId = $request->UserID; // 예시로 리퀘스트에서 user_id를 가져옴
+            if ($loggedInUserId == $requestUserId) {
+                $user->update(['UserPhoneNumber' => $request->UserPhoneNumber]);
+                Log::debug($user);
+                return response()->json($user);
+            }
+        }
 
     }
 }

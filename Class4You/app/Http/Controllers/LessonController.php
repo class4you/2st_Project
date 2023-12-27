@@ -14,8 +14,6 @@ class LessonController extends Controller
 {
     public function updateLessonProgress(Request $request) {
 
-        $UserID = Auth::id();
-
         Lesson::where('LessonID', $request->lessonId)
         ->update([
             'LessonAllRunningTime' => $request->lessonAllRunningTime,
@@ -45,9 +43,8 @@ class LessonController extends Controller
             
             // 모든 챕터가 완료되었다면 강의 플래그를 1로 업데이트
             if ($allChaptersCompleted) {
-                Enrollment::where('ClassID', $classID)
-                ->where('UserID', $UserID)
-                ->update(['EnrollmentFlg' => 1]);
+                Classinfo::where('ClassID', $classID)
+                ->update(['ClassFlg' => 1]);
             }
             Log::debug($allLessonsCompleted);
         }

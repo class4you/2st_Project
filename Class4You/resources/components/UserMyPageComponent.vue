@@ -83,7 +83,8 @@
                                 <div class="weekly_study_class_total">
                                     <span>총 학습 강의 : </span>
                                     <span>{{ totalClassCount }}</span>
-                                    <span> / </span>
+                                </div>
+                                <div class="weekly_study_class_total">
                                     <span>총 학습 챕터 : </span>
                                     <span>{{ totalChapterCount }}</span>
                                 </div>
@@ -123,7 +124,8 @@
                             <div class="weekly_study_class_total_cover">
                                 <div class="weekly_study_class_total">
                                     <span>총 학습 강의 : {{ totalClassCount }}</span>
-                                    <span> / </span>
+                                </div>
+                                <div class="weekly_study_class_total">
                                     <span>총 학습 챕터 : {{ totalChapterCount }}</span>
                                 </div>
                             </div>
@@ -166,13 +168,13 @@
                                 </div>
                                 <div class="users_basic_information_content_cover">
                                     <div>
-                                        <input type="text" name="" id="" :value="newUserInfoItems.UserPhoneNumber">
+                                        <input type="text" name="" id="" v-model="UserPhoneNumber">
                                     </div>
                                 </div>
                             </div>
                             <div class="users_basic_information_button_cover">
                                 <div class="users_basic_information_button">
-                                    <button>전화번호 수정 하기</button>
+                                    <button type="button" @click="updateUserbasicData() ">전화번호 수정 하기</button>
                                 </div>
                             </div>
                         </div>
@@ -189,12 +191,12 @@
                                         <a>우편 번호</a>
                                     </div>
                                     <div class="users_basic_information_title_name">
-                                        <button type="button" class="user_address_button">주소 찾기</button>
+                                        <button type="button" class="user_address_button" @click="openDaumPostcode">주소 찾기</button>
                                     </div>
                                 </div>
                                 <div class="users_basic_information_content_cover">
                                     <div>
-                                        <input type="text" :value="newUserInfoItems.UserPostcode">
+                                        <input type="text" :value="frmAddressData.UserPostcode">
                                     </div>
                                 </div>
                             </div>
@@ -204,7 +206,7 @@
                                 </div>
                                 <div class="users_basic_information_content_cover">
                                     <div>
-                                        <input type="text" :value="newUserInfoItems.UserRoadAddress">
+                                        <input type="text" :value="frmAddressData.UserRoadAddress">
                                     </div>
                                 </div>
                             </div>
@@ -214,14 +216,14 @@
                                 </div>
                                 <div class="users_basic_information_content_cover">
                                     <div>
-                                        <input type="text" :value="newUserInfoItems.UserDetailedAddress">
+                                        <input type="text" v-model="frmAddressData.UserDetailedAddress">
                                         <!-- <p>대구광역시 중구 공평로 105, 노마즈하우스 1528호</p> -->
                                     </div>
                                 </div>
                             </div>
                             <div class="users_basic_information_button_cover">
                                 <div class="users_basic_information_button">
-                                    <button>주소 수정 하기</button>
+                                    <button type="button" @click="updateUserAddressData()">주소 수정 하기</button>
                                 </div>
                             </div>
                         </div>
@@ -543,6 +545,14 @@ export default {
             selectedYear: new Date().getFullYear(),
             yearStart: '',
             yearEnd: '',
+            
+            frmAddressData: {
+                UserPostcode: '',
+                UserRoadAddress: '',
+                UserDetailedAddress: '',
+            },
+            UserPhoneNumber: '',
+
         }
     },
 
@@ -559,6 +569,20 @@ export default {
     mounted() {
         this.calculateWeekdays();
 	    this.calculateCurrentWeek();
+
+        const script = document.createElement('script');
+        script.src = 'https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js';
+        script.async = true;
+
+        // 스크립트 로드 완료 후 실행될 콜백 함수
+        script.onload = () => {
+            // 이제 스크립트를 사용할 수 있음
+            console.log('DaumMapApi.js 로드 완료!');
+            // 여기서부터 DaumMapApi.js를 사용할 수 있음
+        };
+
+        // document.head에 스크립트 추가
+        document.head.appendChild(script);
     },
 
     methods: {
@@ -580,6 +604,10 @@ export default {
                 this.newUserBoardInfoItem = response.data.boardData;
                 this.weeklyStats = response.data.weeklyStats;
                 this.monthlyStats = response.data.monthlyStats;
+                this.UserPhoneNumber = response.data.userData.UserPhoneNumber;
+                this.frmAddressData.UserPostcode = response.data.userData.UserPostcode;
+                this.frmAddressData.UserRoadAddress = response.data.userData.UserRoadAddress;
+                this.frmAddressData.UserDetailedAddress = response.data.userData.UserDetailedAddress;
                 this.calculateTotals();
             })
             .catch(error => {
@@ -727,6 +755,77 @@ export default {
         // 총 학습 챕터 개수 계산
         return Object.values(this.monthlyStats).reduce((total, data) => total + data.chapterFlagCount, 0);
         },
+        openDaumPostcode() {
+            new daum.Postcode({
+            oncomplete: function (data) {
+                this.handleAddressComplete(data);
+            }.bind(this),
+            }).open();
+        },
+        handleAddressComplete(data) {
+            // 도로명 주소의 노출 규칙에 따라 주소를 표시하는 로직
+            var roadAddr = data.roadAddress;
+            var extraRoadAddr = '';
+
+            if (data.bname !== '' && /[동|로|가]$/g.test(data.bname)) {
+                extraRoadAddr += data.bname;
+            }
+
+            if (data.buildingName !== '' && data.apartment === 'Y') {
+                extraRoadAddr += (extraRoadAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+            }
+
+            if (extraRoadAddr !== '') {
+                extraRoadAddr = ' (' + extraRoadAddr + ')';
+            }
+
+            // 주소 정보를 컴포넌트 데이터에 저장
+            this.sampleData = {
+                postcode: data.zonecode,
+                roadAddress: roadAddr,
+            };
+            
+            this.frmAddressData = {
+                UserPostcode: data.zonecode,
+                UserRoadAddress: roadAddr,
+            };
+
+            // this.frmUserData.UserAddress = `${this.sampleData.postcode} ${this.sampleData.roadAddress}`;
+        },
+        updateUserAddressData() {
+            axios.put('/useraddressdataupdate', {
+                UserID : this.newUserInfoItems.UserID,
+                UserPostcode: this.frmAddressData.UserPostcode,
+                UserRoadAddress: this.frmAddressData.UserRoadAddress,
+                UserDetailedAddress: this.frmAddressData.UserDetailedAddress,
+            })
+            .then(response => {
+                // console.log(response.data.UserPostcode);
+                // this.frmAddressData.UserPostcode.unshift(res.data.UserPostcode);
+                // 서버 응답에 대한 로직 수행
+                // this.$router.push('/board');
+            })
+            .catch(error => {
+                // 에러 처리
+                console.error(error);
+            });
+        },
+        updateUserbasicData() {
+            axios.put('/userbasicdataupdate', {
+                UserID : this.newUserInfoItems.UserID,
+                UserPhoneNumber: this.UserPhoneNumber,
+            })
+            .then(response => {
+                console.log(response.data);
+                // this.frmAddressData.UserPostcode.unshift(res.data.UserPostcode);
+                // 서버 응답에 대한 로직 수행
+                // this.$router.push('/board');
+            })
+            .catch(error => {
+                // 에러 처리
+                console.error(error);
+            });
+        },                
     }
 }
 </script>
