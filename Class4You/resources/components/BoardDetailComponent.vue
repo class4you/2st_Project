@@ -3,10 +3,26 @@
         <div class="board_detail_wrap">
         <!-- <div class="whr"><span>게시판</span><span>></span><span>상세 게시판</span></div> -->
         <div class="whr">
-  <router-link to="/board">게시판</router-link>
-  <span>></span>
-  <span>상세 게시판</span>
+            <router-link to="/board">게시판</router-link>
+            <span>></span>
+            <span>상세 게시판</span>
         </div>
+        <div class="main_visual">
+					<div class="main_visual_slider">
+						<div class="main_visual_slider_list">
+							<div class="main_visual_slider_track">
+								<div class="main_visual_slider_track_slick">
+									<div class="main_visual_slider_track_slick_item">
+										<a href="">
+											<img src="/img/banner/banner4.png">
+										</a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+                <div style="margin-bottom: 50px;"></div>
         <section class="mainSectionpost">
             <section class="mainSec row jcB">
                 <div class="postBox">

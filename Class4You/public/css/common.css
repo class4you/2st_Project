@@ -3117,6 +3117,7 @@ font-size: 15px;
     margin: 20px auto 10px auto;
     font-size: 14px;
     color: #999;
+    padding: 0 10vw;
 }
 .whr span:last-child{
     font-weight: 700;
@@ -3127,7 +3128,7 @@ font-size: 15px;
 }
 
 .board_detail_wrap {
-    padding: 0 10vw;
+    
 }
 
 /* 배너 스타일 */
@@ -3148,6 +3149,7 @@ font-size: 15px;
 .mainSec{
     width: 100%;
     margin: 0 auto;
+    padding: 0 10vw;
 }
 .mainSectionpost {
     width: 100%;
