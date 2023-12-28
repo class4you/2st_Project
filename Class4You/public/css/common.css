@@ -678,14 +678,37 @@ footer {
     font-size: 20px;
     font-weight: 700;
     line-height: 25px;
-    color: #000;
+    color: #0b325a;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
 }
 
+.main_container_new_card_title h4{
+    display: -webkit-box;
+    -webkit-line-clamp: 1; /* 두 줄까지만 허용 */
+    -webkit-box-orient: vertical;
+    white-space: normal; /* 텍스트가 두 줄 이상인 경우 줄바꿈을 허용합니다. */
+}
+
+
 .main_container_new_card_content {
+    width: 100%;
     margin-top: 10px;
     font-size: 13px;
     line-height: 20px;
     color: #000;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    font-weight: 500;
+}
+
+.main_container_new_card_content p {
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* 두 줄까지만 허용 */
+    -webkit-box-orient: vertical;
+    white-space: normal; /* 텍스트가 두 줄 이상인 경우 줄바꿈을 허용합니다. */
 }
 
 .main_container_new_card_tag {

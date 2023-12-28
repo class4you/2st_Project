@@ -19,8 +19,8 @@ class CommentSeeder extends Seeder
         $faker = Faker::create();
         foreach (range(1, 10) as $index) {
             $date = $faker->dateTimeBetween('-1 years');
-            $user = $faker->numberBetween(8, 35);
-            $board = $faker->numberBetween(301, 100);
+            $user = $faker->numberBetween(1, 20);
+            $board = $faker->numberBetween(1, 798);
 
         Comment::create([
             'UserID' => $user,
@@ -31,8 +31,8 @@ class CommentSeeder extends Seeder
         ]);
 
                     $date = $faker->dateTimeBetween('-1 years');
-            $user = $faker->numberBetween(8, 35);
-            $board = $faker->numberBetween(301, 100);
+            $user = $faker->numberBetween(1, 20);
+            $board = $faker->numberBetween(1, 798);
 
         Comment::create([
             'UserID' => $user,
@@ -43,8 +43,8 @@ class CommentSeeder extends Seeder
         ]);
 
                     $date = $faker->dateTimeBetween('-1 years');
-            $user = $faker->numberBetween(8, 35);
-            $board = $faker->numberBetween(301, 100);
+            $user = $faker->numberBetween(1, 20);
+            $board = $faker->numberBetween(1, 798);
 
         Comment::create([
             'UserID' => $user,
@@ -67,8 +67,8 @@ EOT,
         ]);
 
                     $date = $faker->dateTimeBetween('-1 years');
-            $user = $faker->numberBetween(8, 35);
-            $board = $faker->numberBetween(301, 100);
+            $user = $faker->numberBetween(1, 20);
+            $board = $faker->numberBetween(1, 798);
 
         Comment::create([
             'UserID' => $user,
@@ -90,8 +90,8 @@ EOT,
 
         
                     $date = $faker->dateTimeBetween('-1 years');
-            $user = $faker->numberBetween(8, 35);
-            $board = $faker->numberBetween(301, 100);
+            $user = $faker->numberBetween(1, 20);
+            $board = $faker->numberBetween(1, 798);
 
         Comment::create([
             'UserID' => $user,
@@ -108,8 +108,8 @@ EOT,
         ]);
 
                     $date = $faker->dateTimeBetween('-1 years');
-            $user = $faker->numberBetween(8, 35);
-            $board = $faker->numberBetween(301, 100);
+            $user = $faker->numberBetween(1, 20);
+            $board = $faker->numberBetween(1, 798);
 
         Comment::create([
             'UserID' => $user,
@@ -126,8 +126,8 @@ EOT,
         ]);
 
                     $date = $faker->dateTimeBetween('-1 years');
-            $user = $faker->numberBetween(8, 35);
-            $board = $faker->numberBetween(301, 100);
+            $user = $faker->numberBetween(1, 20);
+            $board = $faker->numberBetween(1, 798);
 
         Comment::create([
             'UserID' => $user,
@@ -152,8 +152,8 @@ EOT,
         ]);
 
                     $date = $faker->dateTimeBetween('-1 years');
-            $user = $faker->numberBetween(8, 35);
-            $board = $faker->numberBetween(301, 100);
+            $user = $faker->numberBetween(1, 20);
+            $board = $faker->numberBetween(1, 798);
 
         Comment::create([
             'UserID' => $user,
@@ -168,8 +168,8 @@ EOT,
         ]);
 
                     $date = $faker->dateTimeBetween('-1 years');
-            $user = $faker->numberBetween(8, 35);
-            $board = $faker->numberBetween(301, 100);
+            $user = $faker->numberBetween(1, 20);
+            $board = $faker->numberBetween(1, 798);
 
         Comment::create([
             'UserID' => $user,
@@ -182,8 +182,8 @@ EOT,
         ]);
 
                     $date = $faker->dateTimeBetween('-1 years');
-            $user = $faker->numberBetween(8, 35);
-            $board = $faker->numberBetween(301, 100);
+            $user = $faker->numberBetween(1, 20);
+            $board = $faker->numberBetween(1, 798);
 
         Comment::create([
             'UserID' => $user,
@@ -202,8 +202,8 @@ EOT,
         ]);
 
                     $date = $faker->dateTimeBetween('-1 years');
-            $user = $faker->numberBetween(8, 35);
-            $board = $faker->numberBetween(301, 100);
+            $user = $faker->numberBetween(1, 20);
+            $board = $faker->numberBetween(1, 798);
 
         Comment::create([
             'UserID' => $user,
@@ -224,8 +224,8 @@ EOT,
         ]);
 
                     $date = $faker->dateTimeBetween('-1 years');
-            $user = $faker->numberBetween(8, 35);
-            $board = $faker->numberBetween(301, 100);
+            $user = $faker->numberBetween(1, 20);
+            $board = $faker->numberBetween(1, 798);
 
         Comment::create([
             'UserID' => $user,
@@ -238,8 +238,8 @@ EOT,
         ]);
 
                     $date = $faker->dateTimeBetween('-1 years');
-            $user = $faker->numberBetween(8, 35);
-            $board = $faker->numberBetween(301, 100);
+            $user = $faker->numberBetween(1, 20);
+            $board = $faker->numberBetween(1, 798);
 
         Comment::create([
             'UserID' => $user,
@@ -256,8 +256,8 @@ EOT,
         ]);
 
                     $date = $faker->dateTimeBetween('-1 years');
-            $user = $faker->numberBetween(8, 35);
-            $board = $faker->numberBetween(301, 100);
+            $user = $faker->numberBetween(1, 20);
+            $board = $faker->numberBetween(1, 798);
 
         Comment::create([
             'UserID' => $user,
@@ -270,8 +270,8 @@ EOT,
         ]);
 
                     $date = $faker->dateTimeBetween('-1 years');
-            $user = $faker->numberBetween(8, 35);
-            $board = $faker->numberBetween(301, 100);
+            $user = $faker->numberBetween(1, 20);
+            $board = $faker->numberBetween(1, 798);
 
         Comment::create([
             'UserID' => $user,
@@ -284,8 +284,8 @@ EOT,
         ]);
 
                     $date = $faker->dateTimeBetween('-1 years');
-            $user = $faker->numberBetween(8, 35);
-            $board = $faker->numberBetween(301, 100);
+            $user = $faker->numberBetween(1, 20);
+            $board = $faker->numberBetween(1, 798);
 
         Comment::create([
             'UserID' => $user,
@@ -304,8 +304,8 @@ EOT,
         ]);
 
                     $date = $faker->dateTimeBetween('-1 years');
-            $user = $faker->numberBetween(8, 35);
-            $board = $faker->numberBetween(301, 100);
+            $user = $faker->numberBetween(1, 20);
+            $board = $faker->numberBetween(1, 798);
 
         Comment::create([
             'UserID' => $user,
@@ -323,8 +323,8 @@ EOT,
 
         
                     $date = $faker->dateTimeBetween('-1 years');
-            $user = $faker->numberBetween(8, 35);
-            $board = $faker->numberBetween(301, 100);
+            $user = $faker->numberBetween(1, 20);
+            $board = $faker->numberBetween(1, 798);
 
         Comment::create([
             'UserID' => $user,
@@ -339,8 +339,8 @@ EOT,
         ]);
 
                     $date = $faker->dateTimeBetween('-1 years');
-            $user = $faker->numberBetween(8, 35);
-            $board = $faker->numberBetween(301, 100);
+            $user = $faker->numberBetween(1, 20);
+            $board = $faker->numberBetween(1, 798);
 
         Comment::create([
             'UserID' => $user,
@@ -360,8 +360,8 @@ EOT,
         ]);
 
                     $date = $faker->dateTimeBetween('-1 years');
-            $user = $faker->numberBetween(8, 35);
-            $board = $faker->numberBetween(301, 100);
+            $user = $faker->numberBetween(1, 20);
+            $board = $faker->numberBetween(1, 798);
 
         Comment::create([
             'UserID' => $user,
@@ -382,8 +382,8 @@ EOT,
         ]);
         
                     $date = $faker->dateTimeBetween('-1 years');
-            $user = $faker->numberBetween(8, 35);
-            $board = $faker->numberBetween(301, 100);
+            $user = $faker->numberBetween(1, 20);
+            $board = $faker->numberBetween(1, 798);
 
         Comment::create([
             'UserID' => $user,
@@ -402,8 +402,8 @@ EOT,
         ]);
 
                     $date = $faker->dateTimeBetween('-1 years');
-            $user = $faker->numberBetween(8, 35);
-            $board = $faker->numberBetween(301, 100);
+            $user = $faker->numberBetween(1, 20);
+            $board = $faker->numberBetween(1, 798);
 
         Comment::create([
             'UserID' => $user,
@@ -426,8 +426,8 @@ EOT,
         ]);
 
                     $date = $faker->dateTimeBetween('-1 years');
-            $user = $faker->numberBetween(8, 35);
-            $board = $faker->numberBetween(301, 100);
+            $user = $faker->numberBetween(1, 20);
+            $board = $faker->numberBetween(1, 798);
 
         Comment::create([
             'UserID' => $user,
@@ -442,8 +442,8 @@ EOT,
         ]);
 
                     $date = $faker->dateTimeBetween('-1 years');
-            $user = $faker->numberBetween(8, 35);
-            $board = $faker->numberBetween(301, 100);
+            $user = $faker->numberBetween(1, 20);
+            $board = $faker->numberBetween(1, 798);
 
         Comment::create([
             'UserID' => $user,
@@ -452,7 +452,7 @@ EOT,
             'CommentContent' => <<<EOT
 오류 확인 결과 인증 오류인 것 같습니다~!!
 
-${userConfig.pw} 앞에 <> 이 문자 2개를 지워 주신 후에 다시한번 시도해보시기 바랍니다~!!
+앞에 <> 이 문자 2개를 지워 주신 후에 다시한번 시도해보시기 바랍니다~!!
 
 문제 발생시 다시한번 질문 주시기 바랍니다~!!
 EOT,
@@ -460,8 +460,8 @@ EOT,
         ]);
 
                     $date = $faker->dateTimeBetween('-1 years');
-            $user = $faker->numberBetween(8, 35);
-            $board = $faker->numberBetween(301, 100);
+            $user = $faker->numberBetween(1, 20);
+            $board = $faker->numberBetween(1, 798);
 
         Comment::create([
             'UserID' => $user,
@@ -478,8 +478,8 @@ EOT,
         ]);
 
                     $date = $faker->dateTimeBetween('-1 years');
-            $user = $faker->numberBetween(8, 35);
-            $board = $faker->numberBetween(301, 100);
+            $user = $faker->numberBetween(1, 20);
+            $board = $faker->numberBetween(1, 798);
 
         Comment::create([
             'UserID' => $user,
@@ -500,8 +500,8 @@ EOT,
         ]);
 
                     $date = $faker->dateTimeBetween('-1 years');
-            $user = $faker->numberBetween(8, 35);
-            $board = $faker->numberBetween(301, 100);
+            $user = $faker->numberBetween(1, 20);
+            $board = $faker->numberBetween(1, 798);
 
         Comment::create([
             'UserID' => $user,
@@ -522,8 +522,8 @@ EOT,
         ]);
 
                     $date = $faker->dateTimeBetween('-1 years');
-            $user = $faker->numberBetween(8, 35);
-            $board = $faker->numberBetween(301, 100);
+            $user = $faker->numberBetween(1, 20);
+            $board = $faker->numberBetween(1, 798);
 
         Comment::create([
             'UserID' => $user,
@@ -544,8 +544,8 @@ EOT,
         ]);
 
                     $date = $faker->dateTimeBetween('-1 years');
-            $user = $faker->numberBetween(8, 35);
-            $board = $faker->numberBetween(301, 100);
+            $user = $faker->numberBetween(1, 20);
+            $board = $faker->numberBetween(1, 798);
 
         Comment::create([
             'UserID' => $user,
@@ -564,8 +564,8 @@ EOT,
         ]);
 
                     $date = $faker->dateTimeBetween('-1 years');
-            $user = $faker->numberBetween(8, 35);
-            $board = $faker->numberBetween(301, 100);
+            $user = $faker->numberBetween(1, 20);
+            $board = $faker->numberBetween(1, 798);
 
         Comment::create([
             'UserID' => $user,
@@ -582,8 +582,8 @@ EOT,
         ]);
 
                     $date = $faker->dateTimeBetween('-1 years');
-            $user = $faker->numberBetween(8, 35);
-            $board = $faker->numberBetween(301, 100);
+            $user = $faker->numberBetween(1, 20);
+            $board = $faker->numberBetween(1, 798);
 
         Comment::create([
             'UserID' => $user,
@@ -604,8 +604,8 @@ EOT,
         ]);
 
                     $date = $faker->dateTimeBetween('-1 years');
-            $user = $faker->numberBetween(8, 35);
-            $board = $faker->numberBetween(301, 100);
+            $user = $faker->numberBetween(1, 20);
+            $board = $faker->numberBetween(1, 798);
 
         Comment::create([
             'UserID' => $user,
@@ -618,8 +618,8 @@ EOT,
         ]);
 
                     $date = $faker->dateTimeBetween('-1 years');
-            $user = $faker->numberBetween(8, 35);
-            $board = $faker->numberBetween(301, 100);
+            $user = $faker->numberBetween(1, 20);
+            $board = $faker->numberBetween(1, 798);
 
         Comment::create([
             'UserID' => $user,
@@ -636,8 +636,8 @@ EOT,
         ]);
 
                     $date = $faker->dateTimeBetween('-1 years');
-            $user = $faker->numberBetween(8, 35);
-            $board = $faker->numberBetween(301, 100);
+            $user = $faker->numberBetween(1, 20);
+            $board = $faker->numberBetween(1, 798);
 
         Comment::create([
             'UserID' => $user,
@@ -652,8 +652,8 @@ EOT,
         ]);
 
                     $date = $faker->dateTimeBetween('-1 years');
-            $user = $faker->numberBetween(8, 35);
-            $board = $faker->numberBetween(301, 100);
+            $user = $faker->numberBetween(1, 20);
+            $board = $faker->numberBetween(1, 798);
 
         Comment::create([
             'UserID' => $user,
@@ -668,8 +668,8 @@ EOT,
         ]);
 
                     $date = $faker->dateTimeBetween('-1 years');
-            $user = $faker->numberBetween(8, 35);
-            $board = $faker->numberBetween(301, 100);
+            $user = $faker->numberBetween(1, 20);
+            $board = $faker->numberBetween(1, 798);
 
         Comment::create([
             'UserID' => $user,
@@ -683,8 +683,8 @@ EOT,
         ]);
 
                     $date = $faker->dateTimeBetween('-1 years');
-            $user = $faker->numberBetween(8, 35);
-            $board = $faker->numberBetween(301, 100);
+            $user = $faker->numberBetween(1, 20);
+            $board = $faker->numberBetween(1, 798);
 
         Comment::create([
             'UserID' => $user,
@@ -699,8 +699,8 @@ EOT,
         ]);
 
                     $date = $faker->dateTimeBetween('-1 years');
-            $user = $faker->numberBetween(8, 35);
-            $board = $faker->numberBetween(301, 100);
+            $user = $faker->numberBetween(1, 20);
+            $board = $faker->numberBetween(1, 798);
 
         Comment::create([
             'UserID' => $user,
@@ -721,8 +721,8 @@ EOT,
         ]);
 
                     $date = $faker->dateTimeBetween('-1 years');
-            $user = $faker->numberBetween(8, 35);
-            $board = $faker->numberBetween(301, 100);
+            $user = $faker->numberBetween(1, 20);
+            $board = $faker->numberBetween(1, 798);
 
         Comment::create([
             'UserID' => $user,
@@ -735,8 +735,8 @@ EOT,
         ]);
 
                     $date = $faker->dateTimeBetween('-1 years');
-            $user = $faker->numberBetween(8, 35);
-            $board = $faker->numberBetween(301, 100);
+            $user = $faker->numberBetween(1, 20);
+            $board = $faker->numberBetween(1, 798);
 
         Comment::create([
             'UserID' => $user,
@@ -751,8 +751,8 @@ EOT,
         ]);
 
                     $date = $faker->dateTimeBetween('-1 years');
-            $user = $faker->numberBetween(8, 35);
-            $board = $faker->numberBetween(301, 100);
+            $user = $faker->numberBetween(1, 20);
+            $board = $faker->numberBetween(1, 798);
 
         Comment::create([
             'UserID' => $user,
@@ -775,8 +775,8 @@ EOT,
         ]);
 
                     $date = $faker->dateTimeBetween('-1 years');
-            $user = $faker->numberBetween(8, 35);
-            $board = $faker->numberBetween(301, 100);
+            $user = $faker->numberBetween(1, 20);
+            $board = $faker->numberBetween(1, 798);
 
         Comment::create([
             'UserID' => $user,
@@ -809,8 +809,8 @@ EOT,
         ]);
 
                     $date = $faker->dateTimeBetween('-1 years');
-            $user = $faker->numberBetween(8, 35);
-            $board = $faker->numberBetween(301, 100);
+            $user = $faker->numberBetween(1, 20);
+            $board = $faker->numberBetween(1, 798);
 
         Comment::create([
             'UserID' => $user,
@@ -825,8 +825,8 @@ EOT,
         ]);
 
                     $date = $faker->dateTimeBetween('-1 years');
-            $user = $faker->numberBetween(8, 35);
-            $board = $faker->numberBetween(301, 100);
+            $user = $faker->numberBetween(1, 20);
+            $board = $faker->numberBetween(1, 798);
 
         Comment::create([
             'UserID' => $user,
@@ -839,8 +839,8 @@ EOT,
         ]);
 
                     $date = $faker->dateTimeBetween('-1 years');
-            $user = $faker->numberBetween(8, 35);
-            $board = $faker->numberBetween(301, 100);
+            $user = $faker->numberBetween(1, 20);
+            $board = $faker->numberBetween(1, 798);
 
         Comment::create([
             'UserID' => $user,
@@ -862,8 +862,8 @@ EOT,
         ]);
 
                     $date = $faker->dateTimeBetween('-1 years');
-            $user = $faker->numberBetween(8, 35);
-            $board = $faker->numberBetween(301, 100);
+            $user = $faker->numberBetween(1, 20);
+            $board = $faker->numberBetween(1, 798);
 
         Comment::create([
             'UserID' => $user,
@@ -878,8 +878,8 @@ EOT,
 
         
                     $date = $faker->dateTimeBetween('-1 years');
-            $user = $faker->numberBetween(8, 35);
-            $board = $faker->numberBetween(301, 100);
+            $user = $faker->numberBetween(1, 20);
+            $board = $faker->numberBetween(1, 798);
 
         Comment::create([
             'UserID' => $user,
@@ -893,8 +893,8 @@ EOT,
         ]);
 
                     $date = $faker->dateTimeBetween('-1 years');
-            $user = $faker->numberBetween(8, 35);
-            $board = $faker->numberBetween(301, 100);
+            $user = $faker->numberBetween(1, 20);
+            $board = $faker->numberBetween(1, 798);
 
         Comment::create([
             'UserID' => $user,
@@ -908,8 +908,8 @@ EOT,
         ]);
 
                     $date = $faker->dateTimeBetween('-1 years');
-            $user = $faker->numberBetween(8, 35);
-            $board = $faker->numberBetween(301, 100);
+            $user = $faker->numberBetween(1, 20);
+            $board = $faker->numberBetween(1, 798);
 
         Comment::create([
             'UserID' => $user,
@@ -930,8 +930,8 @@ EOT,
         ]);
 
                     $date = $faker->dateTimeBetween('-1 years');
-            $user = $faker->numberBetween(8, 35);
-            $board = $faker->numberBetween(301, 100);
+            $user = $faker->numberBetween(1, 20);
+            $board = $faker->numberBetween(1, 798);
 
         Comment::create([
             'UserID' => $user,
@@ -956,8 +956,8 @@ EOT,
         ]);
 
                     $date = $faker->dateTimeBetween('-1 years');
-            $user = $faker->numberBetween(8, 35);
-            $board = $faker->numberBetween(301, 100);
+            $user = $faker->numberBetween(1, 20);
+            $board = $faker->numberBetween(1, 798);
 
         Comment::create([
             'UserID' => $user,
@@ -974,8 +974,8 @@ EOT,
         ]);
 
                     $date = $faker->dateTimeBetween('-1 years');
-            $user = $faker->numberBetween(8, 35);
-            $board = $faker->numberBetween(301, 100);
+            $user = $faker->numberBetween(1, 20);
+            $board = $faker->numberBetween(1, 798);
 
         Comment::create([
             'UserID' => $user,
@@ -996,8 +996,8 @@ EOT,
         ]);
 
                     $date = $faker->dateTimeBetween('-1 years');
-            $user = $faker->numberBetween(8, 35);
-            $board = $faker->numberBetween(301, 100);
+            $user = $faker->numberBetween(1, 20);
+            $board = $faker->numberBetween(1, 798);
 
         Comment::create([
             'UserID' => $user,
@@ -1014,8 +1014,8 @@ EOT,
         ]);
 
                     $date = $faker->dateTimeBetween('-1 years');
-            $user = $faker->numberBetween(8, 35);
-            $board = $faker->numberBetween(301, 100);
+            $user = $faker->numberBetween(1, 20);
+            $board = $faker->numberBetween(1, 798);
 
         Comment::create([
             'UserID' => $user,
@@ -1036,8 +1036,8 @@ EOT,
         ]);
 
                     $date = $faker->dateTimeBetween('-1 years');
-            $user = $faker->numberBetween(8, 35);
-            $board = $faker->numberBetween(301, 100);
+            $user = $faker->numberBetween(1, 20);
+            $board = $faker->numberBetween(1, 798);
 
         Comment::create([
             'UserID' => $user,
@@ -1059,8 +1059,8 @@ EOT,
 
         
                     $date = $faker->dateTimeBetween('-1 years');
-            $user = $faker->numberBetween(8, 35);
-            $board = $faker->numberBetween(301, 100);
+            $user = $faker->numberBetween(1, 20);
+            $board = $faker->numberBetween(1, 798);
 
         Comment::create([
             'UserID' => $user,
@@ -1081,8 +1081,8 @@ EOT,
         ]);
 
                     $date = $faker->dateTimeBetween('-1 years');
-            $user = $faker->numberBetween(8, 35);
-            $board = $faker->numberBetween(301, 100);
+            $user = $faker->numberBetween(1, 20);
+            $board = $faker->numberBetween(1, 798);
 
         Comment::create([
             'UserID' => $user,
@@ -1103,8 +1103,8 @@ EOT,
         ]);
         
                     $date = $faker->dateTimeBetween('-1 years');
-            $user = $faker->numberBetween(8, 35);
-            $board = $faker->numberBetween(301, 100);
+            $user = $faker->numberBetween(1, 20);
+            $board = $faker->numberBetween(1, 798);
 
         Comment::create([
             'UserID' => $user,
@@ -1125,8 +1125,8 @@ EOT,
         ]);
 
                     $date = $faker->dateTimeBetween('-1 years');
-            $user = $faker->numberBetween(8, 35);
-            $board = $faker->numberBetween(301, 100);
+            $user = $faker->numberBetween(1, 20);
+            $board = $faker->numberBetween(1, 798);
 
         Comment::create([
             'UserID' => $user,
@@ -1145,8 +1145,8 @@ EOT,
         ]);
 
                     $date = $faker->dateTimeBetween('-1 years');
-            $user = $faker->numberBetween(8, 35);
-            $board = $faker->numberBetween(301, 100);
+            $user = $faker->numberBetween(1, 20);
+            $board = $faker->numberBetween(1, 798);
 
         Comment::create([
             'UserID' => $user,
@@ -1163,8 +1163,8 @@ EOT,
         ]);
 
                     $date = $faker->dateTimeBetween('-1 years');
-            $user = $faker->numberBetween(8, 35);
-            $board = $faker->numberBetween(301, 100);
+            $user = $faker->numberBetween(1, 20);
+            $board = $faker->numberBetween(1, 798);
 
         Comment::create([
             'UserID' => $user,
@@ -1181,8 +1181,8 @@ EOT,
         ]);
 
                     $date = $faker->dateTimeBetween('-1 years');
-            $user = $faker->numberBetween(8, 35);
-            $board = $faker->numberBetween(301, 100);
+            $user = $faker->numberBetween(1, 20);
+            $board = $faker->numberBetween(1, 798);
 
         Comment::create([
             'UserID' => $user,
@@ -1201,8 +1201,8 @@ EOT,
         ]);
 
                     $date = $faker->dateTimeBetween('-1 years');
-            $user = $faker->numberBetween(8, 35);
-            $board = $faker->numberBetween(301, 100);
+            $user = $faker->numberBetween(1, 20);
+            $board = $faker->numberBetween(1, 798);
 
         Comment::create([
             'UserID' => $user,
@@ -1219,8 +1219,8 @@ EOT,
         ]);
 
                     $date = $faker->dateTimeBetween('-1 years');
-            $user = $faker->numberBetween(8, 35);
-            $board = $faker->numberBetween(301, 100);
+            $user = $faker->numberBetween(1, 20);
+            $board = $faker->numberBetween(1, 798);
 
         }
 
