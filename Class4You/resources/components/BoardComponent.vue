@@ -235,13 +235,14 @@ export default {
 		fetchData(page = 1, searchQuery = '', solve = null, sortData = 1,) {
         axios.get(`/board/data?page=${page}&search=${searchQuery}&solve=${solve}&sort=${sortData}`)
             .then(response => {
+			
                 this.newBoardItems = response.data.boardData.data;
                 this.newUserCntItems = response.data.userCntData;
                 this.pagination = response.data.boardData.links;
                 this.page = response.data.boardData.current_page;
 				// console.log(response.data.boardData.links);
 				// console.log(response.data.boardData.current_page);
-				// console.log(response.data);
+				console.log(response.data);
 				// console.log(response.data.userCntData);
             })
             .catch(error => {

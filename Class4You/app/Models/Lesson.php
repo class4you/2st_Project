@@ -22,4 +22,5 @@ class Lesson extends Model
         'LessonProgress',
         'LessonFlg',
     ];
+    
 }

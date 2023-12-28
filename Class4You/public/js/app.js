@@ -19424,7 +19424,7 @@ __webpack_require__.r(__webpack_exports__);
         _this.page = response.data.boardData.current_page;
         // console.log(response.data.boardData.links);
         // console.log(response.data.boardData.current_page);
-        // console.log(response.data);
+        console.log(response.data);
         // console.log(response.data.userCntData);
       })["catch"](function (error) {
         console.error('Error fetching data:', error);

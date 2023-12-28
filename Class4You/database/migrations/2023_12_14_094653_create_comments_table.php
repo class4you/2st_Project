@@ -18,7 +18,7 @@ return new class extends Migration
             $table->integer('UserID')->nullable();;
             $table->integer('BoardID');
             $table->integer('InstructorID')->nullable();;
-            $table->string('CommentContent', 200);
+            $table->string('CommentContent', 1000);
             $table->timestamps();
             $table->softDeletes();
         });
