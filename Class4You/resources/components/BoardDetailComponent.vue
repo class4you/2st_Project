@@ -37,12 +37,12 @@
                         </div>
                     </div>
                     <div class="postTitBox row aiC">
-                        <label for="postTit">제목  </label>
+                        <label for="postTit">제목 : </label>
                         <p type="text" id="postTit">{{ newBoardItem.BoardTitle }}</p>
                     </div>
                     <div class="postContBox row">
 
-                        <label for="postCont">내용  </label> 
+                        <label for="postCont">내용 : </label> 
                         <p class="postCont">{{ newBoardItem.BoardComment }}</p>
                     </div>
                     <div class="laguage">
@@ -106,7 +106,6 @@
                                     <button class="comment_editBtn">수정</button>
                                     <button @click="deleteCommentData(item.CommentID)" class="commentActions_deleteBtn">삭제</button>
                                     <!-- <button class="commentActions_reportBtn">신고</button> -->
-                                    <!-- <button class="commentActions_returnback">신고</button> -->
 
                                 </div>
                             </div>

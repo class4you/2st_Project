@@ -1746,12 +1746,6 @@ ul.class_tabs li.class_current {
     padding: 10px;
 }
 
-.class_tab_instructorhis {
-    display: inline-block;
-    border: 1px solid #ededed;
-    padding: 10px;
-}
-
 /* ============================================================================================================ */
 .class_detail_rating_tab {
     margin: 0px;
@@ -3812,7 +3806,7 @@ font-size: 15px;
 }
 
 .board_rewrite:hover {
-    background-color: rgba(52, 99, 182, 0.898);
+    background-color: #6380b2e5;
 
 }
 
@@ -3835,8 +3829,7 @@ font-size: 15px;
 
 .board_complete{
     margin-right: 10px;
-
-    background-color: #2522e06d;
+    background-color: #8371fc;
     border: none;
     padding: 10px 20px;
     cursor: pointer;
@@ -3847,8 +3840,8 @@ font-size: 15px;
 }   
 
 .board_complete:hover {
-    background-color: #8371fc;
 
+    background-color: #2a27fd6d;
 }
 
 .reviewList {
@@ -4005,12 +3998,11 @@ font-size: 15px;
     width: 100px;
     border: none;
     cursor: pointer;
-
-    background-color: rgba(16, 36, 251, 0.468);
+    background-color: rgba(55, 71, 246, 0.638);
     color: white;
 }
 .reviewPost button:hover {
-    background-color: rgba(55, 71, 246, 0.638);
+    background-color: rgba(16, 36, 251, 0.468);
     color: white;
 }
 
