@@ -584,6 +584,7 @@
 </template>
 <script>
 import axios from 'axios'
+import { toHandlerKey } from 'vue';
 
 export default {
     name: 'ClassBoardDetailComponent',
@@ -614,7 +615,7 @@ export default {
         		ReviewRating: Number,
 				ReviewID: this.ReviewID,
 			},
-			EnrollChk: {},
+			EnrollChk: false,
 			delReviewData: {
 				ReviewID: this.ReviewID
 			},
@@ -670,7 +671,15 @@ export default {
 			this.detailClassItems = response.data.result;
 			this.enrollmentCnt = response.data.userCnt.user_count;
 			this.classCuriData = response.data.classCuri;
-			this.classRatingData = response.data.avgReviewRating.avgRating;
+			
+			if (response.data.avgReviewRating && response.data.avgReviewRating.avgRating !== undefined) {
+				// avgRating 값이 존재하는 경우
+				this.classRatingData = response.data.avgReviewRating.avgRating;
+			} else {
+				// avgRating 값이 없는 경우
+				this.classRatingData = 0;
+			}
+
 
 			// if(this.clickFlgTab === 1) {
 				axios.get('/classboarddetailreview/' + this.ClassID)
@@ -809,7 +818,21 @@ export default {
         },
 
 		postEnrollApp() {
-			this.$store.dispatch('postClassEnrollApp', this.classEnrollData);
+			// this.$store.dispatch('postClassEnrollApp', this.classEnrollData);
+
+            axios.post('/classEnrollAppPost', {
+				ClassID: this.ClassID,
+        		UserID: this.$store.state.UserID,
+            })
+            .then(res => { 
+                console.log(res.data);
+				this.EnrollChk = true;
+                window.location.reload();
+            })
+            .catch(err => {
+                console.log(err.response.data.errors)
+                // context.commit('setRegistrationErrorMessage', err.response.data.errors);
+            })
 		},
 		
 		clickTab() {

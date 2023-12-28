@@ -159,8 +159,9 @@ header .navigation {
 
 .navigation h1 a img {
     height: 4vw;
-    max-height: 30px;
+    max-height: 60px;
     transition: none;
+    margin-top: 5px;
 }
 
 .side_nav {

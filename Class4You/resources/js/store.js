@@ -571,31 +571,31 @@ const store = createStore({
 
 
         // 수강 신청
-        postClassEnrollApp(context, data) {
-            const url = '/classEnrollAppPost'
-            const header = {
-                headers: {
-                    "Content-Type": 'multipart/form-data',
-                    'X-CSRF-TOKEN': document.head.querySelector('meta[name="csrf-token"]').content,
-                },
-            }
-            let frm = new FormData();
+        // postClassEnrollApp(context, data) {
+        //     const url = '/classEnrollAppPost'
+        //     const header = {
+        //         headers: {
+        //             "Content-Type": 'multipart/form-data',
+        //             'X-CSRF-TOKEN': document.head.querySelector('meta[name="csrf-token"]').content,
+        //         },
+        //     }
+        //     let frm = new FormData();
 
-            console.log(data);
+        //     console.log(data);
 
-            frm.append('ClassID',data.ClassID);
-            frm.append('UserID',data.UserID);
+        //     frm.append('ClassID',data.ClassID);
+        //     frm.append('UserID',data.UserID);
 
-            axios.post(url, frm, header)
-            .then(res => { 
-                console.log(res.data);
-                window.location.reload();
-            })
-            .catch(err => {
-                console.log(err.response.data.errors)
-                // context.commit('setRegistrationErrorMessage', err.response.data.errors);
-            })
-        },
+        //     axios.post(url, frm, header)
+        //     .then(res => { 
+        //         console.log(res.data);
+        //         window.location.reload();
+        //     })
+        //     .catch(err => {
+        //         console.log(err.response.data.errors)
+        //         // context.commit('setRegistrationErrorMessage', err.response.data.errors);
+        //     })
+        // },
 
 
 
