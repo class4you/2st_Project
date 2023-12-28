@@ -22,7 +22,7 @@ class BoardController extends Controller
         //     ->orderBy('boards.created_at', 'desc')
         //     ->paginate(10);
 
-        $boardDataQuery = User::join('boards', 'boards.UserID', 'users.UserID');
+        $boardDataQuery = Board::join('users', 'boards.UserID', 'users.UserID');
             // ->orderBy('boards.created_at', 'desc');
         
         if ($request->has('search')) {
@@ -219,6 +219,24 @@ class BoardController extends Controller
             $board->BoardNotRecommended += 1;
             $board->save();
             return response()->json(['updated_recommendation' => $board->BoardRecommended]);
+        } else {
+            // 보드가 존재하지 않는 경우
+            return response()->json(['error' => 'Board not found'], 404);
+        }
+    }
+    public function putBoardViewUpdate(Request $request) { 
+        $boardId = $request->input('BoardID');
+        
+        $board = Board::find($boardId);
+        Log::debug($board);
+        
+        
+        if ($board) {
+            // 보드가 존재하는 경우, 추천 수를 1 증가시키고 저장
+            // 업데이트된 추천 수를 응답
+            $board->BoardView + 1;
+            $board->save();
+            return response()->json(['updated_boardview' => $board->BoardView]);
         } else {
             // 보드가 존재하지 않는 경우
             return response()->json(['error' => 'Board not found'], 404);

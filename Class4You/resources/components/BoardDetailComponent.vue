@@ -14,7 +14,7 @@
 								<div class="main_visual_slider_track_slick">
 									<div class="main_visual_slider_track_slick_item">
 										<a href="">
-											<img src="/img/banner/banner4.png">
+											<img src="/img/banner/banner5.png">
 										</a>
 									</div>
 								</div>
@@ -80,7 +80,7 @@
                         <p>답변<span>0</span></p>
                     </div> -->
                         <div class="number">
-                            <p>답변 :<span>{{ newCommentItem.length }}</span></p>
+                            <p>답변 <span>{{ newCommentItem.length }}</span></p>
                         </div>
                     <div class="reviewList">
                         <p class="board_detail_user_id">{{nowUserID.UserEmail}}</p>
