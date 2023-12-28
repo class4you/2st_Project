@@ -131,10 +131,9 @@
 							</div>
 							<div class="class_tab_content_lesson_content">
 								<p>{{ classCuriData.LessonContent }}</p>
-								<p>The if construct is one of the most important features of many languages, PHP included. 
-									It allows for conditional execution of code fragments. 
-									PHP features an if structure that is similar to that of C:
-								</p>
+								<p>The if construct is one of the most important features of many languages, PHP included.</p>
+								<p>It allows for conditional execution of code fragments.</p> 
+								<p>PHP features an if structure that is similar to that of C:</p>
 							</div>
 						</div>
 					</div>
