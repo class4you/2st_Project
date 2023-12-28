@@ -294,7 +294,7 @@
                                 </div>
                             </div>
                         </div>
-                        <button type="button" class="users_password_button" style="margin-right: 50px;">비밀번호 확인</button>         
+                        <!-- <button type="button" class="users_password_button" style="margin-right: 50px;">비밀번호 확인</button>          -->
                         <button type="button" class="users_password_button">탈퇴하기</button>
                     </div>
                 </div>
