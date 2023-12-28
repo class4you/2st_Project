@@ -64,7 +64,7 @@
                                             <label for="">주차선택</label>
                                         </div>
                                         <div class="weekly_study_class_title_input_label_button">
-                                            <input type="date" v-model="selectedDate" @change="handleDateChange">
+                                            <input class="weekly_input_date" type="date" v-model="selectedDate" @change="handleDateChange">
                                             <span>{{ currentWeek }}</span>
                                         </div>
                                     </div>
@@ -901,7 +901,7 @@ export default {
 }
 </script>
 <style>
-input[type='date'] {
+.weekly_input_date[type='date'] {
     border: none;
     position: relative;
     width: 100%;
@@ -912,7 +912,7 @@ input[type='date'] {
     font-size: 100%;
 }
 
-input[type='date']::-webkit-calendar-picker-indicator {
+.weekly_input_date[type='date']::-webkit-calendar-picker-indicator {
     position: absolute;
     left: 0;
     top: 0;
@@ -923,7 +923,7 @@ input[type='date']::-webkit-calendar-picker-indicator {
     cursor: pointer;
 }
 
-input[type='date']::before {
+.weekly_input_date[type='date']::before {
     content: attr(placeholder);
     width: 100%;
     height: 100%;

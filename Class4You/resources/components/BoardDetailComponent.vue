@@ -43,7 +43,7 @@
                     <div class="postContBox row">
 
                         <label for="postCont">내용 : </label> 
-                        <p class="postCont">{{ newBoardItem.BoardComment }}</p>
+                        <p class="postCont" style="white-space: pre-line;">{{ newBoardItem.BoardComment }}</p>
                     </div>
                     <div class="laguage">
                         <ul class="row aiC laguage_gap_10">
@@ -79,7 +79,7 @@
                     <!-- <div class="number">
                         <p>답변<span>0</span></p>
                     </div> -->
-                        <div class="number">
+                        <div class="Commentnumber">
                             <p>답변 <span>{{ newCommentItem.length }}</span></p>
                         </div>
                     <div class="reviewList">
