@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id('ChapterID');
             $table->integer('ClassID');
             $table->string('ChapterTitle', 50);
-            $table->char('chapterFlg', 1)->default(0);
+            $table->char('ChapterFlg', 1)->default(0);
             $table->timestamps();
             $table->softDeletes();
         });

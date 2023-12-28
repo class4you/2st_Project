@@ -14,7 +14,7 @@
 								<div class="main_visual_slider_track_slick">
 									<div class="main_visual_slider_track_slick_item">
 										<a href="">
-											<img src="/img/banner/banner4.png">
+											<img src="/img/banner/banner5.png">
 										</a>
 									</div>
 								</div>
@@ -37,12 +37,12 @@
                         </div>
                     </div>
                     <div class="postTitBox row aiC">
-                        <label for="postTit">제목 : </label>
+                        <label for="postTit">제목  </label>
                         <p type="text" id="postTit">{{ newBoardItem.BoardTitle }}</p>
                     </div>
                     <div class="postContBox row">
 
-                        <label for="postCont">내용 : </label> 
+                        <label for="postCont">내용  </label> 
                         <p class="postCont">{{ newBoardItem.BoardComment }}</p>
                     </div>
                     <div class="laguage">
@@ -80,7 +80,7 @@
                         <p>답변<span>0</span></p>
                     </div> -->
                         <div class="number">
-                            <p>답변 :<span>{{ newCommentItem.length }}</span></p>
+                            <p>답변 <span>{{ newCommentItem.length }}</span></p>
                         </div>
                     <div class="reviewList">
                         <p class="board_detail_user_id">{{nowUserID.UserEmail}}</p>
@@ -106,6 +106,7 @@
                                     <button class="comment_editBtn">수정</button>
                                     <button @click="deleteCommentData(item.CommentID)" class="commentActions_deleteBtn">삭제</button>
                                     <!-- <button class="commentActions_reportBtn">신고</button> -->
+                                    <!-- <button class="commentActions_returnback">신고</button> -->
 
                                 </div>
                             </div>
