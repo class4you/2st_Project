@@ -120,7 +120,7 @@
 					</div>
 					<div id="class_tab1" class="class_tab_content">
 						<div class="class_tab_content_curriculum" style="display: inline-block;">
-							<div class="class_tab_content_curriculm_title">
+							<div class="class_tab_content_curriculm_title" style="margin: 20px 0px;">
 								<span class="class_tab_content_chapter_title">Charpter.</span>
 								<span class="class_tab_content_chapter_title" style="margin-left: 5px;">
 									{{ classCuriData.ChapterTitle }}
@@ -154,6 +154,13 @@
 					<div class="class_tab_classpoint_div">
 						<div id="class_tab1" class="class_tab_classpoint">
 							<p><strong>1.{{detailClassItems.ClassPoint}}</strong></p>
+							
+						</div>
+						<div id="class_tab1" class="class_tab_classpoint">
+							<p><strong>2.{{detailClassItems.ClassPoint}}</strong></p>
+							
+						</div>
+						<div id="class_tab1" class="class_tab_classpoint">
 							<p>
 								PHP 개발자의 최종 테크트리, 라라벨(Laravel) 프레임워크의 핵심.
 								PHP를 PHP답게, PHP 개발의 정수! 
@@ -162,20 +169,13 @@
 							</p>
 						</div>
 						<div id="class_tab1" class="class_tab_classpoint">
-							<p><strong>2.{{detailClassItems.ClassPoint}}</strong></p>
 							<p>
 								강의를 모두 마치면 해당 리포지토리에 있는 서비스 정도는 하루 정도에 개발할 수 있게 됩니다. 
 								PHP 웹 개발의 실력을 키우고픈 분들뿐만 아니라, 혼자서 나만의 홈페이지를 제작하시고픈 분들에게도 도움이 되는 내용으로 구성하였습니다.
 							</p>
 						</div>
-						<div id="class_tab1" class="class_tab_classpoint">
-							<p><strong>3.{{detailClassItems.ClassPoint}}</strong></p>
-						</div>
-						<div id="class_tab1" class="class_tab_classpoint">
-							<p><strong>4.{{detailClassItems.ClassPoint}}</strong></p>
-						</div>
 					</div>	
-				
+				 	<div></div>
 					<div v-if="detailClassItems.languages[0].ClassLanguageName ==  'HTML'">
 						<div style="margin: 10px;">
 							<span></span>
@@ -224,8 +224,9 @@
 							</div>
 						</div>
 					</div>
+					<div></div>
 				</div>
-
+				
 			</div>	
 
 			<div class="class_tab_content_div">
@@ -234,7 +235,7 @@
 				</div>
 				<div id="class_tab1" class="class_tab_content">
 					<!-- <p>{{detailClassItems.InstructorID}}</p> -->
-					<div>
+					<div class="class_tab_content_instructor_name">
 						<p>강사 <strong>{{detailClassItems.InstructorFullName}}</strong>님</p>
 					</div>
 					<div class="class_tab_instructorhis">
