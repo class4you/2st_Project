@@ -20517,12 +20517,14 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
         UserPhoneNumber2: '',
         UserPhoneNumber3: '',
         UserBirthDate: '',
-        UserPostcode: '',
-        UserRoadAddress: '',
-        UserDetailedAddress: '',
         UserTermsofUse: '',
         UserPrivacy: ''
       }, "UserTermsofUse", ''), "UserPrivacy", ''),
+      frmUserAddressData: {
+        UserPostcode: '',
+        UserRoadAddress: '',
+        UserDetailedAddress: ''
+      },
       sampleData: {
         UserPostcode: '',
         UserRoadAddress: ''
@@ -20549,7 +20551,15 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
       }
     },
     submitUserData: function submitUserData() {
-      this.$store.dispatch('submitUserData', this.frmUserData);
+      var formData = {
+        frmUserData: this.frmUserData,
+        frmUserAddressData: this.frmUserAddressData
+      };
+      this.$store.dispatch('submitUserData', formData).then(function (data) {
+        // 성공적으로 처리된 경우의 로직
+      })["catch"](function (error) {
+        // 오류 발생 시의 로직
+      });
     },
     validateUserEmail: function validateUserEmail() {
       if (!this.frmUserData.UserEmail.match(/^\S+@\S+\.\S+$/)) {
@@ -20629,7 +20639,7 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
         postcode: data.zonecode,
         roadAddress: roadAddr
       };
-      this.frmUserData = {
+      this.frmUserAddressData = {
         UserPostcode: data.zonecode,
         UserRoadAddress: roadAddr
       };
@@ -23468,10 +23478,10 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     id: "sample4_postcode",
     name: "UserAddress1",
     "onUpdate:modelValue": _cache[20] || (_cache[20] = function ($event) {
-      return $data.frmUserData.UserPostcode = $event;
+      return $data.frmUserAddressData.UserPostcode = $event;
     }),
     placeholder: "우편번호"
-  }, null, 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.frmUserData.UserPostcode]]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+  }, null, 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.frmUserAddressData.UserPostcode]]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
     "class": "regist_table_address_button",
     type: "button",
     onClick: _cache[21] || (_cache[21] = function () {
@@ -23482,10 +23492,10 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     id: "sample4_roadAddress",
     name: "UserAddress2",
     "onUpdate:modelValue": _cache[22] || (_cache[22] = function ($event) {
-      return $data.frmUserData.UserRoadAddress = $event;
+      return $data.frmUserAddressData.UserRoadAddress = $event;
     }),
     placeholder: "도로명주소"
-  }, null, 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.frmUserData.UserRoadAddress]]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+  }, null, 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.frmUserAddressData.UserRoadAddress]]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     style: {
       "margin-top": "10px"
     },
@@ -23493,10 +23503,10 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     id: "sample4_detailAddress",
     name: "UserAddress3",
     "onUpdate:modelValue": _cache[23] || (_cache[23] = function ($event) {
-      return $data.frmUserData.UserDetailedAddress = $event;
+      return $data.frmUserAddressData.UserDetailedAddress = $event;
     }),
     placeholder: "상세주소"
-  }, null, 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.frmUserData.UserDetailedAddress]])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_62, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+  }, null, 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.frmUserAddressData.UserDetailedAddress]])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_62, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
     "class": "regist_button_cancel",
     type: "button",
     onClick: _cache[24] || (_cache[24] = function ($event) {
@@ -24470,13 +24480,7 @@ var store = (0,vuex__WEBPACK_IMPORTED_MODULE_3__.createStore)({
     // 라라벨에서 받은 초기데이터 셋팅
     setLaravelData: function setLaravelData(state, data) {
       state.laravelData = data;
-    } // 작성된 글 삽입용 
-    // setUnshiftReviewData(state, data) {
-    // 	// unshift() : js 의 배열 메소드.
-    // 	// 배열의 맨 앞에 하나 이상의 요소를 추가해줌.
-    // 	state.classReviewData.unshift(data);
-    // },
-    // 김민정
+    }
   },
   // actions : ajax로 서버에 데이터를 요청할 때나 시간 함수등 비동기 처리는 actions에 정의
   actions: {
@@ -24496,21 +24500,24 @@ var store = (0,vuex__WEBPACK_IMPORTED_MODULE_3__.createStore)({
           'X-CSRF-TOKEN': document.head.querySelector('meta[name="csrf-token"]').content
         }
       };
+      console.log(data);
+      console.log(data.frmUserData);
+      console.log(data.frmUserAddressData);
       var frm = new FormData();
-      var UserPhoneNumber = data.UserPhoneNumber1 + data.UserPhoneNumber2 + data.UserPhoneNumber3;
-      data.UserTermsofUse = data.UserTermsofUse ? 1 : 0;
-      data.UserPrivacy = data.UserPrivacy ? 1 : 0;
-      frm.append('UserEmail', data.UserEmail);
-      frm.append('UserPassword', data.UserPassword);
-      frm.append('UserPasswordChk', data.UserPasswordChk);
-      frm.append('UserName', data.UserName);
+      var UserPhoneNumber = data.frmUserData.UserPhoneNumber1 + data.frmUserData.UserPhoneNumber2 + data.frmUserData.UserPhoneNumber3;
+      data.frmUserData.UserTermsofUse = data.frmUserData.UserTermsofUse ? 1 : 0;
+      data.frmUserData.UserPrivacy = data.frmUserData.UserPrivacy ? 1 : 0;
+      frm.append('UserEmail', data.frmUserData.UserEmail);
+      frm.append('UserPassword', data.frmUserData.UserPassword);
+      frm.append('UserPasswordChk', data.frmUserData.UserPasswordChk);
+      frm.append('UserName', data.frmUserData.UserName);
       frm.append('UserPhoneNumber', UserPhoneNumber);
-      frm.append('UserBirthDate', data.UserBirthDate);
-      frm.append('UserPostcode', data.UserPostcode);
-      frm.append('UserRoadAddress', data.UserRoadAddress);
-      frm.append('UserDetailedAddress', data.UserDetailedAddress);
-      frm.append('UserTermsofUse', data.UserTermsofUse);
-      frm.append('UserPrivacy', data.UserPrivacy);
+      frm.append('UserBirthDate', data.frmUserData.UserBirthDate);
+      frm.append('UserPostcode', data.frmUserAddressData.UserPostcode);
+      frm.append('UserRoadAddress', data.frmUserAddressData.UserRoadAddress);
+      frm.append('UserDetailedAddress', data.frmUserAddressData.UserDetailedAddress);
+      frm.append('UserTermsofUse', data.frmUserData.UserTermsofUse);
+      frm.append('UserPrivacy', data.frmUserData.UserPrivacy);
       axios__WEBPACK_IMPORTED_MODULE_0___default().post(url, frm, header).then(function (res) {
         console.log(res.data);
         _router_js__WEBPACK_IMPORTED_MODULE_1__["default"].push('/');
@@ -24533,6 +24540,7 @@ var store = (0,vuex__WEBPACK_IMPORTED_MODULE_3__.createStore)({
       };
       axios__WEBPACK_IMPORTED_MODULE_0___default().post(url, requestData, header).then(function (res) {
         // console.log(res);
+        context.dispatch('closeLoginModal');
         if (res.data.success) {
           context.commit('setSaveToLocalStorage', res.data);
           context.commit('setUserLoginChk', res.data.sessionDataCheck);
@@ -24541,15 +24549,15 @@ var store = (0,vuex__WEBPACK_IMPORTED_MODULE_3__.createStore)({
           // console.log(res.data.sessionDataCheck)
           // console.log(res.data)
           // router.push('/'); 
-        } else {
+        } else if (res.data.success == false) {
+          alert('이메일 또는 비밀번호를 확인해주세요.');
           console.log(err.response.data.errors);
         }
       })["catch"](function (err) {
+        alert('이메일 또는 비밀번호를 확인해주세요.');
         console.log(err.response.data);
         // context.commit('setErrorData', err.response.data.errors)
-      })["finally"](function () {
-        context.dispatch('closeLoginModal');
-      });
+      })["finally"](function () {});
     },
     logout: function logout(context, data) {
       var url = '/logout';
@@ -24579,6 +24587,28 @@ var store = (0,vuex__WEBPACK_IMPORTED_MODULE_3__.createStore)({
       }
     },
     // 김민정
+    submitBoardData: function submitBoardData(context, data) {
+      var url = '/boardInsert';
+      var header = {
+        headers: {
+          "Content-Type": 'multipart/form-data',
+          'X-CSRF-TOKEN': document.head.querySelector('meta[name="csrf-token"]').content
+        }
+      };
+      var frm = new FormData();
+      frm.append('BoardCategoryID', data.BoardCategoryID);
+      frm.append('UserID', data.UserID);
+      frm.append('BoardTitle', data.BoardTitle);
+      frm.append('BoardComment', data.BoardComment);
+      console.log(frm);
+      axios__WEBPACK_IMPORTED_MODULE_0___default().post(url, frm, header).then(function (res) {
+        // console.log(res.data);
+        _router_js__WEBPACK_IMPORTED_MODULE_1__["default"].push('/board');
+      })["catch"](function (err) {
+        console.log(err.response.data.errors);
+        context.commit('setRegistrationErrorMessage', err.response.data.errors);
+      });
+    },
     // 댓글 작성 함수
     submitCommentData: function submitCommentData(context, data) {
       var url = '/comments';
@@ -24651,146 +24681,6 @@ var store = (0,vuex__WEBPACK_IMPORTED_MODULE_3__.createStore)({
         console.log(res.data);
         // 해당 처리가 끝나면 리로드함
         // window.location.reload();
-        _router_js__WEBPACK_IMPORTED_MODULE_1__["default"].push('/board');
-      })["catch"](function (err) {
-        console.log(err.response.data.errors);
-        context.commit('setRegistrationErrorMessage', err.response.data.errors);
-      });
-    },
-    // 최현희
-    // 수강평 작성 함수
-    // addClassReview(context, data) {
-    //     const url = '/classboarddetailreview'
-    //     const header = {
-    //         headers: {
-    //             "Content-Type": 'multipart/form-data',
-    //             'X-CSRF-TOKEN': document.head.querySelector('meta[name="csrf-token"]').content,
-    //         },
-    //     }
-    //     let frm = new FormData();
-    //     console.log(data);
-    //     frm.append('ClassID',data.ClassID);
-    //     frm.append('UserID',data.UserID);
-    //     frm.append('ReviewComment',data.ReviewComment);
-    //     frm.append('ReviewRating',data.ReviewRating);
-    //     // console.log(frm);
-    //     axios.post(url, frm, header)
-    //     .then(res => { 
-    //         console.log(res.data);
-    //         // 해당 처리가 끝나면 리로드함
-    //         // window.location.reload();
-    //         // router.push('/classBoardDetail/' + this.ClassID); 
-    //         // router.push('/classboarddetailreview/' + data.ClassID);
-    //         // router.push('/classboarddetail/' + this.ClassID); 
-    //         //
-    // 		// context.commit(data.clickFlgTab , 1);
-    //     })
-    //     .catch(err => {
-    //         console.log(err.response.data.errors)
-    //         context.commit('setRegistrationErrorMessage', err.response.data.errors);
-    //     })
-    // },
-    // 수강평 수정 함수
-    // putClassReview(context, data) {
-    //     const url = '/classboarddetailreview'
-    //     const header = {
-    //         headers: {
-    //             "Content-Type": 'multipart/form-data',
-    //             'X-CSRF-TOKEN': document.head.querySelector('meta[name="csrf-token"]').content,
-    //         },
-    //     }
-    //     let frm = new FormData();
-    //     console.log(data);
-    //     frm.append('ClassID',data.ClassID);
-    //     frm.append('UserID',data.UserID);
-    //     frm.append('ReviewComment',data.ReviewComment);
-    //     frm.append('ReviewRating',data.ReviewRating);
-    //     frm.append('ReviewID',data.ReviewID);
-    //     // console.log(frm);
-    //     axios.put(url, frm, header)
-    //     .then(res => { 
-    //         console.log(res.data);
-    //         // router.push('/classBoardDetail/' + this.ClassID); 
-    //         // router.push('/classBoardDetail/' + data.ClassID); 
-    //         //
-    // 		// context.commit(data.clickFlgTab , 1);
-    //     })
-    //     .catch(err => {
-    //         console.log(err.response.data.errors)
-    //         context.commit('setRegistrationErrorMessage', err.response.data.errors);
-    //     })
-    // },
-    // 수강평 삭제
-    // deleteClassReview(context, data) {
-    //     const url = '/classboarddetailreview/' + data
-    //     const header = {
-    //         headers: {
-    //             "Content-Type": 'multipart/form-data',
-    //             'X-CSRF-TOKEN': document.head.querySelector('meta[name="csrf-token"]').content,
-    //         },
-    //     }
-    //     // let frm = new FormData();
-    //     const requestData = {
-    //         ReviewID: data.ReviewID,
-    //     };
-    //     console.log(data);
-    //     axios.delete(url, requestData, header)
-    //     .then(res => { 
-    //         console.log(res.data);
-    //         // 해당 처리가 끝나면 리로드함
-    //         window.location.reload();
-    //         // localStorage.clear();
-    //         // router.push('/classBoardDetail/' + this.ClassID); 
-    //         // router.push('/classboarddetailreview'); 
-    //         //
-    // 		// context.commit(data.clickFlgTab , 1);
-    //     })
-    //     .catch(err => {
-    //         console.log(err.response.data.errors)
-    //         context.commit('setRegistrationErrorMessage', err.response.data.errors);
-    //     })
-    // },
-    // 커뮤니티 작성
-    // 수강 신청
-    // postClassEnrollApp(context, data) {
-    //     const url = '/classEnrollAppPost'
-    //     const header = {
-    //         headers: {
-    //             "Content-Type": 'multipart/form-data',
-    //             'X-CSRF-TOKEN': document.head.querySelector('meta[name="csrf-token"]').content,
-    //         },
-    //     }
-    //     let frm = new FormData();
-    //     console.log(data);
-    //     frm.append('ClassID',data.ClassID);
-    //     frm.append('UserID',data.UserID);
-    //     axios.post(url, frm, header)
-    //     .then(res => { 
-    //         console.log(res.data);
-    //         window.location.reload();
-    //     })
-    //     .catch(err => {
-    //         console.log(err.response.data.errors)
-    //         // context.commit('setRegistrationErrorMessage', err.response.data.errors);
-    //     })
-    // },
-    // 김민정
-    submitBoardData: function submitBoardData(context, data) {
-      var url = '/boardInsert';
-      var header = {
-        headers: {
-          "Content-Type": 'multipart/form-data',
-          'X-CSRF-TOKEN': document.head.querySelector('meta[name="csrf-token"]').content
-        }
-      };
-      var frm = new FormData();
-      frm.append('BoardCategoryID', data.BoardCategoryID);
-      frm.append('UserID', data.UserID);
-      frm.append('BoardTitle', data.BoardTitle);
-      frm.append('BoardComment', data.BoardComment);
-      console.log(frm);
-      axios__WEBPACK_IMPORTED_MODULE_0___default().post(url, frm, header).then(function (res) {
-        // console.log(res.data);
         _router_js__WEBPACK_IMPORTED_MODULE_1__["default"].push('/board');
       })["catch"](function (err) {
         console.log(err.response.data.errors);

@@ -35,44 +35,11 @@ const store = createStore({
             shouldShowCarousel: false,
             myPageClickFlgTab: 1,
 
-
-
-
-
-
-
-
-
-
-            
-
-
-
-
-
-
-
             // 최현희
             // 라라벨 데이터 저장용
             laravelData: [],
             // 수강평 데이터 저장용
             // classReviewData: [],
-
-
-
-
-
-
-
-
-
-
-            
-
-
-
-
-
 
             // 김민정
         }
@@ -126,61 +93,11 @@ const store = createStore({
         },
         
 
-
-
-
-
-
-
-
-
-            
-
-
-
-
-
-
-
-
-
-
-
-
         // 최현희
         // 라라벨에서 받은 초기데이터 셋팅
         setLaravelData(state, data) {
 			state.laravelData = data;
 		},
-        // 작성된 글 삽입용 
-		// setUnshiftReviewData(state, data) {
-		// 	// unshift() : js 의 배열 메소드.
-		// 	// 배열의 맨 앞에 하나 이상의 요소를 추가해줌.
-		// 	state.classReviewData.unshift(data);
-		// },
-		
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-
-
-
-
-
-
-        // 김민정
     },
 
     // actions : ajax로 서버에 데이터를 요청할 때나 시간 함수등 비동기 처리는 actions에 정의
@@ -199,24 +116,27 @@ const store = createStore({
                     'X-CSRF-TOKEN': document.head.querySelector('meta[name="csrf-token"]').content,
                 },
             }
+            console.log(data);
+            console.log(data.frmUserData);
+            console.log(data.frmUserAddressData);
             let frm = new FormData();
-            const UserPhoneNumber = data.UserPhoneNumber1 + data.UserPhoneNumber2 + data.UserPhoneNumber3
+            const UserPhoneNumber = data.frmUserData.UserPhoneNumber1 + data.frmUserData.UserPhoneNumber2 + data.frmUserData.UserPhoneNumber3
 
-            data.UserTermsofUse = data.UserTermsofUse ? 1 : 0;
+            data.frmUserData.UserTermsofUse = data.frmUserData.UserTermsofUse ? 1 : 0;
 
-            data.UserPrivacy = data.UserPrivacy ? 1 : 0;
+            data.frmUserData.UserPrivacy = data.frmUserData.UserPrivacy ? 1 : 0;
 
-            frm.append('UserEmail',data.UserEmail);
-            frm.append('UserPassword',data.UserPassword);
-            frm.append('UserPasswordChk',data.UserPasswordChk);
-            frm.append('UserName',data.UserName);
+            frm.append('UserEmail',data.frmUserData.UserEmail);
+            frm.append('UserPassword',data.frmUserData.UserPassword);
+            frm.append('UserPasswordChk',data.frmUserData.UserPasswordChk);
+            frm.append('UserName',data.frmUserData.UserName);
             frm.append('UserPhoneNumber',UserPhoneNumber);
-            frm.append('UserBirthDate',data.UserBirthDate);
-            frm.append('UserPostcode',data.UserPostcode);
-            frm.append('UserRoadAddress',data.UserRoadAddress);
-            frm.append('UserDetailedAddress',data.UserDetailedAddress);
-            frm.append('UserTermsofUse',data.UserTermsofUse);
-            frm.append('UserPrivacy',data.UserPrivacy);
+            frm.append('UserBirthDate',data.frmUserData.UserBirthDate);
+            frm.append('UserPostcode',data.frmUserAddressData.UserPostcode);
+            frm.append('UserRoadAddress',data.frmUserAddressData.UserRoadAddress);
+            frm.append('UserDetailedAddress',data.frmUserAddressData.UserDetailedAddress);
+            frm.append('UserTermsofUse',data.frmUserData.UserTermsofUse);
+            frm.append('UserPrivacy',data.frmUserData.UserPrivacy);
 
 
             axios.post(url, frm, header)
@@ -246,6 +166,7 @@ const store = createStore({
             axios.post(url, requestData, header)
             .then(res => { 
                 // console.log(res);
+                context.dispatch('closeLoginModal');
                 if (res.data.success) {
                     context.commit('setSaveToLocalStorage', res.data);
                     context.commit('setUserLoginChk', res.data.sessionDataCheck);
@@ -254,16 +175,17 @@ const store = createStore({
                     // console.log(res.data.sessionDataCheck)
                     // console.log(res.data)
                     // router.push('/'); 
-                } else {
+                } else if(res.data.success == false) {
+                    alert('이메일 또는 비밀번호를 확인해주세요.');
                     console.log(err.response.data.errors)
                 }
             })
             .catch(err => {
+                alert('이메일 또는 비밀번호를 확인해주세요.');
                 console.log(err.response.data)
                 // context.commit('setErrorData', err.response.data.errors)
             })
             .finally(() => {
-                context.dispatch('closeLoginModal');
             })
         },
         logout(context, data) {
@@ -293,30 +215,36 @@ const store = createStore({
                 context.commit('setShowCarousel', false);
             }
         },
-        
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
         // 김민정
+        submitBoardData(context, data) {
+            const url = '/boardInsert'
+            const header = {
+                headers: {
+                    "Content-Type": 'multipart/form-data',
+                    'X-CSRF-TOKEN': document.head.querySelector('meta[name="csrf-token"]').content,
+                },
+            }
+            let frm = new FormData();
+
+            frm.append('BoardCategoryID',data.BoardCategoryID);
+            frm.append('UserID',data.UserID);
+            frm.append('BoardTitle',data.BoardTitle);
+            frm.append('BoardComment',data.BoardComment);
+
+            console.log(frm);
+
+            axios.post(url, frm, header)
+            .then(res => { 
+                // console.log(res.data);
+                router.push('/board'); 
+            })
+            .catch(err => {
+                console.log(err.response.data.errors)
+                context.commit('setRegistrationErrorMessage', err.response.data.errors);
+            })
+        },
+
         // 댓글 작성 함수
         submitCommentData(context, data) {
             const url = '/comments'
@@ -399,253 +327,6 @@ const store = createStore({
                 console.log(res.data);
                 // 해당 처리가 끝나면 리로드함
                 // window.location.reload();
-                router.push('/board'); 
-            })
-            .catch(err => {
-                console.log(err.response.data.errors)
-                context.commit('setRegistrationErrorMessage', err.response.data.errors);
-            })
-        },
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-            
-
-
-
-
-
-
-
-
-        // 최현희
-        // 수강평 작성 함수
-        // addClassReview(context, data) {
-        //     const url = '/classboarddetailreview'
-        //     const header = {
-        //         headers: {
-        //             "Content-Type": 'multipart/form-data',
-        //             'X-CSRF-TOKEN': document.head.querySelector('meta[name="csrf-token"]').content,
-        //         },
-        //     }
-        //     let frm = new FormData();
-
-        //     console.log(data);
-
-        //     frm.append('ClassID',data.ClassID);
-        //     frm.append('UserID',data.UserID);
-        //     frm.append('ReviewComment',data.ReviewComment);
-        //     frm.append('ReviewRating',data.ReviewRating);
-
-        //     // console.log(frm);
-
-        //     axios.post(url, frm, header)
-        //     .then(res => { 
-        //         console.log(res.data);
-
-        //         // 해당 처리가 끝나면 리로드함
-        //         // window.location.reload();
-        //         // router.push('/classBoardDetail/' + this.ClassID); 
-        //         // router.push('/classboarddetailreview/' + data.ClassID);
-        //         // router.push('/classboarddetail/' + this.ClassID); 
-
-        //         //
-		// 		// context.commit(data.clickFlgTab , 1);
-        //     })
-        //     .catch(err => {
-        //         console.log(err.response.data.errors)
-        //         context.commit('setRegistrationErrorMessage', err.response.data.errors);
-        //     })
-        // },
-
-        // 수강평 수정 함수
-        // putClassReview(context, data) {
-        //     const url = '/classboarddetailreview'
-        //     const header = {
-        //         headers: {
-        //             "Content-Type": 'multipart/form-data',
-        //             'X-CSRF-TOKEN': document.head.querySelector('meta[name="csrf-token"]').content,
-        //         },
-        //     }
-        //     let frm = new FormData();
-
-        //     console.log(data);
-
-        //     frm.append('ClassID',data.ClassID);
-        //     frm.append('UserID',data.UserID);
-        //     frm.append('ReviewComment',data.ReviewComment);
-        //     frm.append('ReviewRating',data.ReviewRating);
-        //     frm.append('ReviewID',data.ReviewID);
-
-        //     // console.log(frm);
-
-        //     axios.put(url, frm, header)
-        //     .then(res => { 
-        //         console.log(res.data);
-        //         // router.push('/classBoardDetail/' + this.ClassID); 
-        //         // router.push('/classBoardDetail/' + data.ClassID); 
-
-        //         //
-		// 		// context.commit(data.clickFlgTab , 1);
-        //     })
-        //     .catch(err => {
-        //         console.log(err.response.data.errors)
-        //         context.commit('setRegistrationErrorMessage', err.response.data.errors);
-        //     })
-        // },
-
-        // 수강평 삭제
-        // deleteClassReview(context, data) {
-        //     const url = '/classboarddetailreview/' + data
-        //     const header = {
-        //         headers: {
-        //             "Content-Type": 'multipart/form-data',
-        //             'X-CSRF-TOKEN': document.head.querySelector('meta[name="csrf-token"]').content,
-        //         },
-        //     }
-
-        //     // let frm = new FormData();
-        //     const requestData = {
-        //         ReviewID: data.ReviewID,
-        //     };
-
-        //     console.log(data);
-
-        //     axios.delete(url, requestData, header)
-        //     .then(res => { 
-        //         console.log(res.data);
-        //         // 해당 처리가 끝나면 리로드함
-        //         window.location.reload();
-        //         // localStorage.clear();
-        //         // router.push('/classBoardDetail/' + this.ClassID); 
-        //         // router.push('/classboarddetailreview'); 
-        //         //
-		// 		// context.commit(data.clickFlgTab , 1);
-        //     })
-        //     .catch(err => {
-        //         console.log(err.response.data.errors)
-        //         context.commit('setRegistrationErrorMessage', err.response.data.errors);
-        //     })
-        // },
-            
-
-
-
-
-
-
-
-
-
-        // 커뮤니티 작성
-
-
-
-
-
-
-
-
-
-
-
-        // 수강 신청
-        // postClassEnrollApp(context, data) {
-        //     const url = '/classEnrollAppPost'
-        //     const header = {
-        //         headers: {
-        //             "Content-Type": 'multipart/form-data',
-        //             'X-CSRF-TOKEN': document.head.querySelector('meta[name="csrf-token"]').content,
-        //         },
-        //     }
-        //     let frm = new FormData();
-
-        //     console.log(data);
-
-        //     frm.append('ClassID',data.ClassID);
-        //     frm.append('UserID',data.UserID);
-
-        //     axios.post(url, frm, header)
-        //     .then(res => { 
-        //         console.log(res.data);
-        //         window.location.reload();
-        //     })
-        //     .catch(err => {
-        //         console.log(err.response.data.errors)
-        //         // context.commit('setRegistrationErrorMessage', err.response.data.errors);
-        //     })
-        // },
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-
-
-
-
-
-
-
-
-
-        // 김민정
-        submitBoardData(context, data) {
-            const url = '/boardInsert'
-            const header = {
-                headers: {
-                    "Content-Type": 'multipart/form-data',
-                    'X-CSRF-TOKEN': document.head.querySelector('meta[name="csrf-token"]').content,
-                },
-            }
-            let frm = new FormData();
-
-            frm.append('BoardCategoryID',data.BoardCategoryID);
-            frm.append('UserID',data.UserID);
-            frm.append('BoardTitle',data.BoardTitle);
-            frm.append('BoardComment',data.BoardComment);
-
-            console.log(frm);
-
-            axios.post(url, frm, header)
-            .then(res => { 
-                // console.log(res.data);
                 router.push('/board'); 
             })
             .catch(err => {
