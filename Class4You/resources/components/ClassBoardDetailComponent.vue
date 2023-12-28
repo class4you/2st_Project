@@ -81,58 +81,66 @@
 				</ul>
 			</div>	
 
-        <div v-if="clickFlgTab === 0">
-			<div class="class_tab_content_div">
-				<div id="class_tab1" class="class_tab_content class_current">
-					<p style="font-weight: bold;">
-						💡{{ detailClassItems.languages[0].ClassLanguageName }}란,
-					</p>
-					<p>{{ detailClassItems.ClassIntroduction }}</p>
-				</div>
-			</div>
-        
-			<div class="class_tab_content_div">
-				<div class="class_tab_content_title">
-					<p>기초 설명</p>
-				</div>
-				<div id="class_tab1" class="class_tab_content class_tab_content_basic">
-					<p><strong>
-						<svg xmlns="http://www.w3.org/2000/svg" color="#fff" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
-  						<path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
-  						<path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
-						</svg>
-						추천드려요
-					</strong></p>
-					<p>✅코딩의 기초를 다지고싶은 분</p>
-					<p>✅코딩 스터디를 원하시는 분</p>
-					<p>✅학습 성취감을 느끼고 싶은 분</p>
-				</div>
-				<div class="class_tab_content">
-					<p>{{ detailClassItems.ClassDescription }}</p>
-				</div>
-			</div>
-
-			<div class="class_tab_content_div">
-				<div class="class_tab_content_title">
-					<p>커리큘럼</p>
-				</div>
-				<div id="class_tab1" class="class_tab_content">
-					<div class="class_tab_content_curriculum" style="display: inline-block;">
-						<div class="class_tab_content_curriculm_title">
-							<span class="class_tab_content_chapter_title">Charpter.</span>
-							<span class="class_tab_content_chapter_title" style="margin-left: 5px;">
-								{{ classCuriData.ChapterTitle }}
-							</span>
-						</div>
-						<div class="class_tab_content_lesson_title">
-							<p>{{ classCuriData.LessonTitle }}</p>
-						</div>
-						<div class="class_tab_content_lesson_content">
-							<p>{{ classCuriData.LessonContent }}</p>
-						</div>
+        <div v-if="clickFlgTab === 0" class="class_introduce">
+			
+			<div>
+				<div class="class_tab_content_div">
+					<div id="class_tab1" class="class_tab_content class_current">
+						<p style="font-weight: bold;">
+							💡{{ detailClassItems.languages[0].ClassLanguageName }}란,
+						</p>
+						<p>{{ detailClassItems.ClassIntroduction }}</p>
 					</div>
 				</div>
-			</div>	
+			
+				<div class="class_tab_content_div">
+					<div class="class_tab_content_title">
+						<p>기초 설명</p>
+					</div>
+					<div id="class_tab1" class="class_tab_content class_tab_content_basic" style="background-color: #343a40;">
+						<p><strong>
+							<svg xmlns="http://www.w3.org/2000/svg" color="#fff" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+							<path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+							<path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
+							</svg>
+							추천드려요
+						</strong></p>
+						<p>✅코딩의 기초를 다지고싶은 분</p>
+						<p>✅코딩 스터디를 원하시는 분</p>
+						<p>✅학습 성취감을 느끼고 싶은 분</p>
+					</div>
+					<div class="class_tab_content">
+						<p>{{ detailClassItems.ClassDescription }}</p>
+					</div>
+				</div>
+
+				<div class="class_tab_content_div">
+					<div class="class_tab_content_title">
+						<p>커리큘럼</p>
+					</div>
+					<div id="class_tab1" class="class_tab_content">
+						<div class="class_tab_content_curriculum" style="display: inline-block;">
+							<div class="class_tab_content_curriculm_title">
+								<span class="class_tab_content_chapter_title">Charpter.</span>
+								<span class="class_tab_content_chapter_title" style="margin-left: 5px;">
+									{{ classCuriData.ChapterTitle }}
+								</span>
+							</div>
+							<div class="class_tab_content_lesson_title">
+								<p>{{ classCuriData.LessonTitle }}</p>
+							</div>
+							<div class="class_tab_content_lesson_content">
+								<p>{{ classCuriData.LessonContent }}</p>
+								<p>The if construct is one of the most important features of many languages, PHP included. 
+									It allows for conditional execution of code fragments. 
+									PHP features an if structure that is similar to that of C:
+								</p>
+							</div>
+						</div>
+					</div>
+				</div>	
+			</div>
+			
 
 			<div class="class_tab_content_div" style="display: inline-block;">
 				
@@ -156,6 +164,10 @@
 						</div>
 						<div id="class_tab1" class="class_tab_classpoint">
 							<p><strong>2.{{detailClassItems.ClassPoint}}</strong></p>
+							<p>
+								강의를 모두 마치면 해당 리포지토리에 있는 서비스 정도는 하루 정도에 개발할 수 있게 됩니다. 
+								PHP 웹 개발의 실력을 키우고픈 분들뿐만 아니라, 혼자서 나만의 홈페이지를 제작하시고픈 분들에게도 도움이 되는 내용으로 구성하였습니다.
+							</p>
 						</div>
 						<div id="class_tab1" class="class_tab_classpoint">
 							<p><strong>3.{{detailClassItems.ClassPoint}}</strong></p>
@@ -190,7 +202,6 @@
 						</div>
 					</div>
 					<div v-if="detailClassItems.languages[0].ClassLanguageName ==  'PHP'">
-						
 						<div style="margin: 10px;">
 							<span></span>
 							<div>
@@ -233,6 +244,7 @@
 				</div>
 			</div>	
 
+		
         </div>
 
             <!-- 수강평 -->

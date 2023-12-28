@@ -1671,14 +1671,17 @@ ul.class_tabs li.class_current {
 }
 
 .class_tab_content_basic {
-    background-color: #5b5b5b;
-    color: #aba9a9; 
     border-radius: 3px;
     margin-top: 15px;
 }
 
 .class_tab_content_basic>p {
     text-align: center;
+    color: #f8f9fad8; 
+}
+
+.class_tab_content_basic>p>strong {
+    font-size: 20px;
 }
 
 /* .class_tab_content>p {
@@ -1691,6 +1694,10 @@ ul.class_tabs li.class_current {
     text-decoration-thickness: 1px;
     text-underline-offset: 3px;
     font-weight: bold;
+}
+
+.class_tab_content_title>p {
+    color: #020715;
 }
 
 .class_tab_content_div {
@@ -1713,9 +1720,10 @@ ul.class_tabs li.class_current {
 }
 
 .class_tab_classpoint {
+    border: 1px solid #E9ECEF;
     border-radius: 5px;
-    background-color: #ededed;
-    padding: 10px;
+    background-color: #f8f9fa;
+    padding: 20px;
     width: 400px;
     text-align: center;
 }
@@ -1723,9 +1731,10 @@ ul.class_tabs li.class_current {
 .class_tab_content_chapter_title {
     font-size: 20px;
     font-weight: bold;
-    padding: 5px;
+    padding: 10px;
     border-radius: 3px;
-    background-color: #ecd5e3;
+    background-color: #6a8ee3;
+    color: #E9ECEF;
 }
 
 .class_tab_content_lesson_title {
@@ -7451,7 +7460,7 @@ ul.class_tabs li.class_current {
     margin: 5px;
     margin-bottom: 30px;
     padding: 20px;
-    line-height: 30px;
+    line-height: 40px;
 }
 
 .class_current {
@@ -7507,7 +7516,7 @@ ul.class_tabs li.class_current {
     border-bottom: 1px solid #ededed;
 }
 
-.class_tab_content_chapter_title,
+/* .class_tab_content_chapter_title,
 .class_tab_content_chapter_span {
     font-size: 20px;
     font-weight: bold;
@@ -7515,7 +7524,7 @@ ul.class_tabs li.class_current {
     border-radius: 3px;
     background-color: #ecd5e3;
     margin-left: 5px;
-}
+} */
 
 .class_tab_content_lesson_title {
     padding: 10px;
