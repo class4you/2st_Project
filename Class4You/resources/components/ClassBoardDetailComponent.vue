@@ -97,15 +97,15 @@
 				</div>
 				<div id="class_tab1" class="class_tab_content class_tab_content_basic">
 					<p><strong>
-						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+						<svg xmlns="http://www.w3.org/2000/svg" color="#fff" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
   						<path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
   						<path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
 						</svg>
 						추천드려요
 					</strong></p>
-					<p>✔코딩의 기초를 다지고싶은 분</p>
-					<p>✔코딩 스터디를 원하시는 분</p>
-					<p>✔학습 성취감을 느끼고 싶은 분</p>
+					<p>✅코딩의 기초를 다지고싶은 분</p>
+					<p>✅코딩 스터디를 원하시는 분</p>
+					<p>✅학습 성취감을 느끼고 싶은 분</p>
 				</div>
 				<div class="class_tab_content">
 					<p>{{ detailClassItems.ClassDescription }}</p>
@@ -134,13 +134,88 @@
 				</div>
 			</div>	
 
-			<div class="class_tab_content_div">
-				<div class="class_tab_content_title">
-					<p>강의 특징</p>
+			<div class="class_tab_content_div" style="display: inline-block;">
+				
+					<div class="class_tab_content_title">
+						<p>강의 특징</p>
+					</div>
+					<div style="margin: 30px 10px; line-height: 30px;">
+						<span>💻이 <strong>강의</strong>의 특징은</span>
+					</div>
+			
+				<div class="class_tab_classpoint_div_box">
+					<div class="class_tab_classpoint_div">
+						<div id="class_tab1" class="class_tab_classpoint">
+							<p><strong>1.{{detailClassItems.ClassPoint}}</strong></p>
+							<p>
+								PHP 개발자의 최종 테크트리, 라라벨(Laravel) 프레임워크의 핵심.
+								PHP를 PHP답게, PHP 개발의 정수! 
+								PHP를 컴포저(Composer)와 연계해 다른 프로그래밍 언어 못지 않은 가볍고도 강력한 웹 애플리케이션을 개발, 
+								운용할 수 있습니다.
+							</p>
+						</div>
+						<div id="class_tab1" class="class_tab_classpoint">
+							<p><strong>2.{{detailClassItems.ClassPoint}}</strong></p>
+						</div>
+						<div id="class_tab1" class="class_tab_classpoint">
+							<p><strong>3.{{detailClassItems.ClassPoint}}</strong></p>
+						</div>
+						<div id="class_tab1" class="class_tab_classpoint">
+							<p><strong>4.{{detailClassItems.ClassPoint}}</strong></p>
+						</div>
+					</div>	
+				
+					<div v-if="detailClassItems.languages[0].ClassLanguageName ==  'HTML'">
+						<div style="margin: 10px;">
+							<span></span>
+							<div>
+								<img style="width: 100%;" src="/img/html/htmlgif.gif" alt="">
+							</div>
+						</div>
+					</div>
+					<div v-if="detailClassItems.languages[0].ClassLanguageName ==  'CSS'">
+						<div style="margin: 10px;">
+							<span></span>
+							<div>
+								<img style="width: 100%;" src="/img/php/cssgif.gif" alt="">
+							</div>
+						</div>
+					</div>
+					<div v-if="detailClassItems.languages[0].ClassLanguageName ==  'JAVA SCRIPT'">
+						<div style="margin: 10px;">
+							<span></span>
+							<div>
+								<img style="width: 100%;" src="/img/php/javascriptgif.gif" alt="">
+							</div>
+						</div>
+					</div>
+					<div v-if="detailClassItems.languages[0].ClassLanguageName ==  'PHP'">
+						
+						<div style="margin: 10px;">
+							<span></span>
+							<div>
+								<img style="width: 100%;" src="/img/php/laravelgif.webp" alt="">
+							</div>
+						</div>
+					</div>
+					<div v-if="detailClassItems.languages[0].ClassLanguageName ==  'JAVA'">
+						<div style="margin: 10px;">
+							<span></span>
+							<div>
+								<img style="width: 100%;" src="/img/php/javagif.gif" alt="">
+							</div>
+						</div>
+					</div>
+					<div v-if="detailClassItems.languages[0].ClassLanguageName ==  'DATABASE'">
+						<div style="margin: 10px;">
+							<span></span>
+							<div>
+								<img style="width: 100%;" src="/img/php/dbgif.gif" alt="">
+							</div>
+						</div>
+					</div>
 				</div>
-				<div id="class_tab1" class="class_tab_content">
-					<p>{{detailClassItems.ClassPoint}}</p>
-				</div>
+
 			</div>	
 
 			<div class="class_tab_content_div">
@@ -148,9 +223,13 @@
 					<p>강사 이력</p>
 				</div>
 				<div id="class_tab1" class="class_tab_content">
-					<p>{{detailClassItems.InstructorID}}</p>
-					<p>{{detailClassItems.InstructorFullName}}</p>
-					<p>{{detailClassItems.InstructorHistory}}</p>
+					<!-- <p>{{detailClassItems.InstructorID}}</p> -->
+					<div>
+						<p>강사 <strong>{{detailClassItems.InstructorFullName}}</strong>님</p>
+					</div>
+					<div class="class_tab_instructorhis">
+						<p>{{detailClassItems.InstructorHistory}}</p>
+					</div>
 				</div>
 			</div>	
 
@@ -506,7 +585,12 @@ export default {
 			// detailClassItems: [],
 			detailClassItems: {
 				languages: [
-					{ ClassLanguageName: '' },
+					{ ClassLanguageName: 'HTML' },
+					{ ClassLanguageName: 'CSS' },
+					{ ClassLanguageName: 'JAVA SCRIPT' },
+					{ ClassLanguageName: 'PHP' },
+					{ ClassLanguageName: 'JAVA' },
+					{ ClassLanguageName: 'DATABASE' },
 				]
 			},
 			reviewClassItems: [],
