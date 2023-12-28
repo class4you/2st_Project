@@ -79,7 +79,7 @@
                     <!-- <div class="number">
                         <p>답변<span>0</span></p>
                     </div> -->
-                        <div class="number">
+                        <div class="Commentnumber">
                             <p>답변 <span>{{ newCommentItem.length }}</span></p>
                         </div>
                     <div class="reviewList">
