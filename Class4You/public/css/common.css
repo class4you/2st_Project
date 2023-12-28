@@ -3757,7 +3757,7 @@ font-size: 15px;
 .reviewBox {
     width: 100%;
     padding: 10px 0px;
-    border-bottom: 2px solid rgb(139 147 255 / 30%);
+    border-bottom: 1px solid rgb(139 147 255 / 30%);
     font-size: 15px;
 }
 /* 수정 삭제 버튼 */
@@ -3910,7 +3910,7 @@ font-size: 15px;
     border-radius: 5px;
 }
 .comment_editBtn:hover{
-    background-color: #4744ff99;
+    background-color: #130ff099;
 }
 
 
@@ -8908,9 +8908,9 @@ font-size: 15px;
     margin: 0 10px;
 }
 
-.board_detail_wrap {
+/* .board_detail_wrap {
     padding: 0 10vw;
-}
+} */
 
 /* 배너 스타일 */
 .bannerBox{
@@ -9405,7 +9405,7 @@ font-size: 15px;
     padding: 30px;
     background: var(--card-bg);
     border-radius: 0.3rem;
-    border: 2px solid rgb(139 147 255 / 30%);
+    border: 1px solid rgb(139 147 255 / 30%);
     width: 100%;
     box-sizing: border-box;
     margin-bottom: 50px;
@@ -9430,7 +9430,7 @@ font-size: 15px;
 .postInfo{
     margin-bottom: 10px;
     padding-bottom: 10px;
-    border-bottom: 2px solid rgb(139 147 255 / 30%);
+    border-bottom: 1px solid rgb(139 147 255 / 30%);
 }
 .postInfo p{
     font-size: 12px;
@@ -9519,7 +9519,7 @@ font-size: 15px;
 .reviewBox {
     width: 100%;
     padding: 10px 0px;
-    border-bottom: 2px solid rgb(139 147 255 / 30%);
+    border-bottom: 1px solid rgb(139 147 255 / 30%);
     font-size: 15px;
 }
 /* 수정 삭제 버튼 */
@@ -9700,7 +9700,7 @@ font-size: 15px;
 }
 
 .reviewPost {
-    border: 2px solid rgb(139 147 255 / 30%);
+    border: 1px solid rgb(139 147 255 / 30%);
 }
 
 .reviewPost textarea {
