@@ -7532,7 +7532,6 @@ ul.class_tabs li.class_current {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     margin-bottom: 20px;
-    /* justify-items: center; */
     align-items: center;
 }
 
