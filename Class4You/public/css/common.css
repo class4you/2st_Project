@@ -1710,6 +1710,13 @@ ul.class_tabs li.class_current {
     border-bottom: 1px solid #ededed;
 }
 
+.class_tab_classpoint_div_box {
+    display: grid;
+    grid-template-columns: 1fr 0.1fr 1.0fr 0.1fr;
+    margin-bottom: 20px;
+    align-items: center;
+}
+
 .class_tab_classpoint_div {
     display: flex;
     flex-wrap: wrap;
@@ -1718,6 +1725,7 @@ ul.class_tabs li.class_current {
     line-height: 30px;
     gap: 10px;
     justify-content: flex-start;
+    border-right: 1px solid #ededed;
 }
 
 .class_tab_classpoint {
@@ -1745,6 +1753,14 @@ ul.class_tabs li.class_current {
     border: 1px solid #ededed;
     border-radius: 3px;
     padding: 10px;
+}
+
+.class_tab_content_instructor_name {
+    border: 1px solid #ededed; 
+    border-radius: 5px;
+    display: inline-block;
+    padding: 10px;
+    font-size: 1.5rem;
 }
 
 /* ============================================================================================================ */
