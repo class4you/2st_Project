@@ -2587,7 +2587,7 @@ progress[value]::-webkit-progress-bar{
     margin-bottom: 1em;
     height: 20px;
     font-size: 20px;
-    font-weight: 500;
+    font-weight: 600;
     color: #adb5bd;
 }
 
@@ -2608,7 +2608,7 @@ progress[value]::-webkit-progress-bar{
     color: #000;
 }
 .community_aside_menu a:hover {
-    color: #002affba;
+    color: #4a26cdba;
 }
 
 
@@ -2659,15 +2659,18 @@ progress[value]::-webkit-progress-bar{
 .e_status_active_tap_button {
     color: #939393;
     font-weight: 700;
-    font-size: 13px;
+    font-size: 15px;
     padding: 20px 20px;
     background-color: transparent;
     border: none;
+    cursor: pointer;
+
 }
 
 .e_status_active_tap_button_border_bottom {
-    border-bottom: 1px solid #000;
+    border-bottom: 1px solid #9d87ff;
     color: #1b1c1d;
+    cursor: pointer;
 }
 
 .e_status_active_tap_button::after {
@@ -2719,7 +2722,8 @@ progress[value]::-webkit-progress-bar{
     height: 48px;
     border-color: #7371fc;
     font-weight: 700;
-    background-color: #7371fc;
+  
+    background-color: #0400ff6d;
     border: 1px solid;
     color: #fff;
     padding: 0 12px;
@@ -2734,7 +2738,7 @@ progress[value]::-webkit-progress-bar{
     cursor: pointer;
 }
 .search_item_button:hover {
-    background-color: #0400ff6d;
+    background-color: #7371fc;
     color: #fff;
 }
 
@@ -2819,7 +2823,8 @@ option {
 }
 
 .ac_button:hover{
-    background-color: #3e3e42c5;
+
+    background-color: #3e4042;
     color: #fff;
 }
 .qustuon_list_pageing {
@@ -2829,7 +2834,7 @@ justify-content: center;
 font-size: 15px;
 }
 .ac_button {
-    background-color: #3e4042;
+    background-color: #3e3e42c5;
     border-color: #868e96;
     color: #fff;
     margin-left: 8px;
@@ -2986,12 +2991,11 @@ font-size: 15px;
     white-space: nowrap;
     display: inline-block;
     color: #868e96;
-    font-size: 14px;
+    font-size: 13px;
 }
 
 .question_info_user_name span {
     font-size: 14px;
-   
 }
 .question_info_user_data {
     font-size: 0;
@@ -3057,8 +3061,9 @@ font-size: 15px;
 
 
 .ranking_weekly_popular_write div{
-    padding: 0px 12px;
+    padding: 0px 20px;
     display: block;
+    margin-top: -2px;
 }
 
 .ranking_weekly_popular_writes_container {
@@ -3142,9 +3147,7 @@ font-size: 15px;
     margin: 0 10px;
 }
 
-.board_detail_wrap {
-    
-}
+
 
 /* 배너 스타일 */
 .bannerBox{
@@ -3640,7 +3643,7 @@ font-size: 15px;
     padding: 30px;
     background: var(--card-bg);
     border-radius: 0.3rem;
-    border: 2px solid rgb(139 147 255 / 30%);
+    border: 1px solid rgb(139 147 255 / 30%);
     width: 100%;
     box-sizing: border-box;
     margin-bottom: 50px;
@@ -3658,14 +3661,14 @@ font-size: 15px;
 }
 .postTitBox p{
     width: calc(100% - 50px);
-    height: 40px;
+    height: 35px;
     padding: 10px;
     border: 1px solid rgba(169, 169, 169, 0.3);
 }
 .postInfo{
     margin-bottom: 10px;
     padding-bottom: 10px;
-    border-bottom: 2px solid rgb(139 147 255 / 30%);
+    border-bottom: 1px solid rgb(137 139 175 / 27%);
 }
 .postInfo p{
     font-size: 12px;
@@ -3766,7 +3769,8 @@ font-size: 15px;
 
 .board_rewrite {    
     margin-right: 10px;
-    background-color: #0400ff99;
+
+    background-color: #88b4ffe5;
     border: none;
     padding: 10px 20px;
     cursor: pointer;
@@ -3777,12 +3781,13 @@ font-size: 15px;
 }
 
 .board_rewrite:hover {
-    background-color: #7371fc
+    background-color: rgba(52, 99, 182, 0.898);
+
 }
 
 .board_delete {    
     margin-right: 10px;
-    background-color: #ff0000b0;
+    background-color: #c13566a8;
     border: none;
     padding: 10px 20px;
     cursor: pointer;
@@ -3793,12 +3798,14 @@ font-size: 15px;
 }
 
 .board_delete:hover {
-    background-color: #951844f1;
+
+    background-color: #ff2e2eb0;
 }
 
 .board_complete{
     margin-right: 10px;
-    background-color: #0400ff6d;
+
+    background-color: #2522e06d;
     border: none;
     padding: 10px 20px;
     cursor: pointer;
@@ -3809,7 +3816,8 @@ font-size: 15px;
 }   
 
 .board_complete:hover {
-    background-color: #7371fc
+    background-color: #8371fc;
+
 }
 
 .reviewList {
@@ -3901,6 +3909,10 @@ font-size: 15px;
     color: #fff;
     border-radius: 5px;
 }
+.comment_editBtn:hover{
+    background-color: #4744ff99;
+}
+
 
 .commentActions button {
     margin-right: 10px;
@@ -3919,6 +3931,9 @@ font-size: 15px;
     color: #fff;
     border-radius: 5px;
 }
+.commentActions_deleteBtn:hover{
+    background-color: #ff272793;
+}
 .commentActions_reportBtn{
     margin-right: 10px;
     background-color: #ff00006d;
@@ -3935,7 +3950,7 @@ font-size: 15px;
 }
 
 .reviewPost {
-    border: 2px solid rgb(139 147 255 / 30%);
+    border: 1.8px solid rgb(139 147 255 / 30%);
 }
 /* CSS 스타일 시트 */
 .reviewPost.input:focus, textarea:focus, select:focus {
@@ -3959,11 +3974,12 @@ font-size: 15px;
     width: 100px;
     border: none;
     cursor: pointer;
-    background-color: rgba(55, 71, 246, 0.638);
+
+    background-color: rgba(16, 36, 251, 0.468);
     color: white;
 }
 .reviewPost button:hover {
-    background-color: rgba(16, 36, 251, 0.468);
+    background-color: rgba(55, 71, 246, 0.638);
     color: white;
 }
 
@@ -4347,12 +4363,12 @@ font-size: 15px;
     cursor: pointer;
     border: 0.0625rem solid transparent;
     color: rgb(255, 255, 255);
-    background-color: rgba(178, 81, 219, 0.75);
+    background-color: rgb(90 81 219 / 75%);
     border-radius: 7px;
 }
 
 .mantine-1276sa2:hover{ 
-    background-color:rgba(90, 11, 127, 0.566)/* 호버 시 밝은 초록색 배경색으로 변경 */
+    background-color:rgba(83, 78, 154, 0.576);
 
 }
 

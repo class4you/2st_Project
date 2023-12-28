@@ -9,7 +9,7 @@
 								<div class="main_visual_slider_track_slick">
 									<div class="main_visual_slider_track_slick_item">
 										<a href="">
-											<img src="/img/banner/banner4.png">
+											<img src="/img/banner/banner5.png">
 										</a>
 									</div>
 								</div>
@@ -92,16 +92,22 @@
 									</select>
 									<ul class="order_pc">
 									<li class="e_order active">
-										<button type="button" @click="fetchData(page = 1, searchQuery, solve = null, sortData = 1)" class="order_pc_button" :class="{ 'order_pc_button_on': sortData == 1}">최신순</button>
+										<button type="button" @click="fetchData(page = 1, searchQuery, solve = null, sortData = 1)" class="order_pc_button" :class="{ 'order_pc_button_on': sortData == 1}"><svg  style="opacity: 0.3;" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="violet" class="bi bi-dot" viewBox="0 0 16 16">
+  <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/>
+</svg>최신순</button>
 									</li>
 									<!-- <li class="e_order active">
 										<button type="button" @click="fetchData(page = 1, searchQuery, solve = null, sortData = 2)" class="order_pc_button">답변많은순</button>
 									</li> -->
 									<li class="e_order active">
-										<button type="button" @click="fetchData(page = 1, searchQuery, solve = null, sortData = 3)" class="order_pc_button" :class="{ 'order_pc_button_on': sortData == 3}">좋아요순</button>
+										<button type="button" @click="fetchData(page = 1, searchQuery, solve = null, sortData = 3)" class="order_pc_button" :class="{ 'order_pc_button_on': sortData == 3}"><svg style="opacity: 0.3;" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="violet" class="bi bi-dot" viewBox="0 0 16 16">
+  <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/>
+</svg>좋아요순</button>
 									</li>
 									<li class="e_order active">
-										<button type="button" @click="fetchData(page = 1, searchQuery, solve = null, sortData = 4)" class="order_pc_button" :class="{ 'order_pc_button_on': sortData == 4}">조회순</button>
+										<button type="button" @click="fetchData(page = 1, searchQuery, solve = null, sortData = 4)" class="order_pc_button" :class="{ 'order_pc_button_on': sortData == 4}"><svg  style="opacity: 0.3;" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="violet" class="bi bi-dot" viewBox="0 0 16 16">
+  <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/>
+</svg>조회순</button>
 									</li>
 									</ul>
 									<div class="posts_container_header_button_cover"></div>
@@ -152,7 +158,7 @@
 												</dd>
 												<dt class="visually_hidden">답변</dt>
 												<dd class="comment_count">
-													<i>답변수 :</i>
+													<i>답변수 :{{ item.cnt }}</i>
 													<span>0</span>
 												</dd>
 												</dl>
@@ -271,8 +277,8 @@ export default {
 			}
 			//  &laquo; 이전
 			//  다음 &raquo;
-			str = str.replace('&laquo;', '≪');
-			str = str.replace('&raquo;', '≫');
+			str = str.replace('&laquo;', '<');
+			str = str.replace('&raquo;', '>');
 			console.log(str);
 			return str;
 		},

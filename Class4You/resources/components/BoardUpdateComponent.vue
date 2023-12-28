@@ -8,7 +8,7 @@
 								<div class="main_visual_slider_track_slick">
 									<div class="main_visual_slider_track_slick_item">
 										<a href="">
-											<img src="/img/banner/banner4.png">
+											<img src="/img/banner/banner5.png">
 										</a>
 									</div>
 								</div>
