@@ -239,7 +239,7 @@
 						<p>강사 <strong>{{detailClassItems.InstructorFullName}}</strong>님</p>
 					</div>
 					<div class="class_tab_instructorhis">
-						<p>{{detailClassItems.InstructorHistory}}</p>
+						<p style="white-space: pre-line;">{{ detailClassItems.InstructorHistory }}</p>
 					</div>
 				</div>
 			</div>	
