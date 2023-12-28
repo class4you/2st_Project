@@ -1702,9 +1702,7 @@ ul.class_tabs li.class_current {
     border-bottom: 1px solid #ededed;
 }
 
-.class_tab_content_curriculm {
 
-}
 
 .class_tab_content_chapter_title {
     font-size: 20px;
@@ -1717,7 +1715,6 @@ ul.class_tabs li.class_current {
 .class_tab_content_lesson_title {
     padding: 10px;
 }
-
 .class_tab_content_lesson_content {
     border: 1px solid #ededed;
     border-radius: 3px;
@@ -1725,8 +1722,6 @@ ul.class_tabs li.class_current {
 }
 
 /* ============================================================================================================ */
-/* 강의게시판rating */
-
 .class_detail_rating_tab {
     margin: 0px;
     list-style: none;
@@ -2262,7 +2257,7 @@ ul.class_tabs li.class_current {
 
 progress[value]::-webkit-progress-bar{
     background-color: whitesmoke;
-    box-shadow: 0 1px 5px rgba(0,0,0,0.1) inset;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.25) inset;
 }
 
     #progress[value]{
@@ -3121,7 +3116,8 @@ font-size: 15px;
 .culumn{display: -webkit-box;display: -ms-flexbox;display: flex;-webkit-box-orient: vertical; -ms-flex-direction: column; flex-direction: column;-webkit-box-lines: multiple; -ms-flex-wrap: wrap; flex-wrap: wrap;}
 .jcS{-webkit-box-pack: start; -ms-flex-pack: start; justify-content: flex-start;}
 .jcE{-webkit-box-pack: end; -ms-flex-pack: end; justify-content: flex-end;}
-.jcC{-webkit-box-pack: center; -ms-flex-pack: center; justify-content: center; }
+.jcC{-webkit-box-pack: center; -ms-flex-pack: center; justify-content: center;font-size: 15px;
+    font-weight: 500; }
 .jcB{-webkit-box-pack: justify; -ms-flex-pack: justify; justify-content: space-between;}
 .aiS{-webkit-box-align: start; -ms-flex-align: start; align-items: flex-start;} 
 .aiE{-webkit-box-align: end; -ms-flex-align: end; align-items: flex-end;}
@@ -3770,7 +3766,7 @@ font-size: 15px;
 
 .board_rewrite {    
     margin-right: 10px;
-    background-color: #0400ff6d;
+    background-color: #0400ff99;
     border: none;
     padding: 10px 20px;
     cursor: pointer;
@@ -3786,7 +3782,7 @@ font-size: 15px;
 
 .board_delete {    
     margin-right: 10px;
-    background-color: #ff00626d;
+    background-color: #ff0000b0;
     border: none;
     padding: 10px 20px;
     cursor: pointer;
@@ -3896,7 +3892,7 @@ font-size: 15px;
 }
 .comment_editBtn{
     margin-right: 10px;
-    background-color: #0400ff6d;
+    background-color: #0400ff99;
     border: none;
     padding: 10px 20px;
     cursor: pointer;
@@ -3914,7 +3910,7 @@ font-size: 15px;
 }
 .commentActions_deleteBtn{
     margin-right: 10px;
-    background-color: #002cff6d;
+    background-color: #ff0000b0;
     border: none;
     padding: 10px 20px;
     cursor: pointer;
@@ -3963,7 +3959,7 @@ font-size: 15px;
     width: 100px;
     border: none;
     cursor: pointer;
-    background-color: rgba(55, 71, 246, 0.468);
+    background-color: rgba(55, 71, 246, 0.638);
     color: white;
 }
 .reviewPost button:hover {
@@ -4161,7 +4157,7 @@ font-size: 15px;
     }
     
     .mantine-11amb58[data-active] {
-        border-color: rgb(0, 196, 113);
+        border-color: rgb(139 147 255 / 30%);
         color: rgb(0, 0, 0);
     }
     
@@ -4202,8 +4198,8 @@ font-size: 15px;
         padding: 0.75rem 0.75rem 0.75rem 1rem;
         border-radius: 0.5rem;
         border: 0.0625rem solid transparent;
-        background-color: rgb(229, 249, 241);
-        color: rgb(0, 196, 113);
+        background-color: rgb(234 229 249);
+        color: rgb(81 0 196);
         margin-top: 0.75rem;
         margin-bottom: 1.25rem;
         font-size: 13px;
@@ -4236,9 +4232,17 @@ font-size: 15px;
         resize: none;
     }
 
-    .mantine-goibal:focus {
+
+/* CSS 스타일 시트 */
+.mantine-goibal.input:focus, textarea:focus, select:focus {
+    outline: none; /* 포커스 시 테두리 없애기 */
+}
+
+
+    /* .mantine-goibal:focus {
         outline: 1px solid #949494;
-    }
+
+    } */
     
     .css-140imd4 {
         display: flex;
@@ -4343,13 +4347,13 @@ font-size: 15px;
     cursor: pointer;
     border: 0.0625rem solid transparent;
     color: rgb(255, 255, 255);
-    background-color: rgb(0, 196, 113);
+    background-color: rgba(178, 81, 219, 0.75);
     border-radius: 7px;
 }
 
 .mantine-1276sa2:hover{ 
-    background-color: rgba(53, 180, 127, 0.567);/* 호버 시 밝은 초록색 배경색으로 변경 */
-    color: #ffffff; /* 호버 시 검은색 글자색으로 변경 */
+    background-color:rgba(90, 11, 127, 0.566)/* 호버 시 밝은 초록색 배경색으로 변경 */
+
 }
 
 
@@ -4381,8 +4385,6 @@ font-size: 15px;
     width: 100%;
     height: 292px;
 }
-
-
 
 
 .posts-by-type .ranking-writer-container .ranking-writer-list {
@@ -4512,7 +4514,7 @@ font-size: 15px;
 }
 
 .board_insert_textarea:focus {
-    outline: 1px solid #949494;
+    outline: none;
 }
 
 
@@ -4858,7 +4860,6 @@ font-size: 15px;
     justify-content: space-between;
     margin-bottom: 10px;
     font-size: 13px;
-    padding: 0px 10px;
 }
 
 .recent_learning_class_progress {
@@ -5066,7 +5067,7 @@ font-size: 15px;
     grid-template-columns: 1fr 1fr 1fr;
     text-align: center;
     justify-content: center;
-    gap: 5px;
+    gap: 10px;
 }
 
 .weekly_study_class_data {
@@ -5074,8 +5075,6 @@ font-size: 15px;
     font-size: 13px;
     border: 1px solid #e7e7e7;
     background-color: #fafafa;
-    border-radius: 5px;
-    padding: 2px 0px;
 }
 
 .weekly_study_class_data span:not(:nth-child(1)) {
@@ -5095,6 +5094,7 @@ font-size: 15px;
 
 .weekly_study_class_total_cover {
     margin-top: 15px;
+    margin-bottom: 15px;
     display: flex;
     gap: 20px;
     justify-content: center;
@@ -5305,11 +5305,6 @@ font-size: 15px;
     font-size: 15px;
     font-weight: 700;
     cursor: pointer;
-    opacity: 0.8;
-}
-
-.users_basic_information_button button:hover {
-    opacity: 1;
 }
 
 .users_basic_information_password_cover {
@@ -5346,18 +5341,18 @@ font-size: 15px;
 }
 
 .users_password_titel {
-    background-color:#f3f3f3;
+    background-color:#324e96;
     padding: 10px 15px;
     font-size: 15px;
-    color: #5a5a5a;
+    color: #fff;
     border-radius: 5px;
     text-align: center;
 }
 
 .users_password_input {
     width: 100%;
-    border: 1px solid #979797;
-    border-radius: 5px;
+    border: 1px solid #e2e2e2;
+    border-radius: 10px;
     padding: 10px 15px;
 }
 
@@ -5371,18 +5366,12 @@ font-size: 15px;
     font-weight: 700;
     border-radius: 5px;
     padding: 10px 15px;
-    cursor: pointer;
-    opacity: 0.8;
-}
-
-.users_password_button:hover {
-    opacity: 1;
 }
 
 .user_address_button {
     /* text-align: center; */
     color: #fff;
-    background-color: #5e8af2;
+    background-color: #4e81f8;
     display: inline-block;
     font-size: 15px;
     /* width: 25%; */
@@ -5393,11 +5382,6 @@ font-size: 15px;
     justify-content: space-between;
     border: none;
     cursor: pointer;
-    opacity: 0.8;
-}
-
-.user_address_button:hover {
-    opacity: 1;
 }
 
 .users_basic_address_cover {
@@ -5509,15 +5493,8 @@ font-size: 15px;
 .my_page_container_new_card {
     display: block;
     border-radius: 15px;
-    background-color: #ebf1ff;
+    background-color: #cadaff;
     padding: 10px;
-    transition: top 0.3s ease;
-}
-
-.my_page_container_new_card:hover {
-    position: relative;
-    top: -5px;
-    box-shadow: 0px 15px 20px 2px rgba(125, 125, 125, 0.2);
 }
 
 .my_page_container_new_card_img {
@@ -5652,7 +5629,7 @@ font-size: 15px;
 
 .users_class_thread_button {
     border: none;
-    background-color: #4E81F8;
+    background-color: #4e81f8;
     font-size: 20px;
     font-weight: 700;
     color: #fff;
@@ -5662,11 +5639,6 @@ font-size: 15px;
     border-radius: 5px;
     margin: auto;
     font-size: 15px;
-    opacity: 0.8;
-}
-
-.users_class_thread_button:hover {
-    opacity: 1;
 }
 
 @media only screen and (max-width: 900px) {

@@ -381,6 +381,16 @@ class ClassInfoController extends Controller
                 ->first();
 
         Log::debug($classCuri);
+
+        // 수강평 평균값
+        $avgReviewRating = DB::table('reviews as re')
+            ->select(DB::raw('ROUND(AVG(re.ReviewRating)) as avgRating'), 'info.ClassID')
+            ->join('enrollments as en', 're.EnrollmentID', 'en.EnrollmentID')
+            ->join('class_infos as info', 'en.ClassID', 'info.ClassID')
+            ->where('info.ClassID', $ClassID)
+            ->groupBy('info.ClassID')
+            ->first();
+
         // $result = ClassInfo::select('class_infos.*', DB::raw(count(enrollments.UserID)))
 		// 	->join('instructors','instructors.InstructorID','class_infos.InstructorID')
         //     ->join('enrollments','enrollments.ClassID','class_infos.ClassID')
@@ -451,6 +461,7 @@ class ClassInfoController extends Controller
                 'result' => $result,
                 'userCnt' => $userCnt,
                 'classCuri' => $classCuri,
+                'avgReviewRating' => $avgReviewRating
             ]);
         }    
     }
