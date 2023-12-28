@@ -16,7 +16,6 @@ return new class extends Migration
         Schema::create('instructors', function (Blueprint $table) {
             $table->id('InstructorID');
             $table->string('InstructorEmail')->unique();
-            $table->rememberToken()->nullable();
             $table->timestamp('UserEmail_verified_at')->nullable();
             $table->string('InstructorPassword');
             $table->string('InstructorFullName', 50);

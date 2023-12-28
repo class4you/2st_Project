@@ -22,7 +22,7 @@ class BoardController extends Controller
         //     ->orderBy('boards.created_at', 'desc')
         //     ->paginate(10);
 
-        $boardDataQuery = Board::join('users', 'boards.UserID', 'users.UserID');
+        $boardDataQuery = User::join('boards', 'boards.UserID', 'users.UserID');
             // ->orderBy('boards.created_at', 'desc');
         
         if ($request->has('search')) {

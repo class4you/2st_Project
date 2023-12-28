@@ -19,9 +19,9 @@ return new class extends Migration
             $table->string('LessonTitle', 50);
             $table->string('LessonContent', 100);
             $table->string('LessonVideoID', 100);
+            $table->float('LessonProgress')->default(0);
             $table->float('LessonAllRunningTime')->default(0);
             $table->float('LessonRunningTime')->default(0);
-            $table->float('LessonProgress')->default(0);
             $table->char('LessonFlg', 1)->default(0);
             $table->timestamps();
             $table->softDeletes();

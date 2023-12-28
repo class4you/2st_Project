@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id('EnrollmentID');
             $table->integer('UserID');
             $table->integer('ClassID');
+            $table->char('EnrollmentFlg', 1)->default(0);
             $table->timestamps();
             $table->softDeletes();
         });
