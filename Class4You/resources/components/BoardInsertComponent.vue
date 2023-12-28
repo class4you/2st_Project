@@ -64,16 +64,16 @@
             </div>
         </div>
 
-        <div class="css-os36di">
-            <button class="mantine-UnstyledButton-root mantine-Button-root mantine-1uni1zy" type="button" data-button="true">
-                <div class="mantine-1yjkc96 mantine-Button-inner">
-                    <span class="mantine-1ryt1ht mantine-Button-label">취소</span>
-                </div>
+                <div class="css-os36di">
+            <button class="mantine-UnstyledButton-root mantine-Button-root mantine-1uni1zy" type="button" @click="goToBoard">
+            <div class="mantine-1yjkc96 mantine-Button-inner">
+                <span class="mantine-1ryt1ht mantine-Button-label">취소</span>
+            </div>
             </button>
             <button class="mantine-UnstyledButton-root mantine-Button-root mantine-1276sa2" type="submit" data-button="true">
-                <div class="mantine-1yjkc96 mantine-Button-inner">
-                    <span class="mantine-1ryt1ht mantine-Button-label" @click="submitBoardData()">등록</span>
-                </div>
+            <div class="mantine-1yjkc96 mantine-Button-inner">
+                <span class="mantine-1ryt1ht mantine-Button-label" @click="submitBoardData()">등록</span>
+            </div>
             </button>
         </div>
 
@@ -109,6 +109,9 @@ export default {
         submitBoardData() {
             this.$store.dispatch('submitBoardData', this.frmBoardData);
         },
+        goToBoard() {
+      this.$router.push('/board'); // '/board'는 실제로 이동하고자 하는 경로로 수정하세요
+    },
     }
 }
 </script>
