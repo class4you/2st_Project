@@ -21490,7 +21490,10 @@ var _hoisted_17 = /*#__PURE__*/_withScopeId(function () {
   }, "내용 : ", -1 /* HOISTED */);
 });
 var _hoisted_18 = {
-  "class": "postCont"
+  "class": "postCont",
+  style: {
+    "white-space": "pre-line"
+  }
 };
 var _hoisted_19 = /*#__PURE__*/_withScopeId(function () {
   return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {

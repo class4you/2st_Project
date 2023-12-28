@@ -43,7 +43,7 @@
                     <div class="postContBox row">
 
                         <label for="postCont">내용 : </label> 
-                        <p class="postCont">{{ newBoardItem.BoardComment }}</p>
+                        <p class="postCont" style="white-space: pre-line;">{{ newBoardItem.BoardComment }}</p>
                     </div>
                     <div class="laguage">
                         <ul class="row aiC laguage_gap_10">
