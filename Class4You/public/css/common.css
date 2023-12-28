@@ -1339,6 +1339,16 @@ th:last-child, td:last-child {
     font-weight: 700;
     line-height: 25px;
     color: #000;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.class_main_container_new_card_title h4 {
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    white-space: normal;
 }
 
 .class_main_container_new_card_content {
@@ -1346,6 +1356,16 @@ th:last-child, td:last-child {
     font-size: 13px;
     line-height: 20px;
     color: #000;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.class_main_container_new_card_content p {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    white-space: normal;
 }
 
 .class_main_container_new_card_tag {
@@ -1454,7 +1474,7 @@ th:last-child, td:last-child {
     flex-direction: column;
     padding: 0 0 0 32px;
     flex-basis: 58.33333333%;
-    max-width: 50.33333333%;
+    max-width: 55%;
 }
 
 .class_detail_container_r_banner {
@@ -1471,6 +1491,14 @@ th:last-child, td:last-child {
 
 .class_detail_container_r_content_box {
     margin-bottom: 40px;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.class_detail_container_r_content_box {
+    /* display: -webkit-box; */
+    -webkit-line-clamp: 3;
 }
 
 .class_detail_container_r_info_box {

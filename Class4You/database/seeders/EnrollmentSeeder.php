@@ -15,34 +15,17 @@ class EnrollmentSeeder extends Seeder
      */
     public function run()
     {
-        // $cnt = 1;
-        
-        // while($cnt <= 33) {
-        //     Enrollment::create([
-        //         'UserID' => 9,
-        //         'ClassID' => $cnt,
-        //     ]);
-        //     $cnt++;
-        // }
+        $userIds = range(1, 20);
 
-        // $cnt = 34;
-        
-        // while($cnt <= 49) {
-        //     Enrollment::create([
-        //         'UserID' => 10,
-        //         'ClassID' => $cnt,
-        //     ]);
-        //     $cnt++;
-        // }
+        // 시더를 돌릴 클래스 아이디 범위
+        $classIds = range(1, 216);
 
-        // $cnt = 50;
-        
-        // while($cnt <= 97) {
-        //     Enrollment::create([
-        //         'UserID' => 8,
-        //         'ClassID' => $cnt,
-        //     ]);
-        //     $cnt++;
-        // }
+        // 랜덤하게 배열에서 값을 추출하여 생성
+        foreach ($userIds as $userId) {
+            Enrollment::create([
+                'UserID' => $userId,
+                'ClassID' => $classIds[array_rand($classIds)],
+            ]);
+        }
     }
 }

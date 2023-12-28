@@ -25,7 +25,7 @@
                                 </h2>
                             </div>
                             <div class="class_detail_container_r_content_box">
-                                <p class="class_detail_container_r_content">
+                                <p style="white-space: pre-line;" class="class_detail_container_r_content">
                                     {{ detailClassItems.ClassDescription }}
                                 </p>
                             </div>

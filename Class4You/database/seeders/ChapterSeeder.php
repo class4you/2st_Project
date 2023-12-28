@@ -15,10 +15,6 @@ class ChapterSeeder extends Seeder
      */
     public function run()
     {
-
-
-
-
             $classes = [
                 [
                     'ClassID' => 1,
@@ -1712,7 +1708,7 @@ class ChapterSeeder extends Seeder
                     'Chapters' => [
                         '섹션 0. 인트로',
                         '섹션 1. SELECT 기초 - 원하는 정보 가져오기',
-                        '섹션 2. SELECT 더 깊이 파보기',,
+                        '섹션 2. SELECT 더 깊이 파보기',
                     ],
                 ],
                 [
@@ -1756,7 +1752,7 @@ class ChapterSeeder extends Seeder
                     'Chapters' => [
                         '섹션 0. 인트로',
                         '섹션 1. SELECT 기초 - 원하는 정보 가져오기',
-                        '섹션 2. SELECT 더 깊이 파보기',,
+                        '섹션 2. SELECT 더 깊이 파보기',
                     ],
                 ],
                 [
@@ -1800,7 +1796,7 @@ class ChapterSeeder extends Seeder
                     'Chapters' => [
                         '섹션 0. 인트로',
                         '섹션 1. SELECT 기초 - 원하는 정보 가져오기',
-                        '섹션 2. SELECT 더 깊이 파보기',,
+                        '섹션 2. SELECT 더 깊이 파보기',
                     ],
                 ],
                 [
@@ -1844,7 +1840,7 @@ class ChapterSeeder extends Seeder
                     'Chapters' => [
                         '섹션 0. 인트로',
                         '섹션 1. SELECT 기초 - 원하는 정보 가져오기',
-                        '섹션 2. SELECT 더 깊이 파보기',,
+                        '섹션 2. SELECT 더 깊이 파보기',
                     ],
                 ],
                 [
@@ -1888,7 +1884,7 @@ class ChapterSeeder extends Seeder
                     'Chapters' => [
                         '섹션 0. 인트로',
                         '섹션 1. SELECT 기초 - 원하는 정보 가져오기',
-                        '섹션 2. SELECT 더 깊이 파보기',,
+                        '섹션 2. SELECT 더 깊이 파보기',
                     ],
                 ],
                 [
@@ -1932,7 +1928,7 @@ class ChapterSeeder extends Seeder
                     'Chapters' => [
                         '섹션 0. 인트로',
                         '섹션 1. SELECT 기초 - 원하는 정보 가져오기',
-                        '섹션 2. SELECT 더 깊이 파보기',,
+                        '섹션 2. SELECT 더 깊이 파보기',
                     ],
                 ],
                 [
@@ -1976,7 +1972,7 @@ class ChapterSeeder extends Seeder
                     'Chapters' => [
                         '섹션 0. 인트로',
                         '섹션 1. SELECT 기초 - 원하는 정보 가져오기',
-                        '섹션 2. SELECT 더 깊이 파보기',,
+                        '섹션 2. SELECT 더 깊이 파보기',
                     ],
                 ],
                 [
@@ -2020,7 +2016,7 @@ class ChapterSeeder extends Seeder
                     'Chapters' => [
                         '섹션 0. 인트로',
                         '섹션 1. SELECT 기초 - 원하는 정보 가져오기',
-                        '섹션 2. SELECT 더 깊이 파보기',,
+                        '섹션 2. SELECT 더 깊이 파보기',
                     ],
                 ],
                 [

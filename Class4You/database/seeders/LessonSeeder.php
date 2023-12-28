@@ -15,46 +15,195 @@ class LessonSeeder extends Seeder
      */
     public function run()
     {
-        Lesson::create([
-            'ChapterID' => 3,
-            'LessonTitle' => '1. 문학이란 무엇인가?',
-            'LessonContent' => 'PHP에 대한 간단한 설명',
-            'LessonVideoID' => 'j59HTVY1oCc'
-        ]);
+    
+        for ($i = 1; $i <= 175; $i++) {
+            $lessonCount = rand(2, 5);
 
-        Lesson::create([
-            'ChapterID' => 3,
-            'LessonTitle' => '2. 엑스재팬 설치',
-            'LessonContent' => 'PHP개발환경 구성',
-            'LessonVideoID' => 'a_80o2lDYec&t=49s'
-        ]);
+            for ($j = 1; $j <= $lessonCount; $j++) {
+                Lesson::create([
+                    'ChapterID' => $i,
+                    'LessonTitle' => $this->getHtmlTitle(),
+                    'LessonContent' => $this->getHtmlContent(),
+                    'LessonVideoID' => $this->getHtmlVideoID(),
+                ]);
+            }
+        }
 
-        Lesson::create([
-            'ChapterID' => 3,
-            'LessonTitle' => '3. 키보드를 사용하여 컴퓨터 부스기',
-            'LessonContent' => 'xampp 실행',
-            'LessonVideoID' => 'L_Xd8ig4P6s'
-        ]);
 
-        Lesson::create([
-            'ChapterID' => 4,
-            'LessonTitle' => '4. 생기초 생활기록부',
-            'LessonContent' => '뭐 내용 많음',
-            'LessonVideoID' => '3ijCQaUlOsc'
-        ]);
+        for ($i = 176; $i <= 347; $i++) {
+            $lessonCount = rand(2, 5); 
 
-        Lesson::create([
-            'ChapterID' => 4,
-            'LessonTitle' => '5. 변기수 표현법',
-            'LessonContent' => '뭐 내용 많음',
-            'LessonVideoID' => 'ytk55T0pL_U'
-        ]);
+            for ($j = 1; $j <= $lessonCount; $j++) {
+                Lesson::create([
+                    'ChapterID' => $i, 
+                    'LessonTitle' => $this->getCssTitle(),
+                    'LessonContent' => $this->getCssContent(),
+                    'LessonVideoID' => $this->getCssVideoID(),
+                ]);
+            }
+        }
 
-        Lesson::create([
-            'ChapterID' => 4,
-            'LessonTitle' => '6. 조석처리',
-            'LessonContent' => '뭐 내용 많음',
-            'LessonVideoID' => 'o-QxXe5kfoE'
-        ]);
+        
+        for ($i = 348; $i <= 558; $i++) {
+            $lessonCount = rand(2, 5); 
+
+            for ($j = 1; $j <= $lessonCount; $j++) {
+                Lesson::create([
+                    'ChapterID' => $i, 
+                    'LessonTitle' => $this->getCssTitle(),
+                    'LessonContent' => $this->getCssContent(),
+                    'LessonVideoID' => $this->getCssVideoID(),
+                ]);
+            }
+        }
+
+                
+        for ($i = 559; $i <= 642; $i++) {
+            $lessonCount = rand(2, 5); 
+
+            for ($j = 1; $j <= $lessonCount; $j++) {
+                Lesson::create([
+                    'ChapterID' => $i, 
+                    'LessonTitle' => $this->getCssTitle(),
+                    'LessonContent' => $this->getCssContent(),
+                    'LessonVideoID' => $this->getCssVideoID(),
+                ]);
+            }
+        }
+
+        for ($i = 643; $i <= 799; $i++) {
+            $lessonCount = rand(2, 5); 
+
+            for ($j = 1; $j <= $lessonCount; $j++) {
+                Lesson::create([
+                    'ChapterID' => $i, 
+                    'LessonTitle' => $this->getCssTitle(),
+                    'LessonContent' => $this->getCssContent(),
+                    'LessonVideoID' => $this->getCssVideoID(),
+                ]);
+            }
+        }
+
+        for ($i = 800; $i <= 964; $i++) {
+            $lessonCount = rand(2, 5); 
+
+            for ($j = 1; $j <= $lessonCount; $j++) {
+                Lesson::create([
+                    'ChapterID' => $i, 
+                    'LessonTitle' => $this->getCssTitle(),
+                    'LessonContent' => $this->getCssContent(),
+                    'LessonVideoID' => $this->getCssVideoID(),
+                ]);
+            }
+        }
+    }
+
+    protected function getHtmlTitle()
+    {
+        $titles = ['Common Introduction', 'Common Advanced Techniques', 'Common Hands-on Practice', 'Common Introduction', 'Common Advanced Techniques', 'Common Hands-on Practice', 'Common Introduction', 'Common Advanced Techniques', 'Common Hands-on Practice'];
+        return $titles[array_rand($titles)];
+    }
+
+    protected function getHtmlContent()
+    {
+        $contents = ['This is a common content for all chapters.', 'Common content for better understanding.', 'This is a common content for all chapters.', 'Common content for better understanding.', 'This is a common content for all chapters.', 'Common content for better understanding.', 'This is a common content for all chapters.', 'Common content for better understanding.'];
+        return $contents[array_rand($contents)];
+    }
+
+    protected function getHtmlVideoID()
+    {
+        $videoIDs = ['common_video1.mp4', 'common_video2.mp4', 'common_video1.mp4', 'common_video2.mp4', 'common_video1.mp4', 'common_video2.mp4', 'common_video1.mp4', 'common_video2.mp4', 'common_video1.mp4', 'common_video2.mp4'];
+        return $videoIDs[array_rand($videoIDs)];
+    }
+
+    protected function getCssTitle()
+    {
+        $titles = ['Common Introduction', 'Common Advanced Techniques', 'Common Hands-on Practice', 'Common Introduction', 'Common Advanced Techniques', 'Common Hands-on Practice', 'Common Introduction', 'Common Advanced Techniques', 'Common Hands-on Practice'];
+        return $titles[array_rand($titles)];
+    }
+
+    protected function getCssContent()
+    {
+        $contents = ['This is a common content for all chapters.', 'Common content for better understanding.', 'This is a common content for all chapters.', 'Common content for better understanding.', 'This is a common content for all chapters.', 'Common content for better understanding.', 'This is a common content for all chapters.', 'Common content for better understanding.'];
+        return $contents[array_rand($contents)];
+    }
+
+    protected function getCssVideoID()
+    {
+        $videoIDs = ['common_video1.mp4', 'common_video2.mp4', 'common_video1.mp4', 'common_video2.mp4', 'common_video1.mp4', 'common_video2.mp4', 'common_video1.mp4', 'common_video2.mp4', 'common_video1.mp4', 'common_video2.mp4'];
+        return $videoIDs[array_rand($videoIDs)];
+    }
+
+    
+    protected function getJsTitle()
+    {
+        $titles = ['Common Introduction', 'Common Advanced Techniques', 'Common Hands-on Practice', 'Common Introduction', 'Common Advanced Techniques', 'Common Hands-on Practice', 'Common Introduction', 'Common Advanced Techniques', 'Common Hands-on Practice'];
+        return $titles[array_rand($titles)];
+    }
+
+    protected function getJsContent()
+    {
+        $contents = ['This is a common content for all chapters.', 'Common content for better understanding.', 'This is a common content for all chapters.', 'Common content for better understanding.', 'This is a common content for all chapters.', 'Common content for better understanding.', 'This is a common content for all chapters.', 'Common content for better understanding.'];
+        return $contents[array_rand($contents)];
+    }
+
+    protected function getJsVideoID()
+    {
+        $videoIDs = ['common_video1.mp4', 'common_video2.mp4', 'common_video1.mp4', 'common_video2.mp4', 'common_video1.mp4', 'common_video2.mp4', 'common_video1.mp4', 'common_video2.mp4', 'common_video1.mp4', 'common_video2.mp4'];
+        return $videoIDs[array_rand($videoIDs)];
+    }
+
+    protected function getPhpTitle()
+    {
+        $titles = ['Common Introduction', 'Common Advanced Techniques', 'Common Hands-on Practice', 'Common Introduction', 'Common Advanced Techniques', 'Common Hands-on Practice', 'Common Introduction', 'Common Advanced Techniques', 'Common Hands-on Practice'];
+        return $titles[array_rand($titles)];
+    }
+
+    protected function getPhpContent()
+    {
+        $contents = ['This is a common content for all chapters.', 'Common content for better understanding.', 'This is a common content for all chapters.', 'Common content for better understanding.', 'This is a common content for all chapters.', 'Common content for better understanding.', 'This is a common content for all chapters.', 'Common content for better understanding.'];
+        return $contents[array_rand($contents)];
+    }
+
+    protected function getPhpVideoID()
+    {
+        $videoIDs = ['common_video1.mp4', 'common_video2.mp4', 'common_video1.mp4', 'common_video2.mp4', 'common_video1.mp4', 'common_video2.mp4', 'common_video1.mp4', 'common_video2.mp4', 'common_video1.mp4', 'common_video2.mp4'];
+        return $videoIDs[array_rand($videoIDs)];
+    }
+
+    protected function getJavaTitle()
+    {
+        $titles = ['Common Introduction', 'Common Advanced Techniques', 'Common Hands-on Practice', 'Common Introduction', 'Common Advanced Techniques', 'Common Hands-on Practice', 'Common Introduction', 'Common Advanced Techniques', 'Common Hands-on Practice'];
+        return $titles[array_rand($titles)];
+    }
+
+    protected function getJavaContent()
+    {
+        $contents = ['This is a common content for all chapters.', 'Common content for better understanding.', 'This is a common content for all chapters.', 'Common content for better understanding.', 'This is a common content for all chapters.', 'Common content for better understanding.', 'This is a common content for all chapters.', 'Common content for better understanding.'];
+        return $contents[array_rand($contents)];
+    }
+
+    protected function getJavaVideoID()
+    {
+        $videoIDs = ['common_video1.mp4', 'common_video2.mp4', 'common_video1.mp4', 'common_video2.mp4', 'common_video1.mp4', 'common_video2.mp4', 'common_video1.mp4', 'common_video2.mp4', 'common_video1.mp4', 'common_video2.mp4'];
+        return $videoIDs[array_rand($videoIDs)];
+    }
+
+    protected function getDbTitle()
+    {
+        $titles = ['Common Introduction', 'Common Advanced Techniques', 'Common Hands-on Practice', 'Common Introduction', 'Common Advanced Techniques', 'Common Hands-on Practice', 'Common Introduction', 'Common Advanced Techniques', 'Common Hands-on Practice'];
+        return $titles[array_rand($titles)];
+    }
+
+    protected function getDbContent()
+    {
+        $contents = ['This is a common content for all chapters.', 'Common content for better understanding.', 'This is a common content for all chapters.', 'Common content for better understanding.', 'This is a common content for all chapters.', 'Common content for better understanding.', 'This is a common content for all chapters.', 'Common content for better understanding.'];
+        return $contents[array_rand($contents)];
+    }
+
+    protected function getDbVideoID()
+    {
+        $videoIDs = ['common_video1.mp4', 'common_video2.mp4', 'common_video1.mp4', 'common_video2.mp4', 'common_video1.mp4', 'common_video2.mp4', 'common_video1.mp4', 'common_video2.mp4', 'common_video1.mp4', 'common_video2.mp4'];
+        return $videoIDs[array_rand($videoIDs)];
     }
 }
