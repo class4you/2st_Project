@@ -1724,7 +1724,7 @@ ul.class_tabs li.class_current {
 
 .class_tab_content_basic {
     border-radius: 3px;
-    margin-top: 15px;
+    margin-top: 30px;
 }
 
 .class_tab_content_basic>p {
@@ -1750,6 +1750,25 @@ ul.class_tabs li.class_current {
 
 .class_tab_content_title>p {
     color: #020715;
+}
+
+.class_tab_description {
+    border: 1px solid #ededed;
+    border-radius: 6px;
+    display: inline-grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+}
+
+.class_tab_content_classpoint_ment {
+    box-shadow: inset 0 -10px #e7ffba;
+    margin: 30px 10px; 
+    line-height: 30px;
+    display: inline-block;
+}
+
+.class_tab_content_classpoint_ment>span {
+    font-size: 1.5rem;
 }
 
 .class_tab_content_div {
@@ -1810,8 +1829,16 @@ ul.class_tabs li.class_current {
     border: 1px solid #ededed; 
     border-radius: 5px;
     display: inline-block;
-    padding: 10px;
+    padding: 10px 30px;
     font-size: 1.5rem;
+}
+
+.class_tab_content_instructor_name_style>p {
+    color: #adb5bd;
+}
+
+.class_tab_instructorhis>p {
+    color: #495057;
 }
 
 /* ============================================================================================================ */
