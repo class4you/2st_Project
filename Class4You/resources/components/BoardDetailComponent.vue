@@ -46,14 +46,14 @@
                         <p class="postCont" style="white-space: pre-line;">{{ newBoardItem.BoardComment }}</p>
                     </div>
                     <div class="laguage">
-                        <ul class="row aiC laguage_gap_10">
+                        <!-- <ul class="row aiC laguage_gap_10">
                             <li>React</li>
                             <li>JS</li>
                             <li>CSS</li>
                             <li>HTML</li>
                             <li>LARAVEL</li>
                             <li>React</li>
-                        </ul>
+                        </ul> -->
                     </div>
                     <div class="reco row jcC">
                         <div class="row aiC">

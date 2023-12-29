@@ -30,6 +30,8 @@ class BoardController extends Controller
             ->groupBy('boards.BoardID')
             ->get();
 
+        Log::debug($commentCountQuery);
+
         if ($request->has('search')) {
             $searchTerm = $request->input('search');
             $boardDataQuery->where(function ($query) use ($searchTerm) {

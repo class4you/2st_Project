@@ -307,7 +307,7 @@ hr {
 }
 
 .login_modal_logo {
-    width: 50%;
+    width: 40%;
     margin: auto;
     margin-top: 20px;
     /* background-color: #4e81f8; */
@@ -1710,7 +1710,7 @@ ul.class_tabs li.class_current {
 }
 
 .class_tab_content_basic_ba_color {
-    background: linear-gradient(to right, #3f6edb, #8986f4);
+    background: linear-gradient(to right, #335ab6, #7875c2);
     border-radius: 5px;
 }
 
@@ -1730,6 +1730,14 @@ ul.class_tabs li.class_current {
     opacity: 1;
 }
 
+.class_tab_content_basic_box {
+    /* background-color: #00c471; */
+    /* display: inline-block; */
+    /* width: 30%; */
+    /* margin: auto; */
+    /* text-align: left; */
+}
+
 .class_tab_content_basic {
     border-radius: 3px;
     text-align: center;
@@ -1738,12 +1746,12 @@ ul.class_tabs li.class_current {
 
 .class_tab_content_basic>p {
     text-align: center;
-    color: #f8f9fa; 
+    color: #ffffff; 
 }
 
 .class_tab_content_basic>span {
-    color: #f8f9fa;
-    opacity: 0.8;
+    color: #ffffff;
+    opacity: 0.9;
 }
 
 .class_tab_content_basic>p>strong {

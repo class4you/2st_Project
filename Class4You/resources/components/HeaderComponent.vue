@@ -63,7 +63,7 @@
                     <img style="cursor: pointer;" src="/img/modal_cancel.png" alt="" @click="loginCloseModal">
                 </div>
                 <div class="login_modal_logo">
-                    <img src="/img/v2_14378e7f2adb0ec0ad8cddaaf3b0fbdd_0DXltiM6xt_top.jpg" alt="">
+                    <img src="/img/Logo.png" alt="">
                 </div>
                 <div class="login_modal_input_box">
                     <input type="email" placeholder="이메일" name="UserEmail" v-model="frmUserLoginData.UserEmail">

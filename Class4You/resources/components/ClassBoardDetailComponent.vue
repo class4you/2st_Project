@@ -98,54 +98,56 @@
 						<p>기초 설명</p>
 					</div>
 					<div id="class_tab1" class="class_tab_content class_tab_content_basic_ba_color">
-						<div class="class_tab_content_basic">
-							<p><strong>
-								<svg xmlns="http://www.w3.org/2000/svg" color="#fff" width="20" height="20" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
-								<path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
-								<path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
-								</svg>
-								추천드려요
-							</strong></p>
-						</div>
-						<div class="class_tab_content_basic">
-							<span>
-								<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right-circle-fill" viewBox="0 0 16 16">
-  									<path d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0zM4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5z"/>
-								</svg>
-							</span>
-							<span>코딩의 기초를 다지고싶은 분</span>
-						</div>
-						<div class="class_tab_content_basic">
-							<span>
-								<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right-circle-fill" viewBox="0 0 16 16">
-  									<path d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0zM4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5z"/>
-								</svg>
-							</span>
-							<span>코딩 스터디를 원하시는 분</span>
-						</div>
-						<div class="class_tab_content_basic">
-							<span>
-								<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right-circle-fill" viewBox="0 0 16 16">
-  									<path d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0zM4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5z"/>
-								</svg>
-							</span>
-							<span>학습 성취감을 느끼고 싶은 분</span>
-						</div>
-						<div class="class_tab_content_basic">
-							<span>
-								<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right-circle-fill" viewBox="0 0 16 16">
-  									<path d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0zM4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5z"/>
-								</svg>
-							</span>
-							<span>웹개발 분야로 이직을 원하시는 분</span>
-						</div>
-						<div class="class_tab_content_basic">
-							<span>
-								<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right-circle-fill" viewBox="0 0 16 16">
-  									<path d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0zM4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5z"/>
-								</svg>
-							</span>
-							<span>비전공자인데 체계적인 코딩 공부를 원하시는 분</span>
+						<div class="class_tab_content_basic_box">
+							<div class="class_tab_content_basic">
+								<p><strong>
+									<svg xmlns="http://www.w3.org/2000/svg" color="#fff" width="20" height="20" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+									<path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+									<path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
+									</svg>
+									추천드려요
+								</strong></p>
+							</div>
+							<div class="class_tab_content_basic">
+								<span>
+									<svg style="margin-right: 10px;" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right-circle-fill" viewBox="0 0 16 16">
+										<path d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0zM4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5z"/>
+									</svg>
+								</span>
+								<span>코딩의 기초를 다지고싶은 분</span>
+							</div>
+							<div class="class_tab_content_basic">
+								<span>
+									<svg style="margin-right: 10px;" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right-circle-fill" viewBox="0 0 16 16">
+										<path d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0zM4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5z"/>
+									</svg>
+								</span>
+								<span>코딩 스터디를 원하시는 분</span>
+							</div>
+							<div class="class_tab_content_basic">
+								<span>
+									<svg style="margin-right: 10px;" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right-circle-fill" viewBox="0 0 16 16">
+										<path d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0zM4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5z"/>
+									</svg>
+								</span>
+								<span>학습 성취감을 느끼고 싶은 분</span>
+							</div>
+							<div class="class_tab_content_basic">
+								<span>
+									<svg style="margin-right: 10px;" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right-circle-fill" viewBox="0 0 16 16">
+										<path d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0zM4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5z"/>
+									</svg>
+								</span>
+								<span>웹개발 분야로 이직을 원하시는 분</span>
+							</div>
+							<div class="class_tab_content_basic">
+								<span>
+									<svg style="margin-right: 10px;" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right-circle-fill" viewBox="0 0 16 16">
+										<path d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0zM4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5z"/>
+									</svg>
+								</span>
+								<span>비전공자인데 체계적인 코딩 공부를 원하시는 분</span>
+							</div>
 						</div>
 					</div>
 					<div class="class_tab_content class_tab_description">
@@ -210,7 +212,22 @@
 							<p><strong>2.{{detailClassItems.ClassPoint}}</strong></p>
 							
 						</div>
-						<div id="class_tab1" class="class_tab_classpoint">
+						<div v-if="detailClassItems.languages[0].ClassLanguageName ==  'HTML'" id="class_tab1" class="class_tab_classpoint">
+							<p>
+								웹 디자이너 및 UI UX의 기본 HTMl.
+								HTML를 PHP답게, PHP 개발의 정수! 
+								PHP를 컴포저(Composer)와 연계해 다른 프로그래밍 언어 못지 않은 가볍고도 강력한 웹 애플리케이션을 개발, 
+								운용할 수 있습니다.
+							</p>
+						</div>
+						<div v-if="detailClassItems.languages[0].ClassLanguageName ==  'HTML'" id="class_tab1" class="class_tab_classpoint">
+							<p>
+								강의를 모두 마치면 해당 리포지토리에 있는 서비스 정도는 하루 정도에 개발할 수 있게 됩니다. 
+								PHP 웹 개발의 실력을 키우고픈 분들뿐만 아니라, 혼자서 나만의 홈페이지를 제작하시고픈 분들에게도 도움이 되는 내용으로 구성하였습니다.
+							</p>
+						</div>
+
+						<div v-if="detailClassItems.languages[0].ClassLanguageName ==  'CSS'" id="class_tab1" class="class_tab_classpoint">
 							<p>
 								PHP 개발자의 최종 테크트리, 라라벨(Laravel) 프레임워크의 핵심.
 								PHP를 PHP답게, PHP 개발의 정수! 
@@ -218,7 +235,67 @@
 								운용할 수 있습니다.
 							</p>
 						</div>
-						<div id="class_tab1" class="class_tab_classpoint">
+						<div v-if="detailClassItems.languages[0].ClassLanguageName ==  'CSS'" id="class_tab1" class="class_tab_classpoint">
+							<p>
+								강의를 모두 마치면 해당 리포지토리에 있는 서비스 정도는 하루 정도에 개발할 수 있게 됩니다. 
+								PHP 웹 개발의 실력을 키우고픈 분들뿐만 아니라, 혼자서 나만의 홈페이지를 제작하시고픈 분들에게도 도움이 되는 내용으로 구성하였습니다.
+							</p>
+						</div>
+
+						<div v-if="detailClassItems.languages[0].ClassLanguageName ==  'JAVA SCRIPT'" id="class_tab1" class="class_tab_classpoint">
+							<p>
+								PHP 개발자의 최종 테크트리, 라라벨(Laravel) 프레임워크의 핵심.
+								PHP를 PHP답게, PHP 개발의 정수! 
+								PHP를 컴포저(Composer)와 연계해 다른 프로그래밍 언어 못지 않은 가볍고도 강력한 웹 애플리케이션을 개발, 
+								운용할 수 있습니다.
+							</p>
+						</div>
+						<div v-if="detailClassItems.languages[0].ClassLanguageName ==  'JAVA SCRIPT'" id="class_tab1" class="class_tab_classpoint">
+							<p>
+								강의를 모두 마치면 해당 리포지토리에 있는 서비스 정도는 하루 정도에 개발할 수 있게 됩니다. 
+								PHP 웹 개발의 실력을 키우고픈 분들뿐만 아니라, 혼자서 나만의 홈페이지를 제작하시고픈 분들에게도 도움이 되는 내용으로 구성하였습니다.
+							</p>
+						</div>
+
+						<div v-if="detailClassItems.languages[0].ClassLanguageName ==  'PHP'" id="class_tab1" class="class_tab_classpoint">
+							<p>
+								PHP 개발자의 최종 테크트리, 라라벨(Laravel) 프레임워크의 핵심.
+								PHP를 PHP답게, PHP 개발의 정수! 
+								PHP를 컴포저(Composer)와 연계해 다른 프로그래밍 언어 못지 않은 가볍고도 강력한 웹 애플리케이션을 개발, 
+								운용할 수 있습니다.
+							</p>
+						</div>
+						<div v-if="detailClassItems.languages[0].ClassLanguageName ==  'PHP'" id="class_tab1" class="class_tab_classpoint">
+							<p>
+								강의를 모두 마치면 해당 리포지토리에 있는 서비스 정도는 하루 정도에 개발할 수 있게 됩니다. 
+								PHP 웹 개발의 실력을 키우고픈 분들뿐만 아니라, 혼자서 나만의 홈페이지를 제작하시고픈 분들에게도 도움이 되는 내용으로 구성하였습니다.
+							</p>
+						</div>
+
+						<div v-if="detailClassItems.languages[0].ClassLanguageName ==  'JAVA'" id="class_tab1" class="class_tab_classpoint">
+							<p>
+								PHP 개발자의 최종 테크트리, 라라벨(Laravel) 프레임워크의 핵심.
+								PHP를 PHP답게, PHP 개발의 정수! 
+								PHP를 컴포저(Composer)와 연계해 다른 프로그래밍 언어 못지 않은 가볍고도 강력한 웹 애플리케이션을 개발, 
+								운용할 수 있습니다.
+							</p>
+						</div>
+						<div v-if="detailClassItems.languages[0].ClassLanguageName ==  'JAVA'" id="class_tab1" class="class_tab_classpoint">
+							<p>
+								강의를 모두 마치면 해당 리포지토리에 있는 서비스 정도는 하루 정도에 개발할 수 있게 됩니다. 
+								PHP 웹 개발의 실력을 키우고픈 분들뿐만 아니라, 혼자서 나만의 홈페이지를 제작하시고픈 분들에게도 도움이 되는 내용으로 구성하였습니다.
+							</p>
+						</div>
+
+						<div v-if="detailClassItems.languages[0].ClassLanguageName ==  'DATABASE'" id="class_tab1" class="class_tab_classpoint">
+							<p>
+								PHP 개발자의 최종 테크트리, 라라벨(Laravel) 프레임워크의 핵심.
+								PHP를 PHP답게, PHP 개발의 정수! 
+								PHP를 컴포저(Composer)와 연계해 다른 프로그래밍 언어 못지 않은 가볍고도 강력한 웹 애플리케이션을 개발, 
+								운용할 수 있습니다.
+							</p>
+						</div>
+						<div v-if="detailClassItems.languages[0].ClassLanguageName ==  'DATABASE'" id="class_tab1" class="class_tab_classpoint">
 							<p>
 								강의를 모두 마치면 해당 리포지토리에 있는 서비스 정도는 하루 정도에 개발할 수 있게 됩니다. 
 								PHP 웹 개발의 실력을 키우고픈 분들뿐만 아니라, 혼자서 나만의 홈페이지를 제작하시고픈 분들에게도 도움이 되는 내용으로 구성하였습니다.
