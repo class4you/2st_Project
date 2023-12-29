@@ -74,8 +74,8 @@
             <!-- 강의 소개 -->
 			<div class="class_tab_menu_div">
 				<ul class="class_tabs">
-					<li @click="clickFlgTab = 0; solve = null; sortData = 0;" :class="{'class_tab_link_on': sortData == 0}" class="class_tab_link current" data-tab="class_tab1">강의 소개</li>
-					<li @click="clickFlgTab = 1; solve = null; sortData = 1;" :class="{'class_tab_link_on': sortData == 1}" class="class_tab_link" data-tab="class_tab2">수강평</li>
+					<li @click="clickFlgTab = 0; solve = null; sortData = 0;"  class="class_tab_link current"  :class="{'class_tab_link_on': sortData == 0}" data-tab="class_tab1">강의 소개</li>
+					<li @click="clickFlgTab = 1; solve = null; sortData = 1;"  class="class_tab_link"  :class="{'class_tab_link_on': sortData == 1}" data-tab="class_tab2">수강평</li>
 					<!-- <li @click="clickFlgTab = 2;" class="class_tab_link" data-tab="class_tab3">커뮤니티</li> -->
 					<!-- <li @click="clickFlgTab = 3;" class="class_tab_link" data-tab="class_tab4">공지사항</li> -->
 				</ul>
@@ -97,17 +97,56 @@
 					<div class="class_tab_content_title">
 						<p>기초 설명</p>
 					</div>
-					<div id="class_tab1" class="class_tab_content class_tab_content_basic class_tab_content_basic_ba_color" >
-						<p><strong>
-							<svg xmlns="http://www.w3.org/2000/svg" color="#fff" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
-							<path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
-							<path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
-							</svg>
-							추천드려요
-						</strong></p>
-						<p>✅ 코딩의 기초를 다지고싶은 분</p>
-						<p>✅ 코딩 스터디를 원하시는 분</p>
-						<p>✅ 학습 성취감을 느끼고 싶은 분</p>
+					<div id="class_tab1" class="class_tab_content" style="background-color: #343a40;">
+						<div class="class_tab_content_basic">
+							<p><strong>
+								<svg xmlns="http://www.w3.org/2000/svg" color="#fff" width="20" height="20" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+								<path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+								<path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
+								</svg>
+								추천드려요
+							</strong></p>
+						</div>
+						<div class="class_tab_content_basic">
+							<span>
+								<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right-circle-fill" viewBox="0 0 16 16">
+  									<path d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0zM4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5z"/>
+								</svg>
+							</span>
+							<span>코딩의 기초를 다지고싶은 분</span>
+						</div>
+						<div class="class_tab_content_basic">
+							<span>
+								<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right-circle-fill" viewBox="0 0 16 16">
+  									<path d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0zM4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5z"/>
+								</svg>
+							</span>
+							<span>코딩 스터디를 원하시는 분</span>
+						</div>
+						<div class="class_tab_content_basic">
+							<span>
+								<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right-circle-fill" viewBox="0 0 16 16">
+  									<path d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0zM4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5z"/>
+								</svg>
+							</span>
+							<span>학습 성취감을 느끼고 싶은 분</span>
+						</div>
+						<div class="class_tab_content_basic">
+							<span>
+								<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right-circle-fill" viewBox="0 0 16 16">
+  									<path d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0zM4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5z"/>
+								</svg>
+							</span>
+							<span>웹개발 분야로 이직을 원하시는 분</span>
+						</div>
+						<div class="class_tab_content_basic">
+							<span>
+								<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right-circle-fill" viewBox="0 0 16 16">
+  									<path d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0zM4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5z"/>
+								</svg>
+							</span>
+							<span>비전공자인데 체계적인 코딩 공부를 원하시는 분</span>
+						</div>
 					</div>
 					<div class="class_tab_content class_tab_description">
 						<span>◼{{ detailClassItems.ClassDescription }}</span>
@@ -129,7 +168,12 @@
 								</span>
 							</div>
 							<div class="class_tab_content_lesson_title">
-								<p>{{ classCuriData.LessonTitle }}</p>
+								<p>
+									<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-return-right" viewBox="0 0 16 16">
+  										<path fill-rule="evenodd" d="M1.5 1.5A.5.5 0 0 0 1 2v4.8a2.5 2.5 0 0 0 2.5 2.5h9.793l-3.347 3.346a.5.5 0 0 0 .708.708l4.2-4.2a.5.5 0 0 0 0-.708l-4-4a.5.5 0 0 0-.708.708L13.293 8.3H3.5A1.5 1.5 0 0 1 2 6.8V2a.5.5 0 0 0-.5-.5z"/>
+									</svg>
+									{{ classCuriData.LessonTitle }}
+								</p>
 							</div>
 							<div class="class_tab_content_lesson_content">
 								<p>{{ classCuriData.LessonContent }}</p>
