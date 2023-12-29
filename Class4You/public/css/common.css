@@ -82,9 +82,8 @@ summary {
     list-style-type: none; /* 그 외의 브라우저용 사용자 정의 스타일 */
 }
 .wrapper {
-    height:auto;
     min-height: 100%;
-    /* padding-bottom: 150px; */
+    position: relative;
 }
 /* ============================================================================================= */
 /* 공통 헤더 영역 */
@@ -433,6 +432,7 @@ footer {
     position:relative;
 	bottom: 0; */
     /* margin-top: 100px; */
+    bottom: 0;
 }
 
 
@@ -1426,7 +1426,7 @@ th:last-child, td:last-child {
 /* 강의 게시판_detail */
 .class_detail_container_box {
     position: relative;
-    padding: 30px 0;
+    padding: 40px 0;
     background: #002333;
 }
 
@@ -1469,10 +1469,10 @@ th:last-child, td:last-child {
 }
 
 .class_detail_container_r {
-    margin-top: 15px;
+    /* margin-top: 15px; */
     display: flex;
     flex-direction: column;
-    padding: 0 0 0 32px;
+    padding: 20px 0px;
     flex-basis: 58.33333333%;
     max-width: 55%;
 }
@@ -1486,11 +1486,11 @@ th:last-child, td:last-child {
 }
 
 .class_detail_container_r_title_box {
-    margin-bottom: 40px;
+    margin-bottom: 30px;
 }
 
 .class_detail_container_r_content_box {
-    margin-bottom: 40px;
+    margin-bottom: 30px;
     display: -webkit-box;
     -webkit-box-orient: vertical;
     overflow: hidden;
@@ -1524,9 +1524,9 @@ th:last-child, td:last-child {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-top: 30px;
+    margin-top: 20px;
     width: 100%;
-    height: 20px;
+    /* height: 50px; */
 }
 
 .class_detail_container_r_banner_label {
@@ -4954,6 +4954,7 @@ font-size: 15px;
     display: flex;
     min-width: 0px;
     font-size: 18px;
+    font-weight: 700;
 }
 
 .recent_learning_class_content_cover {
@@ -4968,6 +4969,18 @@ font-size: 15px;
     display: flex;
     min-width: 0px;
     font-size: 15px;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    font-weight: 500;
+    color: #aaaaaa;
+}
+
+.recent_learning_class_content p{
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    white-space: normal;
 }
 
 .recent_learning_class_progress_cover {
@@ -5039,7 +5052,7 @@ font-size: 15px;
     font-size: 15px;
     font-weight: 700;
     opacity: 0.8;
-    margin-top: 13px;
+    margin-top: 3px;
 }
 
 .recent_learning_class_button a:hover {
@@ -5807,7 +5820,6 @@ footer {
     width: 100%;
     background-color: #2E2E2E;
     padding: 0 10vw;
-    position:relative;
 	bottom: 0;
 }
 

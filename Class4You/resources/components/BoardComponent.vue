@@ -115,7 +115,7 @@
 								</div>
 								<ul class="question_list">
 									<li class="question_container">
-									<a v-for="item in newBoardItems" :href="'/boardDetail/' + item.BoardID">
+									<a v-for="item in newBoardItems" :href="'/boardDetail/' + item.BoardID" @click="increaseViews(item.BoardID)"> 
 										<div  class="question">
 										<div class="question_info">
 											<div class="question_title">
@@ -283,6 +283,21 @@ export default {
 			console.log(str);
 			return str;
 		},
+		increaseViews(boardID) {
+			axios.put('/boardViewsUpdate', {
+                BoardID : boardID,
+                UserID: this.$store.state.UserID,
+            })
+            .then(response => {
+                console.log(response.data);
+                // 서버 응답에 대한 로직 수행
+                // this.$router.push('/board');
+            })
+            .catch(error => {
+                // 에러 처리
+                console.error(error);
+            });
+		}
 	}
 }
 

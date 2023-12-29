@@ -302,7 +302,7 @@
 
 
 
-            <div v-if="$store.state.myPageClickFlgTab === 3" class="my_page_class_box">
+            <div v-if="$store.state.myPageClickFlgTab === 3" class="my_page_class_box" style="height: auto;">
                 <div class="my_page_class_box_cover">
                     <div class="class_basic_information">
                         <div class="class_basic_information_title">
@@ -408,7 +408,7 @@
             </div>
 
 
-            <div v-if="$store.state.myPageClickFlgTab === 5" class="my_page_class_box">
+            <div v-if="$store.state.myPageClickFlgTab === 5" class="my_page_class_box" style="height: 100%;">
                 <div class="my_page_class_box_cover">
                     <div class="class_basic_information">
                         <div class="class_basic_information_title">

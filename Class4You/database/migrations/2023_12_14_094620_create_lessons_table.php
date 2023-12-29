@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('lessons', function (Blueprint $table) {
             $table->id('LessonID');
             $table->integer('ChapterID');
-            $table->string('LessonTitle', 50);
+            $table->string('LessonTitle', 100);
             $table->string('LessonContent', 100);
             $table->string('LessonVideoID', 100);
             $table->float('LessonProgress')->default(0);

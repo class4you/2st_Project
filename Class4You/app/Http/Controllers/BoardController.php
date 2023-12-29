@@ -63,7 +63,7 @@ class BoardController extends Controller
         $userCntData = User::select('users.UserEmail', DB::raw('count(*) as cnt'))
             ->join('comments', 'users.UserID', 'comments.UserID')
             ->groupBy('users.UserEmail')
-            ->limit(10)
+            ->limit(5)
             ->get();
 
         // Log::debug($UserCntData);
@@ -228,13 +228,13 @@ class BoardController extends Controller
         $boardId = $request->input('BoardID');
         
         $board = Board::find($boardId);
-        Log::debug($board);
+        // Log::debug($board);
         
         
         if ($board) {
-            // 보드가 존재하는 경우, 추천 수를 1 증가시키고 저장
+            // 보드가 존재하는 경우, 조회수 수를 1 증가시키고 저장
             // 업데이트된 추천 수를 응답
-            $board->BoardView + 1;
+            $board->BoardView += 1;
             $board->save();
             return response()->json(['updated_boardview' => $board->BoardView]);
         } else {
@@ -242,5 +242,6 @@ class BoardController extends Controller
             return response()->json(['error' => 'Board not found'], 404);
         }
     }
+
 
 }

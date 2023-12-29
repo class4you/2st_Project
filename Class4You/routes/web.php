@@ -117,7 +117,8 @@ Route::put('/boardCompleteUpdate', [BoardController::class, 'putBoardCompleteUpd
 Route::put('/boardRecommendedUpdate', [BoardController::class, 'putBoardRecommendedUpdate']);
 Route::put('/boardNotRecommendedUpdate', [BoardController::class, 'putBoardNotRecommendedUpdate']);
 
-
+// 게시판 조회수 처리
+Route::put('/boardViewsUpdate', [BoardController::class, 'putBoardViewUpdate']);
 
 // 마이페이지 작업
 Route::get('/getmypagedashboard', [MyPageController::class, 'getUserClassData']);
