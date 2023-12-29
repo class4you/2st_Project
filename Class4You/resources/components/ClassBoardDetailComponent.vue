@@ -97,7 +97,7 @@
 					<div class="class_tab_content_title">
 						<p>기초 설명</p>
 					</div>
-					<div id="class_tab1" class="class_tab_content" style="background-color: #343a40;">
+					<div id="class_tab1" class="class_tab_content class_tab_content_basic_ba_color">
 						<div class="class_tab_content_basic">
 							<p><strong>
 								<svg xmlns="http://www.w3.org/2000/svg" color="#fff" width="20" height="20" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
