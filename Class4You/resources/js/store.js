@@ -258,7 +258,10 @@ const store = createStore({
                     'X-CSRF-TOKEN': document.head.querySelector('meta[name="csrf-token"]').content,
                 },
             }
-            if(!data.CommentContent) {
+
+            if(!data.UserID) {
+                alert('로그인 후 작성해주세요.');
+            } else if(!data.CommentContent) {
                 alert('내용을 입력해주세요.');
             }
             let frm = new FormData();

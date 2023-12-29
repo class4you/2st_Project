@@ -181,10 +181,6 @@ export default {
 
         // 댓글 작성 불러오기
         submitCommentData() {
-            if(!this.$store.state.UserID) {
-				alert('로그인 후 작성 해주세요.');
-			}
-            
             this.$store.dispatch('submitCommentData', this.frmCommentData);
         },
 
