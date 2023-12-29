@@ -251,7 +251,7 @@ export default {
         fetchData() {
         axios.get('/getNewClassMainData')
             .then(response => {
-                console.log(response.data);
+                // console.log(response.data);
                 this.newClassItems = response.data;
             })
             .catch(error => {

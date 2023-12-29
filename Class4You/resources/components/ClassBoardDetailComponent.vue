@@ -1,6 +1,6 @@
 <template>
     <div class="wrapper">
-		<div style="padding: 0 10vw;" class="whr"><span>전체강의</span><span>&gt;</span><span>{{ detailClassItems.languages[0].ClassLanguageName }}</span></div>
+		<div style="padding: 0 10vw;" class="whr"><span>전체강의</span><span>&gt;</span><span>{{ languagesChk }}</span></div>
         <div class="class_detail_visual">
             <div class="class_detail_container_box">
                 
@@ -17,7 +17,7 @@
                                 <div class="class_detail_container_r_banner_label">
                                     <span>NEW</span>
                                 </div>
-                                <span>{{detailClassItems.languages[0].ClassLanguageName}}</span>
+                                <span>{{languagesChk}}</span>
                             </div>
                             <div class="class_detail_container_r_title_box">
                                 <h2 class="class_detail_container_r_title">
@@ -38,13 +38,13 @@
                                             <!-- <span>☆</span> -->
                                             <!-- <span>☆</span> -->
                                             <!-- <span>☆</span> -->
-                                            <span>⭐평점</span>
+                                            <span style="margin-right: 5px;">⭐평점 </span>
 											<span>{{ classRatingData }}.0</span>
                                         </div>
                                     </div>
                                     <!-- <span>{{ classRatingData }}</span> -->
                                 </span>
-                                <span>🙍‍♂️🙍‍♀️</span>
+                                <span style="margin-right: 5px;">🙍‍♂️🙍‍♀️</span>
                                 <span>{{ enrollmentCnt }}명</span>
                             </div>
                             <div class="class_detail_container_r_language">
@@ -87,7 +87,7 @@
 				<div class="class_tab_content_div">
 					<div id="class_tab1" class="class_tab_content class_current">
 						<p style="font-weight: bold;">
-							💡{{ detailClassItems.languages[0].ClassLanguageName }}란,
+							💡{{ languagesChk }}란,
 						</p>
 						<p>{{ detailClassItems.ClassIntroduction }}</p>
 					</div>
@@ -212,7 +212,7 @@
 							<p><strong>2.{{detailClassItems.ClassPoint}}</strong></p>
 							
 						</div>
-						<div v-if="detailClassItems.languages[0].ClassLanguageName ==  'HTML'" id="class_tab1" class="class_tab_classpoint">
+						<div v-if="languagesChk ==  'HTML'" id="class_tab1" class="class_tab_classpoint">
 							<p>
 								웹 디자이너 및 UI UX의 기본 HTMl.
 								HTML를 PHP답게, PHP 개발의 정수! 
@@ -220,14 +220,14 @@
 								운용할 수 있습니다.
 							</p>
 						</div>
-						<div v-if="detailClassItems.languages[0].ClassLanguageName ==  'HTML'" id="class_tab1" class="class_tab_classpoint">
+						<div v-if="languagesChk ==  'HTML'" id="class_tab1" class="class_tab_classpoint">
 							<p>
 								강의를 모두 마치면 해당 리포지토리에 있는 서비스 정도는 하루 정도에 개발할 수 있게 됩니다. 
 								PHP 웹 개발의 실력을 키우고픈 분들뿐만 아니라, 혼자서 나만의 홈페이지를 제작하시고픈 분들에게도 도움이 되는 내용으로 구성하였습니다.
 							</p>
 						</div>
 
-						<div v-if="detailClassItems.languages[0].ClassLanguageName ==  'CSS'" id="class_tab1" class="class_tab_classpoint">
+						<div v-if="languagesChk ==  'CSS'" id="class_tab1" class="class_tab_classpoint">
 							<p>
 								PHP 개발자의 최종 테크트리, 라라벨(Laravel) 프레임워크의 핵심.
 								PHP를 PHP답게, PHP 개발의 정수! 
@@ -235,14 +235,14 @@
 								운용할 수 있습니다.
 							</p>
 						</div>
-						<div v-if="detailClassItems.languages[0].ClassLanguageName ==  'CSS'" id="class_tab1" class="class_tab_classpoint">
+						<div v-if="languagesChk ==  'CSS'" id="class_tab1" class="class_tab_classpoint">
 							<p>
 								강의를 모두 마치면 해당 리포지토리에 있는 서비스 정도는 하루 정도에 개발할 수 있게 됩니다. 
 								PHP 웹 개발의 실력을 키우고픈 분들뿐만 아니라, 혼자서 나만의 홈페이지를 제작하시고픈 분들에게도 도움이 되는 내용으로 구성하였습니다.
 							</p>
 						</div>
 
-						<div v-if="detailClassItems.languages[0].ClassLanguageName ==  'JAVA SCRIPT'" id="class_tab1" class="class_tab_classpoint">
+						<div v-if="languagesChk ==  'JAVA SCRIPT'" id="class_tab1" class="class_tab_classpoint">
 							<p>
 								PHP 개발자의 최종 테크트리, 라라벨(Laravel) 프레임워크의 핵심.
 								PHP를 PHP답게, PHP 개발의 정수! 
@@ -250,14 +250,14 @@
 								운용할 수 있습니다.
 							</p>
 						</div>
-						<div v-if="detailClassItems.languages[0].ClassLanguageName ==  'JAVA SCRIPT'" id="class_tab1" class="class_tab_classpoint">
+						<div v-if="languagesChk ==  'JAVA SCRIPT'" id="class_tab1" class="class_tab_classpoint">
 							<p>
 								강의를 모두 마치면 해당 리포지토리에 있는 서비스 정도는 하루 정도에 개발할 수 있게 됩니다. 
 								PHP 웹 개발의 실력을 키우고픈 분들뿐만 아니라, 혼자서 나만의 홈페이지를 제작하시고픈 분들에게도 도움이 되는 내용으로 구성하였습니다.
 							</p>
 						</div>
 
-						<div v-if="detailClassItems.languages[0].ClassLanguageName ==  'PHP'" id="class_tab1" class="class_tab_classpoint">
+						<div v-if="languagesChk ==  'PHP'" id="class_tab1" class="class_tab_classpoint">
 							<p>
 								PHP 개발자의 최종 테크트리, 라라벨(Laravel) 프레임워크의 핵심.
 								PHP를 PHP답게, PHP 개발의 정수! 
@@ -265,14 +265,14 @@
 								운용할 수 있습니다.
 							</p>
 						</div>
-						<div v-if="detailClassItems.languages[0].ClassLanguageName ==  'PHP'" id="class_tab1" class="class_tab_classpoint">
+						<div v-if="languagesChk ==  'PHP'" id="class_tab1" class="class_tab_classpoint">
 							<p>
 								강의를 모두 마치면 해당 리포지토리에 있는 서비스 정도는 하루 정도에 개발할 수 있게 됩니다. 
 								PHP 웹 개발의 실력을 키우고픈 분들뿐만 아니라, 혼자서 나만의 홈페이지를 제작하시고픈 분들에게도 도움이 되는 내용으로 구성하였습니다.
 							</p>
 						</div>
 
-						<div v-if="detailClassItems.languages[0].ClassLanguageName ==  'JAVA'" id="class_tab1" class="class_tab_classpoint">
+						<div v-if="languagesChk ==  'JAVA'" id="class_tab1" class="class_tab_classpoint">
 							<p>
 								PHP 개발자의 최종 테크트리, 라라벨(Laravel) 프레임워크의 핵심.
 								PHP를 PHP답게, PHP 개발의 정수! 
@@ -280,14 +280,14 @@
 								운용할 수 있습니다.
 							</p>
 						</div>
-						<div v-if="detailClassItems.languages[0].ClassLanguageName ==  'JAVA'" id="class_tab1" class="class_tab_classpoint">
+						<div v-if="languagesChk ==  'JAVA'" id="class_tab1" class="class_tab_classpoint">
 							<p>
 								강의를 모두 마치면 해당 리포지토리에 있는 서비스 정도는 하루 정도에 개발할 수 있게 됩니다. 
 								PHP 웹 개발의 실력을 키우고픈 분들뿐만 아니라, 혼자서 나만의 홈페이지를 제작하시고픈 분들에게도 도움이 되는 내용으로 구성하였습니다.
 							</p>
 						</div>
 
-						<div v-if="detailClassItems.languages[0].ClassLanguageName ==  'DATABASE'" id="class_tab1" class="class_tab_classpoint">
+						<div v-if="languagesChk ==  'DataBase'" id="class_tab1" class="class_tab_classpoint">
 							<p>
 								PHP 개발자의 최종 테크트리, 라라벨(Laravel) 프레임워크의 핵심.
 								PHP를 PHP답게, PHP 개발의 정수! 
@@ -295,7 +295,7 @@
 								운용할 수 있습니다.
 							</p>
 						</div>
-						<div v-if="detailClassItems.languages[0].ClassLanguageName ==  'DATABASE'" id="class_tab1" class="class_tab_classpoint">
+						<div v-if="languagesChk ==  'DataBase'" id="class_tab1" class="class_tab_classpoint">
 							<p>
 								강의를 모두 마치면 해당 리포지토리에 있는 서비스 정도는 하루 정도에 개발할 수 있게 됩니다. 
 								PHP 웹 개발의 실력을 키우고픈 분들뿐만 아니라, 혼자서 나만의 홈페이지를 제작하시고픈 분들에게도 도움이 되는 내용으로 구성하였습니다.
@@ -303,7 +303,7 @@
 						</div>
 					</div>	
 				 	<div></div>
-					<div v-if="detailClassItems.languages[0].ClassLanguageName ==  'HTML'">
+					<div v-if="languagesChk ==  'HTML'">
 						<div style="margin: 10px;">
 							<span></span>
 							<div>
@@ -311,7 +311,7 @@
 							</div>
 						</div>
 					</div>
-					<div v-if="detailClassItems.languages[0].ClassLanguageName ==  'CSS'">
+					<div v-if="languagesChk ==  'CSS'">
 						<div style="margin: 10px;">
 							<span></span>
 							<div>
@@ -319,7 +319,7 @@
 							</div>
 						</div>
 					</div>
-					<div v-if="detailClassItems.languages[0].ClassLanguageName ==  'JAVA SCRIPT'">
+					<div v-if="languagesChk ==  'JAVA SCRIPT'">
 						<div style="margin: 10px;">
 							<span></span>
 							<div>
@@ -327,7 +327,7 @@
 							</div>
 						</div>
 					</div>
-					<div v-if="detailClassItems.languages[0].ClassLanguageName ==  'PHP'">
+					<div v-if="languagesChk ==  'PHP'">
 						<div style="margin: 10px;">
 							<span></span>
 							<div>
@@ -335,7 +335,7 @@
 							</div>
 						</div>
 					</div>
-					<div v-if="detailClassItems.languages[0].ClassLanguageName ==  'JAVA'">
+					<div v-if="languagesChk ==  'JAVA'">
 						<div style="margin: 10px;">
 							<span></span>
 							<div>
@@ -343,7 +343,7 @@
 							</div>
 						</div>
 					</div>
-					<div v-if="detailClassItems.languages[0].ClassLanguageName ==  'DATABASE'">
+					<div v-if="languagesChk ==  'DataBase'">
 						<div style="margin: 10px;">
 							<span></span>
 							<div>
@@ -432,12 +432,12 @@
 					<div class="class_detail_rating_tab_title_view">
 						<span>VIEW</span>
 					</div>
-                    <div class="class_detail_rating_tab_title">
+                    <!-- <div class="class_detail_rating_tab_title">
 						<span>|</span>
 					</div>
 					<div class="class_detail_rating_tab_title">
 						<span>최신순</span>
-					</div>
+					</div> -->
 					<!-- <div class="class_detail_rating_tab_title">
 						<span>인기순</span>
 					</div> -->
@@ -789,6 +789,7 @@ export default {
 			classCuriData: {},
 			classRatingData: {},
 			// enrollflg: null,
+			languagesChk: {},
         }
     },
 	mounted() {
@@ -812,6 +813,7 @@ export default {
 			// this.enrollmentCnt = response.data.userCnt.user_count;
 			this.classCuriData = response.data.classCuri;
 			this.EnrollChk = response.data.enrollmentChk;
+			this.languagesChk = response.data.result.languages[0].ClassLanguageName;
 			
 			if (response.data.avgReviewRating && response.data.avgReviewRating.avgRating !== undefined) {
 				// avgRating 값이 존재하는 경우
@@ -839,7 +841,7 @@ export default {
 				// })
 				.then(reviewResponse => {
                     // 두 번째 API 응답에 대한 로직 수행
-                    console.log(reviewResponse.data);
+                    // console.log(reviewResponse.data);
 						this.reviewClassItems = reviewResponse.data.reviewsData;
 						// this.pagination = reviewResponse.data.links;
 						this.EnrollChk = reviewResponse.data.enrollmentData;
@@ -909,7 +911,7 @@ export default {
 			// 	this.newReviewData();
 			// })
             .catch(err => {
-                console.log(err.response.data.errors)
+                // console.log(err.response.data.errors)
                 // context.commit('setRegistrationErrorMessage', err.response.data.errors);
 				alert('별점을 체크해주세요!');
             })
@@ -941,7 +943,7 @@ export default {
             // };
 
 			// 데이터값이 옴
-            console.log(data);
+            // console.log(data);
             // console.log(data.ReviewID);
 
             axios.delete(url,data, header)
@@ -960,7 +962,7 @@ export default {
     
             })
             .catch(err => {
-                console.log(err.response.data.errors)
+                // console.log(err.response.data.errors)
                 // context.commit('setRegistrationErrorMessage', err.response.data.errors);
 				// alert('별점을 체크해주세요!');
             })
@@ -977,13 +979,13 @@ export default {
         		UserID: this.$store.state.UserID,
             })
             .then(res => { 
-                console.log(res.data);
+                // console.log(res.data);
 				this.EnrollChk = true;
 				alert(res.data.message);
                 // window.location.reload();
             })
             .catch(err => {
-                console.log(err.response.data.errors)
+                // console.log(err.response.data.errors)
                 // context.commit('setRegistrationErrorMessage', err.response.data.errors);
             })
 		},

@@ -594,7 +594,7 @@ export default {
         // 스크립트 로드 완료 후 실행될 콜백 함수
         script.onload = () => {
             // 이제 스크립트를 사용할 수 있음
-            console.log('DaumMapApi.js 로드 완료!');
+            // console.log('DaumMapApi.js 로드 완료!');
             // 여기서부터 DaumMapApi.js를 사용할 수 있음
         };
 
@@ -613,7 +613,7 @@ export default {
                 }
             })
             .then(response => {
-                console.log(response.data);
+                // console.log(response.data);
                 // console.log(response.data.userData);
                 // console.log(response.data.ClassData);
                 this.newUserInfoItems = response.data.userData;
@@ -829,7 +829,7 @@ export default {
             })
             .catch(error => {
                 // 에러 처리
-                console.error(error);
+                // console.error(error);
             });
         },
         updateUserbasicData() {
@@ -838,7 +838,7 @@ export default {
                 UserPhoneNumber: this.UserPhoneNumber,
             })
             .then(response => {
-                console.log(response.data);
+                // console.log(response.data);
                 alert('전화번호 변경이 완료되었습니다.');
                 // this.frmAddressData.UserPostcode.unshift(res.data.UserPostcode);
                 // 서버 응답에 대한 로직 수행
@@ -846,7 +846,7 @@ export default {
             })
             .catch(error => {
                 // 에러 처리
-                console.error(error);
+                // console.error(error);
             });
         }, 
         updateUserPasswordData() {
@@ -858,7 +858,7 @@ export default {
             })
 
             .then(response => {
-                console.log(response.data);
+                // console.log(response.data);
                 if(response.data.success) {
                     alert('비밀번호 변경에 성공하셨습니다.');
                     window.location.reload();
@@ -872,7 +872,7 @@ export default {
             })
             .catch(error => {
                 // 에러 처리
-                console.log(error);
+                // console.log(error);
                 alert('비밀번호 변경에 실패하셨습니다.');
             });
         },                   

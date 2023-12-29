@@ -131,7 +131,7 @@ export default {
 		axios.get('/classwatchview/' + this.ClassID)
 			.then(response => {
 			// API 응답에 대한 로직 수행
-			console.log(response.data);
+			// console.log(response.data);
                 this.ClassDataItem = response.data.classData;
                 this.ChapterDataItem = response.data.chapterData;
                 this.LessonDataItem = response.data.lessonData;
@@ -142,7 +142,7 @@ export default {
 
                 if (firstChapterLessons && firstChapterLessons.length > 0) {
                     const firstLessonVideoId = firstChapterLessons[0].LessonVideoID;
-                    console.log(firstLessonVideoId);
+                    // console.log(firstLessonVideoId);
                     this.videoId = firstLessonVideoId;
                     // 여기에서 필요한 작업 수행
                 }
@@ -188,7 +188,7 @@ export default {
         },
         onPlayerReady(event) {
             // 동영상이 준비되면 추가 작업 수행
-            console.log('영상 시작');
+            // console.log('영상 시작');
             this.LessonAllRunningTime = this.player.getDuration();
             // console.log(this.player);
         },
@@ -197,7 +197,7 @@ export default {
             if (this.player) {
                 this.currentTime = this.player.getCurrentTime();
                 this.LessonRunningTime = this.currentTime;
-                console.log('현재 동영상 위치:', this.currentTime);
+                // console.log('현재 동영상 위치:', this.currentTime);
                 
                 // 동영상 총 길이 가져오기
                 this.duration = this.player.getDuration();
@@ -227,7 +227,7 @@ export default {
             // 동영상이 끝났을 때 실행할 작업 수행
             this.LessonFlg = 1;
             this.saveLessonProgress();
-            console.log('영상 끝');
+            // console.log('영상 끝');
         },
         saveLessonProgress() {
             // 예시: Axios를 사용하여 서버에 데이터 업데이트 (PUT 요청)
@@ -241,7 +241,7 @@ export default {
             })
             .then(response => {
                 // 서버 응답에 대한 로직 수행
-                console.log(response.data);
+                // console.log(response.data);
             })
             .catch(error => {
                 // 에러 처리
@@ -265,11 +265,11 @@ export default {
                 this.player.destroy();
                 this.initYoutubePlayer();
                 } else {
-                console.log('더 이상 다음 강의가 없습니다.');
+                // console.log('더 이상 다음 강의가 없습니다.');
                 alert('더 이상 다음 강의가 없습니다.');
                 }
             } else {
-                console.log('선택된 리슨이 없습니다.');
+                // console.log('선택된 리슨이 없습니다.');
                 alert('선택된 리슨이 없습니다.');
             }
         },
@@ -290,11 +290,11 @@ export default {
                 this.player.destroy();
                 this.initYoutubePlayer();
                 } else {
-                console.log('더 이상 이전 강의가 없습니다.');
+                // console.log('더 이상 이전 강의가 없습니다.');
                 alert('더 이상 이전 강의가 없습니다.');
                 }
             } else {
-                console.log('선택된 리슨이 없습니다.');
+                // console.log('선택된 리슨이 없습니다.');
                 alert('선택된 리슨이 없습니다.');
             }
         },

@@ -466,7 +466,7 @@ export default {
         // 스크립트 로드 완료 후 실행될 콜백 함수
         script.onload = () => {
             // 이제 스크립트를 사용할 수 있음
-            console.log('DaumMapApi.js 로드 완료!');
+            // console.log('DaumMapApi.js 로드 완료!');
             // 여기서부터 DaumMapApi.js를 사용할 수 있음
         };
 

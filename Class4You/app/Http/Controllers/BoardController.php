@@ -22,6 +22,48 @@ class BoardController extends Controller
         //     ->orderBy('boards.created_at', 'desc')
         //     ->paginate(10);
 
+
+        // $boardDataQuery = Board::join('users', 'boards.UserID', 'users.UserID')
+        // ->leftJoin('comments', 'boards.BoardID', '=', 'comments.BoardID')
+        // ->select('boards.*', DB::raw('COUNT(comments.CommentID) AS CommentCount'))
+        // ->groupBy('boards.BoardID', 'users.UserID', 'boards.BoardTitle', 'boards.BoardComment', 'boards.created_at', 'boards.updated_at', 'boards.BoardCategoryID', 'boards.UserID', 'boards.ClassID', 'boards.BoardView', 'boards.BoardRecommended', 'boards.BoardNotRecommended', 'boards.BoardFlg', 'boards.deleted_at');
+
+        // if ($request->has('search')) {
+        //     $searchTerm = $request->input('search');
+        //     $boardDataQuery->where(function ($query) use ($searchTerm) {
+        //         $query->orWhere('boards.BoardTitle', 'LIKE', "%{$searchTerm}%")
+        //             ->orWhere('boards.BoardComment', 'LIKE', "%{$searchTerm}%");
+        //     });
+        // }
+
+        // if ($request->has('solve')) {
+        //     $solveState = $request->input('solve');
+        //     if ($solveState == 1) {
+        //         $boardDataQuery->where('BoardFlg', 1);
+        //     } else if ($solveState == 0) {
+        //         $boardDataQuery->where('BoardFlg', 0);
+        //     }
+        // }
+
+        // if ($request->has('sort')) {
+        //     $sortData = $request->input('sort');
+        //     if ($sortData == 1) {
+        //         $boardDataQuery->orderBy('boards.created_at', 'desc');
+        //     } else if ($sortData == 3) {
+        //         $boardDataQuery->orderBy('boards.BoardRecommended', 'desc');
+        //     } else if ($sortData == 4) {
+        //         $boardDataQuery->orderBy('boards.BoardView', 'desc');
+        //     }
+        // }
+
+        // $boardData = $boardDataQuery->paginate(10);
+
+        // $userCntData = User::select('users.UserEmail', DB::raw('count(*) as cnt'))
+        //     ->join('comments', 'users.UserID', 'comments.UserID')
+        //     ->groupBy('users.UserEmail')
+        //     ->limit(5)
+        //     ->get();
+
         $boardDataQuery = Board::join('users', 'boards.UserID', 'users.UserID');
         // ->orderBy('boards.created_at', 'desc');
     

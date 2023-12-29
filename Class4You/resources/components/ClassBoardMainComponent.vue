@@ -214,11 +214,11 @@ export default {
                 this.classInfo3 = response.data.classInfo3;
                 this.classInfo4 = response.data.classInfo4;
                 this.msg2 = response.data.msg2;
-                console.log(response.data)
+                // console.log(response.data)
                 // 나머지 데이터도 설정
             })
             .catch(error => {
-                console.error('Error fetching data:', error);
+                // console.error('Error fetching data:', error);
             });
         },
     },

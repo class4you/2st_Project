@@ -19441,7 +19441,7 @@ __webpack_require__.r(__webpack_exports__);
         _this.pageChk = response.data.boardData.current_page;
         // console.log(response.data.boardData.links);
         // console.log(response.data.boardData.current_page);
-        console.log(response.data);
+        // console.log(response.data);
         // console.log(response.data.userCntData);
       })["catch"](function (error) {
         console.error('Error fetching data:', error);
@@ -19477,7 +19477,7 @@ __webpack_require__.r(__webpack_exports__);
       //  다음 &raquo;
       str = str.replace('&laquo;', '<');
       str = str.replace('&raquo;', '>');
-      console.log(str);
+      // console.log(str);
       return str;
     },
     increaseViews: function increaseViews(boardID) {
@@ -19485,7 +19485,7 @@ __webpack_require__.r(__webpack_exports__);
         BoardID: boardID,
         UserID: this.$store.state.UserID
       }).then(function (response) {
-        console.log(response.data);
+        // console.log(response.data);
         // 서버 응답에 대한 로직 수행
         // this.$router.push('/board');
       })["catch"](function (error) {
@@ -19533,7 +19533,7 @@ __webpack_require__.r(__webpack_exports__);
     fetchData: function fetchData() {
       var _this = this;
       axios.get('/boarddetail/' + this.BoardID).then(function (response) {
-        console.log(response.data);
+        // console.log(response.data);
         _this.newBoardItem = response.data.boardData;
         _this.nowUserID = response.data.userID;
         _this.newCommentItem = response.data.commentData;
@@ -19573,7 +19573,7 @@ __webpack_require__.r(__webpack_exports__);
         UserID: this.newBoardItem.UserID,
         BoardFlg: 1
       }).then(function (response) {
-        console.log(response.data);
+        // console.log(response.data);
         // 서버 응답에 대한 로직 수행
         // this.$router.push('/board');
         location.reload();
@@ -19587,7 +19587,7 @@ __webpack_require__.r(__webpack_exports__);
         BoardID: this.newBoardItem.BoardID,
         UserID: this.newBoardItem.UserID
       }).then(function (response) {
-        console.log(response.data);
+        // console.log(response.data);
         // 서버 응답에 대한 로직 수행
         // this.$router.push('/board');
         location.reload();
@@ -19601,7 +19601,7 @@ __webpack_require__.r(__webpack_exports__);
         BoardID: this.newBoardItem.BoardID,
         UserID: this.newBoardItem.UserID
       }).then(function (response) {
-        console.log(response.data);
+        // console.log(response.data);
         // 서버 응답에 대한 로직 수행
         // this.$router.push('/board');
         location.reload();
@@ -19721,7 +19721,7 @@ __webpack_require__.r(__webpack_exports__);
         BoardTitle: this.newBoardItem.BoardTitle,
         BoardComment: this.newBoardItem.BoardComment
       }).then(function (response) {
-        console.log(response.data);
+        // console.log(response.data);
         // 서버 응답에 대한 로직 수행
         // this.$router.push('/board');
         _this2.$router.push('/boarddetail/' + _this2.BoardID);
@@ -19817,8 +19817,9 @@ __webpack_require__.r(__webpack_exports__);
       solve: null,
       sortData: 0,
       classCuriData: {},
-      classRatingData: {}
+      classRatingData: {},
       // enrollflg: null,
+      languagesChk: {}
     };
   },
   mounted: function mounted() {
@@ -19838,6 +19839,7 @@ __webpack_require__.r(__webpack_exports__);
         // this.enrollmentCnt = response.data.userCnt.user_count;
         _this.classCuriData = response.data.classCuri;
         _this.EnrollChk = response.data.enrollmentChk;
+        _this.languagesChk = response.data.result.languages[0].ClassLanguageName;
         if (response.data.avgReviewRating && response.data.avgReviewRating.avgRating !== undefined) {
           // avgRating 값이 존재하는 경우
           _this.classRatingData = response.data.avgReviewRating.avgRating;
@@ -19862,7 +19864,7 @@ __webpack_require__.r(__webpack_exports__);
         // })
         .then(function (reviewResponse) {
           // 두 번째 API 응답에 대한 로직 수행
-          console.log(reviewResponse.data);
+          // console.log(reviewResponse.data);
           _this.reviewClassItems = reviewResponse.data.reviewsData;
           // this.pagination = reviewResponse.data.links;
           _this.EnrollChk = reviewResponse.data.enrollmentData;
@@ -19926,7 +19928,7 @@ __webpack_require__.r(__webpack_exports__);
       // 	this.newReviewData();
       // })
       ["catch"](function (err) {
-        console.log(err.response.data.errors);
+        // console.log(err.response.data.errors)
         // context.commit('setRegistrationErrorMessage', err.response.data.errors);
         alert('별점을 체크해주세요!');
       });
@@ -19957,7 +19959,7 @@ __webpack_require__.r(__webpack_exports__);
       // };
 
       // 데이터값이 옴
-      console.log(data);
+      // console.log(data);
       // console.log(data.ReviewID);
 
       axios__WEBPACK_IMPORTED_MODULE_0___default()["delete"](url, data, header).then(function (res) {
@@ -19975,7 +19977,7 @@ __webpack_require__.r(__webpack_exports__);
           return item.ReviewID !== data.ReviewID;
         });
       })["catch"](function (err) {
-        console.log(err.response.data.errors);
+        // console.log(err.response.data.errors)
         // context.commit('setRegistrationErrorMessage', err.response.data.errors);
         // alert('별점을 체크해주세요!');
       });
@@ -19990,12 +19992,12 @@ __webpack_require__.r(__webpack_exports__);
         ClassID: this.ClassID,
         UserID: this.$store.state.UserID
       }).then(function (res) {
-        console.log(res.data);
+        // console.log(res.data);
         _this4.EnrollChk = true;
         alert(res.data.message);
         // window.location.reload();
       })["catch"](function (err) {
-        console.log(err.response.data.errors);
+        // console.log(err.response.data.errors)
         // context.commit('setRegistrationErrorMessage', err.response.data.errors);
       });
     },
@@ -20056,7 +20058,7 @@ __webpack_require__.r(__webpack_exports__);
       // 예시: API를 호출하여 데이터를 가져옴\
       axios.get('/classwatchview/' + this.ClassID).then(function (response) {
         // API 응답에 대한 로직 수행
-        console.log(response.data);
+        // console.log(response.data);
         _this.ClassDataItem = response.data.classData;
         _this.ChapterDataItem = response.data.chapterData;
         _this.LessonDataItem = response.data.lessonData;
@@ -20065,7 +20067,7 @@ __webpack_require__.r(__webpack_exports__);
         var firstChapterLessons = response.data.lessonData[firstChapterId];
         if (firstChapterLessons && firstChapterLessons.length > 0) {
           var firstLessonVideoId = firstChapterLessons[0].LessonVideoID;
-          console.log(firstLessonVideoId);
+          // console.log(firstLessonVideoId);
           _this.videoId = firstLessonVideoId;
           // 여기에서 필요한 작업 수행
         }
@@ -20110,7 +20112,7 @@ __webpack_require__.r(__webpack_exports__);
     },
     onPlayerReady: function onPlayerReady(event) {
       // 동영상이 준비되면 추가 작업 수행
-      console.log('영상 시작');
+      // console.log('영상 시작');
       this.LessonAllRunningTime = this.player.getDuration();
       // console.log(this.player);
     },
@@ -20119,7 +20121,7 @@ __webpack_require__.r(__webpack_exports__);
       if (this.player) {
         this.currentTime = this.player.getCurrentTime();
         this.LessonRunningTime = this.currentTime;
-        console.log('현재 동영상 위치:', this.currentTime);
+        // console.log('현재 동영상 위치:', this.currentTime);
 
         // 동영상 총 길이 가져오기
         this.duration = this.player.getDuration();
@@ -20150,7 +20152,7 @@ __webpack_require__.r(__webpack_exports__);
       // 동영상이 끝났을 때 실행할 작업 수행
       this.LessonFlg = 1;
       this.saveLessonProgress();
-      console.log('영상 끝');
+      // console.log('영상 끝');
     },
     saveLessonProgress: function saveLessonProgress() {
       // 예시: Axios를 사용하여 서버에 데이터 업데이트 (PUT 요청)
@@ -20163,7 +20165,7 @@ __webpack_require__.r(__webpack_exports__);
         // 다른 필요한 데이터 추가 가능
       }).then(function (response) {
         // 서버 응답에 대한 로직 수행
-        console.log(response.data);
+        // console.log(response.data);
       })["catch"](function (error) {
         // 에러 처리
         console.error(error);
@@ -20188,11 +20190,11 @@ __webpack_require__.r(__webpack_exports__);
           this.player.destroy();
           this.initYoutubePlayer();
         } else {
-          console.log('더 이상 다음 강의가 없습니다.');
+          // console.log('더 이상 다음 강의가 없습니다.');
           alert('더 이상 다음 강의가 없습니다.');
         }
       } else {
-        console.log('선택된 리슨이 없습니다.');
+        // console.log('선택된 리슨이 없습니다.');
         alert('선택된 리슨이 없습니다.');
       }
     },
@@ -20215,11 +20217,11 @@ __webpack_require__.r(__webpack_exports__);
           this.player.destroy();
           this.initYoutubePlayer();
         } else {
-          console.log('더 이상 이전 강의가 없습니다.');
+          // console.log('더 이상 이전 강의가 없습니다.');
           alert('더 이상 이전 강의가 없습니다.');
         }
       } else {
-        console.log('선택된 리슨이 없습니다.');
+        // console.log('선택된 리슨이 없습니다.');
         alert('선택된 리슨이 없습니다.');
       }
     }
@@ -20463,7 +20465,7 @@ __webpack_require__.r(__webpack_exports__);
     fetchData: function fetchData() {
       var _this = this;
       axios__WEBPACK_IMPORTED_MODULE_2___default().get('/getNewClassMainData').then(function (response) {
-        console.log(response.data);
+        // console.log(response.data);
         _this.newClassItems = response.data;
       })["catch"](function (error) {
         console.error('Error fetching data:', error);
@@ -20689,7 +20691,7 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
     // 스크립트 로드 완료 후 실행될 콜백 함수
     script.onload = function () {
       // 이제 스크립트를 사용할 수 있음
-      console.log('DaumMapApi.js 로드 완료!');
+      // console.log('DaumMapApi.js 로드 완료!');
       // 여기서부터 DaumMapApi.js를 사용할 수 있음
     };
 
@@ -20793,7 +20795,7 @@ __webpack_require__.r(__webpack_exports__);
     // 스크립트 로드 완료 후 실행될 콜백 함수
     script.onload = function () {
       // 이제 스크립트를 사용할 수 있음
-      console.log('DaumMapApi.js 로드 완료!');
+      // console.log('DaumMapApi.js 로드 완료!');
       // 여기서부터 DaumMapApi.js를 사용할 수 있음
     };
 
@@ -20811,7 +20813,7 @@ __webpack_require__.r(__webpack_exports__);
           yearEnd: this.yearEnd
         }
       }).then(function (response) {
-        console.log(response.data);
+        // console.log(response.data);
         // console.log(response.data.userData);
         // console.log(response.data.ClassData);
         _this.newUserInfoItems = response.data.userData;
@@ -21013,7 +21015,7 @@ __webpack_require__.r(__webpack_exports__);
         // this.$router.push('/board');
       })["catch"](function (error) {
         // 에러 처리
-        console.error(error);
+        // console.error(error);
       });
     },
     updateUserbasicData: function updateUserbasicData() {
@@ -21021,14 +21023,14 @@ __webpack_require__.r(__webpack_exports__);
         UserID: this.newUserInfoItems.UserID,
         UserPhoneNumber: this.UserPhoneNumber
       }).then(function (response) {
-        console.log(response.data);
+        // console.log(response.data);
         alert('전화번호 변경이 완료되었습니다.');
         // this.frmAddressData.UserPostcode.unshift(res.data.UserPostcode);
         // 서버 응답에 대한 로직 수행
         // this.$router.push('/board');
       })["catch"](function (error) {
         // 에러 처리
-        console.error(error);
+        // console.error(error);
       });
     },
     updateUserPasswordData: function updateUserPasswordData() {
@@ -21038,7 +21040,7 @@ __webpack_require__.r(__webpack_exports__);
         NewUserPassword: this.NewUserPassword,
         NewUserPasswordChk: this.NewUserPasswordChk
       }).then(function (response) {
-        console.log(response.data);
+        // console.log(response.data);
         if (response.data.success) {
           alert('비밀번호 변경에 성공하셨습니다.');
           window.location.reload();
@@ -21051,7 +21053,7 @@ __webpack_require__.r(__webpack_exports__);
         // this.$router.push('/board');
       })["catch"](function (error) {
         // 에러 처리
-        console.log(error);
+        // console.log(error);
         alert('비밀번호 변경에 실패하셨습니다.');
       });
     },
@@ -22044,8 +22046,16 @@ var _hoisted_21 = {
 var _hoisted_22 = {
   "class": "class_detail_container_r_info_star_inr"
 };
-var _hoisted_23 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "⭐평점", -1 /* HOISTED */);
-var _hoisted_24 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "🙍‍♂️🙍‍♀️", -1 /* HOISTED */);
+var _hoisted_23 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
+  style: {
+    "margin-right": "5px"
+  }
+}, "⭐평점 ", -1 /* HOISTED */);
+var _hoisted_24 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
+  style: {
+    "margin-right": "5px"
+  }
+}, "🙍‍♂️🙍‍♀️", -1 /* HOISTED */);
 var _hoisted_25 = {
   "class": "class_detail_container_r_language"
 };
@@ -22564,11 +22574,7 @@ var _hoisted_169 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElemen
   "class": "class_detail_rating_view_tab"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "class_detail_rating_tab_title_view"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "VIEW")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "class_detail_rating_tab_title"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "|")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "class_detail_rating_tab_title"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "최신순")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <div class=\"class_detail_rating_tab_title\">\r\n\t\t\t\t\t\t<span>인기순</span>\r\n\t\t\t\t\t</div> "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <div class=\"class_detail_rating_tab_title\">\r\n\t\t\t\t\t\t<span><a href=\"\">조회순</a></span>\r\n\t\t\t\t\t</div> ")], -1 /* HOISTED */);
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "VIEW")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <div class=\"class_detail_rating_tab_title\">\r\n\t\t\t\t\t\t<span>|</span>\r\n\t\t\t\t\t</div>\r\n\t\t\t\t\t<div class=\"class_detail_rating_tab_title\">\r\n\t\t\t\t\t\t<span>최신순</span>\r\n\t\t\t\t\t</div> "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <div class=\"class_detail_rating_tab_title\">\r\n\t\t\t\t\t\t<span>인기순</span>\r\n\t\t\t\t\t</div> "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <div class=\"class_detail_rating_tab_title\">\r\n\t\t\t\t\t\t<span><a href=\"\">조회순</a></span>\r\n\t\t\t\t\t</div> ")], -1 /* HOISTED */);
 var _hoisted_170 = {
   "class": "class_detail_rating_list_user"
 };
@@ -22606,10 +22612,10 @@ var _hoisted_183 = {
 var _hoisted_184 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div id=\"class_tab1\" class=\"class_tab_content class_current class_detail_notice_main\"><div class=\"class_detail_notice_main_div\"><div class=\"class_detail_notice_title\"><p>메인 공지사항</p></div><div class=\"class_detail_notice_content\"><p>집에가면머합니까남아서열심히하소</p><p>그래도레이아웃작업은다해가지않슴니까?</p><p>감사하다명호야</p><p>근데 이거 늘어나나?</p><p>늘어나긴하네</p><p>div로 함더 묶을까 말까</p></div></div></div><div class=\"class_detail_rating_list\"><div class=\"class_detail_rating_view_tab\"><div class=\"class_detail_rating_tab_title\"><!-- 질문게시판 클릭시 커뮤니티 질문게시판 페이지로 이동 --><span>이전 공지사항</span></div></div><hr><div id=\"class_tab1\" class=\"class_detail_rating_list_div\"><div class=\"class_detail_rating_list_user\"><div class=\"class_detail_rating_user_id\"><p>관리자ID</p></div><div class=\"class_detail_rating_user_date\"><p>2023-12-13</p></div></div><div class=\"class_detail_rating_list_text\"><p>css 이렇게 많이 써본건 처음이야</p><p>css 이렇게 많이 써본건 처음이야</p><p>css 이렇게 많이 써본건 처음이야</p></div></div><hr><div id=\"class_tab1\" class=\"class_detail_rating_list_div\"><div class=\"class_detail_rating_list_user\"><div class=\"class_detail_rating_user_id\"><p>관리자ID</p></div><div class=\"class_detail_rating_user_date\"><p>2023-12-13</p></div></div><div class=\"class_detail_rating_list_text\"><p>수업이 재밌어요</p></div></div><hr><div id=\"class_tab1\" class=\"class_detail_rating_list_div\"><div class=\"class_detail_rating_list_user\"><div class=\"class_detail_rating_user_id\"><p>관리자ID</p></div><div class=\"class_detail_rating_user_date\"><p>2023-12-13</p></div></div><div class=\"class_detail_rating_list_text\"><p>코딩 조아요</p></div></div><hr><div id=\"class_tab1\" class=\"class_detail_rating_list_div\"><div class=\"class_detail_rating_list_user\"><div class=\"class_detail_rating_user_id\"><p>관리자ID</p></div><div class=\"class_detail_rating_user_date\"><p>2023-12-13</p></div></div><div class=\"class_detail_rating_list_text\"><p>재밌는 라라벨</p></div></div></div>", 2);
 var _hoisted_186 = [_hoisted_184];
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [_hoisted_3, _hoisted_4, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.detailClassItems.languages[0].ClassLanguageName), 1 /* TEXT */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_8, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_9, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_10, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [_hoisted_3, _hoisted_4, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.languagesChk), 1 /* TEXT */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_8, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_9, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_10, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
     src: '/' + $data.detailClassItems.ClassImg,
     alt: ""
-  }, null, 8 /* PROPS */, _hoisted_11)])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_12, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_13, [_hoisted_14, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.detailClassItems.languages[0].ClassLanguageName), 1 /* TEXT */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_15, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h2", _hoisted_16, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.detailClassItems.ClassTitle), 1 /* TEXT */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_17, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_18, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.detailClassItems.ClassDescription), 1 /* TEXT */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_19, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_20, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_21, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_22, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <span>☆</span> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <span>☆</span> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <span>☆</span> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <span>☆</span> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <span>☆</span> "), _hoisted_23, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.classRatingData) + ".0", 1 /* TEXT */)])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <span>{{ classRatingData }}</span> ")]), _hoisted_24, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.enrollmentCnt) + "명", 1 /* TEXT */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_25, [_hoisted_26, ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.detailClassItems.languages, function (language) {
+  }, null, 8 /* PROPS */, _hoisted_11)])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_12, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_13, [_hoisted_14, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.languagesChk), 1 /* TEXT */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_15, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h2", _hoisted_16, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.detailClassItems.ClassTitle), 1 /* TEXT */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_17, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_18, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.detailClassItems.ClassDescription), 1 /* TEXT */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_19, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_20, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_21, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_22, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <span>☆</span> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <span>☆</span> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <span>☆</span> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <span>☆</span> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <span>☆</span> "), _hoisted_23, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.classRatingData) + ".0", 1 /* TEXT */)])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <span>{{ classRatingData }}</span> ")]), _hoisted_24, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.enrollmentCnt) + "명", 1 /* TEXT */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_25, [_hoisted_26, ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.detailClassItems.languages, function (language) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", {
       key: language.id
     }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(language.ClassLanguageName), 1 /* TEXT */);
@@ -22641,7 +22647,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       'class_tab_link_on': $data.sortData == 1
     }]),
     "data-tab": "class_tab2"
-  }, "수강평", 2 /* CLASS */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <li @click=\"clickFlgTab = 2;\" class=\"class_tab_link\" data-tab=\"class_tab3\">커뮤니티</li> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <li @click=\"clickFlgTab = 3;\" class=\"class_tab_link\" data-tab=\"class_tab4\">공지사항</li> ")])]), $data.clickFlgTab === 0 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_34, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_35, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_36, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_37, " 💡" + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.detailClassItems.languages[0].ClassLanguageName) + "란, ", 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.detailClassItems.ClassIntroduction), 1 /* TEXT */)])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_38, [_hoisted_39, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_40, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_41, [_hoisted_42, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_43, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("svg", _hoisted_44, [].concat(_hoisted_46)))]), _hoisted_47]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_48, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("svg", _hoisted_49, [].concat(_hoisted_51)))]), _hoisted_52]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_53, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("svg", _hoisted_54, [].concat(_hoisted_56)))]), _hoisted_57]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_58, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("svg", _hoisted_59, [].concat(_hoisted_61)))]), _hoisted_62]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_63, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("svg", _hoisted_64, [].concat(_hoisted_66)))]), _hoisted_67])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_68, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_69, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "◼" + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.detailClassItems.ClassDescription), 1 /* TEXT */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_70, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "◼" + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.detailClassItems.ClassDescription), 1 /* TEXT */)])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_71, [_hoisted_72, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_73, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_74, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_75, [_hoisted_76, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_77, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.classCuriData.ChapterTitle), 1 /* TEXT */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_78, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [_hoisted_79, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.classCuriData.LessonTitle), 1 /* TEXT */)])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_80, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.classCuriData.LessonContent), 1 /* TEXT */), _hoisted_81, _hoisted_82, _hoisted_83])])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_84, [_hoisted_85, _hoisted_86, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_87, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_88, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_89, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("strong", null, "1." + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.detailClassItems.ClassPoint), 1 /* TEXT */)])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_90, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("strong", null, "2." + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.detailClassItems.ClassPoint), 1 /* TEXT */)])]), $data.detailClassItems.languages[0].ClassLanguageName == 'HTML' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_91, [].concat(_hoisted_93))) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $data.detailClassItems.languages[0].ClassLanguageName == 'HTML' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_94, [].concat(_hoisted_96))) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $data.detailClassItems.languages[0].ClassLanguageName == 'CSS' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_97, [].concat(_hoisted_99))) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $data.detailClassItems.languages[0].ClassLanguageName == 'CSS' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_100, [].concat(_hoisted_102))) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $data.detailClassItems.languages[0].ClassLanguageName == 'JAVA SCRIPT' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_103, [].concat(_hoisted_105))) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $data.detailClassItems.languages[0].ClassLanguageName == 'JAVA SCRIPT' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_106, [].concat(_hoisted_108))) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $data.detailClassItems.languages[0].ClassLanguageName == 'PHP' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_109, [].concat(_hoisted_111))) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $data.detailClassItems.languages[0].ClassLanguageName == 'PHP' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_112, [].concat(_hoisted_114))) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $data.detailClassItems.languages[0].ClassLanguageName == 'JAVA' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_115, [].concat(_hoisted_117))) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $data.detailClassItems.languages[0].ClassLanguageName == 'JAVA' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_118, [].concat(_hoisted_120))) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $data.detailClassItems.languages[0].ClassLanguageName == 'DATABASE' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_121, [].concat(_hoisted_123))) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $data.detailClassItems.languages[0].ClassLanguageName == 'DATABASE' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_124, [].concat(_hoisted_126))) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), _hoisted_127, $data.detailClassItems.languages[0].ClassLanguageName == 'HTML' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_128, [].concat(_hoisted_130))) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $data.detailClassItems.languages[0].ClassLanguageName == 'CSS' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_131, [].concat(_hoisted_133))) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $data.detailClassItems.languages[0].ClassLanguageName == 'JAVA SCRIPT' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_134, [].concat(_hoisted_136))) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $data.detailClassItems.languages[0].ClassLanguageName == 'PHP' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_137, [].concat(_hoisted_139))) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $data.detailClassItems.languages[0].ClassLanguageName == 'JAVA' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_140, [].concat(_hoisted_142))) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $data.detailClassItems.languages[0].ClassLanguageName == 'DATABASE' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_143, [].concat(_hoisted_145))) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <div></div> ")])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_146, [_hoisted_147, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_148, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <p>{{detailClassItems.InstructorID}}</p> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_149, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_150, [_hoisted_151, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("strong", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.detailClassItems.InstructorFullName), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("님")])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_152, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_153, [_hoisted_154, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.detailClassItems.InstructorHistory), 1 /* TEXT */)])])])])])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" 수강평 "), $data.clickFlgTab === 1 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_155, [$data.EnrollChk ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_156, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <form name=\"myform\" id=\"myform\" method=\"post\"> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("fieldset", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_157, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("textarea", {
+  }, "수강평", 2 /* CLASS */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <li @click=\"clickFlgTab = 2;\" class=\"class_tab_link\" data-tab=\"class_tab3\">커뮤니티</li> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <li @click=\"clickFlgTab = 3;\" class=\"class_tab_link\" data-tab=\"class_tab4\">공지사항</li> ")])]), $data.clickFlgTab === 0 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_34, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_35, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_36, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_37, " 💡" + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.languagesChk) + "란, ", 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.detailClassItems.ClassIntroduction), 1 /* TEXT */)])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_38, [_hoisted_39, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_40, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_41, [_hoisted_42, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_43, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("svg", _hoisted_44, [].concat(_hoisted_46)))]), _hoisted_47]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_48, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("svg", _hoisted_49, [].concat(_hoisted_51)))]), _hoisted_52]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_53, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("svg", _hoisted_54, [].concat(_hoisted_56)))]), _hoisted_57]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_58, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("svg", _hoisted_59, [].concat(_hoisted_61)))]), _hoisted_62]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_63, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("svg", _hoisted_64, [].concat(_hoisted_66)))]), _hoisted_67])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_68, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_69, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "◼" + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.detailClassItems.ClassDescription), 1 /* TEXT */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_70, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "◼" + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.detailClassItems.ClassDescription), 1 /* TEXT */)])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_71, [_hoisted_72, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_73, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_74, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_75, [_hoisted_76, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_77, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.classCuriData.ChapterTitle), 1 /* TEXT */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_78, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [_hoisted_79, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.classCuriData.LessonTitle), 1 /* TEXT */)])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_80, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.classCuriData.LessonContent), 1 /* TEXT */), _hoisted_81, _hoisted_82, _hoisted_83])])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_84, [_hoisted_85, _hoisted_86, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_87, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_88, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_89, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("strong", null, "1." + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.detailClassItems.ClassPoint), 1 /* TEXT */)])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_90, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("strong", null, "2." + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.detailClassItems.ClassPoint), 1 /* TEXT */)])]), $data.languagesChk == 'HTML' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_91, [].concat(_hoisted_93))) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $data.languagesChk == 'HTML' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_94, [].concat(_hoisted_96))) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $data.languagesChk == 'CSS' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_97, [].concat(_hoisted_99))) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $data.languagesChk == 'CSS' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_100, [].concat(_hoisted_102))) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $data.languagesChk == 'JAVA SCRIPT' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_103, [].concat(_hoisted_105))) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $data.languagesChk == 'JAVA SCRIPT' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_106, [].concat(_hoisted_108))) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $data.languagesChk == 'PHP' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_109, [].concat(_hoisted_111))) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $data.languagesChk == 'PHP' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_112, [].concat(_hoisted_114))) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $data.languagesChk == 'JAVA' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_115, [].concat(_hoisted_117))) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $data.languagesChk == 'JAVA' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_118, [].concat(_hoisted_120))) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $data.languagesChk == 'DataBase' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_121, [].concat(_hoisted_123))) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $data.languagesChk == 'DataBase' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_124, [].concat(_hoisted_126))) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), _hoisted_127, $data.languagesChk == 'HTML' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_128, [].concat(_hoisted_130))) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $data.languagesChk == 'CSS' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_131, [].concat(_hoisted_133))) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $data.languagesChk == 'JAVA SCRIPT' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_134, [].concat(_hoisted_136))) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $data.languagesChk == 'PHP' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_137, [].concat(_hoisted_139))) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $data.languagesChk == 'JAVA' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_140, [].concat(_hoisted_142))) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $data.languagesChk == 'DataBase' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_143, [].concat(_hoisted_145))) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <div></div> ")])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_146, [_hoisted_147, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_148, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <p>{{detailClassItems.InstructorID}}</p> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_149, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_150, [_hoisted_151, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("strong", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.detailClassItems.InstructorFullName), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("님")])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_152, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_153, [_hoisted_154, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.detailClassItems.InstructorHistory), 1 /* TEXT */)])])])])])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" 수강평 "), $data.clickFlgTab === 1 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_155, [$data.EnrollChk ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_156, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <form name=\"myform\" id=\"myform\" method=\"post\"> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("fieldset", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_157, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("textarea", {
     "onUpdate:modelValue": _cache[3] || (_cache[3] = function ($event) {
       return $data.classReviewData.ReviewComment = $event;
     }),

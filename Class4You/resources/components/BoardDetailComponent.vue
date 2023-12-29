@@ -162,7 +162,7 @@ export default {
         fetchData() {
         axios.get('/boarddetail/' + this.BoardID)
             .then(response => {
-            console.log(response.data);
+            // console.log(response.data);
                 this.newBoardItem = response.data.boardData;
                 this.nowUserID = response.data.userID;
                 this.newCommentItem = response.data.commentData;
@@ -209,7 +209,7 @@ export default {
                 BoardFlg: 1,
             })
             .then(response => {
-                console.log(response.data);
+                // console.log(response.data);
                 // 서버 응답에 대한 로직 수행
                 // this.$router.push('/board');
                 location.reload();
@@ -225,7 +225,7 @@ export default {
                 UserID: this.newBoardItem.UserID,
             })
             .then(response => {
-                console.log(response.data);
+                // console.log(response.data);
                 // 서버 응답에 대한 로직 수행
                 // this.$router.push('/board');
                 location.reload();
@@ -241,7 +241,7 @@ export default {
                 UserID: this.newBoardItem.UserID,
             })
             .then(response => {
-                console.log(response.data);
+                // console.log(response.data);
                 // 서버 응답에 대한 로직 수행
                 // this.$router.push('/board');
                 location.reload();
