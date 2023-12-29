@@ -149,8 +149,12 @@
 						</div>
 					</div>
 					<div class="class_tab_content class_tab_description">
-						<span>◼{{ detailClassItems.ClassDescription }}</span>
-						<span>◼{{ detailClassItems.ClassDescription }}</span>
+						<div class="class_tab_description_text_left">
+							<span>◼{{ detailClassItems.ClassDescription }}</span>
+						</div>
+						<div class="class_tab_description_text_right">
+							<span>◼{{ detailClassItems.ClassDescription }}</span>
+						</div>
 					</div>
 					
 				</div>
@@ -281,20 +285,21 @@
 				</div>
 				<div id="class_tab1" class="class_tab_content">
 					<!-- <p>{{detailClassItems.InstructorID}}</p> -->
-					<div class="class_tab_content_instructor_name">
-						<div class="class_tab_content_instructor_name_style">
-							<p>강사</p>
-						</div>	
-						<p><strong>{{detailClassItems.InstructorFullName}}</strong>님</p>
-						
-					</div>
-					<div class="class_tab_instructorhis">
-						<p style="white-space: pre-line;">
-							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="12" fill="currentColor" class="bi bi-arrow-return-right" viewBox="0 0 16 16">
-  								<path fill-rule="evenodd" d="M1.5 1.5A.5.5 0 0 0 1 2v4.8a2.5 2.5 0 0 0 2.5 2.5h9.793l-3.347 3.346a.5.5 0 0 0 .708.708l4.2-4.2a.5.5 0 0 0 0-.708l-4-4a.5.5 0 0 0-.708.708L13.293 8.3H3.5A1.5 1.5 0 0 1 2 6.8V2a.5.5 0 0 0-.5-.5z"/>
-							</svg>
-							{{ detailClassItems.InstructorHistory }}
-						</p>
+					<div class="class_tab_content_instructor_all">
+						<div class="class_tab_content_instructor_name">
+							<div class="class_tab_content_instructor_name_style">
+								<p>강사</p>
+							</div>	
+							<p><strong>{{detailClassItems.InstructorFullName}}</strong>님</p>
+						</div>
+						<div class="class_tab_instructorhis">
+							<p style="white-space: pre-line;">
+								<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-return-right" viewBox="0 0 16 16">
+									<path fill-rule="evenodd" d="M1.5 1.5A.5.5 0 0 0 1 2v4.8a2.5 2.5 0 0 0 2.5 2.5h9.793l-3.347 3.346a.5.5 0 0 0 .708.708l4.2-4.2a.5.5 0 0 0 0-.708l-4-4a.5.5 0 0 0-.708.708L13.293 8.3H3.5A1.5 1.5 0 0 1 2 6.8V2a.5.5 0 0 0-.5-.5z"/>
+								</svg>
+								{{ detailClassItems.InstructorHistory }}
+							</p>
+						</div>
 					</div>
 				</div>
 			</div>	
