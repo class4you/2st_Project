@@ -270,7 +270,7 @@
 							</div>
 						</div>
 					</div>
-					<div></div>
+					<!-- <div></div> -->
 				</div>
 				
 			</div>	
@@ -706,6 +706,7 @@ export default {
 			sortData: 0,
 			classCuriData: {},
 			classRatingData: {},
+			// enrollflg: null,
         }
     },
 	mounted() {
@@ -726,7 +727,7 @@ export default {
 			// API 응답에 대한 로직 수행
 			console.log(response.data);
 			this.detailClassItems = response.data.result;
-			this.enrollmentCnt = response.data.userCnt.user_count;
+			// this.enrollmentCnt = response.data.userCnt.user_count;
 			this.classCuriData = response.data.classCuri;
 			this.EnrollChk = response.data.enrollmentChk;
 			
@@ -736,6 +737,14 @@ export default {
 			} else {
 				// avgRating 값이 없는 경우
 				this.classRatingData = 0;
+			}
+
+			if (response.data.userCnt.user_count !== undefined) {
+				// avgRating 값이 존재하는 경우
+				this.enrollmentCnt = response.data.userCnt.user_count;
+			} else {
+				// avgRating 값이 없는 경우
+				this.enrollmentCnt = 0;
 			}
 
 
@@ -877,6 +886,9 @@ export default {
 
 		postEnrollApp() {
 			// this.$store.dispatch('postClassEnrollApp', this.classEnrollData);
+			if(!this.$store.state.UserID) {
+				alert('로그인 후 수강 신청을 해주세요.');
+			}
 
             axios.post('/classEnrollAppPost', {
 				ClassID: this.ClassID,
