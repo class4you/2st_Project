@@ -3153,7 +3153,7 @@ background-color: rgba(225, 223, 234, 0.224);
     border: 0.1rem solid #dde0ea;
     border-radius: 2rem;
     background-color: var(--gray0);
-    width: 250px;
+    width: 200px;
 }
 
 .ranking_weekly_popular_writes_list {
@@ -3198,7 +3198,7 @@ background-color: rgba(225, 223, 234, 0.224);
     list-style: none;
     padding: 0;
     border-bottom: 1px solid #bdbdbd;
-    padding: 5px 10px;
+    padding: 5px 5px;
     width: 100%;
     margin-bottom: 10px
   }
