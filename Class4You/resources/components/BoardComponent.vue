@@ -152,7 +152,7 @@
 												</dd>
 												<dt class="visually_hidden">답변</dt>
 												<dd class="comment_count">
-													<i>답변수 :{{ item.cnt }}</i>
+													<i>답변수 : {{ item.cnt }}</i>
 													<span></span>
 												</dd>
 												</dl>
