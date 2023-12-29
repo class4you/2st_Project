@@ -111,7 +111,7 @@
 									</li>
 									</ul>
 									<div class="posts_container_header_button_cover"></div>
-									<router-link v-if="$store.state.UserID" class="ac_button" to="/boardinsert" >글쓰기</router-link>
+									<router-link v-if="$store.state.UserID" class="ac_button" to="/boardinsert">글쓰기</router-link>
 								</div>
 								<ul class="question_list">
 									<li class="question_container">
@@ -171,6 +171,11 @@
 								</ul>
 								</div>
 
+
+
+								<div class="question_list_pageing_empty">
+
+
 								<div class="qustuon_list_pageing">
 									<div v-for="(page, index) in pagination" :key="index">
 										<template v-if="page.url !== null">
@@ -181,7 +186,7 @@
 										</template>
 									</div>
 								</div>
-
+							</div>
 							</div>
 							<div class="community_right_side">
 								<div class="ranking_container">
