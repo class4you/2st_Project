@@ -4649,10 +4649,10 @@ background-color: rgba(225, 223, 234, 0.224);
     color: #ffffff; 
 }
 
-.qustuon_list_pageing a:focus{
+/* .qustuon_list_pageing a:focus{
     background-color: #2c2cda51;
     color: #ffffff;
-}
+} */
 
 
 .board_insert_textarea {
