@@ -17,14 +17,19 @@ class BoardController extends Controller
     public function getBoardMainData(Request $request)
     {
 
-        Log::debug($request);
+        // Log::debug($request);
         // $boardData = Board::join('users', 'boards.UserID', 'users.UserID')
         //     ->orderBy('boards.created_at', 'desc')
         //     ->paginate(10);
 
         $boardDataQuery = Board::join('users', 'boards.UserID', 'users.UserID');
-            // ->orderBy('boards.created_at', 'desc');
-        
+        // ->orderBy('boards.created_at', 'desc');
+    
+        $commentCountQuery = Board::Join('comments', 'boards.BoardID', 'comments.BoardID')
+            ->select('boards.BoardID', DB::raw('COUNT(comments.CommentID) AS CommentCount'))
+            ->groupBy('boards.BoardID')
+            ->get();
+
         if ($request->has('search')) {
             $searchTerm = $request->input('search');
             $boardDataQuery->where(function ($query) use ($searchTerm) {
@@ -68,7 +73,7 @@ class BoardController extends Controller
 
         // Log::debug($UserCntData);
 
-        Log::debug($boardData);
+        // Log::debug($boardData);
 
         return response()->json([
             'boardData' => $boardData,

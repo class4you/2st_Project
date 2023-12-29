@@ -1785,7 +1785,7 @@ ul.class_tabs li.class_current {
 }
 
 .class_tab_content_div {
-    border-bottom: 1px solid #ededed;
+    border-bottom: 2px solid #002d426f;
     margin-bottom: 15px;
 }
 
@@ -1946,10 +1946,26 @@ ul.class_tabs li.class_current {
     color: #0000007e;
     display: flex;
     justify-content: space-between;
+    padding: 0px 0px 20px 0px;
+    border-bottom: 1px solid #f2f2f2;
+}
+
+.class_detail_rating_user_id {
+    font-weight: 700;
+    color: #0000007e;
 }
 
 .class_detail_rating_list_text {
-    padding-top: 5px;
+    margin-top: 10px;
+    padding: 10px 0px 20px 0px;
+    border-bottom: 1px solid #f2f2f2;
+}
+
+.class_detail_rating_list_text_p {
+    white-space: pre-line;
+    line-height: 25px;
+    color: #8c8c8c;
+    font-weight: 700;
 }
 
 .class_detail_rating_user_button {

@@ -375,7 +375,7 @@
 							</div>
 						</div>
 						<div class="class_detail_rating_list_text">
-							<p style="white-space: pre-line;">{{ data.ReviewComment }}</p>
+							<p class="class_detail_rating_list_text_p">{{ data.ReviewComment }}</p>
 						</div>
 						<div class="class_detail_rating_user_button">
 							<div class="class_detail_rating_user_update_button">
