@@ -109,9 +109,11 @@
 						<p>✅코딩 스터디를 원하시는 분</p>
 						<p>✅학습 성취감을 느끼고 싶은 분</p>
 					</div>
-					<div class="class_tab_content">
-						<p>{{ detailClassItems.ClassDescription }}</p>
+					<div class="class_tab_content class_tab_description">
+						<span>◼{{ detailClassItems.ClassDescription }}</span>
+						<span>◼{{ detailClassItems.ClassDescription }}</span>
 					</div>
+					
 				</div>
 
 				<div class="class_tab_content_div">
@@ -146,8 +148,8 @@
 					<div class="class_tab_content_title">
 						<p>강의 특징</p>
 					</div>
-					<div style="margin: 30px 10px; line-height: 30px;">
-						<span>💻이 <strong>강의</strong>의 특징은</span>
+					<div class="class_tab_content_classpoint_ment">
+						<span>💻이 <strong>강의</strong>의 특징은,</span>
 					</div>
 			
 				<div class="class_tab_classpoint_div_box">
@@ -180,7 +182,7 @@
 						<div style="margin: 10px;">
 							<span></span>
 							<div>
-								<img style="width: 100%;" src="/img/html/htmlgif.gif" alt="">
+								<img style="width: 100%;" src="/img/html/classDetail/html_gif.gif" alt="">
 							</div>
 						</div>
 					</div>
@@ -188,7 +190,7 @@
 						<div style="margin: 10px;">
 							<span></span>
 							<div>
-								<img style="width: 100%;" src="/img/php/cssgif.gif" alt="">
+								<img style="width: 100%;" src="/img/css/classDetail/css_gif.gif" alt="">
 							</div>
 						</div>
 					</div>
@@ -196,7 +198,7 @@
 						<div style="margin: 10px;">
 							<span></span>
 							<div>
-								<img style="width: 100%;" src="/img/php/javascriptgif.gif" alt="">
+								<img style="width: 100%;" src="/img/javascript/classDetail/js_gif.gif" alt="">
 							</div>
 						</div>
 					</div>
@@ -204,7 +206,7 @@
 						<div style="margin: 10px;">
 							<span></span>
 							<div>
-								<img style="width: 100%;" src="/img/php/laravelgif.webp" alt="">
+								<img style="width: 100%;" src="/img/php/classDetail/php_gif.webp" alt="">
 							</div>
 						</div>
 					</div>
@@ -212,7 +214,7 @@
 						<div style="margin: 10px;">
 							<span></span>
 							<div>
-								<img style="width: 100%;" src="/img/php/javagif.gif" alt="">
+								<img style="width: 100%;" src="/img/java/classDetail/java_png.png" alt="">
 							</div>
 						</div>
 					</div>
@@ -220,7 +222,7 @@
 						<div style="margin: 10px;">
 							<span></span>
 							<div>
-								<img style="width: 100%;" src="/img/php/dbgif.gif" alt="">
+								<img style="width: 100%;" src="/img/db/classDetail/db_gif.gif" alt="">
 							</div>
 						</div>
 					</div>
@@ -236,10 +238,19 @@
 				<div id="class_tab1" class="class_tab_content">
 					<!-- <p>{{detailClassItems.InstructorID}}</p> -->
 					<div class="class_tab_content_instructor_name">
-						<p>강사 <strong>{{detailClassItems.InstructorFullName}}</strong>님</p>
+						<div class="class_tab_content_instructor_name_style">
+							<p>강사</p>
+						</div>	
+						<p><strong>{{detailClassItems.InstructorFullName}}</strong>님</p>
+						
 					</div>
 					<div class="class_tab_instructorhis">
-						<p style="white-space: pre-line;">{{ detailClassItems.InstructorHistory }}</p>
+						<p style="white-space: pre-line;">
+							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="12" fill="currentColor" class="bi bi-arrow-return-right" viewBox="0 0 16 16">
+  								<path fill-rule="evenodd" d="M1.5 1.5A.5.5 0 0 0 1 2v4.8a2.5 2.5 0 0 0 2.5 2.5h9.793l-3.347 3.346a.5.5 0 0 0 .708.708l4.2-4.2a.5.5 0 0 0 0-.708l-4-4a.5.5 0 0 0-.708.708L13.293 8.3H3.5A1.5 1.5 0 0 1 2 6.8V2a.5.5 0 0 0-.5-.5z"/>
+							</svg>
+							{{ detailClassItems.InstructorHistory }}
+						</p>
 					</div>
 				</div>
 			</div>	
