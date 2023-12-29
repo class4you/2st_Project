@@ -215,45 +215,43 @@
 						<div v-if="languagesChk ==  'HTML'" id="class_tab1" class="class_tab_classpoint">
 							<p>
 								웹 디자이너 및 UI UX의 기본 HTMl.
-								HTML를 PHP답게, PHP 개발의 정수! 
-								PHP를 컴포저(Composer)와 연계해 다른 프로그래밍 언어 못지 않은 가볍고도 강력한 웹 애플리케이션을 개발, 
-								운용할 수 있습니다.
+								어려운 개념들과 세세한 속성들까지 파고들어가서 현업 개발자 및 퍼블리셔에게도 큰 도움이 될 수 있는 강좌로 만들고자 했습니다.
+								그 첫걸음으로, 컴공 지식이 없어도 상대적으로 배워나가기 쉬운 HTML를 첫 주제로 선택했습니다.
 							</p>
 						</div>
 						<div v-if="languagesChk ==  'HTML'" id="class_tab1" class="class_tab_classpoint">
 							<p>
-								강의를 모두 마치면 해당 리포지토리에 있는 서비스 정도는 하루 정도에 개발할 수 있게 됩니다. 
-								PHP 웹 개발의 실력을 키우고픈 분들뿐만 아니라, 혼자서 나만의 홈페이지를 제작하시고픈 분들에게도 도움이 되는 내용으로 구성하였습니다.
+								한편 진입장벽이 낮은 HTML & CSS지만, 이를 깊이 있게 공부하여 '제대로' 활용하는 개발자들은 흔하지 않죠. 
+								그래서 어려운 개념들과 세세한 속성들까지 파고들어가서 현업 개발자 및 퍼블리셔에게도 큰 도움이 될 수 있는 강좌로 만들고자 했습니다.
+								정말 멋지고 유익한 강의를 만들어보자는 목표로, 오랫동안 조사하고 준비한 끝에 이 강의를 제작하게 되었습니다.
 							</p>
 						</div>
 
 						<div v-if="languagesChk ==  'CSS'" id="class_tab1" class="class_tab_classpoint">
 							<p>
-								PHP 개발자의 최종 테크트리, 라라벨(Laravel) 프레임워크의 핵심.
-								PHP를 PHP답게, PHP 개발의 정수! 
-								PHP를 컴포저(Composer)와 연계해 다른 프로그래밍 언어 못지 않은 가볍고도 강력한 웹 애플리케이션을 개발, 
-								운용할 수 있습니다.
+								부트스트랩(Bootstrap)과 함께 대표적인 CSS Frameworks인 UIkit을 기초부터 활용까지 체계적으로 배우실 수 있습니다. 
+								퍼블리셔 취업을 위해 잘 만들어진 개인 포트폴리오 홈페이지가 반드시 필요합니다. 
 							</p>
 						</div>
 						<div v-if="languagesChk ==  'CSS'" id="class_tab1" class="class_tab_classpoint">
 							<p>
-								강의를 모두 마치면 해당 리포지토리에 있는 서비스 정도는 하루 정도에 개발할 수 있게 됩니다. 
-								PHP 웹 개발의 실력을 키우고픈 분들뿐만 아니라, 혼자서 나만의 홈페이지를 제작하시고픈 분들에게도 도움이 되는 내용으로 구성하였습니다.
+								개인 포트폴리오 홈페이지에서 포트폴리오 결과물을 세련되게 보여주기 위해 Slideshow, Slider, Lightbox, Full Screen Modal, Filter 등 
+								UIkit 컴포넌트의 상세한 사용법과 실전 제작에 활용하는 퍼블리싱 스킬과 노하우를 배울 수 있습니다.
 							</p>
 						</div>
 
 						<div v-if="languagesChk ==  'JAVA SCRIPT'" id="class_tab1" class="class_tab_classpoint">
 							<p>
-								PHP 개발자의 최종 테크트리, 라라벨(Laravel) 프레임워크의 핵심.
-								PHP를 PHP답게, PHP 개발의 정수! 
-								PHP를 컴포저(Composer)와 연계해 다른 프로그래밍 언어 못지 않은 가볍고도 강력한 웹 애플리케이션을 개발, 
-								운용할 수 있습니다.
+								다른 언어도 많은데.. 왜 자바스크립트여야 하냐구요? 
+								자바스크립트는 전세계에서 가장 많이 쓰는 언어로, 비전공자도 빠르게 배울 수 있고 이해하기 쉬운 구조를 가지고 있어요. 
+								게다가 구글, 페이팔, 아마존 등 유명 기업들도 활용하고 있다니! 더 이상의 고민이 필요한가요?
 							</p>
 						</div>
 						<div v-if="languagesChk ==  'JAVA SCRIPT'" id="class_tab1" class="class_tab_classpoint">
 							<p>
-								강의를 모두 마치면 해당 리포지토리에 있는 서비스 정도는 하루 정도에 개발할 수 있게 됩니다. 
-								PHP 웹 개발의 실력을 키우고픈 분들뿐만 아니라, 혼자서 나만의 홈페이지를 제작하시고픈 분들에게도 도움이 되는 내용으로 구성하였습니다.
+								이 강의는 Javascript가 동작하는 기본적인 원리, 코드를 작성하는 방법 등 그 기초를 중점적으로 다루고 있어요. 
+								완성된 성을 받아 가는 것이 아닌 성을 쌓아가는 방법을 배우는 것이죠.
+								또한, Chrome의 개발자 도구, debugger, vscode를 사용해가며 스스로 성을 쌓아 올릴 수 있도록 필요한 도구들을 함께 알아갈 거에요.
 							</p>
 						</div>
 
@@ -274,31 +272,29 @@
 
 						<div v-if="languagesChk ==  'JAVA'" id="class_tab1" class="class_tab_classpoint">
 							<p>
-								PHP 개발자의 최종 테크트리, 라라벨(Laravel) 프레임워크의 핵심.
-								PHP를 PHP답게, PHP 개발의 정수! 
-								PHP를 컴포저(Composer)와 연계해 다른 프로그래밍 언어 못지 않은 가볍고도 강력한 웹 애플리케이션을 개발, 
-								운용할 수 있습니다.
+								자바는 객체지향 프로그래밍 언어입니다. 객체지향 프로그래밍의 캡슐화, 상속, 다형성, 추상화 같은 개념이 이런 문제를 해결해 주는 역할을 하고, 
+								그렇기 때문에 실무에서 자바를 많이 사용하는 것입니다.
+								때문에 객체지향 프로그래밍은 자바에서 가장 중요한 핵심 개념이라고도 볼 수 있습니다.
 							</p>
 						</div>
 						<div v-if="languagesChk ==  'JAVA'" id="class_tab1" class="class_tab_classpoint">
 							<p>
-								강의를 모두 마치면 해당 리포지토리에 있는 서비스 정도는 하루 정도에 개발할 수 있게 됩니다. 
-								PHP 웹 개발의 실력을 키우고픈 분들뿐만 아니라, 혼자서 나만의 홈페이지를 제작하시고픈 분들에게도 도움이 되는 내용으로 구성하였습니다.
+								그런데 자바를 처음 공부하는 분들이 정말 아쉽게도 단순 자바 문법만 배우고 있는 경우가 많습니다. 
+								하지만 객체지향 개념에서는 문법이 아니라, 이것을 어떤 상황에 왜 써야 하는지를 이해하는 게 핵심입니다.
 							</p>
 						</div>
 
 						<div v-if="languagesChk ==  'DataBase'" id="class_tab1" class="class_tab_classpoint">
 							<p>
-								PHP 개발자의 최종 테크트리, 라라벨(Laravel) 프레임워크의 핵심.
-								PHP를 PHP답게, PHP 개발의 정수! 
-								PHP를 컴포저(Composer)와 연계해 다른 프로그래밍 언어 못지 않은 가볍고도 강력한 웹 애플리케이션을 개발, 
-								운용할 수 있습니다.
+								MariaDB를 통해 데이터베이스 가격 부담에서 자유로울 수 있을 뿐만 아니라, 
+								대표적인 데이터베이스의 MSSQL, ORACLE, MYSQL에 해당되는 필수 요소 또한 제공하기 때문에 이용에 어려움이 없습니다. 
+								뿐만 아니라 공공기관이나 대기업 프로젝트 등에서도 MariaDB가 사용되는 경우가 있습니다
 							</p>
 						</div>
 						<div v-if="languagesChk ==  'DataBase'" id="class_tab1" class="class_tab_classpoint">
 							<p>
-								강의를 모두 마치면 해당 리포지토리에 있는 서비스 정도는 하루 정도에 개발할 수 있게 됩니다. 
-								PHP 웹 개발의 실력을 키우고픈 분들뿐만 아니라, 혼자서 나만의 홈페이지를 제작하시고픈 분들에게도 도움이 되는 내용으로 구성하였습니다.
+								MariaDB만의 특징과 HeidiSQL을 통한 MariaDB를 다루는 간단한 방법을 배울 수 있습니다.
+								MariaDB로 사업을 준비하시거나 실무에서 사용하실 예정이시라면, 충분히 강의를 통해 데이터베이스를 운영해나가실 수 있습니다.
 							</p>
 						</div>
 					</div>	
@@ -347,7 +343,7 @@
 						<div style="margin: 10px;">
 							<span></span>
 							<div>
-								<img style="width: 100%;" src="/img/db/classDetail/db_gif.gif" alt="">
+								<img style="width: 100%;" src="/img/db/classDetail/sql_gif.gif" alt="">
 							</div>
 						</div>
 					</div>
