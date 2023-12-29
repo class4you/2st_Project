@@ -186,6 +186,7 @@ const store = createStore({
                 // context.commit('setErrorData', err.response.data.errors)
             })
             .finally(() => {
+                location.reload();
             })
         },
         logout(context, data) {
@@ -202,10 +203,13 @@ const store = createStore({
                 console.log(res.data)
                 context.commit('setUserLoginChk', res.data.sessionDataCheck);
                 localStorage.clear();
-                router.push('/'); 
+                // router.push('/'); 
                 // window.location.href = '/';
             })
             .catch(err => console.log(err.response.data))
+            .finally(() => {
+                location.reload();
+            })
         },
         checkWindowWidth(context) {
             // 특정 크기 이상이면 캐러셀을 표시
@@ -253,6 +257,9 @@ const store = createStore({
                     "Content-Type": 'multipart/form-data',
                     'X-CSRF-TOKEN': document.head.querySelector('meta[name="csrf-token"]').content,
                 },
+            }
+            if(!data.CommentContent) {
+                alert('내용을 입력해주세요.');
             }
             let frm = new FormData();
             console.log(data);
