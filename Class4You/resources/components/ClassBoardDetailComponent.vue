@@ -59,7 +59,7 @@
                                 </div>
                                 <div class="class_detail_container_r_payment_classes">
 									<a v-if="EnrollChk" :href="'/classwatch/' + detailClassItems.ClassID">강의 시청</a>
-                                    <button v-else @click="postEnrollApp()">수강 신청</button>
+                                    <a v-if="!EnrollChk && enrollflg" @click="postEnrollApp()">수강 신청</a>
                                     <!-- <button v-else @click="postEnrollApp()">{{ classEnrollData.value }}</button> -->
                                 </div>
                             </div>
@@ -627,7 +627,7 @@ export default {
         		ReviewRating: Number,
 				ReviewID: this.ReviewID,
 			},
-			EnrollChk: false,
+			EnrollChk: '',
 			delReviewData: {
 				ReviewID: this.ReviewID
 			},
@@ -666,6 +666,7 @@ export default {
     },
 	mounted() {
         this.fetchData();
+		this.enrollflg = true;
     },
 
 	updated() {
@@ -683,6 +684,7 @@ export default {
 			this.detailClassItems = response.data.result;
 			this.enrollmentCnt = response.data.userCnt.user_count;
 			this.classCuriData = response.data.classCuri;
+			this.EnrollChk = response.data.enrollmentChk;
 			
 			if (response.data.avgReviewRating && response.data.avgReviewRating.avgRating !== undefined) {
 				// avgRating 값이 존재하는 경우
@@ -839,7 +841,8 @@ export default {
             .then(res => { 
                 console.log(res.data);
 				this.EnrollChk = true;
-                window.location.reload();
+				alert(res.data.message);
+                // window.location.reload();
             })
             .catch(err => {
                 console.log(err.response.data.errors)

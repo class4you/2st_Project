@@ -358,6 +358,21 @@ class ClassInfoController extends Controller
         // Log::debug('***** getClassBoardDetailShow Start *****');
         // $result = ClassInfo::where('class_infos.ClassID', $ClassID)->first();
 
+        $UserID = Auth::id();
+
+        Log::debug($UserID);
+
+        $existingEnrollment = Enrollment::where('UserID', $UserID)
+        ->where('ClassID', $ClassID)
+        ->first();
+
+        Log::debug($existingEnrollment);
+
+        if ($existingEnrollment) { 
+            $enrollmentChk = true;
+        } else if (!$existingEnrollment){
+            $enrollmentChk = false;
+        }
         // 기존 선택한 강의 디테일 정보 가져오기
         $result = ClassInfo::join('instructors','instructors.InstructorID','class_infos.InstructorID')
             ->where('class_infos.ClassID', $ClassID)
@@ -461,7 +476,8 @@ class ClassInfoController extends Controller
                 'result' => $result,
                 'userCnt' => $userCnt,
                 'classCuri' => $classCuri,
-                'avgReviewRating' => $avgReviewRating
+                'avgReviewRating' => $avgReviewRating,
+                'enrollmentChk' => $enrollmentChk
             ]);
         }    
     }

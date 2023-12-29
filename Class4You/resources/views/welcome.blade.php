@@ -18,10 +18,10 @@
 </head>
 <body>
     <div id="app">
-        {{-- <div class="wrapper"> --}}
+        <div class="wrapper" style="height: auto">
             <Header-Component></Header-Component>
             <App-Component></App-Component>
-            {{-- </div> --}}
+        </div>
         <Footer-Component></Footer-Component>
     </div>
     
