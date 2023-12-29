@@ -1708,6 +1708,11 @@ ul.class_tabs li.class_current {
     margin-top: 30px;
 }
 
+.class_tab_content_basic_ba_color {
+    background: linear-gradient(to right, #3f6edb, #8986f4);
+}
+
+
 /* .class_current_rating {
     text-align: start;
     border: 1px solid #e7e1e1;
@@ -1729,7 +1734,7 @@ ul.class_tabs li.class_current {
 
 .class_tab_content_basic>p {
     text-align: center;
-    color: #f8f9fad8; 
+    color: #ffffff; 
 }
 
 .class_tab_content_basic>p>strong {

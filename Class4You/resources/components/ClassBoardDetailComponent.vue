@@ -97,7 +97,7 @@
 					<div class="class_tab_content_title">
 						<p>기초 설명</p>
 					</div>
-					<div id="class_tab1" class="class_tab_content class_tab_content_basic" style="background-color: #343a40;">
+					<div id="class_tab1" class="class_tab_content class_tab_content_basic class_tab_content_basic_ba_color" >
 						<p><strong>
 							<svg xmlns="http://www.w3.org/2000/svg" color="#fff" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
 							<path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
@@ -105,9 +105,9 @@
 							</svg>
 							추천드려요
 						</strong></p>
-						<p>✅코딩의 기초를 다지고싶은 분</p>
-						<p>✅코딩 스터디를 원하시는 분</p>
-						<p>✅학습 성취감을 느끼고 싶은 분</p>
+						<p>✅ 코딩의 기초를 다지고싶은 분</p>
+						<p>✅ 코딩 스터디를 원하시는 분</p>
+						<p>✅ 학습 성취감을 느끼고 싶은 분</p>
 					</div>
 					<div class="class_tab_content class_tab_description">
 						<span>◼{{ detailClassItems.ClassDescription }}</span>
@@ -662,6 +662,7 @@ export default {
 			sortData: 0,
 			classCuriData: {},
 			classRatingData: {},
+			// enrollflg: null,
         }
     },
 	mounted() {
