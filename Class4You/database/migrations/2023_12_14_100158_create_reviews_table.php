@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('reviews', function (Blueprint $table) {
             $table->id('ReviewID');
             $table->integer('EnrollmentID');
-            $table->string('ReviewComment', 200);
+            $table->string('ReviewComment', 1000);
             $table->decimal('ReviewRating', 2, 1)->default(0);
             $table->timestamps();
             $table->softDeletes();
