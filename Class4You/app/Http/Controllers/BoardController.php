@@ -17,54 +17,13 @@ class BoardController extends Controller
     public function getBoardMainData(Request $request)
     {
 
-        // Log::debug($request);
-        // $boardData = Board::join('users', 'boards.UserID', 'users.UserID')
-        //     ->orderBy('boards.created_at', 'desc')
-        //     ->paginate(10);
+        $boardDataQuery = Board::join('users', 'boards.UserID', 'users.UserID')
+            ->join(DB::raw('(SELECT BoardID, COUNT(BoardID) AS cnt FROM comments GROUP BY comments.BoardID) com'), function ($join) {
+                $join->on('com.BoardID', '=', 'boards.BoardID');
+            })
+            ->select('boards.BoardID', 'boards.created_at', 'boards.UserID', 'boards.BoardTitle', 'boards.BoardComment', 'boards.BoardView', 'boards.BoardRecommended', 'boards.BoardNotRecommended', 'boards.BoardFlg', 'users.UserEmail', 'com.cnt');
 
-
-        // $boardDataQuery = Board::join('users', 'boards.UserID', 'users.UserID')
-        // ->leftJoin('comments', 'boards.BoardID', '=', 'comments.BoardID')
-        // ->select('boards.*', DB::raw('COUNT(comments.CommentID) AS CommentCount'))
-        // ->groupBy('boards.BoardID', 'users.UserID', 'boards.BoardTitle', 'boards.BoardComment', 'boards.created_at', 'boards.updated_at', 'boards.BoardCategoryID', 'boards.UserID', 'boards.ClassID', 'boards.BoardView', 'boards.BoardRecommended', 'boards.BoardNotRecommended', 'boards.BoardFlg', 'boards.deleted_at');
-
-        // if ($request->has('search')) {
-        //     $searchTerm = $request->input('search');
-        //     $boardDataQuery->where(function ($query) use ($searchTerm) {
-        //         $query->orWhere('boards.BoardTitle', 'LIKE', "%{$searchTerm}%")
-        //             ->orWhere('boards.BoardComment', 'LIKE', "%{$searchTerm}%");
-        //     });
-        // }
-
-        // if ($request->has('solve')) {
-        //     $solveState = $request->input('solve');
-        //     if ($solveState == 1) {
-        //         $boardDataQuery->where('BoardFlg', 1);
-        //     } else if ($solveState == 0) {
-        //         $boardDataQuery->where('BoardFlg', 0);
-        //     }
-        // }
-
-        // if ($request->has('sort')) {
-        //     $sortData = $request->input('sort');
-        //     if ($sortData == 1) {
-        //         $boardDataQuery->orderBy('boards.created_at', 'desc');
-        //     } else if ($sortData == 3) {
-        //         $boardDataQuery->orderBy('boards.BoardRecommended', 'desc');
-        //     } else if ($sortData == 4) {
-        //         $boardDataQuery->orderBy('boards.BoardView', 'desc');
-        //     }
-        // }
-
-        // $boardData = $boardDataQuery->paginate(10);
-
-        // $userCntData = User::select('users.UserEmail', DB::raw('count(*) as cnt'))
-        //     ->join('comments', 'users.UserID', 'comments.UserID')
-        //     ->groupBy('users.UserEmail')
-        //     ->limit(5)
-        //     ->get();
-
-        $boardDataQuery = Board::join('users', 'boards.UserID', 'users.UserID');
+        // $boardDataQuery = Board::join('users', 'boards.UserID', 'users.UserID');
         // ->orderBy('boards.created_at', 'desc');
     
         $commentCountQuery = Board::Join('comments', 'boards.BoardID', 'comments.BoardID')
@@ -95,11 +54,8 @@ class BoardController extends Controller
             $sortData = $request->input('sort');
             if($sortData == 1) {
                 $boardDataQuery->orderBy('boards.created_at', 'desc');
-            // } else if($sortData == 2) {
-            //     $boardDataQuery = Board::join('comments', 'boards.BoardID', '=', 'comments.BoardID')
-            //         ->selectRaw('COUNT(comments.CommentID) as comment_count')
-            //         ->groupBy('boards.BoardID') // 각 게시물에 대한 그룹화
-            //         ->orderBy('comment_count', 'desc');
+            } else if($sortData == 2) {
+                $boardDataQuery->orderBy('com.cnt', 'desc');
             } else if($sortData == 3) {
                 $boardDataQuery->orderBy('boards.BoardRecommended', 'desc');
             } else if($sortData == 4) {

@@ -21193,107 +21193,112 @@ var _hoisted_31 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
   d: "M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"
 }, null, -1 /* HOISTED */);
 var _hoisted_32 = [_hoisted_31];
-var _hoisted_33 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+var _hoisted_33 = {
+  "class": "e_order active"
+};
+var _hoisted_34 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("path", {
+  d: "M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"
+}, null, -1 /* HOISTED */);
+var _hoisted_35 = [_hoisted_34];
+var _hoisted_36 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "posts_container_header_button_cover"
 }, null, -1 /* HOISTED */);
-var _hoisted_34 = {
+var _hoisted_37 = {
   "class": "question_list"
 };
-var _hoisted_35 = {
+var _hoisted_38 = {
   "class": "question_container"
 };
-var _hoisted_36 = ["href", "onClick"];
-var _hoisted_37 = {
+var _hoisted_39 = ["href", "onClick"];
+var _hoisted_40 = {
   "class": "question"
 };
-var _hoisted_38 = {
+var _hoisted_41 = {
   "class": "question_info"
 };
-var _hoisted_39 = {
+var _hoisted_42 = {
   "class": "question_title"
 };
-var _hoisted_40 = {
+var _hoisted_43 = {
   "class": "title_sub_text"
 };
-var _hoisted_41 = {
+var _hoisted_44 = {
   "class": "question_status_tag"
 };
-var _hoisted_42 = {
+var _hoisted_45 = {
   "class": "title_text"
 };
-var _hoisted_43 = {
+var _hoisted_46 = {
   "class": "question_content_body"
 };
-var _hoisted_44 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+var _hoisted_47 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "question_tags"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
-  "class": "question_tags_button"
-}, " 언어 태그란 ")], -1 /* HOISTED */);
-var _hoisted_45 = {
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <button class=\"question_tags_button\">\r\n\t\t\t\t\t\t\t\t\t\t\t\t언어 태그란\r\n\t\t\t\t\t\t\t\t\t\t\t</button> ")], -1 /* HOISTED */);
+var _hoisted_48 = {
   "class": "question_info_footer"
 };
-var _hoisted_46 = {
+var _hoisted_49 = {
   "class": "question_info_detail"
 };
-var _hoisted_47 = {
+var _hoisted_50 = {
   "class": "question_info_user_name"
 };
-var _hoisted_48 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
+var _hoisted_51 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
   style: {
     "margin": "0px 10px 0px 10px"
   }
 }, " / ", -1 /* HOISTED */);
-var _hoisted_49 = {
+var _hoisted_52 = {
   "class": "question_info_user_name"
 };
-var _hoisted_50 = {
+var _hoisted_53 = {
   "class": "question_info_user_data"
 };
-var _hoisted_51 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("dt", {
+var _hoisted_54 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("dt", {
   "class": "visually_hidden"
 }, "투표점수", -1 /* HOISTED */);
-var _hoisted_52 = {
+var _hoisted_55 = {
   "class": "comment_count"
 };
-var _hoisted_53 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("dt", {
+var _hoisted_56 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("dt", {
   "class": "visually_hidden"
 }, "투표점수", -1 /* HOISTED */);
-var _hoisted_54 = {
+var _hoisted_57 = {
   "class": "comment_count"
 };
-var _hoisted_55 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("dt", {
+var _hoisted_58 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("dt", {
   "class": "visually_hidden"
 }, "조회수", -1 /* HOISTED */);
-var _hoisted_56 = {
+var _hoisted_59 = {
   "class": "comment_count"
 };
-var _hoisted_57 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("dt", {
+var _hoisted_60 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("dt", {
   "class": "visually_hidden"
 }, "답변", -1 /* HOISTED */);
-var _hoisted_58 = {
+var _hoisted_61 = {
   "class": "comment_count"
 };
-var _hoisted_59 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "0", -1 /* HOISTED */);
-var _hoisted_60 = {
+var _hoisted_62 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, null, -1 /* HOISTED */);
+var _hoisted_63 = {
   "class": "question_list_pageing_empty"
 };
-var _hoisted_61 = {
+var _hoisted_64 = {
   "class": "qustuon_list_pageing"
 };
-var _hoisted_62 = ["onClick"];
-var _hoisted_63 = {
+var _hoisted_65 = ["onClick"];
+var _hoisted_66 = {
   key: 1
 };
-var _hoisted_64 = {
+var _hoisted_67 = {
   "class": "community_right_side"
 };
-var _hoisted_65 = {
+var _hoisted_68 = {
   "class": "ranking_container"
 };
-var _hoisted_66 = {
+var _hoisted_69 = {
   "class": "weeklyranking"
 };
-var _hoisted_67 = {
+var _hoisted_70 = {
   style: {
     "opacity": "0.5"
   },
@@ -21304,20 +21309,20 @@ var _hoisted_67 = {
   "class": "bi bi-trophy",
   viewBox: "0 0 16 16"
 };
-var _hoisted_68 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("path", {
+var _hoisted_71 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("path", {
   d: "M2.5.5A.5.5 0 0 1 3 0h10a.5.5 0 0 1 .5.5c0 .538-.012 1.05-.034 1.536a3 3 0 1 1-1.133 5.89c-.79 1.865-1.878 2.777-2.833 3.011v2.173l1.425.356c.194.048.377.135.537.255L13.3 15.1a.5.5 0 0 1-.3.9H3a.5.5 0 0 1-.3-.9l1.838-1.379c.16-.12.343-.207.537-.255L6.5 13.11v-2.173c-.955-.234-2.043-1.146-2.833-3.012a3 3 0 1 1-1.132-5.89A33.076 33.076 0 0 1 2.5.5zm.099 2.54a2 2 0 0 0 .72 3.935c-.333-1.05-.588-2.346-.72-3.935zm10.083 3.935a2 2 0 0 0 .72-3.935c-.133 1.59-.388 2.885-.72 3.935zM3.504 1c.007.517.026 1.006.056 1.469.13 2.028.457 3.546.87 4.667C5.294 9.48 6.484 10 7 10a.5.5 0 0 1 .5.5v2.61a1 1 0 0 1-.757.97l-1.426.356a.5.5 0 0 0-.179.085L4.5 15h7l-.638-.479a.501.501 0 0 0-.18-.085l-1.425-.356a1 1 0 0 1-.757-.97V10.5A.5.5 0 0 1 9 10c.516 0 1.706-.52 2.57-2.864.413-1.12.74-2.64.87-4.667.03-.463.049-.952.056-1.469H3.504z"
 }, null, -1 /* HOISTED */);
-var _hoisted_69 = [_hoisted_68];
-var _hoisted_70 = {
+var _hoisted_72 = [_hoisted_71];
+var _hoisted_73 = {
   "class": "ranking_weekly_popular_writes_list"
 };
-var _hoisted_71 = {
+var _hoisted_74 = {
   "class": "ranking_weekly_popular_write"
 };
-var _hoisted_72 = {
+var _hoisted_75 = {
   "class": "ranking_weekly_popular_write_writer"
 };
-var _hoisted_73 = {
+var _hoisted_76 = {
   "class": "ranking_weekly_popular_write_writer"
 };
 function render(_ctx, _cache, $props, $setup, $data, $options) {
@@ -21374,9 +21379,26 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       'svg_opacity_on': $data.sortData == 1
     }]),
     viewBox: "0 0 16 16"
-  }, [].concat(_hoisted_26), 2 /* CLASS */)), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("최신순")], 2 /* CLASS */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <li class=\"e_order active\">\r\n\t\t\t\t\t\t\t\t\t\t<button type=\"button\" @click=\"fetchData(page = 1, searchQuery, solve = null, sortData = 2)\" class=\"order_pc_button\">답변많은순</button>\r\n\t\t\t\t\t\t\t\t\t</li> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", _hoisted_27, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+  }, [].concat(_hoisted_26), 2 /* CLASS */)), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("최신순")], 2 /* CLASS */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", _hoisted_27, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
     type: "button",
     onClick: _cache[6] || (_cache[6] = function ($event) {
+      return $options.fetchData($data.page, $data.searchQuery, $data.solve, $data.sortData = 2);
+    }),
+    "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["order_pc_button", {
+      'order_pc_button_on': $data.sortData == 2
+    }])
+  }, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("svg", {
+    xmlns: "http://www.w3.org/2000/svg",
+    width: "20",
+    height: "20",
+    fill: "violet",
+    "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["bi bi-dot svg_opacity_off", {
+      'svg_opacity_on': $data.sortData == 2
+    }]),
+    viewBox: "0 0 16 16"
+  }, [].concat(_hoisted_29), 2 /* CLASS */)), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("답변많은순")], 2 /* CLASS */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", _hoisted_30, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+    type: "button",
+    onClick: _cache[7] || (_cache[7] = function ($event) {
       return $options.fetchData($data.page, $data.searchQuery, $data.solve, $data.sortData = 3);
     }),
     "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["order_pc_button", {
@@ -21391,9 +21413,9 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       'svg_opacity_on': $data.sortData == 3
     }]),
     viewBox: "0 0 16 16"
-  }, [].concat(_hoisted_29), 2 /* CLASS */)), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("좋아요순")], 2 /* CLASS */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", _hoisted_30, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+  }, [].concat(_hoisted_32), 2 /* CLASS */)), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("좋아요순")], 2 /* CLASS */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", _hoisted_33, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
     type: "button",
-    onClick: _cache[7] || (_cache[7] = function ($event) {
+    onClick: _cache[8] || (_cache[8] = function ($event) {
       return $options.fetchData($data.page, $data.searchQuery, $data.solve, $data.sortData = 4);
     }),
     "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["order_pc_button", {
@@ -21408,7 +21430,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       'svg_opacity_on': $data.sortData == 4
     }]),
     viewBox: "0 0 16 16"
-  }, [].concat(_hoisted_32), 2 /* CLASS */)), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("조회순")], 2 /* CLASS */)])]), _hoisted_33, _ctx.$store.state.UserID ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_router_link, {
+  }, [].concat(_hoisted_35), 2 /* CLASS */)), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("조회순")], 2 /* CLASS */)])]), _hoisted_36, _ctx.$store.state.UserID ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_router_link, {
     key: 0,
     "class": "ac_button",
     to: "/boardinsert"
@@ -21417,20 +21439,20 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("글쓰기")];
     }),
     _: 1 /* STABLE */
-  })) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("ul", _hoisted_34, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", _hoisted_35, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.newBoardItems, function (item) {
+  })) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("ul", _hoisted_37, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", _hoisted_38, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.newBoardItems, function (item) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("a", {
       href: '/boardDetail/' + item.BoardID,
       onClick: function onClick($event) {
         return $options.increaseViews(item.BoardID);
       }
-    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_37, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_38, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_39, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_40, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_41, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
+    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_40, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_41, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_42, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_43, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_44, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
       "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)({
         'question_status_tag_badge': true,
         'question_tag_unresolved': item.BoardFlg === '0',
         'question_tag_resolved': item.BoardFlg === '1'
       })
-    }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.BoardFlg === '0' ? '미해결' : '해결'), 3 /* TEXT, CLASS */)])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", _hoisted_42, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.BoardTitle), 1 /* TEXT */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_43, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.BoardComment), 1 /* TEXT */), _hoisted_44, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_45, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_46, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_47, "작성자 : " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.hideEmail(item.UserEmail)), 1 /* TEXT */), _hoisted_48, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_49, "작성시간 : " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.created_at), 1 /* TEXT */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_50, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("dl", null, [_hoisted_51, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("dd", _hoisted_52, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", null, "추천수 : " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.BoardRecommended), 1 /* TEXT */)]), _hoisted_53, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("dd", _hoisted_54, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", null, "비추천 : " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.BoardNotRecommended), 1 /* TEXT */)]), _hoisted_55, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("dd", _hoisted_56, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", null, "조회수 : " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.BoardView), 1 /* TEXT */)]), _hoisted_57, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("dd", _hoisted_58, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", null, "답변수 :" + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.cnt), 1 /* TEXT */), _hoisted_59])])])])])])], 8 /* PROPS */, _hoisted_36);
-  }), 256 /* UNKEYED_FRAGMENT */))])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_60, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_61, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.pagination, function (page, index) {
+    }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.BoardFlg === '0' ? '미해결' : '해결'), 3 /* TEXT, CLASS */)])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", _hoisted_45, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.BoardTitle), 1 /* TEXT */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_46, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.BoardComment), 1 /* TEXT */), _hoisted_47, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_48, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_49, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_50, "작성자 : " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.hideEmail(item.UserEmail)), 1 /* TEXT */), _hoisted_51, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_52, "작성시간 : " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.created_at), 1 /* TEXT */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_53, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("dl", null, [_hoisted_54, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("dd", _hoisted_55, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", null, "추천수 : " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.BoardRecommended), 1 /* TEXT */)]), _hoisted_56, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("dd", _hoisted_57, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", null, "비추천 : " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.BoardNotRecommended), 1 /* TEXT */)]), _hoisted_58, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("dd", _hoisted_59, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", null, "조회수 : " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.BoardView), 1 /* TEXT */)]), _hoisted_60, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("dd", _hoisted_61, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", null, "답변수 :" + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.cnt), 1 /* TEXT */), _hoisted_62])])])])])])], 8 /* PROPS */, _hoisted_39);
+  }), 256 /* UNKEYED_FRAGMENT */))])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_63, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_64, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.pagination, function (page, index) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
       key: index
     }, [page.url !== null ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("a", {
@@ -21442,12 +21464,12 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         return $options.fetchData(page.label, $data.searchQuery, $data.solve, $data.sortData);
       }, ["prevent"]),
       href: "#"
-    }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.replaceString(page.label)), 11 /* TEXT, CLASS, PROPS */, _hoisted_62)) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_63, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.replaceString(page.label)), 1 /* TEXT */))]);
-  }), 128 /* KEYED_FRAGMENT */))])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_64, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_65, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_66, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("주간 답변 랭킹 "), ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("svg", _hoisted_67, [].concat(_hoisted_69)))]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("ul", _hoisted_70, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", _hoisted_71, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.newUserCntItems, function (item, index) {
+    }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.replaceString(page.label)), 11 /* TEXT, CLASS, PROPS */, _hoisted_65)) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_66, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.replaceString(page.label)), 1 /* TEXT */))]);
+  }), 128 /* KEYED_FRAGMENT */))])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_67, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_68, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_69, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("주간 답변 랭킹 "), ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("svg", _hoisted_70, [].concat(_hoisted_72)))]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("ul", _hoisted_73, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", _hoisted_74, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.newUserCntItems, function (item, index) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("ol", {
       key: item.id,
       "class": "ranking_weekly_popular_write_list"
-    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", _hoisted_72, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(index + 1) + ". " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.hideEmail(item.UserEmail)), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", _hoisted_73, "답변 수 : " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.cnt), 1 /* TEXT */)]);
+    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", _hoisted_75, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(index + 1) + ". " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.hideEmail(item.UserEmail)), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", _hoisted_76, "답변 수 : " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.cnt), 1 /* TEXT */)]);
   }), 128 /* KEYED_FRAGMENT */))])])])])])])])])])])]);
 }
 

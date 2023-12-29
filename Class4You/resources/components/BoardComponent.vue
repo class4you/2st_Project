@@ -94,9 +94,9 @@
 									<li class="e_order active">
 										<button type="button" @click="fetchData(page, searchQuery, solve, sortData = 1)" class="order_pc_button" :class="{ 'order_pc_button_on': sortData == 1}"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="violet" class="bi bi-dot svg_opacity_off" :class="{ 'svg_opacity_on': sortData == 1}" viewBox="0 0 16 16"><path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/></svg>최신순</button>
 									</li>
-									<!-- <li class="e_order active">
-										<button type="button" @click="fetchData(page = 1, searchQuery, solve = null, sortData = 2)" class="order_pc_button">답변많은순</button>
-									</li> -->
+									<li class="e_order active">
+										<button type="button" @click="fetchData(page, searchQuery, solve, sortData = 2)" class="order_pc_button" :class="{ 'order_pc_button_on': sortData == 2}"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="violet" class="bi bi-dot svg_opacity_off" :class="{ 'svg_opacity_on': sortData == 2}" viewBox="0 0 16 16"><path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/></svg>답변많은순</button>
+									</li>
 									<li class="e_order active">
 										<button type="button" @click="fetchData(page, searchQuery, solve, sortData = 3)" class="order_pc_button" :class="{ 'order_pc_button_on': sortData == 3}"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="violet" class="bi bi-dot svg_opacity_off" :class="{ 'svg_opacity_on': sortData == 3}" viewBox="0 0 16 16"><path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/></svg>좋아요순</button>
 									</li>
@@ -126,9 +126,9 @@
 												{{ item.BoardComment }}
 											</p>
 											<div class="question_tags">
-											<button class="question_tags_button">
+											<!-- <button class="question_tags_button">
 												언어 태그란
-											</button>
+											</button> -->
 											</div>
 											<div class="question_info_footer">
 											<div class="question_info_detail">
@@ -153,7 +153,7 @@
 												<dt class="visually_hidden">답변</dt>
 												<dd class="comment_count">
 													<i>답변수 :{{ item.cnt }}</i>
-													<span>0</span>
+													<span></span>
 												</dd>
 												</dl>
 											</div>
