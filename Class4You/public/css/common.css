@@ -1774,10 +1774,11 @@ ul.class_tabs li.class_current {
     gap: 30px;
     padding: 30px;
     line-height: 30px;
+    color: #495057;
 }
 
-.class_tab_description>span {
-    color: #495057;
+.class_tab_description_text_left {
+    border-right: 2px solid #ededed;
 }
 
 .class_tab_content_classpoint_ment {

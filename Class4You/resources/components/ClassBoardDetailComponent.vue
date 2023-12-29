@@ -149,8 +149,12 @@
 						</div>
 					</div>
 					<div class="class_tab_content class_tab_description">
-						<span>◼{{ detailClassItems.ClassDescription }}</span>
-						<span>◼{{ detailClassItems.ClassDescription }}</span>
+						<div class="class_tab_description_text_left">
+							<span>◼{{ detailClassItems.ClassDescription }}</span>
+						</div>
+						<div class="class_tab_description_text_right">
+							<span>◼{{ detailClassItems.ClassDescription }}</span>
+						</div>
 					</div>
 					
 				</div>
