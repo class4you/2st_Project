@@ -2654,6 +2654,14 @@ progress[value]::-webkit-progress-bar{
 
 /* 커뮤니티 게시판 */
 
+.svg_opacity_off {
+    opacity: 0.3;
+}
+
+.svg_opacity_on {
+    opacity: 1;
+}
+
 
 
 .community_body {
@@ -4637,7 +4645,7 @@ background-color: rgba(225, 223, 234, 0.224);
 }
 
 .qustuon_list_pageing a {
-    color: #000;
+    /* color: #000; */
     display: inline-block;
     padding: 8px 10px;
     border-radius: 8px;
@@ -4653,6 +4661,18 @@ background-color: rgba(225, 223, 234, 0.224);
     background-color: #2c2cda51;
     color: #ffffff;
 } */
+<<<<<<< HEAD
+=======
+
+.qustuon_list_page_a {
+    color: #000;
+}
+
+.page_on {
+    background-color: #2c2cda51;
+    color: #fff;
+}
+>>>>>>> 82e8f0dd4981704ccdfa19f6486b3650da4ed254
 
 
 .board_insert_textarea {
