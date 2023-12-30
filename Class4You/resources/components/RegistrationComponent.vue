@@ -208,7 +208,7 @@
                                     <input type="text" id="email" name="UserEmail" v-model="frmUserData.UserEmail" @input="validateUserEmail" placeholder="이메일을 입력해주세요">
                                     <div class="error_message" v-if="errors.UserEmail">{{ errors.UserEmail }}</div>
                                     <div class="success_message" v-else-if="!errors.UserEmail && frmUserData.UserEmail">유효한 이메일입니다.</div>
-                                    <div class="error_message" v-else-if="$store.state.RegistrationErrorMessage.UserEmail">{{ $store.state.RegistrationErrorMessage.UserEmail }}</div>
+                                    <div class="error_message" v-else-if="RegistrationErrorMessage.UserEmail">{{ RegistrationErrorMessage.UserEmail }}</div>
                                 </td>
                             </tr>
                             <tr>
@@ -217,7 +217,7 @@
                                     <input type="password" id="password" name="UserPassword" v-model="frmUserData.UserPassword" @input="validateUserPassword" placeholder="영대소문자,숫자,특수문자(!@#)를 포함한 8~17자" minlength="8" maxlength="17">
                                     <div class="error_message" v-if="errors.UserPassword">{{ errors.UserPassword }}</div>
                                     <div class="success_message" v-else-if="!errors.UserPassword && frmUserData.UserPassword">유효한 비밀번호입니다.</div>
-                                    <div class="error_message" v-else-if="$store.state.RegistrationErrorMessage.UserPassword">{{ $store.state.RegistrationErrorMessage.UserPassword }}</div>
+                                    <div class="error_message" v-else-if="RegistrationErrorMessage.UserPassword">{{ RegistrationErrorMessage.UserPassword }}</div>
                                 </td>
                             </tr>
                             <tr>
@@ -226,7 +226,7 @@
                                     <input type="password" id="password_chk" name="UserPasswordChk" v-model="frmUserData.UserPasswordChk" @input="validateUserPasswordChk" placeholder="영대소문자,숫자,특수문자(!@#)를 포함한 8~17자" minlength="8" maxlength="17">
                                     <div class="error_message" v-if="errors.UserPasswordChk">{{ errors.UserPasswordChk }}</div>
                                     <div class="success_message" v-else-if="!errors.UserPasswordChk && frmUserData.UserPasswordChk">입력한 비밀번호와 일치합니다.</div>
-                                    <div class="error_message" v-else-if="$store.state.RegistrationErrorMessage.UserPasswordChk">{{ $store.state.RegistrationErrorMessage.UserPasswordChk }}</div>
+                                    <div class="error_message" v-else-if="RegistrationErrorMessage.UserPasswordChk">{{ RegistrationErrorMessage.UserPasswordChk }}</div>
                                 </td>
                             </tr>
                             <tr>
@@ -235,7 +235,7 @@
                                     <input type="text" id="name" name="UserName" v-model="frmUserData.UserName" @input="validateUserName" placeholder="최소 2글자 이상" minlength="2" maxlength="50">
                                     <div class="error_message" v-if="errors.UserName">{{ errors.UserName }}</div>
                                     <div class="success_message" v-else-if="!errors.UserName && frmUserData.UserName"></div>
-                                    <div class="error_message" v-else-if="$store.state.RegistrationErrorMessage.UserName">{{ $store.state.RegistrationErrorMessage.UserName }}</div>
+                                    <div class="error_message" v-else-if="RegistrationErrorMessage.UserName">{{ RegistrationErrorMessage.UserName }}</div>
                                 </td>
                             </tr>
                             <tr>
@@ -253,7 +253,7 @@
                                     <input class="phone_input_box" type="text" id="PhoneNumber2" name="PhoneNumber2" v-model="frmUserData.UserPhoneNumber2">
                                     -
                                     <input class="phone_input_box" type="text" id="PhoneNumber3" name="PhoneNumber3" v-model="frmUserData.UserPhoneNumber3">
-                                    <div class="error_message" v-if="$store.state.RegistrationErrorMessage.UserPhoneNumber && !frmUserData.UserPhoneNumber1 && !frmUserData.UserPhoneNumber2 && !frmUserData.UserPhoneNumber3">{{ $store.state.RegistrationErrorMessage.UserPhoneNumber }}</div>
+                                    <div class="error_message" v-if="RegistrationErrorMessage.UserPhoneNumber && !frmUserData.UserPhoneNumber1 && !frmUserData.UserPhoneNumber2 && !frmUserData.UserPhoneNumber3">{{ RegistrationErrorMessage.UserPhoneNumber }}</div>
                                     <div class="error_message"></div>
                                 </td>
                             </tr>
@@ -261,7 +261,7 @@
                                 <th><label for="birth_date">birth date</label><span style="color: red;">*</span></th>
                                 <td>
                                     <input type="date" id="birth_date" name="UserBirthDate" v-model="frmUserData.UserBirthDate" @input="validateUserBirthDate">
-                                    <div class="error_message" v-if="$store.state.RegistrationErrorMessage.UserBirthDate && !frmUserData.UserBirthDate">{{ $store.state.RegistrationErrorMessage.UserBirthDate }}</div>
+                                    <div class="error_message" v-if="RegistrationErrorMessage.UserBirthDate && !frmUserData.UserBirthDate">{{ RegistrationErrorMessage.UserBirthDate }}</div>
                                     <div class="error_message" v-if="errors.UserBirthDate && !frmUserData.UserBirthDate">{{ errors.UserBirthDate }}</div>
                                     <div class="success_message" v-if="!errors.UserBirthDate && frmUserData.UserBirthDate"></div>
                                 </td>
@@ -292,6 +292,7 @@
     </div>
 </template>
 <script>
+import Swal from 'sweetalert2';
 export default {
     name: 'RegistrationComponent',
 
@@ -329,6 +330,20 @@ export default {
             },
 
             errors: {},
+
+            RegistrationErrorMessage: {
+                UserEmail: '',
+                UserPassword: '',
+                UserPasswordChk: '',
+                UserName: '',
+                UserPhoneNumber1: '',
+                UserPhoneNumber2: '',
+                UserPhoneNumber3: '',
+                UserBirthDate: '',
+                UserAddress: '',
+                UserTermsofUse: '',
+                UserPrivacy: '',
+            },
         }
     },
     methods: {
@@ -349,19 +364,75 @@ export default {
                 this.selectAll = false;
             }
         },
+        // submitUserData() {
+        //     const formData = {
+        //         frmUserData: this.frmUserData,
+        //         frmUserAddressData: this.frmUserAddressData
+        //     };
+
+        //     this.$store.dispatch('submitUserData', formData)
+        //         .then(data => {
+        //         // 성공적으로 처리된 경우의 로직
+        //         })
+        //         .catch(error => {
+        //         // 오류 발생 시의 로직
+        //         });
+        // },
         submitUserData() {
-            const formData = {
-                frmUserData: this.frmUserData,
-                frmUserAddressData: this.frmUserAddressData
+            const url = '/registration';
+            const header = {
+            headers: {
+                "Content-Type": 'multipart/form-data',
+                'X-CSRF-TOKEN': document.head.querySelector('meta[name="csrf-token"]').content,
+            },
             };
 
-            this.$store.dispatch('submitUserData', formData)
-                .then(data => {
-                // 성공적으로 처리된 경우의 로직
-                })
-                .catch(error => {
-                // 오류 발생 시의 로직
+            let frm = new FormData();
+            const UserPhoneNumber = this.frmUserData.UserPhoneNumber1 + this.frmUserData.UserPhoneNumber2 + this.frmUserData.UserPhoneNumber3;
+
+            this.frmUserData.UserTermsofUse = this.frmUserData.UserTermsofUse ? 1 : 0;
+            this.frmUserData.UserPrivacy = this.frmUserData.UserPrivacy ? 1 : 0;
+
+            frm.append('UserEmail', this.frmUserData.UserEmail);
+            frm.append('UserPassword', this.frmUserData.UserPassword);
+            frm.append('UserPasswordChk', this.frmUserData.UserPasswordChk);
+            frm.append('UserName', this.frmUserData.UserName);
+            frm.append('UserPhoneNumber', UserPhoneNumber);
+            frm.append('UserBirthDate', this.frmUserData.UserBirthDate);
+            frm.append('UserPostcode', this.frmUserAddressData.UserPostcode);
+            frm.append('UserRoadAddress', this.frmUserAddressData.UserRoadAddress);
+            frm.append('UserDetailedAddress', this.frmUserAddressData.UserDetailedAddress);
+            frm.append('UserTermsofUse', this.frmUserData.UserTermsofUse);
+            frm.append('UserPrivacy', this.frmUserData.UserPrivacy);
+
+            axios.post(url, frm, header)
+            .then(res => {
+                // SweetAlert2로 성공 알림창 띄우기
+                Swal.fire({
+                icon: 'success',
+                title: '회원가입이 완료되었습니다.',
+                confirmButtonText: '확인',
+                }).then(() => {
+                // 페이지 이동
+                this.$router.push('/');
                 });
+            })
+            .catch(err => {
+                if (err.response.data.errors) {
+                // SweetAlert2로 에러 메시지 띄우기
+                Swal.fire({
+                    icon: 'error',
+                    title: '에러',
+                    text: '회원가입에 실패하였습니다. 다시 시도해주세요.',
+                    confirmButtonText: '확인',
+                });
+                // 에러 메시지를 컴포넌트의 상태에 저장
+                this.RegistrationErrorMessage = err.response.data.errors;
+                } else {
+                // 예상치 못한 다른 종류의 에러 처리
+                console.error('Unexpected error:', err);
+                }
+            });
         },
         validateUserEmail() {
             if (!this.frmUserData.UserEmail.match(/^\S+@\S+\.\S+$/)) {

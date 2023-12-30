@@ -31,6 +31,7 @@ class UserController extends Controller
 
         // 저장된 사용자를 반환하거나 다른 작업을 수행할 수 있습니다.
         // return response()->json(['user' => $user, 'message' => 'User created successfully']);
+        return response()->json(['success' => true, 'message' => '회원가입에 성공했습니다.']);
     }
 
     // 회원 로그인

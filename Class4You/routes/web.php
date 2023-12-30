@@ -121,7 +121,7 @@ Route::put('/boardNotRecommendedUpdate', [BoardController::class, 'putBoardNotRe
 Route::put('/boardViewsUpdate', [BoardController::class, 'putBoardViewUpdate']);
 
 // 마이페이지 작업
-Route::get('/getmypagedashboard', [MyPageController::class, 'getUserClassData']);
+Route::middleware('checkUserId')->get('/getmypagedashboard', [MyPageController::class, 'getUserClassData']);
 
 Route::middleware('my.user.validation')->put('/useraddressdataupdate', [MyPageController::class, 'putUserAddressData']);
 Route::middleware('my.user.validation')->put('/userbasicdataupdate', [MyPageController::class, 'putUserbasicData']);

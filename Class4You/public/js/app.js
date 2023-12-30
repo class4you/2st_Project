@@ -20603,10 +20603,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! sweetalert2 */ "./node_modules/sweetalert2/dist/sweetalert2.all.js");
+/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(sweetalert2__WEBPACK_IMPORTED_MODULE_0__);
 function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
 function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return _typeof(key) === "symbol" ? key : String(key); }
 function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (_typeof(res) !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: 'RegistrationComponent',
   data: function data() {
@@ -20635,7 +20638,20 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
         UserPostcode: '',
         UserRoadAddress: ''
       },
-      errors: {}
+      errors: {},
+      RegistrationErrorMessage: {
+        UserEmail: '',
+        UserPassword: '',
+        UserPasswordChk: '',
+        UserName: '',
+        UserPhoneNumber1: '',
+        UserPhoneNumber2: '',
+        UserPhoneNumber3: '',
+        UserBirthDate: '',
+        UserAddress: '',
+        UserTermsofUse: '',
+        UserPrivacy: ''
+      }
     };
   },
   methods: {
@@ -20656,15 +20672,68 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
         this.selectAll = false;
       }
     },
+    // submitUserData() {
+    //     const formData = {
+    //         frmUserData: this.frmUserData,
+    //         frmUserAddressData: this.frmUserAddressData
+    //     };
+    //     this.$store.dispatch('submitUserData', formData)
+    //         .then(data => {
+    //         // 성공적으로 처리된 경우의 로직
+    //         })
+    //         .catch(error => {
+    //         // 오류 발생 시의 로직
+    //         });
+    // },
     submitUserData: function submitUserData() {
-      var formData = {
-        frmUserData: this.frmUserData,
-        frmUserAddressData: this.frmUserAddressData
+      var _this = this;
+      var url = '/registration';
+      var header = {
+        headers: {
+          "Content-Type": 'multipart/form-data',
+          'X-CSRF-TOKEN': document.head.querySelector('meta[name="csrf-token"]').content
+        }
       };
-      this.$store.dispatch('submitUserData', formData).then(function (data) {
-        // 성공적으로 처리된 경우의 로직
-      })["catch"](function (error) {
-        // 오류 발생 시의 로직
+      var frm = new FormData();
+      var UserPhoneNumber = this.frmUserData.UserPhoneNumber1 + this.frmUserData.UserPhoneNumber2 + this.frmUserData.UserPhoneNumber3;
+      this.frmUserData.UserTermsofUse = this.frmUserData.UserTermsofUse ? 1 : 0;
+      this.frmUserData.UserPrivacy = this.frmUserData.UserPrivacy ? 1 : 0;
+      frm.append('UserEmail', this.frmUserData.UserEmail);
+      frm.append('UserPassword', this.frmUserData.UserPassword);
+      frm.append('UserPasswordChk', this.frmUserData.UserPasswordChk);
+      frm.append('UserName', this.frmUserData.UserName);
+      frm.append('UserPhoneNumber', UserPhoneNumber);
+      frm.append('UserBirthDate', this.frmUserData.UserBirthDate);
+      frm.append('UserPostcode', this.frmUserAddressData.UserPostcode);
+      frm.append('UserRoadAddress', this.frmUserAddressData.UserRoadAddress);
+      frm.append('UserDetailedAddress', this.frmUserAddressData.UserDetailedAddress);
+      frm.append('UserTermsofUse', this.frmUserData.UserTermsofUse);
+      frm.append('UserPrivacy', this.frmUserData.UserPrivacy);
+      axios.post(url, frm, header).then(function (res) {
+        // SweetAlert2로 성공 알림창 띄우기
+        sweetalert2__WEBPACK_IMPORTED_MODULE_0___default().fire({
+          icon: 'success',
+          title: '회원가입이 완료되었습니다.',
+          confirmButtonText: '확인'
+        }).then(function () {
+          // 페이지 이동
+          _this.$router.push('/');
+        });
+      })["catch"](function (err) {
+        if (err.response.data.errors) {
+          // SweetAlert2로 에러 메시지 띄우기
+          sweetalert2__WEBPACK_IMPORTED_MODULE_0___default().fire({
+            icon: 'error',
+            title: '에러',
+            text: '회원가입에 실패하였습니다. 다시 시도해주세요.',
+            confirmButtonText: '확인'
+          });
+          // 에러 메시지를 컴포넌트의 상태에 저장
+          _this.RegistrationErrorMessage = err.response.data.errors;
+        } else {
+          // 예상치 못한 다른 종류의 에러 처리
+          console.error('Unexpected error:', err);
+        }
       });
     },
     validateUserEmail: function validateUserEmail() {
@@ -23808,7 +23877,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       return $options.validateUserEmail && $options.validateUserEmail.apply($options, arguments);
     }),
     placeholder: "이메일을 입력해주세요"
-  }, null, 544 /* NEED_HYDRATION, NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.frmUserData.UserEmail]]), $data.errors.UserEmail ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_30, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.errors.UserEmail), 1 /* TEXT */)) : !$data.errors.UserEmail && $data.frmUserData.UserEmail ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_31, "유효한 이메일입니다.")) : _ctx.$store.state.RegistrationErrorMessage.UserEmail ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_32, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$store.state.RegistrationErrorMessage.UserEmail), 1 /* TEXT */)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tr", null, [_hoisted_33, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+  }, null, 544 /* NEED_HYDRATION, NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.frmUserData.UserEmail]]), $data.errors.UserEmail ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_30, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.errors.UserEmail), 1 /* TEXT */)) : !$data.errors.UserEmail && $data.frmUserData.UserEmail ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_31, "유효한 이메일입니다.")) : $data.RegistrationErrorMessage.UserEmail ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_32, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.RegistrationErrorMessage.UserEmail), 1 /* TEXT */)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tr", null, [_hoisted_33, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     type: "password",
     id: "password",
     name: "UserPassword",
@@ -23821,7 +23890,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     placeholder: "영대소문자,숫자,특수문자(!@#)를 포함한 8~17자",
     minlength: "8",
     maxlength: "17"
-  }, null, 544 /* NEED_HYDRATION, NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.frmUserData.UserPassword]]), $data.errors.UserPassword ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_34, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.errors.UserPassword), 1 /* TEXT */)) : !$data.errors.UserPassword && $data.frmUserData.UserPassword ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_35, "유효한 비밀번호입니다.")) : _ctx.$store.state.RegistrationErrorMessage.UserPassword ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_36, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$store.state.RegistrationErrorMessage.UserPassword), 1 /* TEXT */)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tr", null, [_hoisted_37, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+  }, null, 544 /* NEED_HYDRATION, NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.frmUserData.UserPassword]]), $data.errors.UserPassword ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_34, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.errors.UserPassword), 1 /* TEXT */)) : !$data.errors.UserPassword && $data.frmUserData.UserPassword ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_35, "유효한 비밀번호입니다.")) : $data.RegistrationErrorMessage.UserPassword ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_36, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.RegistrationErrorMessage.UserPassword), 1 /* TEXT */)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tr", null, [_hoisted_37, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     type: "password",
     id: "password_chk",
     name: "UserPasswordChk",
@@ -23834,7 +23903,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     placeholder: "영대소문자,숫자,특수문자(!@#)를 포함한 8~17자",
     minlength: "8",
     maxlength: "17"
-  }, null, 544 /* NEED_HYDRATION, NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.frmUserData.UserPasswordChk]]), $data.errors.UserPasswordChk ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_38, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.errors.UserPasswordChk), 1 /* TEXT */)) : !$data.errors.UserPasswordChk && $data.frmUserData.UserPasswordChk ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_39, "입력한 비밀번호와 일치합니다.")) : _ctx.$store.state.RegistrationErrorMessage.UserPasswordChk ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_40, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$store.state.RegistrationErrorMessage.UserPasswordChk), 1 /* TEXT */)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tr", null, [_hoisted_41, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+  }, null, 544 /* NEED_HYDRATION, NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.frmUserData.UserPasswordChk]]), $data.errors.UserPasswordChk ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_38, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.errors.UserPasswordChk), 1 /* TEXT */)) : !$data.errors.UserPasswordChk && $data.frmUserData.UserPasswordChk ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_39, "입력한 비밀번호와 일치합니다.")) : $data.RegistrationErrorMessage.UserPasswordChk ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_40, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.RegistrationErrorMessage.UserPasswordChk), 1 /* TEXT */)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tr", null, [_hoisted_41, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     type: "text",
     id: "name",
     name: "UserName",
@@ -23847,7 +23916,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     placeholder: "최소 2글자 이상",
     minlength: "2",
     maxlength: "50"
-  }, null, 544 /* NEED_HYDRATION, NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.frmUserData.UserName]]), $data.errors.UserName ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_42, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.errors.UserName), 1 /* TEXT */)) : !$data.errors.UserName && $data.frmUserData.UserName ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_43)) : _ctx.$store.state.RegistrationErrorMessage.UserName ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_44, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$store.state.RegistrationErrorMessage.UserName), 1 /* TEXT */)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tr", null, [_hoisted_45, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("select", {
+  }, null, 544 /* NEED_HYDRATION, NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.frmUserData.UserName]]), $data.errors.UserName ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_42, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.errors.UserName), 1 /* TEXT */)) : !$data.errors.UserName && $data.frmUserData.UserName ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_43)) : $data.RegistrationErrorMessage.UserName ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_44, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.RegistrationErrorMessage.UserName), 1 /* TEXT */)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tr", null, [_hoisted_45, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("select", {
     "class": "phone_select_box",
     id: "PhoneNumber1",
     name: "PhoneNumber1",
@@ -23870,7 +23939,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     "onUpdate:modelValue": _cache[17] || (_cache[17] = function ($event) {
       return $data.frmUserData.UserPhoneNumber3 = $event;
     })
-  }, null, 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.frmUserData.UserPhoneNumber3]]), _ctx.$store.state.RegistrationErrorMessage.UserPhoneNumber && !$data.frmUserData.UserPhoneNumber1 && !$data.frmUserData.UserPhoneNumber2 && !$data.frmUserData.UserPhoneNumber3 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_53, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$store.state.RegistrationErrorMessage.UserPhoneNumber), 1 /* TEXT */)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), _hoisted_54])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tr", null, [_hoisted_55, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+  }, null, 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.frmUserData.UserPhoneNumber3]]), $data.RegistrationErrorMessage.UserPhoneNumber && !$data.frmUserData.UserPhoneNumber1 && !$data.frmUserData.UserPhoneNumber2 && !$data.frmUserData.UserPhoneNumber3 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_53, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.RegistrationErrorMessage.UserPhoneNumber), 1 /* TEXT */)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), _hoisted_54])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tr", null, [_hoisted_55, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     type: "date",
     id: "birth_date",
     name: "UserBirthDate",
@@ -23880,7 +23949,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     onInput: _cache[19] || (_cache[19] = function () {
       return $options.validateUserBirthDate && $options.validateUserBirthDate.apply($options, arguments);
     })
-  }, null, 544 /* NEED_HYDRATION, NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.frmUserData.UserBirthDate]]), _ctx.$store.state.RegistrationErrorMessage.UserBirthDate && !$data.frmUserData.UserBirthDate ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_56, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$store.state.RegistrationErrorMessage.UserBirthDate), 1 /* TEXT */)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $data.errors.UserBirthDate && !$data.frmUserData.UserBirthDate ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_57, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.errors.UserBirthDate), 1 /* TEXT */)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), !$data.errors.UserBirthDate && $data.frmUserData.UserBirthDate ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_58)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tr", null, [_hoisted_59, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_60, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+  }, null, 544 /* NEED_HYDRATION, NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.frmUserData.UserBirthDate]]), $data.RegistrationErrorMessage.UserBirthDate && !$data.frmUserData.UserBirthDate ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_56, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.RegistrationErrorMessage.UserBirthDate), 1 /* TEXT */)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $data.errors.UserBirthDate && !$data.frmUserData.UserBirthDate ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_57, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.errors.UserBirthDate), 1 /* TEXT */)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), !$data.errors.UserBirthDate && $data.frmUserData.UserBirthDate ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_58)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tr", null, [_hoisted_59, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_60, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     "class": "regist_table_address_postcode",
     type: "text",
     id: "sample4_postcode",
@@ -24782,6 +24851,21 @@ var router = (0,vue_router__WEBPACK_IMPORTED_MODULE_12__.createRouter)({
   history: (0,vue_router__WEBPACK_IMPORTED_MODULE_12__.createWebHistory)(),
   routes: routes
 });
+router.beforeEach(function (to, from, next) {
+  var userId = localStorage.getItem('UserID');
+  if (!userId) {
+    // 사용자 아이디가 없는 경우
+    if (to.path === '/usermypage' || to.path === '/boardinsert' || to.path.startsWith('/boardupdate/') || to.path.startsWith('/classwatch/')) {
+      next('/');
+    } else {
+      // 다른 경우에는 정상적으로 진행
+      next();
+    }
+  } else {
+    // 사용자 아이디가 있는 경우는 정상적으로 진행
+    next();
+  }
+});
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (router);
 
 /***/ }),
@@ -24812,19 +24896,19 @@ var store = (0,vuex__WEBPACK_IMPORTED_MODULE_3__.createStore)({
   state: function state() {
     return {
       // 정명호
-      RegistrationErrorMessage: {
-        UserEmail: '',
-        UserPassword: '',
-        UserPasswordChk: '',
-        UserName: '',
-        UserPhoneNumber1: '',
-        UserPhoneNumber2: '',
-        UserPhoneNumber3: '',
-        UserBirthDate: '',
-        UserAddress: '',
-        UserTermsofUse: '',
-        UserPrivacy: ''
-      },
+      // RegistrationErrorMessage: {
+      //     UserEmail: '',
+      //     UserPassword: '',
+      //     UserPasswordChk: '',
+      //     UserName: '',
+      //     UserPhoneNumber1: '',
+      //     UserPhoneNumber2: '',
+      //     UserPhoneNumber3: '',
+      //     UserBirthDate: '',
+      //     UserAddress: '',
+      //     UserTermsofUse: '',
+      //     UserPrivacy: '',
+      // },
       loginShowModal: false,
       userData: {
         userCheck: '',
@@ -24848,9 +24932,9 @@ var store = (0,vuex__WEBPACK_IMPORTED_MODULE_3__.createStore)({
   // mutations : 데이터 수정용 함수 저장 영역
   // 초기 데이터 세팅 (라라벨에서 받은)
   mutations: {
-    setRegistrationErrorMessage: function setRegistrationErrorMessage(state, error) {
-      state.RegistrationErrorMessage = error;
-    },
+    // setRegistrationErrorMessage(state, error) {
+    //     state.RegistrationErrorMessage = error;
+    // },
     setOpenLoginModal: function setOpenLoginModal(state) {
       state.loginShowModal = true;
     },
@@ -24906,40 +24990,45 @@ var store = (0,vuex__WEBPACK_IMPORTED_MODULE_3__.createStore)({
       var commit = _ref2.commit;
       commit('setCloseLoginModal');
     },
-    submitUserData: function submitUserData(context, data) {
-      var url = '/registration';
-      var header = {
-        headers: {
-          "Content-Type": 'multipart/form-data',
-          'X-CSRF-TOKEN': document.head.querySelector('meta[name="csrf-token"]').content
-        }
-      };
-      // console.log(data);
-      // console.log(data.frmUserData);
-      // console.log(data.frmUserAddressData);
-      var frm = new FormData();
-      var UserPhoneNumber = data.frmUserData.UserPhoneNumber1 + data.frmUserData.UserPhoneNumber2 + data.frmUserData.UserPhoneNumber3;
-      data.frmUserData.UserTermsofUse = data.frmUserData.UserTermsofUse ? 1 : 0;
-      data.frmUserData.UserPrivacy = data.frmUserData.UserPrivacy ? 1 : 0;
-      frm.append('UserEmail', data.frmUserData.UserEmail);
-      frm.append('UserPassword', data.frmUserData.UserPassword);
-      frm.append('UserPasswordChk', data.frmUserData.UserPasswordChk);
-      frm.append('UserName', data.frmUserData.UserName);
-      frm.append('UserPhoneNumber', UserPhoneNumber);
-      frm.append('UserBirthDate', data.frmUserData.UserBirthDate);
-      frm.append('UserPostcode', data.frmUserAddressData.UserPostcode);
-      frm.append('UserRoadAddress', data.frmUserAddressData.UserRoadAddress);
-      frm.append('UserDetailedAddress', data.frmUserAddressData.UserDetailedAddress);
-      frm.append('UserTermsofUse', data.frmUserData.UserTermsofUse);
-      frm.append('UserPrivacy', data.frmUserData.UserPrivacy);
-      axios__WEBPACK_IMPORTED_MODULE_0___default().post(url, frm, header).then(function (res) {
-        // console.log(res.data);
-        _router_js__WEBPACK_IMPORTED_MODULE_1__["default"].push('/');
-      })["catch"](function (err) {
-        // console.log(err.response.data.errors)
-        context.commit('setRegistrationErrorMessage', err.response.data.errors);
-      });
-    },
+    // 회원가입 처리 해당 컴포넌트로 이관
+    // submitUserData(context, data) {
+    //     const url = '/registration'
+    //     const header = {
+    //         headers: {
+    //             "Content-Type": 'multipart/form-data',
+    //             'X-CSRF-TOKEN': document.head.querySelector('meta[name="csrf-token"]').content,
+    //         },
+    //     }
+    //     // console.log(data);
+    //     // console.log(data.frmUserData);
+    //     // console.log(data.frmUserAddressData);
+    //     let frm = new FormData();
+    //     const UserPhoneNumber = data.frmUserData.UserPhoneNumber1 + data.frmUserData.UserPhoneNumber2 + data.frmUserData.UserPhoneNumber3
+    //     data.frmUserData.UserTermsofUse = data.frmUserData.UserTermsofUse ? 1 : 0;
+    //     data.frmUserData.UserPrivacy = data.frmUserData.UserPrivacy ? 1 : 0;
+    //     frm.append('UserEmail',data.frmUserData.UserEmail);
+    //     frm.append('UserPassword',data.frmUserData.UserPassword);
+    //     frm.append('UserPasswordChk',data.frmUserData.UserPasswordChk);
+    //     frm.append('UserName',data.frmUserData.UserName);
+    //     frm.append('UserPhoneNumber',UserPhoneNumber);
+    //     frm.append('UserBirthDate',data.frmUserData.UserBirthDate);
+    //     frm.append('UserPostcode',data.frmUserAddressData.UserPostcode);
+    //     frm.append('UserRoadAddress',data.frmUserAddressData.UserRoadAddress);
+    //     frm.append('UserDetailedAddress',data.frmUserAddressData.UserDetailedAddress);
+    //     frm.append('UserTermsofUse',data.frmUserData.UserTermsofUse);
+    //     frm.append('UserPrivacy',data.frmUserData.UserPrivacy);
+    //     context.commit('setRegistrationErrorMessage', null);
+    //     axios.post(url, frm, header)
+    //     .then(res => { 
+    //         // console.log(res.data);
+    //         router.push('/'); 
+    //     })
+    //     .catch(err => {
+    //         // console.log(err.response.data.errors)
+    //         context.commit('setRegistrationErrorMessage', err.response.data.errors);
+    //         // window.location.reload();
+    //     })
+    // },
     submitUserLoginData: function submitUserLoginData(context, data) {
       var url = '/login';
       var header = {
