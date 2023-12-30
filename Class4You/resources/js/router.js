@@ -13,6 +13,7 @@ import UserMyPageComponent from '../components/UserMyPageComponent.vue';
 // import ClassBoardMainComponent from '../components/ClassBoardMainComponent.vue';
 import store from './store';
 
+
 const routes = [
     {
         path: '/',
@@ -81,6 +82,23 @@ const routes = [
 const router = createRouter({
     history: createWebHistory(),
     routes,
+});
+
+router.beforeEach((to, from, next) => {
+    const userId = localStorage.getItem('UserID');
+
+    if (!userId) {
+        // 사용자 아이디가 없는 경우
+        if (to.path === '/usermypage' || to.path === '/boardinsert' || to.path.startsWith('/boardupdate/') || to.path.startsWith('/classwatch/')) {
+            next('/');
+        } else {
+            // 다른 경우에는 정상적으로 진행
+            next();
+        }
+    } else {
+        // 사용자 아이디가 있는 경우는 정상적으로 진행
+        next();
+    }
 });
 
 export default router;

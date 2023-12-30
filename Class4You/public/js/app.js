@@ -24851,6 +24851,21 @@ var router = (0,vue_router__WEBPACK_IMPORTED_MODULE_12__.createRouter)({
   history: (0,vue_router__WEBPACK_IMPORTED_MODULE_12__.createWebHistory)(),
   routes: routes
 });
+router.beforeEach(function (to, from, next) {
+  var userId = localStorage.getItem('UserID');
+  if (!userId) {
+    // 사용자 아이디가 없는 경우
+    if (to.path === '/usermypage' || to.path === '/boardinsert' || to.path.startsWith('/boardupdate/') || to.path.startsWith('/classwatch/')) {
+      next('/');
+    } else {
+      // 다른 경우에는 정상적으로 진행
+      next();
+    }
+  } else {
+    // 사용자 아이디가 있는 경우는 정상적으로 진행
+    next();
+  }
+});
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (router);
 
 /***/ }),
