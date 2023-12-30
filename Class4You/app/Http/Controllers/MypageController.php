@@ -33,6 +33,7 @@ class MypageController extends Controller
         $boardData = User::select('boards.BoardTitle', 'boards.BoardFlg', 'boards.created_at', 'boards.BoardID')
             ->join('boards', 'boards.UserID', 'users.UserID')
             ->where('boards.UserID', $UserID)
+            ->whereNull('boards.deleted_at')
             ->orderBy('boards.created_at', 'desc')
             ->get();
 

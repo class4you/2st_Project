@@ -9,19 +9,19 @@ const store = createStore({
     state() {
         return {
             // 정명호
-            RegistrationErrorMessage: {
-                UserEmail: '',
-                UserPassword: '',
-                UserPasswordChk: '',
-                UserName: '',
-                UserPhoneNumber1: '',
-                UserPhoneNumber2: '',
-                UserPhoneNumber3: '',
-                UserBirthDate: '',
-                UserAddress: '',
-                UserTermsofUse: '',
-                UserPrivacy: '',
-            },
+            // RegistrationErrorMessage: {
+            //     UserEmail: '',
+            //     UserPassword: '',
+            //     UserPasswordChk: '',
+            //     UserName: '',
+            //     UserPhoneNumber1: '',
+            //     UserPhoneNumber2: '',
+            //     UserPhoneNumber3: '',
+            //     UserBirthDate: '',
+            //     UserAddress: '',
+            //     UserTermsofUse: '',
+            //     UserPrivacy: '',
+            // },
             loginShowModal: false,
 
             userData: {
@@ -48,9 +48,9 @@ const store = createStore({
     // mutations : 데이터 수정용 함수 저장 영역
     // 초기 데이터 세팅 (라라벨에서 받은)
     mutations: {
-        setRegistrationErrorMessage(state, error) {
-            state.RegistrationErrorMessage = error;
-        },
+        // setRegistrationErrorMessage(state, error) {
+        //     state.RegistrationErrorMessage = error;
+        // },
         setOpenLoginModal(state) {
             state.loginShowModal = true;
         },
@@ -108,47 +108,50 @@ const store = createStore({
         closeLoginModal({ commit }) {
             commit('setCloseLoginModal');
         },
-        submitUserData(context, data) {
-            const url = '/registration'
-            const header = {
-                headers: {
-                    "Content-Type": 'multipart/form-data',
-                    'X-CSRF-TOKEN': document.head.querySelector('meta[name="csrf-token"]').content,
-                },
-            }
-            // console.log(data);
-            // console.log(data.frmUserData);
-            // console.log(data.frmUserAddressData);
-            let frm = new FormData();
-            const UserPhoneNumber = data.frmUserData.UserPhoneNumber1 + data.frmUserData.UserPhoneNumber2 + data.frmUserData.UserPhoneNumber3
+        // 회원가입 처리 해당 컴포넌트로 이관
+        // submitUserData(context, data) {
+        //     const url = '/registration'
+        //     const header = {
+        //         headers: {
+        //             "Content-Type": 'multipart/form-data',
+        //             'X-CSRF-TOKEN': document.head.querySelector('meta[name="csrf-token"]').content,
+        //         },
+        //     }
+        //     // console.log(data);
+        //     // console.log(data.frmUserData);
+        //     // console.log(data.frmUserAddressData);
+        //     let frm = new FormData();
+        //     const UserPhoneNumber = data.frmUserData.UserPhoneNumber1 + data.frmUserData.UserPhoneNumber2 + data.frmUserData.UserPhoneNumber3
 
-            data.frmUserData.UserTermsofUse = data.frmUserData.UserTermsofUse ? 1 : 0;
+        //     data.frmUserData.UserTermsofUse = data.frmUserData.UserTermsofUse ? 1 : 0;
 
-            data.frmUserData.UserPrivacy = data.frmUserData.UserPrivacy ? 1 : 0;
+        //     data.frmUserData.UserPrivacy = data.frmUserData.UserPrivacy ? 1 : 0;
 
-            frm.append('UserEmail',data.frmUserData.UserEmail);
-            frm.append('UserPassword',data.frmUserData.UserPassword);
-            frm.append('UserPasswordChk',data.frmUserData.UserPasswordChk);
-            frm.append('UserName',data.frmUserData.UserName);
-            frm.append('UserPhoneNumber',UserPhoneNumber);
-            frm.append('UserBirthDate',data.frmUserData.UserBirthDate);
-            frm.append('UserPostcode',data.frmUserAddressData.UserPostcode);
-            frm.append('UserRoadAddress',data.frmUserAddressData.UserRoadAddress);
-            frm.append('UserDetailedAddress',data.frmUserAddressData.UserDetailedAddress);
-            frm.append('UserTermsofUse',data.frmUserData.UserTermsofUse);
-            frm.append('UserPrivacy',data.frmUserData.UserPrivacy);
+        //     frm.append('UserEmail',data.frmUserData.UserEmail);
+        //     frm.append('UserPassword',data.frmUserData.UserPassword);
+        //     frm.append('UserPasswordChk',data.frmUserData.UserPasswordChk);
+        //     frm.append('UserName',data.frmUserData.UserName);
+        //     frm.append('UserPhoneNumber',UserPhoneNumber);
+        //     frm.append('UserBirthDate',data.frmUserData.UserBirthDate);
+        //     frm.append('UserPostcode',data.frmUserAddressData.UserPostcode);
+        //     frm.append('UserRoadAddress',data.frmUserAddressData.UserRoadAddress);
+        //     frm.append('UserDetailedAddress',data.frmUserAddressData.UserDetailedAddress);
+        //     frm.append('UserTermsofUse',data.frmUserData.UserTermsofUse);
+        //     frm.append('UserPrivacy',data.frmUserData.UserPrivacy);
+        //     context.commit('setRegistrationErrorMessage', null);
 
 
-            axios.post(url, frm, header)
-            .then(res => { 
-                // console.log(res.data);
-                router.push('/'); 
-            })
-            .catch(err => {
-                // console.log(err.response.data.errors)
-                context.commit('setRegistrationErrorMessage', err.response.data.errors);
-            })
-        },
+        //     axios.post(url, frm, header)
+        //     .then(res => { 
+        //         // console.log(res.data);
+        //         router.push('/'); 
+        //     })
+        //     .catch(err => {
+        //         // console.log(err.response.data.errors)
+        //         context.commit('setRegistrationErrorMessage', err.response.data.errors);
+        //         // window.location.reload();
+        //     })
+        // },
         submitUserLoginData(context, data) {
             const url = '/login'
             
