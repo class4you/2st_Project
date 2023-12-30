@@ -206,36 +206,36 @@
                                 <th><label for="email">email</label><span style="color: red;">*</span></th>
                                 <td>
                                     <input type="text" id="email" name="UserEmail" v-model="frmUserData.UserEmail" @input="validateUserEmail" placeholder="이메일을 입력해주세요">
-                                    <div class="error_message" v-if="$store.state.RegistrationErrorMessage.UserEmail">{{ $store.state.RegistrationErrorMessage.UserEmail }}</div>
                                     <div class="error_message" v-if="errors.UserEmail">{{ errors.UserEmail }}</div>
-                                    <div class="success_message" v-if="!errors.UserEmail && frmUserData.UserEmail"> 유효한 이메일입니다. </div>
+                                    <div class="success_message" v-else-if="!errors.UserEmail && frmUserData.UserEmail">유효한 이메일입니다.</div>
+                                    <div class="error_message" v-else-if="$store.state.RegistrationErrorMessage.UserEmail">{{ $store.state.RegistrationErrorMessage.UserEmail }}</div>
                                 </td>
                             </tr>
                             <tr>
                                 <th><label for="password">password</label><span style="color: red;">*</span></th>
                                 <td>
                                     <input type="password" id="password" name="UserPassword" v-model="frmUserData.UserPassword" @input="validateUserPassword" placeholder="영대소문자,숫자,특수문자(!@#)를 포함한 8~17자" minlength="8" maxlength="17">
-                                    <div class="error_message" v-if="$store.state.RegistrationErrorMessage.UserPassword">{{ $store.state.RegistrationErrorMessage.UserPassword }}</div>
                                     <div class="error_message" v-if="errors.UserPassword">{{ errors.UserPassword }}</div>
-                                    <div class="success_message" v-if="!errors.UserPassword && frmUserData.UserPassword"> 유효한 비밀번호입니다. </div>
+                                    <div class="success_message" v-else-if="!errors.UserPassword && frmUserData.UserPassword">유효한 비밀번호입니다.</div>
+                                    <div class="error_message" v-else-if="$store.state.RegistrationErrorMessage.UserPassword">{{ $store.state.RegistrationErrorMessage.UserPassword }}</div>
                                 </td>
                             </tr>
                             <tr>
                                 <th><label for="password_chk">password chk</label><span style="color: red;">*</span></th>
                                 <td>
                                     <input type="password" id="password_chk" name="UserPasswordChk" v-model="frmUserData.UserPasswordChk" @input="validateUserPasswordChk" placeholder="영대소문자,숫자,특수문자(!@#)를 포함한 8~17자" minlength="8" maxlength="17">
-                                    <div class="error_message" v-if="$store.state.RegistrationErrorMessage.UserPasswordChk">{{ $store.state.RegistrationErrorMessage.UserPasswordChk }}</div>
-                                    <div class="error_message" v-if="errors.UserPasswordChk"> {{ errors.UserPasswordChk }}</div>
-                                    <div class="success_message" v-if="!errors.UserPasswordChk && frmUserData.UserPasswordChk"> 입력한 비밀번호와 일치합니다. </div>
+                                    <div class="error_message" v-if="errors.UserPasswordChk">{{ errors.UserPasswordChk }}</div>
+                                    <div class="success_message" v-else-if="!errors.UserPasswordChk && frmUserData.UserPasswordChk">입력한 비밀번호와 일치합니다.</div>
+                                    <div class="error_message" v-else-if="$store.state.RegistrationErrorMessage.UserPasswordChk">{{ $store.state.RegistrationErrorMessage.UserPasswordChk }}</div>
                                 </td>
                             </tr>
                             <tr>
                                 <th><label for="name">name</label><span style="color: red;">*</span></th>
                                 <td>
                                     <input type="text" id="name" name="UserName" v-model="frmUserData.UserName" @input="validateUserName" placeholder="최소 2글자 이상" minlength="2" maxlength="50">
-                                    <div class="error_message" v-if="$store.state.RegistrationErrorMessage.UserName">{{ $store.state.RegistrationErrorMessage.UserName }}</div>
                                     <div class="error_message" v-if="errors.UserName">{{ errors.UserName }}</div>
-                                    <div class="success_message" v-if="!errors.UserName && frmUserData.UserName"></div>
+                                    <div class="success_message" v-else-if="!errors.UserName && frmUserData.UserName"></div>
+                                    <div class="error_message" v-else-if="$store.state.RegistrationErrorMessage.UserName">{{ $store.state.RegistrationErrorMessage.UserName }}</div>
                                 </td>
                             </tr>
                             <tr>
@@ -253,7 +253,7 @@
                                     <input class="phone_input_box" type="text" id="PhoneNumber2" name="PhoneNumber2" v-model="frmUserData.UserPhoneNumber2">
                                     -
                                     <input class="phone_input_box" type="text" id="PhoneNumber3" name="PhoneNumber3" v-model="frmUserData.UserPhoneNumber3">
-                                    <div class="error_message" v-if="$store.state.RegistrationErrorMessage.UserPhoneNumber">{{ $store.state.RegistrationErrorMessage.UserPhoneNumber }}</div>
+                                    <div class="error_message" v-if="$store.state.RegistrationErrorMessage.UserPhoneNumber && !frmUserData.UserPhoneNumber1 && !frmUserData.UserPhoneNumber2 && !frmUserData.UserPhoneNumber3">{{ $store.state.RegistrationErrorMessage.UserPhoneNumber }}</div>
                                     <div class="error_message"></div>
                                 </td>
                             </tr>
@@ -261,8 +261,8 @@
                                 <th><label for="birth_date">birth date</label><span style="color: red;">*</span></th>
                                 <td>
                                     <input type="date" id="birth_date" name="UserBirthDate" v-model="frmUserData.UserBirthDate" @input="validateUserBirthDate">
-                                    <div class="error_message" v-if="$store.state.RegistrationErrorMessage.UserBirthDate">{{ $store.state.RegistrationErrorMessage.UserBirthDate }}</div>
-                                    <div class="error_message" v-if="errors.UserBirthDate">{{ errors.UserBirthDate }}</div>
+                                    <div class="error_message" v-if="$store.state.RegistrationErrorMessage.UserBirthDate && !frmUserData.UserBirthDate">{{ $store.state.RegistrationErrorMessage.UserBirthDate }}</div>
+                                    <div class="error_message" v-if="errors.UserBirthDate && !frmUserData.UserBirthDate">{{ errors.UserBirthDate }}</div>
                                     <div class="success_message" v-if="!errors.UserBirthDate && frmUserData.UserBirthDate"></div>
                                 </td>
                             </tr>

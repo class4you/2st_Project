@@ -116,9 +116,9 @@ const store = createStore({
                     'X-CSRF-TOKEN': document.head.querySelector('meta[name="csrf-token"]').content,
                 },
             }
-            console.log(data);
-            console.log(data.frmUserData);
-            console.log(data.frmUserAddressData);
+            // console.log(data);
+            // console.log(data.frmUserData);
+            // console.log(data.frmUserAddressData);
             let frm = new FormData();
             const UserPhoneNumber = data.frmUserData.UserPhoneNumber1 + data.frmUserData.UserPhoneNumber2 + data.frmUserData.UserPhoneNumber3
 
@@ -141,11 +141,11 @@ const store = createStore({
 
             axios.post(url, frm, header)
             .then(res => { 
-                console.log(res.data);
+                // console.log(res.data);
                 router.push('/'); 
             })
             .catch(err => {
-                console.log(err.response.data.errors)
+                // console.log(err.response.data.errors)
                 context.commit('setRegistrationErrorMessage', err.response.data.errors);
             })
         },
@@ -182,7 +182,7 @@ const store = createStore({
             })
             .catch(err => {
                 alert('이메일 또는 비밀번호를 확인해주세요.');
-                console.log(err.response.data)
+                // console.log(err.response.data)
                 // context.commit('setErrorData', err.response.data.errors)
             })
             .finally(() => {
@@ -200,7 +200,7 @@ const store = createStore({
             axios.get(url, header)
             .then(res => {
                 // 쿠키 삭제
-                console.log(res.data)
+                // console.log(res.data)
                 context.commit('setUserLoginChk', res.data.sessionDataCheck);
                 localStorage.clear();
                 // router.push('/'); 
@@ -229,6 +229,7 @@ const store = createStore({
                     'X-CSRF-TOKEN': document.head.querySelector('meta[name="csrf-token"]').content,
                 },
             }
+            // console.log(data);
             let frm = new FormData();
 
             frm.append('BoardCategoryID',data.BoardCategoryID);
@@ -236,7 +237,7 @@ const store = createStore({
             frm.append('BoardTitle',data.BoardTitle);
             frm.append('BoardComment',data.BoardComment);
 
-            console.log(frm);
+            // console.log(frm);
 
             axios.post(url, frm, header)
             .then(res => { 
@@ -244,7 +245,7 @@ const store = createStore({
                 router.push('/board'); 
             })
             .catch(err => {
-                console.log(err.response.data.errors)
+                // console.log(err.response.data.errors)
                 context.commit('setRegistrationErrorMessage', err.response.data.errors);
             })
         },
@@ -265,7 +266,7 @@ const store = createStore({
                 alert('내용을 입력해주세요.');
             }
             let frm = new FormData();
-            console.log(data);
+            // console.log(data);
 
             frm.append('BoardID',data.BoardID);
             frm.append('UserID',data.UserID);
@@ -275,12 +276,12 @@ const store = createStore({
 
             axios.post(url, frm, header)
             .then(res => {
-                console.log(res.data);
+                // console.log(res.data);
                 window.location.reload();
 
             })
             .catch(err => {
-                console.log(err.response.data.errors)
+                // console.log(err.response.data.errors)
                 context.commit('setRegistrationErrorMessage', err.response.data.errors);
             })
         }, 
@@ -304,13 +305,13 @@ const store = createStore({
 
             axios.delete(url, requestData, header)
             .then(res => { 
-                console.log(res.data);
+                // console.log(res.data);
                 // 해당 처리가 끝나면 리로드함
                 window.location.reload();
                 
             })
             .catch(err => {
-                console.log(err.response.data.errors)
+                // console.log(err.response.data.errors)
                 context.commit('setRegistrationErrorMessage', err.response.data.errors);
             })
         },
@@ -334,13 +335,13 @@ const store = createStore({
 
             axios.delete(url, requestData, header)
             .then(res => { 
-                console.log(res.data);
+                // console.log(res.data);
                 // 해당 처리가 끝나면 리로드함
                 // window.location.reload();
                 router.push('/board'); 
             })
             .catch(err => {
-                console.log(err.response.data.errors)
+                // console.log(err.response.data.errors)
                 context.commit('setRegistrationErrorMessage', err.response.data.errors);
             })
         },

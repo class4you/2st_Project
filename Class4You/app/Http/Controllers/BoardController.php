@@ -17,8 +17,8 @@ class BoardController extends Controller
     public function getBoardMainData(Request $request)
     {
 
-        $boardDataQuery = Board::join('users', 'boards.UserID', 'users.UserID')
-            ->join(DB::raw('(SELECT BoardID, COUNT(BoardID) AS cnt FROM comments GROUP BY comments.BoardID) com'), function ($join) {
+        $boardDataQuery = Board::leftJoin('users', 'boards.UserID', '=', 'users.UserID')
+            ->leftJoin(DB::raw('(SELECT BoardID, COUNT(BoardID) AS cnt FROM comments GROUP BY comments.BoardID) com'), function ($join) {
                 $join->on('com.BoardID', '=', 'boards.BoardID');
             })
             ->select('boards.BoardID', 'boards.created_at', 'boards.UserID', 'boards.BoardTitle', 'boards.BoardComment', 'boards.BoardView', 'boards.BoardRecommended', 'boards.BoardNotRecommended', 'boards.BoardFlg', 'users.UserEmail', 'com.cnt');

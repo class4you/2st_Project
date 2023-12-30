@@ -19554,11 +19554,21 @@ __webpack_require__.r(__webpack_exports__);
     },
     // 댓글 삭제 불러오기
     deleteCommentData: function deleteCommentData(data) {
-      this.$store.dispatch('deleteCommentData', data);
+      if (confirm('정말로 삭제하시겠습니까?')) {
+        this.$store.dispatch('deleteCommentData', data);
+      } else {
+        // 사용자가 확인 취소를 선택한 경우의 처리
+        // console.log('삭제가 취소되었습니다.');
+      }
     },
     // 게시판 삭제 불러오기
     deleteBoardData: function deleteBoardData(data) {
-      this.$store.dispatch('delBoardData', data);
+      if (confirm('정말로 삭제하시겠습니까?')) {
+        this.$store.dispatch('delBoardData', data);
+      } else {
+        // 사용자가 확인 취소를 선택한 경우의 처리
+        // console.log('삭제가 취소되었습니다.');
+      }
     },
     // 게시판 수정 게시판 페이지
     updateBoardData: function updateBoardData(data) {
@@ -19649,7 +19659,7 @@ __webpack_require__.r(__webpack_exports__);
       this.$store.dispatch('submitBoardData', this.frmBoardData);
     },
     goToBoard: function goToBoard() {
-      this.$router.push('/board'); // '/board'는 실제로 이동하고자 하는 경로로 수정하세요
+      this.$router.push('/board');
     }
   }
 });
@@ -19940,44 +19950,64 @@ __webpack_require__.r(__webpack_exports__);
     // deleteClassReview(data) {
     // 	this.$store.dispatch('deleteClassReview', data);
     // },
+    // deleteClassReview(data) {
+    //     const url = '/classboarddetailreview/' + data.ReviewID
+    //     const header = {
+    //         headers: {
+    //             "Content-Type": 'multipart/form-data',
+    //             'X-CSRF-TOKEN': document.head.querySelector('meta[name="csrf-token"]').content,
+    //         },
+    //     }
+    //     // let frm = new FormData();
+    //     // const data = {
+    //     //     ReviewID: data.ReviewID,
+    //     // };
+    // 	// 데이터값이 옴
+    //     // console.log(data);
+    //     // console.log(data.ReviewID);
+    //     axios.delete(url,data, header)
+    //     .then(res => { 
+    //         // console.log(this.reviewClassItems);
+    //         // console.log(res.data[0]);
+    // 		// this.reviewClassItems.shift(res.data);
+    // 		// if(this.deleteClassReview) {
+    // 		// 	return this.classReviewData = '';
+    // 		// }
+    // 		// this.reviewClassItems 배열에서 삭제 대상인 항목을 제외한 새로운 배열을 생성하여 할당합니다. 
+    // 		// 이렇게 하면 삭제된 항목이 제외된 배열이 this.reviewClassItems에 다시 할당되어 뷰에 반영됩니다.
+    // 		this.reviewClassItems = this.reviewClassItems.filter(item => item.ReviewID !== data.ReviewID);
+    //     })
+    //     .catch(err => {
+    //         // console.log(err.response.data.errors)
+    //         // context.commit('setRegistrationErrorMessage', err.response.data.errors);
+    // 		// alert('별점을 체크해주세요!');
+    //     })
+    // },
     deleteClassReview: function deleteClassReview(data) {
       var _this3 = this;
-      var url = '/classboarddetailreview/' + data.ReviewID;
-      var header = {
-        headers: {
-          "Content-Type": 'multipart/form-data',
-          'X-CSRF-TOKEN': document.head.querySelector('meta[name="csrf-token"]').content
-        }
-      };
-
-      // let frm = new FormData();
-      // const data = {
-      //     ReviewID: data.ReviewID,
-      // };
-
-      // 데이터값이 옴
-      // console.log(data);
-      // console.log(data.ReviewID);
-
-      axios__WEBPACK_IMPORTED_MODULE_0___default()["delete"](url, data, header).then(function (res) {
-        // console.log(this.reviewClassItems);
-        // console.log(res.data[0]);
-
-        // this.reviewClassItems.shift(res.data);
-        // if(this.deleteClassReview) {
-        // 	return this.classReviewData = '';
-        // }
-
-        // this.reviewClassItems 배열에서 삭제 대상인 항목을 제외한 새로운 배열을 생성하여 할당합니다. 
-        // 이렇게 하면 삭제된 항목이 제외된 배열이 this.reviewClassItems에 다시 할당되어 뷰에 반영됩니다.
-        _this3.reviewClassItems = _this3.reviewClassItems.filter(function (item) {
-          return item.ReviewID !== data.ReviewID;
+      // 확인 취소 메시지를 띄우고, 사용자가 확인을 선택한 경우에만 삭제를 진행합니다.
+      if (confirm('수강평을 삭제하시겠습니까?')) {
+        var url = '/classboarddetailreview/' + data.ReviewID;
+        var header = {
+          headers: {
+            "Content-Type": 'multipart/form-data',
+            'X-CSRF-TOKEN': document.head.querySelector('meta[name="csrf-token"]').content
+          }
+        };
+        axios__WEBPACK_IMPORTED_MODULE_0___default()["delete"](url, header).then(function (res) {
+          // 삭제된 항목을 제외한 배열을 생성하여 할당합니다.
+          _this3.reviewClassItems = _this3.reviewClassItems.filter(function (item) {
+            return item.ReviewID !== data.ReviewID;
+          });
+        })["catch"](function (err) {
+          // 오류 처리
+          // console.log(err.response.data.errors);
+          alert('삭제에 실패했습니다.');
         });
-      })["catch"](function (err) {
-        // console.log(err.response.data.errors)
-        // context.commit('setRegistrationErrorMessage', err.response.data.errors);
-        // alert('별점을 체크해주세요!');
-      });
+      } else {
+        // 사용자가 확인 취소를 선택한 경우의 처리
+        // console.log('삭제가 취소되었습니다.');
+      }
     },
     postEnrollApp: function postEnrollApp() {
       var _this4 = this;
@@ -23494,11 +23524,11 @@ var _hoisted_30 = {
 };
 var _hoisted_31 = {
   key: 1,
-  "class": "error_message"
+  "class": "success_message"
 };
 var _hoisted_32 = {
   key: 2,
-  "class": "success_message"
+  "class": "error_message"
 };
 var _hoisted_33 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
   "for": "password"
@@ -23513,11 +23543,11 @@ var _hoisted_34 = {
 };
 var _hoisted_35 = {
   key: 1,
-  "class": "error_message"
+  "class": "success_message"
 };
 var _hoisted_36 = {
   key: 2,
-  "class": "success_message"
+  "class": "error_message"
 };
 var _hoisted_37 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
   "for": "password_chk"
@@ -23532,11 +23562,11 @@ var _hoisted_38 = {
 };
 var _hoisted_39 = {
   key: 1,
-  "class": "error_message"
+  "class": "success_message"
 };
 var _hoisted_40 = {
   key: 2,
-  "class": "success_message"
+  "class": "error_message"
 };
 var _hoisted_41 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
   "for": "name"
@@ -23551,11 +23581,11 @@ var _hoisted_42 = {
 };
 var _hoisted_43 = {
   key: 1,
-  "class": "error_message"
+  "class": "success_message"
 };
 var _hoisted_44 = {
   key: 2,
-  "class": "success_message"
+  "class": "error_message"
 };
 var _hoisted_45 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
   "for": "phone_number"
@@ -23659,7 +23689,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       return $options.validateUserEmail && $options.validateUserEmail.apply($options, arguments);
     }),
     placeholder: "이메일을 입력해주세요"
-  }, null, 544 /* NEED_HYDRATION, NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.frmUserData.UserEmail]]), _ctx.$store.state.RegistrationErrorMessage.UserEmail ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_30, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$store.state.RegistrationErrorMessage.UserEmail), 1 /* TEXT */)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $data.errors.UserEmail ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_31, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.errors.UserEmail), 1 /* TEXT */)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), !$data.errors.UserEmail && $data.frmUserData.UserEmail ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_32, " 유효한 이메일입니다. ")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tr", null, [_hoisted_33, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+  }, null, 544 /* NEED_HYDRATION, NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.frmUserData.UserEmail]]), $data.errors.UserEmail ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_30, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.errors.UserEmail), 1 /* TEXT */)) : !$data.errors.UserEmail && $data.frmUserData.UserEmail ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_31, "유효한 이메일입니다.")) : _ctx.$store.state.RegistrationErrorMessage.UserEmail ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_32, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$store.state.RegistrationErrorMessage.UserEmail), 1 /* TEXT */)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tr", null, [_hoisted_33, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     type: "password",
     id: "password",
     name: "UserPassword",
@@ -23672,7 +23702,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     placeholder: "영대소문자,숫자,특수문자(!@#)를 포함한 8~17자",
     minlength: "8",
     maxlength: "17"
-  }, null, 544 /* NEED_HYDRATION, NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.frmUserData.UserPassword]]), _ctx.$store.state.RegistrationErrorMessage.UserPassword ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_34, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$store.state.RegistrationErrorMessage.UserPassword), 1 /* TEXT */)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $data.errors.UserPassword ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_35, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.errors.UserPassword), 1 /* TEXT */)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), !$data.errors.UserPassword && $data.frmUserData.UserPassword ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_36, " 유효한 비밀번호입니다. ")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tr", null, [_hoisted_37, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+  }, null, 544 /* NEED_HYDRATION, NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.frmUserData.UserPassword]]), $data.errors.UserPassword ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_34, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.errors.UserPassword), 1 /* TEXT */)) : !$data.errors.UserPassword && $data.frmUserData.UserPassword ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_35, "유효한 비밀번호입니다.")) : _ctx.$store.state.RegistrationErrorMessage.UserPassword ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_36, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$store.state.RegistrationErrorMessage.UserPassword), 1 /* TEXT */)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tr", null, [_hoisted_37, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     type: "password",
     id: "password_chk",
     name: "UserPasswordChk",
@@ -23685,7 +23715,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     placeholder: "영대소문자,숫자,특수문자(!@#)를 포함한 8~17자",
     minlength: "8",
     maxlength: "17"
-  }, null, 544 /* NEED_HYDRATION, NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.frmUserData.UserPasswordChk]]), _ctx.$store.state.RegistrationErrorMessage.UserPasswordChk ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_38, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$store.state.RegistrationErrorMessage.UserPasswordChk), 1 /* TEXT */)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $data.errors.UserPasswordChk ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_39, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.errors.UserPasswordChk), 1 /* TEXT */)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), !$data.errors.UserPasswordChk && $data.frmUserData.UserPasswordChk ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_40, " 입력한 비밀번호와 일치합니다. ")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tr", null, [_hoisted_41, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+  }, null, 544 /* NEED_HYDRATION, NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.frmUserData.UserPasswordChk]]), $data.errors.UserPasswordChk ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_38, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.errors.UserPasswordChk), 1 /* TEXT */)) : !$data.errors.UserPasswordChk && $data.frmUserData.UserPasswordChk ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_39, "입력한 비밀번호와 일치합니다.")) : _ctx.$store.state.RegistrationErrorMessage.UserPasswordChk ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_40, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$store.state.RegistrationErrorMessage.UserPasswordChk), 1 /* TEXT */)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tr", null, [_hoisted_41, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     type: "text",
     id: "name",
     name: "UserName",
@@ -23698,7 +23728,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     placeholder: "최소 2글자 이상",
     minlength: "2",
     maxlength: "50"
-  }, null, 544 /* NEED_HYDRATION, NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.frmUserData.UserName]]), _ctx.$store.state.RegistrationErrorMessage.UserName ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_42, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$store.state.RegistrationErrorMessage.UserName), 1 /* TEXT */)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $data.errors.UserName ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_43, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.errors.UserName), 1 /* TEXT */)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), !$data.errors.UserName && $data.frmUserData.UserName ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_44)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tr", null, [_hoisted_45, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("select", {
+  }, null, 544 /* NEED_HYDRATION, NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.frmUserData.UserName]]), $data.errors.UserName ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_42, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.errors.UserName), 1 /* TEXT */)) : !$data.errors.UserName && $data.frmUserData.UserName ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_43)) : _ctx.$store.state.RegistrationErrorMessage.UserName ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_44, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$store.state.RegistrationErrorMessage.UserName), 1 /* TEXT */)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tr", null, [_hoisted_45, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("select", {
     "class": "phone_select_box",
     id: "PhoneNumber1",
     name: "PhoneNumber1",
@@ -23721,7 +23751,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     "onUpdate:modelValue": _cache[17] || (_cache[17] = function ($event) {
       return $data.frmUserData.UserPhoneNumber3 = $event;
     })
-  }, null, 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.frmUserData.UserPhoneNumber3]]), _ctx.$store.state.RegistrationErrorMessage.UserPhoneNumber ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_53, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$store.state.RegistrationErrorMessage.UserPhoneNumber), 1 /* TEXT */)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), _hoisted_54])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tr", null, [_hoisted_55, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+  }, null, 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.frmUserData.UserPhoneNumber3]]), _ctx.$store.state.RegistrationErrorMessage.UserPhoneNumber && !$data.frmUserData.UserPhoneNumber1 && !$data.frmUserData.UserPhoneNumber2 && !$data.frmUserData.UserPhoneNumber3 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_53, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$store.state.RegistrationErrorMessage.UserPhoneNumber), 1 /* TEXT */)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), _hoisted_54])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tr", null, [_hoisted_55, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     type: "date",
     id: "birth_date",
     name: "UserBirthDate",
@@ -23731,7 +23761,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     onInput: _cache[19] || (_cache[19] = function () {
       return $options.validateUserBirthDate && $options.validateUserBirthDate.apply($options, arguments);
     })
-  }, null, 544 /* NEED_HYDRATION, NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.frmUserData.UserBirthDate]]), _ctx.$store.state.RegistrationErrorMessage.UserBirthDate ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_56, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$store.state.RegistrationErrorMessage.UserBirthDate), 1 /* TEXT */)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $data.errors.UserBirthDate ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_57, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.errors.UserBirthDate), 1 /* TEXT */)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), !$data.errors.UserBirthDate && $data.frmUserData.UserBirthDate ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_58)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tr", null, [_hoisted_59, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_60, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+  }, null, 544 /* NEED_HYDRATION, NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.frmUserData.UserBirthDate]]), _ctx.$store.state.RegistrationErrorMessage.UserBirthDate && !$data.frmUserData.UserBirthDate ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_56, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$store.state.RegistrationErrorMessage.UserBirthDate), 1 /* TEXT */)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $data.errors.UserBirthDate && !$data.frmUserData.UserBirthDate ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_57, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.errors.UserBirthDate), 1 /* TEXT */)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), !$data.errors.UserBirthDate && $data.frmUserData.UserBirthDate ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_58)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tr", null, [_hoisted_59, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_60, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     "class": "regist_table_address_postcode",
     type: "text",
     id: "sample4_postcode",
@@ -24765,9 +24795,9 @@ var store = (0,vuex__WEBPACK_IMPORTED_MODULE_3__.createStore)({
           'X-CSRF-TOKEN': document.head.querySelector('meta[name="csrf-token"]').content
         }
       };
-      console.log(data);
-      console.log(data.frmUserData);
-      console.log(data.frmUserAddressData);
+      // console.log(data);
+      // console.log(data.frmUserData);
+      // console.log(data.frmUserAddressData);
       var frm = new FormData();
       var UserPhoneNumber = data.frmUserData.UserPhoneNumber1 + data.frmUserData.UserPhoneNumber2 + data.frmUserData.UserPhoneNumber3;
       data.frmUserData.UserTermsofUse = data.frmUserData.UserTermsofUse ? 1 : 0;
@@ -24784,10 +24814,10 @@ var store = (0,vuex__WEBPACK_IMPORTED_MODULE_3__.createStore)({
       frm.append('UserTermsofUse', data.frmUserData.UserTermsofUse);
       frm.append('UserPrivacy', data.frmUserData.UserPrivacy);
       axios__WEBPACK_IMPORTED_MODULE_0___default().post(url, frm, header).then(function (res) {
-        console.log(res.data);
+        // console.log(res.data);
         _router_js__WEBPACK_IMPORTED_MODULE_1__["default"].push('/');
       })["catch"](function (err) {
-        console.log(err.response.data.errors);
+        // console.log(err.response.data.errors)
         context.commit('setRegistrationErrorMessage', err.response.data.errors);
       });
     },
@@ -24820,7 +24850,7 @@ var store = (0,vuex__WEBPACK_IMPORTED_MODULE_3__.createStore)({
         }
       })["catch"](function (err) {
         alert('이메일 또는 비밀번호를 확인해주세요.');
-        console.log(err.response.data);
+        // console.log(err.response.data)
         // context.commit('setErrorData', err.response.data.errors)
       })["finally"](function () {
         location.reload();
@@ -24836,7 +24866,7 @@ var store = (0,vuex__WEBPACK_IMPORTED_MODULE_3__.createStore)({
       };
       axios__WEBPACK_IMPORTED_MODULE_0___default().get(url, header).then(function (res) {
         // 쿠키 삭제
-        console.log(res.data);
+        // console.log(res.data)
         context.commit('setUserLoginChk', res.data.sessionDataCheck);
         localStorage.clear();
         // router.push('/'); 
@@ -24864,17 +24894,20 @@ var store = (0,vuex__WEBPACK_IMPORTED_MODULE_3__.createStore)({
           'X-CSRF-TOKEN': document.head.querySelector('meta[name="csrf-token"]').content
         }
       };
+      // console.log(data);
       var frm = new FormData();
       frm.append('BoardCategoryID', data.BoardCategoryID);
       frm.append('UserID', data.UserID);
       frm.append('BoardTitle', data.BoardTitle);
       frm.append('BoardComment', data.BoardComment);
-      console.log(frm);
+
+      // console.log(frm);
+
       axios__WEBPACK_IMPORTED_MODULE_0___default().post(url, frm, header).then(function (res) {
         // console.log(res.data);
         _router_js__WEBPACK_IMPORTED_MODULE_1__["default"].push('/board');
       })["catch"](function (err) {
-        console.log(err.response.data.errors);
+        // console.log(err.response.data.errors)
         context.commit('setRegistrationErrorMessage', err.response.data.errors);
       });
     },
@@ -24893,7 +24926,8 @@ var store = (0,vuex__WEBPACK_IMPORTED_MODULE_3__.createStore)({
         alert('내용을 입력해주세요.');
       }
       var frm = new FormData();
-      console.log(data);
+      // console.log(data);
+
       frm.append('BoardID', data.BoardID);
       frm.append('UserID', data.UserID);
       frm.append('CommentContent', data.CommentContent);
@@ -24901,10 +24935,10 @@ var store = (0,vuex__WEBPACK_IMPORTED_MODULE_3__.createStore)({
       // console.log(frm);
 
       axios__WEBPACK_IMPORTED_MODULE_0___default().post(url, frm, header).then(function (res) {
-        console.log(res.data);
+        // console.log(res.data);
         window.location.reload();
       })["catch"](function (err) {
-        console.log(err.response.data.errors);
+        // console.log(err.response.data.errors)
         context.commit('setRegistrationErrorMessage', err.response.data.errors);
       });
     },
@@ -24926,11 +24960,11 @@ var store = (0,vuex__WEBPACK_IMPORTED_MODULE_3__.createStore)({
       // console.log(data);
 
       axios__WEBPACK_IMPORTED_MODULE_0___default()["delete"](url, requestData, header).then(function (res) {
-        console.log(res.data);
+        // console.log(res.data);
         // 해당 처리가 끝나면 리로드함
         window.location.reload();
       })["catch"](function (err) {
-        console.log(err.response.data.errors);
+        // console.log(err.response.data.errors)
         context.commit('setRegistrationErrorMessage', err.response.data.errors);
       });
     },
@@ -24952,12 +24986,12 @@ var store = (0,vuex__WEBPACK_IMPORTED_MODULE_3__.createStore)({
       // console.log(data);
 
       axios__WEBPACK_IMPORTED_MODULE_0___default()["delete"](url, requestData, header).then(function (res) {
-        console.log(res.data);
+        // console.log(res.data);
         // 해당 처리가 끝나면 리로드함
         // window.location.reload();
         _router_js__WEBPACK_IMPORTED_MODULE_1__["default"].push('/board');
       })["catch"](function (err) {
-        console.log(err.response.data.errors);
+        // console.log(err.response.data.errors)
         context.commit('setRegistrationErrorMessage', err.response.data.errors);
       });
     } // updateBoardData(context, data) {

@@ -924,45 +924,71 @@ export default {
 		// 	this.$store.dispatch('deleteClassReview', data);
 		// },
 
-		deleteClassReview(data) {
-            const url = '/classboarddetailreview/' + data.ReviewID
-            const header = {
-                headers: {
-                    "Content-Type": 'multipart/form-data',
-                    'X-CSRF-TOKEN': document.head.querySelector('meta[name="csrf-token"]').content,
-                },
-            }
+		// deleteClassReview(data) {
+        //     const url = '/classboarddetailreview/' + data.ReviewID
+        //     const header = {
+        //         headers: {
+        //             "Content-Type": 'multipart/form-data',
+        //             'X-CSRF-TOKEN': document.head.querySelector('meta[name="csrf-token"]').content,
+        //         },
+        //     }
 
-            // let frm = new FormData();
-            // const data = {
-            //     ReviewID: data.ReviewID,
-            // };
+        //     // let frm = new FormData();
+        //     // const data = {
+        //     //     ReviewID: data.ReviewID,
+        //     // };
 
-			// 데이터값이 옴
-            // console.log(data);
-            // console.log(data.ReviewID);
+		// 	// 데이터값이 옴
+        //     // console.log(data);
+        //     // console.log(data.ReviewID);
 
-            axios.delete(url,data, header)
-            .then(res => { 
-                // console.log(this.reviewClassItems);
-                // console.log(res.data[0]);
+        //     axios.delete(url,data, header)
+        //     .then(res => { 
+        //         // console.log(this.reviewClassItems);
+        //         // console.log(res.data[0]);
 
-				// this.reviewClassItems.shift(res.data);
-				// if(this.deleteClassReview) {
-				// 	return this.classReviewData = '';
-				// }
+		// 		// this.reviewClassItems.shift(res.data);
+		// 		// if(this.deleteClassReview) {
+		// 		// 	return this.classReviewData = '';
+		// 		// }
 
-				// this.reviewClassItems 배열에서 삭제 대상인 항목을 제외한 새로운 배열을 생성하여 할당합니다. 
-				// 이렇게 하면 삭제된 항목이 제외된 배열이 this.reviewClassItems에 다시 할당되어 뷰에 반영됩니다.
-				this.reviewClassItems = this.reviewClassItems.filter(item => item.ReviewID !== data.ReviewID);
+		// 		// this.reviewClassItems 배열에서 삭제 대상인 항목을 제외한 새로운 배열을 생성하여 할당합니다. 
+		// 		// 이렇게 하면 삭제된 항목이 제외된 배열이 this.reviewClassItems에 다시 할당되어 뷰에 반영됩니다.
+		// 		this.reviewClassItems = this.reviewClassItems.filter(item => item.ReviewID !== data.ReviewID);
     
-            })
-            .catch(err => {
-                // console.log(err.response.data.errors)
-                // context.commit('setRegistrationErrorMessage', err.response.data.errors);
-				// alert('별점을 체크해주세요!');
-            })
-        },
+        //     })
+        //     .catch(err => {
+        //         // console.log(err.response.data.errors)
+        //         // context.commit('setRegistrationErrorMessage', err.response.data.errors);
+		// 		// alert('별점을 체크해주세요!');
+        //     })
+        // },
+		deleteClassReview(data) {
+ 			 // 확인 취소 메시지를 띄우고, 사용자가 확인을 선택한 경우에만 삭제를 진행합니다.
+			if (confirm('수강평을 삭제하시겠습니까?')) {
+				const url = '/classboarddetailreview/' + data.ReviewID;
+				const header = {
+				headers: {
+					"Content-Type": 'multipart/form-data',
+					'X-CSRF-TOKEN': document.head.querySelector('meta[name="csrf-token"]').content,
+				},
+				};
+
+				axios.delete(url, header)
+				.then(res => {
+					// 삭제된 항목을 제외한 배열을 생성하여 할당합니다.
+					this.reviewClassItems = this.reviewClassItems.filter(item => item.ReviewID !== data.ReviewID);
+				})
+				.catch(err => {
+					// 오류 처리
+					// console.log(err.response.data.errors);
+					alert('삭제에 실패했습니다.');
+				});
+			} else {
+				// 사용자가 확인 취소를 선택한 경우의 처리
+				// console.log('삭제가 취소되었습니다.');
+			}
+		},
 
 		postEnrollApp() {
 			// this.$store.dispatch('postClassEnrollApp', this.classEnrollData);

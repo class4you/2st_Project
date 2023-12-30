@@ -110,7 +110,7 @@ export default {
             this.$store.dispatch('submitBoardData', this.frmBoardData);
         },
         goToBoard() {
-      this.$router.push('/board'); // '/board'는 실제로 이동하고자 하는 경로로 수정하세요
+            this.$router.push('/board');
     },
     }
 }

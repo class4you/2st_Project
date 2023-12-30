@@ -186,12 +186,22 @@ export default {
 
         // 댓글 삭제 불러오기
         deleteCommentData(data) {
-            this.$store.dispatch('deleteCommentData', data);
+            if (confirm('정말로 삭제하시겠습니까?')) {
+                this.$store.dispatch('deleteCommentData', data);
+            } else {
+                // 사용자가 확인 취소를 선택한 경우의 처리
+                // console.log('삭제가 취소되었습니다.');
+            }
         },
 
         // 게시판 삭제 불러오기
         deleteBoardData(data) {
-            this.$store.dispatch('delBoardData', data);
+            if (confirm('정말로 삭제하시겠습니까?')) {
+                this.$store.dispatch('delBoardData', data);
+            } else {
+                // 사용자가 확인 취소를 선택한 경우의 처리
+                // console.log('삭제가 취소되었습니다.');
+            }
         },
 
         // 게시판 수정 게시판 페이지
