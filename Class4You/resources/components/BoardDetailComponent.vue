@@ -130,6 +130,7 @@
 
 </template>
 <script>
+import Swal from 'sweetalert2';
 export default {
     name: 'BoardDetailComponent',
 
@@ -186,22 +187,38 @@ export default {
 
         // 댓글 삭제 불러오기
         deleteCommentData(data) {
-            if (confirm('정말로 삭제하시겠습니까?')) {
+                Swal.fire({
+                title: '정말로 삭제하시겠습니까?',
+                text: "삭제 후에는 복구할 수 없습니다.",
+                icon: 'question',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: '삭제',
+                cancelButtonText: '취소'
+            }).then((result) => {
+                if (result.isConfirmed) {
                 this.$store.dispatch('deleteCommentData', data);
-            } else {
-                // 사용자가 확인 취소를 선택한 경우의 처리
-                // console.log('삭제가 취소되었습니다.');
-            }
+                }
+            });
         },
 
         // 게시판 삭제 불러오기
         deleteBoardData(data) {
-            if (confirm('정말로 삭제하시겠습니까?')) {
+            Swal.fire({
+                title: '정말로 삭제하시겠습니까?',
+                text: "삭제 후에는 복구할 수 없습니다.",
+                icon: 'question',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: '삭제',
+                cancelButtonText: '취소'
+            }).then((result) => {
+                if (result.isConfirmed) {
                 this.$store.dispatch('delBoardData', data);
-            } else {
-                // 사용자가 확인 취소를 선택한 경우의 처리
-                // console.log('삭제가 취소되었습니다.');
-            }
+                }
+            });
         },
 
         // 게시판 수정 게시판 페이지

@@ -525,6 +525,7 @@
     </div>
 </template>
 <script>
+import Swal from 'sweetalert2';
 export default {
     name: 'UserMyPageComponent',
 
@@ -814,7 +815,18 @@ export default {
             // this.frmUserData.UserAddress = `${this.sampleData.postcode} ${this.sampleData.roadAddress}`;
         },
         updateUserAddressData() {
-            if (confirm('주소를 변경하시겠습니까?')) {
+            // 주소 변경 확인 대화 상자를 띄우고, 사용자가 확인을 선택한 경우에만 주소를 변경합니다.
+            Swal.fire({
+                title: '주소 변경',
+                text: '주소를 변경하시겠습니까?',
+                icon: 'question',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: '변경',
+                cancelButtonText: '취소'
+            }).then((result) => {
+                if (result.isConfirmed) {
                 axios.put('/useraddressdataupdate', {
                     UserID: this.newUserInfoItems.UserID,
                     UserPostcode: this.frmAddressData.UserPostcode,
@@ -822,43 +834,84 @@ export default {
                     UserDetailedAddress: this.frmAddressData.UserDetailedAddress,
                 })
                 .then(response => {
-                    alert('주소 변경이 완료되었습니다.');
+                    Swal.fire({
+                    icon: 'success',
+                    title: '성공',
+                    text: '주소 변경이 완료되었습니다.',
+                    });
                     // 서버 응답에 대한 로직 수행
                     // this.$router.push('/board');
                 })
                 .catch(error => {
                     // 에러 처리
                     console.error(error);
-                    alert('주소 변경에 실패했습니다.');
+                    Swal.fire({
+                    icon: 'error',
+                    title: '에러',
+                    text: '주소 변경에 실패했습니다.',
+                    });
                 });
-            } else {
+                } else {
                 // 사용자가 확인 취소를 선택한 경우의 처리
-                console.log('주소 변경이 취소되었습니다.');
-            }
+                // console.log('주소 변경이 취소되었습니다.');
+                }
+            });
         },
         updateUserbasicData() {
-            if (confirm('전화번호를 변경하시겠습니까?')) {
+            // 전화번호 변경 확인 대화 상자를 띄우고, 사용자가 확인을 선택한 경우에만 전화번호를 변경합니다.
+            Swal.fire({
+                title: '전화번호 변경',
+                text: '전화번호를 변경하시겠습니까?',
+                icon: 'question',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: '변경',
+                cancelButtonText: '취소'
+            }).then((result) => {
+                if (result.isConfirmed) {
                 axios.put('/userbasicdataupdate', {
                     UserID: this.newUserInfoItems.UserID,
                     UserPhoneNumber: this.UserPhoneNumber,
                 })
                 .then(response => {
-                    alert('전화번호 변경이 완료되었습니다.');
+                    Swal.fire({
+                    icon: 'success',
+                    title: '성공',
+                    text: '전화번호 변경이 완료되었습니다.',
+                    });
                     // 서버 응답에 대한 로직 수행
                     // this.$router.push('/board');
                 })
                 .catch(error => {
                     // 에러 처리
                     console.error(error);
-                    alert('전화번호 변경에 실패했습니다.');
+                    Swal.fire({
+                    icon: 'error',
+                    title: '에러',
+                    text: '전화번호 변경에 실패했습니다.',
+                    });
                 });
-            } else {
+                } else {
                 // 사용자가 확인 취소를 선택한 경우의 처리
                 console.log('전화번호 변경이 취소되었습니다.');
-            }
+                }
+            });
         },
+
         updateUserPasswordData() {
-            if (confirm('비밀번호를 변경하시겠습니까?')) {
+            // 비밀번호 변경 확인 대화 상자를 띄우고, 사용자가 확인을 선택한 경우에만 비밀번호를 변경합니다.
+            Swal.fire({
+                title: '비밀번호 변경',
+                text: '비밀번호를 변경하시겠습니까?',
+                icon: 'question',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: '변경',
+                cancelButtonText: '취소'
+            }).then((result) => {
+                if (result.isConfirmed) {
                 axios.put('/userpassworddataupdate', {
                     UserID: this.newUserInfoItems.UserID,
                     UserPassword: this.UserPassword,
@@ -867,22 +920,36 @@ export default {
                 })
                 .then(response => {
                     if (response.data.success) {
-                    alert('비밀번호 변경에 성공하셨습니다.');
+                    Swal.fire({
+                        icon: 'success',
+                        title: '성공',
+                        text: '비밀번호 변경에 성공하셨습니다.',
+                    });
                     window.location.reload();
                     } else {
-                    alert('비밀번호 변경에 실패하셨습니다.');
+                    Swal.fire({
+                        icon: 'error',
+                        title: '에러',
+                        text: '비밀번호 변경에 실패하셨습니다.',
+                    });
                     window.location.reload();
                     }
                 })
                 .catch(error => {
+                    // 에러 처리
                     console.error(error);
-                    alert('비밀번호 변경에 실패하셨습니다.');
+                    Swal.fire({
+                    icon: 'error',
+                    title: '에러',
+                    text: '비밀번호 변경에 실패했습니다.',
+                    });
                 });
-            } else {
+                } else {
                 // 사용자가 확인 취소를 선택한 경우의 처리
                 console.log('비밀번호 변경이 취소되었습니다.');
-            }
-        },        
+                }
+            });
+        },    
         getRelativeTime(updatedAt) {
             const now = new Date();
             const updatedDate = new Date(updatedAt);
