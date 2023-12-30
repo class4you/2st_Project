@@ -857,7 +857,7 @@ export default {
                 console.log('전화번호 변경이 취소되었습니다.');
             }
         },
-        updateUserPasswordData() {.
+        updateUserPasswordData() {
             if (confirm('비밀번호를 변경하시겠습니까?')) {
                 axios.put('/userpassworddataupdate', {
                     UserID: this.newUserInfoItems.UserID,
