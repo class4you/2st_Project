@@ -25200,6 +25200,12 @@ var store = (0,vuex__WEBPACK_IMPORTED_MODULE_4__.createStore)({
         // console.log(res.data)
         context.commit('setUserLoginChk', res.data.sessionDataCheck);
         localStorage.clear();
+        sweetalert2__WEBPACK_IMPORTED_MODULE_3___default().fire({
+          icon: 'success',
+          title: '로그아웃 성공',
+          text: '로그아웃에 성공했습니다.',
+          confirmButtonText: '확인'
+        });
         // router.push('/'); 
         // window.location.href = '/';
       })["catch"](function (err) {

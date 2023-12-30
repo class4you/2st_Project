@@ -223,6 +223,12 @@ const store = createStore({
                 // console.log(res.data)
                 context.commit('setUserLoginChk', res.data.sessionDataCheck);
                 localStorage.clear();
+                Swal.fire({
+                    icon: 'success',
+                    title: '로그아웃 성공',
+                    text: '로그아웃에 성공했습니다.',
+                    confirmButtonText: '확인'
+                })
                 // router.push('/'); 
                 // window.location.href = '/';
             })
