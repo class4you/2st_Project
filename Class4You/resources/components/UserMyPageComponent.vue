@@ -814,68 +814,75 @@ export default {
             // this.frmUserData.UserAddress = `${this.sampleData.postcode} ${this.sampleData.roadAddress}`;
         },
         updateUserAddressData() {
-            axios.put('/useraddressdataupdate', {
-                UserID : this.newUserInfoItems.UserID,
-                UserPostcode: this.frmAddressData.UserPostcode,
-                UserRoadAddress: this.frmAddressData.UserRoadAddress,
-                UserDetailedAddress: this.frmAddressData.UserDetailedAddress,
-            })
-            .then(response => {
-                alert('주소 변경이 완료되었습니다.');
-                // console.log(response.data.UserPostcode);
-                // this.frmAddressData.UserPostcode.unshift(res.data.UserPostcode);
-                // 서버 응답에 대한 로직 수행
-                // this.$router.push('/board');
-            })
-            .catch(error => {
-                // 에러 처리
-                // console.error(error);
-            });
+            if (confirm('주소를 변경하시겠습니까?')) {
+                axios.put('/useraddressdataupdate', {
+                    UserID: this.newUserInfoItems.UserID,
+                    UserPostcode: this.frmAddressData.UserPostcode,
+                    UserRoadAddress: this.frmAddressData.UserRoadAddress,
+                    UserDetailedAddress: this.frmAddressData.UserDetailedAddress,
+                })
+                .then(response => {
+                    alert('주소 변경이 완료되었습니다.');
+                    // 서버 응답에 대한 로직 수행
+                    // this.$router.push('/board');
+                })
+                .catch(error => {
+                    // 에러 처리
+                    console.error(error);
+                    alert('주소 변경에 실패했습니다.');
+                });
+            } else {
+                // 사용자가 확인 취소를 선택한 경우의 처리
+                console.log('주소 변경이 취소되었습니다.');
+            }
         },
         updateUserbasicData() {
-            axios.put('/userbasicdataupdate', {
-                UserID : this.newUserInfoItems.UserID,
-                UserPhoneNumber: this.UserPhoneNumber,
-            })
-            .then(response => {
-                // console.log(response.data);
-                alert('전화번호 변경이 완료되었습니다.');
-                // this.frmAddressData.UserPostcode.unshift(res.data.UserPostcode);
-                // 서버 응답에 대한 로직 수행
-                // this.$router.push('/board');
-            })
-            .catch(error => {
-                // 에러 처리
-                // console.error(error);
-            });
-        }, 
-        updateUserPasswordData() {
-            axios.put('/userpassworddataupdate', {
-                UserID : this.newUserInfoItems.UserID,
-                UserPassword : this.UserPassword,
-                NewUserPassword: this.NewUserPassword,
-                NewUserPasswordChk: this.NewUserPasswordChk,
-            })
-
-            .then(response => {
-                // console.log(response.data);
-                if(response.data.success) {
+            if (confirm('전화번호를 변경하시겠습니까?')) {
+                axios.put('/userbasicdataupdate', {
+                    UserID: this.newUserInfoItems.UserID,
+                    UserPhoneNumber: this.UserPhoneNumber,
+                })
+                .then(response => {
+                    alert('전화번호 변경이 완료되었습니다.');
+                    // 서버 응답에 대한 로직 수행
+                    // this.$router.push('/board');
+                })
+                .catch(error => {
+                    // 에러 처리
+                    console.error(error);
+                    alert('전화번호 변경에 실패했습니다.');
+                });
+            } else {
+                // 사용자가 확인 취소를 선택한 경우의 처리
+                console.log('전화번호 변경이 취소되었습니다.');
+            }
+        },
+        updateUserPasswordData() {.
+            if (confirm('비밀번호를 변경하시겠습니까?')) {
+                axios.put('/userpassworddataupdate', {
+                    UserID: this.newUserInfoItems.UserID,
+                    UserPassword: this.UserPassword,
+                    NewUserPassword: this.NewUserPassword,
+                    NewUserPasswordChk: this.NewUserPasswordChk,
+                })
+                .then(response => {
+                    if (response.data.success) {
                     alert('비밀번호 변경에 성공하셨습니다.');
                     window.location.reload();
-                } else {
+                    } else {
                     alert('비밀번호 변경에 실패하셨습니다.');
                     window.location.reload();
-                }
-                // this.frmAddressData.UserPostcode.unshift(res.data.UserPostcode);
-                // 서버 응답에 대한 로직 수행
-                // this.$router.push('/board');
-            })
-            .catch(error => {
-                // 에러 처리
-                // console.log(error);
-                alert('비밀번호 변경에 실패하셨습니다.');
-            });
-        },                   
+                    }
+                })
+                .catch(error => {
+                    console.error(error);
+                    alert('비밀번호 변경에 실패하셨습니다.');
+                });
+            } else {
+                // 사용자가 확인 취소를 선택한 경우의 처리
+                console.log('비밀번호 변경이 취소되었습니다.');
+            }
+        },        
         getRelativeTime(updatedAt) {
             const now = new Date();
             const updatedDate = new Date(updatedAt);
