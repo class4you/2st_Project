@@ -37,7 +37,7 @@ class BoardController extends Controller
             $searchTerm = $request->input('search');
             $boardDataQuery->where(function ($query) use ($searchTerm) {
                 $query->orWhere('boards.BoardTitle', 'LIKE', "%{$searchTerm}%")
-                        ->orWhere('boards.BoardComment', 'LIKE', "%{$searchTerm}%");
+                ->orWhere('boards.BoardComment', 'LIKE', "%{$searchTerm}%");
             });
         }
 

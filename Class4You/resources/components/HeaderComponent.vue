@@ -38,7 +38,8 @@
                     </a>
                 </h1>
                 <div v-if="!$store.state.userLoginChk" class="side_nav">
-                    <router-link to="/registration">SIGN UP</router-link>
+                    <!-- <router-link to="/registration">SIGN UP</router-link> -->
+                    <a href="/registration">SIGN UP</a>
                     <a @click="loginOpenModal" style="cursor: pointer;">LOGIN</a>
                     <!-- <div class="search_box">
                         <input type="text" placeholder="SEARCH">
@@ -92,6 +93,7 @@
 <script>
 import { defineComponent } from "vue";
 import { Carousel, Pagination, Slide, Navigation } from "vue3-carousel";
+import Swal from 'sweetalert2';
 
 
 import "vue3-carousel/dist/carousel.css"; 

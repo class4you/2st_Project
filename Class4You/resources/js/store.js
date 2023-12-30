@@ -2,6 +2,7 @@ import { createStore } from 'vuex';
 import axios from 'axios';
 import router from "./router.js"
 import VueCookies from "vue-cookies";
+import Swal from 'sweetalert2';
 
 const store = createStore({
     
@@ -174,22 +175,38 @@ const store = createStore({
                     context.commit('setSaveToLocalStorage', res.data);
                     context.commit('setUserLoginChk', res.data.sessionDataCheck);
                     context.commit('setUserID', res.data.userId);
+                    Swal.fire({
+                        icon: 'success',
+                        title: '로그인 성공',
+                        text: '로그인에 성공했습니다.',
+                        confirmButtonText: '확인'
+                    })
                     // context.commit('setUserLoginChk', {sessionDataCheck:res.data.sessionDataCheck, UserID:res.data.userId});
                     // console.log(res.data.sessionDataCheck)
                     // console.log(res.data)
                     // router.push('/'); 
                 } else if(res.data.success == false) {
-                    alert('이메일 또는 비밀번호를 확인해주세요.');
-                    console.log(err.response.data.errors)
+                    Swal.fire({
+                        icon: 'error',
+                        title: '로그인 실패',
+                        text: '이메일 또는 비밀번호를 확인해주세요.',
+                        confirmButtonText: '확인'
+                    });
+                    // console.log(err.response.data.errors)
                 }
             })
             .catch(err => {
-                alert('이메일 또는 비밀번호를 확인해주세요.');
-                // console.log(err.response.data)
-                // context.commit('setErrorData', err.response.data.errors)
+                // 서버 오류 등의 예외 처리
+                console.error('오류 발생:', err);
+                Swal.fire({
+                    icon: 'error',
+                    title: '로그인 실패',
+                    text: '이메일 또는 비밀번호를 확인해주세요.',
+                    confirmButtonText: '확인'
+                });
             })
             .finally(() => {
-                location.reload();
+                // location.reload();
             })
         },
         logout(context, data) {
@@ -264,9 +281,19 @@ const store = createStore({
             }
 
             if(!data.UserID) {
-                alert('로그인 후 작성해주세요.');
+                Swal.fire({
+                    icon: 'error',
+                    title: '로그인 확인',
+                    text: '로그인 후 작성해주세요.',
+                    confirmButtonText: '확인'
+                });
             } else if(!data.CommentContent) {
-                alert('내용을 입력해주세요.');
+                Swal.fire({
+                    icon: 'error',
+                    title: '내용 확인',
+                    text: '내용을 입력해주세요.',
+                    confirmButtonText: '확인'
+                });
             }
             let frm = new FormData();
             // console.log(data);

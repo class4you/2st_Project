@@ -242,9 +242,9 @@ export default {
                 this.pagination = response.data.boardData.links;
                 this.page = response.data.boardData.current_page;
                 this.pageChk = response.data.boardData.current_page;
+				// console.log(response.data);
 				// console.log(response.data.boardData.links);
 				// console.log(response.data.boardData.current_page);
-				// console.log(response.data);
 				// console.log(response.data.userCntData);
             })
             .catch(error => {
@@ -252,10 +252,14 @@ export default {
             });
     	},
 		hideEmail(email) {
-			const atIndex = email.indexOf('@');
-			const username = email.substring(0, Math.min(4, atIndex));
-			const asterisks = '*'.repeat(atIndex - 4);
-			return username + asterisks;
+			if (email && typeof email === 'string') {
+				const atIndex = email.indexOf('@');
+				const username = email.substring(0, Math.min(4, atIndex));
+				const asterisks = '*'.repeat(atIndex - 4);
+				return username + asterisks;
+			} else {
+				return ''; // 또는 다른 기본값을 반환할 수 있습니다.
+			}
 		},
 		// boardSearch() {
 		// 	axios.get('/search', {

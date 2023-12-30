@@ -126,6 +126,7 @@ Route::middleware('checkUserId')->get('/getmypagedashboard', [MyPageController::
 Route::middleware('my.user.validation')->put('/useraddressdataupdate', [MyPageController::class, 'putUserAddressData']);
 Route::middleware('my.user.validation')->put('/userbasicdataupdate', [MyPageController::class, 'putUserbasicData']);
 Route::middleware('my.user.validation')->put('/userpassworddataupdate', [MyPageController::class, 'putUserpasswordData']);
+Route::delete('/deleteduserdata', [MyPageController::class, 'deleteUserpasswordData']);
 
 
 

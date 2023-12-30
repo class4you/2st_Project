@@ -911,7 +911,7 @@ export default {
 				Swal.fire({
 					icon: 'error',
 					title: '에러',
-					text: '별점을 체크해주세요!',
+					text: '내용 및 별점을 체크해주세요!',
 				});
             })
 		},
@@ -1005,7 +1005,7 @@ export default {
 				// 사용자가 확인 취소를 선택한 경우의 처리
 				// console.log('삭제가 취소되었습니다.');
 				}
-		});
+			});
 		},
 
 		postEnrollApp() {

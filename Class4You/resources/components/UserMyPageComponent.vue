@@ -287,15 +287,15 @@
                         <div class="users_basic_password_box">
                             <div class="users_basic_password_cover">
                                 <div class="users_basic_password_title">
-                                    <span class="users_password_titel">비밀번호</span>
-                                    <input class="users_password_input" type="password" placeholder="비밀번호를 입력하세요">
+                                    <span class="users_password_titel" >비밀번호</span>
+                                    <input class="users_password_input" type="password" placeholder="비밀번호를 입력하세요" v-model="deletedPassword">
                                     <span class="users_password_titel">비밀번호 확인</span>
-                                    <input class="users_password_input" type="password" placeholder="비밀번호를 입력하세요">
+                                    <input class="users_password_input" type="password" placeholder="비밀번호를 입력하세요" v-model="deletedPasswordChk">
                                 </div>
                             </div>
                         </div>
                         <!-- <button type="button" class="users_password_button" style="margin-right: 50px;">비밀번호 확인</button>          -->
-                        <button type="button" class="users_password_button">탈퇴하기</button>
+                        <button type="button" class="users_password_button" @click="deleteUserData()">탈퇴하기</button>
                     </div>
                 </div>
             </div>
@@ -569,6 +569,9 @@ export default {
             totalChaptersCount: 0,
             percentageFlaggedChapters: 0,
             recentClassInfoData: {},
+
+            deletedPassword: '',
+            deletedPasswordChk: '',
 
 
         }
@@ -971,6 +974,69 @@ export default {
                 return '방금 전';
             }
         },
+        deleteUserData() {
+            if(this.deletedPassword.trim() === '' && this.deletedPasswordChk.trim() === '') {
+                Swal.fire({
+                    title: '비밀번호 미입력',
+                    text: '비밀번호를 입력해주세요.',
+                    icon: 'error',
+                })
+            } else if(this.deletedPassword == this.deletedPasswordChk) {
+                Swal.fire({
+                    title: '회원 탈퇴',
+                    text: '정말로 탈퇴하시겠습니까?',
+                    icon: 'question',
+                    showCancelButton: true,
+                    confirmButtonColor: '#d33',
+                    cancelButtonColor: '#3085d6',
+                    confirmButtonText: '삭제',
+                    cancelButtonText: '취소',
+                    input: 'password', // 비밀번호 입력란 추가
+                    inputPlaceholder: '비밀번호를 한번 더 입력하세요',
+                    inputAttributes: {
+                        autocapitalize: 'off'
+                    },
+                    inputValidator: (value) => {
+                        // 비밀번호 확인 로직
+                        if (!value) {
+                            return '비밀번호를 입력하세요';
+                        } 
+                    }
+                    }).then((result) => {
+                    if (result.isConfirmed) {
+                        axios.delete('/deleteduserdata', {
+                            params: {
+                                UserID: this.newUserInfoItems.UserID,
+                                deletedPassword: this.deletedPassword,
+                                deletedPasswordChk: this.deletedPasswordChk,
+                                deletedPasswordChk2: result.value,
+                            }
+                        })
+                        .then(res => {
+                            // console.log(res.data);
+                        })
+                        .catch(err => {
+                        // 오류 처리
+                        // console.log(err.response.data.errors);
+                        Swal.fire({
+                            icon: 'error',
+                            title: '에러',
+                            text: '삭제에 실패했습니다.',
+                        });
+                        });
+                    } else {
+
+                    }
+                });
+            } else {
+                Swal.fire({
+                    title: '비밀번호 불일치',
+                    text: '비밀번호를 혹인해주세요.',
+                    icon: 'error',
+                });
+            }
+			
+		},
     }
 }
 </script>
