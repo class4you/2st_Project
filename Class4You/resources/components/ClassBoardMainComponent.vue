@@ -208,13 +208,13 @@ export default {
             // 언어 값을 사용하여 API에 요청을 보냄
             axios.get(`/classBoardMain/${this.ClassLanguageName}`)
             .then(response => {
+                // console.log(response.data)
                 // 받아온 데이터를 컴포넌트의 상태에 설정
                 this.classInfo1 = response.data.classInfo1;
                 this.classInfo2 = response.data.classInfo2;
                 this.classInfo3 = response.data.classInfo3;
                 this.classInfo4 = response.data.classInfo4;
                 this.msg2 = response.data.msg2;
-                // console.log(response.data)
                 // 나머지 데이터도 설정
             })
             .catch(error => {

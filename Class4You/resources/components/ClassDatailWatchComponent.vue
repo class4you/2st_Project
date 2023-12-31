@@ -44,7 +44,7 @@
                 <div class="class_datail_watch_side_title_box">
                     <div class="class_datail_watch_side_title">
                         <h3>스스로 키우는 PHP 문법</h3>
-                        <p>진도율 :</p>
+                        <p>진도율 : {{ notCompletedChapters }}강 / {{ completedChapters }}강</p>
                         <progress class="class_datail_watch_progress_bar_progress" :value="classProgressData"  min="0" max="100" id="progress"></progress>
                         <!-- <div class="class_datail_watch_progress_bar_cover">
                             <div role="progressbar" aria-valuemax="100" aria-valuemin="0" :aria-valuenow="classProgressData" aria-label="진도율" class="class_datail_watchs_progress_bar"></div>
@@ -112,6 +112,9 @@ export default {
             LessonFlg: 0,
             classProgressData: '',
 
+            notCompletedChapters: 0,
+            completedChapters: 0,
+
         }
     },
 
@@ -131,11 +134,13 @@ export default {
 		axios.get('/classwatchview/' + this.ClassID)
 			.then(response => {
 			// API 응답에 대한 로직 수행
-			// console.log(response.data);
+			console.log(response.data);
                 this.ClassDataItem = response.data.classData;
                 this.ChapterDataItem = response.data.chapterData;
                 this.LessonDataItem = response.data.lessonData;
                 this.classProgressData = response.data.classProgressData;
+                this.notCompletedChapters = response.data.completedChapters;
+                this.completedChapters = response.data.totalChapters;
 
                 const firstChapterId = Object.keys(response.data.lessonData)[0];
                 const firstChapterLessons = response.data.lessonData[firstChapterId];

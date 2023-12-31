@@ -20117,7 +20117,9 @@ __webpack_require__.r(__webpack_exports__);
       LessonRunningTime: 0,
       LessonProgress: 0,
       LessonFlg: 0,
-      classProgressData: ''
+      classProgressData: '',
+      notCompletedChapters: 0,
+      completedChapters: 0
     };
   },
   beforeDestroy: function beforeDestroy() {
@@ -20134,11 +20136,13 @@ __webpack_require__.r(__webpack_exports__);
       // 예시: API를 호출하여 데이터를 가져옴\
       axios.get('/classwatchview/' + this.ClassID).then(function (response) {
         // API 응답에 대한 로직 수행
-        // console.log(response.data);
+        console.log(response.data);
         _this.ClassDataItem = response.data.classData;
         _this.ChapterDataItem = response.data.chapterData;
         _this.LessonDataItem = response.data.lessonData;
         _this.classProgressData = response.data.classProgressData;
+        _this.notCompletedChapters = response.data.completedChapters;
+        _this.completedChapters = response.data.totalChapters;
         var firstChapterId = Object.keys(response.data.lessonData)[0];
         var firstChapterLessons = response.data.lessonData[firstChapterId];
         if (firstChapterLessons && firstChapterLessons.length > 0) {
@@ -20966,7 +20970,7 @@ __webpack_require__.r(__webpack_exports__);
           yearEnd: this.yearEnd
         }
       }).then(function (response) {
-        // console.log(response.data);
+        console.log(response.data);
         // console.log(response.data.userData);
         // console.log(response.data.ClassData);
         _this.newUserInfoItems = response.data.userData;
@@ -23078,26 +23082,25 @@ var _hoisted_12 = {
   "class": "class_datail_watch_side_title"
 };
 var _hoisted_13 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", null, "스스로 키우는 PHP 문법", -1 /* HOISTED */);
-var _hoisted_14 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, "진도율 :", -1 /* HOISTED */);
-var _hoisted_15 = ["value"];
-var _hoisted_16 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("hr", null, null, -1 /* HOISTED */);
-var _hoisted_17 = {
+var _hoisted_14 = ["value"];
+var _hoisted_15 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("hr", null, null, -1 /* HOISTED */);
+var _hoisted_16 = {
   "class": "class_datail_watch_side_content"
 };
-var _hoisted_18 = {
+var _hoisted_17 = {
   "class": "class_side_content_curriculum"
 };
-var _hoisted_19 = {
+var _hoisted_18 = {
   "class": "side_content_curriculum_title"
 };
-var _hoisted_20 = {
+var _hoisted_19 = {
   "class": "side_curriculum_top"
 };
-var _hoisted_21 = ["onClick"];
-var _hoisted_22 = {
+var _hoisted_20 = ["onClick"];
+var _hoisted_21 = {
   "class": "side_content_curriculum_top"
 };
-var _hoisted_23 = {
+var _hoisted_22 = {
   "class": "side_content_curriculum_buttom"
 };
 function render(_ctx, _cache, $props, $setup, $data, $options) {
@@ -23114,16 +23117,16 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     onClick: _cache[1] || (_cache[1] = function () {
       return $options.goToNextLesson && $options.goToNextLesson.apply($options, arguments);
     })
-  }, "다음강의")])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" 탭 UI 될부분 "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_9, [_hoisted_10, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_11, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_12, [_hoisted_13, _hoisted_14, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("progress", {
+  }, "다음강의")])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" 탭 UI 될부분 "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_9, [_hoisted_10, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_11, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_12, [_hoisted_13, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, "진도율 : " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.notCompletedChapters) + "강 / " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.completedChapters) + "강", 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("progress", {
     "class": "class_datail_watch_progress_bar_progress",
     value: $data.classProgressData,
     min: "0",
     max: "100",
     id: "progress"
-  }, null, 8 /* PROPS */, _hoisted_15), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <div class=\"class_datail_watch_progress_bar_cover\">\r\n                            <div role=\"progressbar\" aria-valuemax=\"100\" aria-valuemin=\"0\" :aria-valuenow=\"classProgressData\" aria-label=\"진도율\" class=\"class_datail_watchs_progress_bar\"></div>\r\n                        </div> ")])]), _hoisted_16, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_17, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_18, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.ChapterDataItem, function (chapter, chapterIndex) {
+  }, null, 8 /* PROPS */, _hoisted_14), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <div class=\"class_datail_watch_progress_bar_cover\">\r\n                            <div role=\"progressbar\" aria-valuemax=\"100\" aria-valuemin=\"0\" :aria-valuenow=\"classProgressData\" aria-label=\"진도율\" class=\"class_datail_watchs_progress_bar\"></div>\r\n                        </div> ")])]), _hoisted_15, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_16, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_17, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.ChapterDataItem, function (chapter, chapterIndex) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
       key: chapter.ChapterID
-    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("details", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("summary", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_19, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_20, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(chapter.ChapterTitle), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <p>시간</p> ")]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <div class=\"side_curriculum_bottom\">\r\n                                        <p>{{ chapter.ChapterTitle }}</p>\r\n                                    </div> ")])]), ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.LessonDataItem[chapter.ChapterID], function (lesson) {
+    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("details", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("summary", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_18, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_19, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(chapter.ChapterTitle), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <p>시간</p> ")]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <div class=\"side_curriculum_bottom\">\r\n                                        <p>{{ chapter.ChapterTitle }}</p>\r\n                                    </div> ")])]), ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.LessonDataItem[chapter.ChapterID], function (lesson) {
       return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
         key: lesson.LessonID,
         "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)({
@@ -23133,7 +23136,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         onClick: function onClick($event) {
           return $options.selectLesson(lesson);
         }
-      }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_22, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(lesson.LessonTitle), 1 /* TEXT */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_23, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(lesson.LessonContent), 1 /* TEXT */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <div class=\"side_content_curriculum_bottom\">\r\n                                        <p>아이콘</p>\r\n                                        <p>10분</p>\r\n                                    </div> ")], 10 /* CLASS, PROPS */, _hoisted_21);
+      }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_21, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(lesson.LessonTitle), 1 /* TEXT */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_22, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(lesson.LessonContent), 1 /* TEXT */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <div class=\"side_content_curriculum_bottom\">\r\n                                        <p>아이콘</p>\r\n                                        <p>10분</p>\r\n                                    </div> ")], 10 /* CLASS, PROPS */, _hoisted_20);
     }), 128 /* KEYED_FRAGMENT */))])]);
   }), 128 /* KEYED_FRAGMENT */))])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" 다른페이지 만들기 애매해서 주석처리 ")])])], 2112 /* STABLE_FRAGMENT, DEV_ROOT_FRAGMENT */);
 }

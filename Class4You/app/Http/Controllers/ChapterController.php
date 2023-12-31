@@ -19,11 +19,17 @@ class ChapterController extends Controller
         $completedChapters = Chapter::where('ClassID', $ClassID)
         ->where('ChapterFlg', 1)
         ->count();
+
+        // $completedChapters = Chapter::where('ClassID', $ClassID)
+        // ->where('ChapterFlg', 0)
+        // ->count();
     
-        // Calculate total chapters
         $totalChapters = Chapter::where('ClassID', $ClassID)->count();
+
+
+        // Log::debug($completedChapters);
+        // Log::debug($totalChapters);
         
-        // Calculate completed lessons
         $completedLessons = Lesson::whereIn('ChapterID', function ($query) use ($ClassID) {
             $query->select('ChapterID')
                 ->from('chapters')
@@ -31,22 +37,19 @@ class ChapterController extends Controller
                 ->where('ChapterFlg', 1);
         })->where('LessonFlg', 1)->count();
         
-        // Calculate total lessons
         $totalLessons = Lesson::whereIn('ChapterID', function ($query) use ($ClassID) {
             $query->select('ChapterID')
                 ->from('chapters')
                 ->where('ClassID', $ClassID);
         })->count();
         
-        // Calculate class progress
         if ($totalChapters > 0 && $totalLessons > 0) {
             $classProgress = (($completedChapters + $completedLessons) / ($totalChapters + $totalLessons)) * 100;
         } else {
-            // Handle the case where there are no chapters or lessons in the class
             $classProgress = 0;
         }
         
-        Log::debug($classProgress);
+        // Log::debug($classProgress);
 
         $classData = Classinfo::where('ClassID', $ClassID)
             ->first();
@@ -65,6 +68,8 @@ class ChapterController extends Controller
             'chapterData' => $chapterData,
             'lessonData' => $allLessonData,
             'classProgressData' => $classProgress,
+            'totalChapters' => $totalChapters,
+            'completedChapters' =>$completedChapters
         ]);
 
         // $lessonData = Lesson::
