@@ -68,6 +68,7 @@ class BoardController extends Controller
         $userCntData = User::select('users.UserEmail', DB::raw('count(*) as cnt'))
             ->join('comments', 'users.UserID', 'comments.UserID')
             ->groupBy('users.UserEmail')
+            ->orderBy('cnt', 'desc')
             ->limit(5)
             ->get();
 
