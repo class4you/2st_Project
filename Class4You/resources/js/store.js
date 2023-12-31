@@ -210,32 +210,31 @@ const store = createStore({
             })
         },
         logout(context, data) {
-            const url = '/logout'
+            const url = '/logout';
             const header = {
                 headers: {
                     "Content-Type": 'application/json',
-                    // 'X-CSRF-TOKEN': document.head.querySelector('meta[name="csrf-token"]').content,
                 },
-            }
+            };
+        
             axios.get(url, header)
             .then(res => {
-                // 쿠키 삭제
-                // console.log(res.data)
                 context.commit('setUserLoginChk', res.data.sessionDataCheck);
                 localStorage.clear();
+                
                 Swal.fire({
                     icon: 'success',
                     title: '로그아웃 성공',
                     text: '로그아웃에 성공했습니다.',
                     confirmButtonText: '확인'
-                })
-                // router.push('/'); 
-                // window.location.href = '/';
+                }).then(() => {
+                    // 확인 버튼을 눌렀을 때 실행할 코드
+                    location.reload();
+                });
             })
-            .catch(err => console.log(err.response.data))
-            .finally(() => {
-                location.reload();
-            })
+            .catch(err => {
+                console.log(err.response.data);
+            });
         },
         checkWindowWidth(context) {
             // 특정 크기 이상이면 캐러셀을 표시

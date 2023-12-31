@@ -1025,7 +1025,11 @@ export default {
             .then(res => { 
                 // console.log(res.data);
 				this.EnrollChk = true;
-				alert(res.data.message);
+				Swal.fire({
+					icon: 'success',
+					title: '완료',
+					text: '수강 신청에 성공하셨습니다.',
+				});
                 // window.location.reload();
             })
             .catch(err => {

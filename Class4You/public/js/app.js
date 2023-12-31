@@ -20070,7 +20070,11 @@ __webpack_require__.r(__webpack_exports__);
       }).then(function (res) {
         // console.log(res.data);
         _this4.EnrollChk = true;
-        alert(res.data.message);
+        sweetalert2__WEBPACK_IMPORTED_MODULE_2___default().fire({
+          icon: 'success',
+          title: '완료',
+          text: '수강 신청에 성공하셨습니다.'
+        });
         // window.location.reload();
       })["catch"](function (err) {
         // console.log(err.response.data.errors)
@@ -20970,7 +20974,7 @@ __webpack_require__.r(__webpack_exports__);
           yearEnd: this.yearEnd
         }
       }).then(function (response) {
-        console.log(response.data);
+        // console.log(response.data);
         // console.log(response.data.userData);
         // console.log(response.data.ClassData);
         _this.newUserInfoItems = response.data.userData;
@@ -25195,12 +25199,9 @@ var store = (0,vuex__WEBPACK_IMPORTED_MODULE_4__.createStore)({
       var header = {
         headers: {
           "Content-Type": 'application/json'
-          // 'X-CSRF-TOKEN': document.head.querySelector('meta[name="csrf-token"]').content,
         }
       };
       axios__WEBPACK_IMPORTED_MODULE_0___default().get(url, header).then(function (res) {
-        // 쿠키 삭제
-        // console.log(res.data)
         context.commit('setUserLoginChk', res.data.sessionDataCheck);
         localStorage.clear();
         sweetalert2__WEBPACK_IMPORTED_MODULE_3___default().fire({
@@ -25208,13 +25209,12 @@ var store = (0,vuex__WEBPACK_IMPORTED_MODULE_4__.createStore)({
           title: '로그아웃 성공',
           text: '로그아웃에 성공했습니다.',
           confirmButtonText: '확인'
+        }).then(function () {
+          // 확인 버튼을 눌렀을 때 실행할 코드
+          location.reload();
         });
-        // router.push('/'); 
-        // window.location.href = '/';
       })["catch"](function (err) {
-        return console.log(err.response.data);
-      })["finally"](function () {
-        location.reload();
+        console.log(err.response.data);
       });
     },
     checkWindowWidth: function checkWindowWidth(context) {
