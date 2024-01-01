@@ -173,6 +173,7 @@ export default {
             console.error('Error fetching data:', error);
             });
         },
+        // 이메일 변환 함수
         hideEmail(email) {
 			const atIndex = email.indexOf('@');
 			const username = email.substring(0, Math.min(4, atIndex));
@@ -186,6 +187,7 @@ export default {
         },
 
         // 댓글 삭제 불러오기
+        // sweetalert2을 이용한 알러트 출력 방법
         deleteCommentData(data) {
                 Swal.fire({
                 title: '정말로 삭제하시겠습니까?',
@@ -197,6 +199,7 @@ export default {
                 confirmButtonText: '삭제',
                 cancelButtonText: '취소'
             }).then((result) => {
+                // 알러트의 확인 버트을 눌러야 아래 if문이 true갑으로 실행된다
                 if (result.isConfirmed) {
                 this.$store.dispatch('deleteCommentData', data);
                 }

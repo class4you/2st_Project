@@ -203,6 +203,7 @@ export default {
             newClassItems: [],
             // hot_banners: ['/img/hot_banner/hot_banner_1.png', '/img/hot_banner/hot_banner_2.png', '/img/hot_banner/hot_banner_3.png', '/img/hot_banner/hot_banner_4.png', '/img/hot_banner/hot_banner_5.png', '/img/hot_banner/hot_banner_6.png', '/img/hot_banner/hot_banner_7.png' , '/img/hot_banner/hot_banner_8.png'],
             
+            // 배너 데이터 바인딩
             hot_banners: [
                 { url: ['/classboarddetail/5'], img: ['/img/hot_banner/hot_banner_1.png']},
                 { url: ['/classboarddetail/5'], img: ['/img/hot_banner/hot_banner_2.png']},
@@ -216,6 +217,7 @@ export default {
             
             // guide_banners: ['/img/guide/html.png', '/img/guide/css.png', '/img/guide/js.png', '/img/guide/php.png', '/img/guide/java.png', '/img/guide/db.png', '/img/guide/jira.png', '/img/guide/figma.png',],
 
+            // 가이드 배너 데이터 바인딩
             guide_banners: [
                 { url: ['/classBoard/HTML'], img: ['/img/guide/html.png']},
                 { url: ['/classBoard/CSS'], img: ['/img/guide/css.png']},
@@ -242,6 +244,7 @@ export default {
     mounted() {
         this.fetchData();
         this.checkWindowWidth();
+        // 윈도우 크기에 따라서 캐러셀 적용
         window.addEventListener('resize', this.checkWindowWidth);
     },
     beforeDestroy() {

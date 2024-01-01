@@ -617,7 +617,7 @@ export default {
                 }
             })
             .then(response => {
-                // console.log(response.data);
+                console.log(response.data);
                 // console.log(response.data.userData);
                 // console.log(response.data.ClassData);
                 this.newUserInfoItems = response.data.userData;
@@ -771,7 +771,7 @@ export default {
                 this.yearStart = `${this.selectedYear}0101`;
 		        this.yearEnd = `${this.selectedYear}1231`;
                 this.fetchData();
-            }
+            } 
 	    },
         monthcalculateTotals() {
             this.monthTotalClassCount = Object.values(this.monthlyStats)

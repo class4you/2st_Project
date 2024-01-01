@@ -9,6 +9,7 @@
                         <!-- <div>{{ClassDataItem.ClassTitle}}</div> -->
                         <!-- <div>전체 진도율</div> -->
                         <a>{{ClassDataItem.ClassTitle}}</a>
+                        <!-- {{ selectedLesson }} -->
                         <button>수강평 작성</button>
                     </div>
                 </div>
@@ -120,7 +121,7 @@ export default {
 
     
     beforeDestroy() {
-        // 컴포넌트가 파괴되기 전에 호출되는 훅
+        // 컴포넌트가 파괴되기 전(페이지 종료 시점)에 호출되는 훅
         this.saveLessonProgress();
     },
 
@@ -129,8 +130,6 @@ export default {
         //     event.preventDefault();
         // },
         fetchData() {
-		// 여기에서 정보를 추가로 조회하는 로직을 구현
-		// 예시: API를 호출하여 데이터를 가져옴\
 		axios.get('/classwatchview/' + this.ClassID)
 			.then(response => {
 			// API 응답에 대한 로직 수행
@@ -142,14 +141,18 @@ export default {
                 this.notCompletedChapters = response.data.completedChapters;
                 this.completedChapters = response.data.totalChapters;
 
+                // 리슨 데이터의 객체에서 첫번째 챕터 ID값을 가져와서 변수에 저장
                 const firstChapterId = Object.keys(response.data.lessonData)[0];
+                // 저장한 ID값을 리슨 데이터 배열에 넣어서 첫번쨰 데이터를 가져옴
                 const firstChapterLessons = response.data.lessonData[firstChapterId];
 
+                // 처번째 레슨값이 있는지 그리고 0보다 큰지를 확인함
                 if (firstChapterLessons && firstChapterLessons.length > 0) {
+                    // 첫번째 비디오 아이디 값을 불러와서 변수에 저장
                     const firstLessonVideoId = firstChapterLessons[0].LessonVideoID;
                     // console.log(firstLessonVideoId);
+                    // 해당 값을 변수에 저장
                     this.videoId = firstLessonVideoId;
-                    // 여기에서 필요한 작업 수행
                 }
                 // console.log(response.data.lessonData);
                 // this.videoId = response.data.lessonData
@@ -160,18 +163,22 @@ export default {
 			});
 		},
         selectChapter(chapterID) {
+            // 선택된 챕터를 업데이트하고 선택된 레슨 초기화
             this.selectedChapter = chapterID;
             this.selectedLesson = null;
         },
         selectLesson(lessonID) {
+            // 선택된 레슨을 업데이트하고 해당 레슨의 비디오 ID를 사용하여 videoId를 설정
             this.selectedLesson = lessonID;
             // console.log(this.selectedLesson.LessonVideoID);
             this.videoId = this.selectedLesson.LessonVideoID;
         },
         getLessonVideo(lessonID) {
+            // lessonID에 해당하는 레슨의 비디오 ID 반환 (현재 사용 X)
             return this.lessonDataItem.lessonVideoID
         },
         isSelectedLesson(lesson) {
+            // 현재 선택된 레슨인지 확인하는 메서드
             return this.selectedLesson === lesson;
         },
 
@@ -192,13 +199,13 @@ export default {
         });
         },
         onPlayerReady(event) {
-            // 동영상이 준비되면 추가 작업 수행
-            // console.log('영상 시작');
+            // YouTube Player가 준비되면 호출되는 콜백
             this.LessonAllRunningTime = this.player.getDuration();
             // console.log(this.player);
         },
         getCurrentTime() {
-            // YouTube API의 getCurrentTime() 메서드를 사용하여 동영상의 현재 위치(시간)를 가져옴
+            // YouTube API의 getCurrentTime() 메서드를 사용하여 현재 동영상 위치와 진행도 계산
+            // 주기적으로 호출되어 동영상의 현재 위치를 업데이트
             if (this.player) {
                 this.currentTime = this.player.getCurrentTime();
                 this.LessonRunningTime = this.currentTime;
@@ -213,7 +220,10 @@ export default {
             }
         },
         onPlayerStateChange(event) {
-            // 동영상 상태 변경 이벤트 처리
+            // YouTube Player의 상태 변경 이벤트 처리
+            // 동영상이 종료되면 handleVideoCompletion() 호출
+            // 동영상이 재생 중이면 getCurrentTime()을 주기적으로 호출하여 동영상 위치 업데이트
+            // 동영상이 일시 정지되면 saveLessonProgress() 호출 및 갱신 중지
             if (event.data === window.YT.PlayerState.ENDED) {
                 // 동영상이 종료되면 완료 체크 수행
                 this.handleVideoCompletion();
@@ -235,7 +245,8 @@ export default {
             // console.log('영상 끝');
         },
         saveLessonProgress() {
-            // 예시: Axios를 사용하여 서버에 데이터 업데이트 (PUT 요청)
+            // 서버에 레슨 진행 상태를 업데이트하는 메서드 (Axios를 사용하여 PUT 요청)
+            // 필요한 데이터를 서버에 보내어 레슨 진행 상태 저장
             axios.put('/lessonprogress', {
                 lessonAllRunningTime: this.LessonAllRunningTime,
                 lessonRunningTime: this.LessonRunningTime,
@@ -254,58 +265,50 @@ export default {
             });
         },
         goToNextLesson() {
-        if (this.selectedLesson !== null) {
-                const allLessons = Object.values(this.LessonDataItem).flat();
-                const currentIndex = allLessons.findIndex(lesson => lesson.LessonID === this.selectedLesson);
+            // 다음 레슨으로 이동하는 메서드
+            const allLessons = Object.values(this.LessonDataItem).flat();
+            console.log(allLessons.length);
+            const currentIndex = allLessons.findIndex(lesson => lesson.LessonID == this.selectedLesson);
+            console.log(currentIndex);
 
-                if (currentIndex !== -1 && currentIndex < allLessons.length - 1) {
+            if(currentIndex < allLessons.length - 1) {
+                
                 // 현재 리슨이 배열의 범위 내에 있고, 다음 리슨이 있다면
                 const nextLesson = allLessons[currentIndex + 1];
-
+                console.log(nextLesson);
                 // 다음 리슨으로 전환
                 this.selectedLesson = nextLesson.LessonID;
-                this.videoId = nextLesson.LessonVideoID;
+                this.videoId = nextLesson.LessonVideoID;    
 
                 // YouTube 플레이어 초기화
                 this.player.destroy();
                 this.initYoutubePlayer();
-                } else {
-                // console.log('더 이상 다음 강의가 없습니다.');
-                alert('더 이상 다음 강의가 없습니다.');
-                }
             } else {
-                // console.log('선택된 리슨이 없습니다.');
-                alert('선택된 리슨이 없습니다.');
+                alert('다음 영상이 없습니다.');
             }
         },
         goToPreviousLesson() {
-        if (this.selectedLesson !== null) {
-                const allLessons = Object.values(this.LessonDataItem).flat();
-                const currentIndex = allLessons.findIndex(lesson => lesson.LessonID === this.selectedLesson);
 
-                if (currentIndex !== -1 && currentIndex > 0) {
-                // 현재 리슨이 배열의 첫 번째보다 더 앞에 있고, 이전 리슨이 있다면
-                const previousLesson = allLessons[currentIndex - 1];
+            const allLessons = Object.values(this.LessonDataItem).flat();
+            console.log(allLessons.length);
+            const currentIndex = allLessons.findIndex(lesson => lesson.LessonID === this.selectedLesson);
+            console.log(currentIndex);
 
-                // 이전 리슨으로 전환
-                this.selectedLesson = previousLesson.LessonID;
-                this.videoId = previousLesson.LessonVideoID;
+            // 현재 리슨이 배열의 첫 번째보다 더 앞에 있고, 이전 리슨이 있다면
+            const previousLesson = allLessons[currentIndex - 1];
 
-                // YouTube 플레이어 초기화
-                this.player.destroy();
-                this.initYoutubePlayer();
-                } else {
-                // console.log('더 이상 이전 강의가 없습니다.');
-                alert('더 이상 이전 강의가 없습니다.');
-                }
-            } else {
-                // console.log('선택된 리슨이 없습니다.');
-                alert('선택된 리슨이 없습니다.');
-            }
+            // 이전 리슨으로 전환
+            this.selectedLesson = previousLesson.LessonID;
+            this.videoId = previousLesson.LessonVideoID;
+
+            // YouTube 플레이어 초기화
+            this.player.destroy();
+            this.initYoutubePlayer();
         },
     },
     
     mounted() {
+        // 컴포넌트가 마운트되면 fetchData() 및 initYoutubePlayer() 호출
         this.fetchData();
             if (window.YT && window.YT.Player) {
             this.initYoutubePlayer();

@@ -512,11 +512,11 @@ export default {
                 extraRoadAddr = ' (' + extraRoadAddr + ')';
             }
 
-            // 주소 정보를 컴포넌트 데이터에 저장
-            this.sampleData = {
-                postcode: data.zonecode,
-                roadAddress: roadAddr,
-            };
+            // // 주소 정보를 컴포넌트 데이터에 저장
+            // this.sampleData = {
+            //     postcode: data.zonecode,
+            //     roadAddress: roadAddr,
+            // };
 
             this.frmUserAddressData = {
                 UserPostcode: data.zonecode,

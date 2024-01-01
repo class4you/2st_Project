@@ -19427,6 +19427,7 @@ __webpack_require__.r(__webpack_exports__);
     this.fetchData();
   },
   methods: {
+    // 해당 함수가 실행 될때 파라미터를 보냄, 엑시오스 처리할 때 파라미터를 포함해서 라우터로 보냄
     fetchData: function fetchData() {
       var _this = this;
       var page = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1;
@@ -19448,13 +19449,14 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     hideEmail: function hideEmail(email) {
+      // 백앤드에서 이메일 형식으로 온 값을 도메인 부분은 제거하고 뒤에 4자리는 *ㄹ 표시함
       if (email && typeof email === 'string') {
         var atIndex = email.indexOf('@');
         var username = email.substring(0, Math.min(4, atIndex));
         var asterisks = '*'.repeat(atIndex - 4);
         return username + asterisks;
       } else {
-        return ''; // 또는 다른 기본값을 반환할 수 있습니다.
+        return ''; // 예외 경우에 처리할 값을 적어주면됨
       }
     },
     // boardSearch() {
@@ -19472,6 +19474,7 @@ __webpack_require__.r(__webpack_exports__);
     // 	console.error(error);
     // });
     // }
+    // 컨트롤러에서 페이징 처리해서 보낼 때 이전버튼과 다음 버튼이 HTML의 엔티티 코드로 넘어오기 때문에 해당 코드를 변환해주기 위한 함수
     replaceString: function replaceString(str) {
       var arrList = {
         '&laquo;': '≪',
@@ -19549,6 +19552,7 @@ __webpack_require__.r(__webpack_exports__);
         console.error('Error fetching data:', error);
       });
     },
+    // 이메일 변환 함수
     hideEmail: function hideEmail(email) {
       var atIndex = email.indexOf('@');
       var username = email.substring(0, Math.min(4, atIndex));
@@ -19560,6 +19564,7 @@ __webpack_require__.r(__webpack_exports__);
       this.$store.dispatch('submitCommentData', this.frmCommentData);
     },
     // 댓글 삭제 불러오기
+    // sweetalert2을 이용한 알러트 출력 방법
     deleteCommentData: function deleteCommentData(data) {
       var _this2 = this;
       sweetalert2__WEBPACK_IMPORTED_MODULE_0___default().fire({
@@ -19572,6 +19577,7 @@ __webpack_require__.r(__webpack_exports__);
         confirmButtonText: '삭제',
         cancelButtonText: '취소'
       }).then(function (result) {
+        // 알러트의 확인 버트을 눌러야 아래 if문이 true갑으로 실행된다
         if (result.isConfirmed) {
           _this2.$store.dispatch('deleteCommentData', data);
         }
@@ -20127,7 +20133,7 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   beforeDestroy: function beforeDestroy() {
-    // 컴포넌트가 파괴되기 전에 호출되는 훅
+    // 컴포넌트가 파괴되기 전(페이지 종료 시점)에 호출되는 훅
     this.saveLessonProgress();
   },
   methods: {
@@ -20136,8 +20142,6 @@ __webpack_require__.r(__webpack_exports__);
     // },
     fetchData: function fetchData() {
       var _this = this;
-      // 여기에서 정보를 추가로 조회하는 로직을 구현
-      // 예시: API를 호출하여 데이터를 가져옴\
       axios.get('/classwatchview/' + this.ClassID).then(function (response) {
         // API 응답에 대한 로직 수행
         console.log(response.data);
@@ -20147,13 +20151,19 @@ __webpack_require__.r(__webpack_exports__);
         _this.classProgressData = response.data.classProgressData;
         _this.notCompletedChapters = response.data.completedChapters;
         _this.completedChapters = response.data.totalChapters;
+
+        // 리슨 데이터의 객체에서 첫번째 챕터 ID값을 가져와서 변수에 저장
         var firstChapterId = Object.keys(response.data.lessonData)[0];
+        // 저장한 ID값을 리슨 데이터 배열에 넣어서 첫번쨰 데이터를 가져옴
         var firstChapterLessons = response.data.lessonData[firstChapterId];
+
+        // 처번째 레슨값이 있는지 그리고 0보다 큰지를 확인함
         if (firstChapterLessons && firstChapterLessons.length > 0) {
+          // 첫번째 비디오 아이디 값을 불러와서 변수에 저장
           var firstLessonVideoId = firstChapterLessons[0].LessonVideoID;
           // console.log(firstLessonVideoId);
+          // 해당 값을 변수에 저장
           _this.videoId = firstLessonVideoId;
-          // 여기에서 필요한 작업 수행
         }
         // console.log(response.data.lessonData);
         // this.videoId = response.data.lessonData
@@ -20163,18 +20173,22 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     selectChapter: function selectChapter(chapterID) {
+      // 선택된 챕터를 업데이트하고 선택된 레슨 초기화
       this.selectedChapter = chapterID;
       this.selectedLesson = null;
     },
     selectLesson: function selectLesson(lessonID) {
+      // 선택된 레슨을 업데이트하고 해당 레슨의 비디오 ID를 사용하여 videoId를 설정
       this.selectedLesson = lessonID;
       // console.log(this.selectedLesson.LessonVideoID);
       this.videoId = this.selectedLesson.LessonVideoID;
     },
     getLessonVideo: function getLessonVideo(lessonID) {
+      // lessonID에 해당하는 레슨의 비디오 ID 반환 (현재 사용 X)
       return this.lessonDataItem.lessonVideoID;
     },
     isSelectedLesson: function isSelectedLesson(lesson) {
+      // 현재 선택된 레슨인지 확인하는 메서드
       return this.selectedLesson === lesson;
     },
     initYoutubePlayer: function initYoutubePlayer() {
@@ -20195,13 +20209,13 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     onPlayerReady: function onPlayerReady(event) {
-      // 동영상이 준비되면 추가 작업 수행
-      // console.log('영상 시작');
+      // YouTube Player가 준비되면 호출되는 콜백
       this.LessonAllRunningTime = this.player.getDuration();
       // console.log(this.player);
     },
     getCurrentTime: function getCurrentTime() {
-      // YouTube API의 getCurrentTime() 메서드를 사용하여 동영상의 현재 위치(시간)를 가져옴
+      // YouTube API의 getCurrentTime() 메서드를 사용하여 현재 동영상 위치와 진행도 계산
+      // 주기적으로 호출되어 동영상의 현재 위치를 업데이트
       if (this.player) {
         this.currentTime = this.player.getCurrentTime();
         this.LessonRunningTime = this.currentTime;
@@ -20217,7 +20231,10 @@ __webpack_require__.r(__webpack_exports__);
     },
     onPlayerStateChange: function onPlayerStateChange(event) {
       var _this2 = this;
-      // 동영상 상태 변경 이벤트 처리
+      // YouTube Player의 상태 변경 이벤트 처리
+      // 동영상이 종료되면 handleVideoCompletion() 호출
+      // 동영상이 재생 중이면 getCurrentTime()을 주기적으로 호출하여 동영상 위치 업데이트
+      // 동영상이 일시 정지되면 saveLessonProgress() 호출 및 갱신 중지
       if (event.data === window.YT.PlayerState.ENDED) {
         // 동영상이 종료되면 완료 체크 수행
         this.handleVideoCompletion();
@@ -20239,7 +20256,8 @@ __webpack_require__.r(__webpack_exports__);
       // console.log('영상 끝');
     },
     saveLessonProgress: function saveLessonProgress() {
-      // 예시: Axios를 사용하여 서버에 데이터 업데이트 (PUT 요청)
+      // 서버에 레슨 진행 상태를 업데이트하는 메서드 (Axios를 사용하여 PUT 요청)
+      // 필요한 데이터를 서버에 보내어 레슨 진행 상태 저장
       axios.put('/lessonprogress', {
         lessonAllRunningTime: this.LessonAllRunningTime,
         lessonRunningTime: this.LessonRunningTime,
@@ -20257,61 +20275,52 @@ __webpack_require__.r(__webpack_exports__);
     },
     goToNextLesson: function goToNextLesson() {
       var _this3 = this;
-      if (this.selectedLesson !== null) {
-        var allLessons = Object.values(this.LessonDataItem).flat();
-        var currentIndex = allLessons.findIndex(function (lesson) {
-          return lesson.LessonID === _this3.selectedLesson;
-        });
-        if (currentIndex !== -1 && currentIndex < allLessons.length - 1) {
-          // 현재 리슨이 배열의 범위 내에 있고, 다음 리슨이 있다면
-          var nextLesson = allLessons[currentIndex + 1];
+      // 다음 레슨으로 이동하는 메서드
+      var allLessons = Object.values(this.LessonDataItem).flat();
+      console.log(allLessons.length);
+      var currentIndex = allLessons.findIndex(function (lesson) {
+        return lesson.LessonID == _this3.selectedLesson;
+      });
+      console.log(currentIndex);
+      if (currentIndex < allLessons.length - 1) {
+        // 현재 리슨이 배열의 범위 내에 있고, 다음 리슨이 있다면
+        var nextLesson = allLessons[currentIndex + 1];
+        console.log(nextLesson);
+        // 다음 리슨으로 전환
+        this.selectedLesson = nextLesson.LessonID;
+        this.videoId = nextLesson.LessonVideoID;
 
-          // 다음 리슨으로 전환
-          this.selectedLesson = nextLesson.LessonID;
-          this.videoId = nextLesson.LessonVideoID;
-
-          // YouTube 플레이어 초기화
-          this.player.destroy();
-          this.initYoutubePlayer();
-        } else {
-          // console.log('더 이상 다음 강의가 없습니다.');
-          alert('더 이상 다음 강의가 없습니다.');
-        }
+        // YouTube 플레이어 초기화
+        this.player.destroy();
+        this.initYoutubePlayer();
       } else {
-        // console.log('선택된 리슨이 없습니다.');
-        alert('선택된 리슨이 없습니다.');
+        alert('다음 영상이 없습니다.');
       }
     },
     goToPreviousLesson: function goToPreviousLesson() {
       var _this4 = this;
-      if (this.selectedLesson !== null) {
-        var allLessons = Object.values(this.LessonDataItem).flat();
-        var currentIndex = allLessons.findIndex(function (lesson) {
-          return lesson.LessonID === _this4.selectedLesson;
-        });
-        if (currentIndex !== -1 && currentIndex > 0) {
-          // 현재 리슨이 배열의 첫 번째보다 더 앞에 있고, 이전 리슨이 있다면
-          var previousLesson = allLessons[currentIndex - 1];
+      var allLessons = Object.values(this.LessonDataItem).flat();
+      console.log(allLessons.length);
+      var currentIndex = allLessons.findIndex(function (lesson) {
+        return lesson.LessonID === _this4.selectedLesson;
+      });
+      console.log(currentIndex);
 
-          // 이전 리슨으로 전환
-          this.selectedLesson = previousLesson.LessonID;
-          this.videoId = previousLesson.LessonVideoID;
+      // 현재 리슨이 배열의 첫 번째보다 더 앞에 있고, 이전 리슨이 있다면
+      var previousLesson = allLessons[currentIndex - 1];
 
-          // YouTube 플레이어 초기화
-          this.player.destroy();
-          this.initYoutubePlayer();
-        } else {
-          // console.log('더 이상 이전 강의가 없습니다.');
-          alert('더 이상 이전 강의가 없습니다.');
-        }
-      } else {
-        // console.log('선택된 리슨이 없습니다.');
-        alert('선택된 리슨이 없습니다.');
-      }
+      // 이전 리슨으로 전환
+      this.selectedLesson = previousLesson.LessonID;
+      this.videoId = previousLesson.LessonVideoID;
+
+      // YouTube 플레이어 초기화
+      this.player.destroy();
+      this.initYoutubePlayer();
     }
   },
   mounted: function mounted() {
     var _this5 = this;
+    // 컴포넌트가 마운트되면 fetchData() 및 initYoutubePlayer() 호출
     this.fetchData();
     if (window.YT && window.YT.Player) {
       this.initYoutubePlayer();
@@ -20465,6 +20474,7 @@ __webpack_require__.r(__webpack_exports__);
       newClassItems: [],
       // hot_banners: ['/img/hot_banner/hot_banner_1.png', '/img/hot_banner/hot_banner_2.png', '/img/hot_banner/hot_banner_3.png', '/img/hot_banner/hot_banner_4.png', '/img/hot_banner/hot_banner_5.png', '/img/hot_banner/hot_banner_6.png', '/img/hot_banner/hot_banner_7.png' , '/img/hot_banner/hot_banner_8.png'],
 
+      // 배너 데이터 바인딩
       hot_banners: [{
         url: ['/classboarddetail/5'],
         img: ['/img/hot_banner/hot_banner_1.png']
@@ -20492,6 +20502,7 @@ __webpack_require__.r(__webpack_exports__);
       }],
       // guide_banners: ['/img/guide/html.png', '/img/guide/css.png', '/img/guide/js.png', '/img/guide/php.png', '/img/guide/java.png', '/img/guide/db.png', '/img/guide/jira.png', '/img/guide/figma.png',],
 
+      // 가이드 배너 데이터 바인딩
       guide_banners: [{
         url: ['/classBoard/HTML'],
         img: ['/img/guide/html.png']
@@ -20543,6 +20554,7 @@ __webpack_require__.r(__webpack_exports__);
   mounted: function mounted() {
     this.fetchData();
     this.checkWindowWidth();
+    // 윈도우 크기에 따라서 캐러셀 적용
     window.addEventListener('resize', this.checkWindowWidth);
   },
   beforeDestroy: function beforeDestroy() {
@@ -20824,11 +20836,12 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
         extraRoadAddr = ' (' + extraRoadAddr + ')';
       }
 
-      // 주소 정보를 컴포넌트 데이터에 저장
-      this.sampleData = {
-        postcode: data.zonecode,
-        roadAddress: roadAddr
-      };
+      // // 주소 정보를 컴포넌트 데이터에 저장
+      // this.sampleData = {
+      //     postcode: data.zonecode,
+      //     roadAddress: roadAddr,
+      // };
+
       this.frmUserAddressData = {
         UserPostcode: data.zonecode,
         UserRoadAddress: roadAddr
@@ -20974,7 +20987,7 @@ __webpack_require__.r(__webpack_exports__);
           yearEnd: this.yearEnd
         }
       }).then(function (response) {
-        // console.log(response.data);
+        console.log(response.data);
         // console.log(response.data.userData);
         // console.log(response.data.ClassData);
         _this.newUserInfoItems = response.data.userData;
@@ -23111,7 +23124,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <div @wheel.prevent=\"disableWheel\"> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
     "class": "class_datail_watch_chapter",
     href: '/classboarddetail/' + this.ClassID
-  }, "강의 대시보드 가기", 8 /* PROPS */, _hoisted_5), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <div>{{ClassDataItem.ClassTitle}}</div> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <div>전체 진도율</div> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.ClassDataItem.ClassTitle), 1 /* TEXT */), _hoisted_6])]), _hoisted_7, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_8, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+  }, "강의 대시보드 가기", 8 /* PROPS */, _hoisted_5), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <div>{{ClassDataItem.ClassTitle}}</div> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <div>전체 진도율</div> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.ClassDataItem.ClassTitle), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" {{ selectedLesson }} "), _hoisted_6])]), _hoisted_7, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_8, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
     "class": "class_detail_watch_next_btn",
     onClick: _cache[0] || (_cache[0] = function () {
       return $options.goToPreviousLesson && $options.goToPreviousLesson.apply($options, arguments);

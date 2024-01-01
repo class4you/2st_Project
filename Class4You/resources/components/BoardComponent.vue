@@ -233,6 +233,7 @@ export default {
         this.fetchData();
     },
 	methods: {
+		// 해당 함수가 실행 될때 파라미터를 보냄, 엑시오스 처리할 때 파라미터를 포함해서 라우터로 보냄
 		fetchData(page = 1, searchQuery = '', solve = null, sortData = 1,) {
         axios.get(`/board/data?page=${page}&search=${searchQuery}&solve=${solve}&sort=${sortData}`)
             .then(response => {
@@ -252,13 +253,14 @@ export default {
             });
     	},
 		hideEmail(email) {
+			// 백앤드에서 이메일 형식으로 온 값을 도메인 부분은 제거하고 뒤에 4자리는 *ㄹ 표시함
 			if (email && typeof email === 'string') {
 				const atIndex = email.indexOf('@');
 				const username = email.substring(0, Math.min(4, atIndex));
 				const asterisks = '*'.repeat(atIndex - 4);
 				return username + asterisks;
 			} else {
-				return ''; // 또는 다른 기본값을 반환할 수 있습니다.
+				return ''; // 예외 경우에 처리할 값을 적어주면됨
 			}
 		},
 		// boardSearch() {
@@ -277,6 +279,7 @@ export default {
 		// });
 
 		// }
+		// 컨트롤러에서 페이징 처리해서 보낼 때 이전버튼과 다음 버튼이 HTML의 엔티티 코드로 넘어오기 때문에 해당 코드를 변환해주기 위한 함수
 		replaceString(str) {
 			const arrList = {
 				'&laquo;': '≪',
