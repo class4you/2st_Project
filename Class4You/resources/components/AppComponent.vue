@@ -35,7 +35,7 @@ export default {
     #app {
   display: flex;
   flex-direction: column;
-  min-height: 100vh; /* viewport의 전체 높이를 차지 */
+  min-height: 100vh;
 
   > header {
     position: sticky;

@@ -5,12 +5,14 @@
             <div class="class_detail_watch_contents">
                 <div class="class_detail_watch_nav">
                     <div class="class_detail_watch_list">
-                        <a class="class_datail_watch_chapter" :href="'/classboarddetail/' + this.ClassID">강의 대시보드 가기</a>
+                        <!-- <a class="class_datail_watch_chapter" :href="'/classboarddetail/' + this.ClassID">강의 대시보드 가기</a> -->
                         <!-- <div>{{ClassDataItem.ClassTitle}}</div> -->
                         <!-- <div>전체 진도율</div> -->
-                        <a>{{ClassDataItem.ClassTitle}}</a>
+                        <a :href="'/classboarddetail/' + this.ClassID"><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-arrow-left-circle" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-4.5-.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5z"/></svg></a>
+                        <h3>{{ClassDataItem.ClassTitle}}</h3>
                         <!-- {{ selectedLesson }} -->
-                        <button>수강평 작성</button>
+                        <!-- <button>수강평 작성</button> -->
+                        <div></div>
                     </div>
                 </div>
                 <div class="class_detail_watch_main">
@@ -26,10 +28,10 @@
                         <span>재생바</span>
                     </div> -->
                 </div>
-                <div class="class_detail_watch_footer">
+                <!-- <div class="class_detail_watch_footer">
                     <button class="class_detail_watch_next_btn" @click="goToPreviousLesson">이전강의</button>
                     <button class="class_detail_watch_next_btn" @click="goToNextLesson">다음강의</button>
-                </div>
+                </div> -->
             </div>
 
             <!-- 탭 UI 될부분 -->
@@ -44,7 +46,7 @@
                 </div>
                 <div class="class_datail_watch_side_title_box">
                     <div class="class_datail_watch_side_title">
-                        <h3>스스로 키우는 PHP 문법</h3>
+                        <!-- <h3>스스로 키우는 PHP 문법</h3> -->
                         <p>진도율 : {{ notCompletedChapters }}강 / {{ completedChapters }}강</p>
                         <progress class="class_datail_watch_progress_bar_progress" :value="classProgressData"  min="0" max="100" id="progress"></progress>
                         <!-- <div class="class_datail_watch_progress_bar_cover">
@@ -55,13 +57,14 @@
                 <hr>
                 <div class="class_datail_watch_side_content">
                     <div class="class_side_content_curriculum">
-                        <div v-for="(chapter, chapterIndex) in ChapterDataItem" :key="chapter.ChapterID">
+                        <div class="class_side_content_details" v-for="(chapter, chapterIndex) in ChapterDataItem" :key="chapter.ChapterID">
                             <details>
                             <summary>
                                 <div  class="side_content_curriculum_title">
                                     <div class="side_curriculum_top">
                                         <p> {{ chapter.ChapterTitle }}</p>
                                         <!-- <p>시간</p> -->
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-caret-down" viewBox="0 0 16 16"><path d="M3.204 5h9.592L8 10.481 3.204 5zm-.753.659 4.796 5.48a1 1 0 0 0 1.506 0l4.796-5.48c.566-.647.106-1.659-.753-1.659H3.204a1 1 0 0 0-.753 1.659z"/></svg>
                                     </div>
                                     <!-- <div class="side_curriculum_bottom">
                                         <p>{{ chapter.ChapterTitle }}</p>
@@ -71,6 +74,8 @@
                             
                                 <div v-for="lesson in LessonDataItem[chapter.ChapterID]" :key="lesson.LessonID" :class="{'side_content_curriculum_content_1': selectedLesson.LessonID == lesson.LessonID, 'side_content_curriculum_content_2': selectedLesson.LessonID !== lesson.LessonID}" @click="selectLesson(lesson)">
                                     <div class="side_content_curriculum_top">
+                                        <p v-if="selectedLesson.LessonID == lesson.LessonID"><svg style="margin-right: 10px;" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-play-circle-fill" viewBox="0 0 16 16"><path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM6.79 5.093A.5.5 0 0 0 6 5.5v5a.5.5 0 0 0 .79.407l3.5-2.5a.5.5 0 0 0 0-.814l-3.5-2.5z"/></svg></p>
+                                        <p v-else><svg style="margin-right: 10px;" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-record-circle-fill" viewBox="0 0 16 16"><path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-8 3a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/></svg></p>
                                         <p>{{lesson.LessonTitle}}</p>
                                     </div>
                                     <div class="side_content_curriculum_buttom">
