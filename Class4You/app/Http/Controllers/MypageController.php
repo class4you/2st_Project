@@ -20,9 +20,11 @@ class MypageController extends Controller
         Log::debug($request);
         $UserID = Auth::id();
 
+        // 유저 값 조회
         $userData = User::where('UserID', $UserID)
         ->first();
 
+        // 해당 유저가 가진 클래스 값 조회
         $classData = User::select('class_infos.ClassImg', 'class_infos.Classtitle', 'class_infos.ClassDescription', 'class_infos.ClassID')
             ->join('enrollments', 'users.UserID', 'enrollments.UserID')
             ->join('class_infos', 'class_infos.ClassID', 'enrollments.ClassID')
@@ -30,6 +32,7 @@ class MypageController extends Controller
             ->orderBy('enrollments.created_at', 'desc')
             ->get();
 
+        // 해당 유저의 게시물 값 조회
         $boardData = User::select('boards.BoardTitle', 'boards.BoardFlg', 'boards.created_at', 'boards.BoardID')
             ->join('boards', 'boards.UserID', 'users.UserID')
             ->where('boards.UserID', $UserID)
