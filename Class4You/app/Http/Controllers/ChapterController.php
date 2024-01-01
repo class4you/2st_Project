@@ -16,6 +16,7 @@ class ChapterController extends Controller
 
         $UserID = Auth::id();
 
+        // 해당 클래스에서 챕터 플래그가 1인 애들의 개수를 가져옴
         $completedChapters = Chapter::where('ClassID', $ClassID)
         ->where('ChapterFlg', 1)
         ->count();
@@ -24,12 +25,17 @@ class ChapterController extends Controller
         // ->where('ChapterFlg', 0)
         // ->count();
     
+        // 해당 챕터 애들의 개수를 전부 불러옴
         $totalChapters = Chapter::where('ClassID', $ClassID)->count();
 
 
         // Log::debug($completedChapters);
         // Log::debug($totalChapters);
         
+        // 리슨 모델에서 챕터 아이디 값이 주어진 배열안에 존재하는지 확인(whereIn 사용), function을 통해 서브쿼리 사용, $query는 쿼리 빌더 객체로 아래 서브쿼리에서 쿼리 빌더를 사용한다는 뜻
+        // use ($CLassID)는 클로저로써 외부 변수를 사용하기 위해서 use를 사용해서 파라미터로 받아온 클래스 아이디 값을 사용함
+        // ChapterID가 특정 서브쿼리의 결과에 속하고 (whereIn 절), 해당 리슨이 완료된 상태인 경우 (LessonFlg가 1인 경우)의 결과 값을 카운트
+        // 서브쿼리는 챕터즈 테이블에서 클래스 아이디가 주어진 $ClassID와 같고, ChapterFlg가 1인 경우의 ChapterID를 선택
         $completedLessons = Lesson::whereIn('ChapterID', function ($query) use ($ClassID) {
             $query->select('ChapterID')
                 ->from('chapters')
@@ -37,12 +43,14 @@ class ChapterController extends Controller
                 ->where('ChapterFlg', 1);
         })->where('LessonFlg', 1)->count();
         
+        // 위와 비슷한 형식이지만 전체 수를 구하기 위한 쿼리문이기 때문에 조건에 플래그 값이 없음
         $totalLessons = Lesson::whereIn('ChapterID', function ($query) use ($ClassID) {
             $query->select('ChapterID')
                 ->from('chapters')
                 ->where('ClassID', $ClassID);
         })->count();
         
+        // 완료된 값과 전체 갑슬 퍼센트로 계산하기 위한 계산식
         if ($totalChapters > 0 && $totalLessons > 0) {
             $classProgress = (($completedChapters + $completedLessons) / ($totalChapters + $totalLessons)) * 100;
         } else {
