@@ -547,5 +547,23 @@ export default {
 }
 </script>
 <style>
+    input {
+        cursor: pointer;
+    }
+
+    .date-wrap {
+        /* width: 300px; */
+        margin: 0 auto;
+    }
     
+    
+    ::-webkit-calendar-picker-indicator {
+        /* position: absolute; */
+        right: -10px;
+        top: 0;
+        transform: translateX(-10px);
+        padding-left: 300px;    
+        /* height: 50px; */
+        cursor: pointer;
+    }
 </style>
