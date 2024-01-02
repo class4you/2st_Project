@@ -19665,6 +19665,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! sweetalert2 */ "./node_modules/sweetalert2/dist/sweetalert2.all.js");
+/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(sweetalert2__WEBPACK_IMPORTED_MODULE_0__);
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: 'BoardInsertComponent',
   mounted: function mounted() {
@@ -19688,7 +19691,15 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     submitBoardData: function submitBoardData() {
-      this.$store.dispatch('submitBoardData', this.frmBoardData);
+      var _this = this;
+      sweetalert2__WEBPACK_IMPORTED_MODULE_0___default().fire({
+        icon: 'success',
+        title: '작성',
+        text: '게시글이 작성되었습니다.',
+        confirmButtonText: '확인'
+      }).then(function (result) {
+        _this.$store.dispatch('submitBoardData', _this.frmBoardData);
+      });
     },
     goToBoard: function goToBoard() {
       this.$router.push('/board');
@@ -19709,6 +19720,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! sweetalert2 */ "./node_modules/sweetalert2/dist/sweetalert2.all.js");
+/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(sweetalert2__WEBPACK_IMPORTED_MODULE_0__);
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: 'BoardUpdateComponent',
   props: ['BoardID'],
@@ -19753,20 +19767,27 @@ __webpack_require__.r(__webpack_exports__);
     // },
     updateBoardData: function updateBoardData() {
       var _this2 = this;
-      axios.put('/boardUpdate', {
-        BoardID: this.newBoardItem.BoardID,
-        BoardCategoryID: this.newBoardItem.BoardCategoryID,
-        UserID: this.newBoardItem.UserID,
-        BoardTitle: this.newBoardItem.BoardTitle,
-        BoardComment: this.newBoardItem.BoardComment
-      }).then(function (response) {
-        // console.log(response.data);
-        // 서버 응답에 대한 로직 수행
-        // this.$router.push('/board');
-        _this2.$router.push('/boarddetail/' + _this2.BoardID);
-      })["catch"](function (error) {
-        // 에러 처리
-        console.error(error);
+      sweetalert2__WEBPACK_IMPORTED_MODULE_0___default().fire({
+        icon: 'success',
+        title: '수정',
+        text: '게시글이 수정되었습니다.',
+        confirmButtonText: '확인'
+      }).then(function (result) {
+        axios.put('/boardUpdate', {
+          BoardID: _this2.newBoardItem.BoardID,
+          BoardCategoryID: _this2.newBoardItem.BoardCategoryID,
+          UserID: _this2.newBoardItem.UserID,
+          BoardTitle: _this2.newBoardItem.BoardTitle,
+          BoardComment: _this2.newBoardItem.BoardComment
+        }).then(function (response) {
+          // console.log(response.data);
+          // 서버 응답에 대한 로직 수행
+          // this.$router.push('/board');
+          _this2.$router.push('/boarddetail/' + _this2.BoardID);
+        })["catch"](function (error) {
+          // 에러 처리
+          console.error(error);
+        });
       });
     }
   }
@@ -21360,7 +21381,7 @@ __webpack_require__.r(__webpack_exports__);
       } else {
         sweetalert2__WEBPACK_IMPORTED_MODULE_0___default().fire({
           title: '비밀번호 불일치',
-          text: '비밀번호를 혹인해주세요.',
+          text: '비밀번호를 확인해주세요.',
           icon: 'error'
         });
       }
@@ -22097,20 +22118,21 @@ var _hoisted_13 = {
 var _hoisted_14 = {
   "class": "css-os36di"
 };
-var _hoisted_15 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+var _hoisted_15 = {
+  href: "/board"
+};
+var _hoisted_16 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "mantine-1yjkc96 mantine-Button-inner"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
   "class": "mantine-1ryt1ht mantine-Button-label"
 }, "취소")], -1 /* HOISTED */);
-var _hoisted_16 = [_hoisted_15];
-var _hoisted_17 = {
-  "class": "mantine-UnstyledButton-root mantine-Button-root mantine-1276sa2",
-  type: "submit",
-  "data-button": "true"
-};
-var _hoisted_18 = {
+var _hoisted_17 = [_hoisted_16];
+var _hoisted_18 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "mantine-1yjkc96 mantine-Button-inner"
-};
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
+  "class": "mantine-1ryt1ht mantine-Button-label"
+}, "등록")], -1 /* HOISTED */);
+var _hoisted_19 = [_hoisted_18];
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [_hoisted_2, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [_hoisted_5, _hoisted_6, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_8, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("textarea", {
     "class": "mantine-Input-input mantine-Textarea-input mantine-goibal",
@@ -22128,18 +22150,20 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       return $data.frmBoardData.BoardComment = $event;
     }),
     placeholder: "게시물을 입력하세요..."
-  }, null, 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.frmBoardData.BoardComment]])])])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_14, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+  }, null, 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.frmBoardData.BoardComment]])])])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_14, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", _hoisted_15, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
     "class": "mantine-UnstyledButton-root mantine-Button-root mantine-1uni1zy",
     type: "button",
     onClick: _cache[2] || (_cache[2] = function () {
       return $options.goToBoard && $options.goToBoard.apply($options, arguments);
     })
-  }, [].concat(_hoisted_16)), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", _hoisted_17, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_18, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
-    "class": "mantine-1ryt1ht mantine-Button-label",
+  }, [].concat(_hoisted_17))]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
     onClick: _cache[3] || (_cache[3] = function ($event) {
       return $options.submitBoardData();
-    })
-  }, "등록")])])])])]);
+    }),
+    "class": "mantine-UnstyledButton-root mantine-Button-root mantine-1276sa2",
+    type: "submit",
+    "data-button": "true"
+  }, [].concat(_hoisted_19))])])]);
 }
 
 /***/ }),
@@ -22228,7 +22252,8 @@ var _hoisted_13 = {
 var _hoisted_14 = {
   "class": "css-os36di"
 };
-var _hoisted_15 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+var _hoisted_15 = ["href"];
+var _hoisted_16 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
   "class": "mantine-UnstyledButton-root mantine-Button-root mantine-1uni1zy",
   type: "button",
   "data-button": "true"
@@ -22237,14 +22262,13 @@ var _hoisted_15 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
   "class": "mantine-1ryt1ht mantine-Button-label"
 }, "취소")])], -1 /* HOISTED */);
-var _hoisted_16 = {
-  "class": "mantine-UnstyledButton-root mantine-Button-root mantine-1276sa2",
-  type: "submit",
-  "data-button": "true"
-};
-var _hoisted_17 = {
+var _hoisted_17 = [_hoisted_16];
+var _hoisted_18 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "mantine-1yjkc96 mantine-Button-inner"
-};
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
+  "class": "mantine-1ryt1ht mantine-Button-label"
+}, "수정"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <span class=\"mantine-1ryt1ht mantine-Button-label\" @click=\"putBoardDataBtn(newBoardItem)\">등록</span> ")], -1 /* HOISTED */);
+var _hoisted_19 = [_hoisted_18];
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [_hoisted_2, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [_hoisted_5, _hoisted_6, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_8, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("textarea", {
     "class": "mantine-Input-input mantine-Textarea-input mantine-goibal",
@@ -22262,12 +22286,16 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       return $data.newBoardItem.BoardComment = $event;
     }),
     placeholder: "게시물을 입력하세요..."
-  }, null, 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.newBoardItem.BoardComment]])])])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_14, [_hoisted_15, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", _hoisted_16, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_17, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
-    "class": "mantine-1ryt1ht mantine-Button-label",
+  }, null, 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.newBoardItem.BoardComment]])])])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_14, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
+    href: '/boardDetail/' + this.BoardID
+  }, [].concat(_hoisted_17), 8 /* PROPS */, _hoisted_15), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
     onClick: _cache[2] || (_cache[2] = function ($event) {
       return $options.updateBoardData($data.newBoardItem);
-    })
-  }, "등록"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <span class=\"mantine-1ryt1ht mantine-Button-label\" @click=\"putBoardDataBtn(newBoardItem)\">등록</span> ")])])])])]);
+    }),
+    "class": "mantine-UnstyledButton-root mantine-Button-root mantine-1276sa2",
+    type: "submit",
+    "data-button": "true"
+  }, [].concat(_hoisted_19))])])]);
 }
 
 /***/ }),

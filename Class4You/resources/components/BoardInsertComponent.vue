@@ -64,15 +64,18 @@
             </div>
         </div>
 
-                <div class="css-os36di">
-            <button class="mantine-UnstyledButton-root mantine-Button-root mantine-1uni1zy" type="button" @click="goToBoard">
+        <div class="css-os36di">
+            <a href="/board">
+                <button class="mantine-UnstyledButton-root mantine-Button-root mantine-1uni1zy" type="button" @click="goToBoard">
+                    <div class="mantine-1yjkc96 mantine-Button-inner">
+                        <span class="mantine-1ryt1ht mantine-Button-label">취소</span>
+                    </div>
+                </button>
+            </a>
+            
+            <button @click="submitBoardData()" class="mantine-UnstyledButton-root mantine-Button-root mantine-1276sa2" type="submit" data-button="true">
             <div class="mantine-1yjkc96 mantine-Button-inner">
-                <span class="mantine-1ryt1ht mantine-Button-label">취소</span>
-            </div>
-            </button>
-            <button class="mantine-UnstyledButton-root mantine-Button-root mantine-1276sa2" type="submit" data-button="true">
-            <div class="mantine-1yjkc96 mantine-Button-inner">
-                <span class="mantine-1ryt1ht mantine-Button-label" @click="submitBoardData()">등록</span>
+                <span class="mantine-1ryt1ht mantine-Button-label">등록</span>
             </div>
             </button>
         </div>
@@ -81,6 +84,7 @@
     </div>
 </template>
 <script>
+import Swal from 'sweetalert2';
 export default {
     name:'BoardInsertComponent',
 
@@ -107,7 +111,14 @@ export default {
 
     methods: {
         submitBoardData() {
-            this.$store.dispatch('submitBoardData', this.frmBoardData);
+            Swal.fire({
+                icon: 'success',
+                title: '작성',
+                text: '게시글이 작성되었습니다.',
+                confirmButtonText: '확인'
+            }).then((result) => {
+                this.$store.dispatch('submitBoardData', this.frmBoardData);
+            })
         },
         goToBoard() {
             this.$router.push('/board');

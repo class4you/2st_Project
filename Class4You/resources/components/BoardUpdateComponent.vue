@@ -65,14 +65,17 @@
         </div>
 
         <div class="css-os36di">
-            <button class="mantine-UnstyledButton-root mantine-Button-root mantine-1uni1zy" type="button" data-button="true">
+            <a :href="'/boardDetail/' + this.BoardID">
+                <button class="mantine-UnstyledButton-root mantine-Button-root mantine-1uni1zy" type="button" data-button="true">
                 <div class="mantine-1yjkc96 mantine-Button-inner">
                     <span class="mantine-1ryt1ht mantine-Button-label">취소</span>
                 </div>
-            </button>
-            <button class="mantine-UnstyledButton-root mantine-Button-root mantine-1276sa2" type="submit" data-button="true">
+                </button>
+            </a>
+
+            <button @click="updateBoardData(newBoardItem)" class="mantine-UnstyledButton-root mantine-Button-root mantine-1276sa2" type="submit" data-button="true">
                 <div class="mantine-1yjkc96 mantine-Button-inner">
-                    <span class="mantine-1ryt1ht mantine-Button-label" @click="updateBoardData(newBoardItem)">등록</span>
+                    <span class="mantine-1ryt1ht mantine-Button-label">수정</span>
                     <!-- <span class="mantine-1ryt1ht mantine-Button-label" @click="putBoardDataBtn(newBoardItem)">등록</span> -->
                 </div>
             </button>
@@ -82,6 +85,7 @@
     </div>
 </template>
 <script>
+import Swal from 'sweetalert2';
 export default {
     name:'BoardUpdateComponent',
 
@@ -134,23 +138,31 @@ export default {
         // },
 
         updateBoardData() {
-            axios.put('/boardUpdate', {
-                BoardID : this.newBoardItem.BoardID,
-                BoardCategoryID: this.newBoardItem.BoardCategoryID,
-                UserID: this.newBoardItem.UserID,
-                BoardTitle: this.newBoardItem.BoardTitle,
-                BoardComment: this.newBoardItem.BoardComment,
+            Swal.fire({
+                icon: 'success',
+                title: '수정',
+                text: '게시글이 수정되었습니다.',
+                confirmButtonText: '확인'
+            }).then((result) => {
+                    axios.put('/boardUpdate', {
+                    BoardID : this.newBoardItem.BoardID,
+                    BoardCategoryID: this.newBoardItem.BoardCategoryID,
+                    UserID: this.newBoardItem.UserID,
+                    BoardTitle: this.newBoardItem.BoardTitle,
+                    BoardComment: this.newBoardItem.BoardComment,
+                })
+                .then(response => {
+                    // console.log(response.data);
+                    // 서버 응답에 대한 로직 수행
+                    // this.$router.push('/board');
+                    this.$router.push('/boarddetail/' + this.BoardID);
+                })
+                .catch(error => {
+                    // 에러 처리
+                    console.error(error);
+                });
             })
-            .then(response => {
-                // console.log(response.data);
-                // 서버 응답에 대한 로직 수행
-                // this.$router.push('/board');
-                this.$router.push('/boarddetail/' + this.BoardID);
-            })
-            .catch(error => {
-                // 에러 처리
-                console.error(error);
-            });
+            
         },
     }
 }

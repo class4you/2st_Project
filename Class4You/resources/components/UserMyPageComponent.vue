@@ -1031,7 +1031,7 @@ export default {
             } else {
                 Swal.fire({
                     title: '비밀번호 불일치',
-                    text: '비밀번호를 혹인해주세요.',
+                    text: '비밀번호를 확인해주세요.',
                     icon: 'error',
                 });
             }
