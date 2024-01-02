@@ -7,7 +7,8 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css">
     <script src="{{ asset('js/app.js') }}" defer></script>
-    <title>Document</title>
+    <title>Class 4 You</title>
+    <link rel="icon" href="/img/favicon.png" type="image/x-icon"> 
     <style>
         /* .wrapper {
             height:auto;

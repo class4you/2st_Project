@@ -20515,6 +20515,14 @@ __webpack_require__.r(__webpack_exports__);
         id: 4,
         name: "데브코스 (부트캠프)",
         images: ['/img/banner/banner4.png']
+      }, {
+        id: 4,
+        name: "이벤트 배너",
+        images: ['/img/banner/banner6.png']
+      }, {
+        id: 4,
+        name: "이벤트 배너",
+        images: ['/img/banner/banner7.png']
       }],
       selectedGiftId: null,
       currentIndex: 0
@@ -23532,7 +23540,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     onAfterSlide: $options.updateIndex
   }, {
     addons: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <Navigation /> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Pagination), _hoisted_14];
+      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Pagination), _hoisted_14];
     }),
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
       return [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.giftItems, function (slide) {

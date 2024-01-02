@@ -17,7 +17,6 @@
                                                         </a>
                                                     </Slide>
                                                     <template #addons>
-                                                        <!-- <Navigation /> -->
                                                         <Pagination />
                                                         <div style="margin-bottom: 10px;"></div>
                                                     </template>
@@ -236,6 +235,8 @@ export default {
                 { id: 2, name: "코딩 역량 인증 시험", images: ['/img/banner/banner2.png'] },
                 { id: 3, name: "크래프톤", images: ['/img/banner/banner3.png'] },
                 { id: 4, name: "데브코스 (부트캠프)", images: ['/img/banner/banner4.png'] },
+                { id: 4, name: "이벤트 배너", images: ['/img/banner/banner6.png'] },
+                { id: 4, name: "이벤트 배너", images: ['/img/banner/banner7.png'] },
             ],
             selectedGiftId: null,
             currentIndex: 0,
