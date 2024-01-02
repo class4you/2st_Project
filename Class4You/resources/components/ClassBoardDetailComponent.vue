@@ -802,7 +802,7 @@ export default {
 			console.log(response.data);
 			this.detailClassItems = response.data.result;
 			// this.enrollmentCnt = response.data.userCnt.user_count;
-			this.classCuriData = response.data.classCuri;
+			this.classCuriData = response.data.allLessonsData;
 			this.EnrollChk = response.data.enrollmentChk;
 			this.languagesChk = response.data.result.languages[0].ClassLanguageName;
 			

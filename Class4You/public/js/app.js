@@ -19875,7 +19875,7 @@ __webpack_require__.r(__webpack_exports__);
         console.log(response.data);
         _this.detailClassItems = response.data.result;
         // this.enrollmentCnt = response.data.userCnt.user_count;
-        _this.classCuriData = response.data.classCuri;
+        _this.classCuriData = response.data.allLessonsData;
         _this.EnrollChk = response.data.enrollmentChk;
         _this.languagesChk = response.data.result.languages[0].ClassLanguageName;
         if (response.data.avgReviewRating && response.data.avgReviewRating.avgRating !== undefined) {
