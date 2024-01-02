@@ -360,13 +360,13 @@ class ClassInfoController extends Controller
 
         $UserID = Auth::id();
 
-        Log::debug($UserID);
+        // Log::debug($UserID);
 
         $existingEnrollment = Enrollment::where('UserID', $UserID)
         ->where('ClassID', $ClassID)
         ->first();
 
-        Log::debug($existingEnrollment);
+        // Log::debug($existingEnrollment);
 
         if ($existingEnrollment) { 
             $enrollmentChk = true;
@@ -378,24 +378,44 @@ class ClassInfoController extends Controller
             ->where('class_infos.ClassID', $ClassID)
             ->first();
 
-        Log::debug($result);
+        // Log::debug($result);
         // 수강한 유저 수 불러오기
         $userCnt = Enrollment::select(DB::raw('COUNT(UserID) as user_count'))
         ->where('ClassID', $ClassID)
         ->groupBy('ClassID') 
         ->first();
         
-        Log::debug($userCnt);
+        // Log::debug($userCnt);
 
         // 챕터 레슨 값 받아오기
         
-        $classCuri = Chapter::select('chapters.ChapterTitle','lessons.LessonTitle','lessons.LessonContent')
-                ->join('lessons','chapters.ChapterID','lessons.ChapterID')
-                ->join('class_infos','class_infos.ClassID','chapters.ClassID')
-                ->where('class_infos.ClassID', $ClassID)
+        // $classCuri = Chapter::select('chapters.ChapterTitle','lessons.LessonTitle','lessons.LessonContent', 'chapters.ChapterID')
+        //         ->join('lessons','chapters.ChapterID','lessons.ChapterID')
+        //         ->join('class_infos','class_infos.ClassID','chapters.ClassID')
+        //         ->where('class_infos.ClassID', $ClassID)
+        //         ->get();
+
+        $classCuri = Chapter::select('chapters.ChapterTitle', 'chapters.ChapterID')
+        ->join('class_infos','class_infos.ClassID','chapters.ClassID')
+        ->where('class_infos.ClassID', $ClassID)
+        ->get();
+
+        $allLessonsData = collect();
+
+        // Log::debug($classCuri);
+        foreach ($classCuri as $item) {
+            // Log::debug($item);
+            $lessonsData = Lesson::select('lessons.LessonID','lessons.LessonTitle', 'lessons.LessonContent')
+                ->where('lessons.ChapterID', $item->ChapterID)
                 ->get();
 
-        Log::debug($classCuri);
+            $item->lessons = $lessonsData;
+
+            // Collection에 데이터 추가
+            $allLessonsData->push($item);
+        }
+        Log::debug($allLessonsData);
+        // Log::debug($classCuri);
 
         // 수강평 평균값
         $avgReviewRating = DB::table('reviews as re')
@@ -475,7 +495,7 @@ class ClassInfoController extends Controller
             return response()->json([
                 'result' => $result,
                 'userCnt' => $userCnt,
-                'classCuri' => $classCuri,
+                'allLessonsData' => $allLessonsData,
                 'avgReviewRating' => $avgReviewRating,
                 'enrollmentChk' => $enrollmentChk
             ]);
