@@ -19784,9 +19784,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
+/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! sweetalert2 */ "./node_modules/sweetalert2/dist/sweetalert2.all.js");
+/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(sweetalert2__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
+
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -19871,7 +19874,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
       // 여기에서 정보를 추가로 조회하는 로직을 구현
       // 예시: API를 호출하여 데이터를 가져옴\
-      axios__WEBPACK_IMPORTED_MODULE_0___default().get('/classBoardDetail/' + this.ClassID).then(function (response) {
+      axios__WEBPACK_IMPORTED_MODULE_1___default().get('/classBoardDetail/' + this.ClassID).then(function (response) {
         // API 응답에 대한 로직 수행
         console.log(response.data);
         _this.detailClassItems = response.data.result;
@@ -19896,7 +19899,7 @@ __webpack_require__.r(__webpack_exports__);
         }
 
         // if(this.clickFlgTab === 1) {
-        axios__WEBPACK_IMPORTED_MODULE_0___default().get('/classboarddetailreview/' + _this.ClassID)
+        axios__WEBPACK_IMPORTED_MODULE_1___default().get('/classboarddetailreview/' + _this.ClassID)
         // axios.get(`/classboarddetailreview/data`, {
         // 	params: {
         // 		page: this.pagination.current_page
@@ -19950,7 +19953,7 @@ __webpack_require__.r(__webpack_exports__);
 
       // console.log(frm);
 
-      axios__WEBPACK_IMPORTED_MODULE_0___default().post(url, frm, header).then(function (res) {
+      axios__WEBPACK_IMPORTED_MODULE_1___default().post(url, frm, header).then(function (res) {
         // console.log(this.reviewClassItems);
         // console.log(res.data[0]);
 
@@ -19970,7 +19973,11 @@ __webpack_require__.r(__webpack_exports__);
       ["catch"](function (err) {
         // console.log(err.response.data.errors)
         // context.commit('setRegistrationErrorMessage', err.response.data.errors);
-        alert('별점을 체크해주세요!');
+        sweetalert2__WEBPACK_IMPORTED_MODULE_0___default().fire({
+          icon: 'error',
+          title: '에러',
+          text: '내용 및 별점을 체크해주세요.'
+        });
       });
     },
     hideEmail: function hideEmail(email) {
@@ -20002,7 +20009,7 @@ __webpack_require__.r(__webpack_exports__);
       // console.log(data);
       // console.log(data.ReviewID);
 
-      axios__WEBPACK_IMPORTED_MODULE_0___default()["delete"](url, data, header).then(function (res) {
+      axios__WEBPACK_IMPORTED_MODULE_1___default()["delete"](url, data, header).then(function (res) {
         // console.log(this.reviewClassItems);
         // console.log(res.data[0]);
 
@@ -20026,9 +20033,13 @@ __webpack_require__.r(__webpack_exports__);
       var _this4 = this;
       // this.$store.dispatch('postClassEnrollApp', this.classEnrollData);
       if (!this.$store.state.UserID) {
-        alert('로그인 후 수강 신청을 해주세요.');
+        sweetalert2__WEBPACK_IMPORTED_MODULE_0___default().fire({
+          icon: 'error',
+          title: '에러',
+          text: '로그인 후 수강신청 해주세요.'
+        });
       }
-      axios__WEBPACK_IMPORTED_MODULE_0___default().post('/classEnrollAppPost', {
+      axios__WEBPACK_IMPORTED_MODULE_1___default().post('/classEnrollAppPost', {
         ClassID: this.ClassID,
         UserID: this.$store.state.UserID
       }).then(function (res) {
