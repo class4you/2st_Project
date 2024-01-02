@@ -2525,6 +2525,7 @@ progress[value]::-webkit-progress-bar{
     padding: 20px 40px;
     font-weight: 700;
     margin-bottom: 10px;
+    transition: all 0.3s ease-in-out;
 }
 
 .side_content_curriculum_content_2 {

@@ -346,5 +346,21 @@ export default {
         min-height: 100%;
         /* padding-bottom: 0px; */
     }
+    /* 초기 상태에서 숨겨진 상태로 설정 */
+    details:not([open]) summary + * {
+            display: none;
+        }
+
+    /* 트랜지션 효과 설정 */
+    details summary {
+        cursor: pointer;
+        transition: all 0.2s ease-in-out;
+    }
+
+    /* 펼쳐졌을 때의 스타일 설정 */
+    details[open] summary {
+        color: #007BFF; /* 열린 상태일 때의 텍스트 색상 변경 (원하는 색상으로 수정 가능) */
+    }
+
     
 </style>

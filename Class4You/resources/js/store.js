@@ -180,6 +180,11 @@ const store = createStore({
                         title: '로그인 성공',
                         text: '로그인에 성공했습니다.',
                         confirmButtonText: '확인'
+                    }).then((result) => {
+                        // 확인 버튼을 눌렀을 때(result.value가 true일 때) 페이지 리로드
+                        if (result.value) {
+                            location.reload();
+                        }
                     })
                     // context.commit('setUserLoginChk', {sessionDataCheck:res.data.sessionDataCheck, UserID:res.data.userId});
                     // console.log(res.data.sessionDataCheck)

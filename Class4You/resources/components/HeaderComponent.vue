@@ -77,7 +77,7 @@
                 <div class="login_modal_find_box">
                     <!-- <span><a href="">비밀번호 찾기</a></span>
                     <span>&#124;</span> -->
-                    <span><a href="">회원가입 하기</a></span>
+                    <span><a href="/registration">회원가입 하기</a></span>
                 </div>
                 <!-- <div class="login_modal_easy_box">
                     <p>간편 로그인</p>

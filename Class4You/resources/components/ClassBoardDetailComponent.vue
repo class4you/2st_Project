@@ -713,6 +713,7 @@
     </div>
 </template>
 <script>
+import Swal from 'sweetalert2';
 import axios from 'axios'
 import { toHandlerKey } from 'vue';
 
@@ -907,7 +908,11 @@ export default {
             .catch(err => {
                 // console.log(err.response.data.errors)
                 // context.commit('setRegistrationErrorMessage', err.response.data.errors);
-				alert('별점을 체크해주세요!');
+				Swal.fire({
+                    icon: 'error',
+                    title: '에러',
+                    text: '내용 및 별점을 체크해주세요.',
+				});
             })
 		},
 		hideEmail(email) {
@@ -965,7 +970,11 @@ export default {
 		postEnrollApp() {
 			// this.$store.dispatch('postClassEnrollApp', this.classEnrollData);
 			if(!this.$store.state.UserID) {
-				alert('로그인 후 수강 신청을 해주세요.');
+				Swal.fire({
+                    icon: 'error',
+                    title: '에러',
+                    text: '로그인 후 수강신청 해주세요.',
+				});
 			}
 
             axios.post('/classEnrollAppPost', {
@@ -975,7 +984,11 @@ export default {
             .then(res => { 
                 // console.log(res.data);
 				this.EnrollChk = true;
-				alert(res.data.message);
+				Swal.fire({
+                    icon: 'success',
+                    title: '성공',
+                    text: '수강 신청에 성공하셨습니다.',
+                    });
                 // window.location.reload();
             })
             .catch(err => {
