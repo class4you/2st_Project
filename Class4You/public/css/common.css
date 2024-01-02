@@ -1780,6 +1780,7 @@ ul.class_tabs li.class_current {
 
 .class_tab_content_title>p {
     color: #020715;
+    margin-bottom: 30px;
 }
 
 .class_tab_description {
@@ -1844,19 +1845,27 @@ ul.class_tabs li.class_current {
     text-align: center;
 }
 
-.class_tab_content_chapter_title {
-    font-size: 15px;
-    font-weight: bold;
-    padding: 10px;
-    border-radius: 3px;
-    background-color: #6a8ee3;
-    color: #fff;
+.class_tab_content_curriculm_title {
     opacity: 0.8;
 }
 
-/* .class_tab_content_lesson_title {
-    padding: 10px;
-} */
+.class_tab_content_curriculm_title:hover {
+    opacity: 1;
+}
+
+.class_tab_content_chapter_title {
+    font-size: 15px;
+    font-weight: bold;
+    padding: 5px 10px;
+    border-radius: 3px;
+    background-color: #6a8ee3;
+    color: #fff;
+}
+
+.class_tab_content_lesson_title {
+    /* padding: 10px; */
+    display: flex;
+}
 
 .class_tab_content_lesson_title>span {
     font-weight: bold;
@@ -1864,8 +1873,8 @@ ul.class_tabs li.class_current {
 }
 
 .class_tab_curri_div {
-    margin: 25px 0;
-    padding: 15px;
+    margin: 10px 0;
+    padding: 0px 15px;
     line-height: 30px;
     /* display: grid;
     grid-template-columns: repeat(auto-fill, minmax(50% , auto));
@@ -1874,6 +1883,10 @@ ul.class_tabs li.class_current {
 
 .class_tab_content_lesson_title>p {
     font-size: 13px;
+    margin-left: 10px;
+    padding: 10px;
+    border-bottom: 1px solid #d7d7d7;
+    
 }
 
 /* .class_tab_content_curriculm_title>span {
