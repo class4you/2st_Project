@@ -154,9 +154,7 @@
 						<div class="class_tab_description_text_left">
 							<span>◼{{ detailClassItems.ClassDescription }}</span>
 						</div>
-						<div class="class_tab_description_text_right">
-							<span>◼{{ detailClassItems.ClassDescription }}</span>
-						</div>
+						
 					</div>
 					
 				</div>
@@ -183,9 +181,6 @@
 							</div>
 							<div class="class_tab_content_lesson_content">
 								<p>{{ classCuriData.LessonContent }}</p>
-								<p>The if construct is one of the most important features of many languages, PHP included.</p>
-								<p>It allows for conditional execution of code fragments.</p> 
-								<p>PHP features an if structure that is similar to that of C:</p>
 							</div>
 						</div>
 					</div>
@@ -719,7 +714,6 @@
 <script>
 import axios from 'axios'
 import { toHandlerKey } from 'vue';
-import Swal from 'sweetalert2';
 
 export default {
     name: 'ClassBoardDetailComponent',
@@ -910,11 +904,9 @@ export default {
 			// 	this.newReviewData();
 			// })
             .catch(err => {
-				Swal.fire({
-					icon: 'error',
-					title: '에러',
-					text: '내용 및 별점을 체크해주세요!',
-				});
+                // console.log(err.response.data.errors)
+                // context.commit('setRegistrationErrorMessage', err.response.data.errors);
+				alert('별점을 체크해주세요!');
             })
 		},
 		hideEmail(email) {
@@ -929,95 +921,50 @@ export default {
 		// 	this.$store.dispatch('deleteClassReview', data);
 		// },
 
-		// deleteClassReview(data) {
-        //     const url = '/classboarddetailreview/' + data.ReviewID
-        //     const header = {
-        //         headers: {
-        //             "Content-Type": 'multipart/form-data',
-        //             'X-CSRF-TOKEN': document.head.querySelector('meta[name="csrf-token"]').content,
-        //         },
-        //     }
-
-        //     // let frm = new FormData();
-        //     // const data = {
-        //     //     ReviewID: data.ReviewID,
-        //     // };
-
-		// 	// 데이터값이 옴
-        //     // console.log(data);
-        //     // console.log(data.ReviewID);
-
-        //     axios.delete(url,data, header)
-        //     .then(res => { 
-        //         // console.log(this.reviewClassItems);
-        //         // console.log(res.data[0]);
-
-		// 		// this.reviewClassItems.shift(res.data);
-		// 		// if(this.deleteClassReview) {
-		// 		// 	return this.classReviewData = '';
-		// 		// }
-
-		// 		// this.reviewClassItems 배열에서 삭제 대상인 항목을 제외한 새로운 배열을 생성하여 할당합니다. 
-		// 		// 이렇게 하면 삭제된 항목이 제외된 배열이 this.reviewClassItems에 다시 할당되어 뷰에 반영됩니다.
-		// 		this.reviewClassItems = this.reviewClassItems.filter(item => item.ReviewID !== data.ReviewID);
-    
-        //     })
-        //     .catch(err => {
-        //         // console.log(err.response.data.errors)
-        //         // context.commit('setRegistrationErrorMessage', err.response.data.errors);
-		// 		// alert('별점을 체크해주세요!');
-        //     })
-        // },
 		deleteClassReview(data) {
-  		// 확인 취소 메시지를 띄우고, 사용자가 확인을 선택한 경우에만 삭제를 진행합니다.
-			Swal.fire({
-				title: '수강평 삭제',
-				text: '수강평을 삭제하시겠습니까?',
-				icon: 'question',
-				showCancelButton: true,
-				confirmButtonColor: '#3085d6',
-				cancelButtonColor: '#d33',
-				confirmButtonText: '삭제',
-				cancelButtonText: '취소'
-			}).then((result) => {
-				if (result.isConfirmed) {
-				const url = '/classboarddetailreview/' + data.ReviewID;
-				const header = {
-					headers: {
-					"Content-Type": 'multipart/form-data',
-					'X-CSRF-TOKEN': document.head.querySelector('meta[name="csrf-token"]').content,
-					},
-				};
+            const url = '/classboarddetailreview/' + data.ReviewID
+            const header = {
+                headers: {
+                    "Content-Type": 'multipart/form-data',
+                    'X-CSRF-TOKEN': document.head.querySelector('meta[name="csrf-token"]').content,
+                },
+            }
 
-				axios.delete(url, header)
-					.then(res => {
-					// 삭제된 항목을 제외한 배열을 생성하여 할당합니다.
-					this.reviewClassItems = this.reviewClassItems.filter(item => item.ReviewID !== data.ReviewID);
-					})
-					.catch(err => {
-					// 오류 처리
-					// console.log(err.response.data.errors);
-					Swal.fire({
-						icon: 'error',
-						title: '에러',
-						text: '삭제에 실패했습니다.',
-					});
-					});
-				} else {
-				// 사용자가 확인 취소를 선택한 경우의 처리
-				// console.log('삭제가 취소되었습니다.');
-				}
-			});
-		},
+            // let frm = new FormData();
+            // const data = {
+            //     ReviewID: data.ReviewID,
+            // };
+
+			// 데이터값이 옴
+            // console.log(data);
+            // console.log(data.ReviewID);
+
+            axios.delete(url,data, header)
+            .then(res => { 
+                // console.log(this.reviewClassItems);
+                // console.log(res.data[0]);
+
+				// this.reviewClassItems.shift(res.data);
+				// if(this.deleteClassReview) {
+				// 	return this.classReviewData = '';
+				// }
+
+				// this.reviewClassItems 배열에서 삭제 대상인 항목을 제외한 새로운 배열을 생성하여 할당합니다. 
+				// 이렇게 하면 삭제된 항목이 제외된 배열이 this.reviewClassItems에 다시 할당되어 뷰에 반영됩니다.
+				this.reviewClassItems = this.reviewClassItems.filter(item => item.ReviewID !== data.ReviewID);
+    
+            })
+            .catch(err => {
+                // console.log(err.response.data.errors)
+                // context.commit('setRegistrationErrorMessage', err.response.data.errors);
+				// alert('별점을 체크해주세요!');
+            })
+        },
 
 		postEnrollApp() {
 			// this.$store.dispatch('postClassEnrollApp', this.classEnrollData);
 			if(!this.$store.state.UserID) {
-				Swal.fire({
-					icon: 'error',
-					title: '에러',
-					text: '로그인 후 수강 신청을 해주세요.',
-				});
+				alert('로그인 후 수강 신청을 해주세요.');
 			}
 
             axios.post('/classEnrollAppPost', {
@@ -1027,11 +974,7 @@ export default {
             .then(res => { 
                 // console.log(res.data);
 				this.EnrollChk = true;
-				Swal.fire({
-					icon: 'success',
-					title: '완료',
-					text: '수강 신청에 성공하셨습니다.',
-				});
+				alert(res.data.message);
                 // window.location.reload();
             })
             .catch(err => {
