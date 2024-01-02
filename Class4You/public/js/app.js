@@ -20045,7 +20045,11 @@ __webpack_require__.r(__webpack_exports__);
       }).then(function (res) {
         // console.log(res.data);
         _this4.EnrollChk = true;
-        alert(res.data.message);
+        sweetalert2__WEBPACK_IMPORTED_MODULE_0___default().fire({
+          icon: 'success',
+          title: '성공',
+          text: '수강 신청에 성공하셨습니다.'
+        });
         // window.location.reload();
       })["catch"](function (err) {
         // console.log(err.response.data.errors)
