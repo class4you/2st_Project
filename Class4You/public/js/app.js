@@ -19959,7 +19959,8 @@ __webpack_require__.r(__webpack_exports__);
     // 수강평 작성 함수
     addClassReview: function addClassReview() {
       var _this2 = this;
-      // this.$store.dispatch('addClassReview', this.classReviewData);
+      // this.$store.dispatch('addClassReview', this.classReviewData);\
+
       var url = '/classboarddetailreview';
       var header = {
         headers: {
@@ -19976,6 +19977,12 @@ __webpack_require__.r(__webpack_exports__);
       // console.log(frm);
 
       axios__WEBPACK_IMPORTED_MODULE_1___default().post(url, frm, header).then(function (res) {
+        sweetalert2__WEBPACK_IMPORTED_MODULE_0___default().fire({
+          icon: 'success',
+          title: '완료',
+          text: '수강평이 작성되었습니다.',
+          confirmButtonText: '확인'
+        });
         // console.log(this.reviewClassItems);
         // console.log(res.data[0]);
 
@@ -20014,41 +20021,41 @@ __webpack_require__.r(__webpack_exports__);
     // },
     deleteClassReview: function deleteClassReview(data) {
       var _this3 = this;
-      var url = '/classboarddetailreview/' + data.ReviewID;
-      var header = {
-        headers: {
-          "Content-Type": 'multipart/form-data',
-          'X-CSRF-TOKEN': document.head.querySelector('meta[name="csrf-token"]').content
+      // Display confirmation dialog using Swal.fire
+      sweetalert2__WEBPACK_IMPORTED_MODULE_0___default().fire({
+        title: '정말로 삭제하시겠습니까?',
+        text: '삭제 후에는 복구할 수 없습니다.',
+        icon: 'question',
+        showCancelButton: true,
+        confirmButtonColor: '#d33',
+        cancelButtonColor: '#3085d6',
+        confirmButtonText: '삭제',
+        cancelButtonText: '취소'
+      }).then(function (result) {
+        // Check if the user clicked the confirm button
+        if (result.isConfirmed) {
+          var url = '/classboarddetailreview/' + data.ReviewID;
+          var header = {
+            headers: {
+              'Content-Type': 'multipart/form-data',
+              'X-CSRF-TOKEN': document.head.querySelector('meta[name="csrf-token"]').content
+            }
+          };
+          axios__WEBPACK_IMPORTED_MODULE_1___default()["delete"](url, header).then(function (res) {
+            // Remove the deleted item from the reviewClassItems array
+            _this3.reviewClassItems = _this3.reviewClassItems.filter(function (item) {
+              return item.ReviewID !== data.ReviewID;
+            });
+          })["catch"](function (err) {
+            // Handle errors, e.g., display an alert
+            console.error(err);
+            sweetalert2__WEBPACK_IMPORTED_MODULE_0___default().fire({
+              icon: 'error',
+              title: '삭제 실패',
+              text: '삭제 중에 오류가 발생했습니다.'
+            });
+          });
         }
-      };
-
-      // let frm = new FormData();
-      // const data = {
-      //     ReviewID: data.ReviewID,
-      // };
-
-      // 데이터값이 옴
-      // console.log(data);
-      // console.log(data.ReviewID);
-
-      axios__WEBPACK_IMPORTED_MODULE_1___default()["delete"](url, data, header).then(function (res) {
-        // console.log(this.reviewClassItems);
-        // console.log(res.data[0]);
-
-        // this.reviewClassItems.shift(res.data);
-        // if(this.deleteClassReview) {
-        // 	return this.classReviewData = '';
-        // }
-
-        // this.reviewClassItems 배열에서 삭제 대상인 항목을 제외한 새로운 배열을 생성하여 할당합니다. 
-        // 이렇게 하면 삭제된 항목이 제외된 배열이 this.reviewClassItems에 다시 할당되어 뷰에 반영됩니다.
-        _this3.reviewClassItems = _this3.reviewClassItems.filter(function (item) {
-          return item.ReviewID !== data.ReviewID;
-        });
-      })["catch"](function (err) {
-        // console.log(err.response.data.errors)
-        // context.commit('setRegistrationErrorMessage', err.response.data.errors);
-        // alert('별점을 체크해주세요!');
       });
     },
     postEnrollApp: function postEnrollApp() {
