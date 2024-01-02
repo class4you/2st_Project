@@ -53,17 +53,17 @@
 								<div class="search_filter">
 								<ul class="search_filter_status">
 									<li class="e_status_active">
-									<button type="button" @click="fetchData(page, searchQuery, solve = null, sortData)" class="e_status_active_tap_button" :class="{ 'e_status_active_tap_button_border_bottom': solve == null}">
+									<button type="button" @click="fetchData(1, searchQuery, solve = null, sortData)" class="e_status_active_tap_button" :class="{ 'e_status_active_tap_button_border_bottom': solve == null}">
 										전체
 									</button>
 									</li>
 									<li class="e_status_active">
-									<button type="button" @click="fetchData(page, searchQuery, solve = 0, sortData)" class="e_status_active_tap_button" :class="{ 'e_status_active_tap_button_border_bottom': solve == 0}">
+									<button type="button" @click="fetchData(1, searchQuery, solve = 0, sortData)" class="e_status_active_tap_button" :class="{ 'e_status_active_tap_button_border_bottom': solve == 0}">
 										미해결
 									</button>
 									</li>
 									<li class="e_status_active">
-									<button type="button" @click="fetchData(page, searchQuery, solve = 1, sortData)" class="e_status_active_tap_button" :class="{ 'e_status_active_tap_button_border_bottom': solve == 1}">
+									<button type="button" @click="fetchData(1, searchQuery, solve = 1, sortData)" class="e_status_active_tap_button" :class="{ 'e_status_active_tap_button_border_bottom': solve == 1}">
 										해결
 									</button>
 									</li>
@@ -73,7 +73,7 @@
 									<div class="ac_input_with_item">
 										<input type="text" v-model="searchQuery">
 									</div>
-									<button type="button" @click="fetchData(page, searchQuery, solve, sortData)" class="search_item_button">
+									<button type="button" @click="fetchData(1, searchQuery, solve, sortData)" class="search_item_button">
 										검색
 									</button>
 									</div>
@@ -92,16 +92,16 @@
 									</select>
 									<ul class="order_pc">
 									<li class="e_order active">
-										<button type="button" @click="fetchData(page, searchQuery, solve, sortData = 1)" class="order_pc_button" :class="{ 'order_pc_button_on': sortData == 1}"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="violet" class="bi bi-dot svg_opacity_off" :class="{ 'svg_opacity_on': sortData == 1}" viewBox="0 0 16 16"><path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/></svg>최신순</button>
+										<button type="button" @click="fetchData(1, searchQuery, solve, sortData = 1)" class="order_pc_button" :class="{ 'order_pc_button_on': sortData == 1}"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="violet" class="bi bi-dot svg_opacity_off" :class="{ 'svg_opacity_on': sortData == 1}" viewBox="0 0 16 16"><path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/></svg>최신순</button>
 									</li>
 									<li class="e_order active">
-										<button type="button" @click="fetchData(page, searchQuery, solve, sortData = 2)" class="order_pc_button" :class="{ 'order_pc_button_on': sortData == 2}"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="violet" class="bi bi-dot svg_opacity_off" :class="{ 'svg_opacity_on': sortData == 2}" viewBox="0 0 16 16"><path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/></svg>답변많은순</button>
+										<button type="button" @click="fetchData(1, searchQuery, solve, sortData = 2)" class="order_pc_button" :class="{ 'order_pc_button_on': sortData == 2}"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="violet" class="bi bi-dot svg_opacity_off" :class="{ 'svg_opacity_on': sortData == 2}" viewBox="0 0 16 16"><path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/></svg>답변많은순</button>
 									</li>
 									<li class="e_order active">
-										<button type="button" @click="fetchData(page, searchQuery, solve, sortData = 3)" class="order_pc_button" :class="{ 'order_pc_button_on': sortData == 3}"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="violet" class="bi bi-dot svg_opacity_off" :class="{ 'svg_opacity_on': sortData == 3}" viewBox="0 0 16 16"><path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/></svg>좋아요순</button>
+										<button type="button" @click="fetchData(1, searchQuery, solve, sortData = 3)" class="order_pc_button" :class="{ 'order_pc_button_on': sortData == 3}"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="violet" class="bi bi-dot svg_opacity_off" :class="{ 'svg_opacity_on': sortData == 3}" viewBox="0 0 16 16"><path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/></svg>좋아요순</button>
 									</li>
 									<li class="e_order active">
-										<button type="button" @click="fetchData(page, searchQuery, solve, sortData = 4)" class="order_pc_button" :class="{ 'order_pc_button_on': sortData == 4}"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="violet" class="bi bi-dot svg_opacity_off" :class="{ 'svg_opacity_on': sortData == 4}" viewBox="0 0 16 16"><path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/></svg>조회순</button>
+										<button type="button" @click="fetchData(1, searchQuery, solve, sortData = 4)" class="order_pc_button" :class="{ 'order_pc_button_on': sortData == 4}"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="violet" class="bi bi-dot svg_opacity_off" :class="{ 'svg_opacity_on': sortData == 4}" viewBox="0 0 16 16"><path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/></svg>조회순</button>
 									</li>
 									</ul>
 									<div class="posts_container_header_button_cover"></div>
@@ -152,7 +152,7 @@
 												</dd>
 												<dt class="visually_hidden">답변</dt>
 												<dd class="comment_count">
-													<i>답변수 : {{ item.cnt }}</i>
+													<i>답변수 : {{ item.cnt === null ? 0 : item.cnt}}</i>
 													<span></span>
 												</dd>
 												</dl>
@@ -243,7 +243,8 @@ export default {
                 this.pagination = response.data.boardData.links;
                 this.page = response.data.boardData.current_page;
                 this.pageChk = response.data.boardData.current_page;
-				// console.log(response.data);
+				console.log(response.data);
+				console.log(response.data.boardData.data);
 				// console.log(response.data.boardData.links);
 				// console.log(response.data.boardData.current_page);
 				// console.log(response.data.userCntData);

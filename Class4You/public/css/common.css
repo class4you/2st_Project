@@ -306,6 +306,11 @@ hr {
 .login_modal_cancel img {
     margin-left: auto;
     display: block;
+    opacity: 0.5;
+}
+
+.login_modal_cancel img:hover {
+    opacity: 1;
 }
 
 .login_modal_logo {
@@ -334,10 +339,12 @@ hr {
     padding: 10px 15px;
     font-size: 15px;
     margin-top: 10px;
+    opacity: 0.6;
 }
 
 .login_modal_input_box input:focus {
     outline: none;
+    opacity: 1;
 }
 
 .login_error_message {
