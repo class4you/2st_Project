@@ -393,7 +393,7 @@ class ClassInfoController extends Controller
                 ->join('lessons','chapters.ChapterID','lessons.ChapterID')
                 ->join('class_infos','class_infos.ClassID','chapters.ClassID')
                 ->where('class_infos.ClassID', $ClassID)
-                ->first();
+                ->get();
 
         Log::debug($classCuri);
 

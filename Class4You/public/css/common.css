@@ -1859,9 +1859,7 @@ ul.class_tabs li.class_current {
 }
 
 .class_tab_content_lesson_content {
-    border: 1px solid #ededed;
-    border-radius: 3px;
-    padding: 10px;
+    
 }
 
 .class_tab_content_instructor_all {
