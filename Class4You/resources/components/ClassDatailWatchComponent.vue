@@ -198,7 +198,7 @@ export default {
                 'onStateChange': this.onPlayerStateChange,
             },
             playerVars: {
-                'origin': 'http://127.0.0.1:8000', // 여기에는 웹사이트의 실제 origin을 넣어야 합니다.
+                'origin': 'http://127.0.0.1:8000',
                 'key': 'AIzaSyCZuYGiU9g-_nslcbFnWRd9ZSxkEu9bltg',
             },
         });

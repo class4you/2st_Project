@@ -14,12 +14,12 @@ class CommentController extends Controller
         // Log::debug($request);
         $data = $request->only('UserID', 'BoardID', 'CommentContent', 'CommentID');
 
-        Log::debug($request);
+        // Log::debug($request);
         $result = Comment::create($data);
     }
 
     public function delCommentData($CommentID) {
-        Log::debug($CommentID);
+        // Log::debug($CommentID);
         Comment::destroy($CommentID);
     }
 }

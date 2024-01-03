@@ -19,7 +19,7 @@ class EnrollmentController extends Controller
         // $result = Enrollment::create($data);
 
         // 로그를 남기기 위한 디버그 메시지
-        Log::debug($request);
+        // Log::debug($request);
 
         // 요청에서 필요한 데이터 추출
         $data = $request->only('UserID', 'ClassID');

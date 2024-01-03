@@ -243,8 +243,8 @@ export default {
                 this.pagination = response.data.boardData.links;
                 this.page = response.data.boardData.current_page;
                 this.pageChk = response.data.boardData.current_page;
-				console.log(response.data);
-				console.log(response.data.boardData.data);
+				// console.log(response.data);
+				// console.log(response.data.boardData.data);
 				// console.log(response.data.boardData.links);
 				// console.log(response.data.boardData.current_page);
 				// console.log(response.data.userCntData);
@@ -254,7 +254,7 @@ export default {
             });
     	},
 		hideEmail(email) {
-			// 백앤드에서 이메일 형식으로 온 값을 도메인 부분은 제거하고 뒤에 4자리는 *ㄹ 표시함
+			// 백앤드에서 이메일 형식으로 온 값을 도메인 부분은 제거하고 뒤에 4자리는 * 표시함
 			if (email && typeof email === 'string') {
 				const atIndex = email.indexOf('@');
 				const username = email.substring(0, Math.min(4, atIndex));

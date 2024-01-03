@@ -269,7 +269,7 @@ class ClassInfoController extends Controller
             ->where('class_infos.ClassDifficultyID', $ClassDifficultyID)
             ->paginate(10);
             // ->get();
-                   
+        
         // var_dump($result);
         foreach ($result as $item) {
             $classdiffinumValue = $item->ClassDifficultyID;
@@ -277,10 +277,10 @@ class ClassInfoController extends Controller
             $classID = $item->ClassID;
 
             $langData = ClassInfo::select('class_languages.ClassLanguageName')
-            ->join('class_languagelinks', 'class_infos.ClassID', 'class_languagelinks.ClassID')
-            ->join('class_languages', 'class_languagelinks.ClassLanguageID', 'class_languages.ClassLanguageID')
-            ->where('class_infos.ClassID', $classID)
-            ->get();
+                ->join('class_languagelinks', 'class_infos.ClassID', 'class_languagelinks.ClassID')
+                ->join('class_languages', 'class_languagelinks.ClassLanguageID', 'class_languages.ClassLanguageID')
+                ->where('class_infos.ClassID', $classID)
+                ->get();
 
             $item->languages = $langData;
 
@@ -363,8 +363,8 @@ class ClassInfoController extends Controller
         // Log::debug($UserID);
 
         $existingEnrollment = Enrollment::where('UserID', $UserID)
-        ->where('ClassID', $ClassID)
-        ->first();
+            ->where('ClassID', $ClassID)
+            ->first();
 
         // Log::debug($existingEnrollment);
 
@@ -381,10 +381,10 @@ class ClassInfoController extends Controller
         // Log::debug($result);
         // 수강한 유저 수 불러오기
         $userCnt = Enrollment::select(DB::raw('COUNT(UserID) as user_count'))
-        ->where('ClassID', $ClassID)
-        ->groupBy('ClassID') 
-        ->first();
-        
+            ->where('ClassID', $ClassID)
+            ->groupBy('ClassID') 
+            ->first();
+            
         // Log::debug($userCnt);
 
         // 챕터 레슨 값 받아오기
@@ -396,9 +396,9 @@ class ClassInfoController extends Controller
         //         ->get();
 
         $classCuri = Chapter::select('chapters.ChapterTitle', 'chapters.ChapterID')
-        ->join('class_infos','class_infos.ClassID','chapters.ClassID')
-        ->where('class_infos.ClassID', $ClassID)
-        ->get();
+            ->join('class_infos','class_infos.ClassID','chapters.ClassID')
+            ->where('class_infos.ClassID', $ClassID)
+            ->get();
 
         $allLessonsData = collect();
 
@@ -473,11 +473,11 @@ class ClassInfoController extends Controller
             $classID = $result->ClassID;
 
             $langData = ClassInfo::select('class_languages.ClassLanguageName')
-            ->join('class_languagelinks', 'class_infos.ClassID', 'class_languagelinks.ClassID')
-            ->join('class_languages', 'class_languagelinks.ClassLanguageID', 'class_languages.ClassLanguageID')
-            ->where('class_infos.ClassID', $classID)
-            ->get();
-            
+                ->join('class_languagelinks', 'class_infos.ClassID', 'class_languagelinks.ClassID')
+                ->join('class_languages', 'class_languagelinks.ClassLanguageID', 'class_languages.ClassLanguageID')
+                ->where('class_infos.ClassID', $classID)
+                ->get();
+                
             // $userId = Auth::id();
             // $userId2 = Auth::user();
             // $userId3 = auth()->user();

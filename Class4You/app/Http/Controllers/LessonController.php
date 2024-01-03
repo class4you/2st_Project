@@ -26,7 +26,7 @@ class LessonController extends Controller
         // 리슨 값을 토대로 해당 챕터를 전부 가져옴
         $chapterID = Lesson::where('LessonID', $request->lessonId)->value('ChapterID');
 
-        Log::debug($chapterID);
+        // Log::debug($chapterID);
 
         // 챕터의 플래그를 확인해서 해당 챕터에 리슨이 전부 완료됐는지 확인하는 쿼리문
         $allLessonsCompleted = Lesson::where('ChapterID', $chapterID)
@@ -49,7 +49,7 @@ class LessonController extends Controller
                 Classinfo::where('ClassID', $classID)
                 ->update(['ClassFlg' => 1]);
             }
-            Log::debug($allLessonsCompleted);
+            // Log::debug($allLessonsCompleted);
         }
 
     }

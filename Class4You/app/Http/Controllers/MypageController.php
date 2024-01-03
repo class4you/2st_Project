@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\DB;
 class MypageController extends Controller
 {
     function getUserClassData (Request $request) {
-        Log::debug($request);
+        // Log::debug($request);
         $UserID = Auth::id();
 
         // 유저 값 조회
@@ -80,6 +80,8 @@ class MypageController extends Controller
             ->groupBy('class_infos.ClassID', 'day')
             ->get();
 
+
+        // 챕터 플래그가 1인 요일 정보
         $chaptersFlagDays = Classinfo::join('Chapters', 'class_infos.ClassID', 'Chapters.ClassID')
             ->select('Chapters.ChapterID',
                 DB::raw('DATE_FORMAT(Chapters.updated_at, "%a") as day'),

@@ -20,7 +20,7 @@ class BoardController extends Controller
         // 해당 조인을 사용한 이유는 값이 없는 경우가 있을 수도 있어서 없는 값을 가져오면 에러가 떠서 해당 조인 사용(댓글이 없는 게시물의 경우 자동으로 null 처리를 하기 위해서)
         // DB::raw를 사용해서 하위 쿼리 (서브 쿼리) 작성, 서브 쿼리에서 답변 테이블을 기준으로 코멘트의 보더 아이디 값으로 그룹화 시켜줌, 
         $boardDataQuery = Board::leftJoin('users', 'boards.UserID', 'users.UserID')
-            // 아래 부분은 콜백 함수를 사용, $join은 leftjoin 메소드에서 전달된 콜백 함수에 사용되는 인스턴스 -> leftjoin으로 조인한 결과값을 funtion안에 인스턴스로 넣어주고 해당 on은 조인 시에 사용할 조건을 말함
+            // 아래 부분은 콜백 함수를 사용, $join은 leftjoin 메소드에서 전달된 콜백 함수에 사용되는 인스턴스 -> left join으로 조인한 결과값을 funtion안에 인스턴스로 넣어주고 해당 on은 조인 시에 사용할 조건을 말함
             // 하이디에서 사용한 join 이후 on과 같음 이전 leftjoin에 만든 com에 있는 보더 아이디 값과 보더즈에 있는 보더 아이디 값을 조인해주는거
             ->leftJoin(DB::raw('(SELECT BoardID, COUNT(BoardID) AS cnt FROM comments GROUP BY comments.BoardID) com'), function ($join) {
                 $join->on('com.BoardID', 'boards.BoardID');

@@ -16,7 +16,7 @@ class UserController extends Controller
     // 회원가입
     function store (Request $request) {
         // session()->start();
-        Log::debug($request);
+        // Log::debug($request);
         $data = $request->only('UserEmail', 'UserPassword', 'UserName', 'UserPhoneNumber', 'UserBirthDate', 'UserPostcode', 'UserRoadAddress', 'UserDetailedAddress', 'UserTermsofUse', 'UserPrivacy');
         
         // 비밀번호 암호화
