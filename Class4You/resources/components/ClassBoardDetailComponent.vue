@@ -974,6 +974,7 @@ export default {
 		// },
 
 		deleteClassReview(data) {
+			console.log(data);
 			// Display confirmation dialog using Swal.fire
 			Swal.fire({
 				title: '정말로 삭제하시겠습니까?',
