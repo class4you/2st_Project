@@ -934,7 +934,7 @@ export default {
 					text: '수강평이 작성되었습니다.',
 					confirmButtonText: '확인'
             	})
-				// console.log(this.reviewClassItems);
+				console.log(this.reviewClassItems);
                 // console.log(res.data[0]);
 				
 				// 기존 수강평 데이터의 [0]번 방에 작성한 수강평 추가

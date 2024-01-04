@@ -86,8 +86,10 @@
                             <p class="board_detail_user_id">{{nowUserID.UserEmail}}</p>
                         </div>
                         <div class="reviewPost row jcB">
-                            <textarea placeholder="댓글을 입력해주세요." v-model="frmCommentData.CommentContent"></textarea>
-                            <button type="button" @click="submitCommentData()">저장</button>
+                            <!-- <textarea placeholder="댓글을 입력해주세요." v-model="frmCommentData.CommentContent"></textarea> -->
+                            <textarea placeholder="댓글을 입력해주세요." v-model="commentData.CommentContent"></textarea>
+                            <!-- <button type="button" @click="submitCommentData()">저장</button> -->
+                            <button @click="addBoardComment()">저장</button>
                         </div>
                     </div>
                     <div class="reviewBox border-t-none" style="padding: 10px 0px;">
@@ -104,7 +106,8 @@
                                 <div class="commentActions row aiC">
                                     <div v-if="item.UserID == $store.state.UserID" style="margin-left: auto;">
                                         <!-- <button class="comment_editBtn">수정</button> -->
-                                        <button @click="deleteCommentData(item.CommentID)" class="commentActions_deleteBtn">삭제</button>
+                                        <!-- <button @click="deleteCommentData(item.CommentID)" class="commentActions_deleteBtn">삭제</button> -->
+                                        <button @click="deleteCommentData(data)" class="commentActions_deleteBtn">삭제</button>
                                         <!-- <button class="commentActions_reportBtn">신고</button> -->
                                     </div>
                                 </div>
@@ -116,13 +119,13 @@
             </section>
         </div>
     </div>
-    <div v-if="showEditModalFlag" class="modal">
+    <!-- <div v-if="showEditModalFlag" class="modal">
         <div class="modal-content">
             <span class="close" @click="closeEditModal">&times;</span>
             <textarea v-model="editCommentContent"></textarea>
             <button @click="updateCommentData(editingCommentId)">저장</button>
         </div>
-    </div>
+    </div> -->
 
 </template>
 <script>
@@ -147,7 +150,23 @@ export default {
                 CommentID: this.CommnetID,
                 CommentContent: '',
             },
-            
+            commentData: {
+                UserID: this.$store.state.UserID,
+                UserEmail: this.$store.state.UserEmail,
+                BoardID: this.BoardID,
+                CommentID: this.CommentID,
+                CommentContent: '',
+            },
+            commentItems: [],
+            newCommentData() {
+                return {
+                    UserID: this.$store.state.UserID,
+                    UserEmail: this.$store.state.UserEmail,
+                    BoardID: this.BoardID,
+                    CommentID: this.CommentID,
+                    CommentContent: '',
+                };
+            },
         };
     },
 
@@ -178,9 +197,10 @@ export default {
 		},
 
         // 댓글 작성 불러오기
-        submitCommentData() {
-            this.$store.dispatch('submitCommentData', this.frmCommentData);
-        },
+        // submitCommentData() {
+        //     this.$store.dispatch('submitCommentData', this.frmCommentData);
+        //     console.log(this.frmCommentData);
+        // },
 
         // 댓글 삭제 불러오기
         // sweetalert2을 이용한 알러트 출력 방법
@@ -197,10 +217,117 @@ export default {
             }).then((result) => {
                 // 알러트의 확인 버트을 눌러야 아래 if문이 true갑으로 실행된다
                 if (result.isConfirmed) {
-                this.$store.dispatch('deleteCommentData', data);
+                // this.$store.dispatch('deleteCommentData', data);
+                    const url = '/comments/' + data
+                    const header = {
+                        headers: {
+                            "Content-Type": 'multipart/form-data',
+                            'X-CSRF-TOKEN': document.head.querySelector('meta[name="csrf-token"]').content,
+                        },
+                    };
+                    // const requestData = {
+                    //     CommentID: data.CommentID,
+                    // };
+
+                // console.log(data);
+                // console.log(requestData);
+
+                // axios.delete(url, requestData, header)
+                axios.delete(url, header)
+                .then(res => { 
+                    // console.log(res.data);
+                    // console.log(this.newCommentItem);
+                    // this.newCommentItem = [this.newCommentItem];
+                    // console.log(this.newCommentData);
+                    // console.log(this.newCommentItem);
+                    // 해당 처리가 끝나면 리로드함
+                    // window.location.reload();
+                    // this.reviewClassItems = this.reviewClassItems.filter((item) => item.ReviewID !== data.ReviewID);
+                    // this.newCommentItem = this.newComment.filter((item) => item.CommentID !== requestData.CommentID);
+                    // this.newCommentItem = this.newCommentItem.filter((item) => item.CommentID !== data.CommentID);
+                    // this.newCommentItem = this.newCommentData;
+                    // const index = this.newCommentItem.findIndex((item) => item.CommentID !== data.CommentID);
+                    // console.log(index);
+                    // this.newCommentItem.splice(index, 1);
+                    // if (index !== -1) {
+                    //     // index가 -1이 아닌 경우에만 해당 요소를 삭제
+                    //     console.log(this.newCommentData);
+                    //     this.newCommentData.splice(index, 1);
+                    // }
+                    
+                })
+                .catch(err => {
+                    // console.log(err.response.data.errors)
+                    console.error(err);
+						Swal.fire({
+							icon: 'error',
+							title: '삭제 실패',
+							text: '삭제 중에 오류가 발생했습니다.',
+						});
+                    });
+
                 }
             });
         },
+
+        // 댓글 작성 함수
+        addBoardComment() {
+            const url = '/comments'
+            const header = {
+                headers: {
+                    "Content-Type": 'multipart/form-data',
+                    'X-CSRF-TOKEN': document.head.querySelector('meta[name="csrf-token"]').content,
+                },
+            }
+
+            // TODO : data 부분 찾아가지고 변경해야댐
+            // if(!data.UserID) {
+            //     Swal.fire({
+            //         icon: 'error',
+            //         title: '로그인 확인',
+            //         text: '로그인 후 작성해주세요.',
+            //         confirmButtonText: '확인'
+            //     });
+            // } else if(!data.CommentContent) {
+            //     Swal.fire({
+            //         icon: 'error',
+            //         title: '내용 확인',
+            //         text: '내용을 입력해주세요.',
+            //         confirmButtonText: '확인'
+            //     });
+            // }
+            let frm = new FormData();
+            // console.log(data);
+
+            frm.append('BoardID',this.commentData.BoardID);
+            frm.append('UserID',this.commentData.UserID);
+            frm.append('UserEmail',this.commentData.UserEmail);
+            frm.append('CommentContent',this.commentData.CommentContent);
+
+            console.log(frm);
+
+            axios.post(url, frm, header)
+            .then(res => {
+                Swal.fire({
+					icon: 'success',
+					title: '완료',
+					text: '댓글이 작성되었습니다.',
+					confirmButtonText: '확인'
+            	})
+                console.log(this.commentItems);
+                console.log(res.data);
+                // window.location.reload();
+
+                this.commentItems.unshift(res.data[0]);
+                this.commentData = this.newCommentData();
+
+            })
+            .catch(err => {
+                // console.log(err.response.data.errors)
+                // context.commit('setRegistrationErrorMessage', err.response.data.errors);
+            })
+        },
+        
 
         // 게시판 삭제 불러오기
         deleteBoardData(data) {
@@ -215,6 +342,7 @@ export default {
                 cancelButtonText: '취소'
             }).then((result) => {
                 if (result.isConfirmed) {
+                    // const url = '/boarddetail/' + data
                     const url = '/boarddetail/' + data
                     const header = {
                         headers: {
@@ -229,7 +357,9 @@ export default {
                 .then((res) => {
 
                     console.log(this.newBoardItem);
-                    this.newBoardItem = this.newBoardItem.filter((item) => item.BoardID !== data.BoardID);
+                    // this.newBoardItem = this.delBoard();
+                    // router.push('/board');
+                    this.$router.push('/board');
                 })
                 .catch((err) => {
 
