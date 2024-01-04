@@ -2027,8 +2027,22 @@ ul.class_tabs li.class_current {
 
 .class_detail_rating_list_text {
     margin-top: 10px;
-    padding: 10px 0px 20px 0px;
+    padding: 10px 0px 0px 0px;
     /* border-bottom: 1px solid #f2f2f2; */
+}
+
+.class_detail_rating_list_text_textarea {
+    width: 100%;
+    border: 1px solid #52525232;
+    padding: 10px 10px;
+    border-radius: 5px;
+    resize: none;
+    color: #8c8c8c;
+    font-size: 16px;
+}
+
+.class_detail_rating_list_text_textarea:focus {
+    border: 1px solid #5252527c;
 }
 
 .class_detail_rating_list_text_p {
@@ -2039,8 +2053,13 @@ ul.class_tabs li.class_current {
 }
 
 .class_detail_rating_user_button {
+    margin-top: 10px;
     display: flex;
     justify-content: end;
+}
+
+.class_detail_rating_user_delete_reating {
+    margin-bottom: 10px;
 }
 
 .class_detail_rating_user_update_button>button {
@@ -2057,6 +2076,15 @@ ul.class_tabs li.class_current {
     color: #fff;
     background-color: #a19f9f;
     border: none;
+}
+
+.class_detail_rating_user_delete_button_covar {
+    display: flex;
+}
+
+.class_detail_rating_user_delete_button {
+    display: flex;
+    gap: 10px;
 }
 
 .class_detail_rating_user_delete_button>button {
