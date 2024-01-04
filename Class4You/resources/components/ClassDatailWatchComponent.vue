@@ -255,9 +255,11 @@ export default {
             axios.put('/lessonprogress', {
                 lessonAllRunningTime: this.LessonAllRunningTime,
                 lessonRunningTime: this.LessonRunningTime,
-                lessonId: this.selectedLesson.LessonID,
                 lessonFlg: this.LessonFlg,
                 progressPercentage: this.LessonProgress,  // Vuex Store에서 상태 가져오기
+                LessonID: this.selectedLesson.LessonID,
+                UserID: this.$store.state.UserID,
+                ClassID: this.ClassID,
                 // 다른 필요한 데이터 추가 가능
             })
             .then(response => {

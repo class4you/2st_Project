@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 use App\Models\Enrollment;
+use App\Models\LessonState;
 use App\Models\Classinfo;
 use App\Models\Chapter;
 use App\Models\Lesson;
@@ -43,7 +44,9 @@ class MypageController extends Controller
 
         $enrollments = Enrollment::where('UserID', $UserID)->get();
 
-        $classIDs = $enrollments->pluck('ClassID');
+        $enrollmenIDs = $enrollments->pluck('EnrollmentID');
+
+        // Log::debug($enrollmenIDs);
 
         // $chapters = collect();
         // foreach ($classIDs as $classID) {
@@ -69,29 +72,32 @@ class MypageController extends Controller
         // 주간 통계
         $weeklyStats = collect();
 
-        // 클래스 플래그가 1인 요일 정보
-        $classFlagDays = Classinfo::select(
-                'class_infos.ClassID',
-                DB::raw('DATE_FORMAT(class_infos.updated_at, "%a") as day'),
-                DB::raw('SUM(class_infos.ClassFlg) as classFlagCount'),
+        // 엘로먼트 플래그가 1인 요일 정보
+        $enrollmentsFlagDays = Enrollment::select(
+                'enrollments.EnrollmentID',
+                DB::raw('DATE_FORMAT(enrollments.updated_at, "%a") as day'),
+                DB::raw('SUM(enrollments.EnrollmentFlg) as enrollmentFlagCount'),
             )
-            ->whereIn('class_infos.ClassID', $classIDs)
-            ->whereBetween('class_infos.updated_at', [$request->weekStart, $request->weekEnd])
-            ->groupBy('class_infos.ClassID', 'day')
+            ->whereIn('enrollments.EnrollmentID', $enrollmenIDs)
+            ->whereBetween('enrollments.updated_at', [$request->weekStart, $request->weekEnd])
+            ->groupBy('enrollments.EnrollmentID', 'day')
             ->get();
+
+        // Log::debug($enrollmentsFlagDays);
 
 
         // 챕터 플래그가 1인 요일 정보
-        $chaptersFlagDays = Classinfo::join('Chapters', 'class_infos.ClassID', 'Chapters.ClassID')
-            ->select('Chapters.ChapterID',
-                DB::raw('DATE_FORMAT(Chapters.updated_at, "%a") as day'),
-                DB::raw('SUM(Chapters.ChapterFlg) as chapterFlagCount')
+        $chaptersFlagDays = Enrollment::join('Chapter_states', 'enrollments.EnrollmentID', 'Chapter_states.EnrollmentID')
+            ->select('Chapter_states.ChapterStateID',
+                DB::raw('DATE_FORMAT(Chapter_states.updated_at, "%a") as day'),
+                DB::raw('SUM(Chapter_states.ChapterFlg) as chapterFlagCount')
             )
-            ->whereIn('class_infos.ClassID', $classIDs)
-            ->whereBetween('Chapters.updated_at', [$request->weekStart, $request->weekEnd])
-            ->groupBy('class_infos.ClassID', 'day', 'Chapters.ChapterID')
+            ->whereIn('enrollments.EnrollmentID', $enrollmenIDs)
+            ->whereBetween('Chapter_states.updated_at', [$request->weekStart, $request->weekEnd])
+            ->groupBy('enrollments.EnrollmentID', 'day', 'Chapter_states.ChapterStateID')
             ->get();
             
+        // Log::debug($chaptersFlagDays);
         
         // Log::debug($chaptersFlagDays);
         // 월 화 수 목 금 토 일에 해당하는 요일 목록
@@ -101,29 +107,28 @@ class MypageController extends Controller
         $groupedData = [];
         foreach ($weekDays as $day) {
             $groupedData[$day] = [
-                'classFlagCount' => 0,
+                'enrollmentFlagCount' => 0,
                 'chapterFlagCount' => 0,
             ];
         }
         
         // 결과 반영
-        foreach ($classFlagDays as $result) {
-            // Log::debug($result);
+        foreach ($enrollmentsFlagDays as $result) {
             $day = $result->day;
-            $groupedData[$day]['classFlagCount'] = ($groupedData[$day]['classFlagCount'] ?? 0) + $result->classFlagCount;
+            $groupedData[$day]['enrollmentFlagCount'] = ($groupedData[$day]['enrollmentFlagCount'] ?? 0) + $result->enrollmentFlagCount;
         }
 
         foreach ($chaptersFlagDays as $result) {
             // Log::debug($result);
             $day = $result->day;
-        
             // 날짜가 배열에 이미 존재하면 기존 값을 더하고, 없으면 현재 값으로 초기화
             $groupedData[$day]['chapterFlagCount'] = ($groupedData[$day]['chapterFlagCount'] ?? 0) + $result->chapterFlagCount;
         }
         
         // 챕터 값이 있는 경우에만 추가
-        if (!empty($classFlagDays) || !empty($chapterFlagDays)) {
+        if (!empty($enrollmentsFlagDays) || !empty($chapterFlagDays)) {
             $weeklyStats = $groupedData;
+            // Log::debug($weeklyStats);
         }
         
         
@@ -149,43 +154,43 @@ class MypageController extends Controller
         //     ->groupBy('year', 'month')
         //     ->get();
 
-        $classFlagMonths = Classinfo::select(
-                'class_infos.ClassID',
-                DB::raw('YEAR(class_infos.updated_at) as year'),
-                DB::raw('MONTH(class_infos.updated_at) as month'),
-                DB::raw('SUM(class_infos.ClassFlg) as classFlagCount'),
+        $enrollmentsFlagMonths = Enrollment::select(
+                'enrollments.EnrollmentID',
+                DB::raw('YEAR(enrollments.updated_at) as year'),
+                DB::raw('MONTH(enrollments.updated_at) as month'),
+                DB::raw('SUM(enrollments.EnrollmentFlg) as enrollmentFlagCount'),
             )
-            ->whereIn('class_infos.ClassID', $classIDs)
-            ->whereBetween('class_infos.updated_at', [$request->yearStart, $request->yearEnd])
-            ->groupBy('class_infos.ClassID', 'year', 'month')  // class_infos.ClassID 추가
+            ->whereIn('enrollments.EnrollmentID', $enrollmenIDs)
+            ->whereBetween('enrollments.updated_at', [$request->yearStart, $request->yearEnd])
+            ->groupBy('enrollments.EnrollmentID', 'year', 'month')  // class_infos.ClassID 추가
             ->get();
 
-
-        $chaptersFlagMonths =  Classinfo::join('Chapters', 'class_infos.ClassID', '=', 'Chapters.ClassID')
+        $chaptersFlagMonths =  Enrollment::join('Chapter_states', 'enrollments.EnrollmentID', 'Chapter_states.EnrollmentID')
             ->select(
-                DB::raw('YEAR(Chapters.updated_at) as year'),
-                DB::raw('MONTH(Chapters.updated_at) as month'),
-                DB::raw('SUM(Chapters.ChapterFlg) as chapterFlagCount')
+                DB::raw('YEAR(Chapter_states.updated_at) as year'),
+                DB::raw('MONTH(Chapter_states.updated_at) as month'),
+                DB::raw('SUM(Chapter_states.ChapterFlg) as chapterFlagCount')
             )
-            ->whereIn('class_infos.ClassID', $classIDs)
-            ->whereBetween('Chapters.updated_at', [$request->yearStart, $request->yearEnd])
+            ->whereIn('enrollments.EnrollmentID', $enrollmenIDs)
+            ->whereBetween('Chapter_states.updated_at', [$request->yearStart, $request->yearEnd])
             ->groupBy('year', 'month')
             ->get();
-        
+            
+        // Log::debug($chaptersFlagMonths);
         // 1월부터 12월까지의 데이터 그룹화
         $monthlyStatsData = [];
         for ($month = 1; $month <= 12; $month++) {
             $monthlyStatsData[$month] = [
-                'classFlagCount' => 0,
+                'enrollmentFlagCount' => 0,
                 'chapterFlagCount' => 0,
             ];
         }
         
         // 결과 반영
-        foreach ($classFlagMonths as $result) {
+        foreach ($enrollmentsFlagMonths as $result) {
             // Log::debug($result);
             $month = $result->month;
-            $monthlyStatsData[$month]['classFlagCount'] = ($monthlyStatsData[$month]['classFlagCount'] ?? 0) + $result->classFlagCount;
+            $monthlyStatsData[$month]['enrollmentFlagCount'] = ($monthlyStatsData[$month]['enrollmentFlagCount'] ?? 0) + $result->enrollmentFlagCount;
         }
 
         foreach ($chaptersFlagMonths as $result) {
@@ -195,8 +200,9 @@ class MypageController extends Controller
         }
         
         // 챕터 값이 있는 경우에만 추가
-        if (!empty($classFlagMonths) || !empty($chapterFlagMonths)) {
+        if (!empty($enrollmentsFlagMonths) || !empty($chapterFlagMonths)) {
             $monthlyStats = $monthlyStatsData;
+            // Log::debug($monthlyStats);
         }
         // ==============================================================================================
 
@@ -204,32 +210,190 @@ class MypageController extends Controller
         // ==============================================================================================
         // 최근 강의 결과
 
-        $recentClassInfoData = DB::table('class_infos')
-            ->where('updated_at', '=', DB::table('class_infos')->max('updated_at'))
+        // $recentEnrollmentData = Enrollment::where('UserID', $UserID)
+        //     ->where('updated_at', DB::table('enrollments')->max('updated_at'))
+        //     ->get();
+        // Log::debug($UserID);
+
+        // $recentEnrollmentData = Enrollment::where('updated_at', function ($query) use ($UserID) {
+        //         $query->select('lesson_states.updated_at')
+        //             ->from('enrollments')
+        //             ->join('lesson_states', 'enrollments.EnrollmentID', 'lesson_states.EnrollmentID')
+        //             ->where('UserID', $UserID)
+        //             ->orderByDesc('lesson_states.updated_at')
+        //             ->limit(1);
+        //     })
+        //     ->first();
+
+        // $recentEnrollmentData = Enrollment::join('lesson_states', 'enrollments.EnrollmentID', 'lesson_states.EnrollmentID')
+        //     ->where('lesson_states.updated_at', function ($query) use ($UserID) {
+        //         $query->select('updated_at')
+        //         ->from('enrollments')
+        //         ->where('UserID', $UserID)
+        //         ->orderByDesc('updated_at')
+        //         ->limit(1);
+        // })
+        // ->first();
+        
+        $recentEnrollmentData = LessonState::join('enrollments', 'enrollments.EnrollmentID', 'lesson_states.EnrollmentID')
+        ->where('lesson_states.updated_at', function ($query) use ($UserID) {
+            $query->select('lesson_states.updated_at')
+            ->from('lesson_states')
+            ->join('enrollments', 'enrollments.EnrollmentID', 'lesson_states.EnrollmentID')
+            ->where('enrollments.UserID', $UserID)
+            ->orderByDesc('lesson_states.updated_at')
+            ->limit(1);
+        })
+        ->first();
+
+        // $test = LessonState::join('enrollments', 'enrollments.EnrollmentID', 'lesson_states.EnrollmentID')
+        //     ->orderByDesc('lesson_states.updated_at')
+        //     ->first();
+
+        // Log::debug($test);
+
+        Log::debug($recentEnrollmentData);
+
+        $recentClassInfoData = Classinfo::where('ClassID', $recentEnrollmentData->ClassID)
+            ->get();
+        
+        // Log::debug($recentClassInfoData);
+
+        // $recentClassData = User::join('enrollments', 'users.UserID', 'enrollments.UserID')
+        //     ->join('class_infos', 'enrollments.ClassID', 'class_infos.ClassID')
+        //     ->join('chapters', 'class_infos.ClassID', 'chapters.ClassID')
+        //     // ->join('lessons', 'chapters.ChapterID', 'lessons.ChapterID')
+        //     ->where('users.UserID', $UserID)
+        //     ->whereRaw('class_infos.updated_at = (SELECT MAX(class_infos.updated_at) FROM class_infos)')
+        //     ->get();
+
+        $recentChapterStateData = Enrollment::join('chapter_states', 'enrollments.EnrollmentID', 'chapter_states.EnrollmentID')
+            ->where('enrollments.UserID', $UserID)
+            ->where('enrollments.EnrollmentID', $recentEnrollmentData->EnrollmentID)
             ->get();
 
-        $recentClassData = User::join('enrollments', 'users.UserID', 'enrollments.UserID')
-            ->join('class_infos', 'enrollments.ClassID', 'class_infos.ClassID')
-            ->join('chapters', 'class_infos.ClassID', 'chapters.ClassID')
-            // ->join('lessons', 'chapters.ChapterID', 'lessons.ChapterID')
-            ->where('users.UserID', $UserID)
-            ->whereRaw('class_infos.updated_at = (SELECT MAX(class_infos.updated_at) FROM class_infos)')
-            ->get();
-
+        // Log::debug($recentChapterStateData);
+        
         // 플래그가 1인 챕터 개수 세기
-        $flaggedChaptersCount =  $recentClassData->where('ChapterFlg', 1)->count();
+        $flaggedChaptersCount =  $recentChapterStateData->where('ChapterFlg', 1)->count();
 
-        Log::debug($flaggedChaptersCount);
+        // Log::debug($flaggedChaptersCount);
         // 전체 챕터 개수 세기
-        $totalChaptersCount =  $recentClassData->where('ChapterID')->count();
-        Log::debug($totalChaptersCount);
+        $totalChaptersCount =  $recentChapterStateData->where('EnrollmentID', $recentEnrollmentData->EnrollmentID)->count();
+        // Log::debug($totalChaptersCount);
 
         // 퍼센트 계산
         $percentageFlaggedChapters = ($totalChaptersCount > 0) ? ($flaggedChaptersCount / $totalChaptersCount) * 100 : 0;
 
-        Log::debug($percentageFlaggedChapters);
+        // Log::debug($percentageFlaggedChapters);
         
         // ==============================================================================================
+
+        return response()->json([
+            'userData' => $userData,
+            'classData' => $classData,
+            'boardData' => $boardData,
+            'weeklyStats' =>  $weeklyStats,
+            'monthlyStats' =>  $monthlyStats,
+            'recentClassInfoData' => $recentClassInfoData,
+            'flaggedChaptersCount' =>  $flaggedChaptersCount,
+            'totalChaptersCount' =>  $totalChaptersCount,
+            'percentageFlaggedChapters' =>  $percentageFlaggedChapters,
+        ]);
+    }
+
+    function putUserAddressData(Request $request) {
+
+        $user = User::find($request->UserID);
+        if(Auth::check()) {
+            $loggedInUserId = Auth::id(); // 현재 로그인된 사용자의 ID를 가져옴
+            $requestUserId = $request->UserID; // 예시로 리퀘스트에서 user_id를 가져옴
+            if ($loggedInUserId == $requestUserId) {
+                $user->update([
+                    'UserPostcode' => $request->UserPostcode,
+                    'UserRoadAddress' => $request->UserRoadAddress,
+                    'UserDetailedAddress' => $request->UserDetailedAddress,
+                ]);
+                return response()->json($user);
+            }
+        }
+
+    }
+
+    function putUserbasicData(Request $request) {
+        Log::debug($request->UserPhoneNumber);
+
+        $user = User::find($request->UserID);
+
+        if(Auth::check()) {
+            $loggedInUserId = Auth::id(); // 현재 로그인된 사용자의 ID를 가져옴
+            $requestUserId = $request->UserID; // 예시로 리퀘스트에서 user_id를 가져옴
+            if ($loggedInUserId == $requestUserId) {
+                $user->update(['UserPhoneNumber' => $request->UserPhoneNumber]);
+                Log::debug($user);
+                return response()->json($user);
+            }
+        }
+    }
+
+    function putUserpasswordData(Request $request) {
+        // Log::debug($request);
+
+        $result = User::find($request->UserID);
+        if(Auth::check()) {
+            $loggedInUserId = Auth::id(); // 현재 로그인된 사용자의 ID를 가져옴
+            $requestUserId = $request->UserID; // 예시로 리퀘스트에서 user_id를 가져옴
+            if ($loggedInUserId == $requestUserId) {
+                if(!$result || !(Hash::check($request->UserPassword, $result->UserPassword))) {
+                    return response()->json([
+                        'success' => false,
+                        'message' => '아이디와 비밀번호를 확인해주세요.',
+                    ]);
+                }
+                $request->NewUserPassword = Hash::make($request->NewUserPassword);
+                $result->update(['UserPassword' => $request->NewUserPassword]);
+                return response()->json([
+                    'success' => true,
+                    'message' => '비밀번호 변경하셨습니다.',
+                ]);
+            }
+        }
+    }
+
+
+    function deleteUserpasswordData(Request $request) {
+        
+        $result = User::find($request->UserID);
+        $deletedPassword = $request->input('deletedPassword');
+        $deletedPasswordChk = $request->input('deletedPasswordChk');
+        $deletedPasswordChk2 = $request->input('deletedPasswordChk2');
+        Log::debug($result);
+        Log::debug($deletedPassword);
+        Log::debug($deletedPasswordChk);
+        Log::debug($deletedPasswordChk2);
+    
+    
+        if(Auth::check()) {
+            $loggedInUserId = Auth::id();
+            $requestUserId = $request->UserID;
+
+            if ($loggedInUserId == $requestUserId) {
+                Log::debug($result);
+                if (Hash::check($deletedPassword, $result->UserPassword) && $deletedPasswordChk == $deletedPasswordChk2) {
+                    // 비밀번호 일치 및 비밀번호 체크 값이 일치하면 계정 삭제
+                    $result->delete();
+                    // 삭제 성공 응답 등을 반환
+                    return response()->json(['success' => true, 'message' => '계정이 성공적으로 삭제되었습니다.']);
+                } else {
+                    // 비밀번호 불일치 또는 비밀번호 체크 값이 일치하지 않으면 오류 응답 반환
+                    return response()->json(['success' => false, 'message' => '비밀번호 불일치 또는 비밀번호 체크 값이 일치하지 않습니다.']);
+                }    
+            }
+        }
+        
+    }
+}
+
 
         // $chapters = collect();
         // foreach ($classIDs as $classID) {
@@ -352,108 +516,3 @@ class MypageController extends Controller
 
         // Log::debug($boardData);
         
-
-        return response()->json([
-            'userData' => $userData,
-            'classData' => $classData,
-            'boardData' => $boardData,
-            'weeklyStats' =>  $weeklyStats,
-            'monthlyStats' =>  $monthlyStats,
-            'recentClassInfoData' => $recentClassInfoData,
-            'flaggedChaptersCount' =>  $flaggedChaptersCount,
-            'totalChaptersCount' =>  $totalChaptersCount,
-            'percentageFlaggedChapters' =>  $percentageFlaggedChapters,
-        ]);
-    }
-
-    function putUserAddressData(Request $request) {
-
-        $user = User::find($request->UserID);
-        if(Auth::check()) {
-            $loggedInUserId = Auth::id(); // 현재 로그인된 사용자의 ID를 가져옴
-            $requestUserId = $request->UserID; // 예시로 리퀘스트에서 user_id를 가져옴
-            if ($loggedInUserId == $requestUserId) {
-                $user->update([
-                    'UserPostcode' => $request->UserPostcode,
-                    'UserRoadAddress' => $request->UserRoadAddress,
-                    'UserDetailedAddress' => $request->UserDetailedAddress,
-                ]);
-                return response()->json($user);
-            }
-        }
-
-    }
-
-    function putUserbasicData(Request $request) {
-        Log::debug($request->UserPhoneNumber);
-
-        $user = User::find($request->UserID);
-
-        if(Auth::check()) {
-            $loggedInUserId = Auth::id(); // 현재 로그인된 사용자의 ID를 가져옴
-            $requestUserId = $request->UserID; // 예시로 리퀘스트에서 user_id를 가져옴
-            if ($loggedInUserId == $requestUserId) {
-                $user->update(['UserPhoneNumber' => $request->UserPhoneNumber]);
-                Log::debug($user);
-                return response()->json($user);
-            }
-        }
-    }
-
-    function putUserpasswordData(Request $request) {
-        // Log::debug($request);
-
-        $result = User::find($request->UserID);
-        if(Auth::check()) {
-            $loggedInUserId = Auth::id(); // 현재 로그인된 사용자의 ID를 가져옴
-            $requestUserId = $request->UserID; // 예시로 리퀘스트에서 user_id를 가져옴
-            if ($loggedInUserId == $requestUserId) {
-                if(!$result || !(Hash::check($request->UserPassword, $result->UserPassword))) {
-                    return response()->json([
-                        'success' => false,
-                        'message' => '아이디와 비밀번호를 확인해주세요.',
-                    ]);
-                }
-                $request->NewUserPassword = Hash::make($request->NewUserPassword);
-                $result->update(['UserPassword' => $request->NewUserPassword]);
-                return response()->json([
-                    'success' => true,
-                    'message' => '비밀번호 변경하셨습니다.',
-                ]);
-            }
-        }
-    }
-
-
-    function deleteUserpasswordData(Request $request) {
-        
-        $result = User::find($request->UserID);
-        $deletedPassword = $request->input('deletedPassword');
-        $deletedPasswordChk = $request->input('deletedPasswordChk');
-        $deletedPasswordChk2 = $request->input('deletedPasswordChk2');
-        Log::debug($result);
-        Log::debug($deletedPassword);
-        Log::debug($deletedPasswordChk);
-        Log::debug($deletedPasswordChk2);
-    
-    
-        if(Auth::check()) {
-            $loggedInUserId = Auth::id();
-            $requestUserId = $request->UserID;
-
-            if ($loggedInUserId == $requestUserId) {
-                Log::debug($result);
-                if (Hash::check($deletedPassword, $result->UserPassword) && $deletedPasswordChk == $deletedPasswordChk2) {
-                    // 비밀번호 일치 및 비밀번호 체크 값이 일치하면 계정 삭제
-                    $result->delete();
-                    // 삭제 성공 응답 등을 반환
-                    return response()->json(['success' => true, 'message' => '계정이 성공적으로 삭제되었습니다.']);
-                } else {
-                    // 비밀번호 불일치 또는 비밀번호 체크 값이 일치하지 않으면 오류 응답 반환
-                    return response()->json(['success' => false, 'message' => '비밀번호 불일치 또는 비밀번호 체크 값이 일치하지 않습니다.']);
-                }    
-            }
-        }
-        
-    }
-}

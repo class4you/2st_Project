@@ -76,7 +76,7 @@
                                 <div v-for="(dayData, day) in weeklyStats" :key="day" class="weekly_study_class_data">
                                     <span>{{ convertToKoreanDay(day) }} : </span>
                                     <span>학습 강의 : </span>
-                                    <span> {{ dayData.classFlagCount }}개</span>
+                                    <span> {{ dayData.enrollmentFlagCount }}개</span>
                                     <span style="margin-left: 5px; margin-right: 5px;">/</span>
                                     <span>학습 챕터 : </span>
                                     <span> {{ dayData.chapterFlagCount }}개</span>
@@ -118,7 +118,7 @@
                                 <div v-for="(data, month) in monthlyStats" :key="month" class="weekly_study_class_data">
                                     <span>{{ month }}월 : </span>
                                     <span>학습 강의 : </span>
-                                    <span>{{ data.classFlagCount }}개</span>
+                                    <span>{{ data.enrollmentFlagCount }}개</span>
                                     <span style="margin-left: 5px; margin-right: 5px;">/</span>
                                     <span>학습 챕터 : </span>
                                     <span>{{ data.chapterFlagCount }}개</span>
@@ -755,7 +755,7 @@ export default {
         },
         calculateTotals() {
             this.totalClassCount = Object.values(this.weeklyStats)
-                .reduce((total, dayData) => total + dayData.classFlagCount, 0);
+                .reduce((total, dayData) => total + dayData.enrollmentFlagCount, 0);
 
             this.totalChapterCount = Object.values(this.weeklyStats)
                 .reduce((total, dayData) => total + dayData.chapterFlagCount, 0);
@@ -776,7 +776,7 @@ export default {
 	    },
         monthcalculateTotals() {
             this.monthTotalClassCount = Object.values(this.monthlyStats)
-                .reduce((total, data) => total + data.classFlagCount, 0);
+                .reduce((total, data) => total + data.enrollmentFlagCount, 0);
 
             this.monthTotalChapterCount = Object.values(this.monthlyStats)
                 .reduce((total, data) => total + data.chapterFlagCount, 0);

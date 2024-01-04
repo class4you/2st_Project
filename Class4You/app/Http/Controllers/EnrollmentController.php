@@ -2,15 +2,27 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ChapterState;
+use App\Models\LessonState;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Enrollment;
+use App\Models\Lesson;
+use App\Models\Chapter;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 
 class EnrollmentController extends Controller
 {
     public function postClassEnrollData(Request $request) {
+
+        // Log::debug($request);
+
+        $UserID = $request->UserID;
+        $ClassID = $request->ClassID;
+        // $LessonID = $request->LessonID;
+
+
 
         // Log::debug($request);
 
@@ -32,6 +44,48 @@ class EnrollmentController extends Controller
         // 검색 결과가 없을 경우에만 크리에이트 수행
         if (!$existingEnrollment) {
             $result = Enrollment::create($data);
+
+            $EnrollmentID = Enrollment::where('UserID', $UserID)
+                ->where('ClassID', $ClassID)
+                ->value('EnrollmentID');
+
+            Log::debug($EnrollmentID);
+
+            $ChapterData = Chapter::select('ChapterID')
+                ->where('ClassID', $ClassID)
+                ->get();
+
+            Log::debug($ChapterData);
+
+            foreach($ChapterData as $ChapterID) {
+                $ChapterStateData = [
+                    'EnrollmentID' => $EnrollmentID,
+                    'ChapterID' => $ChapterID->ChapterID,
+                ];
+                ChapterState::create($ChapterStateData);
+
+                $ChapterStateID = ChapterState::where('ChapterID', $ChapterID->ChapterID)
+                    ->value('ChapterStateID');
+
+                $LessonData = Lesson::select('LessonID')
+                    ->where('ChapterID', $ChapterID->ChapterID)
+                    ->get();
+                    // Log::debug($LessonData);
+                    
+                foreach($LessonData as $LessonID) {
+                    $ChapterStateData = [
+                        'ChapterStateID' => $ChapterStateID,
+                        'EnrollmentID' => $EnrollmentID,
+                        'LessonID' => $LessonID->LessonID,
+                    ];
+                    // Log::debug($LessonID->Lesson);
+                    LessonState::create($ChapterStateData);
+                }
+            }
+
+
+
+
             // 크리에이트 성공 여부에 따른 로직 추가
             if ($result) {
                 // 성공적으로 생성됨

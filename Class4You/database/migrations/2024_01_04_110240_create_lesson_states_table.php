@@ -13,10 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('chapters', function (Blueprint $table) {
-            $table->id('ChapterID');
-            $table->integer('ClassID');
-            $table->string('ChapterTitle', 100);
+        Schema::create('lesson_states', function (Blueprint $table) {
+            $table->id('LessonStateID');
+            $table->integer('ChapterStateID');
+            $table->integer('EnrollmentID');
+            $table->integer('LessonID');
+            $table->float('LessonProgress')->default(0);
+            $table->float('LessonRunningTime')->default(0);
+            $table->char('LessonFlg', 1)->default(0);
             $table->timestamps();
             $table->softDeletes();
         });
@@ -29,6 +33,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('chapters');
+        Schema::dropIfExists('lesson_states');
     }
 };
