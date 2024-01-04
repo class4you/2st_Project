@@ -357,34 +357,34 @@ const store = createStore({
         },
 
         // 게시판 삭제 함수
-        delBoardData(context, data) {
-            const url = '/boarddetail/' + data
-            const header = {
-                headers: {
-                    "Content-Type": 'multipart/form-data',
-                    'X-CSRF-TOKEN': document.head.querySelector('meta[name="csrf-token"]').content,
-                },
-            }
+        // delBoardData(context, data) {
+        //     const url = '/boarddetail/' + data
+        //     const header = {
+        //         headers: {
+        //             "Content-Type": 'multipart/form-data',
+        //             'X-CSRF-TOKEN': document.head.querySelector('meta[name="csrf-token"]').content,
+        //         },
+        //     }
 
-            // let frm = new FormData();
-            const requestData = {
-                BoardID: data.BoardID,
-            };
+        //     // let frm = new FormData();
+        //     const requestData = {
+        //         BoardID: data.BoardID,
+        //     };
 
-            // console.log(data);
+        //     // console.log(data);
 
-            axios.delete(url, requestData, header)
-            .then(res => { 
-                // console.log(res.data);
-                // 해당 처리가 끝나면 리로드함
-                // window.location.reload();
-                router.push('/board'); 
-            })
-            .catch(err => {
-                // console.log(err.response.data.errors)
-                context.commit('setRegistrationErrorMessage', err.response.data.errors);
-            })
-        },
+        //     axios.delete(url, requestData, header)
+        //     .then(res => { 
+        //         // console.log(res.data);
+        //         // 해당 처리가 끝나면 리로드함
+        //         // window.location.reload();
+        //         router.push('/board'); 
+        //     })
+        //     .catch(err => {
+        //         // console.log(err.response.data.errors)
+        //         context.commit('setRegistrationErrorMessage', err.response.data.errors);
+        //     })
+        // },
 
         // updateBoardData(context, data) {
         //     const url = '/boardUpdate'

@@ -19440,8 +19440,8 @@ __webpack_require__.r(__webpack_exports__);
         _this.pagination = response.data.boardData.links;
         _this.page = response.data.boardData.current_page;
         _this.pageChk = response.data.boardData.current_page;
-        console.log(response.data);
-        console.log(response.data.boardData.data);
+        // console.log(response.data);
+        // console.log(response.data.boardData.data);
         // console.log(response.data.boardData.links);
         // console.log(response.data.boardData.current_page);
         // console.log(response.data.userCntData);
@@ -19450,7 +19450,7 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     hideEmail: function hideEmail(email) {
-      // 백앤드에서 이메일 형식으로 온 값을 도메인 부분은 제거하고 뒤에 4자리는 *ㄹ 표시함
+      // 백앤드에서 이메일 형식으로 온 값을 도메인 부분은 제거하고 뒤에 4자리는 * 표시함
       if (email && typeof email === 'string') {
         var atIndex = email.indexOf('@');
         var username = email.substring(0, Math.min(4, atIndex));
@@ -19598,7 +19598,28 @@ __webpack_require__.r(__webpack_exports__);
         cancelButtonText: '취소'
       }).then(function (result) {
         if (result.isConfirmed) {
-          _this3.$store.dispatch('delBoardData', data);
+          var url = '/boarddetail/' + data;
+          var header = {
+            headers: {
+              "Content-Type": 'multipart/form-data',
+              'X-CSRF-TOKEN': document.head.querySelector('meta[name="csrf-token"]').content
+            }
+            // this.$store.dispatch('delBoardData', data);
+          };
+          axios["delete"](url, header).then(function (res) {
+            console.log(_this3.newBoardItem);
+            _this3.newBoardItem = _this3.newBoardItem.filter(function (item) {
+              return item.BoardID !== data.BoardID;
+            });
+          })["catch"](function (err) {
+            console.error(err);
+            sweetalert2__WEBPACK_IMPORTED_MODULE_0___default().fire({
+              icon: 'error',
+              title: '삭제 실패',
+              text: '삭제 중에 오류가 발생했습니다.'
+            });
+            console.log(err.response);
+          });
         }
       });
     },
@@ -20201,7 +20222,6 @@ __webpack_require__.r(__webpack_exports__);
         },
         playerVars: {
           'origin': 'http://127.0.0.1:8000',
-          // 여기에는 웹사이트의 실제 origin을 넣어야 합니다.
           'key': 'AIzaSyCZuYGiU9g-_nslcbFnWRd9ZSxkEu9bltg'
         }
       });
@@ -21867,7 +21887,7 @@ var _hoisted_18 = {
 var _hoisted_19 = /*#__PURE__*/_withScopeId(function () {
   return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
     "class": "laguage"
-  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <ul class=\"row aiC laguage_gap_10\">\r\n                            <li>React</li>\r\n                            <li>JS</li>\r\n                            <li>CSS</li>\r\n                            <li>HTML</li>\r\n                            <li>LARAVEL</li>\r\n                            <li>React</li>\r\n                        </ul> ")], -1 /* HOISTED */);
+  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <ul class=\"row aiC laguage_gap_10\">\r\n                                <li>React</li>\r\n                                <li>JS</li>\r\n                                <li>CSS</li>\r\n                                <li>HTML</li>\r\n                                <li>LARAVEL</li>\r\n                                <li>React</li>\r\n                            </ul> ")], -1 /* HOISTED */);
 });
 var _hoisted_20 = {
   "class": "reco row jcC"
@@ -22001,12 +22021,12 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     key: 1,
     href: '/boardupdate/' + $data.newBoardItem.BoardID,
     "class": "board_rewrite"
-  }, "수정", 8 /* PROPS */, _hoisted_29)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
+  }, "수정", 8 /* PROPS */, _hoisted_29)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <a @click=\"deleteBoardData(newBoardItem.BoardID)\" class=\"board_delete\">삭제</a> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
     onClick: _cache[3] || (_cache[3] = function ($event) {
       return $options.deleteBoardData($data.newBoardItem.BoardID);
     }),
     "class": "board_delete"
-  }, "삭제")])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_30, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <div class=\"number\">\r\n                        <p>답변<span>0</span></p>\r\n                    </div> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_31, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("답변 "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.newCommentItem.length), 1 /* TEXT */)])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_32, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_33, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.nowUserID.UserEmail), 1 /* TEXT */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_34, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("textarea", {
+  }, "삭제")])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_30, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <div class=\"number\">\r\n                            <p>답변<span>0</span></p>\r\n                        </div> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_31, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("답변 "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.newCommentItem.length), 1 /* TEXT */)])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_32, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_33, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.nowUserID.UserEmail), 1 /* TEXT */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_34, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("textarea", {
     placeholder: "댓글을 입력해주세요.",
     "onUpdate:modelValue": _cache[4] || (_cache[4] = function ($event) {
       return $data.frmCommentData.CommentContent = $event;
@@ -25376,34 +25396,33 @@ var store = (0,vuex__WEBPACK_IMPORTED_MODULE_4__.createStore)({
         // console.log(err.response.data.errors)
         context.commit('setRegistrationErrorMessage', err.response.data.errors);
       });
-    },
-    // 게시판 삭제 함수
-    delBoardData: function delBoardData(context, data) {
-      var url = '/boarddetail/' + data;
-      var header = {
-        headers: {
-          "Content-Type": 'multipart/form-data',
-          'X-CSRF-TOKEN': document.head.querySelector('meta[name="csrf-token"]').content
-        }
-      };
-
-      // let frm = new FormData();
-      var requestData = {
-        BoardID: data.BoardID
-      };
-
-      // console.log(data);
-
-      axios__WEBPACK_IMPORTED_MODULE_0___default()["delete"](url, requestData, header).then(function (res) {
-        // console.log(res.data);
-        // 해당 처리가 끝나면 리로드함
-        // window.location.reload();
-        _router_js__WEBPACK_IMPORTED_MODULE_1__["default"].push('/board');
-      })["catch"](function (err) {
-        // console.log(err.response.data.errors)
-        context.commit('setRegistrationErrorMessage', err.response.data.errors);
-      });
-    } // updateBoardData(context, data) {
+    } // 게시판 삭제 함수
+    // delBoardData(context, data) {
+    //     const url = '/boarddetail/' + data
+    //     const header = {
+    //         headers: {
+    //             "Content-Type": 'multipart/form-data',
+    //             'X-CSRF-TOKEN': document.head.querySelector('meta[name="csrf-token"]').content,
+    //         },
+    //     }
+    //     // let frm = new FormData();
+    //     const requestData = {
+    //         BoardID: data.BoardID,
+    //     };
+    //     // console.log(data);
+    //     axios.delete(url, requestData, header)
+    //     .then(res => { 
+    //         // console.log(res.data);
+    //         // 해당 처리가 끝나면 리로드함
+    //         // window.location.reload();
+    //         router.push('/board'); 
+    //     })
+    //     .catch(err => {
+    //         // console.log(err.response.data.errors)
+    //         context.commit('setRegistrationErrorMessage', err.response.data.errors);
+    //     })
+    // },
+    // updateBoardData(context, data) {
     //     const url = '/boardUpdate'
     //     const header = {
     //         headers: {
