@@ -51,7 +51,8 @@
                             </div>
                         </div>
                     </div>
-                    <div class="dashboard_weekly_study_class">
+
+                    <!-- <div class="dashboard_weekly_study_class">
                         <div class="dashboard_weekly_study_class_title">
                             <p>주간 학습 정보</p>
                         </div>
@@ -93,7 +94,54 @@
                                 </div>
                             </div>
                         </div>
+                    </div> -->
+
+                    <div class="dashboard_weekly_study_class">
+                        <div class="dashboard_weekly_study_class_title">
+                            <p>주간 학습 정보</p>
+                        </div>
+                        <div class="dashboard_weekly_study_class_box">
+                            <div class="weekly_study_class_title_cover">
+                                <div class="weekly_study_class_title">
+                                    <button class="weekly_study_class_btn" @click="decrementWeek"><svg xmlns="http://www.w3.org/2000/svg" style="margin-top: 7px;" width="16" height="16" fill="currentColor" class="bi bi-chevron-left" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/></svg></button>
+                                    <div class="weekly_study_class_title_input_cover">
+                                        <div class="weekly_study_class_title_input_label">
+                                            <label for="">주차선택</label>
+                                        </div>
+                                        <div class="weekly_study_class_title_input_label_button">
+                                            <input class="weekly_input_date" type="date" v-model="selectedDate" @change="handleDateChange">
+                                            <span>{{ currentWeek }}</span>
+                                        </div>
+                                    </div>
+                                    <input type="hidden" value="">
+                                    <button class="weekly_study_class_btn" @click="incrementWeek"><svg xmlns="http://www.w3.org/2000/svg" style="margin-top: 7px;" width="16" height="16" fill="currentColor" class="bi bi-chevron-right" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/></svg></button>
+                                </div>
+                            </div>
+                            <div class="weekly_study_class_data_cover">
+                                <div v-for="(dayData, day) in weeklyStats" :key="day" class="weekly_study_class_data_chart">
+                                    {{ convertToKoreanDay(day) }}
+                                    <Doughnut @mousemove="updatePosition(day)" @mouseover="showTooltip[day] = true" @mouseout="showTooltip[day] = false" :id="'my_doughnut_chart_id_' + day" :options="chartOptions" :data="chartData[day]"/>
+                                    <div v-if="showTooltip[day]" class="tooltip" :style="{ top: `${position.y + 25}px`, left: `${position.x + 15}px` }">
+                                        <p>{{ convertToKoreanDay(day) }}</p>
+                                        <br>
+                                        <p>학습 강의 : {{ dayData.enrollmentFlagCount}}개</p>
+                                        <p>학습 챕터 : {{ dayData.chapterFlagCount }}개</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="weekly_study_class_total_cover">
+                                <div class="weekly_study_class_total">
+                                    <span>총 학습 강의 : </span>
+                                    <span>{{ totalClassCount }}</span>
+                                </div>
+                                <div class="weekly_study_class_total">
+                                    <span>총 학습 챕터 : </span>
+                                    <span>{{ totalChapterCount }}</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
+
                     <div class="dashboard_annual_study_class">
                         <div class="dashboard_annual_study_class_title">
                             <p>연간 학습 정보</p>
@@ -526,8 +574,29 @@
 </template>
 <script>
 import Swal from 'sweetalert2';
+import { Doughnut } from 'vue-chartjs';
+import { Chart as ChartJS, Title, DoughnutController, ArcElement, LinearScale, CategoryScale } from 'chart.js';
+
+ChartJS.register(Title, DoughnutController, ArcElement, LinearScale, CategoryScale);
 export default {
     name: 'UserMyPageComponent',
+
+    components: { Doughnut },
+    
+    created() {
+        // 초기 데이터 설정
+        for (const day in this.weeklyStats) {
+        this.$set(this.chartData, day, {
+            labels: ['Study', 'Empty'],
+            datasets: [{
+            data: [this.weeklyStats[day].enrollmentFlagCount, 0],
+            backgroundColor: ['#FF6384', 'transparent'],
+            hoverBackgroundColor: ['#ff3d66', 'transparent'],
+            }],
+        });
+        this.$set(this.showTooltip, day, false);
+        }
+    },
 
     data() {
         return {
@@ -572,6 +641,32 @@ export default {
 
             deletedPassword: '',
             deletedPasswordChk: '',
+            chartData: {},
+            chartOptions: {
+                responsive: true,
+                cutoutPercentage: 70,
+                plugins: {
+                    tooltip: {
+                    enabled: false,
+                    },
+                },
+            },
+
+            chartOptions: {
+                responsive: true,
+                legend: {
+                    
+                },
+                cutoutPercentage: 70,
+                plugins: {
+                    tooltip: {
+                        enabled: false,
+                    },
+                },
+            },
+
+            showTooltip: {},
+            position: { x: 0, y: 0 },
 
 
         }
@@ -1036,8 +1131,15 @@ export default {
                     icon: 'error',
                 });
             }
-			
 		},
+
+
+        updatePosition(day) {
+            // 마우스 위치 업데이트
+            this.position.x = event.clientX;
+            this.position.y = event.clientY;
+        },
+        
     }
 }
 </script>
@@ -1086,5 +1188,17 @@ export default {
     background-color: transparent;
     border: none;
     cursor: pointer;
+}
+
+.tooltip {
+	position: absolute;
+	background-color: #ffffff;
+	color: #000000;
+	padding: 10px;
+	border-radius: 5px;
+	z-index: 999;
+	box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.15);
+	width: 120px;
+	font-weight: 500;
 }
 </style>
