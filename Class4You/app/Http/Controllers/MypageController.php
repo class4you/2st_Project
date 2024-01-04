@@ -239,9 +239,11 @@ class MypageController extends Controller
 
         $recentChapterStateData = Enrollment::join('chapter_states', 'enrollments.EnrollmentID', 'chapter_states.EnrollmentID')
             ->where('enrollments.UserID', $UserID)
+            ->where('enrollments.EnrollmentID', $recentEnrollmentData->EnrollmentID)
             ->get();
 
         // Log::debug($recentChapterStateData);
+        
         // 플래그가 1인 챕터 개수 세기
         $flaggedChaptersCount =  $recentChapterStateData->where('ChapterFlg', 1)->count();
 
