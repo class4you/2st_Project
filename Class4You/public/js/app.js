@@ -19598,7 +19598,28 @@ __webpack_require__.r(__webpack_exports__);
         cancelButtonText: '취소'
       }).then(function (result) {
         if (result.isConfirmed) {
-          _this3.$store.dispatch('delBoardData', data);
+          var url = '/boarddetail/' + data;
+          var header = {
+            headers: {
+              "Content-Type": 'multipart/form-data',
+              'X-CSRF-TOKEN': document.head.querySelector('meta[name="csrf-token"]').content
+            }
+            // this.$store.dispatch('delBoardData', data);
+          };
+          axios["delete"](url, header).then(function (res) {
+            console.log(_this3.newBoardItem);
+            _this3.newBoardItem = _this3.newBoardItem.filter(function (item) {
+              return item.BoardID !== data.BoardID;
+            });
+          })["catch"](function (err) {
+            console.error(err);
+            sweetalert2__WEBPACK_IMPORTED_MODULE_0___default().fire({
+              icon: 'error',
+              title: '삭제 실패',
+              text: '삭제 중에 오류가 발생했습니다.'
+            });
+            console.log(err.response);
+          });
         }
       });
     },
@@ -22008,7 +22029,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     key: 1,
     href: '/boardupdate/' + $data.newBoardItem.BoardID,
     "class": "board_rewrite"
-  }, "수정", 8 /* PROPS */, _hoisted_29)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
+  }, "수정", 8 /* PROPS */, _hoisted_29)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <a @click=\"deleteBoardData(newBoardItem.BoardID)\" class=\"board_delete\">삭제</a> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
     onClick: _cache[3] || (_cache[3] = function ($event) {
       return $options.deleteBoardData($data.newBoardItem.BoardID);
     }),
@@ -25487,34 +25508,33 @@ var store = (0,vuex__WEBPACK_IMPORTED_MODULE_4__.createStore)({
         // console.log(err.response.data.errors)
         context.commit('setRegistrationErrorMessage', err.response.data.errors);
       });
-    },
-    // 게시판 삭제 함수
-    delBoardData: function delBoardData(context, data) {
-      var url = '/boarddetail/' + data;
-      var header = {
-        headers: {
-          "Content-Type": 'multipart/form-data',
-          'X-CSRF-TOKEN': document.head.querySelector('meta[name="csrf-token"]').content
-        }
-      };
-
-      // let frm = new FormData();
-      var requestData = {
-        BoardID: data.BoardID
-      };
-
-      // console.log(data);
-
-      axios__WEBPACK_IMPORTED_MODULE_0___default()["delete"](url, requestData, header).then(function (res) {
-        // console.log(res.data);
-        // 해당 처리가 끝나면 리로드함
-        // window.location.reload();
-        _router_js__WEBPACK_IMPORTED_MODULE_1__["default"].push('/board');
-      })["catch"](function (err) {
-        // console.log(err.response.data.errors)
-        context.commit('setRegistrationErrorMessage', err.response.data.errors);
-      });
-    } // updateBoardData(context, data) {
+    } // 게시판 삭제 함수
+    // delBoardData(context, data) {
+    //     const url = '/boarddetail/' + data
+    //     const header = {
+    //         headers: {
+    //             "Content-Type": 'multipart/form-data',
+    //             'X-CSRF-TOKEN': document.head.querySelector('meta[name="csrf-token"]').content,
+    //         },
+    //     }
+    //     // let frm = new FormData();
+    //     const requestData = {
+    //         BoardID: data.BoardID,
+    //     };
+    //     // console.log(data);
+    //     axios.delete(url, requestData, header)
+    //     .then(res => { 
+    //         // console.log(res.data);
+    //         // 해당 처리가 끝나면 리로드함
+    //         // window.location.reload();
+    //         router.push('/board'); 
+    //     })
+    //     .catch(err => {
+    //         // console.log(err.response.data.errors)
+    //         context.commit('setRegistrationErrorMessage', err.response.data.errors);
+    //     })
+    // },
+    // updateBoardData(context, data) {
     //     const url = '/boardUpdate'
     //     const header = {
     //         headers: {

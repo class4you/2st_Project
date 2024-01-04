@@ -69,7 +69,8 @@
                             <div v-if="newBoardItem.UserID == $store.state.UserID"  class="row aiC">
                                 <a v-if="newBoardItem.BoardFlg == '0'" @click="updatecompleteBoardData()" class="board_complete">해결</a>
                                 <a :href="'/boardupdate/' + newBoardItem.BoardID" v-if="$store.state.UserID" class="board_rewrite">수정</a>
-                                <a @click="deleteBoardData(newBoardItem.BoardID)" class="board_delete">삭제</a>
+                                <!-- <a @click="deleteBoardData(newBoardItem.BoardID)" class="board_delete">삭제</a> -->
+                                <button @click="deleteBoardData(newBoardItem.BoardID)" class="board_delete">삭제</button>
                             </div>
                         </div>
                     </div>
@@ -214,9 +215,34 @@ export default {
                 cancelButtonText: '취소'
             }).then((result) => {
                 if (result.isConfirmed) {
-                this.$store.dispatch('delBoardData', data);
+                    const url = '/boarddetail/' + data
+                    const header = {
+                        headers: {
+                            "Content-Type": 'multipart/form-data',
+                            'X-CSRF-TOKEN': document.head.querySelector('meta[name="csrf-token"]').content,
+                        },
+                    // this.$store.dispatch('delBoardData', data);
+                    };
+                
+            axios
+                .delete(url, header)
+                .then((res) => {
+
+                    console.log(this.newBoardItem);
+                    this.newBoardItem = this.newBoardItem.filter((item) => item.BoardID !== data.BoardID);
+                })
+                .catch((err) => {
+
+                    console.error(err);
+                    Swal.fire({
+							icon: 'error',
+							title: '삭제 실패',
+							text: '삭제 중에 오류가 발생했습니다.',
+						});
+                        console.log(err.response);
+                    });
                 }
-            });
+            });    
         },
 
         // 게시판 수정 게시판 페이지
