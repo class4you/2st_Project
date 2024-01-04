@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 use App\Models\Enrollment;
+use App\Models\LessonState;
 use App\Models\Classinfo;
 use App\Models\Chapter;
 use App\Models\Lesson;
@@ -213,16 +214,45 @@ class MypageController extends Controller
         //     ->where('updated_at', DB::table('enrollments')->max('updated_at'))
         //     ->get();
         // Log::debug($UserID);
-        $recentEnrollmentData = Enrollment::where('updated_at', function ($query) use ($UserID) {
-                $query->select('updated_at')
-                    ->from('enrollments')
-                    ->where('UserID', $UserID)
-                    ->orderByDesc('updated_at')
-                    ->limit(1);
-            })
-            ->first();
 
-        // Log::debug($recentEnrollmentData);
+        // $recentEnrollmentData = Enrollment::where('updated_at', function ($query) use ($UserID) {
+        //         $query->select('lesson_states.updated_at')
+        //             ->from('enrollments')
+        //             ->join('lesson_states', 'enrollments.EnrollmentID', 'lesson_states.EnrollmentID')
+        //             ->where('UserID', $UserID)
+        //             ->orderByDesc('lesson_states.updated_at')
+        //             ->limit(1);
+        //     })
+        //     ->first();
+
+        // $recentEnrollmentData = Enrollment::join('lesson_states', 'enrollments.EnrollmentID', 'lesson_states.EnrollmentID')
+        //     ->where('lesson_states.updated_at', function ($query) use ($UserID) {
+        //         $query->select('updated_at')
+        //         ->from('enrollments')
+        //         ->where('UserID', $UserID)
+        //         ->orderByDesc('updated_at')
+        //         ->limit(1);
+        // })
+        // ->first();
+        
+        $recentEnrollmentData = LessonState::join('enrollments', 'enrollments.EnrollmentID', 'lesson_states.EnrollmentID')
+        ->where('lesson_states.updated_at', function ($query) use ($UserID) {
+            $query->select('lesson_states.updated_at')
+            ->from('lesson_states')
+            ->join('enrollments', 'enrollments.EnrollmentID', 'lesson_states.EnrollmentID')
+            ->where('enrollments.UserID', $UserID)
+            ->orderByDesc('lesson_states.updated_at')
+            ->limit(1);
+        })
+        ->first();
+
+        // $test = LessonState::join('enrollments', 'enrollments.EnrollmentID', 'lesson_states.EnrollmentID')
+        //     ->orderByDesc('lesson_states.updated_at')
+        //     ->first();
+
+        // Log::debug($test);
+
+        Log::debug($recentEnrollmentData);
 
         $recentClassInfoData = Classinfo::where('ClassID', $recentEnrollmentData->ClassID)
             ->get();
