@@ -464,15 +464,38 @@
 							</div>
 						</div>
 						<div class="class_detail_rating_list_text">
-							<p class="class_detail_rating_list_text_p">{{ data.ReviewComment }}</p>
+							<textarea v-if="data.ReviewID == updataReviewData.ReviewID" class="class_detail_rating_list_text_textarea" v-model="updataReviewData.ReviewComment" cols="20" rows="5"></textarea>
+							<p v-else class="class_detail_rating_list_text_p">{{ data.ReviewComment }}</p>
 						</div>
 						<div class="class_detail_rating_user_button">
 							<div class="class_detail_rating_user_update_button">
 								<!-- <button @click="classReviewUpdate(data)">수정</button> -->
 							</div>
-							<div v-if="data.UserID == $store.state.UserID" class="class_detail_rating_user_delete_button">
-								<!-- <button @click="deleteClassReview(data.ReviewID)">삭제</button> -->
-								<button @click="deleteClassReview(data)">삭제</button>
+							<div v-if="data.UserID == $store.state.UserID">
+								<div v-if="data.ReviewID == updataReviewData.ReviewID">
+									<div class="class_detail_rating_user_delete_reating">
+										<fieldset class="class_detail_rating_star_form" name="myform">
+											<input v-model="classReviewData.ReviewRating" class="class_detail_rating_star_input" type="radio" name="rating" value="5" id="rate1">
+												<label class="class_detail_rating_star_label" for="rate1">⭐</label>
+											<input v-model="classReviewData.ReviewRating" class="class_detail_rating_star_input" type="radio" name="rating" value="4" id="rate2">
+												<label class="class_detail_rating_star_label" for="rate2">⭐</label>
+											<input v-model="classReviewData.ReviewRating" class="class_detail_rating_star_input" type="radio" name="rating" value="3" id="rate3">
+												<label class="class_detail_rating_star_label" for="rate3">⭐</label>
+											<input v-model="classReviewData.ReviewRating" class="class_detail_rating_star_input" type="radio" name="rating" value="2" id="rate4">
+												<label class="class_detail_rating_star_label" for="rate4">⭐</label>
+											<input v-model="classReviewData.ReviewRating" class="class_detail_rating_star_input" type="radio" name="rating" value="1" id="rate5">
+												<label class="class_detail_rating_star_label" for="rate5">⭐</label>
+										</fieldset>
+									</div>
+									<div class="class_detail_rating_user_delete_button">
+										<button @click="addUpdataReview(data)">수정</button>
+										<button @click="addUpdataReview(false)">취소</button>
+									</div>
+								</div>
+								<div class="class_detail_rating_user_delete_button" v-else>
+									<button @click="addUpdataReview(data)">수정</button>
+									<button @click="deleteClassReview(data)">삭제</button>
+								</div>
 							</div>
 						</div>
 					</div>
@@ -799,6 +822,7 @@ export default {
 			// enrollflg: null,
 			languagesChk: {},
 			allLessonsData: {},
+			updataReviewData: {},
         }
     },
 	mounted() {
@@ -1026,6 +1050,10 @@ export default {
 		clickTabOut() {
 			this.hovered = false;
 		},
+		addUpdataReview(data) {
+			// console.log(data);
+			this.updataReviewData = data;
+		}
 	},
     
 }

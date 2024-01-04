@@ -684,6 +684,7 @@ export default {
                 weekdays.push(this.formatDate(currentDate));
             }
 
+            
             const yearStart = startYearDate.getFullYear();
             const monthStart = (startYearDate.getMonth() + 1).toString().padStart(2, '0');
             const dayStart = startYearDate.getDate().toString().padStart(2, '0');
