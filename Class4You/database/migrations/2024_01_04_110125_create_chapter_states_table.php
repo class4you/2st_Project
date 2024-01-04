@@ -13,10 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('chapters', function (Blueprint $table) {
-            $table->id('ChapterID');
-            $table->integer('ClassID');
-            $table->string('ChapterTitle', 100);
+        Schema::create('chapter_states', function (Blueprint $table) {
+            $table->id('ChapterStateID');
+            $table->integer('EnrollmentID');
+            $table->integer('ChapterID');
+            $table->char('ChapterFlg', 1)->default(0);
             $table->timestamps();
             $table->softDeletes();
         });
@@ -29,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('chapters');
+        Schema::dropIfExists('chapter_states');
     }
 };
