@@ -281,80 +281,80 @@ const store = createStore({
         },
 
         // 댓글 작성 함수
-        submitCommentData(context, data) {
-            const url = '/comments'
-            const header = {
-                headers: {
-                    "Content-Type": 'multipart/form-data',
-                    'X-CSRF-TOKEN': document.head.querySelector('meta[name="csrf-token"]').content,
-                },
-            }
+        // submitCommentData(context, data) {
+        //     const url = '/comments'
+        //     const header = {
+        //         headers: {
+        //             "Content-Type": 'multipart/form-data',
+        //             'X-CSRF-TOKEN': document.head.querySelector('meta[name="csrf-token"]').content,
+        //         },
+        //     }
 
-            if(!data.UserID) {
-                Swal.fire({
-                    icon: 'error',
-                    title: '로그인 확인',
-                    text: '로그인 후 작성해주세요.',
-                    confirmButtonText: '확인'
-                });
-            } else if(!data.CommentContent) {
-                Swal.fire({
-                    icon: 'error',
-                    title: '내용 확인',
-                    text: '내용을 입력해주세요.',
-                    confirmButtonText: '확인'
-                });
-            }
-            let frm = new FormData();
-            // console.log(data);
+        //     if(!data.UserID) {
+        //         Swal.fire({
+        //             icon: 'error',
+        //             title: '로그인 확인',
+        //             text: '로그인 후 작성해주세요.',
+        //             confirmButtonText: '확인'
+        //         });
+        //     } else if(!data.CommentContent) {
+        //         Swal.fire({
+        //             icon: 'error',
+        //             title: '내용 확인',
+        //             text: '내용을 입력해주세요.',
+        //             confirmButtonText: '확인'
+        //         });
+        //     }
+        //     let frm = new FormData();
+        //     // console.log(data);
 
-            frm.append('BoardID',data.BoardID);
-            frm.append('UserID',data.UserID);
-            frm.append('CommentContent',data.CommentContent);
+        //     frm.append('BoardID',data.BoardID);
+        //     frm.append('UserID',data.UserID);
+        //     frm.append('CommentContent',data.CommentContent);
 
-            // console.log(frm);
+        //     // console.log(frm);
 
-            axios.post(url, frm, header)
-            .then(res => {
-                // console.log(res.data);
-                window.location.reload();
+        //     axios.post(url, frm, header)
+        //     .then(res => {
+        //         // console.log(res.data);
+        //         window.location.reload();
 
-            })
-            .catch(err => {
-                // console.log(err.response.data.errors)
-                context.commit('setRegistrationErrorMessage', err.response.data.errors);
-            })
-        }, 
+        //     })
+        //     .catch(err => {
+        //         // console.log(err.response.data.errors)
+        //         context.commit('setRegistrationErrorMessage', err.response.data.errors);
+        //     })
+        // }, 
 
         // 댓글 삭제 함수
-        deleteCommentData(context, data) {
-            const url = '/comments/' + data
-            const header = {
-                headers: {
-                    "Content-Type": 'multipart/form-data',
-                    'X-CSRF-TOKEN': document.head.querySelector('meta[name="csrf-token"]').content,
-                },
-            }
+        // deleteCommentData(context, data) {
+        //     const url = '/comments/' + data
+        //     const header = {
+        //         headers: {
+        //             "Content-Type": 'multipart/form-data',
+        //             'X-CSRF-TOKEN': document.head.querySelector('meta[name="csrf-token"]').content,
+        //         },
+        //     }
 
-            // let frm = new FormData();
-            const requestData = {
-                CommentID: data.CommentID,
-            };
+        //     // let frm = new FormData();
+        //     const requestData = {
+        //         CommentID: data.CommentID,
+        //     };
 
-            // console.log(data);
+        //     // console.log(data);
 
-            axios.delete(url, requestData, header)
-            .then(res => { 
-                // console.log(res.data);
-                // 해당 처리가 끝나면 리로드함
-                window.location.reload();
+        //     axios.delete(url, requestData, header)
+        //     .then(res => { 
+        //         // console.log(res.data);
+        //         // 해당 처리가 끝나면 리로드함
+        //         window.location.reload();
                 
-            })
-            .catch(err => {
-                // console.log(err.response.data.errors)
-                context.commit('setRegistrationErrorMessage', err.response.data.errors);
-            })
-        },
+        //     })
+        //     .catch(err => {
+        //         // console.log(err.response.data.errors)
+        //         context.commit('setRegistrationErrorMessage', err.response.data.errors);
+        //     })
+        // },
 
         // 게시판 삭제 함수
         // delBoardData(context, data) {

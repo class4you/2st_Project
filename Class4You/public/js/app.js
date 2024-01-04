@@ -19534,6 +19534,23 @@ __webpack_require__.r(__webpack_exports__);
         BoardID: this.BoardID,
         CommentID: this.CommnetID,
         CommentContent: ''
+      },
+      commentData: {
+        UserID: this.$store.state.UserID,
+        UserEmail: this.$store.state.UserEmail,
+        BoardID: this.BoardID,
+        CommentID: this.CommentID,
+        CommentContent: ''
+      },
+      commentItems: [],
+      newCommentData: function newCommentData() {
+        return {
+          UserID: this.$store.state.UserID,
+          UserEmail: this.$store.state.UserEmail,
+          BoardID: this.BoardID,
+          CommentID: this.CommentID,
+          CommentContent: ''
+        };
       }
     };
   },
@@ -19561,13 +19578,13 @@ __webpack_require__.r(__webpack_exports__);
       return username + asterisks;
     },
     // 댓글 작성 불러오기
-    submitCommentData: function submitCommentData() {
-      this.$store.dispatch('submitCommentData', this.frmCommentData);
-    },
+    // submitCommentData() {
+    //     this.$store.dispatch('submitCommentData', this.frmCommentData);
+    //     console.log(this.frmCommentData);
+    // },
     // 댓글 삭제 불러오기
     // sweetalert2을 이용한 알러트 출력 방법
     deleteCommentData: function deleteCommentData(data) {
-      var _this2 = this;
       sweetalert2__WEBPACK_IMPORTED_MODULE_0___default().fire({
         title: '정말로 삭제하시겠습니까?',
         text: "삭제 후에는 복구할 수 없습니다.",
@@ -19580,8 +19597,105 @@ __webpack_require__.r(__webpack_exports__);
       }).then(function (result) {
         // 알러트의 확인 버트을 눌러야 아래 if문이 true갑으로 실행된다
         if (result.isConfirmed) {
-          _this2.$store.dispatch('deleteCommentData', data);
+          // this.$store.dispatch('deleteCommentData', data);
+          var url = '/comments/' + data;
+          var header = {
+            headers: {
+              "Content-Type": 'multipart/form-data',
+              'X-CSRF-TOKEN': document.head.querySelector('meta[name="csrf-token"]').content
+            }
+          };
+          // const requestData = {
+          //     CommentID: data.CommentID,
+          // };
+
+          // console.log(data);
+          // console.log(requestData);
+
+          // axios.delete(url, requestData, header)
+          axios["delete"](url, header).then(function (res) {
+            // console.log(res.data);
+            // console.log(this.newCommentItem);
+            // this.newCommentItem = [this.newCommentItem];
+            // console.log(this.newCommentData);
+            // console.log(this.newCommentItem);
+            // 해당 처리가 끝나면 리로드함
+            // window.location.reload();
+            // this.reviewClassItems = this.reviewClassItems.filter((item) => item.ReviewID !== data.ReviewID);
+            // this.newCommentItem = this.newComment.filter((item) => item.CommentID !== requestData.CommentID);
+            // this.newCommentItem = this.newCommentItem.filter((item) => item.CommentID !== data.CommentID);
+            // this.newCommentItem = this.newCommentData;
+            // const index = this.newCommentItem.findIndex((item) => item.CommentID !== data.CommentID);
+            // console.log(index);
+            // this.newCommentItem.splice(index, 1);
+            // if (index !== -1) {
+            //     // index가 -1이 아닌 경우에만 해당 요소를 삭제
+            //     console.log(this.newCommentData);
+            //     this.newCommentData.splice(index, 1);
+            // }
+          })["catch"](function (err) {
+            // console.log(err.response.data.errors)
+            console.error(err);
+            sweetalert2__WEBPACK_IMPORTED_MODULE_0___default().fire({
+              icon: 'error',
+              title: '삭제 실패',
+              text: '삭제 중에 오류가 발생했습니다.'
+            });
+          });
         }
+      });
+    },
+    // 댓글 작성 함수
+    addBoardComment: function addBoardComment() {
+      var _this2 = this;
+      var url = '/comments';
+      var header = {
+        headers: {
+          "Content-Type": 'multipart/form-data',
+          'X-CSRF-TOKEN': document.head.querySelector('meta[name="csrf-token"]').content
+        }
+      };
+
+      // TODO : data 부분 찾아가지고 변경해야댐
+      // if(!data.UserID) {
+      //     Swal.fire({
+      //         icon: 'error',
+      //         title: '로그인 확인',
+      //         text: '로그인 후 작성해주세요.',
+      //         confirmButtonText: '확인'
+      //     });
+      // } else if(!data.CommentContent) {
+      //     Swal.fire({
+      //         icon: 'error',
+      //         title: '내용 확인',
+      //         text: '내용을 입력해주세요.',
+      //         confirmButtonText: '확인'
+      //     });
+      // }
+      var frm = new FormData();
+      // console.log(data);
+
+      frm.append('BoardID', this.commentData.BoardID);
+      frm.append('UserID', this.commentData.UserID);
+      frm.append('UserEmail', this.commentData.UserEmail);
+      frm.append('CommentContent', this.commentData.CommentContent);
+      console.log(frm);
+      axios.post(url, frm, header).then(function (res) {
+        sweetalert2__WEBPACK_IMPORTED_MODULE_0___default().fire({
+          icon: 'success',
+          title: '완료',
+          text: '댓글이 작성되었습니다.',
+          confirmButtonText: '확인'
+        });
+        console.log(_this2.commentItems);
+        console.log(res.data);
+        // window.location.reload();
+
+        _this2.commentItems.unshift(res.data[0]);
+        _this2.commentData = _this2.newCommentData();
+      })["catch"](function (err) {
+        // console.log(err.response.data.errors)
+        // context.commit('setRegistrationErrorMessage', err.response.data.errors);
       });
     },
     // 게시판 삭제 불러오기
@@ -19598,6 +19712,7 @@ __webpack_require__.r(__webpack_exports__);
         cancelButtonText: '취소'
       }).then(function (result) {
         if (result.isConfirmed) {
+          // const url = '/boarddetail/' + data
           var url = '/boarddetail/' + data;
           var header = {
             headers: {
@@ -19608,9 +19723,9 @@ __webpack_require__.r(__webpack_exports__);
           };
           axios["delete"](url, header).then(function (res) {
             console.log(_this3.newBoardItem);
-            _this3.newBoardItem = _this3.newBoardItem.filter(function (item) {
-              return item.BoardID !== data.BoardID;
-            });
+            // this.newBoardItem = this.delBoard();
+            // router.push('/board');
+            _this3.$router.push('/board');
           })["catch"](function (err) {
             console.error(err);
             sweetalert2__WEBPACK_IMPORTED_MODULE_0___default().fire({
@@ -20005,7 +20120,7 @@ __webpack_require__.r(__webpack_exports__);
           text: '수강평이 작성되었습니다.',
           confirmButtonText: '확인'
         });
-        // console.log(this.reviewClassItems);
+        console.log(_this2.reviewClassItems);
         // console.log(res.data[0]);
 
         // 기존 수강평 데이터의 [0]번 방에 작성한 수강평 추가
@@ -21982,21 +22097,13 @@ var _hoisted_42 = {
     "margin-left": "auto"
   }
 };
-var _hoisted_43 = ["onClick"];
-var _hoisted_44 = /*#__PURE__*/_withScopeId(function () {
+var _hoisted_43 = /*#__PURE__*/_withScopeId(function () {
   return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("hr", {
     style: {
       "margin-top": "20px"
     }
   }, null, -1 /* HOISTED */);
 });
-var _hoisted_45 = {
-  key: 0,
-  "class": "modal"
-};
-var _hoisted_46 = {
-  "class": "modal-content"
-};
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_router_link = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("router-link");
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <div class=\"whr\"><span>게시판</span><span>></span><span>상세 게시판</span></div> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
@@ -22031,37 +22138,23 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       return $options.deleteBoardData($data.newBoardItem.BoardID);
     }),
     "class": "board_delete"
-  }, "삭제")])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_30, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <div class=\"number\">\r\n                            <p>답변<span>0</span></p>\r\n                        </div> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_31, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("답변 "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.newCommentItem.length), 1 /* TEXT */)])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_32, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_33, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.nowUserID.UserEmail), 1 /* TEXT */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_34, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("textarea", {
+  }, "삭제")])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_30, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <div class=\"number\">\r\n                            <p>답변<span>0</span></p>\r\n                        </div> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_31, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("답변 "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.newCommentItem.length), 1 /* TEXT */)])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_32, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_33, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.nowUserID.UserEmail), 1 /* TEXT */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_34, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <textarea placeholder=\"댓글을 입력해주세요.\" v-model=\"frmCommentData.CommentContent\"></textarea> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("textarea", {
     placeholder: "댓글을 입력해주세요.",
     "onUpdate:modelValue": _cache[4] || (_cache[4] = function ($event) {
-      return $data.frmCommentData.CommentContent = $event;
+      return $data.commentData.CommentContent = $event;
     })
-  }, null, 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.frmCommentData.CommentContent]]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
-    type: "button",
+  }, null, 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.commentData.CommentContent]]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <button type=\"button\" @click=\"submitCommentData()\">저장</button> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
     onClick: _cache[5] || (_cache[5] = function ($event) {
-      return $options.submitCommentData();
+      return $options.addBoardComment();
     })
   }, "저장")])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_35, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.newCommentItem, function (item) {
-    return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_36, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_37, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_38, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_39, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("작성자"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.hideEmail(item.UserEmail)), 1 /* TEXT */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("작성일"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.created_at), 1 /* TEXT */)])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_40, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.CommentContent), 1 /* TEXT */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_41, [item.UserID == _ctx.$store.state.UserID ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_42, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <button class=\"comment_editBtn\">수정</button> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
-      onClick: function onClick($event) {
-        return $options.deleteCommentData(item.CommentID);
-      },
+    return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_36, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_37, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_38, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_39, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("작성자"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.hideEmail(item.UserEmail)), 1 /* TEXT */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("작성일"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.created_at), 1 /* TEXT */)])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_40, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.CommentContent), 1 /* TEXT */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_41, [item.UserID == _ctx.$store.state.UserID ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_42, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <button class=\"comment_editBtn\">수정</button> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <button @click=\"deleteCommentData(item.CommentID)\" class=\"commentActions_deleteBtn\">삭제</button> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+      onClick: _cache[6] || (_cache[6] = function ($event) {
+        return $options.deleteCommentData(_ctx.data);
+      }),
       "class": "commentActions_deleteBtn"
-    }, "삭제", 8 /* PROPS */, _hoisted_43), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <button class=\"commentActions_reportBtn\">신고</button> ")])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), _hoisted_44])]);
-  }), 256 /* UNKEYED_FRAGMENT */))])])])])]), _ctx.showEditModalFlag ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_45, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_46, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
-    "class": "close",
-    onClick: _cache[6] || (_cache[6] = function () {
-      return _ctx.closeEditModal && _ctx.closeEditModal.apply(_ctx, arguments);
-    })
-  }, "×"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("textarea", {
-    "onUpdate:modelValue": _cache[7] || (_cache[7] = function ($event) {
-      return _ctx.editCommentContent = $event;
-    })
-  }, null, 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, _ctx.editCommentContent]]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
-    onClick: _cache[8] || (_cache[8] = function ($event) {
-      return _ctx.updateCommentData(_ctx.editingCommentId);
-    })
-  }, "저장")])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)], 64 /* STABLE_FRAGMENT */);
+    }, "삭제"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <button class=\"commentActions_reportBtn\">신고</button> ")])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), _hoisted_43])]);
+  }), 256 /* UNKEYED_FRAGMENT */))])])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <div v-if=\"showEditModalFlag\" class=\"modal\">\r\n        <div class=\"modal-content\">\r\n            <span class=\"close\" @click=\"closeEditModal\">&times;</span>\r\n            <textarea v-model=\"editCommentContent\"></textarea>\r\n            <button @click=\"updateCommentData(editingCommentId)\">저장</button>\r\n        </div>\r\n    </div> ")], 2112 /* STABLE_FRAGMENT, DEV_ROOT_FRAGMENT */);
 }
 
 /***/ }),
@@ -25438,74 +25531,72 @@ var store = (0,vuex__WEBPACK_IMPORTED_MODULE_4__.createStore)({
         // console.log(err.response.data.errors)
         context.commit('setRegistrationErrorMessage', err.response.data.errors);
       });
-    },
-    // 댓글 작성 함수
-    submitCommentData: function submitCommentData(context, data) {
-      var url = '/comments';
-      var header = {
-        headers: {
-          "Content-Type": 'multipart/form-data',
-          'X-CSRF-TOKEN': document.head.querySelector('meta[name="csrf-token"]').content
-        }
-      };
-      if (!data.UserID) {
-        sweetalert2__WEBPACK_IMPORTED_MODULE_3___default().fire({
-          icon: 'error',
-          title: '로그인 확인',
-          text: '로그인 후 작성해주세요.',
-          confirmButtonText: '확인'
-        });
-      } else if (!data.CommentContent) {
-        sweetalert2__WEBPACK_IMPORTED_MODULE_3___default().fire({
-          icon: 'error',
-          title: '내용 확인',
-          text: '내용을 입력해주세요.',
-          confirmButtonText: '확인'
-        });
-      }
-      var frm = new FormData();
-      // console.log(data);
-
-      frm.append('BoardID', data.BoardID);
-      frm.append('UserID', data.UserID);
-      frm.append('CommentContent', data.CommentContent);
-
-      // console.log(frm);
-
-      axios__WEBPACK_IMPORTED_MODULE_0___default().post(url, frm, header).then(function (res) {
-        // console.log(res.data);
-        window.location.reload();
-      })["catch"](function (err) {
-        // console.log(err.response.data.errors)
-        context.commit('setRegistrationErrorMessage', err.response.data.errors);
-      });
-    },
+    } // 댓글 작성 함수
+    // submitCommentData(context, data) {
+    //     const url = '/comments'
+    //     const header = {
+    //         headers: {
+    //             "Content-Type": 'multipart/form-data',
+    //             'X-CSRF-TOKEN': document.head.querySelector('meta[name="csrf-token"]').content,
+    //         },
+    //     }
+    //     if(!data.UserID) {
+    //         Swal.fire({
+    //             icon: 'error',
+    //             title: '로그인 확인',
+    //             text: '로그인 후 작성해주세요.',
+    //             confirmButtonText: '확인'
+    //         });
+    //     } else if(!data.CommentContent) {
+    //         Swal.fire({
+    //             icon: 'error',
+    //             title: '내용 확인',
+    //             text: '내용을 입력해주세요.',
+    //             confirmButtonText: '확인'
+    //         });
+    //     }
+    //     let frm = new FormData();
+    //     // console.log(data);
+    //     frm.append('BoardID',data.BoardID);
+    //     frm.append('UserID',data.UserID);
+    //     frm.append('CommentContent',data.CommentContent);
+    //     // console.log(frm);
+    //     axios.post(url, frm, header)
+    //     .then(res => {
+    //         // console.log(res.data);
+    //         window.location.reload();
+    //     })
+    //     .catch(err => {
+    //         // console.log(err.response.data.errors)
+    //         context.commit('setRegistrationErrorMessage', err.response.data.errors);
+    //     })
+    // }, 
     // 댓글 삭제 함수
-    deleteCommentData: function deleteCommentData(context, data) {
-      var url = '/comments/' + data;
-      var header = {
-        headers: {
-          "Content-Type": 'multipart/form-data',
-          'X-CSRF-TOKEN': document.head.querySelector('meta[name="csrf-token"]').content
-        }
-      };
-
-      // let frm = new FormData();
-      var requestData = {
-        CommentID: data.CommentID
-      };
-
-      // console.log(data);
-
-      axios__WEBPACK_IMPORTED_MODULE_0___default()["delete"](url, requestData, header).then(function (res) {
-        // console.log(res.data);
-        // 해당 처리가 끝나면 리로드함
-        window.location.reload();
-      })["catch"](function (err) {
-        // console.log(err.response.data.errors)
-        context.commit('setRegistrationErrorMessage', err.response.data.errors);
-      });
-    } // 게시판 삭제 함수
+    // deleteCommentData(context, data) {
+    //     const url = '/comments/' + data
+    //     const header = {
+    //         headers: {
+    //             "Content-Type": 'multipart/form-data',
+    //             'X-CSRF-TOKEN': document.head.querySelector('meta[name="csrf-token"]').content,
+    //         },
+    //     }
+    //     // let frm = new FormData();
+    //     const requestData = {
+    //         CommentID: data.CommentID,
+    //     };
+    //     // console.log(data);
+    //     axios.delete(url, requestData, header)
+    //     .then(res => { 
+    //         // console.log(res.data);
+    //         // 해당 처리가 끝나면 리로드함
+    //         window.location.reload();
+    //     })
+    //     .catch(err => {
+    //         // console.log(err.response.data.errors)
+    //         context.commit('setRegistrationErrorMessage', err.response.data.errors);
+    //     })
+    // },
+    // 게시판 삭제 함수
     // delBoardData(context, data) {
     //     const url = '/boarddetail/' + data
     //     const header = {
