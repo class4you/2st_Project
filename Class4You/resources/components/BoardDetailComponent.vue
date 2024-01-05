@@ -93,7 +93,7 @@
                         </div>
                     </div>
                     <div class="reviewBox border-t-none" style="padding: 10px 0px;">
-                        <div v-for="item in newCommentItem" class="reviewList">
+                        <div v-for="item in newCommentItem" :key="item.CommentID" class="reviewList">
                             <div class="item">
                                 <div class="commentInfo row aiC jcB">
                                     <p class="comment_writer">작성자<span>{{ hideEmail(item.UserEmail) }}</span></p>
@@ -106,8 +106,8 @@
                                 <div class="commentActions row aiC">
                                     <div v-if="item.UserID == $store.state.UserID" style="margin-left: auto;">
                                         <!-- <button class="comment_editBtn">수정</button> -->
-                                        <!-- <button @click="deleteCommentData(item.CommentID)" class="commentActions_deleteBtn">삭제</button> -->
-                                        <button @click="deleteCommentData(data)" class="commentActions_deleteBtn">삭제</button>
+                                        <button @click="deleteCommentData(item.CommentID)" class="commentActions_deleteBtn">삭제</button>
+                                        <!-- <button @click="deleteCommentData(data)" class="commentActions_deleteBtn">삭제</button> -->
                                         <!-- <button class="commentActions_reportBtn">신고</button> -->
                                     </div>
                                 </div>
@@ -140,8 +140,9 @@ export default {
             newBoardItem: {
             },
             nowUserID: {},
-            newCommentItem: {
-            },
+            // newCommentItem: {
+            // },
+            newCommentItem: [],
             newComment: '', 
 
             frmCommentData: {
@@ -174,6 +175,10 @@ export default {
         this.fetchData();
     },
 
+    updated() {
+        // console.log('컴포넌트가 업데이트되었습니다.', this.commentItems);
+    },
+
     methods: {
         fetchData() {
         axios.get('/boarddetail/' + this.BoardID)
@@ -182,10 +187,10 @@ export default {
                 this.newBoardItem = response.data.boardData;
                 this.nowUserID = response.data.userID;
                 this.newCommentItem = response.data.commentData;
-                // console.log(response.data.commentData);
+                console.log(response.data.commentData);
             })
             .catch(error => {
-            console.error('Error fetching data:', error);
+                console.error('Error fetching data:', error);
             });
         },
         // 이메일 변환 함수
@@ -201,74 +206,6 @@ export default {
         //     this.$store.dispatch('submitCommentData', this.frmCommentData);
         //     console.log(this.frmCommentData);
         // },
-
-        // 댓글 삭제 불러오기
-        // sweetalert2을 이용한 알러트 출력 방법
-        deleteCommentData(data) {
-                Swal.fire({
-                title: '정말로 삭제하시겠습니까?',
-                text: "삭제 후에는 복구할 수 없습니다.",
-                icon: 'question',
-                showCancelButton: true,
-                confirmButtonColor: '#d33',
-                cancelButtonColor: '#3085d6',
-                confirmButtonText: '삭제',
-                cancelButtonText: '취소'
-            }).then((result) => {
-                // 알러트의 확인 버트을 눌러야 아래 if문이 true갑으로 실행된다
-                if (result.isConfirmed) {
-                // this.$store.dispatch('deleteCommentData', data);
-                    const url = '/comments/' + data
-                    const header = {
-                        headers: {
-                            "Content-Type": 'multipart/form-data',
-                            'X-CSRF-TOKEN': document.head.querySelector('meta[name="csrf-token"]').content,
-                        },
-                    };
-                    // const requestData = {
-                    //     CommentID: data.CommentID,
-                    // };
-
-                // console.log(data);
-                // console.log(requestData);
-
-                // axios.delete(url, requestData, header)
-                axios.delete(url, header)
-                .then(res => { 
-                    // console.log(res.data);
-                    // console.log(this.newCommentItem);
-                    // this.newCommentItem = [this.newCommentItem];
-                    // console.log(this.newCommentData);
-                    // console.log(this.newCommentItem);
-                    // 해당 처리가 끝나면 리로드함
-                    // window.location.reload();
-                    // this.reviewClassItems = this.reviewClassItems.filter((item) => item.ReviewID !== data.ReviewID);
-                    // this.newCommentItem = this.newComment.filter((item) => item.CommentID !== requestData.CommentID);
-                    // this.newCommentItem = this.newCommentItem.filter((item) => item.CommentID !== data.CommentID);
-                    // this.newCommentItem = this.newCommentData;
-                    // const index = this.newCommentItem.findIndex((item) => item.CommentID !== data.CommentID);
-                    // console.log(index);
-                    // this.newCommentItem.splice(index, 1);
-                    // if (index !== -1) {
-                    //     // index가 -1이 아닌 경우에만 해당 요소를 삭제
-                    //     console.log(this.newCommentData);
-                    //     this.newCommentData.splice(index, 1);
-                    // }
-                    
-                })
-                .catch(err => {
-                    // console.log(err.response.data.errors)
-                    console.error(err);
-						Swal.fire({
-							icon: 'error',
-							title: '삭제 실패',
-							text: '삭제 중에 오류가 발생했습니다.',
-						});
-                    });
-
-                }
-            });
-        },
 
         // 댓글 작성 함수
         addBoardComment() {
@@ -314,11 +251,15 @@ export default {
 					text: '댓글이 작성되었습니다.',
 					confirmButtonText: '확인'
             	})
-                console.log(this.commentItems);
-                console.log(res.data);
+                // console.log(this.commentItems);
+                // console.log(res.data);
+                // console.log(this.newCommentItem);
+                // console.log(this.commentData);
                 // window.location.reload();
+                // this.commentItems = res.data;
 
-                this.commentItems.unshift(res.data[0]);
+                // this.commentItems.unshift(res.data[0]);
+                this.newCommentItem.unshift(res.data[0]);
                 this.commentData = this.newCommentData();
 
             })
@@ -328,6 +269,87 @@ export default {
             })
         },
         
+
+        // 댓글 삭제 불러오기
+        // sweetalert2을 이용한 알러트 출력 방법
+        deleteCommentData(data) {
+            console.log(data);
+                Swal.fire({
+                title: '정말로 삭제하시겠습니까?',
+                text: "삭제 후에는 복구할 수 없습니다.",
+                icon: 'question',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#3085d6',
+                confirmButtonText: '삭제',
+                cancelButtonText: '취소'
+            }).then((result) => {
+                // 알러트의 확인 버트을 눌러야 아래 if문이 true갑으로 실행된다
+                if (result.isConfirmed) {
+                // this.$store.dispatch('deleteCommentData', data);
+                
+                console.log(data);
+                    const url = '/comments/' + data;
+                    const header = {
+                        headers: {
+                            "Content-Type": 'multipart/form-data',
+                            'X-CSRF-TOKEN': document.head.querySelector('meta[name="csrf-token"]').content,
+                        },
+                    };
+                    // const requestData = {
+                    //     CommentID: data.CommentID,
+                    // };
+
+                // console.log(data);
+                // console.log(requestData);
+
+                // axios.delete(url, requestData, header)
+                axios.delete(url, header)
+                .then(res => { 
+                    // console.log(this.commentItems);
+                    // console.log(res.data);
+                    console.log(this.newCommentItem);
+                    // console.log(this.commentData);
+                    // console.log(this.commentItems);
+                    // this.newCommentItem = [this.newCommentItem];
+                    // console.log(this.newCommentData);
+                    // console.log(this.newCommentItem);
+                    // 해당 처리가 끝나면 리로드함
+                    // window.location.reload();
+                    // this.newCommentItem = this.newComment.filter((item) => item.CommentID !== requestData.CommentID);
+                    // this.newCommentItem = this.commentItems.filter((item) => item.CommentID !== data.CommentID);
+                    // this.newCommentItem = this.newCommentData;
+                    
+                    // this.commentItems = this.commentItems.filter((comment) => comment.CommentID !== data.CommentID);
+                    this.newCommentItem = this.newCommentItem.filter((item) => item.CommentID !== data.CommentID);
+                    // Vue.set(this, 'newCommentItem', this.newCommentItem.filter((item) => item.CommentID !== data.CommentID));
+                    // this.commentData = this.commentData.filter((item) => item.CommentID !== data.CommentID);
+                    // delete this.commentData[data.CommentID];
+                      
+                    // const index = this.newCommentItem.findIndex((item) => item.CommentID !== data.CommentID);
+                    // console.log(index);
+                    // this.newCommentItem.splice(index, 1);
+                    // if (index !== -1) {
+                    //     // index가 -1이 아닌 경우에만 해당 요소를 삭제
+                    //     console.log(this.newCommentData);
+                    //     this.newCommentData.splice(index, 1);
+                    // }
+                    
+                })
+                .catch(err => {
+                    // console.log(err.response.data.errors)
+                    console.error(err);
+						Swal.fire({
+							icon: 'error',
+							title: '삭제 실패',
+							text: '삭제 중에 오류가 발생했습니다.',
+						});
+                    });
+
+                }
+            });
+        },
+
 
         // 게시판 삭제 불러오기
         deleteBoardData(data) {

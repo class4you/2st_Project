@@ -19527,7 +19527,9 @@ __webpack_require__.r(__webpack_exports__);
     return {
       newBoardItem: {},
       nowUserID: {},
-      newCommentItem: {},
+      // newCommentItem: {
+      // },
+      newCommentItem: [],
       newComment: '',
       frmCommentData: {
         UserID: this.$store.state.UserID,
@@ -19557,6 +19559,9 @@ __webpack_require__.r(__webpack_exports__);
   mounted: function mounted() {
     this.fetchData();
   },
+  updated: function updated() {
+    // console.log('컴포넌트가 업데이트되었습니다.', this.commentItems);
+  },
   methods: {
     fetchData: function fetchData() {
       var _this = this;
@@ -19565,7 +19570,7 @@ __webpack_require__.r(__webpack_exports__);
         _this.newBoardItem = response.data.boardData;
         _this.nowUserID = response.data.userID;
         _this.newCommentItem = response.data.commentData;
-        // console.log(response.data.commentData);
+        console.log(response.data.commentData);
       })["catch"](function (error) {
         console.error('Error fetching data:', error);
       });
@@ -19582,69 +19587,6 @@ __webpack_require__.r(__webpack_exports__);
     //     this.$store.dispatch('submitCommentData', this.frmCommentData);
     //     console.log(this.frmCommentData);
     // },
-    // 댓글 삭제 불러오기
-    // sweetalert2을 이용한 알러트 출력 방법
-    deleteCommentData: function deleteCommentData(data) {
-      sweetalert2__WEBPACK_IMPORTED_MODULE_0___default().fire({
-        title: '정말로 삭제하시겠습니까?',
-        text: "삭제 후에는 복구할 수 없습니다.",
-        icon: 'question',
-        showCancelButton: true,
-        confirmButtonColor: '#d33',
-        cancelButtonColor: '#3085d6',
-        confirmButtonText: '삭제',
-        cancelButtonText: '취소'
-      }).then(function (result) {
-        // 알러트의 확인 버트을 눌러야 아래 if문이 true갑으로 실행된다
-        if (result.isConfirmed) {
-          // this.$store.dispatch('deleteCommentData', data);
-          var url = '/comments/' + data;
-          var header = {
-            headers: {
-              "Content-Type": 'multipart/form-data',
-              'X-CSRF-TOKEN': document.head.querySelector('meta[name="csrf-token"]').content
-            }
-          };
-          // const requestData = {
-          //     CommentID: data.CommentID,
-          // };
-
-          // console.log(data);
-          // console.log(requestData);
-
-          // axios.delete(url, requestData, header)
-          axios["delete"](url, header).then(function (res) {
-            // console.log(res.data);
-            // console.log(this.newCommentItem);
-            // this.newCommentItem = [this.newCommentItem];
-            // console.log(this.newCommentData);
-            // console.log(this.newCommentItem);
-            // 해당 처리가 끝나면 리로드함
-            // window.location.reload();
-            // this.reviewClassItems = this.reviewClassItems.filter((item) => item.ReviewID !== data.ReviewID);
-            // this.newCommentItem = this.newComment.filter((item) => item.CommentID !== requestData.CommentID);
-            // this.newCommentItem = this.newCommentItem.filter((item) => item.CommentID !== data.CommentID);
-            // this.newCommentItem = this.newCommentData;
-            // const index = this.newCommentItem.findIndex((item) => item.CommentID !== data.CommentID);
-            // console.log(index);
-            // this.newCommentItem.splice(index, 1);
-            // if (index !== -1) {
-            //     // index가 -1이 아닌 경우에만 해당 요소를 삭제
-            //     console.log(this.newCommentData);
-            //     this.newCommentData.splice(index, 1);
-            // }
-          })["catch"](function (err) {
-            // console.log(err.response.data.errors)
-            console.error(err);
-            sweetalert2__WEBPACK_IMPORTED_MODULE_0___default().fire({
-              icon: 'error',
-              title: '삭제 실패',
-              text: '삭제 중에 오류가 발생했습니다.'
-            });
-          });
-        }
-      });
-    },
     // 댓글 작성 함수
     addBoardComment: function addBoardComment() {
       var _this2 = this;
@@ -19687,20 +19629,102 @@ __webpack_require__.r(__webpack_exports__);
           text: '댓글이 작성되었습니다.',
           confirmButtonText: '확인'
         });
-        console.log(_this2.commentItems);
-        console.log(res.data);
+        // console.log(this.commentItems);
+        // console.log(res.data);
+        // console.log(this.newCommentItem);
+        // console.log(this.commentData);
         // window.location.reload();
+        // this.commentItems = res.data;
 
-        _this2.commentItems.unshift(res.data[0]);
+        // this.commentItems.unshift(res.data[0]);
+        _this2.newCommentItem.unshift(res.data[0]);
         _this2.commentData = _this2.newCommentData();
       })["catch"](function (err) {
         // console.log(err.response.data.errors)
         // context.commit('setRegistrationErrorMessage', err.response.data.errors);
       });
     },
+    // 댓글 삭제 불러오기
+    // sweetalert2을 이용한 알러트 출력 방법
+    deleteCommentData: function deleteCommentData(data) {
+      var _this3 = this;
+      console.log(data);
+      sweetalert2__WEBPACK_IMPORTED_MODULE_0___default().fire({
+        title: '정말로 삭제하시겠습니까?',
+        text: "삭제 후에는 복구할 수 없습니다.",
+        icon: 'question',
+        showCancelButton: true,
+        confirmButtonColor: '#d33',
+        cancelButtonColor: '#3085d6',
+        confirmButtonText: '삭제',
+        cancelButtonText: '취소'
+      }).then(function (result) {
+        // 알러트의 확인 버트을 눌러야 아래 if문이 true갑으로 실행된다
+        if (result.isConfirmed) {
+          // this.$store.dispatch('deleteCommentData', data);
+
+          console.log(data);
+          var url = '/comments/' + data;
+          var header = {
+            headers: {
+              "Content-Type": 'multipart/form-data',
+              'X-CSRF-TOKEN': document.head.querySelector('meta[name="csrf-token"]').content
+            }
+          };
+          // const requestData = {
+          //     CommentID: data.CommentID,
+          // };
+
+          // console.log(data);
+          // console.log(requestData);
+
+          // axios.delete(url, requestData, header)
+          axios["delete"](url, header).then(function (res) {
+            // console.log(this.commentItems);
+            // console.log(res.data);
+            console.log(_this3.newCommentItem);
+            // console.log(this.commentData);
+            // console.log(this.commentItems);
+            // this.newCommentItem = [this.newCommentItem];
+            // console.log(this.newCommentData);
+            // console.log(this.newCommentItem);
+            // 해당 처리가 끝나면 리로드함
+            // window.location.reload();
+            // this.newCommentItem = this.newComment.filter((item) => item.CommentID !== requestData.CommentID);
+            // this.newCommentItem = this.commentItems.filter((item) => item.CommentID !== data.CommentID);
+            // this.newCommentItem = this.newCommentData;
+
+            // this.commentItems = this.commentItems.filter((comment) => comment.CommentID !== data.CommentID);
+            _this3.newCommentItem = _this3.newCommentItem.filter(function (item) {
+              return item.CommentID !== data.CommentID;
+            });
+            // Vue.set(this, 'newCommentItem', this.newCommentItem.filter((item) => item.CommentID !== data.CommentID));
+            // this.commentData = this.commentData.filter((item) => item.CommentID !== data.CommentID);
+            // delete this.commentData[data.CommentID];
+
+            // const index = this.newCommentItem.findIndex((item) => item.CommentID !== data.CommentID);
+            // console.log(index);
+            // this.newCommentItem.splice(index, 1);
+            // if (index !== -1) {
+            //     // index가 -1이 아닌 경우에만 해당 요소를 삭제
+            //     console.log(this.newCommentData);
+            //     this.newCommentData.splice(index, 1);
+            // }
+          })["catch"](function (err) {
+            // console.log(err.response.data.errors)
+            console.error(err);
+            sweetalert2__WEBPACK_IMPORTED_MODULE_0___default().fire({
+              icon: 'error',
+              title: '삭제 실패',
+              text: '삭제 중에 오류가 발생했습니다.'
+            });
+          });
+        }
+      });
+    },
     // 게시판 삭제 불러오기
     deleteBoardData: function deleteBoardData(data) {
-      var _this3 = this;
+      var _this4 = this;
       sweetalert2__WEBPACK_IMPORTED_MODULE_0___default().fire({
         title: '정말로 삭제하시겠습니까?',
         text: "삭제 후에는 복구할 수 없습니다.",
@@ -19722,10 +19746,10 @@ __webpack_require__.r(__webpack_exports__);
             // this.$store.dispatch('delBoardData', data);
           };
           axios["delete"](url, header).then(function (res) {
-            console.log(_this3.newBoardItem);
+            console.log(_this4.newBoardItem);
             // this.newBoardItem = this.delBoard();
             // router.push('/board');
-            _this3.$router.push('/board');
+            _this4.$router.push('/board');
           })["catch"](function (err) {
             console.error(err);
             sweetalert2__WEBPACK_IMPORTED_MODULE_0___default().fire({
@@ -20158,6 +20182,7 @@ __webpack_require__.r(__webpack_exports__);
     // },
     deleteClassReview: function deleteClassReview(data) {
       var _this3 = this;
+      console.log(data);
       // Display confirmation dialog using Swal.fire
       sweetalert2__WEBPACK_IMPORTED_MODULE_0___default().fire({
         title: '정말로 삭제하시겠습니까?',
@@ -22272,29 +22297,27 @@ var _hoisted_35 = {
   }
 };
 var _hoisted_36 = {
-  "class": "reviewList"
-};
-var _hoisted_37 = {
   "class": "item"
 };
-var _hoisted_38 = {
+var _hoisted_37 = {
   "class": "commentInfo row aiC jcB"
 };
-var _hoisted_39 = {
+var _hoisted_38 = {
   "class": "comment_writer"
 };
-var _hoisted_40 = {
+var _hoisted_39 = {
   "class": "commentText"
 };
-var _hoisted_41 = {
+var _hoisted_40 = {
   "class": "commentActions row aiC"
 };
-var _hoisted_42 = {
+var _hoisted_41 = {
   key: 0,
   style: {
     "margin-left": "auto"
   }
 };
+var _hoisted_42 = ["onClick"];
 var _hoisted_43 = /*#__PURE__*/_withScopeId(function () {
   return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("hr", {
     style: {
@@ -22346,13 +22369,16 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       return $options.addBoardComment();
     })
   }, "저장")])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_35, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.newCommentItem, function (item) {
-    return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_36, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_37, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_38, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_39, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("작성자"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.hideEmail(item.UserEmail)), 1 /* TEXT */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("작성일"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.created_at), 1 /* TEXT */)])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_40, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.CommentContent), 1 /* TEXT */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_41, [item.UserID == _ctx.$store.state.UserID ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_42, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <button class=\"comment_editBtn\">수정</button> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <button @click=\"deleteCommentData(item.CommentID)\" class=\"commentActions_deleteBtn\">삭제</button> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
-      onClick: _cache[6] || (_cache[6] = function ($event) {
-        return $options.deleteCommentData(_ctx.data);
-      }),
+    return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
+      key: item.CommentID,
+      "class": "reviewList"
+    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_36, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_37, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_38, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("작성자"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.hideEmail(item.UserEmail)), 1 /* TEXT */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("작성일"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.created_at), 1 /* TEXT */)])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_39, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.CommentContent), 1 /* TEXT */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_40, [item.UserID == _ctx.$store.state.UserID ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_41, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <button class=\"comment_editBtn\">수정</button> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+      onClick: function onClick($event) {
+        return $options.deleteCommentData(item.CommentID);
+      },
       "class": "commentActions_deleteBtn"
-    }, "삭제"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <button class=\"commentActions_reportBtn\">신고</button> ")])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), _hoisted_43])]);
-  }), 256 /* UNKEYED_FRAGMENT */))])])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <div v-if=\"showEditModalFlag\" class=\"modal\">\r\n        <div class=\"modal-content\">\r\n            <span class=\"close\" @click=\"closeEditModal\">&times;</span>\r\n            <textarea v-model=\"editCommentContent\"></textarea>\r\n            <button @click=\"updateCommentData(editingCommentId)\">저장</button>\r\n        </div>\r\n    </div> ")], 2112 /* STABLE_FRAGMENT, DEV_ROOT_FRAGMENT */);
+    }, "삭제", 8 /* PROPS */, _hoisted_42), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <button @click=\"deleteCommentData(data)\" class=\"commentActions_deleteBtn\">삭제</button> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <button class=\"commentActions_reportBtn\">신고</button> ")])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), _hoisted_43])]);
+  }), 128 /* KEYED_FRAGMENT */))])])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <div v-if=\"showEditModalFlag\" class=\"modal\">\r\n        <div class=\"modal-content\">\r\n            <span class=\"close\" @click=\"closeEditModal\">&times;</span>\r\n            <textarea v-model=\"editCommentContent\"></textarea>\r\n            <button @click=\"updateCommentData(editingCommentId)\">저장</button>\r\n        </div>\r\n    </div> ")], 2112 /* STABLE_FRAGMENT, DEV_ROOT_FRAGMENT */);
 }
 
 /***/ }),
