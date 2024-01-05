@@ -108,6 +108,7 @@ Route::delete('/boarddetail/{BoardID}', [BoardController::class, 'delBoardDetail
 Route::put('/boardUpdate', [BoardController::class, 'putBoardUpdate']);
 // 코멘트 작업
 Route::post('/comments', [CommentController::class, 'postCommentData']);
+Route::put('/comments', [CommentController::class, 'putCommentData']);
 Route::delete('/comments/{CommentID}', [CommentController::class, 'delCommentData']);
 
 // 해결 처리

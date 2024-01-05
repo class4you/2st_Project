@@ -73,6 +73,7 @@
                 </button>
             </a>
 
+            <!-- <button @click="updateBoardData(newBoardItem)" class="mantine-UnstyledButton-root mantine-Button-root mantine-1276sa2" type="submit" data-button="true"> -->
             <button @click="updateBoardData(newBoardItem)" class="mantine-UnstyledButton-root mantine-Button-root mantine-1276sa2" type="submit" data-button="true">
                 <div class="mantine-1yjkc96 mantine-Button-inner">
                     <span class="mantine-1ryt1ht mantine-Button-label">수정</span>
@@ -137,7 +138,8 @@ export default {
         //     this.$store.dispatch('updateBoardData', this.newBoardItem);
         // },
 
-        updateBoardData() {
+        updateBoardData(data) {
+            console.log(data);
             Swal.fire({
                 icon: 'success',
                 title: '수정',
@@ -152,10 +154,13 @@ export default {
                     BoardComment: this.newBoardItem.BoardComment,
                 })
                 .then(response => {
-                    // console.log(response.data);
+                    console.log(result);
+                    console.log(response);
+                    
                     // 서버 응답에 대한 로직 수행
                     // this.$router.push('/board');
                     this.$router.push('/boarddetail/' + this.BoardID);
+                    // this.newBoardItem.unshift(response.data[0]);
                 })
                 .catch(error => {
                     // 에러 처리
