@@ -142,7 +142,7 @@
                         </div>
                     </div>
 
-                    <div class="dashboard_annual_study_class">
+                    <!-- <div class="dashboard_annual_study_class">
                         <div class="dashboard_annual_study_class_title">
                             <p>연간 학습 정보</p>
                         </div>
@@ -163,6 +163,7 @@
                                 </div>
                             </div>
                             <div class="weekly_study_class_data_cover">
+                                <Bar id="my-chart-id" :options="barChartOptions" :data="barChartData"/>
                                 <div v-for="(data, month) in monthlyStats" :key="month" class="weekly_study_class_data">
                                     <span>{{ month }}월 : </span>
                                     <span>학습 강의 : </span>
@@ -181,7 +182,45 @@
                                 </div>
                             </div>
                         </div>
+                    </div> -->
+
+                    <div class="dashboard_annual_study_class">
+                        <div class="dashboard_annual_study_class_title">
+                            <p>연간 학습 정보</p>
+                        </div>
+                        
+                        <div class="dashboard_annual_study_class_box">
+                            <div class="month_study_class_title_cover">
+                                <div class="month_study_class_title">
+                                    <button @click="prevYear" class="month_study_class_title_button"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-left" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/></svg></button>
+                                    <div class="month_study_class_title_input_cover">
+                                        <div class="month_study_class_title_input_label">
+                                        </div>
+                                        <div class="month_study_class_title_input_label_button">
+                                            <button style="display: none;">2023. 12. 05</button>
+                                        </div>
+                                        <p>{{ selectedYear }}년</p>
+                                    </div>
+                                    <input type="hidden" value="">
+                                    <button  @click="nextYear" :disabled="isNextYearDisabled" class="month_study_class_title_button"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-right" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/></svg></button>
+                                </div>
+                            </div>
+                            <div class="month_study_class_data_cover">
+                                <div class="month_study_class_data">
+                                    <Bar id="my-chart-id" :options="barChartOptions" :data="barChartData"/>
+                                </div>
+                                <div class="month_study_class_total_cover">
+                                <div class="month_study_class_total">
+                                    <span>총 학습 강의 : {{ monthTotalClassCount }}</span>
+                                </div>
+                                <div class="month_study_class_total">
+                                    <span>총 학습 챕터 : {{ monthTotalChapterCount }}</span>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
                     </div>
+
                 </div>
             </div>
 
@@ -574,28 +613,28 @@
 </template>
 <script>
 import Swal from 'sweetalert2';
-import { Doughnut } from 'vue-chartjs';
-import { Chart as ChartJS, Title, DoughnutController, ArcElement, LinearScale, CategoryScale } from 'chart.js';
+import { Doughnut, Bar } from 'vue-chartjs';
+import { Chart as ChartJS, Title, Tooltip, Legend, BarElement, DoughnutController, ArcElement, LinearScale, CategoryScale } from 'chart.js';
 
-ChartJS.register(Title, DoughnutController, ArcElement, LinearScale, CategoryScale);
+ChartJS.register(Title, Tooltip, Legend, BarElement, DoughnutController, ArcElement, LinearScale, CategoryScale);
 export default {
     name: 'UserMyPageComponent',
 
-    components: { Doughnut },
+    components: { Doughnut, Bar },
     
     created() {
         // 초기 데이터 설정
-        for (const day in this.weeklyStats) {
-        this.$set(this.chartData, day, {
-            labels: ['Study', 'Empty'],
-            datasets: [{
-            data: [this.weeklyStats[day].enrollmentFlagCount, 0],
-            backgroundColor: ['#FF6384', 'transparent'],
-            hoverBackgroundColor: ['#ff3d66', 'transparent'],
-            }],
-        });
-        this.$set(this.showTooltip, day, false);
-        }
+        // for (let day in this.weeklyStats) {
+        //     this.$set(this.chartData, day, {
+        //         labels: ['Study', 'Empty'],
+        //         datasets: [{
+        //             data: [this.weeklyStats[day].enrollmentFlagCount, 0],
+        //             backgroundColor: ['#FF6384', 'transparent'],
+        //             hoverBackgroundColor: ['#ff3d66', 'transparent'],
+        //         }],
+        //     });
+        // this.$set(this.showTooltip, day, false);
+        // }
     },
 
     data() {
@@ -641,10 +680,10 @@ export default {
 
             deletedPassword: '',
             deletedPasswordChk: '',
-            chartData: {},
+            // chartData: {},
             chartOptions: {
                 responsive: true,
-                cutoutPercentage: 70,
+                cutoutPercentage: 50,
                 plugins: {
                     tooltip: {
                     enabled: false,
@@ -652,22 +691,90 @@ export default {
                 },
             },
 
-            chartOptions: {
-                responsive: true,
-                legend: {
-                    
+            chartData: {
+                Mon: {
+                    labels: ['March', 'April'],
+                    datasets: [
+                        {
+                        },
+                        {
+                        },
+                    ],
                 },
-                cutoutPercentage: 70,
-                plugins: {
-                    tooltip: {
-                        enabled: false,
-                    },
+                Tue: {
+                    labels: ['March', 'April'],
+                    datasets: [
+                        {
+                        },
+                        {
+                        },
+                    ],
+                },
+                Wed: {
+                    labels: ['May', 'June'],
+                    datasets: [
+                        {
+                        },
+                        {
+                        },
+                    ],
+                },
+                Thu: {
+                    labels: ['July', 'August'],
+                    datasets: [
+                        {
+                        },
+                        {
+                        },
+                    ],
+                },
+                Fri: {
+                    labels: ['September', 'October'],
+                    datasets: [
+                        {
+                        },
+                        {
+                        },
+                    ],
+                },
+                Sat: {
+                    labels: ['November', 'December'],
+                    datasets: [
+                        {
+                        },
+                        {
+                        },
+                    ],
+                },
+                Sun: {
+                    labels: ['Extra', 'Extra'],
+                    datasets: [
+                        {
+                        },
+                        {
+                        },
+                    ],
                 },
             },
 
             showTooltip: {},
             position: { x: 0, y: 0 },
 
+            barChartData: {
+                labels: [ '1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월' ],
+                datasets: [ { data: [40, 20, 12, 20, 12, 20, 12, 20, 12, 20, 12, 12] },{ data: [40, 20, 12, 20, 12, 20, 12, 20, 12, 20, 12, 12] } ]
+            },
+            barChartOptions: {
+                responsive: true
+            },
+
+            // monthlyStats: {},
+
+            // barChartOptions: {}, // your original options
+            // barChartData: {
+            //     labels: [],
+            //     datasets: [],
+            // },
 
         }
     },
@@ -679,12 +786,25 @@ export default {
 		    this.yearEnd = `${this.selectedYear}1231`;
             return this.selectedYear === currentYear;
         },
+        
+        transformedData() {
+        // this.monthlyStats 객체를 배열로 변환하고, 각 항목에 대해 새로운 객체를 생성하여 반환
+        return Object.entries(this.monthlyStats).map(([month, data]) => {
+                return {
+                    // 각 객체의 속성으로는 'month', 'enrollmentFlagCount', 'chapterFlagCount'가 있음
+                    month,
+                    enrollmentFlagCount: data.enrollmentFlagCount,
+                    chapterFlagCount: data.chapterFlagCount,
+                };
+            });
+        },
 	},
 
 
     mounted() {
         this.calculateWeekdays();
 	    this.calculateCurrentWeek();
+
 
         const script = document.createElement('script');
         script.src = 'https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js';
@@ -712,7 +832,7 @@ export default {
                 }
             })
             .then(response => {
-                console.log(response.data);
+                // console.log(response.data);
                 // console.log(response.data.userData);
                 // console.log(response.data.ClassData);
                 this.newUserInfoItems = response.data.userData;
@@ -728,8 +848,12 @@ export default {
                 this.totalChaptersCount = response.data.totalChaptersCount;
                 this.percentageFlaggedChapters = response.data.percentageFlaggedChapters;
                 this.recentClassInfoData = response.data.recentClassInfoData;
+                this.chartData.Mon.datasets[0].data = response.data.weeklyStats.Thu.chapterFlagCount;
                 this.calculateTotals();
                 this.monthcalculateTotals();
+
+                this.generateChartData();
+
             })
             .catch(error => {
                 console.error('Error fetching data:', error);
@@ -1133,14 +1257,59 @@ export default {
             }
 		},
 
-
         updatePosition(day) {
             // 마우스 위치 업데이트
             this.position.x = event.clientX;
             this.position.y = event.clientY;
         },
         
-    }
+        generateChartData() {
+            for (const day in this.weeklyStats) {
+                if (Object.prototype.hasOwnProperty.call(this.weeklyStats, day)) {
+                    // console.log(this.weeklyStats[day]);
+                    this.chartData[day] = {
+                        labels: this.weeklyStats[day],
+                        datasets: [
+                            {
+                                label: 'Data ne',
+                                backgroundColor: ['#4e81f8','#d1defc'],
+                                data: [this.weeklyStats[day].enrollmentFlagCount, 5 - this.weeklyStats[day].enrollmentFlagCount],
+                                borderColor: '#fff',
+                            },
+                            {
+                                label: 'Data In',
+                                backgroundColor: ['#4e81f8','#d1defc'],
+                                data: [this.weeklyStats[day].chapterFlagCount, 10 - this.weeklyStats[day].chapterFlagCount],
+                                borderColor: '#fff',
+                            },
+                        ],
+                    };
+                }
+            }
+        },
+
+        updateChartData() {
+            // Update barChartData with transformedData
+            this.barChartData.labels = this.transformedData.map(data => data.month);
+            this.barChartData.datasets = [
+                    {
+                        label: 'Enrollment Flag Count',
+                        data: this.transformedData.map(data => data.enrollmentFlagCount),
+                    },
+                    {
+                        label: 'Chapter Flag Count',
+                        data: this.transformedData.map(data => data.chapterFlagCount),
+                    },
+                ];
+                console.log(this.barChartData.datasets);
+            },
+        },
+
+        watch: {
+            transformedData() {
+            this.updateChartData();
+        },
+    },
 }
 </script>
 <style>
