@@ -11,6 +11,9 @@
                 <!-- <div class="my_page_main_tap_ui" onclick="showDashboardContent('공란')">공란</div> -->
             </div>
 
+            {{barChartData}}
+            {{ barChartData2 }}
+
             <div v-if="$store.state.myPageClickFlgTab === 1" class="my_page_dashboard_box">
                 <div class="my_page_dashboard_box_cover">
                     <div class="dashboard_recent_learning_class">
@@ -760,21 +763,32 @@ export default {
             showTooltip: {},
             position: { x: 0, y: 0 },
 
-            barChartData: {
+            barChartData2: {
                 labels: [ '1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월' ],
                 datasets: [ { data: [40, 20, 12, 20, 12, 20, 12, 20, 12, 20, 12, 12] },{ data: [40, 20, 12, 20, 12, 20, 12, 20, 12, 20, 12, 12] } ]
             },
-            barChartOptions: {
-                responsive: true
-            },
+            // barChartOptions: {
+            //     responsive: true
+            // },
 
             // monthlyStats: {},
 
-            // barChartOptions: {}, // your original options
-            // barChartData: {
-            //     labels: [],
-            //     datasets: [],
-            // },
+            barChartOptions: {
+                responsive: true
+            },
+            barChartData: {
+                labels: [],
+                datasets: [{
+                    data: [],
+                }],
+            },
+
+            aaa: {
+                labels: [],
+                datasets: [{
+                    data: [],
+                }],
+            },
 
         }
     },
@@ -853,6 +867,8 @@ export default {
                 this.monthcalculateTotals();
 
                 this.generateChartData();
+
+                this.updateChartData();
 
             })
             .catch(error => {
@@ -1288,25 +1304,39 @@ export default {
             }
         },
 
-        updateChartData() {
-            // Update barChartData with transformedData
-            this.barChartData.labels = this.transformedData.map(data => data.month);
-            this.barChartData.datasets = [
-                    {
-                        label: 'Enrollment Flag Count',
-                        data: this.transformedData.map(data => data.enrollmentFlagCount),
-                    },
-                    {
-                        label: 'Chapter Flag Count',
-                        data: this.transformedData.map(data => data.chapterFlagCount),
-                    },
-                ];
-                console.log(this.barChartData.datasets);
-            },
-        },
+                    // barChartData: {
+            //     labels: [ '1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월' ],
+            //     datasets: [ { data: [40, 20, 12, 20, 12, 20, 12, 20, 12, 20, 12, 12] },{ data: [40, 20, 12, 20, 12, 20, 12, 20, 12, 20, 12, 12] } ]
+            // },
+            // barChartOptions: {
+            //     responsive: true
+            // },
 
-        watch: {
-            transformedData() {
+        updateChartData() {
+        // this.aaa.labels = this.transformedData.map(data => data.month);
+        // this.aaa.datasets[0].data = this.transformedData.map(data => data.enrollmentFlagCount);
+
+        this.barChartData.labels = this.transformedData.map(data => data.month);
+        this.barChartData.datasets[0].data = this.transformedData.map(data => data.enrollmentFlagCount);
+ 
+        // this.barChartData.labels = this.transformedData.map(data => data.month);
+        // this.barChartData.datasets = [
+        //     {
+        //         label: 'Enrollment Flag Count',
+        //         data: [this.transformedData.map(data => data.enrollmentFlagCount)],
+        //     },
+        //     {
+        //         label: 'Chapter Flag Count',
+        //         data: this.transformedData.map(data => data.chapterFlagCount),
+
+        //     },
+        // ];
+        // console.log(this.barChartData);
+        },
+    },
+
+    watch: {
+        transformedData() {
             this.updateChartData();
         },
     },
