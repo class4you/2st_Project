@@ -131,11 +131,11 @@
                                 </div>
                             </div>
                             <div class="weekly_study_class_total_cover">
-                                <div class="weekly_study_class_total">
+                                <div class="weekly_study_class_total1">
                                     <span>총 학습 강의 : </span>
                                     <span>{{ totalClassCount }}</span>
                                 </div>
-                                <div class="weekly_study_class_total">
+                                <div class="weekly_study_class_total2">
                                     <span>총 학습 챕터 : </span>
                                     <span>{{ totalChapterCount }}</span>
                                 </div>

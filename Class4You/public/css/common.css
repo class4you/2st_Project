@@ -5325,7 +5325,7 @@ background-color: rgba(225, 223, 234, 0.224);
     background-color: transparent;
     border: none;
     padding: 10px 50px;
-    background-color:#94b4ff;
+    background-color:#4e81f8;
     border-radius: 10px;
     color: #fff;
     font-size: 15px;
@@ -5683,12 +5683,23 @@ background-color: rgba(225, 223, 234, 0.224);
     justify-content: center;
 }
 
-.weekly_study_class_total {
+.weekly_study_class_total1 {
     text-align: center;
     font-size: 15px;
     padding: 10px 30px;
-    color: #5a5a5a;
-    background-color: #f3f3f3;
+    color: #fff;
+    background-color: #759eff;
+    display: inline-block;
+    border-radius: 10px;
+    font-weight: 700;
+}
+
+.weekly_study_class_total2 {
+    text-align: center;
+    font-size: 15px;
+    padding: 10px 30px;
+    color: #fff;
+    background-color: #9391fd;
     display: inline-block;
     border-radius: 10px;
     font-weight: 700;
