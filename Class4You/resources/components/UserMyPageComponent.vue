@@ -11,8 +11,6 @@
                 <!-- <div class="my_page_main_tap_ui" onclick="showDashboardContent('공란')">공란</div> -->
             </div>
 
-            {{barChartData}}
-            {{ barChartData2 }}
 
             <div v-if="$store.state.myPageClickFlgTab === 1" class="my_page_dashboard_box">
                 <div class="my_page_dashboard_box_cover">
@@ -763,31 +761,32 @@ export default {
             showTooltip: {},
             position: { x: 0, y: 0 },
 
-            barChartData2: {
+            barChartData: {
                 labels: [ '1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월' ],
-                datasets: [ { data: [40, 20, 12, 20, 12, 20, 12, 20, 12, 20, 12, 12] },{ data: [40, 20, 12, 20, 12, 20, 12, 20, 12, 20, 12, 12] } ]
+                datasets: [ { data: [] },{ data: [] } ]
             },
-            // barChartOptions: {
-            //     responsive: true
-            // },
-
-            // monthlyStats: {},
 
             barChartOptions: {
+                scales: {
+                    x: {
+                        ticks: {
+                            padding: 3
+                        }
+                    },
+                    y: {
+                        grid: {
+                            drawBorder: false,
+                            color: "#b0aefb",
+                            lineWidth: 2
+                        },
+                        min: 0,
+                        max: 20,
+                        ticks: {
+                            stepSize: 10,
+                        }
+                    }
+                },
                 responsive: true
-            },
-            barChartData: {
-                labels: [],
-                datasets: [{
-                    data: [],
-                }],
-            },
-
-            aaa: {
-                labels: [],
-                datasets: [{
-                    data: [],
-                }],
             },
 
         }
@@ -799,18 +798,6 @@ export default {
             this.yearStart = `${this.selectedYear}0101`;
 		    this.yearEnd = `${this.selectedYear}1231`;
             return this.selectedYear === currentYear;
-        },
-        
-        transformedData() {
-        // this.monthlyStats 객체를 배열로 변환하고, 각 항목에 대해 새로운 객체를 생성하여 반환
-        return Object.entries(this.monthlyStats).map(([month, data]) => {
-                return {
-                    // 각 객체의 속성으로는 'month', 'enrollmentFlagCount', 'chapterFlagCount'가 있음
-                    month,
-                    enrollmentFlagCount: data.enrollmentFlagCount,
-                    chapterFlagCount: data.chapterFlagCount,
-                };
-            });
         },
 	},
 
@@ -862,19 +849,31 @@ export default {
                 this.totalChaptersCount = response.data.totalChaptersCount;
                 this.percentageFlaggedChapters = response.data.percentageFlaggedChapters;
                 this.recentClassInfoData = response.data.recentClassInfoData;
-                this.chartData.Mon.datasets[0].data = response.data.weeklyStats.Thu.chapterFlagCount;
                 this.calculateTotals();
                 this.monthcalculateTotals();
 
                 this.generateChartData();
-
-                this.updateChartData();
+                // console.log(this.transformedData());
+                this.updateChartData(this.transformedData());
 
             })
             .catch(error => {
                 console.error('Error fetching data:', error);
             });
         },
+
+        transformedData() {
+            // this.monthlyStats 객체를 배열로 변환하고, 각 항목에 대해 새로운 객체를 생성하여 반환
+            return Object.entries(this.monthlyStats).map(([month, data]) => {
+                return {
+                    // 각 객체의 속성으로는 'month', 'enrollmentFlagCount', 'chapterFlagCount'가 있음
+                    month,
+                    enrollmentFlagCount: data.enrollmentFlagCount,
+                    chapterFlagCount: data.chapterFlagCount,
+                };
+            });
+        },
+        
         handleTabClick(tabNumber) {
             this.$store.commit('setMyPageTab', tabNumber);
         },
@@ -1294,7 +1293,7 @@ export default {
                             },
                             {
                                 label: 'Data In',
-                                backgroundColor: ['#4e81f8','#d1defc'],
+                                backgroundColor: ['#7371fc','#d1defc'],
                                 data: [this.weeklyStats[day].chapterFlagCount, 10 - this.weeklyStats[day].chapterFlagCount],
                                 borderColor: '#fff',
                             },
@@ -1304,42 +1303,22 @@ export default {
             }
         },
 
-                    // barChartData: {
-            //     labels: [ '1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월' ],
-            //     datasets: [ { data: [40, 20, 12, 20, 12, 20, 12, 20, 12, 20, 12, 12] },{ data: [40, 20, 12, 20, 12, 20, 12, 20, 12, 20, 12, 12] } ]
-            // },
-            // barChartOptions: {
-            //     responsive: true
-            // },
+        updateChartData(transData) {
 
-        updateChartData() {
-        // this.aaa.labels = this.transformedData.map(data => data.month);
-        // this.aaa.datasets[0].data = this.transformedData.map(data => data.enrollmentFlagCount);
-
-        this.barChartData.labels = this.transformedData.map(data => data.month);
-        this.barChartData.datasets[0].data = this.transformedData.map(data => data.enrollmentFlagCount);
- 
-        // this.barChartData.labels = this.transformedData.map(data => data.month);
-        // this.barChartData.datasets = [
-        //     {
-        //         label: 'Enrollment Flag Count',
-        //         data: [this.transformedData.map(data => data.enrollmentFlagCount)],
-        //     },
-        //     {
-        //         label: 'Chapter Flag Count',
-        //         data: this.transformedData.map(data => data.chapterFlagCount),
-
-        //     },
-        // ];
-        // console.log(this.barChartData);
+        let result = {
+                labels: [],
+                datasets: [ {label: '수강 강의', data: [], backgroundColor: '#4e81f8',}, {label: '수강 챕터', data2: [], backgroundColor: '#7371fc',} ],
+            };
+            console.log(result);
+        result.labels = transData.map(data => data.month);
+        result.datasets[0].data = transData.map(data => data.enrollmentFlagCount);
+        result.datasets[1].data = transData.map(data => data.chapterFlagCount);
+        
+        console.log(result);
+        this.barChartData = result;
         },
     },
 
-    watch: {
-        transformedData() {
-            this.updateChartData();
-        },
-    },
 }
 </script>
 <style>
