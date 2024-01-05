@@ -20270,7 +20270,7 @@ __webpack_require__.r(__webpack_exports__);
         UserID: this.updataReviewData.UserID,
         ReviewID: this.updataReviewData.ReviewID,
         ReviewComment: this.updataReviewData.ReviewComment,
-        ReviewRating: this.updataReviewData.ReviewRating
+        ReviewRating: this.classReviewData.ReviewRating
       }).then(function (response) {
         console.log(response);
         // 서버 응답에 대한 로직 수행

@@ -1036,7 +1036,7 @@ export default {
 				UserID: this.updataReviewData.UserID,
 				ReviewID: this.updataReviewData.ReviewID,
 				ReviewComment: this.updataReviewData.ReviewComment,
-				ReviewRating: this.updataReviewData.ReviewRating,
+				ReviewRating: this.classReviewData.ReviewRating,
 			})
 			.then(response => {
 				console.log(response);
