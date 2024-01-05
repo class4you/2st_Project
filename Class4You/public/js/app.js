@@ -19796,6 +19796,7 @@ __webpack_require__.r(__webpack_exports__);
       this.$store.dispatch('updateBoardData', data);
     },
     updatecompleteBoardData: function updatecompleteBoardData() {
+      var _this6 = this;
       axios.put('/boardCompleteUpdate', {
         BoardID: this.newBoardItem.BoardID,
         UserID: this.newBoardItem.UserID,
@@ -19803,8 +19804,8 @@ __webpack_require__.r(__webpack_exports__);
       }).then(function (response) {
         // console.log(response.data);
         // 서버 응답에 대한 로직 수행
-        // this.$router.push('/board');
-        location.reload();
+        _this6.$router.push('/boarddetail/:BoardID');
+        // location.reload();
       })["catch"](function (error) {
         // 에러 처리
         console.error(error);

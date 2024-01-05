@@ -450,8 +450,8 @@ export default {
             .then(response => {
                 // console.log(response.data);
                 // 서버 응답에 대한 로직 수행
-                // this.$router.push('/board');
-                location.reload();
+                this.$router.push('/boarddetail/:BoardID');
+                // location.reload();
             })
             .catch(error => {
                 // 에러 처리
