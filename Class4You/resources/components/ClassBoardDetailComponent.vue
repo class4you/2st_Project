@@ -1044,6 +1044,7 @@ export default {
                 })
                 .then(response => {
                     console.log(response);
+					
                     // 서버 응답에 대한 로직 수행
                     // this.$router.push('/board');
 					// this.reviewClassItems.unshift(res.data[0]);
