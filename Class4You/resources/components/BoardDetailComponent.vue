@@ -100,14 +100,15 @@
                                     <p>작성일<span>{{ item.created_at }}</span></p>
                                 </div>
                                 <div class="commentText">
-                                <span>{{ item.CommentContent }}</span>   
+                                    <textarea v-if="item.CommentID == updateCommentData.CommentID" v-model="updateCommentData.CommentContent"></textarea>
+                                    <span>{{ item.CommentContent }}</span>   
                                 </div>
                                 
                                 <div class="commentActions row aiC">
                                     <div v-if="item.UserID == $store.state.UserID" style="margin-left: auto;">
                                         <!-- <button class="comment_editBtn">수정</button> -->
+                                        <button @click="updateCommentData(item.CommentID)" class="commentActions_deleteBtn">수정</button>
                                         <button @click="deleteCommentData(item.CommentID)" class="commentActions_deleteBtn">삭제</button>
-                                        <!-- <button @click="deleteCommentData(data)" class="commentActions_deleteBtn">삭제</button> -->
                                         <!-- <button class="commentActions_reportBtn">신고</button> -->
                                     </div>
                                 </div>
@@ -168,6 +169,7 @@ export default {
                     CommentContent: '',
                 };
             },
+            updateCommentData: {},
         };
     },
 
@@ -272,8 +274,8 @@ export default {
 
         // 댓글 삭제 불러오기
         // sweetalert2을 이용한 알러트 출력 방법
-        deleteCommentData(data) {
-            console.log(data);
+        deleteCommentData(deleteCommentID) {
+            console.log(deleteCommentID);
                 Swal.fire({
                 title: '정말로 삭제하시겠습니까?',
                 text: "삭제 후에는 복구할 수 없습니다.",
@@ -288,8 +290,8 @@ export default {
                 if (result.isConfirmed) {
                 // this.$store.dispatch('deleteCommentData', data);
                 
-                console.log(data);
-                    const url = '/comments/' + data;
+                console.log(deleteCommentID);
+                    const url = '/comments/' + deleteCommentID;
                     const header = {
                         headers: {
                             "Content-Type": 'multipart/form-data',
@@ -306,9 +308,16 @@ export default {
                 // axios.delete(url, requestData, header)
                 axios.delete(url, header)
                 .then(res => { 
+                    Swal.fire({
+                        icon: 'success',
+                        title: '완료',
+                        text: '댓글이 삭제되었습니다.',
+                        confirmButtonText: '확인'
+            	    })
                     // console.log(this.commentItems);
                     // console.log(res.data);
-                    console.log(this.newCommentItem);
+                    console.log('response before');
+                    console.log(res.data ? 'true' : 'false');
                     // console.log(this.commentData);
                     // console.log(this.commentItems);
                     // this.newCommentItem = [this.newCommentItem];
@@ -321,19 +330,9 @@ export default {
                     // this.newCommentItem = this.newCommentData;
                     
                     // this.commentItems = this.commentItems.filter((comment) => comment.CommentID !== data.CommentID);
-                    this.newCommentItem = this.newCommentItem.filter((item) => item.CommentID !== data.CommentID);
-                    // Vue.set(this, 'newCommentItem', this.newCommentItem.filter((item) => item.CommentID !== data.CommentID));
-                    // this.commentData = this.commentData.filter((item) => item.CommentID !== data.CommentID);
-                    // delete this.commentData[data.CommentID];
-                      
-                    // const index = this.newCommentItem.findIndex((item) => item.CommentID !== data.CommentID);
-                    // console.log(index);
-                    // this.newCommentItem.splice(index, 1);
-                    // if (index !== -1) {
-                    //     // index가 -1이 아닌 경우에만 해당 요소를 삭제
-                    //     console.log(this.newCommentData);
-                    //     this.newCommentData.splice(index, 1);
-                    // }
+                    this.newCommentItem = this.newCommentItem.filter((item) => item.CommentID !== deleteCommentID);
+                    console.log('response after');
+                    console.log(this.newCommentItem);
                     
                 })
                 .catch(err => {

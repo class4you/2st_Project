@@ -55,7 +55,8 @@ Route::post('/classEnrollAppPost', [EnrollmentController::class, 'postClassEnrol
 
 Route::post('/classboarddetailreview', [ReviewController::class, 'postClassReviewData']);
 Route::get('/classboarddetailreview/{ClassID}', [ReviewController::class, 'getClassReviewIndex']);
-Route::put('/classboarddetailreview/{ClassID}', [ReviewController::class, 'putClassReviewData']);
+// Route::put('/classboarddetailreview/{ClassID}', [ReviewController::class, 'putClassReviewData']);
+Route::put('/classboarddetailreview', [ReviewController::class, 'putClassReviewData']);
 Route::delete('/classboarddetailreview/{ReviewID}', [ReviewController::class, 'deletClassReview']);
 
 

@@ -28,6 +28,8 @@ class Review extends Model
     // 배열에 입력이 가능한 컬럼, 지정칼럼외 배열에 값이 있어도 무시함
     protected $fillable = [
         'EnrollmentID',
+        'ReviewID',
+        'UserID',
         'ReviewComment',
         'ReviewRating',
         'created_at',

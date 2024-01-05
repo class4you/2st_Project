@@ -127,13 +127,42 @@ class ReviewController extends Controller
     }
 
     // 강의게시판_수강평수정
-    // public function putClassReviewData(Request $request, $ReviewID) {
+    public function putClassReviewData(Request $request) {
 
-    //     $classReviewData = $request->only('ReviewComment', 'ReviewRating');
-    //     $result = Review::find($ReviewID);
+        $classReviewData = $request->only('EnrollmentID','ReviewID','ReviewComment', 'ReviewRating');
+        // $result = Review::find($ReviewID);
+        Log::debug('리퀘스트값----------------------------------------------------------------------');
+        Log::debug($request);
+        // $result->update($classReviewData);
+        $data = Review::where('ReviewID', $request->ReviewID)->update($classReviewData);
 
-    //     $result->update($ReviewID);
-    // }
+        Log::debug('업데이트유무----------------------------------------------------------------------');
+        Log::debug($data);
+        
+        // $request->fill($classReviewData);
+        // $request->save($classReviewData);
+        
+        $responseData = Review::select('reviews.ReviewID',
+            'reviews.EnrollmentID',
+            'reviews.ReviewComment',
+            'reviews.ReviewRating',
+            'reviews.created_at',
+            'users.UserID',
+            'users.UserEmail',
+            'class_infos.ClassID')
+        ->join('enrollments','reviews.EnrollmentID','enrollments.EnrollmentID')
+        ->join('class_infos','class_infos.ClassID','enrollments.ClassID')
+        ->join('users','enrollments.UserID','users.UserID')
+        ->where('reviews.ReviewID', $request->ReviewID)
+        // ->orderBy('enrollments.created_at', 'desc')
+        ->orderBy('reviews.created_at', 'desc')
+        ->get();
+
+        Log::debug('리뷰로그--------------------------------------------------------------');
+        Log::debug($classReviewData);
+        
+        return response()->json($responseData);
+    }
 
     // 강의게시판_수강평삭제
     public function deletClassReview($ReviewID) {

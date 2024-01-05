@@ -187,7 +187,7 @@ class BoardController extends Controller
 
         Board::where('BoardID', $request->BoardID)->update($data);
 
-        // Log::debug($data);
+        Log::debug($data);
     }
 
     public function putBoardCompleteUpdate(Request $request) {

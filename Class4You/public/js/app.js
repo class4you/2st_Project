@@ -19553,7 +19553,8 @@ __webpack_require__.r(__webpack_exports__);
           CommentID: this.CommentID,
           CommentContent: ''
         };
-      }
+      },
+      updateCommentData: {}
     };
   },
   mounted: function mounted() {
@@ -19646,9 +19647,9 @@ __webpack_require__.r(__webpack_exports__);
     },
     // 댓글 삭제 불러오기
     // sweetalert2을 이용한 알러트 출력 방법
-    deleteCommentData: function deleteCommentData(data) {
+    deleteCommentData: function deleteCommentData(deleteCommentID) {
       var _this3 = this;
-      console.log(data);
+      console.log(deleteCommentID);
       sweetalert2__WEBPACK_IMPORTED_MODULE_0___default().fire({
         title: '정말로 삭제하시겠습니까?',
         text: "삭제 후에는 복구할 수 없습니다.",
@@ -19663,8 +19664,8 @@ __webpack_require__.r(__webpack_exports__);
         if (result.isConfirmed) {
           // this.$store.dispatch('deleteCommentData', data);
 
-          console.log(data);
-          var url = '/comments/' + data;
+          console.log(deleteCommentID);
+          var url = '/comments/' + deleteCommentID;
           var header = {
             headers: {
               "Content-Type": 'multipart/form-data',
@@ -19680,9 +19681,16 @@ __webpack_require__.r(__webpack_exports__);
 
           // axios.delete(url, requestData, header)
           axios["delete"](url, header).then(function (res) {
+            sweetalert2__WEBPACK_IMPORTED_MODULE_0___default().fire({
+              icon: 'success',
+              title: '완료',
+              text: '댓글이 삭제되었습니다.',
+              confirmButtonText: '확인'
+            });
             // console.log(this.commentItems);
             // console.log(res.data);
-            console.log(_this3.newCommentItem);
+            console.log('response before');
+            console.log(res.data ? 'true' : 'false');
             // console.log(this.commentData);
             // console.log(this.commentItems);
             // this.newCommentItem = [this.newCommentItem];
@@ -19696,20 +19704,10 @@ __webpack_require__.r(__webpack_exports__);
 
             // this.commentItems = this.commentItems.filter((comment) => comment.CommentID !== data.CommentID);
             _this3.newCommentItem = _this3.newCommentItem.filter(function (item) {
-              return item.CommentID !== data.CommentID;
+              return item.CommentID !== deleteCommentID;
             });
-            // Vue.set(this, 'newCommentItem', this.newCommentItem.filter((item) => item.CommentID !== data.CommentID));
-            // this.commentData = this.commentData.filter((item) => item.CommentID !== data.CommentID);
-            // delete this.commentData[data.CommentID];
-
-            // const index = this.newCommentItem.findIndex((item) => item.CommentID !== data.CommentID);
-            // console.log(index);
-            // this.newCommentItem.splice(index, 1);
-            // if (index !== -1) {
-            //     // index가 -1이 아닌 경우에만 해당 요소를 삭제
-            //     console.log(this.newCommentData);
-            //     this.newCommentData.splice(index, 1);
-            // }
+            console.log('response after');
+            console.log(_this3.newCommentItem);
           })["catch"](function (err) {
             // console.log(err.response.data.errors)
             console.error(err);
@@ -20204,6 +20202,12 @@ __webpack_require__.r(__webpack_exports__);
             }
           };
           axios__WEBPACK_IMPORTED_MODULE_1___default()["delete"](url, header).then(function (res) {
+            sweetalert2__WEBPACK_IMPORTED_MODULE_0___default().fire({
+              icon: 'success',
+              title: '완료',
+              text: '수강평이 삭제되었습니다.',
+              confirmButtonText: '확인'
+            });
             // Remove the deleted item from the reviewClassItems array
             _this3.reviewClassItems = _this3.reviewClassItems.filter(function (item) {
               return item.ReviewID !== data.ReviewID;
@@ -20254,8 +20258,34 @@ __webpack_require__.r(__webpack_exports__);
       this.hovered = false;
     },
     addUpdataReview: function addUpdataReview(data) {
+      var _this5 = this;
       // console.log(data);
       this.updataReviewData = data;
+      // console.log(this.updataReviewData);
+      // console.log(data);
+      sweetalert2__WEBPACK_IMPORTED_MODULE_0___default().fire({
+        icon: 'success',
+        title: '수정',
+        text: '수강평이 수정되었습니다.',
+        confirmButtonText: '확인'
+      }).then(function (result) {
+        axios__WEBPACK_IMPORTED_MODULE_1___default().put('/classboarddetailreview', {
+          ClassID: _this5.updataReviewData.ClassID,
+          UserID: _this5.updataReviewData.UserID,
+          ReviewID: _this5.updataReviewData.ReviewID,
+          ReviewComment: _this5.updataReviewData.ReviewComment,
+          ReviewRating: _this5.updataReviewData.ReviewRating
+        }).then(function (response) {
+          console.log(response);
+          // 서버 응답에 대한 로직 수행
+          // this.$router.push('/board');
+          // this.reviewClassItems.unshift(res.data[0]);
+          // this.addUpdataReview(false);
+        })["catch"](function (error) {
+          // 에러 처리
+          console.error(error);
+        });
+      });
     }
   }
 });
@@ -22213,7 +22243,8 @@ var _hoisted_41 = {
   }
 };
 var _hoisted_42 = ["onClick"];
-var _hoisted_43 = /*#__PURE__*/_withScopeId(function () {
+var _hoisted_43 = ["onClick"];
+var _hoisted_44 = /*#__PURE__*/_withScopeId(function () {
   return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("hr", {
     style: {
       "margin-top": "20px"
@@ -22267,12 +22298,22 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
       key: item.CommentID,
       "class": "reviewList"
-    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_36, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_37, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_38, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("작성자"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.hideEmail(item.UserEmail)), 1 /* TEXT */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("작성일"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.created_at), 1 /* TEXT */)])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_39, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.CommentContent), 1 /* TEXT */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_40, [item.UserID == _ctx.$store.state.UserID ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_41, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <button class=\"comment_editBtn\">수정</button> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_36, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_37, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_38, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("작성자"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.hideEmail(item.UserEmail)), 1 /* TEXT */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("작성일"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.created_at), 1 /* TEXT */)])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_39, [item.CommentID == $data.updateCommentData.CommentID ? (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)(((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("textarea", {
+      key: 0,
+      "onUpdate:modelValue": _cache[6] || (_cache[6] = function ($event) {
+        return $data.updateCommentData.CommentContent = $event;
+      })
+    }, null, 512 /* NEED_PATCH */)), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.updateCommentData.CommentContent]]) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.CommentContent), 1 /* TEXT */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_40, [item.UserID == _ctx.$store.state.UserID ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_41, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <button class=\"comment_editBtn\">수정</button> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+      onClick: function onClick($event) {
+        return $data.updateCommentData(item.CommentID);
+      },
+      "class": "commentActions_deleteBtn"
+    }, "수정", 8 /* PROPS */, _hoisted_42), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
       onClick: function onClick($event) {
         return $options.deleteCommentData(item.CommentID);
       },
       "class": "commentActions_deleteBtn"
-    }, "삭제", 8 /* PROPS */, _hoisted_42), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <button @click=\"deleteCommentData(data)\" class=\"commentActions_deleteBtn\">삭제</button> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <button class=\"commentActions_reportBtn\">신고</button> ")])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), _hoisted_43])]);
+    }, "삭제", 8 /* PROPS */, _hoisted_43), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <button class=\"commentActions_reportBtn\">신고</button> ")])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), _hoisted_44])]);
   }), 128 /* KEYED_FRAGMENT */))])])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <div v-if=\"showEditModalFlag\" class=\"modal\">\r\n        <div class=\"modal-content\">\r\n            <span class=\"close\" @click=\"closeEditModal\">&times;</span>\r\n            <textarea v-model=\"editCommentContent\"></textarea>\r\n            <button @click=\"updateCommentData(editingCommentId)\">저장</button>\r\n        </div>\r\n    </div> ")], 2112 /* STABLE_FRAGMENT, DEV_ROOT_FRAGMENT */);
 }
 
@@ -23380,7 +23421,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         return $options.deleteClassReview(data);
       }
     }, "삭제", 8 /* PROPS */, _hoisted_185)]))])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])]);
-  }), 128 /* KEYED_FRAGMENT */))]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" 수정폼 "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <div v-if=\"editReview\" id=\"class_tab1\" class=\"class_detail_rating_list_div\">\r\n\t\t\t\t\t\t<div class=\"class_detail_rating_list_user\">\r\n\t\t\t\t\t\t\t<div class=\"class_detail_rating_form_star\">\r\n\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t<fieldset class=\"class_detail_rating_star_form\" name=\"myform\">\r\n\t\t\t\t\t\t\t\t\t<legend class=\"class_detail_rating_star_form_title\">별점</legend>\r\n\t\t\t\t\t\t\t\t\t\t<input v-model=\"classReviewData.ReviewRating\" class=\"class_detail_rating_star_input\" type=\"radio\" name=\"rating\" value=\"5\" id=\"rate1\">\r\n\t\t\t\t\t\t\t\t\t\t\t<label class=\"class_detail_rating_star_label\" for=\"rate1\">⭐</label>\r\n\t\t\t\t\t\t\t\t\t\t<input v-model=\"classReviewData.ReviewRating\" class=\"class_detail_rating_star_input\" type=\"radio\" name=\"rating\" value=\"4\" id=\"rate2\">\r\n\t\t\t\t\t\t\t\t\t\t\t<label class=\"class_detail_rating_star_label\" for=\"rate2\">⭐</label>\r\n\t\t\t\t\t\t\t\t\t\t<input v-model=\"classReviewData.ReviewRating\" class=\"class_detail_rating_star_input\" type=\"radio\" name=\"rating\" value=\"3\" id=\"rate3\">\r\n\t\t\t\t\t\t\t\t\t\t\t<label class=\"class_detail_rating_star_label\" for=\"rate3\">⭐</label>\r\n\t\t\t\t\t\t\t\t\t\t<input v-model=\"classReviewData.ReviewRating\" class=\"class_detail_rating_star_input\" type=\"radio\" name=\"rating\" value=\"2\" id=\"rate4\">\r\n\t\t\t\t\t\t\t\t\t\t\t<label class=\"class_detail_rating_star_label\" for=\"rate4\">⭐</label>\r\n\t\t\t\t\t\t\t\t\t\t<input v-model=\"classReviewData.ReviewRating\" class=\"class_detail_rating_star_input\" type=\"radio\" name=\"rating\" value=\"1\" id=\"rate5\">\r\n\t\t\t\t\t\t\t\t\t\t\t<label class=\"class_detail_rating_star_label\" for=\"rate5\">⭐</label>\r\n\t\t\t\t\t\t\t\t</fieldset>\r\n\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t<div class=\"class_detail_rating_list_text\">\r\n\t\t\t\t\t\t\t<textarea v-model=\"editReviewData.ReviewComment\"></textarea>\r\n\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t<div class=\"class_detail_rating_user_button\">\r\n\t\t\t\t\t\t\t<div class=\"class_detail_rating_user_update_button\">\r\n\t\t\t\t\t\t\t\t<button @click=\"putClassReview()\">수정</button>\r\n\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t<div class=\"class_detail_rating_user_delete_button\">\r\n\t\t\t\t\t\t\t\t<button>취소</button>\r\n\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t</div>\r\n\t\t\t\t</div> ")])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" 커뮤니티 "), $data.clickFlgTab === 2 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_186, [].concat(_hoisted_189))) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" 공지사항 "), $data.clickFlgTab === 3 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_190, [].concat(_hoisted_193))) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])]);
+  }), 128 /* KEYED_FRAGMENT */))])])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" 커뮤니티 "), $data.clickFlgTab === 2 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_186, [].concat(_hoisted_189))) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" 공지사항 "), $data.clickFlgTab === 3 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_190, [].concat(_hoisted_193))) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])]);
 }
 
 /***/ }),
