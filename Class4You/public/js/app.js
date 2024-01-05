@@ -21266,7 +21266,7 @@ chart_js__WEBPACK_IMPORTED_MODULE_1__.Chart.register(chart_js__WEBPACK_IMPORTED_
         x: 0,
         y: 0
       },
-      barChartData: {
+      barChartData2: {
         labels: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
         datasets: [{
           data: [40, 20, 12, 20, 12, 20, 12, 20, 12, 20, 12, 12]
@@ -21274,17 +21274,27 @@ chart_js__WEBPACK_IMPORTED_MODULE_1__.Chart.register(chart_js__WEBPACK_IMPORTED_
           data: [40, 20, 12, 20, 12, 20, 12, 20, 12, 20, 12, 12]
         }]
       },
-      barChartOptions: {
-        responsive: true
-      }
+      // barChartOptions: {
+      //     responsive: true
+      // },
 
       // monthlyStats: {},
 
-      // barChartOptions: {}, // your original options
-      // barChartData: {
-      //     labels: [],
-      //     datasets: [],
-      // },
+      barChartOptions: {
+        responsive: true
+      },
+      barChartData: {
+        labels: [],
+        datasets: [{
+          data: []
+        }]
+      },
+      aaa: {
+        labels: [],
+        datasets: [{
+          data: []
+        }]
+      }
     };
   },
   computed: {
@@ -21357,6 +21367,7 @@ chart_js__WEBPACK_IMPORTED_MODULE_1__.Chart.register(chart_js__WEBPACK_IMPORTED_
         _this.calculateTotals();
         _this.monthcalculateTotals();
         _this.generateChartData();
+        _this.updateChartData();
       })["catch"](function (error) {
         console.error('Error fetching data:', error);
       });
@@ -21765,23 +21776,37 @@ chart_js__WEBPACK_IMPORTED_MODULE_1__.Chart.register(chart_js__WEBPACK_IMPORTED_
         }
       }
     },
+    // barChartData: {
+    //     labels: [ '1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월' ],
+    //     datasets: [ { data: [40, 20, 12, 20, 12, 20, 12, 20, 12, 20, 12, 12] },{ data: [40, 20, 12, 20, 12, 20, 12, 20, 12, 20, 12, 12] } ]
+    // },
+    // barChartOptions: {
+    //     responsive: true
+    // },
     updateChartData: function updateChartData() {
-      // Update barChartData with transformedData
+      // this.aaa.labels = this.transformedData.map(data => data.month);
+      // this.aaa.datasets[0].data = this.transformedData.map(data => data.enrollmentFlagCount);
+
       this.barChartData.labels = this.transformedData.map(function (data) {
         return data.month;
       });
-      this.barChartData.datasets = [{
-        label: 'Enrollment Flag Count',
-        data: this.transformedData.map(function (data) {
-          return data.enrollmentFlagCount;
-        })
-      }, {
-        label: 'Chapter Flag Count',
-        data: this.transformedData.map(function (data) {
-          return data.chapterFlagCount;
-        })
-      }];
-      console.log(this.barChartData.datasets);
+      this.barChartData.datasets[0].data = this.transformedData.map(function (data) {
+        return data.enrollmentFlagCount;
+      });
+
+      // this.barChartData.labels = this.transformedData.map(data => data.month);
+      // this.barChartData.datasets = [
+      //     {
+      //         label: 'Enrollment Flag Count',
+      //         data: [this.transformedData.map(data => data.enrollmentFlagCount)],
+      //     },
+      //     {
+      //         label: 'Chapter Flag Count',
+      //         data: this.transformedData.map(data => data.chapterFlagCount),
+
+      //     },
+      // ];
+      // console.log(this.barChartData);
     }
   },
   watch: {
@@ -25196,7 +25221,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["my_page_main_tap_ui", {
       'my_page_main_tap_ui_on': _ctx.$store.state.myPageClickFlgTab == 5
     }])
-  }, "작성 게시글", 2 /* CLASS */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <div @click=\"handleTabClick(6)\" class=\"my_page_main_tap_ui\">구매내역</div> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <div class=\"my_page_main_tap_ui\" onclick=\"showDashboardContent('공란')\">공란</div> ")]), _ctx.$store.state.myPageClickFlgTab === 1 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [_hoisted_7, ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.recentClassInfoData, function (item) {
+  }, "작성 게시글", 2 /* CLASS */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <div @click=\"handleTabClick(6)\" class=\"my_page_main_tap_ui\">구매내역</div> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <div class=\"my_page_main_tap_ui\" onclick=\"showDashboardContent('공란')\">공란</div> ")]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.barChartData) + " " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.barChartData2) + " ", 1 /* TEXT */), _ctx.$store.state.myPageClickFlgTab === 1 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [_hoisted_7, ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.recentClassInfoData, function (item) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_8, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_9, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_10, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", null, "강의명 : " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.ClassTitle), 1 /* TEXT */)])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_11, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_12, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, "강의내용 : " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.ClassDescription), 1 /* TEXT */)])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_13, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_14, [_hoisted_15, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.flaggedChaptersCount) + "강", 1 /* TEXT */), _hoisted_16, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.totalChaptersCount) + "강", 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "(" + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.percentageFlaggedChapters) + "%)", 1 /* TEXT */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.getRelativeTime(item.updated_at)), 1 /* TEXT */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("progress", {
       "class": "class_datail_watch_progress_bar_progress",
       value: $data.percentageFlaggedChapters,
