@@ -283,7 +283,7 @@ class MypageController extends Controller
         // Log::debug($totalChaptersCount);
 
         // 퍼센트 계산
-        $percentageFlaggedChapters = ($totalChaptersCount > 0) ? ($flaggedChaptersCount / $totalChaptersCount) * 100 : 0;
+        $percentageFlaggedChapters = ($totalChaptersCount > 0) ? round(($flaggedChaptersCount / $totalChaptersCount) * 100) : 0;
 
         // Log::debug($percentageFlaggedChapters);
         

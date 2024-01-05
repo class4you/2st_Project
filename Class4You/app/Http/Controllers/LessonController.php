@@ -16,13 +16,13 @@ class LessonController extends Controller
 {
     public function updateLessonProgress(Request $request) {
 
-        // log::debug($request);
+        log::debug($request);
 
         $UserID = $request->UserID;
         $ClassID = $request->ClassID;
         $LessonID = $request->LessonID;
 
-        // Log::debug($UserID);
+        Log::debug('아이디 값'.$UserID);
         // Log::debug($ClassID);
         // Log::debug($LessonID);
 
@@ -30,33 +30,39 @@ class LessonController extends Controller
             ->where('ClassID', $ClassID)
             ->value('EnrollmentID');
 
-        // Log::debug($EnrollmentID);
+        Log::debug('수강 값'.$EnrollmentID);
         
 
-        LessonState::where('LessonID', $request->LessonID)
-        ->update([
-            'EnrollmentID' => $EnrollmentID,
-            'LessonID' => $LessonID,
-            'LessonProgress' => $request->progressPercentage,
-            'LessonRunningTime' => $request->lessonRunningTime,
-            'LessonFlg' => $request->lessonFlg,
-        ]);
+        LessonState::where('LessonID', $request->LessonID,)
+            ->where('EnrollmentID', $EnrollmentID)
+            ->update([
+                'EnrollmentID' => $EnrollmentID,
+                'LessonID' => $LessonID,
+                'LessonProgress' => $request->progressPercentage,
+                'LessonRunningTime' => $request->lessonRunningTime,
+                'LessonFlg' => $request->lessonFlg,
+            ]);
 
         // 리슨 값을 토대로 해당 챕터를 전부 가져옴
         $ChapterStateID = LessonState::where('LessonID', $request->LessonID)
+            ->where('EnrollmentID', $EnrollmentID)
             ->value('ChapterStateID');
 
+        Log::debug('챕터스테이트 아이디값'.$ChapterStateID);
         // 챕터의 플래그를 확인해서 해당 챕터에 리슨이 전부 완료됐는지 확인하는 쿼리문
         $allLessonsCompleted = LessonState::where('ChapterStateID', $ChapterStateID)
-            ->where('LessonFlg', 0) // 아직 완료되지 않은 강의
-            ->doesntExist(); // 완료되지 않은 강의가 하나도 없다면 true 반환
-            // Log::debug($allLessonsCompleted);
-
+        ->where('EnrollmentID', $EnrollmentID)
+        ->where('LessonFlg', 0) // 아직 완료되지 않은 강의
+        ->doesntExist(); // 완료되지 않은 강의가 하나도 없다면 true 반환
+        Log::debug('챕터 확인'.$allLessonsCompleted);
+        
         // 모든 강의가 완료되었다면 챕터 플래그를 1로 업데이트
         if ($allLessonsCompleted) {
-            ChapterState::where('ChapterStateID', $ChapterStateID)
+            $aaa = ChapterState::where('ChapterStateID', $ChapterStateID)
+                ->where('EnrollmentID', $EnrollmentID)
                 ->update(['ChapterFlg' => 1]);
             
+                Log::debug('업데이트 확인'.$ChapterStateID);
             // 해당 강의의 모든 챕터가 1인지 확인
             $EnrollmentDataID = ChapterState::where('ChapterStateID', $ChapterStateID)->value('EnrollmentID');
             

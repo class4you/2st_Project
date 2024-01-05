@@ -5325,7 +5325,7 @@ background-color: rgba(225, 223, 234, 0.224);
     background-color: transparent;
     border: none;
     padding: 10px 50px;
-    background-color:#4e81f8;
+    background-color:#94b4ff;
     border-radius: 10px;
     color: #fff;
     font-size: 15px;
@@ -5349,7 +5349,7 @@ background-color: rgba(225, 223, 234, 0.224);
     -webkit-box-pack: center;
     justify-content: center;
     gap: 0rem;
-    margin-bottom: 20px;
+    margin-bottom: 16px;
 }
 
 .weekly_study_class_title {
@@ -5646,7 +5646,9 @@ background-color: rgba(225, 223, 234, 0.224);
     margin-bottom: 5px;
     font-size: 13px;
     border: 1px solid #e7e7e7;
-    background-color: #fafafa;
+    padding: 20px;
+    border-radius: 5px;
+    /* background-color: #fafafa; */
 }
 
 .month_study_class_data span:not(:nth-child(1)) {
