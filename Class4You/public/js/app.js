@@ -20042,7 +20042,8 @@ __webpack_require__.r(__webpack_exports__);
       // enrollflg: null,
       languagesChk: {},
       allLessonsData: {},
-      updataReviewData: {}
+      updataReviewData: {},
+      updataReviewID: {}
     };
   },
   mounted: function mounted() {
@@ -20263,29 +20264,29 @@ __webpack_require__.r(__webpack_exports__);
       this.updataReviewData = data;
       // console.log(this.updataReviewData);
       // console.log(data);
-      sweetalert2__WEBPACK_IMPORTED_MODULE_0___default().fire({
-        icon: 'success',
-        title: '수정',
-        text: '수강평이 수정되었습니다.',
-        confirmButtonText: '확인'
-      }).then(function (result) {
-        axios__WEBPACK_IMPORTED_MODULE_1___default().put('/classboarddetailreview', {
-          ClassID: _this5.updataReviewData.ClassID,
-          UserID: _this5.updataReviewData.UserID,
-          ReviewID: _this5.updataReviewData.ReviewID,
-          ReviewComment: _this5.updataReviewData.ReviewComment,
-          ReviewRating: _this5.updataReviewData.ReviewRating
-        }).then(function (response) {
-          console.log(response);
 
-          // 서버 응답에 대한 로직 수행
-          // this.$router.push('/board');
-          // this.reviewClassItems.unshift(res.data[0]);
-          // this.addUpdataReview(false);
-        })["catch"](function (error) {
-          // 에러 처리
-          console.error(error);
+      axios__WEBPACK_IMPORTED_MODULE_1___default().put('/classboarddetailreview', {
+        ClassID: this.updataReviewData.ClassID,
+        UserID: this.updataReviewData.UserID,
+        ReviewID: this.updataReviewData.ReviewID,
+        ReviewComment: this.updataReviewData.ReviewComment,
+        ReviewRating: this.updataReviewData.ReviewRating
+      }).then(function (response) {
+        console.log(response);
+        // 서버 응답에 대한 로직 수행
+        // this.$router.push('/board');
+        // this.reviewClassItems.unshift(res.data[0]);
+        sweetalert2__WEBPACK_IMPORTED_MODULE_0___default().fire({
+          icon: 'success',
+          title: '수정',
+          text: '수강평이 수정되었습니다.',
+          confirmButtonText: '확인'
+        }).then(function (result) {
+          _this5.updataReviewID = false;
         });
+      })["catch"](function (error) {
+        // 에러 처리
+        console.error(error);
       });
     }
   }
@@ -23291,69 +23292,70 @@ var _hoisted_167 = {
 var _hoisted_168 = {
   "class": "class_detail_rating_list_text"
 };
-var _hoisted_169 = {
+var _hoisted_169 = ["onUpdate:modelValue"];
+var _hoisted_170 = {
   key: 1,
   "class": "class_detail_rating_list_text_p"
 };
-var _hoisted_170 = {
+var _hoisted_171 = {
   "class": "class_detail_rating_user_button"
 };
-var _hoisted_171 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+var _hoisted_172 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "class_detail_rating_user_update_button"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <button @click=\"classReviewUpdate(data)\">수정</button> ")], -1 /* HOISTED */);
-var _hoisted_172 = {
-  key: 0
-};
 var _hoisted_173 = {
   key: 0
 };
 var _hoisted_174 = {
-  "class": "class_detail_rating_user_delete_reating"
+  key: 0
 };
 var _hoisted_175 = {
+  "class": "class_detail_rating_user_delete_reating"
+};
+var _hoisted_176 = {
   "class": "class_detail_rating_star_form",
   name: "myform"
 };
-var _hoisted_176 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
+var _hoisted_177 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
   "class": "class_detail_rating_star_label",
   "for": "rate1"
 }, "⭐", -1 /* HOISTED */);
-var _hoisted_177 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
+var _hoisted_178 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
   "class": "class_detail_rating_star_label",
   "for": "rate2"
 }, "⭐", -1 /* HOISTED */);
-var _hoisted_178 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
+var _hoisted_179 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
   "class": "class_detail_rating_star_label",
   "for": "rate3"
 }, "⭐", -1 /* HOISTED */);
-var _hoisted_179 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
+var _hoisted_180 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
   "class": "class_detail_rating_star_label",
   "for": "rate4"
 }, "⭐", -1 /* HOISTED */);
-var _hoisted_180 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
+var _hoisted_181 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
   "class": "class_detail_rating_star_label",
   "for": "rate5"
 }, "⭐", -1 /* HOISTED */);
-var _hoisted_181 = {
+var _hoisted_182 = {
   "class": "class_detail_rating_user_delete_button"
 };
-var _hoisted_182 = ["onClick"];
-var _hoisted_183 = {
+var _hoisted_183 = ["onClick"];
+var _hoisted_184 = {
   key: 1,
   "class": "class_detail_rating_user_delete_button"
 };
-var _hoisted_184 = ["onClick"];
 var _hoisted_185 = ["onClick"];
-var _hoisted_186 = {
+var _hoisted_186 = ["onClick"];
+var _hoisted_187 = {
   key: 2
 };
-var _hoisted_187 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div id=\"class_tab1\" class=\"class_current class_detail_rating_form\"><form action=\"\"><fieldset><div class=\"class_detail_rating_form_text\"><textarea name=\"\" id=\"\" cols=\"30\" rows=\"10\" placeholder=\"강의에 대한 질문을 작성해주세요.\"></textarea></div><div class=\"class_detail_commu_form_content\"><div class=\"class_detail_rating_form_button\"><button>질문 작성</button></div></div></fieldset></form></div><div class=\"class_detail_rating_list\"><div class=\"class_detail_rating_view_tab\"><div class=\"class_detail_rating_tab_title\"><!-- 질문게시판 클릭시 커뮤니티 질문게시판 페이지로 이동 --><span><a href=\"\">질문게시판</a></span></div></div><hr><div id=\"class_tab1\" class=\"class_detail_rating_list_div\"><div class=\"class_detail_rating_list_user\"><div class=\"class_detail_rating_user_id\"><p>작성자ID</p></div><div class=\"class_detail_rating_user_date\"><p>2023-12-13</p></div></div><div class=\"class_detail_rating_list_text\"><p>css 이렇게 많이 써본건 처음이야</p><p>css 이렇게 많이 써본건 처음이야</p><p>css 이렇게 많이 써본건 처음이야</p><p>내가 쓴글 수정삭제가능</p></div><div class=\"class_detail_rating_user_button\"><div class=\"class_detail_rating_user_update_button\"><button>수정</button></div><div class=\"class_detail_rating_user_delete_button\"><button>삭제</button></div></div></div><hr><div id=\"class_tab1\" class=\"class_detail_rating_list_div\"><div class=\"class_detail_rating_list_user\"><div class=\"class_detail_rating_user_id\"><p>작성자ID</p></div><div class=\"class_detail_rating_user_date\"><p>2023-12-13</p></div></div><div class=\"class_detail_rating_list_text\"><p>수업이 재밌어요</p></div></div><hr><div id=\"class_tab1\" class=\"class_detail_rating_list_div\"><div class=\"class_detail_rating_list_user\"><div class=\"class_detail_rating_user_id\"><p>작성자ID</p></div><div class=\"class_detail_rating_user_date\"><p>2023-12-13</p></div></div><div class=\"class_detail_rating_list_text\"><p>코딩 조아요</p></div></div><hr><div id=\"class_tab1\" class=\"class_detail_rating_list_div\"><div class=\"class_detail_rating_list_user\"><div class=\"class_detail_rating_user_id\"><p>작성자ID</p></div><div class=\"class_detail_rating_user_date\"><p>2023-12-13</p></div></div><div class=\"class_detail_rating_list_text\"><p>재밌는 라라벨</p></div></div></div>", 2);
-var _hoisted_189 = [_hoisted_187];
-var _hoisted_190 = {
+var _hoisted_188 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div id=\"class_tab1\" class=\"class_current class_detail_rating_form\"><form action=\"\"><fieldset><div class=\"class_detail_rating_form_text\"><textarea name=\"\" id=\"\" cols=\"30\" rows=\"10\" placeholder=\"강의에 대한 질문을 작성해주세요.\"></textarea></div><div class=\"class_detail_commu_form_content\"><div class=\"class_detail_rating_form_button\"><button>질문 작성</button></div></div></fieldset></form></div><div class=\"class_detail_rating_list\"><div class=\"class_detail_rating_view_tab\"><div class=\"class_detail_rating_tab_title\"><!-- 질문게시판 클릭시 커뮤니티 질문게시판 페이지로 이동 --><span><a href=\"\">질문게시판</a></span></div></div><hr><div id=\"class_tab1\" class=\"class_detail_rating_list_div\"><div class=\"class_detail_rating_list_user\"><div class=\"class_detail_rating_user_id\"><p>작성자ID</p></div><div class=\"class_detail_rating_user_date\"><p>2023-12-13</p></div></div><div class=\"class_detail_rating_list_text\"><p>css 이렇게 많이 써본건 처음이야</p><p>css 이렇게 많이 써본건 처음이야</p><p>css 이렇게 많이 써본건 처음이야</p><p>내가 쓴글 수정삭제가능</p></div><div class=\"class_detail_rating_user_button\"><div class=\"class_detail_rating_user_update_button\"><button>수정</button></div><div class=\"class_detail_rating_user_delete_button\"><button>삭제</button></div></div></div><hr><div id=\"class_tab1\" class=\"class_detail_rating_list_div\"><div class=\"class_detail_rating_list_user\"><div class=\"class_detail_rating_user_id\"><p>작성자ID</p></div><div class=\"class_detail_rating_user_date\"><p>2023-12-13</p></div></div><div class=\"class_detail_rating_list_text\"><p>수업이 재밌어요</p></div></div><hr><div id=\"class_tab1\" class=\"class_detail_rating_list_div\"><div class=\"class_detail_rating_list_user\"><div class=\"class_detail_rating_user_id\"><p>작성자ID</p></div><div class=\"class_detail_rating_user_date\"><p>2023-12-13</p></div></div><div class=\"class_detail_rating_list_text\"><p>코딩 조아요</p></div></div><hr><div id=\"class_tab1\" class=\"class_detail_rating_list_div\"><div class=\"class_detail_rating_list_user\"><div class=\"class_detail_rating_user_id\"><p>작성자ID</p></div><div class=\"class_detail_rating_user_date\"><p>2023-12-13</p></div></div><div class=\"class_detail_rating_list_text\"><p>재밌는 라라벨</p></div></div></div>", 2);
+var _hoisted_190 = [_hoisted_188];
+var _hoisted_191 = {
   key: 3
 };
-var _hoisted_191 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div id=\"class_tab1\" class=\"class_tab_content class_current class_detail_notice_main\"><div class=\"class_detail_notice_main_div\"><div class=\"class_detail_notice_title\"><p>메인 공지사항</p></div><div class=\"class_detail_notice_content\"><p>집에가면머합니까남아서열심히하소</p><p>그래도레이아웃작업은다해가지않슴니까?</p><p>감사하다명호야</p><p>근데 이거 늘어나나?</p><p>늘어나긴하네</p><p>div로 함더 묶을까 말까</p></div></div></div><div class=\"class_detail_rating_list\"><div class=\"class_detail_rating_view_tab\"><div class=\"class_detail_rating_tab_title\"><!-- 질문게시판 클릭시 커뮤니티 질문게시판 페이지로 이동 --><span>이전 공지사항</span></div></div><hr><div id=\"class_tab1\" class=\"class_detail_rating_list_div\"><div class=\"class_detail_rating_list_user\"><div class=\"class_detail_rating_user_id\"><p>관리자ID</p></div><div class=\"class_detail_rating_user_date\"><p>2023-12-13</p></div></div><div class=\"class_detail_rating_list_text\"><p>css 이렇게 많이 써본건 처음이야</p><p>css 이렇게 많이 써본건 처음이야</p><p>css 이렇게 많이 써본건 처음이야</p></div></div><hr><div id=\"class_tab1\" class=\"class_detail_rating_list_div\"><div class=\"class_detail_rating_list_user\"><div class=\"class_detail_rating_user_id\"><p>관리자ID</p></div><div class=\"class_detail_rating_user_date\"><p>2023-12-13</p></div></div><div class=\"class_detail_rating_list_text\"><p>수업이 재밌어요</p></div></div><hr><div id=\"class_tab1\" class=\"class_detail_rating_list_div\"><div class=\"class_detail_rating_list_user\"><div class=\"class_detail_rating_user_id\"><p>관리자ID</p></div><div class=\"class_detail_rating_user_date\"><p>2023-12-13</p></div></div><div class=\"class_detail_rating_list_text\"><p>코딩 조아요</p></div></div><hr><div id=\"class_tab1\" class=\"class_detail_rating_list_div\"><div class=\"class_detail_rating_list_user\"><div class=\"class_detail_rating_user_id\"><p>관리자ID</p></div><div class=\"class_detail_rating_user_date\"><p>2023-12-13</p></div></div><div class=\"class_detail_rating_list_text\"><p>재밌는 라라벨</p></div></div></div>", 2);
-var _hoisted_193 = [_hoisted_191];
+var _hoisted_192 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div id=\"class_tab1\" class=\"class_tab_content class_current class_detail_notice_main\"><div class=\"class_detail_notice_main_div\"><div class=\"class_detail_notice_title\"><p>메인 공지사항</p></div><div class=\"class_detail_notice_content\"><p>집에가면머합니까남아서열심히하소</p><p>그래도레이아웃작업은다해가지않슴니까?</p><p>감사하다명호야</p><p>근데 이거 늘어나나?</p><p>늘어나긴하네</p><p>div로 함더 묶을까 말까</p></div></div></div><div class=\"class_detail_rating_list\"><div class=\"class_detail_rating_view_tab\"><div class=\"class_detail_rating_tab_title\"><!-- 질문게시판 클릭시 커뮤니티 질문게시판 페이지로 이동 --><span>이전 공지사항</span></div></div><hr><div id=\"class_tab1\" class=\"class_detail_rating_list_div\"><div class=\"class_detail_rating_list_user\"><div class=\"class_detail_rating_user_id\"><p>관리자ID</p></div><div class=\"class_detail_rating_user_date\"><p>2023-12-13</p></div></div><div class=\"class_detail_rating_list_text\"><p>css 이렇게 많이 써본건 처음이야</p><p>css 이렇게 많이 써본건 처음이야</p><p>css 이렇게 많이 써본건 처음이야</p></div></div><hr><div id=\"class_tab1\" class=\"class_detail_rating_list_div\"><div class=\"class_detail_rating_list_user\"><div class=\"class_detail_rating_user_id\"><p>관리자ID</p></div><div class=\"class_detail_rating_user_date\"><p>2023-12-13</p></div></div><div class=\"class_detail_rating_list_text\"><p>수업이 재밌어요</p></div></div><hr><div id=\"class_tab1\" class=\"class_detail_rating_list_div\"><div class=\"class_detail_rating_list_user\"><div class=\"class_detail_rating_user_id\"><p>관리자ID</p></div><div class=\"class_detail_rating_user_date\"><p>2023-12-13</p></div></div><div class=\"class_detail_rating_list_text\"><p>코딩 조아요</p></div></div><hr><div id=\"class_tab1\" class=\"class_detail_rating_list_div\"><div class=\"class_detail_rating_list_user\"><div class=\"class_detail_rating_user_id\"><p>관리자ID</p></div><div class=\"class_detail_rating_user_date\"><p>2023-12-13</p></div></div><div class=\"class_detail_rating_list_text\"><p>재밌는 라라벨</p></div></div></div>", 2);
+var _hoisted_194 = [_hoisted_192];
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [_hoisted_3, _hoisted_4, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.languagesChk), 1 /* TEXT */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_8, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_9, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_10, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
     src: '/' + $data.detailClassItems.ClassImg,
@@ -23457,16 +23459,16 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       key: data.ReviewID,
       id: "class_tab1",
       "class": "class_detail_rating_list_div class_tab_content_div"
-    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_165, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_166, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.hideEmail(data.UserEmail)) + " | " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(data.ReviewRating) + "점", 1 /* TEXT */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_167, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(data.created_at), 1 /* TEXT */)])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_168, [data.ReviewID == $data.updataReviewData.ReviewID ? (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)(((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("textarea", {
+    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_165, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_166, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.hideEmail(data.UserEmail)) + " | " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(data.ReviewRating) + "점", 1 /* TEXT */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_167, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(data.created_at), 1 /* TEXT */)])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_168, [data.ReviewID == $data.updataReviewID ? (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)(((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("textarea", {
       key: 0,
       "class": "class_detail_rating_list_text_textarea",
-      "onUpdate:modelValue": _cache[10] || (_cache[10] = function ($event) {
-        return $data.updataReviewData.ReviewComment = $event;
-      }),
+      "onUpdate:modelValue": function onUpdateModelValue($event) {
+        return data.ReviewComment = $event;
+      },
       cols: "20",
       rows: "5"
-    }, null, 512 /* NEED_PATCH */)), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.updataReviewData.ReviewComment]]) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("p", _hoisted_169, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(data.ReviewComment), 1 /* TEXT */))]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_170, [_hoisted_171, data.UserID == _ctx.$store.state.UserID ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_172, [data.ReviewID == $data.updataReviewData.ReviewID ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_173, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_174, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("fieldset", _hoisted_175, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
-      "onUpdate:modelValue": _cache[11] || (_cache[11] = function ($event) {
+    }, null, 8 /* PROPS */, _hoisted_169)), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, data.ReviewComment]]) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("p", _hoisted_170, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(data.ReviewComment), 1 /* TEXT */))]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_171, [_hoisted_172, data.UserID == _ctx.$store.state.UserID ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_173, [data.ReviewID == $data.updataReviewID ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_174, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_175, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("fieldset", _hoisted_176, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+      "onUpdate:modelValue": _cache[10] || (_cache[10] = function ($event) {
         return $data.classReviewData.ReviewRating = $event;
       }),
       "class": "class_detail_rating_star_input",
@@ -23474,8 +23476,8 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       name: "rating",
       value: "5",
       id: "rate1"
-    }, null, 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelRadio, $data.classReviewData.ReviewRating]]), _hoisted_176, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
-      "onUpdate:modelValue": _cache[12] || (_cache[12] = function ($event) {
+    }, null, 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelRadio, $data.classReviewData.ReviewRating]]), _hoisted_177, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+      "onUpdate:modelValue": _cache[11] || (_cache[11] = function ($event) {
         return $data.classReviewData.ReviewRating = $event;
       }),
       "class": "class_detail_rating_star_input",
@@ -23483,8 +23485,8 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       name: "rating",
       value: "4",
       id: "rate2"
-    }, null, 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelRadio, $data.classReviewData.ReviewRating]]), _hoisted_177, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
-      "onUpdate:modelValue": _cache[13] || (_cache[13] = function ($event) {
+    }, null, 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelRadio, $data.classReviewData.ReviewRating]]), _hoisted_178, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+      "onUpdate:modelValue": _cache[12] || (_cache[12] = function ($event) {
         return $data.classReviewData.ReviewRating = $event;
       }),
       "class": "class_detail_rating_star_input",
@@ -23492,8 +23494,8 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       name: "rating",
       value: "3",
       id: "rate3"
-    }, null, 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelRadio, $data.classReviewData.ReviewRating]]), _hoisted_178, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
-      "onUpdate:modelValue": _cache[14] || (_cache[14] = function ($event) {
+    }, null, 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelRadio, $data.classReviewData.ReviewRating]]), _hoisted_179, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+      "onUpdate:modelValue": _cache[13] || (_cache[13] = function ($event) {
         return $data.classReviewData.ReviewRating = $event;
       }),
       "class": "class_detail_rating_star_input",
@@ -23501,8 +23503,8 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       name: "rating",
       value: "2",
       id: "rate4"
-    }, null, 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelRadio, $data.classReviewData.ReviewRating]]), _hoisted_179, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
-      "onUpdate:modelValue": _cache[15] || (_cache[15] = function ($event) {
+    }, null, 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelRadio, $data.classReviewData.ReviewRating]]), _hoisted_180, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+      "onUpdate:modelValue": _cache[14] || (_cache[14] = function ($event) {
         return $data.classReviewData.ReviewRating = $event;
       }),
       "class": "class_detail_rating_star_input",
@@ -23510,24 +23512,24 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       name: "rating",
       value: "1",
       id: "rate5"
-    }, null, 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelRadio, $data.classReviewData.ReviewRating]]), _hoisted_180])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_181, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+    }, null, 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelRadio, $data.classReviewData.ReviewRating]]), _hoisted_181])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_182, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
       onClick: function onClick($event) {
         return $options.addUpdataReview(data);
       }
-    }, "수정", 8 /* PROPS */, _hoisted_182), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
-      onClick: _cache[16] || (_cache[16] = function ($event) {
+    }, "수정", 8 /* PROPS */, _hoisted_183), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+      onClick: _cache[15] || (_cache[15] = function ($event) {
         return $options.addUpdataReview(false);
       })
-    }, "취소")])])) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_183, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+    }, "취소")])])) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_184, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
       onClick: function onClick($event) {
-        return $options.addUpdataReview(data);
+        return $data.updataReviewID = data.ReviewID;
       }
-    }, "수정", 8 /* PROPS */, _hoisted_184), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+    }, "수정", 8 /* PROPS */, _hoisted_185), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
       onClick: function onClick($event) {
         return $options.deleteClassReview(data);
       }
-    }, "삭제", 8 /* PROPS */, _hoisted_185)]))])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])]);
-  }), 128 /* KEYED_FRAGMENT */))])])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" 커뮤니티 "), $data.clickFlgTab === 2 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_186, [].concat(_hoisted_189))) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" 공지사항 "), $data.clickFlgTab === 3 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_190, [].concat(_hoisted_193))) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])]);
+    }, "삭제", 8 /* PROPS */, _hoisted_186)]))])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])]);
+  }), 128 /* KEYED_FRAGMENT */))])])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" 커뮤니티 "), $data.clickFlgTab === 2 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_187, [].concat(_hoisted_190))) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" 공지사항 "), $data.clickFlgTab === 3 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_191, [].concat(_hoisted_194))) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])]);
 }
 
 /***/ }),
