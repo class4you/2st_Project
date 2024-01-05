@@ -464,7 +464,7 @@
 							</div>
 						</div>
 						<div class="class_detail_rating_list_text">
-							<textarea v-if="data.ReviewID == updataReviewData.ReviewID" class="class_detail_rating_list_text_textarea" v-model="updataReviewData.ReviewComment" cols="20" rows="5"></textarea>
+							<textarea v-if="data.ReviewID == updataReviewID" class="class_detail_rating_list_text_textarea" v-model="data.ReviewComment" cols="20" rows="5"></textarea>
 							<p v-else class="class_detail_rating_list_text_p">{{ data.ReviewComment }}</p>
 						</div>
 						<div class="class_detail_rating_user_button">
@@ -472,7 +472,7 @@
 								<!-- <button @click="classReviewUpdate(data)">수정</button> -->
 							</div>
 							<div v-if="data.UserID == $store.state.UserID">
-								<div v-if="data.ReviewID == updataReviewData.ReviewID">
+								<div v-if="data.ReviewID == updataReviewID">
 									<div class="class_detail_rating_user_delete_reating">
 										<fieldset class="class_detail_rating_star_form" name="myform">
 											<input v-model="classReviewData.ReviewRating" class="class_detail_rating_star_input" type="radio" name="rating" value="5" id="rate1">
@@ -493,7 +493,7 @@
 									</div>
 								</div>
 								<div class="class_detail_rating_user_delete_button" v-else>
-									<button @click="addUpdataReview(data)">수정</button>
+									<button @click="updataReviewID = data.ReviewID">수정</button>
 									<button @click="deleteClassReview(data)">삭제</button>
 								</div>
 							</div>
@@ -790,6 +790,7 @@ export default {
 			languagesChk: {},
 			allLessonsData: {},
 			updataReviewData: {},
+			updataReviewID: {},
         }
     },
 	mounted() {
@@ -1029,31 +1030,33 @@ export default {
 			this.updataReviewData = data;
 			// console.log(this.updataReviewData);
 			// console.log(data);
-			Swal.fire({
+			
+			axios.put('/classboarddetailreview', {
+				ClassID : this.updataReviewData.ClassID,
+				UserID: this.updataReviewData.UserID,
+				ReviewID: this.updataReviewData.ReviewID,
+				ReviewComment: this.updataReviewData.ReviewComment,
+				ReviewRating: this.updataReviewData.ReviewRating,
+			})
+			.then(response => {
+				console.log(response);
+				// 서버 응답에 대한 로직 수행
+				// this.$router.push('/board');
+				// this.reviewClassItems.unshift(res.data[0]);
+				Swal.fire({
                 icon: 'success',
                 title: '수정',
                 text: '수강평이 수정되었습니다.',
                 confirmButtonText: '확인'
-            }).then((result) => {
-                    axios.put('/classboarddetailreview', {
-                    ClassID : this.updataReviewData.ClassID,
-                    UserID: this.updataReviewData.UserID,
-                    ReviewID: this.updataReviewData.ReviewID,
-                    ReviewComment: this.updataReviewData.ReviewComment,
-                    ReviewRating: this.updataReviewData.ReviewRating,
-                })
-                .then(response => {
-                    console.log(response);
-                    // 서버 응답에 대한 로직 수행
-                    // this.$router.push('/board');
-					// this.reviewClassItems.unshift(res.data[0]);
-					// this.addUpdataReview(false);
-                })
-                .catch(error => {
-                    // 에러 처리
-                    console.error(error);
-                });
-            })
+				}).then((result) => {
+					this.updataReviewID = false;
+				})
+			})
+			.catch(error => {
+				// 에러 처리
+				console.error(error);
+			});
+		
 		}
 	},
     
