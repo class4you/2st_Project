@@ -5441,7 +5441,7 @@ background-color: rgba(225, 223, 234, 0.224);
 
 .weekly_study_class_data_cover {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
     text-align: center;
     justify-content: center;
     gap: 10px;
@@ -5456,6 +5456,14 @@ background-color: rgba(225, 223, 234, 0.224);
 
 .weekly_study_class_data span:not(:nth-child(1)) {
     font-weight: 500;
+}
+
+.weekly_study_class_data_chart {
+    margin-bottom: 5px;
+    font-size: 13px;
+    /* border: 1px solid #e7e7e7;
+    background-color: #fafafa; */
+    width: 80px;
 }
 
 

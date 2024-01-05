@@ -38,7 +38,7 @@ class CommentController extends Controller
     }
 
     public function delCommentData($CommentID) {
-        // Log::debug($CommentID);
+        Log::debug($CommentID);
         $data = Comment::destroy($CommentID);
 
         return response()->json($data);
