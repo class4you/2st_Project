@@ -70,7 +70,8 @@
                                 <a v-if="newBoardItem.BoardFlg == '0'" @click="updatecompleteBoardData()" class="board_complete">해결</a>
                                 <a :href="'/boardupdate/' + newBoardItem.BoardID" v-if="$store.state.UserID" class="board_rewrite">수정</a>
                                 <!-- <a @click="deleteBoardData(newBoardItem.BoardID)" class="board_delete">삭제</a> -->
-                                <button @click="deleteBoardData(newBoardItem.BoardID)" class="board_delete">삭제</button>
+                                <!-- <button @click="deleteBoardData(newBoardItem.BoardID)" class="board_delete">삭제</button> -->
+                                <a @click="deleteBoardData(newBoardItem.BoardID)" class="board_delete">삭제</a>
                             </div>
                         </div>
                     </div>
@@ -100,16 +101,22 @@
                                     <p>작성일<span>{{ item.created_at }}</span></p>
                                 </div>
                                 <div class="commentText">
-                                    <textarea v-if="item.CommentID == updateCommentData.CommentID" v-model="updateCommentData.CommentContent"></textarea>
-                                    <span>{{ item.CommentContent }}</span>   
+                                    <textarea v-if="item.CommentID == updateCommentID" v-model="item.CommentContent" class="board_comment_update_textarea"></textarea>
+                                    <span v-else>{{ item.CommentContent }}</span>   
                                 </div>
                                 
                                 <div class="commentActions row aiC">
                                     <div v-if="item.UserID == $store.state.UserID" style="margin-left: auto;">
-                                        <!-- <button class="comment_editBtn">수정</button> -->
-                                        <button @click="updateCommentData(item.CommentID)" class="commentActions_deleteBtn">수정</button>
-                                        <button @click="deleteCommentData(item.CommentID)" class="commentActions_deleteBtn">삭제</button>
-                                        <!-- <button class="commentActions_reportBtn">신고</button> -->
+                                        <div v-if="item.CommentID == updateCommentID" >
+                                            <button @click="addUpdateComment(item)" class="commentActions_updateBtn">수정</button>
+                                            <button @click="updateCommentID = false" class="commentActions_deleteBtn">취소</button>
+                                        </div>    
+                                            <!-- <button class="comment_editBtn">수정</button> -->
+                                        <div v-else>
+                                            <button @click="updateCommentID = item.CommentID" class="commentActions_updateBtn">수정</button>
+                                            <button @click="deleteCommentData(item.CommentID)" class="commentActions_deleteBtn">삭제</button>
+                                            <!-- <button class="commentActions_reportBtn">신고</button> -->
+                                        </div>
                                     </div>
                                 </div>
                                 <hr style="margin-top: 20px;">
@@ -170,6 +177,7 @@ export default {
                 };
             },
             updateCommentData: {},
+            updateCommentID: {},
         };
     },
 
@@ -349,6 +357,39 @@ export default {
             });
         },
 
+        // 댓글 수정
+        addUpdateComment(data) {
+			// console.log(data);
+			this.updateCommentData = data;
+			// console.log(this.updataReviewData);
+			console.log(data);
+			
+			axios.put( '/comments', {
+                BoardID: this.BoardID,
+				UserID: this.updateCommentData.UserID,
+				CommentID: this.updateCommentData.CommentID,
+				CommentContent: this.updateCommentData.CommentContent,
+			})
+			.then(response => {
+				// console.log(response);
+				// 서버 응답에 대한 로직 수행
+				// this.$router.push('/board');
+				// this.reviewClassItems.unshift(res.data[0]);
+				Swal.fire({
+                icon: 'success',
+                title: '수정',
+                text: '댓글이 수정되었습니다.',
+                confirmButtonText: '확인'
+				}).then((result) => {
+					this.updateCommentID = false;
+				})
+			})
+			.catch(error => {
+				// 에러 처리
+				console.error(error);
+			});
+		
+		},
 
         // 게시판 삭제 불러오기
         deleteBoardData(data) {

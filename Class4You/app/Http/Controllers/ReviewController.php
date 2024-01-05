@@ -131,13 +131,13 @@ class ReviewController extends Controller
 
         $classReviewData = $request->only('EnrollmentID','ReviewID','ReviewComment', 'ReviewRating');
         // $result = Review::find($ReviewID);
-        Log::debug('리퀘스트값----------------------------------------------------------------------');
-        Log::debug($request);
+        // Log::debug('리퀘스트값----------------------------------------------------------------------');
+        // Log::debug($request);
         // $result->update($classReviewData);
         $data = Review::where('ReviewID', $request->ReviewID)->update($classReviewData);
 
-        Log::debug('업데이트유무----------------------------------------------------------------------');
-        Log::debug($data);
+        // Log::debug('업데이트유무----------------------------------------------------------------------');
+        // Log::debug($data);
         
         // $request->fill($classReviewData);
         // $request->save($classReviewData);
@@ -158,8 +158,8 @@ class ReviewController extends Controller
         ->orderBy('reviews.created_at', 'desc')
         ->get();
 
-        Log::debug('리뷰로그--------------------------------------------------------------');
-        Log::debug($classReviewData);
+        // Log::debug('리뷰로그--------------------------------------------------------------');
+        // Log::debug($classReviewData);
         
         return response()->json($responseData);
     }
