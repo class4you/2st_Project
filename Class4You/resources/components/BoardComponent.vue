@@ -28,21 +28,21 @@
 									<h6>함께 공부해요</h6>
 									<ul class="community_aside_menu_list">
 										<li class="community_aside_menu">
-										<a href="">
-											자유게시판
-										</a>
+											<a href="">
+												자유게시판
+											</a>
 										</li>
-										<!-- <li class="community_aside_menu">
+										<li class="community_aside_menu">
 										<a href="">질문게시판</a>
 											<ul class="community_dropdown">
-											<li><a href="/classBoard/HTML">HTML</a></li>
-											<li><a href="/classBoard/CSS">CSS</a></li>
-											<li><a href="/classBoard/JavaScript">Java Script</a></li>
-											<li><a href="/classBoard/PHP">PHP</a></li>
-											<li><a href="/classBoard/JAVA">JAVA</a></li>
-											<li><a href="/classBoard/DataBase">DataBase</a></li>
+												<li><a href="/classBoard/HTML">HTML</a></li>
+												<li><a href="/classBoard/CSS">CSS</a></li>
+												<li><a href="/classBoard/JavaScript">Java Script</a></li>
+												<li><a href="/classBoard/PHP">PHP</a></li>
+												<li><a href="/classBoard/JAVA">JAVA</a></li>
+												<li><a href="/classBoard/DataBase">DataBase</a></li>
 											</ul> 
-										</li> -->
+										</li>
 									</ul>
 									</li>
 								</ul>

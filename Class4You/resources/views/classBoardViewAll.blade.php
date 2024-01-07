@@ -61,6 +61,10 @@
 
 					</ul>
 				</div>
+
+				<div>
+					{{ $data->links('paging') }}
+				</div>
 	
 			</div>
 		</main>

@@ -267,9 +267,10 @@ class ClassInfoController extends Controller
             ->join('class_languages', 'class_languagelinks.ClassLanguageID', 'class_languages.ClassLanguageID')
             ->where('class_languages.ClassLanguageName', $ClassLanguageName)
             ->where('class_infos.ClassDifficultyID', $ClassDifficultyID)
-            ->paginate(10);
+            ->paginate(12);
             // ->get();
         
+        // Log::debug($result);
         // var_dump($result);
         foreach ($result as $item) {
             $classdiffinumValue = $item->ClassDifficultyID;
