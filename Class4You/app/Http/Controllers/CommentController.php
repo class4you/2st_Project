@@ -26,7 +26,7 @@ class CommentController extends Controller
             'users.UserEmail',
             'boards.BoardID')
             ->join('users','users.UserID','comments.UserID')
-            ->join('boards','boards.UserID','users.UserID')
+            ->join('boards','boards.BoardID','comments.BoardID')
             ->where('boards.BoardID', $result->BoardID)
             ->orderBy('comments.created_at','desc')
             ->get();

@@ -154,12 +154,12 @@ export default {
             newCommentItem: [],
             newComment: '', 
 
-            frmCommentData: {
-                UserID: this.$store.state.UserID,
-                BoardID: this.BoardID,
-                CommentID: this.CommnetID,
-                CommentContent: '',
-            },
+            // frmCommentData: {
+            //     UserID: this.$store.state.UserID,
+            //     BoardID: this.BoardID,
+            //     CommentID: this.CommnetID,
+            //     CommentContent: '',
+            // },
             commentData: {
                 UserID: this.$store.state.UserID,
                 UserEmail: this.$store.state.UserEmail,
@@ -274,17 +274,19 @@ export default {
                 //res.data가 이상함. 다시 확인해야함
                 console.log(res.data);
                 // 이게 작성된 댓글리스트들
-                console.log(this.newCommentItem);
+                // console.log(this.newCommentItem);
                 // 작성된 댓글 데이터
-                console.log(this.commentData);
+                // console.log(this.commentData);
                 // console.log(res.data);
                 // window.location.reload();
 
                 // unshift는 배열에 사용
                 // this.newCommentItem.unshift(this.commentData);
+                this.newCommentItem.unshift(res.data[0]);
                 // push는 배열에 객체 추가할 때 사용
-                this.newCommentItem.push({...commentData});
-                console.log(this.commentData);
+                // this.newCommentItem.push({...commentData});
+                // console.log(this.commentData);
+                this.commentData = this.newCommentData();
 
             })
             .catch(err => {
