@@ -19519,6 +19519,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! sweetalert2 */ "./node_modules/sweetalert2/dist/sweetalert2.all.js");
 /* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(sweetalert2__WEBPACK_IMPORTED_MODULE_0__);
+function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
+function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
+function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
+function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return _typeof(key) === "symbol" ? key : String(key); }
+function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (_typeof(res) !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: 'BoardDetailComponent',
@@ -19544,6 +19550,15 @@ __webpack_require__.r(__webpack_exports__);
         CommentID: this.CommentID,
         CommentContent: ''
       },
+      // commentData: [
+      //     {
+      //         UserID: this.$store.state.UserID,
+      //         UserEmail: this.$store.state.UserEmail,
+      //         BoardID: this.BoardID,
+      //         CommentID: this.CommentID,
+      //         CommentContent: '',
+      //     }
+      // ],
       commentItems: [],
       newCommentData: function newCommentData() {
         return {
@@ -19623,7 +19638,9 @@ __webpack_require__.r(__webpack_exports__);
       frm.append('UserID', this.commentData.UserID);
       frm.append('UserEmail', this.commentData.UserEmail);
       frm.append('CommentContent', this.commentData.CommentContent);
-      console.log(frm);
+
+      // console.log(frm);
+
       axios.post(url, frm, header).then(function (res) {
         sweetalert2__WEBPACK_IMPORTED_MODULE_0___default().fire({
           icon: 'success',
@@ -19631,16 +19648,20 @@ __webpack_require__.r(__webpack_exports__);
           text: '댓글이 작성되었습니다.',
           confirmButtonText: '확인'
         });
-        // console.log(this.commentItems);
+        //res.data가 이상함. 다시 확인해야함
+        console.log(res.data);
+        // 이게 작성된 댓글리스트들
+        console.log(_this2.newCommentItem);
+        // 작성된 댓글 데이터
+        console.log(_this2.commentData);
         // console.log(res.data);
-        // console.log(this.newCommentItem);
-        // console.log(this.commentData);
         // window.location.reload();
-        // this.commentItems = res.data;
 
-        // this.commentItems.unshift(res.data[0]);
-        _this2.newCommentItem.unshift(res.data[0]);
-        _this2.commentData = _this2.newCommentData();
+        // unshift는 배열에 사용
+        // this.newCommentItem.unshift(this.commentData);
+        // push는 배열에 객체 추가할 때 사용
+        _this2.newCommentItem.push(_objectSpread({}, commentData));
+        console.log(_this2.commentData);
       })["catch"](function (err) {
         // console.log(err.response.data.errors)
         // context.commit('setRegistrationErrorMessage', err.response.data.errors);
@@ -19812,20 +19833,24 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     updateRecommendedBoardData: function updateRecommendedBoardData() {
+      var _this7 = this;
       axios.put('/boardRecommendedUpdate', {
         BoardID: this.newBoardItem.BoardID,
         UserID: this.newBoardItem.UserID
       }).then(function (response) {
-        // console.log(response.data);
+        // console.log(response);
+        // console.log(this.newBoardItem);
         // 서버 응답에 대한 로직 수행
         // this.$router.push('/board');
-        location.reload();
+        // location.reload();
+        _this7.newBoardItem.BoardRecommended++;
       })["catch"](function (error) {
         // 에러 처리
         console.error(error);
       });
     },
     updateNotRecommendedBoardData: function updateNotRecommendedBoardData() {
+      var _this8 = this;
       axios.put('/boardNotRecommendedUpdate', {
         BoardID: this.newBoardItem.BoardID,
         UserID: this.newBoardItem.UserID
@@ -19833,7 +19858,8 @@ __webpack_require__.r(__webpack_exports__);
         // console.log(response.data);
         // 서버 응답에 대한 로직 수행
         // this.$router.push('/board');
-        location.reload();
+        // location.reload();
+        _this8.newBoardItem.BoardNotRecommended++;
       })["catch"](function (error) {
         // 에러 처리
         console.error(error);
@@ -20184,6 +20210,7 @@ __webpack_require__.r(__webpack_exports__);
 
         // 기존 수강평 데이터의 [0]번 방에 작성한 수강평 추가
         _this2.reviewClassItems.unshift(res.data[0]);
+        console.log(_this2.classReviewData);
         // 수강평 등록시 기록된 데이터 삭제?
         // if(this.deleteClassReview) {
         // if(this.addClassReview) {
@@ -22456,7 +22483,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     "onUpdate:modelValue": _cache[4] || (_cache[4] = function ($event) {
       return $data.commentData.CommentContent = $event;
     })
-  }, null, 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.commentData.CommentContent]]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <button type=\"button\" @click=\"submitCommentData()\">저장</button> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+  }, null, 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.commentData.CommentContent]]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <textarea placeholder=\"댓글을 입력해주세요.\" v-model=\"newCommentItem.CommentContent\"></textarea> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <button type=\"button\" @click=\"submitCommentData()\">저장</button> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
     onClick: _cache[5] || (_cache[5] = function ($event) {
       return $options.addBoardComment();
     })

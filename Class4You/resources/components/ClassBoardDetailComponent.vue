@@ -907,6 +907,7 @@ export default {
 				
 				// 기존 수강평 데이터의 [0]번 방에 작성한 수강평 추가
                 this.reviewClassItems.unshift(res.data[0]);
+				console.log(this.classReviewData);
 				// 수강평 등록시 기록된 데이터 삭제?
 				// if(this.deleteClassReview) {
 				// if(this.addClassReview) {

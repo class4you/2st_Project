@@ -89,6 +89,7 @@
                         <div class="reviewPost row jcB">
                             <!-- <textarea placeholder="댓글을 입력해주세요." v-model="frmCommentData.CommentContent"></textarea> -->
                             <textarea placeholder="댓글을 입력해주세요." v-model="commentData.CommentContent"></textarea>
+                            <!-- <textarea placeholder="댓글을 입력해주세요." v-model="newCommentItem.CommentContent"></textarea> -->
                             <!-- <button type="button" @click="submitCommentData()">저장</button> -->
                             <button @click="addBoardComment()">저장</button>
                         </div>
@@ -166,6 +167,15 @@ export default {
                 CommentID: this.CommentID,
                 CommentContent: '',
             },
+            // commentData: [
+            //     {
+            //         UserID: this.$store.state.UserID,
+            //         UserEmail: this.$store.state.UserEmail,
+            //         BoardID: this.BoardID,
+            //         CommentID: this.CommentID,
+            //         CommentContent: '',
+            //     }
+            // ],
             commentItems: [],
             newCommentData() {
                 return {
@@ -251,7 +261,7 @@ export default {
             frm.append('UserEmail',this.commentData.UserEmail);
             frm.append('CommentContent',this.commentData.CommentContent);
 
-            console.log(frm);
+            // console.log(frm);
 
             axios.post(url, frm, header)
             .then(res => {
@@ -261,16 +271,20 @@ export default {
 					text: '댓글이 작성되었습니다.',
 					confirmButtonText: '확인'
             	})
-                // console.log(this.commentItems);
+                //res.data가 이상함. 다시 확인해야함
+                console.log(res.data);
+                // 이게 작성된 댓글리스트들
+                console.log(this.newCommentItem);
+                // 작성된 댓글 데이터
+                console.log(this.commentData);
                 // console.log(res.data);
-                // console.log(this.newCommentItem);
-                // console.log(this.commentData);
                 // window.location.reload();
-                // this.commentItems = res.data;
 
-                // this.commentItems.unshift(res.data[0]);
-                this.newCommentItem.unshift(res.data[0]);
-                this.commentData = this.newCommentData();
+                // unshift는 배열에 사용
+                // this.newCommentItem.unshift(this.commentData);
+                // push는 배열에 객체 추가할 때 사용
+                this.newCommentItem.push({...commentData});
+                console.log(this.commentData);
 
             })
             .catch(err => {
@@ -464,10 +478,12 @@ export default {
                 UserID: this.newBoardItem.UserID,
             })
             .then(response => {
-                // console.log(response.data);
+                // console.log(response);
+                // console.log(this.newBoardItem);
                 // 서버 응답에 대한 로직 수행
                 // this.$router.push('/board');
-                location.reload();
+                // location.reload();
+                this.newBoardItem.BoardRecommended++;
             })
             .catch(error => {
                 // 에러 처리
@@ -483,7 +499,8 @@ export default {
                 // console.log(response.data);
                 // 서버 응답에 대한 로직 수행
                 // this.$router.push('/board');
-                location.reload();
+                // location.reload();
+                this.newBoardItem.BoardNotRecommended++;
             })
             .catch(error => {
                 // 에러 처리
