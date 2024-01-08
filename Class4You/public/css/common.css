@@ -3276,12 +3276,33 @@ background-color: rgba(225, 223, 234, 0.224);
     background-color: #1749ff40;
     margin-right: 8px;
     margin-bottom: 5px;
-    padding: 4px 6px;
+    padding: 4px 10px;
     width: fit-content;
     height: 26px;
     border: none;
     white-space: nowrap;
     color: #3e4042;
+    line-height: 1.38;
+    font-size: 12px;
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 20px;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.question_tags_button_on {
+    background-color: #1749ff40;
+    margin-right: 8px;
+    margin-bottom: 5px;
+    padding: 4px 10px;
+    width: fit-content;
+    height: 26px;
+    border: none;
+    white-space: nowrap;
+    color: #ffffff;
     line-height: 1.38;
     font-size: 12px;
     position: relative;
@@ -6406,7 +6427,7 @@ footer {
     color: #7371fc;
 }
 .checkbox-input:checked + .checkbox-tile:before {
-    transform: scale(1);
+    /* transform: scale(1); */
     opacity: 1;
     background-color: #7371fc;
     border-color: #7371fc;
@@ -6414,12 +6435,11 @@ footer {
 .checkbox-input:checked + .checkbox-tile .checkbox-icon, .checkbox-input:checked + .checkbox-tile .checkbox-label {
     color: #7371fc;
 }
-.checkbox-input:focus + .checkbox-tile {
+/* .checkbox-input:focus + .checkbox-tile {
     border-color: #7371fc;
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1), 0 0 0 4px #b5c9fc;
-}
+} */
 .checkbox-input:focus + .checkbox-tile:before {
-    transform: scale(1);
+    /* transform: scale(1); */
     opacity: 1;
 }
 
@@ -6429,11 +6449,11 @@ footer {
     align-items: center;
     justify-content: center;
     width: 6rem;
-    min-height: 4rem;
+    min-height: 2.5rem;
     border-radius: 0.5rem;
     border: 2px solid #b5bfd9;
     background-color: #fff;
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+    /* box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1); */
     transition: 0.15s ease;
     cursor: pointer;
     position: relative;
@@ -6462,7 +6482,7 @@ footer {
     border-color: #7371fc;
 }
 .checkbox-tile:hover:before {
-    transform: scale(1);
+    /* transform: scale(1); */
     opacity: 1;
 }
 
@@ -6479,4 +6499,22 @@ footer {
     color: #707070;
     transition: 0.375s ease;
     text-align: center;
+}
+
+
+
+.checkbox-tile_data {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 6rem;
+    min-height: 2.5rem;
+    border-radius: 0.5rem;
+    border: 2px solid #b5bfd9;
+    background-color: #fff;
+    /* box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1); */
+    transition: 0.15s ease;
+    position: relative;
+    font-weight: 700;
 }
