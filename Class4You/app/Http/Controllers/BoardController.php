@@ -16,6 +16,7 @@ class BoardController extends Controller
 {
     public function getBoardMainData(Request $request)
     {
+        Log::debug($request);
         // 보드 모델 쿼리를 작성 -> 유저와 답변을 래프트 조인함, 왼쪽 테이블과 오른쪽 테이블 간에 조인을 수행하고, 왼쪽 테이블의 모든 레코드와 일치하는 오른쪽 테이블의 레코드를 가져오는 조인 방식임, 보더가 왼쪽, 유저와 코멘트가 오른쪽
         // 해당 조인을 사용한 이유는 값이 없는 경우가 있을 수도 있어서 없는 값을 가져오면 에러가 떠서 해당 조인 사용(댓글이 없는 게시물의 경우 자동으로 null 처리를 하기 위해서)
         // DB::raw를 사용해서 하위 쿼리 (서브 쿼리) 작성, 서브 쿼리에서 답변 테이블을 기준으로 코멘트의 보더 아이디 값으로 그룹화 시켜줌, 
@@ -41,6 +42,36 @@ class BoardController extends Controller
         // Log::debug($commentCountQuery);
 
         //  아래 이프문은 파라미터 값이 있는지 혹인하고 해당 값이 있을 경우에 쿼리문이 추가되는 것임
+
+        if ($request->has('boardCategory')) {
+            $boardCategoryID = $request->input('boardCategory');
+            
+            if($boardCategoryID == 1) {
+                $boardDataQuery->where('BoardCategoryID', 1);
+            } else if($boardCategoryID == 2) {
+                $boardDataQuery->where('BoardCategoryID', 2);
+            }
+        }
+
+        if($request->has('boardLanguage')) {
+            $boardLanguageName = $request->input('boardLanguage');
+            if($boardLanguageName == 'HTML') {
+
+            } else if($boardLanguageName == 'CSS') {
+
+            } else if($boardLanguageName == 'CSS') {
+
+            } else if($boardLanguageName == 'JavaScript') {
+
+            } else if($boardLanguageName == 'PHP') {
+
+            } else if($boardLanguageName == 'JAVA') {
+
+            } else if($boardLanguageName == 'DataBase') {
+
+            }
+        }
+        
 
         // 검색 결과 값
         if ($request->has('search')) {
@@ -74,7 +105,7 @@ class BoardController extends Controller
                 $boardDataQuery->orderBy('boards.BoardView', 'desc');
             }
         }
-        
+
         // 페이징 처리
         $boardData = $boardDataQuery->paginate(10);
 
