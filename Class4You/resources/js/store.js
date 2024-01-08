@@ -42,7 +42,7 @@ const store = createStore({
             // 수강평 데이터 저장용
             // classReviewData: [],
 
-            // 김민정
+
         }
     },
 
@@ -250,7 +250,6 @@ const store = createStore({
             }
         },
 
-        // 김민정
         submitBoardData(context, data) {
             const url = '/boardInsert'
             const header = {
@@ -259,13 +258,16 @@ const store = createStore({
                     'X-CSRF-TOKEN': document.head.querySelector('meta[name="csrf-token"]').content,
                 },
             }
-            // console.log(data);
+            console.log(data);
             let frm = new FormData();
 
             frm.append('BoardCategoryID',data.BoardCategoryID);
             frm.append('UserID',data.UserID);
             frm.append('BoardTitle',data.BoardTitle);
             frm.append('BoardComment',data.BoardComment);
+            data.SelectedLanguages.forEach(selectedLanguage => {
+                frm.append('SelectedLanguages[]', selectedLanguage);
+            });
 
             // console.log(frm);
 
