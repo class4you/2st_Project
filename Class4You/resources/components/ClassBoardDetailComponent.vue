@@ -487,9 +487,13 @@
 												<label class="class_detail_rating_star_label" for="rate5">⭐</label>
 										</fieldset>
 									</div>
-									<div class="class_detail_rating_user_delete_button">
-										<button @click="addUpdataReview(data)">수정</button>
-										<button @click="addUpdataReview(false)">취소</button>
+									<div class="class_detail_rating_user_btn">
+										<div class="class_detail_rating_user_updated_button">
+											<button @click="addUpdataReview(data)">수정</button>
+										</div>
+										<div class="class_detail_rating_user_cancel_button">
+											<button @click="addUpdataReview(false)">취소</button>
+										</div>
 									</div>
 								</div>
 								<div class="class_detail_rating_user_btn" v-else>

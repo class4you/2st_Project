@@ -2125,11 +2125,26 @@ ul.class_tabs li.class_current {
     opacity: 0.7;
 }
 
+.class_detail_rating_user_cancel_button>button {
+    padding: 5px 20px;
+    background-color: #cdc9c9;
+    border-radius: 5px;
+    /* border: 0.8px solid #cdc9c9; */
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    opacity: 0.7;
+}
+
 .class_detail_rating_user_updated_button>button:hover {
     opacity: 1;
 }
 
 .class_detail_rating_user_delete_button>button:hover {
+    opacity: 1;
+}
+
+.class_detail_rating_user_cancel_button>button:hover {
     opacity: 1;
 }
 
@@ -2711,7 +2726,7 @@ progress[value]::-webkit-progress-bar{
     gap: 5px;
 }
 
-.class_detail_watch_side_classnote_list_btn>button {
+.class_detail_watch_side_classnote_list_btn_up>button {
     padding: 3px 8px;
     background-color: #1c3264;
     border-radius: 5px;
@@ -2721,7 +2736,21 @@ progress[value]::-webkit-progress-bar{
     opacity: 0.7;
 }
 
-.class_detail_watch_side_classnote_list_btn>button:hover {
+.class_detail_watch_side_classnote_list_btn_up>button:hover {
+    opacity: 1;
+}
+
+.class_detail_watch_side_classnote_list_btn_del>button {
+    padding: 3px 8px;
+    background-color: #1c3264;
+    border-radius: 5px;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    opacity: 0.7;
+}
+
+.class_detail_watch_side_classnote_list_btn_del>button:hover {
     opacity: 1;
 }
 

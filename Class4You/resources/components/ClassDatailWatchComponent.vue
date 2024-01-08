@@ -108,8 +108,12 @@
                                     <p>노트내용</p>
                                 </div>
                                 <div class="class_detail_watch_side_classnote_list_btn">
-                                    <button>수정</button>
-                                    <button>삭제</button>
+                                    <div class="class_detail_watch_side_classnote_list_btn_up">
+                                        <button>수정</button>
+                                    </div>
+                                    <div class="class_detail_watch_side_classnote_list_btn_del">
+                                        <button>삭제</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
