@@ -141,7 +141,7 @@
 												{{ item.BoardComment }}
 											</p>
 											<div v-if="boardCategory == 2" class="question_tags">
-												<div class="question_tags_button">언어 태그</div>
+												<div class="question_tags_button">#</div>
 												<div class="question_tags_button_on" v-if="item.HTMLFlg == 1">HTML</div>
         										<div class="question_tags_button_on" v-if="item.CSSFlg == 1">CSS</div>
         										<div class="question_tags_button_on" v-if="item.JavaScriptFlg == 1">JavaScript</div>
