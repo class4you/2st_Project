@@ -19643,7 +19643,7 @@ __webpack_require__.r(__webpack_exports__);
           confirmButtonText: '확인'
         });
         //res.data가 이상함. 다시 확인해야함
-        console.log(res.data);
+        // console.log(res.data);
         // 이게 작성된 댓글리스트들
         // console.log(this.newCommentItem);
         // 작성된 댓글 데이터
