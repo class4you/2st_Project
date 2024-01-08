@@ -70,12 +70,12 @@
 								</ul>
 								<div class="e_search">
 
-									<fieldset v-if="boardCategory == 2" class="checkbox-group">
-										<div class="checkbox" v-for="(item, index) in checkboxes" :key="index">
-										<label class="checkbox-wrapper">
-											<input type="checkbox" class="checkbox-input" v-model="checkboxes[index].checked" :value="item.label" />
-											<span class="checkbox-tile">
-											<span class="checkbox-label">{{ item.label }}</span>
+									<fieldset v-if="boardCategory == 2" class="board_checkbox-group">
+										<div class="board_checkbox" v-for="(item, index) in checkboxes" :key="index">
+										<label class="board_checkbox-wrapper">
+											<input type="checkbox" class="board_checkbox-input" v-model="checkboxes[index].checked" :value="item.label" />
+											<span class="board_checkbox-tile">
+											<span class="board_checkbox-label">{{ item.label }}</span>
 											</span>
 										</label>
 										</div>

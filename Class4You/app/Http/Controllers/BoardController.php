@@ -124,9 +124,31 @@ class BoardController extends Controller
     }
     
     public function postBoardData(Request $request) {
+        // Log::debug($request);
+
         $data = $request->only('BoardCategoryID', 'UserID', 'BoardTitle', 'BoardComment');
+    
+        // 보더 레코드를 생성
+        $board = Board::create($data);
+    
+        // Log::debug($board->BoardID);
+        // 선택된 언어들을 가지고 와서 각 언어에 대한 플래그를 1로 업데이트
+        if ($request->has('SelectedLanguages')) {
+            $selectedLanguages = $request->input('SelectedLanguages');
+    
+            // 보더 레코드에 해당하는 보더 랭귀지 링크즈 레코드 생성 또는 업데이트
+            foreach ($selectedLanguages as $selectedLanguage) {
+                $languageColumn = $selectedLanguage . 'Flg';
+    
+                // 보더 랭귀지 링크즈 레코드 생성 또는 업데이트
+                BoardLanguageLink::updateOrCreate(
+                    ['BoardID' => $board->BoardID],
+                    [$languageColumn => 1]
+                );
+            }
+        }
         
-        $result = Board::create($data);
+
     }
 
     
