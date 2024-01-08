@@ -14,9 +14,14 @@ return new class extends Migration
     public function up()
     {
         Schema::create('board_languagelinks', function (Blueprint $table) {
-            $table->id('ClassCategorylinkID');
-            $table->integer('ClassLanguageID');
+            $table->id('BoardCategorylinkID');
             $table->integer('BoardID');
+            $table->char('HTML', 1)->default(0);
+            $table->char('CSS', 1)->default(0);
+            $table->char('JavaScript', 1)->default(0);
+            $table->char('PHP', 1)->default(0);
+            $table->char('JAVA', 1)->default(0);
+            $table->char('DataBase', 1)->default(0);
             $table->timestamps();
             $table->softDeletes();
         });

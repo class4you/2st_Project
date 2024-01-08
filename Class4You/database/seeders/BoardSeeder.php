@@ -16,12 +16,15 @@ class BoardSeeder extends Seeder
      */
     public function run()
     {
+
         $faker = Faker::create();
         foreach (range(1, 10) as $index) {
-            $date = $faker->dateTimeBetween('-1 years');
-            $user = $faker->numberBetween(1, 20);
-            $view = $faker->randomNumber(2);
-            $flg = $faker->randomElement([0,1]);
+                $date = $faker->dateTimeBetween('-1 years');
+                $user = $faker->numberBetween(1, 20);
+                $view = $faker->randomNumber(2);
+                $recommended = $faker->randomNumber(2);
+                $notRecommended = $faker->randomNumber(2);
+                $flg = $faker->randomElement([0,1]);
         
 
             Board::create([
@@ -31,17 +34,19 @@ class BoardSeeder extends Seeder
                 'BoardTitle' => '딕셔너리와 튜플',
                 'BoardComment' => '딕셔너리의 원래 형태는 리스트안에 튜플이 들어있는 구조라고 말씀하셨는데 그러면 딕셔너리의 Value를 수정하게 되면 튜플도 수정하게 되는것 으로 생각이 들어서요 이 부분이 이해가 잘 안됩니다 ㅠㅠ',
                 'BoardView' => $view,
-                'BoardRecommended' => $view,
-                'BoardNotRecommended' => $view,
+                'BoardRecommended' => $recommended,
+                'BoardNotRecommended' => $notRecommended,
                 'BoardFlg' => $flg,
                 'created_at' => $date,
             ]);
 
 
-                    $date = $faker->dateTimeBetween('-1 years');
-            $user = $faker->numberBetween(1, 20);
-            $view = $faker->randomNumber(2);
-            $flg = $faker->randomElement([0,1]);
+                $date = $faker->dateTimeBetween('-1 years');
+                $user = $faker->numberBetween(1, 20);
+                $view = $faker->randomNumber(2);
+                $recommended = $faker->randomNumber(2);
+                $notRecommended = $faker->randomNumber(2);
+                $flg = $faker->randomElement([0,1]);
 
             Board::create([
                 'BoardCategoryID' => 1,
@@ -50,17 +55,19 @@ class BoardSeeder extends Seeder
                 'BoardTitle' => 'JPA @Transactional',
                 'BoardComment' => 'JPA 기술을 사용할 때 리포지토리 계층에 @Transactional을 붙여줘야 한다고 말씀해주셨는데 MemberRepository 코드에서는 JPA를 사용하는데 왜 @Repository만 붙여주는 건가요??',
                 'BoardView' => $view,
-                'BoardRecommended' => $view,
-                'BoardNotRecommended' => $view,
+                'BoardRecommended' => $recommended,
+                'BoardNotRecommended' => $notRecommended,
                 'BoardFlg' => $flg,
                 'created_at' => $date,
             ]);
 
 
-                    $date = $faker->dateTimeBetween('-1 years');
-            $user = $faker->numberBetween(1, 20);
-            $view = $faker->randomNumber(2);
-            $flg = $faker->randomElement([0,1]);
+                $date = $faker->dateTimeBetween('-1 years');
+                $user = $faker->numberBetween(1, 20);
+                $view = $faker->randomNumber(2);
+                $recommended = $faker->randomNumber(2);
+                $notRecommended = $faker->randomNumber(2);
+                $flg = $faker->randomElement([0,1]);
 
             Board::create([
                 'BoardCategoryID' => 1,
@@ -107,17 +114,19 @@ class BoardSeeder extends Seeder
         }
         EOT,
                 'BoardView' => $view,
-                'BoardRecommended' => $view,
-                'BoardNotRecommended' => $view,
+                'BoardRecommended' => $recommended,
+                'BoardNotRecommended' => $notRecommended,
                 'BoardFlg' => 0,
                 'created_at' => $date,
             ]);
 
 
-                    $date = $faker->dateTimeBetween('-1 years');
-            $user = $faker->numberBetween(1, 20);
-            $view = $faker->randomNumber(2);
-            $flg = $faker->randomElement([0,1]);
+                $date = $faker->dateTimeBetween('-1 years');
+                $user = $faker->numberBetween(1, 20);
+                $view = $faker->randomNumber(2);
+                $recommended = $faker->randomNumber(2);
+                $notRecommended = $faker->randomNumber(2);
+                $flg = $faker->randomElement([0,1]);
 
             Board::create([
                 'BoardCategoryID' => 1,
@@ -140,17 +149,19 @@ class BoardSeeder extends Seeder
         커리큘럼좀 설명부탁드려요.
         EOT,
                 'BoardView' => $view,
-                'BoardRecommended' => $view,
-                'BoardNotRecommended' => $view,
+                'BoardRecommended' => $recommended,
+                'BoardNotRecommended' => $notRecommended,
                 'BoardFlg' => $flg,
                 'created_at' => $date,
             ]);
 
 
-                    $date = $faker->dateTimeBetween('-1 years');
-            $user = $faker->numberBetween(1, 20);
-            $view = $faker->randomNumber(2);
-            $flg = $faker->randomElement([0,1]);
+                $date = $faker->dateTimeBetween('-1 years');
+                $user = $faker->numberBetween(1, 20);
+                $view = $faker->randomNumber(2);
+                $recommended = $faker->randomNumber(2);
+                $notRecommended = $faker->randomNumber(2);
+                $flg = $faker->randomElement([0,1]);
 
             Board::create([
                 'BoardCategoryID' => 1,
@@ -165,17 +176,19 @@ class BoardSeeder extends Seeder
         모든 코드와 postman에도 모두 동일하게 작성을 했는데, 왜 이런 오류가 발생하는지 알 수 있을까요..?ㅜㅜ
         EOT,
                 'BoardView' => $view,
-                'BoardRecommended' => $view,
-                'BoardNotRecommended' => $view,
+                'BoardRecommended' => $recommended,
+                'BoardNotRecommended' => $notRecommended,
                 'BoardFlg' => $flg,
                 'created_at' => $date,
             ]);
 
 
-                    $date = $faker->dateTimeBetween('-1 years');
-            $user = $faker->numberBetween(1, 20);
-            $view = $faker->randomNumber(2);
-            $flg = $faker->randomElement([0,1]);
+                $date = $faker->dateTimeBetween('-1 years');
+                $user = $faker->numberBetween(1, 20);
+                $view = $faker->randomNumber(2);
+                $recommended = $faker->randomNumber(2);
+                $notRecommended = $faker->randomNumber(2);
+                $flg = $faker->randomElement([0,1]);
 
             Board::create([
                 'BoardCategoryID' => 1,
@@ -199,17 +212,19 @@ class BoardSeeder extends Seeder
         으로만 이루어진 경우 뿐 인가요?
         EOT,
                 'BoardView' => $view,
-                'BoardRecommended' => $view,
-                'BoardNotRecommended' => $view,
+                'BoardRecommended' => $recommended,
+                'BoardNotRecommended' => $notRecommended,
                 'BoardFlg' => $flg,
                 'created_at' => $date,
             ]);
 
 
-                    $date = $faker->dateTimeBetween('-1 years');
-            $user = $faker->numberBetween(1, 20);
-            $view = $faker->randomNumber(2);
-            $flg = $faker->randomElement([0,1]);
+                $date = $faker->dateTimeBetween('-1 years');
+                $user = $faker->numberBetween(1, 20);
+                $view = $faker->randomNumber(2);
+                $recommended = $faker->randomNumber(2);
+                $notRecommended = $faker->randomNumber(2);
+                $flg = $faker->randomElement([0,1]);
 
             Board::create([
                 'BoardCategoryID' => 1,
@@ -238,17 +253,19 @@ class BoardSeeder extends Seeder
         ============================
         EOT,
                 'BoardView' => $view,
-                'BoardRecommended' => $view,
-                'BoardNotRecommended' => $view,
+                'BoardRecommended' => $recommended,
+                'BoardNotRecommended' => $notRecommended,
                 'BoardFlg' => $flg,
                 'created_at' => $date,
             ]);
 
 
-                    $date = $faker->dateTimeBetween('-1 years');
-            $user = $faker->numberBetween(1, 20);
-            $view = $faker->randomNumber(2);
-            $flg = $faker->randomElement([0,1]);
+                $date = $faker->dateTimeBetween('-1 years');
+                $user = $faker->numberBetween(1, 20);
+                $view = $faker->randomNumber(2);
+                $recommended = $faker->randomNumber(2);
+                $notRecommended = $faker->randomNumber(2);
+                $flg = $faker->randomElement([0,1]);
 
             Board::create([
                 'BoardCategoryID' => 1,
@@ -263,17 +280,19 @@ class BoardSeeder extends Seeder
         혹시 다른 클래스를 상속해야 하나요..?
         EOT,
                 'BoardView' => $view,
-                'BoardRecommended' => $view,
-                'BoardNotRecommended' => $view,
+                'BoardRecommended' => $recommended,
+                'BoardNotRecommended' => $notRecommended,
                 'BoardFlg' => $flg,
                 'created_at' => $date,
             ]);
 
 
-                    $date = $faker->dateTimeBetween('-1 years');
-            $user = $faker->numberBetween(1, 20);
-            $view = $faker->randomNumber(2);
-            $flg = $faker->randomElement([0,1]);
+                $date = $faker->dateTimeBetween('-1 years');
+                $user = $faker->numberBetween(1, 20);
+                $view = $faker->randomNumber(2);
+                $recommended = $faker->randomNumber(2);
+                $notRecommended = $faker->randomNumber(2);
+                $flg = $faker->randomElement([0,1]);
 
             Board::create([
                 'BoardCategoryID' => 1,
@@ -303,17 +322,19 @@ class BoardSeeder extends Seeder
         세션 또한 서버와 통신을 해야 데이터를 받아 오고 HTTP 통신을 통해 데이터를 받아올 텐데 세션의 정의가 뭔가 모호해진거 같습니다.
         EOT,
                 'BoardView' => $view,
-                'BoardRecommended' => $view,
-                'BoardNotRecommended' => $view,
+                'BoardRecommended' => $recommended,
+                'BoardNotRecommended' => $notRecommended,
                 'BoardFlg' => $flg,
                 'created_at' => $date,
             ]);
 
 
-                    $date = $faker->dateTimeBetween('-1 years');
-            $user = $faker->numberBetween(1, 20);
-            $view = $faker->randomNumber(2);
-            $flg = $faker->randomElement([0,1]);
+                $date = $faker->dateTimeBetween('-1 years');
+                $user = $faker->numberBetween(1, 20);
+                $view = $faker->randomNumber(2);
+                $recommended = $faker->randomNumber(2);
+                $notRecommended = $faker->randomNumber(2);
+                $flg = $faker->randomElement([0,1]);
 
             Board::create([
                 'BoardCategoryID' => 1,
@@ -343,17 +364,19 @@ class BoardSeeder extends Seeder
         세션 또한 서버와 통신을 해야 데이터를 받아 오고 HTTP 통신을 통해 데이터를 받아올 텐데 세션의 정의가 뭔가 모호해진거 같습니다.
         EOT,
                 'BoardView' => $view,
-                'BoardRecommended' => $view,
-                'BoardNotRecommended' => $view,
+                'BoardRecommended' => $recommended,
+                'BoardNotRecommended' => $notRecommended,
                 'BoardFlg' => $flg,
                 'created_at' => $date,
             ]);
 
 
-                    $date = $faker->dateTimeBetween('-1 years');
-            $user = $faker->numberBetween(1, 20);
-            $view = $faker->randomNumber(2);
-            $flg = $faker->randomElement([0,1]);
+                $date = $faker->dateTimeBetween('-1 years');
+                $user = $faker->numberBetween(1, 20);
+                $view = $faker->randomNumber(2);
+                $recommended = $faker->randomNumber(2);
+                $notRecommended = $faker->randomNumber(2);
+                $flg = $faker->randomElement([0,1]);
 
             Board::create([
                 'BoardCategoryID' => 1,
@@ -375,17 +398,19 @@ class BoardSeeder extends Seeder
         공식 문서에서는 명시적인 구분/이름 충돌 방지등 이점 설명이 있지만, 크게 와닿지 않아서 질문드려요!
         EOT,
                 'BoardView' => $view,
-                'BoardRecommended' => $view,
-                'BoardNotRecommended' => $view,
+                'BoardRecommended' => $recommended,
+                'BoardNotRecommended' => $notRecommended,
                 'BoardFlg' => $flg,
                 'created_at' => $date,
             ]);
 
 
-                    $date = $faker->dateTimeBetween('-1 years');
-            $user = $faker->numberBetween(1, 20);
-            $view = $faker->randomNumber(2);
-            $flg = $faker->randomElement([0,1]);
+                $date = $faker->dateTimeBetween('-1 years');
+                $user = $faker->numberBetween(1, 20);
+                $view = $faker->randomNumber(2);
+                $recommended = $faker->randomNumber(2);
+                $notRecommended = $faker->randomNumber(2);
+                $flg = $faker->randomElement([0,1]);
 
             Board::create([
                 'BoardCategoryID' => 1,
@@ -400,17 +425,19 @@ class BoardSeeder extends Seeder
         코팩님. 실행은 정상적으로 되지만 위와 같은 오류가 있는데 인터넷 검색해 보니 프로그램에서 바꾸면 된다고 나오는데, 근본적인 해결책은 없을까요? 셋팅 등에서..
         EOT,
                 'BoardView' => $view,
-                'BoardRecommended' => $view,
-                'BoardNotRecommended' => $view,
+                'BoardRecommended' => $recommended,
+                'BoardNotRecommended' => $notRecommended,
                 'BoardFlg' => $flg,
                 'created_at' => $date,
             ]);
 
 
-                    $date = $faker->dateTimeBetween('-1 years');
-            $user = $faker->numberBetween(1, 20);
-            $view = $faker->randomNumber(2);
-            $flg = $faker->randomElement([0,1]);
+                $date = $faker->dateTimeBetween('-1 years');
+                $user = $faker->numberBetween(1, 20);
+                $view = $faker->randomNumber(2);
+                $recommended = $faker->randomNumber(2);
+                $notRecommended = $faker->randomNumber(2);
+                $flg = $faker->randomElement([0,1]);
 
             Board::create([
                 'BoardCategoryID' => 1,
@@ -445,17 +472,19 @@ class BoardSeeder extends Seeder
         버그 제보도 환영합니다 ㅎㅎ
         EOT,
                 'BoardView' => $view,
-                'BoardRecommended' => $view,
-                'BoardNotRecommended' => $view,
+                'BoardRecommended' => $recommended,
+                'BoardNotRecommended' => $notRecommended,
                 'BoardFlg' => $flg,
                 'created_at' => $date,
             ]);
             
 
-                    $date = $faker->dateTimeBetween('-1 years');
-            $user = $faker->numberBetween(1, 20);
-            $view = $faker->randomNumber(2);
-            $flg = $faker->randomElement([0,1]);
+                $date = $faker->dateTimeBetween('-1 years');
+                $user = $faker->numberBetween(1, 20);
+                $view = $faker->randomNumber(2);
+                $recommended = $faker->randomNumber(2);
+                $notRecommended = $faker->randomNumber(2);
+                $flg = $faker->randomElement([0,1]);
 
             Board::create([
                 'BoardCategoryID' => 1,
@@ -498,17 +527,19 @@ class BoardSeeder extends Seeder
         읽어주셔서 감사합니다.
         EOT,
                 'BoardView' => $view,
-                'BoardRecommended' => $view,
-                'BoardNotRecommended' => $view,
+                'BoardRecommended' => $recommended,
+                'BoardNotRecommended' => $notRecommended,
                 'BoardFlg' => $flg,
                 'created_at' => $date,
             ]);
 
 
-                    $date = $faker->dateTimeBetween('-1 years');
-            $user = $faker->numberBetween(1, 20);
-            $view = $faker->randomNumber(2);
-            $flg = $faker->randomElement([0,1]);
+                $date = $faker->dateTimeBetween('-1 years');
+                $user = $faker->numberBetween(1, 20);
+                $view = $faker->randomNumber(2);
+                $recommended = $faker->randomNumber(2);
+                $notRecommended = $faker->randomNumber(2);
+                $flg = $faker->randomElement([0,1]);
 
             Board::create([
                 'BoardCategoryID' => 1,
@@ -557,17 +588,19 @@ class BoardSeeder extends Seeder
         이렇게 이해하였는데 제가 이해 한 것이 맞나요?
         EOT,
                 'BoardView' => $view,
-                'BoardRecommended' => $view,
-                'BoardNotRecommended' => $view,
+                'BoardRecommended' => $recommended,
+                'BoardNotRecommended' => $notRecommended,
                 'BoardFlg' => $flg,
                 'created_at' => $date,
             ]);
 
 
-                    $date = $faker->dateTimeBetween('-1 years');
-            $user = $faker->numberBetween(1, 20);
-            $view = $faker->randomNumber(2);
-            $flg = $faker->randomElement([0,1]);
+                $date = $faker->dateTimeBetween('-1 years');
+                $user = $faker->numberBetween(1, 20);
+                $view = $faker->randomNumber(2);
+                $recommended = $faker->randomNumber(2);
+                $notRecommended = $faker->randomNumber(2);
+                $flg = $faker->randomElement([0,1]);
 
             Board::create([
                 'BoardCategoryID' => 1,
@@ -656,17 +689,19 @@ class BoardSeeder extends Seeder
         ==
         EOT,
                 'BoardView' => $view,
-                'BoardRecommended' => $view,
-                'BoardNotRecommended' => $view,
+                'BoardRecommended' => $recommended,
+                'BoardNotRecommended' => $notRecommended,
                 'BoardFlg' => $flg,
                 'created_at' => $date,
             ]);
 
 
-                    $date = $faker->dateTimeBetween('-1 years');
-            $user = $faker->numberBetween(1, 20);
-            $view = $faker->randomNumber(2);
-            $flg = $faker->randomElement([0,1]);
+                $date = $faker->dateTimeBetween('-1 years');
+                $user = $faker->numberBetween(1, 20);
+                $view = $faker->randomNumber(2);
+                $recommended = $faker->randomNumber(2);
+                $notRecommended = $faker->randomNumber(2);
+                $flg = $faker->randomElement([0,1]);
 
             Board::create([
                 'BoardCategoryID' => 1,
@@ -696,17 +731,19 @@ class BoardSeeder extends Seeder
         감사합니다.
         EOT,
                 'BoardView' => $view,
-                'BoardRecommended' => $view,
-                'BoardNotRecommended' => $view,
+                'BoardRecommended' => $recommended,
+                'BoardNotRecommended' => $notRecommended,
                 'BoardFlg' => $flg,
                 'created_at' => $date,
             ]);
 
 
-                    $date = $faker->dateTimeBetween('-1 years');
-            $user = $faker->numberBetween(1, 20);
-            $view = $faker->randomNumber(2);
-            $flg = $faker->randomElement([0,1]);
+                $date = $faker->dateTimeBetween('-1 years');
+                $user = $faker->numberBetween(1, 20);
+                $view = $faker->randomNumber(2);
+                $recommended = $faker->randomNumber(2);
+                $notRecommended = $faker->randomNumber(2);
+                $flg = $faker->randomElement([0,1]);
 
             Board::create([
                 'BoardCategoryID' => 1,
@@ -731,18 +768,20 @@ class BoardSeeder extends Seeder
         혹은 사실 하나의 레이어에서 동작하는건데 이해를 돕기위에 이런 단계를 거친다고 개념적으로만 나누어 둔것일까요?
         EOT,
                 'BoardView' => $view,
-                'BoardRecommended' => $view,
-                'BoardNotRecommended' => $view,
+                'BoardRecommended' => $recommended,
+                'BoardNotRecommended' => $notRecommended,
                 'BoardFlg' => $flg,
                 'created_at' => $date,
             ]);
 
 
 
-                    $date = $faker->dateTimeBetween('-1 years');
-            $user = $faker->numberBetween(1, 20);
-            $view = $faker->randomNumber(2);
-            $flg = $faker->randomElement([0,1]);
+                $date = $faker->dateTimeBetween('-1 years');
+                $user = $faker->numberBetween(1, 20);
+                $view = $faker->randomNumber(2);
+                $recommended = $faker->randomNumber(2);
+                $notRecommended = $faker->randomNumber(2);
+                $flg = $faker->randomElement([0,1]);
 
             Board::create([
                 'BoardCategoryID' => 1,
@@ -753,17 +792,19 @@ class BoardSeeder extends Seeder
         PostgreSQL 여러번 지우고 재설치 하여 backup DB restore 결과가 Failed 나오네요 문제가 뭘까요?
         EOT,
                 'BoardView' => $view,
-                'BoardRecommended' => $view,
-                'BoardNotRecommended' => $view,
+                'BoardRecommended' => $recommended,
+                'BoardNotRecommended' => $notRecommended,
                 'BoardFlg' => $flg,
                 'created_at' => $date,
             ]);
 
 
-                    $date = $faker->dateTimeBetween('-1 years');
-            $user = $faker->numberBetween(1, 20);
-            $view = $faker->randomNumber(2);
-            $flg = $faker->randomElement([0,1]);
+                $date = $faker->dateTimeBetween('-1 years');
+                $user = $faker->numberBetween(1, 20);
+                $view = $faker->randomNumber(2);
+                $recommended = $faker->randomNumber(2);
+                $notRecommended = $faker->randomNumber(2);
+                $flg = $faker->randomElement([0,1]);
 
             Board::create([
                 'BoardCategoryID' => 1,
@@ -776,17 +817,19 @@ class BoardSeeder extends Seeder
         이번에 독하게 시작하는 C를 완강하고 자료구조를 듣는 중입니다. 그런데 C언어를 완강해도 능숙하게 다룰 수 있다는 느낌이 들지 않아서 C 코딩 예제를 플어보고 싶은데 혹시 추천해주실 만한 예제 사이트나 교재가 있으신가요?
         EOT,
                 'BoardView' => $view,
-                'BoardRecommended' => $view,
-                'BoardNotRecommended' => $view,
+                'BoardRecommended' => $recommended,
+                'BoardNotRecommended' => $notRecommended,
                 'BoardFlg' => $flg,
                 'created_at' => $date,
             ]);
 
 
-                    $date = $faker->dateTimeBetween('-1 years');
-            $user = $faker->numberBetween(1, 20);
-            $view = $faker->randomNumber(2);
-            $flg = $faker->randomElement([0,1]);
+                $date = $faker->dateTimeBetween('-1 years');
+                $user = $faker->numberBetween(1, 20);
+                $view = $faker->randomNumber(2);
+                $recommended = $faker->randomNumber(2);
+                $notRecommended = $faker->randomNumber(2);
+                $flg = $faker->randomElement([0,1]);
 
             Board::create([
                 'BoardCategoryID' => 1,
@@ -813,17 +856,19 @@ class BoardSeeder extends Seeder
         테스트는 성공하는데 이렇게 경고문이 뜨는데 무시해도 될까요?? 구글링 해봐도 안나와서요
         EOT,
                 'BoardView' => $view,
-                'BoardRecommended' => $view,
-                'BoardNotRecommended' => $view,
+                'BoardRecommended' => $recommended,
+                'BoardNotRecommended' => $notRecommended,
                 'BoardFlg' => $flg,
                 'created_at' => $date,
             ]);
 
 
-                    $date = $faker->dateTimeBetween('-1 years');
-            $user = $faker->numberBetween(1, 20);
-            $view = $faker->randomNumber(2);
-            $flg = $faker->randomElement([0,1]);
+                $date = $faker->dateTimeBetween('-1 years');
+                $user = $faker->numberBetween(1, 20);
+                $view = $faker->randomNumber(2);
+                $recommended = $faker->randomNumber(2);
+                $notRecommended = $faker->randomNumber(2);
+                $flg = $faker->randomElement([0,1]);
 
             Board::create([
                 'BoardCategoryID' => 1,
@@ -842,17 +887,19 @@ class BoardSeeder extends Seeder
         감사합니다^^
         EOT,
                 'BoardView' => $view,
-                'BoardRecommended' => $view,
-                'BoardNotRecommended' => $view,
+                'BoardRecommended' => $recommended,
+                'BoardNotRecommended' => $notRecommended,
                 'BoardFlg' => $flg,
                 'created_at' => $date,
             ]);
 
 
-                    $date = $faker->dateTimeBetween('-1 years');
-            $user = $faker->numberBetween(1, 20);
-            $view = $faker->randomNumber(2);
-            $flg = $faker->randomElement([0,1]);
+                $date = $faker->dateTimeBetween('-1 years');
+                $user = $faker->numberBetween(1, 20);
+                $view = $faker->randomNumber(2);
+                $recommended = $faker->randomNumber(2);
+                $notRecommended = $faker->randomNumber(2);
+                $flg = $faker->randomElement([0,1]);
 
             Board::create([
                 'BoardCategoryID' => 1,
@@ -877,17 +924,19 @@ class BoardSeeder extends Seeder
         return 된 member를 사용하는 곳은 어디에도 안보이는데 왜 return 하는지 궁금합니다.
         EOT,
                 'BoardView' => $view,
-                'BoardRecommended' => $view,
-                'BoardNotRecommended' => $view,
+                'BoardRecommended' => $recommended,
+                'BoardNotRecommended' => $notRecommended,
                 'BoardFlg' => $flg,
                 'created_at' => $date,
             ]);
 
 
-                    $date = $faker->dateTimeBetween('-1 years');
-            $user = $faker->numberBetween(1, 20);
-            $view = $faker->randomNumber(2);
-            $flg = $faker->randomElement([0,1]);
+                $date = $faker->dateTimeBetween('-1 years');
+                $user = $faker->numberBetween(1, 20);
+                $view = $faker->randomNumber(2);
+                $recommended = $faker->randomNumber(2);
+                $notRecommended = $faker->randomNumber(2);
+                $flg = $faker->randomElement([0,1]);
 
             Board::create([
                 'BoardCategoryID' => 1,
@@ -917,18 +966,20 @@ class BoardSeeder extends Seeder
         여기에 질문 내용을 남겨주세요.
         EOT,
                 'BoardView' => $view,
-                'BoardRecommended' => $view,
-                'BoardNotRecommended' => $view,
+                'BoardRecommended' => $recommended,
+                'BoardNotRecommended' => $notRecommended,
                 'BoardFlg' => $flg,
                 'created_at' => $date,
             ]);
 
 
 
-                    $date = $faker->dateTimeBetween('-1 years');
-            $user = $faker->numberBetween(1, 20);
-            $view = $faker->randomNumber(2);
-            $flg = $faker->randomElement([0,1]);
+                $date = $faker->dateTimeBetween('-1 years');
+                $user = $faker->numberBetween(1, 20);
+                $view = $faker->randomNumber(2);
+                $recommended = $faker->randomNumber(2);
+                $notRecommended = $faker->randomNumber(2);
+                $flg = $faker->randomElement([0,1]);
 
             Board::create([
                 'BoardCategoryID' => 1,
@@ -957,17 +1008,19 @@ class BoardSeeder extends Seeder
         컴포넌트 스캔을 하게 되면 @component annotation이 붙은 객체를 스프링빈으로 등록해주는 것으로 알고 있습니다. 그런데 이 객체가 request 스코프일 경우 request요청이 있어야 스프링 빈으로 등록이 가능하다면 처음 스프링 애플리케이션을 실행할 때 @Component가 붙은 객체를 탐색하면서 @Scope("request")가 붙어있다면 스프링 컨테이너가 이 객체는 스프링빈으로 등록하지 않고 넘어가는 것인지 궁금합니다!
         EOT,
                 'BoardView' => $view,
-                'BoardRecommended' => $view,
-                'BoardNotRecommended' => $view,
+                'BoardRecommended' => $recommended,
+                'BoardNotRecommended' => $notRecommended,
                 'BoardFlg' => $flg,
                 'created_at' => $date,
             ]);
 
 
-                    $date = $faker->dateTimeBetween('-1 years');
-            $user = $faker->numberBetween(1, 20);
-            $view = $faker->randomNumber(2);
-            $flg = $faker->randomElement([0,1]);
+                $date = $faker->dateTimeBetween('-1 years');
+                $user = $faker->numberBetween(1, 20);
+                $view = $faker->randomNumber(2);
+                $recommended = $faker->randomNumber(2);
+                $notRecommended = $faker->randomNumber(2);
+                $flg = $faker->randomElement([0,1]);
 
             Board::create([
                 'BoardCategoryID' => 1,
@@ -996,17 +1049,19 @@ class BoardSeeder extends Seeder
         컴포넌트 스캔을 하게 되면 @component annotation이 붙은 객체를 스프링빈으로 등록해주는 것으로 알고 있습니다. 그런데 이 객체가 request 스코프일 경우 request요청이 있어야 스프링 빈으로 등록이 가능하다면 처음 스프링 애플리케이션을 실행할 때 @Component가 붙은 객체를 탐색하면서 @Scope("request")가 붙어있다면 스프링 컨테이너가 이 객체는 스프링빈으로 등록하지 않고 넘어가는 것인지 궁금합니다!
         EOT,
                 'BoardView' => $view,
-                'BoardRecommended' => $view,
-                'BoardNotRecommended' => $view,
+                'BoardRecommended' => $recommended,
+                'BoardNotRecommended' => $notRecommended,
                 'BoardFlg' => $flg,
                 'created_at' => $date,
             ]);
 
 
-                    $date = $faker->dateTimeBetween('-1 years');
-            $user = $faker->numberBetween(1, 20);
-            $view = $faker->randomNumber(2);
-            $flg = $faker->randomElement([0,1]);
+                $date = $faker->dateTimeBetween('-1 years');
+                $user = $faker->numberBetween(1, 20);
+                $view = $faker->randomNumber(2);
+                $recommended = $faker->randomNumber(2);
+                $notRecommended = $faker->randomNumber(2);
+                $flg = $faker->randomElement([0,1]);
 
             Board::create([
                 'BoardCategoryID' => 1,
@@ -1023,17 +1078,19 @@ class BoardSeeder extends Seeder
         강의에서 소개해주신 vitest를 설치하고 vscode를 껐다가 다시 켜봐도 테스트를 찾을 수 없다고 뜨고 있는데 제가 어떻게 하면 될까요?
         EOT,
                 'BoardView' => $view,
-                'BoardRecommended' => $view,
-                'BoardNotRecommended' => $view,
+                'BoardRecommended' => $recommended,
+                'BoardNotRecommended' => $notRecommended,
                 'BoardFlg' => $flg,
                 'created_at' => $date,
             ]);
 
 
-                    $date = $faker->dateTimeBetween('-1 years');
-            $user = $faker->numberBetween(1, 20);
-            $view = $faker->randomNumber(2);
-            $flg = $faker->randomElement([0,1]);
+                $date = $faker->dateTimeBetween('-1 years');
+                $user = $faker->numberBetween(1, 20);
+                $view = $faker->randomNumber(2);
+                $recommended = $faker->randomNumber(2);
+                $notRecommended = $faker->randomNumber(2);
+                $flg = $faker->randomElement([0,1]);
 
             Board::create([
                 'BoardCategoryID' => 1,
@@ -1074,17 +1131,19 @@ class BoardSeeder extends Seeder
         Another noteworthy player in the era of AI writing tools is the essay writer from 5StarEssays.com.
         EOT,
                 'BoardView' => $view,
-                'BoardRecommended' => $view,
-                'BoardNotRecommended' => $view,
+                'BoardRecommended' => $recommended,
+                'BoardNotRecommended' => $notRecommended,
                 'BoardFlg' => $flg,
                 'created_at' => $date,
             ]);
 
 
-                    $date = $faker->dateTimeBetween('-1 years');
-            $user = $faker->numberBetween(1, 20);
-            $view = $faker->randomNumber(2);
-            $flg = $faker->randomElement([0,1]);
+                $date = $faker->dateTimeBetween('-1 years');
+                $user = $faker->numberBetween(1, 20);
+                $view = $faker->randomNumber(2);
+                $recommended = $faker->randomNumber(2);
+                $notRecommended = $faker->randomNumber(2);
+                $flg = $faker->randomElement([0,1]);
 
             Board::create([
                 'BoardCategoryID' => 1,
@@ -1119,17 +1178,19 @@ class BoardSeeder extends Seeder
         [boardId], new 폴더를 넣어야 할 까요?
         EOT,
                 'BoardView' => $view,
-                'BoardRecommended' => $view,
-                'BoardNotRecommended' => $view,
+                'BoardRecommended' => $recommended,
+                'BoardNotRecommended' => $notRecommended,
                 'BoardFlg' => $flg,
                 'created_at' => $date,
             ]);
 
 
-                    $date = $faker->dateTimeBetween('-1 years');
-            $user = $faker->numberBetween(1, 20);
-            $view = $faker->randomNumber(2);
-            $flg = $faker->randomElement([0,1]);
+                $date = $faker->dateTimeBetween('-1 years');
+                $user = $faker->numberBetween(1, 20);
+                $view = $faker->randomNumber(2);
+                $recommended = $faker->randomNumber(2);
+                $notRecommended = $faker->randomNumber(2);
+                $flg = $faker->randomElement([0,1]);
 
             Board::create([
                 'BoardCategoryID' => 1,
@@ -1182,17 +1243,19 @@ class BoardSeeder extends Seeder
         코루틴을 사용하면 정상작동을 하긴하는데 모노비헤비어를 상속받지않은 상태에서 어떻게 사용하는지 감이 안잡힙니다.
         EOT,
                 'BoardView' => $view,
-                'BoardRecommended' => $view,
-                'BoardNotRecommended' => $view,
+                'BoardRecommended' => $recommended,
+                'BoardNotRecommended' => $notRecommended,
                 'BoardFlg' => $flg,
                 'created_at' => $date,
             ]);
 
 
-                    $date = $faker->dateTimeBetween('-1 years');
-            $user = $faker->numberBetween(1, 20);
-            $view = $faker->randomNumber(2);
-            $flg = $faker->randomElement([0,1]);
+                $date = $faker->dateTimeBetween('-1 years');
+                $user = $faker->numberBetween(1, 20);
+                $view = $faker->randomNumber(2);
+                $recommended = $faker->randomNumber(2);
+                $notRecommended = $faker->randomNumber(2);
+                $flg = $faker->randomElement([0,1]);
 
             Board::create([
                 'BoardCategoryID' => 1,
@@ -1221,17 +1284,19 @@ class BoardSeeder extends Seeder
         url 창에 localhost:8080을 입력하면 웰컴 페이지(index.html)가 이전에 는 잘 떳는데 웰컴페이지를 조금 항목이 많은 html 페이지로 바꾸고 나니까 whitelabel 에러가 뜨더군요. 한참 여기저기 뒤져보다가 어떤 글에서 index.html은 main.resources.static 디렉토리 경로에 존재해야 한다고 하더라고요? 그래서 index.html을 해당 디렉토리에 두니까 다시 잘 도되더군요 근데 강의를 들었을 때는 main.webapp에 index.html에 둔 상태로 코딩을 했었을 때도 문제 없이 잘 되는 거 같은데 제가 강의를 들으면서 놓친 부분이 있는지 모르겠습니다. 왜 톰캣이 main.webapp에 존재하는 index.html을 못 찾았을까요? 그리고 왜 main.resources.static에 index.html을 추가로 만드니까 잘 찾아낼까요? 원리가 궁금합니다. 바쁘신 와중에 답변 주시면 정말 감사하겠습니다!
         EOT,
                 'BoardView' => $view,
-                'BoardRecommended' => $view,
-                'BoardNotRecommended' => $view,
+                'BoardRecommended' => $recommended,
+                'BoardNotRecommended' => $notRecommended,
                 'BoardFlg' => $flg,
                 'created_at' => $date,
             ]);
 
 
-                    $date = $faker->dateTimeBetween('-1 years');
-            $user = $faker->numberBetween(1, 20);
-            $view = $faker->randomNumber(2);
-            $flg = $faker->randomElement([0,1]);
+                $date = $faker->dateTimeBetween('-1 years');
+                $user = $faker->numberBetween(1, 20);
+                $view = $faker->randomNumber(2);
+                $recommended = $faker->randomNumber(2);
+                $notRecommended = $faker->randomNumber(2);
+                $flg = $faker->randomElement([0,1]);
 
             Board::create([
                 'BoardCategoryID' => 1,
@@ -1272,17 +1337,19 @@ class BoardSeeder extends Seeder
         Another noteworthy player in the era of AI writing tools is the essay writer from 5StarEssays.com.
         EOT,
                 'BoardView' => $view,
-                'BoardRecommended' => $view,
-                'BoardNotRecommended' => $view,
+                'BoardRecommended' => $recommended,
+                'BoardNotRecommended' => $notRecommended,
                 'BoardFlg' => $flg,
                 'created_at' => $date,
             ]);
 
 
-                    $date = $faker->dateTimeBetween('-1 years');
-            $user = $faker->numberBetween(1, 20);
-            $view = $faker->randomNumber(2);
-            $flg = $faker->randomElement([0,1]);
+                $date = $faker->dateTimeBetween('-1 years');
+                $user = $faker->numberBetween(1, 20);
+                $view = $faker->randomNumber(2);
+                $recommended = $faker->randomNumber(2);
+                $notRecommended = $faker->randomNumber(2);
+                $flg = $faker->randomElement([0,1]);
 
             Board::create([
                 'BoardCategoryID' => 1,
@@ -1309,18 +1376,20 @@ class BoardSeeder extends Seeder
         감사합니다.
         EOT,
                 'BoardView' => $view,
-                'BoardRecommended' => $view,
-                'BoardNotRecommended' => $view,
+                'BoardRecommended' => $recommended,
+                'BoardNotRecommended' => $notRecommended,
                 'BoardFlg' => $flg,
                 'created_at' => $date,
             ]);
 
             
 
-                    $date = $faker->dateTimeBetween('-1 years');
-            $user = $faker->numberBetween(1, 20);
-            $view = $faker->randomNumber(2);
-            $flg = $faker->randomElement([0,1]);
+                $date = $faker->dateTimeBetween('-1 years');
+                $user = $faker->numberBetween(1, 20);
+                $view = $faker->randomNumber(2);
+                $recommended = $faker->randomNumber(2);
+                $notRecommended = $faker->randomNumber(2);
+                $flg = $faker->randomElement([0,1]);
 
             Board::create([
                 'BoardCategoryID' => 1,
@@ -1352,17 +1421,19 @@ class BoardSeeder extends Seeder
         클라이언트가 원 서버에 검증하고 사용하기 위해서 Cache-Control: no-cache를 요청 메시지에서 사용하는 건가요? 아니면 클라이언트에게 원 서버와의 검증을 강제(?)하기 위해서 서버의 응답 메시지에서 사용하는 건가요??
         EOT,
                 'BoardView' => $view,
-                'BoardRecommended' => $view,
-                'BoardNotRecommended' => $view,
+                'BoardRecommended' => $recommended,
+                'BoardNotRecommended' => $notRecommended,
                 'BoardFlg' => $flg,
                 'created_at' => $date,
             ]);
 
 
-                    $date = $faker->dateTimeBetween('-1 years');
-            $user = $faker->numberBetween(1, 20);
-            $view = $faker->randomNumber(2);
-            $flg = $faker->randomElement([0,1]);
+                $date = $faker->dateTimeBetween('-1 years');
+                $user = $faker->numberBetween(1, 20);
+                $view = $faker->randomNumber(2);
+                $recommended = $faker->randomNumber(2);
+                $notRecommended = $faker->randomNumber(2);
+                $flg = $faker->randomElement([0,1]);
 
             Board::create([
                 'BoardCategoryID' => 1,
@@ -1375,17 +1446,19 @@ class BoardSeeder extends Seeder
         이렇게 from 절을 써야하더라구요.  선생님의 해설을 보기 전, 스스로 풀었을 때는 from절을 쓰지 않고 그냥 한번에 썼었습니다. #셀프풀이 SELECT event_date , COUNTIF(event_name = " click_payment" AND use_recommend_food = "TRUE") AS use_recomend_payment #추천음식 클릭하여 결제 , COUNTIF(event_name = "click_recommend_food")  AS click_recommend_food , COUNTIF(event_name = " click_payment" AND use_recommend_food = "TRUE") / COUNTIF(event_name = "click_recommend_food") AS recommend_cvr FROM log WHERE is_meet_min_order_price = 'False' GROUP BY event_date혹시 이렇게 한번에 쓰면 오류가 발생하는지, 서브쿼리를 사용하여 풀어야 하는 이유가 무엇인지 궁금합니다! 여유있으실 때 회신 주세요.감사합니다! 
         EOT,
                 'BoardView' => $view,
-                'BoardRecommended' => $view,
-                'BoardNotRecommended' => $view,
+                'BoardRecommended' => $recommended,
+                'BoardNotRecommended' => $notRecommended,
                 'BoardFlg' => $flg,
                 'created_at' => $date,
             ]);
 
 
-                    $date = $faker->dateTimeBetween('-1 years');
-            $user = $faker->numberBetween(1, 20);
-            $view = $faker->randomNumber(2);
-            $flg = $faker->randomElement([0,1]);
+                $date = $faker->dateTimeBetween('-1 years');
+                $user = $faker->numberBetween(1, 20);
+                $view = $faker->randomNumber(2);
+                $recommended = $faker->randomNumber(2);
+                $notRecommended = $faker->randomNumber(2);
+                $flg = $faker->randomElement([0,1]);
 
             Board::create([
                 'BoardCategoryID' => 1,
@@ -1402,17 +1475,19 @@ class BoardSeeder extends Seeder
         새로운 아이템을 등록한 뒤에, 다시 /basic/items 페이지로 넘어가게 된다면 다시 items 메서드가 호출될텐데 이때 다시 로직이 돌면서 model.addAttribute("items", item); 메서드가 호출이 될텐데, 이럴때에는 items 이름에 정보를 덮어씌우는 방식으로 모델에 넘어가는건가요? 아니면 items객체에 수정된 부분만 고쳐서 모델에 넘어가는건가요??
         EOT,
                 'BoardView' => $view,
-                'BoardRecommended' => $view,
-                'BoardNotRecommended' => $view,
+                'BoardRecommended' => $recommended,
+                'BoardNotRecommended' => $notRecommended,
                 'BoardFlg' => $flg,
                 'created_at' => $date,
             ]);
 
 
-                    $date = $faker->dateTimeBetween('-1 years');
-            $user = $faker->numberBetween(1, 20);
-            $view = $faker->randomNumber(2);
-            $flg = $faker->randomElement([0,1]);
+                $date = $faker->dateTimeBetween('-1 years');
+                $user = $faker->numberBetween(1, 20);
+                $view = $faker->randomNumber(2);
+                $recommended = $faker->randomNumber(2);
+                $notRecommended = $faker->randomNumber(2);
+                $flg = $faker->randomElement([0,1]);
 
             Board::create([
                 'BoardCategoryID' => 1,
@@ -1458,17 +1533,19 @@ class BoardSeeder extends Seeder
 
         EOT,
                 'BoardView' => $view,
-                'BoardRecommended' => $view,
-                'BoardNotRecommended' => $view,
+                'BoardRecommended' => $recommended,
+                'BoardNotRecommended' => $notRecommended,
                 'BoardFlg' => $flg,
                 'created_at' => $date,
             ]);
 
 
-                    $date = $faker->dateTimeBetween('-1 years');
-            $user = $faker->numberBetween(1, 20);
-            $view = $faker->randomNumber(2);
-            $flg = $faker->randomElement([0,1]);
+                $date = $faker->dateTimeBetween('-1 years');
+                $user = $faker->numberBetween(1, 20);
+                $view = $faker->randomNumber(2);
+                $recommended = $faker->randomNumber(2);
+                $notRecommended = $faker->randomNumber(2);
+                $flg = $faker->randomElement([0,1]);
 
             Board::create([
                 'BoardCategoryID' => 1,
@@ -1482,17 +1559,19 @@ class BoardSeeder extends Seeder
         내년 하반기에 크롬에서 쿠키차단예정을 하고 있다고 들어서 왠지 다른 대체제가 필요할거같은데 쿠키를 사용 못하게 된다면 보통 클라이언트에서는 로컬스토리지 이외에는 대체제가 없는지 궁금합니다.
         EOT,
                 'BoardView' => $view,
-                'BoardRecommended' => $view,
-                'BoardNotRecommended' => $view,
+                'BoardRecommended' => $recommended,
+                'BoardNotRecommended' => $notRecommended,
                 'BoardFlg' => $flg,
                 'created_at' => $date,
             ]);
 
 
-                    $date = $faker->dateTimeBetween('-1 years');
-            $user = $faker->numberBetween(1, 20);
-            $view = $faker->randomNumber(2);
-            $flg = $faker->randomElement([0,1]);
+                $date = $faker->dateTimeBetween('-1 years');
+                $user = $faker->numberBetween(1, 20);
+                $view = $faker->randomNumber(2);
+                $recommended = $faker->randomNumber(2);
+                $notRecommended = $faker->randomNumber(2);
+                $flg = $faker->randomElement([0,1]);
 
             Board::create([
                 'BoardCategoryID' => 1,
@@ -1515,17 +1594,19 @@ class BoardSeeder extends Seeder
         그런데 왜 키값을 지정해주지 않았을 때 오류가 뜨는걸까요?
         EOT,
                 'BoardView' => $view,
-                'BoardRecommended' => $view,
-                'BoardNotRecommended' => $view,
+                'BoardRecommended' => $recommended,
+                'BoardNotRecommended' => $notRecommended,
                 'BoardFlg' => $flg,
                 'created_at' => $date,
             ]);
 
 
-                    $date = $faker->dateTimeBetween('-1 years');
-            $user = $faker->numberBetween(1, 20);
-            $view = $faker->randomNumber(2);
-            $flg = $faker->randomElement([0,1]);
+                $date = $faker->dateTimeBetween('-1 years');
+                $user = $faker->numberBetween(1, 20);
+                $view = $faker->randomNumber(2);
+                $recommended = $faker->randomNumber(2);
+                $notRecommended = $faker->randomNumber(2);
+                $flg = $faker->randomElement([0,1]);
 
             Board::create([
                 'BoardCategoryID' => 1,
@@ -1546,20 +1627,21 @@ class BoardSeeder extends Seeder
         Any Recent Changes or Updates: As language tests evolve, have there been any recent changes or updates to the OPIC system that test-takers should be aware of?
         EOT,
                 'BoardView' => $view,
-                'BoardRecommended' => $view,
-                'BoardNotRecommended' => $view,
+                'BoardRecommended' => $recommended,
+                'BoardNotRecommended' => $notRecommended,
                 'BoardFlg' => $flg,
                 'created_at' => $date,
             ]);
 
 
-                    $date = $faker->dateTimeBetween('-1 years');
-            $user = $faker->numberBetween(1, 20);
-            $view = $faker->randomNumber(2);
-            $flg = $faker->randomElement([0,1]);
+                $date = $faker->dateTimeBetween('-1 years');
+                $user = $faker->numberBetween(1, 20);
+                $view = $faker->randomNumber(2);
+                $recommended = $faker->randomNumber(2);
+                $notRecommended = $faker->randomNumber(2);
+                $flg = $faker->randomElement([0,1]);
 
         }
-
 
         
     }

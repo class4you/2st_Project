@@ -26,9 +26,10 @@ class BoardController extends Controller
             ->leftJoin(DB::raw('(SELECT BoardID, COUNT(BoardID) AS cnt FROM comments GROUP BY comments.BoardID) com'), function ($join) {
                 $join->on('com.BoardID', 'boards.BoardID');
             })
+            ->leftJoin('board_languagelinks', 'boards.BoardID', 'board_languagelinks.BoardID')
             // 최종적으로 보더 테이블과 유저즈, 코멘트즈들이 연결된 결과를 가져옴
             // 쉽게 설명하면 보더즈로 두 개의 테이블(유저와 코멘트)를 레프트 조인을 통해 값이 있는 애들만 불러오고 그 안에서 서브쿼리를 만들어서 콜백함수로 받아온 그룹에 보더 아이디와 보더즈의 보더 아이디와 다시 조인하는 것
-            ->select('boards.BoardID', 'boards.created_at', 'boards.UserID', 'boards.BoardTitle', 'boards.BoardComment', 'boards.BoardView', 'boards.BoardRecommended', 'boards.BoardNotRecommended', 'boards.BoardFlg', 'users.UserEmail', 'com.cnt');
+            ->select('boards.BoardID', 'boards.created_at', 'boards.UserID', 'boards.BoardTitle', 'boards.BoardComment', 'boards.BoardView', 'boards.BoardRecommended', 'boards.BoardNotRecommended', 'boards.BoardFlg', 'users.UserEmail', 'com.cnt', 'board_languagelinks.HTMLFlg', 'board_languagelinks.CSSFlg', 'board_languagelinks.JavaScriptFlg', 'board_languagelinks.PHPFlg', 'board_languagelinks.JAVAFlg', 'board_languagelinks.DataBaseFlg');
 
         // $boardDataQuery = Board::join('users', 'boards.UserID', 'users.UserID');
         // ->orderBy('boards.created_at', 'desc');
@@ -41,36 +42,31 @@ class BoardController extends Controller
 
         // Log::debug($commentCountQuery);
 
-        //  아래 이프문은 파라미터 값이 있는지 혹인하고 해당 값이 있을 경우에 쿼리문이 추가되는 것임
-
+        //  아래 이프문은 파라미터 값이 있는지 확인하고 해당 값이 있을 경우에 쿼리문이 추가되는 것임
+        if ($request->has('boardCategory')) {
+            $boardCategoryID = $request->input('boardCategory');
+            $boardDataQuery->where('BoardCategoryID', $boardCategoryID);
+        }
+        
         if ($request->has('boardCategory')) {
             $boardCategoryID = $request->input('boardCategory');
             
-            if($boardCategoryID == 1) {
-                $boardDataQuery->where('BoardCategoryID', 1);
-            } else if($boardCategoryID == 2) {
-                $boardDataQuery->where('BoardCategoryID', 2);
+            if ($boardCategoryID == 1) {
+                $boardDataQuery->where('BoardCategoryID', $boardCategoryID);
+            } elseif ($boardCategoryID == 2) {
+                $boardDataQuery->where('BoardCategoryID', $boardCategoryID);    
+                if ($request->input('boardLanguage') !== null) {
+                    $boardLanguageNames = $request->input('boardLanguage');
+                    // $boardDataQuery->join('board_languagelinks', 'boards.BoardID', 'board_languagelinks.BoardID');
+            
+                    foreach (explode(',', $boardLanguageNames) as $boardLanguageName) {
+                        $column = strtolower($boardLanguageName) . 'Flg';
+                        $boardDataQuery->where("board_languagelinks.$column", 1);
+                    }
+                }
             }
         }
 
-        if($request->has('boardLanguage')) {
-            $boardLanguageName = $request->input('boardLanguage');
-            if($boardLanguageName == 'HTML') {
-
-            } else if($boardLanguageName == 'CSS') {
-
-            } else if($boardLanguageName == 'CSS') {
-
-            } else if($boardLanguageName == 'JavaScript') {
-
-            } else if($boardLanguageName == 'PHP') {
-
-            } else if($boardLanguageName == 'JAVA') {
-
-            } else if($boardLanguageName == 'DataBase') {
-
-            }
-        }
         
 
         // 검색 결과 값

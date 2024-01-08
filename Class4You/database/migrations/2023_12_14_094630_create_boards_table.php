@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id('BoardID');
             $table->integer('BoardCategoryID');
             $table->integer('UserID');
-            $table->integer('ClassID')->nullable();
+            $table->integer('EnrollmentID')->nullable();
             $table->string('BoardTitle', 100);
             $table->string('BoardComment', 10000);
             $table->integer('BoardView')->default(0);
