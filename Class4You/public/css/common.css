@@ -2078,7 +2078,7 @@ ul.class_tabs li.class_current {
     margin-bottom: 10px;
 }
 
-.class_detail_rating_user_update_button>button {
+/* .class_detail_rating_user_update_button>button {
     padding: 5px 20px;
     margin-right: 5px;
     background-color: #cdc9c9;
@@ -2092,7 +2092,7 @@ ul.class_tabs li.class_current {
     color: #fff;
     background-color: #a19f9f;
     border: none;
-}
+} */
 
 .class_detail_rating_user_delete_button_covar {
     display: flex;
@@ -2197,6 +2197,46 @@ ul.class_tabs li.class_current {
     align-items: center;
     justify-content: end;
     padding-top: 10px;
+}
+
+.class_detail_community_user_button {
+    margin-top: 10px;
+    display: flex;
+    justify-content: end;
+    gap: 10px;
+}
+
+.class_detail_commu_list_div {
+    margin: 10px 0;
+    padding: 20px;
+    line-height: 20px;
+    border-bottom: 2px solid #002d426f;
+}
+
+.class_detail_commu_view_tab {
+    display: flex;
+    padding: 10px;
+    border-bottom: 1px solid #525252;
+}
+
+.class_detail_commu_tab_title {
+    margin: 10px;
+    color: #858484;
+    font-weight: bold;
+}
+
+.class_detail_commu_list_user {
+    color: #0000007e;
+    display: flex;
+    justify-content: space-between;
+    padding: 0px 0px 20px 0px;
+    border-bottom: 1px solid #f2f2f2;
+}
+
+.class_detail_commu_list_text {
+    margin-top: 10px;
+    padding: 10px 0px 0px 0px;
+    /* border-bottom: 1px solid #f2f2f2; */
 }
 
 /* ============================================================================================================ */

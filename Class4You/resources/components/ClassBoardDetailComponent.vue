@@ -76,7 +76,7 @@
 				<ul class="class_tabs">
 					<li @click="clickFlgTab = 0; solve = null; sortData = 0;"  class="class_tab_link current"  :class="{'class_tab_link_on': sortData == 0}" data-tab="class_tab1">강의 소개</li>
 					<li @click="clickFlgTab = 1; solve = null; sortData = 1;"  class="class_tab_link"  :class="{'class_tab_link_on': sortData == 1}" data-tab="class_tab2">수강평</li>
-					<!-- <li @click="clickFlgTab = 2;" class="class_tab_link" data-tab="class_tab3">커뮤니티</li> -->
+					<li @click="clickFlgTab = 2; solve = null; sortData = 2;" class="class_tab_link" :class="{'class_tab_link_on': sortData == 2}" data-tab="class_tab3">커뮤니티</li>
 					<!-- <li @click="clickFlgTab = 3;" class="class_tab_link" data-tab="class_tab4">공지사항</li> -->
 				</ul>
 			</div>	
@@ -536,9 +536,9 @@
                 </form>
             </div>
 
-            <div class="class_detail_rating_list">
-				<div class="class_detail_rating_view_tab">
-					<div class="class_detail_rating_tab_title">
+            <div class="class_detail_community_list">
+				<div class="class_detail_commu_view_tab">
+					<div class="class_detail_commu_tab_title">
                         <!-- 질문게시판 클릭시 커뮤니티 질문게시판 페이지로 이동 -->
 						<span>
                             <a href="">질문게시판</a>
@@ -546,10 +546,8 @@
 					</div>
 				</div>
 
-			<hr>
-
-				<div id="class_tab1" class="class_detail_rating_list_div">
-					<div class="class_detail_rating_list_user">
+				<div id="class_tab1" class="class_detail_commu_list_div">
+					<div class="class_detail_commu_list_user">
 						<div class="class_detail_rating_user_id">
 							<p>작성자ID</p>
 						</div>
@@ -557,14 +555,14 @@
 							<p>2023-12-13</p>
 						</div>
 					</div>
-					<div class="class_detail_rating_list_text">
+					<div class="class_detail_commu_list_text">
 						<p>css 이렇게 많이 써본건 처음이야</p>
 						<p>css 이렇게 많이 써본건 처음이야</p>
 						<p>css 이렇게 많이 써본건 처음이야</p>
 						<p>내가 쓴글 수정삭제가능</p>
 					</div>
-					<div class="class_detail_rating_user_button">
-						<div class="class_detail_rating_user_update_button">
+					<div class="class_detail_community_user_button">
+						<div class="class_detail_rating_user_updated_button">
 							<button>수정</button>
 						</div>
 						<div class="class_detail_rating_user_delete_button">
@@ -572,55 +570,8 @@
 						</div>
 					</div>
 				</div>
-			
-			<hr>
-
-				<div id="class_tab1" class="class_detail_rating_list_div">
-					<div class="class_detail_rating_list_user">
-						<div class="class_detail_rating_user_id">
-							<p>작성자ID</p>
-						</div>
-						<div class="class_detail_rating_user_date">
-							<p>2023-12-13</p>
-						</div>
-					</div>
-					<div class="class_detail_rating_list_text">
-						<p>수업이 재밌어요</p>
-					</div>
-				</div>
-
-			<hr>	
-
-				<div id="class_tab1" class="class_detail_rating_list_div">
-					<div class="class_detail_rating_list_user">
-						<div class="class_detail_rating_user_id">
-							<p>작성자ID</p>
-						</div>
-						<div class="class_detail_rating_user_date">
-							<p>2023-12-13</p>
-						</div>
-					</div>
-					<div class="class_detail_rating_list_text">
-						<p>코딩 조아요</p>
-					</div>
-				</div>
-
-			<hr>
-
-				<div id="class_tab1" class="class_detail_rating_list_div">
-					<div class="class_detail_rating_list_user">
-						<div class="class_detail_rating_user_id">
-							<p>작성자ID</p>
-						</div>
-						<div class="class_detail_rating_user_date">
-							<p>2023-12-13</p>
-						</div>
-					</div>
-					<div class="class_detail_rating_list_text">
-						<p>재밌는 라라벨</p>
-					</div>
-				</div>
         	</div>
+
         </div>    
 
             <!-- 공지사항 -->
