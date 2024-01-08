@@ -468,9 +468,9 @@
 							<p v-else class="class_detail_rating_list_text_p">{{ data.ReviewComment }}</p>
 						</div>
 						<div class="class_detail_rating_user_button">
-							<div class="class_detail_rating_user_update_button">
+							<!-- <div class="class_detail_rating_user_update_button"> -->
 								<!-- <button @click="classReviewUpdate(data)">수정</button> -->
-							</div>
+							<!-- </div> -->
 							<div v-if="data.UserID == $store.state.UserID">
 								<div v-if="data.ReviewID == updataReviewID">
 									<div class="class_detail_rating_user_delete_reating">
@@ -492,9 +492,13 @@
 										<button @click="addUpdataReview(false)">취소</button>
 									</div>
 								</div>
-								<div class="class_detail_rating_user_delete_button" v-else>
-									<button @click="updataReviewID = data.ReviewID">수정</button>
-									<button @click="deleteClassReview(data)">삭제</button>
+								<div class="class_detail_rating_user_btn" v-else>
+									<div class="class_detail_rating_user_updated_button">
+										<button @click="updataReviewID = data.ReviewID">수정</button>
+									</div>
+									<div class="class_detail_rating_user_delete_button">
+										<button @click="deleteClassReview(data)">삭제</button>
+									</div>
 								</div>
 							</div>
 						</div>
