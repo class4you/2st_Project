@@ -206,6 +206,46 @@ class MypageController extends Controller
         }
         // ==============================================================================================
 
+        // 전체 유저 통계
+$enrollmentsFlagMonthsAllUsers = Enrollment::select(
+    DB::raw('YEAR(updated_at) as year'),
+    DB::raw('MONTH(updated_at) as month'),
+    DB::raw('SUM(EnrollmentFlg) as enrollmentFlagCount'),
+)
+->whereBetween('updated_at', [$request->yearStart, $request->yearEnd])
+->groupBy('year', 'month')  
+->get();
+
+$chaptersFlagMonthsAllUsers =  Enrollment::join('Chapter_states', 'enrollments.EnrollmentID', 'Chapter_states.EnrollmentID')
+->select(
+    DB::raw('YEAR(Chapter_states.updated_at) as year'),
+    DB::raw('MONTH(Chapter_states.updated_at) as month'),
+    DB::raw('SUM(Chapter_states.ChapterFlg) as chapterFlagCount')
+)
+->whereBetween('Chapter_states.updated_at', [$request->yearStart, $request->yearEnd])
+->groupBy('year', 'month')
+->get();
+
+// 전체 유저 통계 결과 반영
+$monthlyStatsDataAllUsers = [];
+
+for ($month = 1; $month <= 12; $month++) {
+$monthlyStatsDataAllUsers[$month] = [
+    'enrollmentFlagCount' => 0,
+    'chapterFlagCount' => 0,
+];
+}
+
+foreach ($enrollmentsFlagMonthsAllUsers as $result) {
+$month = $result->month;
+$monthlyStatsDataAllUsers[$month]['enrollmentFlagCount'] = ($monthlyStatsDataAllUsers[$month]['enrollmentFlagCount'] ?? 0) + $result->enrollmentFlagCount;
+}
+
+foreach ($chaptersFlagMonthsAllUsers as $result) {
+$month = $result->month;
+$monthlyStatsDataAllUsers[$month]['chapterFlagCount'] = $result->chapterFlagCount;
+}
+
 
         // ==============================================================================================
         // 최근 강의 결과
@@ -299,6 +339,7 @@ class MypageController extends Controller
             'flaggedChaptersCount' =>  $flaggedChaptersCount,
             'totalChaptersCount' =>  $totalChaptersCount,
             'percentageFlaggedChapters' =>  $percentageFlaggedChapters,
+            'allUsersMonthly' => $monthlyStatsDataAllUsers,
         ]);
     }
 

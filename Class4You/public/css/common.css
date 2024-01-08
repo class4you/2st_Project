@@ -5406,7 +5406,7 @@ background-color: rgba(225, 223, 234, 0.224);
     border-radius: 10px;
     display: flex;
     flex-direction: column;
-    padding: 15px 20px;
+    padding: 15px 20px 30px 20px;
 }
 
 .recent_learning_class_title_cover {
@@ -5827,7 +5827,7 @@ background-color: rgba(225, 223, 234, 0.224);
     grid-template-columns: 1fr 1fr;
     text-align: center;
     justify-content: center;
-    gap: 10px;
+    gap: 50px;
 }
 
 .month_study_class_data {
@@ -5851,6 +5851,37 @@ background-color: rgba(225, 223, 234, 0.224);
     width: 80px;
 }
 
+.month_study_class_total_cover {
+    border: 1px solid #e7e7e7;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+.month_study_class_total {
+    margin-top: 10px;
+}
+
+.month_study_class_total_box_1 {
+    text-align: center;
+    font-size: 15px;
+    padding: 10px 30px;
+    color: #fff;
+    background-color: #759eff;
+    display: inline-block;
+    border-radius: 10px;
+    font-weight: 700;
+}
+
+.month_study_class_total_box_2 {
+    text-align: center;
+    font-size: 15px;
+    padding: 10px 30px;
+    color: #fff;
+    background-color: #9391fd;
+    display: inline-block;
+    border-radius: 10px;
+    font-weight: 700;
+}
 
 
 

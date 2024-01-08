@@ -209,15 +209,20 @@
                             <div class="month_study_class_data_cover">
                                 <div class="month_study_class_data">
                                     <Bar id="my-chart-id" :options="barChartOptions" :data="barChartData"/>
+                                    <div class="month_study_class_total">
+                                        <span class="month_study_class_total_box_1">총 학습 강의 : {{ monthTotalClassCount }}</span>
+                                        <span style="opacity: 0.3; margin: 0px 10px 0px 10px;"></span>
+                                        <span class="month_study_class_total_box_2">총 학습 챕터 : {{ monthTotalChapterCount }}</span>
+                                    </div>
                                 </div>
-                                <div class="month_study_class_total_cover">
-                                <div class="month_study_class_total">
-                                    <span>총 학습 강의 : {{ monthTotalClassCount }}</span>
+                                <div class="month_study_class_data">
+                                    <Bar id="my-chart-id" :options="barChartOptions" :data="barChartData"/>
+                                    <div class="month_study_class_total">
+                                        <span class="month_study_class_total_box_1">총 학습 강의 : {{ monthTotalClassCount }}</span>
+                                        <span style="opacity: 0.3; margin: 0px 10px 0px 10px;"></span>
+                                        <span class="month_study_class_total_box_2">총 학습 챕터 : {{ monthTotalChapterCount }}</span>
+                                    </div>
                                 </div>
-                                <div class="month_study_class_total">
-                                    <span>총 학습 챕터 : {{ monthTotalChapterCount }}</span>
-                                </div>
-                            </div>
                             </div>
                         </div>
                     </div>
@@ -833,7 +838,7 @@ export default {
                 }
             })
             .then(response => {
-                // console.log(response.data);
+                console.log(response.data);
                 // console.log(response.data.userData);
                 // console.log(response.data.ClassData);
                 this.newUserInfoItems = response.data.userData;
