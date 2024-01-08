@@ -2098,25 +2098,39 @@ ul.class_tabs li.class_current {
     display: flex;
 }
 
-.class_detail_rating_user_delete_button {
+.class_detail_rating_user_btn {
     display: flex;
     gap: 10px;
 }
 
 .class_detail_rating_user_delete_button>button {
     padding: 5px 20px;
-    background-color: #cdc9c9;
+    background-color: #e20101bc;
     border-radius: 5px;
     /* border: 0.8px solid #cdc9c9; */
     border: none;
-    color: #ffffff74;
+    color: #fff;
     cursor: pointer;
+    opacity: 0.7;
+}
+
+.class_detail_rating_user_updated_button>button {
+    padding: 5px 20px;
+    background-color: #4e81f8;
+    border-radius: 5px;
+    /* border: 0.8px solid #cdc9c9; */
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    opacity: 0.7;
+}
+
+.class_detail_rating_user_updated_button>button:hover {
+    opacity: 1;
 }
 
 .class_detail_rating_user_delete_button>button:hover {
-    color: #fff;
-    background-color: #a19f9f;
-    border: none;
+    opacity: 1;
 }
 
 /* 별점 기능 */
@@ -2444,8 +2458,32 @@ ul.class_tabs li.class_current {
     font-size: 20px;
 }
 
+.class_detail_watch_side_tab1_off {
+    padding: 20px 10px;
+}
+
+.class_detail_watch_side_tab1_off span{
+    color: #222;
+    font-size: 20px;
+}
+
 .class_detail_watch_side_tab2 {
-    margin-bottom: 15px;
+    padding: 20px 10px;
+    border-bottom: 5px solid #4e81f8;
+}
+
+.class_detail_watch_side_tab2 span {
+    color: #4e81f8;
+    font-size: 20px;
+}
+
+.class_detail_watch_side_tab2_off {
+    padding: 20px 10px;
+}
+
+.class_detail_watch_side_tab2_off span {
+    color: #222;
+    font-size: 20px;
 }
 
 .class_datail_watch_side_content {
@@ -2654,8 +2692,81 @@ progress[value]::-webkit-progress-bar{
     opacity: 1;
 }
 
+/* 강의노트=========================================================================================== */
 
+.class_detail_watch_side_classnote_list {
+    background-color: #fff;
+    margin: 10px;
+    box-shadow: 0.4rem 0.8rem 2rem rgba(0,0,0,.05);
+    padding: 10px 20px;
+    border: 1px solid rgba(0,0,0,.1);
+    border-radius: 5px;
+    font-size: 16px;
+    line-height: 20px;
+}
 
+.class_detail_watch_side_classnote_list_btn {
+    display: flex;
+    justify-content: flex-end;
+    gap: 5px;
+}
+
+.class_detail_watch_side_classnote_list_btn>button {
+    padding: 3px 8px;
+    background-color: #1c3264;
+    border-radius: 5px;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    opacity: 0.7;
+}
+
+.class_detail_watch_side_classnote_list_btn>button:hover {
+    opacity: 1;
+}
+
+.class_detail_watch_side_classnote_write_div {
+    padding: 10px;
+    background-color: rgba(89 90 91 / 12%);
+}
+
+.class_detail_watch_side_classnote_write {
+    background-color: #fff;
+    padding: 10px;
+    box-shadow: 0.4rem 0.8rem 2rem rgba(0,0,0,.05);
+    border-radius: 5px;
+}
+
+.class_detail_watch_side_classnote_write_text>textarea {
+    background-color: transparent;
+    width: 100%;
+    resize: none;
+    border: none;
+    /* border: 1px solid #ededed; */
+    padding: 5px;
+    border-radius: 5px;
+    outline-color: #858484;
+    outline-width: thin;
+}
+
+.class_detail_watch_side_classnote_write_btn {
+    margin-top: 5px;
+    text-align: end;
+}
+
+.class_detail_watch_side_classnote_write_btn>button {
+    padding: 5px 10px;
+    background-color: #4e81f8;
+    border-radius: 5px;
+    border: none;
+    color: #ffffff;
+    cursor: pointer;
+    opacity: 0.7;
+}
+
+.class_detail_watch_side_classnote_write_btn>button:hover {
+    opacity: 1;
+}
 
 
 
