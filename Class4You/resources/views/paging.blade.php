@@ -1,37 +1,37 @@
-
+<div>
 @if ($paginator->hasPages())
-    <ul class="class_board_view_all_pagination">
+    <div class="class_board_view_all_pagination">
         {{-- Previous Page Link --}}
         @if ($paginator->onFirstPage())
-            <li class="class_board_view_all_pagination_li">
-                <span aria-hidden="true">&laquo;</span>
-            </li>
+            <div class="class_board_view_all_pagination_li">
+                <span aria-hidden="true">&laquo;이전</span>
+            </div>
         @else
-            <li class="class_board_view_all_pagination_li">
-                <a href="{{ $paginator->previousPageUrl() }}" rel="prev">&laquo;</a>
-            </li>
+            <div class="class_board_view_all_pagination_li">
+                <a href="{{ $paginator->previousPageUrl() }}" rel="prev">&laquo;이전</a>
+            </div>
         @endif
 
         {{-- Pagination Elements --}}
         @foreach ($elements as $element)
             {{-- "Three Dots" Separator --}}
             @if (is_string($element))
-                <li class="class_board_view_all_pagination_li">
+                <div class="class_board_view_all_pagination_li">
                     <span>{{ $element }}</span>
-                </li>
+                </div>
             @endif
 
             {{-- Array Of Links --}}
             @if (is_array($element))
                 @foreach ($element as $page => $url)
                     @if ($page == $paginator->currentPage())
-                        <li class="class_board_view_all_pagination_page" aria-current="page">
+                        <div class="class_board_view_all_pagination_page" aria-current="page">
                             <span>{{ $page }}</span>
-                        </li>
+                        </div>
                     @else
-                        <li class="class_board_view_all_pagination_page">
+                        <div class="class_board_view_all_pagination_page">
                             <a href="{{ $url }}">{{ $page }}</a>
-                        </li>
+                        </div>
                     @endif
                 @endforeach
             @endif
@@ -39,13 +39,14 @@
 
         {{-- Next Page Link --}}
         @if ($paginator->hasMorePages())
-            <li class="class_board_view_all_pagination_li">
-                <a href="{{ $paginator->nextPageUrl() }}" rel="next">&raquo;</a>
-            </li>
+            <div class="class_board_view_all_pagination_li">
+                <a href="{{ $paginator->nextPageUrl() }}" rel="next">다음&raquo;</a>
+            </div>
         @else
-            <li class="class_board_view_all_pagination_li">
-                <span aria-hidden="true">&raquo;</span>
-            </li>
+            <div class="class_board_view_all_pagination_li">
+                <span aria-hidden="true">다음&raquo;</span>
+            </div>
         @endif
-    </ul>
+    </div>
 @endif
+</div>
