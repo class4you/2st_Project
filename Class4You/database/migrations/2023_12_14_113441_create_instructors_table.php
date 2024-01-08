@@ -18,9 +18,9 @@ return new class extends Migration
             $table->string('InstructorEmail')->unique();
             $table->timestamp('UserEmail_verified_at')->nullable();
             $table->string('InstructorPassword');
-            $table->string('InstructorFullName', 50);
-            $table->string('InstructorPhoneNumber', 20);
-            $table->string('InstructorHistory', 1000);
+            $table->string('InstructorFullName', 50)->nullable();
+            $table->string('InstructorPhoneNumber', 20)->nullable();
+            $table->string('InstructorHistory', 1000)->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
