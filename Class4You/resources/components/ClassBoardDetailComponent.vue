@@ -76,7 +76,7 @@
 				<ul class="class_tabs">
 					<li @click="clickFlgTab = 0; solve = null; sortData = 0;"  class="class_tab_link current"  :class="{'class_tab_link_on': sortData == 0}" data-tab="class_tab1">강의 소개</li>
 					<li @click="clickFlgTab = 1; solve = null; sortData = 1;"  class="class_tab_link"  :class="{'class_tab_link_on': sortData == 1}" data-tab="class_tab2">수강평</li>
-					<li @click="clickFlgTab = 2; solve = null; sortData = 2;" class="class_tab_link" :class="{'class_tab_link_on': sortData == 2}" data-tab="class_tab3">커뮤니티</li>
+					<li @click="clickFlgTab = 2; solve = null; sortData = 2;" class="class_tab_link" :class="{'class_tab_link_on': sortData == 2}" data-tab="class_tab3">강의 질문</li>
 					<!-- <li @click="clickFlgTab = 3;" class="class_tab_link" data-tab="class_tab4">공지사항</li> -->
 				</ul>
 			</div>	
@@ -539,10 +539,7 @@
             <div class="class_detail_community_list">
 				<div class="class_detail_commu_view_tab">
 					<div class="class_detail_commu_tab_title">
-                        <!-- 질문게시판 클릭시 커뮤니티 질문게시판 페이지로 이동 -->
-						<span>
-                            <a href="">질문게시판</a>
-                        </span>
+						<span>VIEW</span>
 					</div>
 				</div>
 

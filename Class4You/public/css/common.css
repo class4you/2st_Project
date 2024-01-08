@@ -2216,12 +2216,12 @@ ul.class_tabs li.class_current {
 .class_detail_commu_view_tab {
     display: flex;
     padding: 10px;
-    border-bottom: 1px solid #525252;
+    border-bottom: 2px solid #002d426f;
 }
 
 .class_detail_commu_tab_title {
     margin: 10px;
-    color: #858484;
+    color: #525252;
     font-weight: bold;
 }
 
@@ -3453,7 +3453,7 @@ background-color: rgba(225, 223, 234, 0.224);
     justify-content: center;
 }
 .question_tags_button {
-    background-color: #1749ff40;
+    background-color: #eff3fa;
     margin-right: 8px;
     margin-bottom: 5px;
     padding: 4px 10px;
@@ -3461,20 +3461,20 @@ background-color: rgba(225, 223, 234, 0.224);
     height: 26px;
     border: none;
     white-space: nowrap;
-    color: #3e4042;
+    color: #525252;
     line-height: 1.38;
     font-size: 12px;
     position: relative;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    border-radius: 20px;
+    border-radius: 5px;
     font-weight: 500;
     cursor: pointer;
 }
 
 .question_tags_button_on {
-    background-color: #1749ff40;
+    background-color: #eff3fa;
     margin-right: 8px;
     margin-bottom: 5px;
     padding: 4px 10px;
@@ -3482,14 +3482,14 @@ background-color: rgba(225, 223, 234, 0.224);
     height: 26px;
     border: none;
     white-space: nowrap;
-    color: #ffffff;
+    color: #525252;
     line-height: 1.38;
     font-size: 12px;
     position: relative;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    border-radius: 20px;
+    border-radius: 5px;
     font-weight: 500;
     cursor: pointer;
 }
