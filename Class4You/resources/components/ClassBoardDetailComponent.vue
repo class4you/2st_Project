@@ -192,7 +192,7 @@
 							</summary>
 							<div v-for="(item2, item2Index) in item.lessons" class="class_tab_content_lesson_title">
 								<!-- <span>Lesson</span> -->
-								<p>lessons.{{item2Index + 1}} : {{ item2.LessonTitle }}</p>
+								<p>lessons{{item2Index + 1}}. {{ item2.LessonTitle }}</p>
 							</div>
 							<div class="class_tab_content_lesson_content">
 								<p>{{ classCuriData.LessonContent }}</p>
@@ -1132,12 +1132,12 @@ export default {
 		//수강평에 이모지 표현 함수
 		getRatingStar(rating) {
 			// console.log(rating);
-			console.log(this.classReviewData);
+			// console.log(this.classReviewData);
 			// console.log(this.classReviewData.ReviewRating);
 			// const rating = this.classReviewData.ReviewRating;
 			// return this.ratingStar[rating];
 			const starObject = this.ratingStar.find(item => item.value == rating);
-			console.log(starObject);
+			// console.log(starObject);
   			return starObject ? starObject.emoji : '';
 		},
 
