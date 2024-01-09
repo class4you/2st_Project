@@ -1260,28 +1260,30 @@ export default {
 				// 서버 응답에 대한 로직 수행
 				// this.$router.push('/board');
 				// this.reviewClassItems.unshift(res.data[0]);
+				this.updataReviewData.ReviewRating = this.classReviewData.ReviewRating;
+				this.updataReviewData = response.data;
+
 				Swal.fire({
                 icon: 'success',
                 title: '수정',
                 text: '수강평이 수정되었습니다.',
                 confirmButtonText: '확인'
 				})
+
 				// .then((result) => {
-				// 	console.log(this.updataReviewData);
-				// 	this.updataReviewID = false;
+				// 	if(this.updataReviewID === false) {
+				// 		this.updataReviewID = false;
+				// 	}
+				// 	console.log(this.updataReviewID);
 				// })
 
-				this.updataReviewData.ReviewRating = this.classReviewData.ReviewRating;
+				
+				this.updataReviewID = false;
 				// console.log(this.updataReviewData.ReviewRating);
-				this.updataReviewData = response.data;
+				
 				// console.log(this.updataReviewData);
 				// console.log(this.classReviewData.ReviewRating);
 
-				this.updataReviewID = false;
-				// this.reviewClassItems.unshift(response.data);
-				// this.reviewClassItems.push(response.data);
-				// this.updataReviewData = response.data;
-				// return response;
 			})
 			.catch(error => {
 				// 에러 처리
