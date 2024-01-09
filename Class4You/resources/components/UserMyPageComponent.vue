@@ -216,12 +216,7 @@
                                     </div>
                                 </div>
                                 <div class="month_study_class_data">
-                                    <Bar id="my-chart-id" :options="barChartOptions" :data="barChartData"/>
-                                    <div class="month_study_class_total">
-                                        <span class="month_study_class_total_box_1">총 학습 강의 : {{ monthTotalClassCount }}</span>
-                                        <span style="opacity: 0.3; margin: 0px 10px 0px 10px;"></span>
-                                        <span class="month_study_class_total_box_2">총 학습 챕터 : {{ monthTotalChapterCount }}</span>
-                                    </div>
+
                                 </div>
                             </div>
                         </div>

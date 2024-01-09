@@ -8,6 +8,7 @@ use App\Models\BoardCategory;
 use App\Models\BoardLanguagelink;
 use App\Models\Comment;
 use App\Models\User;
+use App\Models\BoardRatingState;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\DB;
@@ -258,41 +259,77 @@ class BoardController extends Controller
     }
 
     public function putBoardRecommendedUpdate(Request $request) { 
-        $boardId = $request->input('BoardID');
+        $UserID = $request->input('UserID');
+        $BoardID = $request->input('BoardID');
+
+        $userRating = BoardRatingState::where('UserID', $UserID)
+            ->where('BoardID', $BoardID)
+            ->first();
+
+            if ($userRating) {
+                $userRating->delete();
+            } else {
+                BoardRatingState::create([
+                    'UserID' => $UserID,
+                    'BoardID' => $BoardID,
+                    'BoardRating' => 1,
+                ]);
+            }
+
+        // $boardId = $request->input('BoardID');
         
-        $board = Board::find($boardId);
-        Log::debug($board);
+        // $board = Board::find($boardId);
+        // Log::debug($board);
         
         
-        if ($board) {
-            // 보드가 존재하는 경우, 추천 수를 1 증가시키고 저장
-            // 업데이트된 추천 수를 응답
-            $board->BoardRecommended += 1;
-            $board->save();
-            return response()->json(['updated_recommendation' => $board->BoardRecommended]);
-        } else {
-            // 보드가 존재하지 않는 경우
-            return response()->json(['error' => 'Board not found'], 404);
-        }
+        // if ($board) {
+        //     // 보드가 존재하는 경우, 추천 수를 1 증가시키고 저장
+        //     // 업데이트된 추천 수를 응답
+        //     $board->BoardRecommended += 1;
+        //     $board->save();
+        //     return response()->json(['updated_recommendation' => $board->BoardRecommended]);
+        // } else {
+        //     // 보드가 존재하지 않는 경우
+        //     return response()->json(['error' => 'Board not found'], 404);
+        // }
 
     }
     public function putBoardNotRecommendedUpdate(Request $request) { 
-        $boardId = $request->input('BoardID');
+
+        $UserID = $request->input('UserID');
+        $BoardID = $request->input('BoardID');
+
+        $userRating = BoardRatingState::where('UserID', $UserID)
+            ->where('BoardID', $BoardID)
+            ->first();
+
+            if ($userRating) {
+                $userRating->delete();
+            } else {
+                BoardRatingState::create([
+                    'UserID' => $UserID,
+                    'BoardID' => $BoardID,
+                    'BoardRating' => -1,
+                ]);
+            }
+
+
+        // $boardId = $request->input('BoardID');
         
-        $board = Board::find($boardId);
-        Log::debug($board);
+        // $board = Board::find($boardId);
+        // Log::debug($board);
         
         
-        if ($board) {
-            // 보드가 존재하는 경우, 비추천 수를 1 증가시키고 저장
-            // 업데이트된 추천 수를 응답
-            $board->BoardNotRecommended += 1;
-            $board->save();
-            return response()->json(['updated_recommendation' => $board->BoardRecommended]);
-        } else {
-            // 보드가 존재하지 않는 경우
-            return response()->json(['error' => 'Board not found'], 404);
-        }
+        // if ($board) {
+        //     // 보드가 존재하는 경우, 비추천 수를 1 증가시키고 저장
+        //     // 업데이트된 추천 수를 응답
+        //     $board->BoardNotRecommended += 1;
+        //     $board->save();
+        //     return response()->json(['updated_recommendation' => $board->BoardRecommended]);
+        // } else {
+        //     // 보드가 존재하지 않는 경우
+        //     return response()->json(['error' => 'Board not found'], 404);
+        // }
     }
     public function putBoardViewUpdate(Request $request) { 
         $boardId = $request->input('BoardID');
