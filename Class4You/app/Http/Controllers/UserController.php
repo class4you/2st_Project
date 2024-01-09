@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Str;
+use Laravel\Socialite\Facades\Socialite;
 
 
 class UserController extends Controller
@@ -52,7 +53,7 @@ class UserController extends Controller
 
         $userId = Auth::id();
 
-        Log::debug($userId);
+        // Log::debug($userId);
         // $token = Str::random(60);
 
         // $result->update(['remember_token' => $token]);
@@ -117,5 +118,56 @@ class UserController extends Controller
                 'message' => true,
             ]);
         }
+    }
+
+    public function kakaologin(Request $request)
+    {
+        $user = Socialite::driver('kakao')->setHttpClient(new \GuzzleHttp\Client(['verify' => false]))->user();
+
+        $userEmail = $user->email;
+        
+        $result = User::where('UserEmail', $userEmail)->first();
+
+        if ($result) {
+            Auth::login($result);
+            session(['user' => $result]);
+            session()->save();
+            $userId = Auth::id();
+
+            if (Auth::check()) {         
+                $sessionDataCheck = Auth::check();
+                return response()->json([
+                    'success' => true,
+                    'message' => '로그인이 성공적으로 수행되었습니다.',
+                    'sessionDataCheck' => $sessionDataCheck,
+                    'userId' => $userId,
+                ]);
+    
+            } else {
+                return response()->json([
+                    'success' => false,
+                    'message' => '인증 에러가 발생했습니다.',
+                ]);
+            }
+        } else {
+            session()->put('user', $userEmail);
+            return redirect('/registration');
+        }
+
+        // dd($user);
+        
+    }
+
+    public function kakaoregist()
+    {
+        // $user = Socialite::driver('kakao')->setHttpClient(new \GuzzleHttp\Client(['verify' => false]))->user();
+        // Log::debug($user->email);
+
+        $userEmail = session()->get('user');
+        session()->remove('user');
+        // dd($user);
+        return response()->json([
+            'userEmail' => $userEmail,
+        ]);
     }
 }

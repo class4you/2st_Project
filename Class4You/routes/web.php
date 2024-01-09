@@ -11,6 +11,7 @@ use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ChapterController;
 use App\Http\Controllers\EnrollmentController;
 use App\Http\Controllers\LessonController;
+use Laravel\Socialite\Facades\Socialite;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,13 +30,50 @@ Route::get('/', function () {
 });
 
 
+
 Route::middleware('my.user.validation')->post('/login', [UserController::class, 'loginpost']);
+
+Route::get('/registration', function () {
+    return view('welcome');
+});
+
+Route::get('/registrationtest', [UserController::class, 'kakaoregist']);
 
 Route::middleware('my.user.validation')->post('/registration', [UserController::class, 'store']);
 
 Route::middleware('my.user.validation')->post('/registrationEmailDoubleCheck', [UserController::class, 'emaildoublecheck']);
 
 Route::get('/logout', [UserController::class, 'logout']);
+
+
+// 네이버 로그인
+// Route::get('/login/naver', function () {
+//     return Socialite::driver('naver')->redirect();
+// });
+
+// Route::post('/login/naver/callback', function () {
+//     $user = Socialite::driver('naver')->setHttpClient(new \GuzzleHttp\Client(['verify' => false]))->user();
+//     dd($user);
+// });
+
+
+Route::get('/login/kakao', function () {
+    return Socialite::driver('kakao')->redirect();
+});
+
+// Route::post('/login/kakao/callback', function () {
+//     $user = Socialite::driver('kakao')->setHttpClient(new \GuzzleHttp\Client(['verify' => false]))->user();
+// });
+
+
+
+Route::get('/login/kakao/callback', [UserController::class, 'kakaologin']);
+
+// Route::get('/login/kakao/callback', function () {
+//     return view('welcome');
+// });
+
+
 
 // 클래스보드 테스트용
 // Route::get('/classBoard', function () {

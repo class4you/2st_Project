@@ -7,6 +7,7 @@ use App\Http\Controllers\ClassInfoController;
 use App\Http\Controllers\ClassBoardController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\BoardController;
+use Laravel\Socialite\Facades\Socialite;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,6 +23,8 @@ use App\Http\Controllers\BoardController;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+
 
 
 // Route::middleware('my.user.validation')->post('/registration', [UserController::class, 'store']);

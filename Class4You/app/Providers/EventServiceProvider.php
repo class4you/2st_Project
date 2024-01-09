@@ -15,10 +15,21 @@ class EventServiceProvider extends ServiceProvider
      * @var array<class-string, array<int, class-string>>
      */
     protected $listen = [
-        Registered::class => [
-            SendEmailVerificationNotification::class,
+        \SocialiteProviders\Manager\SocialiteWasCalled::class => [
+            // ... other providers
+            \SocialiteProviders\Kakao\KakaoExtendSocialite::class.'@handle',
         ],
     ];
+
+    // protected $listen = [
+    //     Registered::class => [
+    //         SendEmailVerificationNotification::class,
+    //     ],
+    //     \SocialiteProviders\Manager\SocialiteWasCalled::class => [
+
+    //         'SocialiteProviders\Naver\NaverExtendSocialite@handle'
+    //     ]
+    // ];
 
     /**
      * Register any events for your application.

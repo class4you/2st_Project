@@ -551,7 +551,7 @@ export default {
 
             axios.post(url, frm)
             .then(res => {
-                console.log(res.data);
+                // console.log(res.data);
                 // SweetAlert2로 성공 알림창 띄우기
                 if(res.data.message) {
                     Swal.fire({
@@ -593,6 +593,18 @@ export default {
 
     // 카카오톡 주소 찾기 API 스크립트 불러오기
     mounted() {
+
+        const url = '/registrationtest';
+        axios.get(url)
+        .then(res => {
+            console.log(res.data);
+            this.frmUserData.UserEmail = res.data.userEmail;
+        })
+        .catch(err => {
+            console.log(err);
+        })
+
+
         // 동적으로 스크립트 로드
         const script = document.createElement('script');
         script.src = 'https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js';
@@ -607,6 +619,8 @@ export default {
 
         // document.head에 스크립트 추가
         document.head.appendChild(script);
+
+
     },
 }
 </script>

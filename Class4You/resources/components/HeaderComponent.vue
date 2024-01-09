@@ -79,12 +79,13 @@
                     <span>&#124;</span> -->
                     <span><a href="/registration">회원가입 하기</a></span>
                 </div>
-                <!-- <div class="login_modal_easy_box">
+                <div class="login_modal_easy_box">
                     <p>간편 로그인</p>
                 </div>
-                <div class="login_modal_easy_login">
-
-                </div> -->
+                <div class="login_modal_button">
+                    <button type="button" @click="loginWithKakao" style="cursor: pointer;">카카오톡 로그인</button>
+                    <!-- <button type="button" @click="logoutWithKakao" style="cursor: pointer;">카카오톡 로그아웃</button> -->
+                </div>
             </div>
         </div>
 
@@ -154,6 +155,29 @@ export default {
                 this.$store.commit('setUserID', UserID);
             }
         },
+        loginWithKakao() {
+            // const url = '/login/kakao'
+            // const header = {
+            //     headers: {
+            //         "Content-Type": 'application/json',
+            //         'X-CSRF-TOKEN': document.head.querySelector('meta[name="csrf-token"]').content,
+            //     },
+            // }
+            // axios.get(url, header)
+            // .then(res => { 
+            //     console.log(res);
+            //     const userData = res.data;
+
+            // this.$store.commit('setUserData', userData);
+            // })
+            // .catch(err => {
+            //     console.error('오류 발생:', err);
+            // })
+            location.href='/login/kakao';
+        },
+        // logoutWithKakao() {
+
+        // }
     }
 }
 </script>
