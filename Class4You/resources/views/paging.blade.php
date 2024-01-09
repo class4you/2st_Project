@@ -25,7 +25,7 @@
             @if (is_array($element))
                 @foreach ($element as $page => $url)
                     @if ($page == $paginator->currentPage())
-                        <div class="class_board_view_all_pagination_page" aria-current="page">
+                        <div class="class_board_view_all_pagination_page" style="{{ $page == $paginator->currentPage() ? 'class_board_view_all_pagination_page_on' : 'class_board_view_all_pagination_page' }}" aria-current="page">
                             <span>{{ $page }}</span>
                         </div>
                     @else
