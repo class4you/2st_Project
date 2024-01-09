@@ -4,7 +4,7 @@
             {{-- Previous Page Link --}}
             @if ($paginator->onFirstPage())
                 <div class="class_board_view_all_pagination_li">
-                    <span aria-hidden="true">&laquo;이전</span>
+                    <p aria-hidden="true">&laquo;이전</p>
                 </div>
             @else
                 <div class="class_board_view_all_pagination_li">
@@ -17,7 +17,7 @@
                 {{-- "Three Dots" Separator --}}
                 @if (is_string($element))
                     <div class="class_board_view_all_pagination_li">
-                        <span>{{ $element }}</span>
+                        <p>{{ $element }}</p>
                     </div>
                 @endif
 
@@ -26,7 +26,7 @@
                     @foreach ($element as $page => $url)
                         @if ($page == $paginator->currentPage())
                             <div class="class_board_view_all_pagination_page @if ($page == $paginator->currentPage()) class_board_view_all_pagination_page_on @endif" aria-current="page">
-                                <span>{{ $page }}</span>
+                                <p>{{ $page }}</p>
                             </div>
                         @else
                             <div class="class_board_view_all_pagination_page">
@@ -44,7 +44,7 @@
                 </div>
             @else
                 <div class="class_board_view_all_pagination_li">
-                    <span aria-hidden="true">다음&raquo;</span>
+                    <p aria-hidden="true">다음&raquo;</p>
                 </div>
             @endif
         </div>

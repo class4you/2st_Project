@@ -1484,30 +1484,18 @@ th:last-child, td:last-child {
 }
 
 .class_board_view_all_pagination_page_on {
-    /* background-color: #346ba3; */
     border: 2px solid #346ba3;
     color: #fff;
     border-radius: 5px;
 }
 
 .class_board_view_all_pagination_page_on>span {
-    /* background-color: #346ba3; */
-    /* border: 1px solid #346ba3; */
     color: #000;
     border-radius: 5px;
 }
 .class_board_view_all_pagination_page_on>span:hover {
     color: #fff;
 }
-
-/* .class_board_view_all_pagination_li:hover a,
-.class_board_view_all_pagination_li:hover span,
-.class_board_view_all_pagination_page:hover a,
-.class_board_view_all_pagination_page:hover span {
-    background-color: #2c2cda51;
-    color: #fff;
-    border-radius: 5px;
-} */
 
 .class_board_view_all_pagination_page {
     margin: 0 10px;
