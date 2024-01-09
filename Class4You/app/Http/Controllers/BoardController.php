@@ -182,12 +182,23 @@ class BoardController extends Controller
             ->orderBy('comments.created_at', 'desc')
             ->get();
 
+        
+        $recommendationCount = BoardRatingState::where('BoardID', $BoardID)
+        ->where('BoardRating', 1)
+        ->count();
+
+        $disapprovalCount = BoardRatingState::where('BoardID', $BoardID)
+        ->where('BoardRating', -1)
+        ->count();
+
         // Log::debug($boardComment);
 
         return response()->json([
             'boardData' => $boardData,
             'userID' => $userData,
-            'commentData' => $boardComment
+            'commentData' => $boardComment,
+            'recommendationCount' => $recommendationCount,
+            'disapprovalCount' => $disapprovalCount,
         ]);
     }
     // 자유게시판 디테일 페이지 댓글 불러오기
@@ -265,6 +276,7 @@ class BoardController extends Controller
         $userRating = BoardRatingState::where('UserID', $UserID)
             ->where('BoardID', $BoardID)
             ->first();
+        Log::debug($userRating);
 
             if ($userRating) {
                 $userRating->delete();

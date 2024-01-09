@@ -19608,7 +19608,7 @@ __webpack_require__.r(__webpack_exports__);
     fetchData: function fetchData() {
       var _this = this;
       axios.get('/boarddetail/' + this.BoardID).then(function (response) {
-        // console.log(response.data);
+        console.log(response.data);
         _this.newBoardItem = response.data.boardData;
         _this.nowUserID = response.data.userID;
         _this.newCommentItem = response.data.commentData;
@@ -19863,7 +19863,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this7 = this;
       axios.put('/boardRecommendedUpdate', {
         BoardID: this.newBoardItem.BoardID,
-        UserID: this.newBoardItem.UserID
+        UserID: this.$store.state.UserID
       }).then(function (response) {
         // console.log(response);
         // console.log(this.newBoardItem);

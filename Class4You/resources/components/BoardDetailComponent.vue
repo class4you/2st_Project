@@ -203,7 +203,7 @@ export default {
         fetchData() {
         axios.get('/boarddetail/' + this.BoardID)
             .then(response => {
-            // console.log(response.data);
+            console.log(response.data);
                 this.newBoardItem = response.data.boardData;
                 this.nowUserID = response.data.userID;
                 this.newCommentItem = response.data.commentData;
@@ -477,7 +477,7 @@ export default {
         updateRecommendedBoardData() {
             axios.put('/boardRecommendedUpdate', {
                 BoardID : this.newBoardItem.BoardID,
-                UserID: this.newBoardItem.UserID,
+                UserID: this.$store.state.UserID,
             })
             .then(response => {
                 // console.log(response);
