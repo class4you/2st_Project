@@ -1237,58 +1237,64 @@ export default {
 			this.hovered = false;
 		},
 		addUpdataReview(data) {
-			// console.log(data);
-			this.updataReviewData = data;
-			// console.log(this.updataReviewData);
+			
+			if(data){
+				this.updataReviewData = data;
+				// console.log(this.updataReviewData);
+				// console.log(data);
+				
+				axios.put('/classboarddetailreview', {
+					ClassID : this.updataReviewData.ClassID,
+					UserID: this.updataReviewData.UserID,
+					ReviewID: this.updataReviewData.ReviewID,
+					ReviewComment: this.updataReviewData.ReviewComment,
+					ReviewRating: this.classReviewData.ReviewRating,
+					// ReviewRating: this.updataReviewData.ReviewRating,
+				})
+				.then(response => {
+					// 여기서는 백엔드 db만 데이터가 변경되는것.
+					console.log(response);
+					// console.log(this.updataReviewData);
+					// console.log(this.classReviewData);
+					// console.log(response.data);
+					// console.log(this.reviewClassItems);
+					// 서버 응답에 대한 로직 수행
+					// this.$router.push('/board');
+					// this.reviewClassItems.unshift(res.data[0]);
+					this.updataReviewData.ReviewRating = this.classReviewData.ReviewRating;
+					this.updataReviewData = response.data;
+
+					Swal.fire({
+					icon: 'success',
+					title: '수정',
+					text: '수강평이 수정되었습니다.',
+					confirmButtonText: '확인'
+					})
+
+					// .then((result) => {
+					// 	if(this.updataReviewID === false) {
+					// 		this.updataReviewID = false;
+					// 	}
+					// 	console.log(this.updataReviewID);
+					// })
+
+					
+					this.updataReviewID = false;
+					// console.log(this.updataReviewData.ReviewRating);
+					
+					// console.log(this.updataReviewData);
+					// console.log(this.classReviewData.ReviewRating);
+
+				})
+				.catch(error => {
+					// 에러 처리
+					console.error(error);
+				});
+			} else {
+				this.updataReviewID = false;
+			}
 			// console.log(data);
 			
-			axios.put('/classboarddetailreview', {
-				ClassID : this.updataReviewData.ClassID,
-				UserID: this.updataReviewData.UserID,
-				ReviewID: this.updataReviewData.ReviewID,
-				ReviewComment: this.updataReviewData.ReviewComment,
-				ReviewRating: this.classReviewData.ReviewRating,
-				// ReviewRating: this.updataReviewData.ReviewRating,
-			})
-			.then(response => {
-				// 여기서는 백엔드 db만 데이터가 변경되는것.
-				console.log(response);
-				// console.log(this.updataReviewData);
-				// console.log(this.classReviewData);
-				// console.log(response.data);
-				// console.log(this.reviewClassItems);
-				// 서버 응답에 대한 로직 수행
-				// this.$router.push('/board');
-				// this.reviewClassItems.unshift(res.data[0]);
-				this.updataReviewData.ReviewRating = this.classReviewData.ReviewRating;
-				this.updataReviewData = response.data;
-
-				Swal.fire({
-                icon: 'success',
-                title: '수정',
-                text: '수강평이 수정되었습니다.',
-                confirmButtonText: '확인'
-				})
-
-				// .then((result) => {
-				// 	if(this.updataReviewID === false) {
-				// 		this.updataReviewID = false;
-				// 	}
-				// 	console.log(this.updataReviewID);
-				// })
-
-				
-				this.updataReviewID = false;
-				// console.log(this.updataReviewData.ReviewRating);
-				
-				// console.log(this.updataReviewData);
-				// console.log(this.classReviewData.ReviewRating);
-
-			})
-			.catch(error => {
-				// 에러 처리
-				console.error(error);
-			});
 		
 		}
 	},
