@@ -1242,9 +1242,15 @@ export default {
 				ReviewID: this.updataReviewData.ReviewID,
 				ReviewComment: this.updataReviewData.ReviewComment,
 				ReviewRating: this.classReviewData.ReviewRating,
+				// ReviewRating: this.updataReviewData.ReviewRating,
 			})
 			.then(response => {
+				// 여기서는 백엔드 db만 데이터가 변경되는것.
 				console.log(response);
+				// console.log(this.updataReviewData);
+				// console.log(this.classReviewData);
+				// console.log(response.data);
+				// console.log(this.reviewClassItems);
 				// 서버 응답에 대한 로직 수행
 				// this.$router.push('/board');
 				// this.reviewClassItems.unshift(res.data[0]);
@@ -1253,9 +1259,23 @@ export default {
                 title: '수정',
                 text: '수강평이 수정되었습니다.',
                 confirmButtonText: '확인'
-				}).then((result) => {
-					this.updataReviewID = false;
 				})
+				// .then((result) => {
+				// 	console.log(this.updataReviewData);
+				// 	this.updataReviewID = false;
+				// })
+
+				this.updataReviewData.ReviewRating = this.classReviewData.ReviewRating;
+				// console.log(this.updataReviewData.ReviewRating);
+				this.updataReviewData = response.data;
+				// console.log(this.updataReviewData);
+				// console.log(this.classReviewData.ReviewRating);
+
+				this.updataReviewID = false;
+				// this.reviewClassItems.unshift(response.data);
+				// this.reviewClassItems.push(response.data);
+				// this.updataReviewData = response.data;
+				// return response;
 			})
 			.catch(error => {
 				// 에러 처리
