@@ -1947,6 +1947,10 @@ ul.class_tabs li.class_current {
     opacity: 1;
 }
 
+.class_tab_content_curriculm_title>p>svg {
+    margin-top: 12px;
+}
+
 .class_tab_content_chapter_title {
     font-size: 15px;
     font-weight: bold;
@@ -2030,11 +2034,11 @@ ul.class_tabs li.class_current {
     margin-bottom: 20px;
     padding: 20px;
     line-height: 20px;
-    
+    background-color: rgba(241, 241, 241, 0.69);
 }
 
 .class_detail_rating_form_text>textarea {
-    background-color: transparent;
+    /* background-color: transparent; */
     width: 100%;
     resize: none;
     border: 1px solid #ededed;
@@ -2184,6 +2188,7 @@ ul.class_tabs li.class_current {
 .class_detail_rating_user_btn {
     display: flex;
     gap: 10px;
+    justify-content: center;
 }
 
 .class_detail_rating_user_delete_button>button {
