@@ -33,6 +33,8 @@ Route::middleware('my.user.validation')->post('/login', [UserController::class, 
 
 Route::middleware('my.user.validation')->post('/registration', [UserController::class, 'store']);
 
+Route::middleware('my.user.validation')->post('/registrationEmailDoubleCheck', [UserController::class, 'emaildoublecheck']);
+
 Route::get('/logout', [UserController::class, 'logout']);
 
 // 클래스보드 테스트용

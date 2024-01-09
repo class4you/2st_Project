@@ -100,4 +100,22 @@ class UserController extends Controller
             'sessionDataCheck' => $sessionDataCheck,
         ]);
     }
+
+    public function emaildoublecheck(Request $request)
+    {
+
+        $userEmail = $request->input('UserEmail');
+
+        $result = User::where('UserEmail', $userEmail)->first();
+
+        if ($result) {
+            return response()->json([
+                'message' => false,
+            ]);
+        } else {
+            return response()->json([
+                'message' => true,
+            ]);
+        }
+    }
 }

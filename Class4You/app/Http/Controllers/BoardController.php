@@ -280,12 +280,14 @@ class BoardController extends Controller
 
             if ($userRating) {
                 $userRating->delete();
+                return response()->json(['message' => 0]);
             } else {
                 BoardRatingState::create([
                     'UserID' => $UserID,
                     'BoardID' => $BoardID,
                     'BoardRating' => 1,
                 ]);
+                return response()->json(['message' => 1]);
             }
 
         // $boardId = $request->input('BoardID');
@@ -317,12 +319,14 @@ class BoardController extends Controller
 
             if ($userRating) {
                 $userRating->delete();
+                return response()->json(['message' => 0]);
             } else {
                 BoardRatingState::create([
                     'UserID' => $UserID,
                     'BoardID' => $BoardID,
                     'BoardRating' => -1,
                 ]);
+                return response()->json(['message' => 1]);
             }
 
 

@@ -1,5 +1,5 @@
 const { to, set } = gsap;
-
+gsap.config({ trialWarn: false });
 gsap.registerPlugin(MorphSVGPlugin);
 
 document.querySelectorAll(".high-five").forEach((element) => {

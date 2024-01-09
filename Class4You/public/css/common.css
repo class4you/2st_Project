@@ -1128,6 +1128,21 @@ th:last-child, td:last-child {
     margin-top: 5px;
 }
 
+.email_double_check {
+    position: relative; 
+    right: 45px; 
+    width: 80px; 
+    border: 1px solid #83838360; 
+    background-color: #000; 
+    color: #fff;
+    cursor: pointer;
+    transition: opacity 0.3s ease; /* 트랜지션 속성 추가 */
+    opacity: 1;
+}
+
+.email_double_check:hover {
+    opacity: 1;
+}
 
 @media screen and (max-width: 1200px) {
     .regist_table {
@@ -3732,7 +3747,7 @@ background-color: rgba(225, 223, 234, 0.224);
 .jcS{-webkit-box-pack: start; -ms-flex-pack: start; justify-content: flex-start;}
 .jcE{-webkit-box-pack: end; -ms-flex-pack: end; justify-content: flex-end;}
 .jcC{-webkit-box-pack: center; -ms-flex-pack: center; justify-content: center;font-size: 15px;
-    font-weight: 500; }
+    font-weight: 500; gap: 20px; }
 .jcB{-webkit-box-pack: justify; -ms-flex-pack: justify; justify-content: space-between;}
 .aiS{-webkit-box-align: start; -ms-flex-align: start; align-items: flex-start;} 
 .aiE{-webkit-box-align: end; -ms-flex-align: end; align-items: flex-end;}
@@ -4334,7 +4349,7 @@ background-color: rgba(225, 223, 234, 0.224);
 .laguage li:last-child{
     margin-right: 0;
 }
-.reco > div{
+/* .reco > div{
     margin: 0 20px;
 }
 .reco p{
@@ -4343,12 +4358,8 @@ background-color: rgba(225, 223, 234, 0.224);
     font-weight: 700;
 }
 .reco button{
-    width: 40px;
-    height: 40px;
     border-radius: 50%;
     border: none;
-    /* background-color:#346ba3 ; */
-    /* border: 1px solid #000; */
     cursor: pointer;
     background-color: transparent;
 }
@@ -4361,7 +4372,7 @@ background-color: rgba(225, 223, 234, 0.224);
 .reco button svg:hover {
     color: #1749ffa8;
     opacity: 1;
-}
+} */
 .reviewBox {
     width: 100%;
     padding: 10px 0px;
@@ -7130,4 +7141,122 @@ footer {
     stroke-dasharray: 12 12;
     stroke-dashoffset: -12;
   }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.high-five {
+    --hands-x: 4px;
+    --hands-o: 0;
+    --success-clip: 0%;
+    --success-o: 0;
+    --success-text-o: 0;
+    /* font-family: "Poppins", Arial; */
+    font-size: 16px;
+    font-weight: 800;
+    -webkit-appearance: none;
+       -moz-appearance: none;
+            appearance: none;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    color: #ff7576;
+    background-color: #fff;
+    border: none;
+    border: 1px solid  #ff757562;
+    outline: none;
+    /* padding: 12px 0; */
+    width: 124px;
+    height: 40px;
+    text-align: center;
+    position: relative;
+    /* line-height: 20px; */
+    box-shadow: 0px 4px 16px rgba(255, 146, 149, 0.1), 0px 1px 2px rgba(255, 146, 149, 0.1);
+    border-radius: 7px;
+    transform: translateZ(0);
+    transition: transform 0.15s, background-color 0.15s;
+  }
+  .high-five:active {
+    transform: scale(0.98, 0.97) translateZ(0);
+  }
+  .high-five .hands {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    opacity: var(--hands-o);
+    pointer-events: none;
+  }
+  .high-five .hands svg {
+    display: block;
+    width: 32px;
+    height: 36px;
+    fill: #fff;
+    stroke-width: 1.5;
+    stroke: currentColor;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    transition: fill 0.15s;
+  }
+  .high-five .hands svg ellipse {
+    stroke: none;
+  }
+  .high-five .hands svg.left {
+    position: relative;
+    z-index: 1;
+    transform: translateX(var(--hands-x));
+  }
+  .high-five .hands svg.right {
+    transform: translateX(calc(var(--hands-x) * -1)) scaleX(-1);
+  }
+  .high-five .success {
+    background-color: #ff7576;
+    color: #fff;
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    padding: inherit;
+    border-radius: inherit;
+    overflow: hidden;
+    -webkit-clip-path: circle(var(--success-clip));
+            clip-path: circle(var(--success-clip));
+    opacity: var(--success-o);
+    transition: background-color 0.15s;
+  }
+  .high-five .success span {
+    opacity: var(--success-text-o);
+  }
+  .high-five:hover {
+    background-color: #fffcfc;
+  }
+  .high-five:hover .hands svg {
+    fill: #fffcfc;
+  }
+  .high-five:hover .success {
+    background-color: #fe6c6d;
+  }
+
+.like_button_color {
+    color: #7371fc;
+    border: 1px solid  #7371fc5b;
+}
+
+.like_button_color .like_button_bg_color {
+    background-color: #7371fc;
+}
+
+.like_button_color:hover .like_button_bg_color {
+    background-color: #7371fc;
 }
