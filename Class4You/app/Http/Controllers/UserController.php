@@ -135,13 +135,14 @@ class UserController extends Controller
             $userId = Auth::id();
 
             if (Auth::check()) {         
-                $sessionDataCheck = Auth::check();
-                return response()->json([
-                    'success' => true,
-                    'message' => '로그인이 성공적으로 수행되었습니다.',
-                    'sessionDataCheck' => $sessionDataCheck,
-                    'userId' => $userId,
-                ]);
+                // $sessionDataCheck = Auth::check();
+                // return response()->json([
+                //     'success' => true,
+                //     'message' => '로그인이 성공적으로 수행되었습니다.',
+                //     'sessionDataCheck' => $sessionDataCheck,
+                //     'userId' => $userId,
+                // ]);
+                return redirect('/');
     
             } else {
                 return response()->json([
@@ -170,4 +171,29 @@ class UserController extends Controller
             'userEmail' => $userEmail,
         ]);
     }
+
+    public function getuserdata()
+    {
+        if (Auth::check()) {
+            $userId = Auth::id();
+            $sessionDataCheck = Auth::check();
+            return response()->json([
+                'success' => true,
+                'message' => '로그인이 성공적으로 수행되었습니다.',
+                'sessionDataCheck' => $sessionDataCheck,
+                'userId' => $userId,
+            ]);
+        }
+
+    }
+
+    // public function kakaologout()
+    // {
+    //     Auth::logout();
+
+    //     // dd($request);
+    //     return redirect('/');
+    // }
+
+    
 }

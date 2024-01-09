@@ -183,6 +183,7 @@
 import { defineComponent } from "vue";
 import { Carousel, Pagination, Slide, Navigation } from "vue3-carousel";
 import axios from 'axios'
+import Swal from 'sweetalert2';
 
 import "vue3-carousel/dist/carousel.css"; 
 
@@ -257,6 +258,16 @@ export default {
             .then(response => {
                 // console.log(response.data);
                 this.newClassItems = response.data;
+                return axios.get('/getUserData');
+            })
+            .then(response2 => {
+                if (response2.data.success) {
+                    console.log(response2);
+                    this.$store.commit('setSaveToLocalStorage', response2.data);
+                    this.$store.commit('setUserLoginChk', response2.data.sessionDataCheck);
+                    this.$store.commit('setUserID', response2.data.userId);
+                }
+
             })
             .catch(error => {
                 console.error('Error fetching data:', error);

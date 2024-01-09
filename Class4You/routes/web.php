@@ -69,6 +69,10 @@ Route::get('/login/kakao', function () {
 
 Route::get('/login/kakao/callback', [UserController::class, 'kakaologin']);
 
+Route::get('/getUserData', [UserController::class, 'getuserdata']);
+
+// Route::get('/logout/kakao/callback', [UserController::class, 'kakaologout']);
+
 // Route::get('/login/kakao/callback', function () {
 //     return view('welcome');
 // });

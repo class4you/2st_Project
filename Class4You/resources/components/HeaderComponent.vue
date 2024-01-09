@@ -31,6 +31,7 @@
                     <!-- <li><a href="">신규 강의</a></li> -->
                     <li>|</li>
                     <li><a href="/board">커뮤니티</a></li>
+                    <!-- <button type="button" @click="logoutWithKakao" style="cursor: pointer;">카카오톡 로그아웃</button> -->
                 </ul>
                 <h1>
                     <a href="/">
@@ -84,7 +85,7 @@
                 </div>
                 <div class="login_modal_button">
                     <button type="button" @click="loginWithKakao" style="cursor: pointer;">카카오톡 로그인</button>
-                    <!-- <button type="button" @click="logoutWithKakao" style="cursor: pointer;">카카오톡 로그아웃</button> -->
+                    
                 </div>
             </div>
         </div>
@@ -175,9 +176,9 @@ export default {
             // })
             location.href='/login/kakao';
         },
-        // logoutWithKakao() {
-
-        // }
+        logoutWithKakao() {
+            location.href='/logout/kakao/callback';
+        }
     }
 }
 </script>
