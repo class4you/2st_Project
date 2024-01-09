@@ -184,7 +184,13 @@
 
 					<div v-for="item in allLessonsData" id="class_tab1" class="class_tab_curri_div">
 						<details class="class_tab_content_curriculum">
-							<summary class="class_tab_content_curriculm_title" style="margin: 10px 0px;">
+							<summary class="class_tab_content_curriculm_title" style="margin: 10px 0px; display: flex;">
+								<p>
+									<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" preserveAspectRatio="none" fill="currentColor" class="bi bi-box-arrow-down" viewBox="0 0 16 16">
+  										<path fill-rule="evenodd" d="M3.5 10a.5.5 0 0 1-.5-.5v-8a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 .5.5v8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 0 0 1h2A1.5 1.5 0 0 0 14 9.5v-8A1.5 1.5 0 0 0 12.5 0h-9A1.5 1.5 0 0 0 2 1.5v8A1.5 1.5 0 0 0 3.5 11h2a.5.5 0 0 0 0-1h-2z"/>
+  										<path fill-rule="evenodd" d="M7.646 15.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 14.293V5.5a.5.5 0 0 0-1 0v8.793l-2.146-2.147a.5.5 0 0 0-.708.708l3 3z"/>
+									</svg>
+								</p>
 								<span class="class_tab_content_chapter_title">Charpter.</span>
 								<span class="class_tab_content_chapter_title" style="margin-left: 5px;">
 									{{ item.ChapterTitle }}
@@ -192,7 +198,7 @@
 							</summary>
 							<div v-for="(item2, item2Index) in item.lessons" class="class_tab_content_lesson_title">
 								<!-- <span>Lesson</span> -->
-								<p>lessons.{{item2Index + 1}} : {{ item2.LessonTitle }}</p>
+								<p>lessons{{item2Index + 1}}. {{ item2.LessonTitle }}</p>
 							</div>
 							<div class="class_tab_content_lesson_content">
 								<p>{{ classCuriData.LessonContent }}</p>
@@ -1132,12 +1138,12 @@ export default {
 		//수강평에 이모지 표현 함수
 		getRatingStar(rating) {
 			// console.log(rating);
-			console.log(this.classReviewData);
+			// console.log(this.classReviewData);
 			// console.log(this.classReviewData.ReviewRating);
 			// const rating = this.classReviewData.ReviewRating;
 			// return this.ratingStar[rating];
 			const starObject = this.ratingStar.find(item => item.value == rating);
-			console.log(starObject);
+			// console.log(starObject);
   			return starObject ? starObject.emoji : '';
 		},
 
@@ -1242,9 +1248,15 @@ export default {
 				ReviewID: this.updataReviewData.ReviewID,
 				ReviewComment: this.updataReviewData.ReviewComment,
 				ReviewRating: this.classReviewData.ReviewRating,
+				// ReviewRating: this.updataReviewData.ReviewRating,
 			})
 			.then(response => {
+				// 여기서는 백엔드 db만 데이터가 변경되는것.
 				console.log(response);
+				// console.log(this.updataReviewData);
+				// console.log(this.classReviewData);
+				// console.log(response.data);
+				// console.log(this.reviewClassItems);
 				// 서버 응답에 대한 로직 수행
 				// this.$router.push('/board');
 				// this.reviewClassItems.unshift(res.data[0]);
@@ -1253,9 +1265,23 @@ export default {
                 title: '수정',
                 text: '수강평이 수정되었습니다.',
                 confirmButtonText: '확인'
-				}).then((result) => {
-					this.updataReviewID = false;
 				})
+				// .then((result) => {
+				// 	console.log(this.updataReviewData);
+				// 	this.updataReviewID = false;
+				// })
+
+				this.updataReviewData.ReviewRating = this.classReviewData.ReviewRating;
+				// console.log(this.updataReviewData.ReviewRating);
+				this.updataReviewData = response.data;
+				// console.log(this.updataReviewData);
+				// console.log(this.classReviewData.ReviewRating);
+
+				this.updataReviewID = false;
+				// this.reviewClassItems.unshift(response.data);
+				// this.reviewClassItems.push(response.data);
+				// this.updataReviewData = response.data;
+				// return response;
 			})
 			.catch(error => {
 				// 에러 처리

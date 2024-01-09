@@ -1947,18 +1947,26 @@ ul.class_tabs li.class_current {
     opacity: 1;
 }
 
+.class_tab_content_curriculm_title>p>svg {
+    margin-top: 12px;
+}
+
 .class_tab_content_chapter_title {
     font-size: 15px;
     font-weight: bold;
     padding: 5px 10px;
     border-radius: 3px;
-    background-color: #6a8ee3;
-    color: #fff;
+    /* background-color: #6a8ee3; */
+    color: #525252;
 }
 
 .class_tab_content_lesson_title {
     /* padding: 10px; */
     display: flex;
+    background-color: #fff;
+    margin-bottom: 10px;
+    border-radius: 3px;
+    border: 1px solid #E9ECEF;
 }
 
 .class_tab_content_lesson_title>span {
@@ -1970,16 +1978,17 @@ ul.class_tabs li.class_current {
     margin: 10px 0;
     padding: 0px 15px;
     line-height: 30px;
-    /* display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(50% , auto));
-    align-items: center; */
+    background-color: #f8f9fa;
+    border-radius: 5px;
+    border: 1px solid #E9ECEF;
+    width: 50%;
 }
 
 .class_tab_content_lesson_title>p {
     font-size: 13px;
     margin-left: 10px;
     padding: 10px;
-    border-bottom: 1px solid #d7d7d7;
+    /* border-bottom: 1px solid #d7d7d7; */
     
 }
 
@@ -2025,11 +2034,11 @@ ul.class_tabs li.class_current {
     margin-bottom: 20px;
     padding: 20px;
     line-height: 20px;
-    
+    background-color: rgba(241, 241, 241, 0.69);
 }
 
 .class_detail_rating_form_text>textarea {
-    background-color: transparent;
+    /* background-color: transparent; */
     width: 100%;
     resize: none;
     border: 1px solid #ededed;
@@ -2179,6 +2188,7 @@ ul.class_tabs li.class_current {
 .class_detail_rating_user_btn {
     display: flex;
     gap: 10px;
+    justify-content: center;
 }
 
 .class_detail_rating_user_delete_button>button {
