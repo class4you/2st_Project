@@ -570,7 +570,8 @@
 					<div v-for="data in reviewClassItems" :key="data.ReviewID" id="class_tab1" class="class_detail_rating_list_div class_tab_content_div">
 						<div class="class_detail_rating_list_user">
 							<div class="class_detail_rating_user_id">
-								<p>{{ hideEmail(data.UserEmail) }} | {{ data.ReviewRating }}점</p>
+								<p>{{ hideEmail(data.UserEmail) }} |</p>
+								<p class="class_detail_rating_review_data">{{ getRatingStar(data.ReviewRating) }}</p>
 							</div>
 							<div class="class_detail_rating_user_date">
 								<p>{{ data.created_at }}</p>
@@ -975,6 +976,13 @@ export default {
 			allLessonsData: {},
 			updataReviewData: {},
 			updataReviewID: {},
+			ratingStar: [
+				{ value: 1.0, emoji: '⭐' },
+				{ value: 2.0, emoji: '⭐⭐' },
+				{ value: 3.0, emoji: '⭐⭐⭐' },
+				{ value: 4.0, emoji: '⭐⭐⭐⭐' },
+				{ value: 5.0, emoji: '⭐⭐⭐⭐⭐' },
+			],
         }
     },
 	mounted() {
@@ -1119,6 +1127,18 @@ export default {
 			const username = email.substring(0, Math.min(4, atIndex));
 			const asterisks = '*'.repeat(atIndex - 4);
 			return username + asterisks;
+		},
+
+		//수강평에 이모지 표현 함수
+		getRatingStar(rating) {
+			// console.log(rating);
+			console.log(this.classReviewData);
+			// console.log(this.classReviewData.ReviewRating);
+			// const rating = this.classReviewData.ReviewRating;
+			// return this.ratingStar[rating];
+			const starObject = this.ratingStar.find(item => item.value == rating);
+			console.log(starObject);
+  			return starObject ? starObject.emoji : '';
 		},
 
 		// 수강평 삭제 함수

@@ -1468,6 +1468,23 @@ th:last-child, td:last-child {
     border-radius: 5px;
 }
 
+.class_board_view_all_pagination_page_on {
+    /* background-color: #346ba3; */
+    border: 2px solid #346ba3;
+    color: #fff;
+    border-radius: 5px;
+}
+
+.class_board_view_all_pagination_page_on>span {
+    /* background-color: #346ba3; */
+    /* border: 1px solid #346ba3; */
+    color: #000;
+    border-radius: 5px;
+}
+.class_board_view_all_pagination_page_on>span:hover {
+    color: #fff;
+}
+
 /* .class_board_view_all_pagination_li:hover a,
 .class_board_view_all_pagination_li:hover span,
 .class_board_view_all_pagination_page:hover a,
@@ -2078,6 +2095,13 @@ ul.class_tabs li.class_current {
 .class_detail_rating_user_id {
     font-weight: 700;
     color: #0000007e;
+    display: flex;
+}
+
+.class_detail_rating_review_data {
+    margin-left: 5px;
+    color: transparent;
+    text-shadow: 0 0 0 #FFC83D;
 }
 
 .class_detail_rating_list_text {
