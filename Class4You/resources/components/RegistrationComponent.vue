@@ -205,9 +205,13 @@
                             <tr>
                                 <th><label for="email">email</label><span style="color: red;">*</span></th>
                                 <td>
-                                    <input type="text" id="email" name="UserEmail" v-model="frmUserData.UserEmail" @input="validateUserEmail" placeholder="이메일을 입력해주세요">
+                                    <div style="display: flex;">
+                                        <input type="text" id="email" name="UserEmail" v-model="frmUserData.UserEmail" @input="validateUserEmail" placeholder="이메일을 입력해주세요">
+                                        <button @click="postEmailDoubleCheck()" class="email_double_check"><span>중복 확인</span></button>
+                                    </div>
                                     <div class="error_message" v-if="errors.UserEmail">{{ errors.UserEmail }}</div>
-                                    <div class="success_message" v-else-if="!errors.UserEmail && frmUserData.UserEmail">유효한 이메일입니다.</div>
+                                    <div class="success_message" v-else-if="!errors.UserEmail && frmUserData.UserEmail && EmailDoubleCheck">유효한 이메일입니다.</div>
+                                    <div class="error_message" v-else-if="!EmailDoubleCheck">{{ EmailDoubleerror }}</div>
                                     <div class="error_message" v-else-if="RegistrationErrorMessage.UserEmail">{{ RegistrationErrorMessage.UserEmail }}</div>
                                 </td>
                             </tr>
@@ -344,6 +348,10 @@ export default {
                 UserTermsofUse: '',
                 UserPrivacy: '',
             },
+
+            EmailDoubleCheck: false,
+
+            EmailDoubleerror: '',
         }
     },
     methods: {
@@ -404,41 +412,51 @@ export default {
             frm.append('UserDetailedAddress', this.frmUserAddressData.UserDetailedAddress);
             frm.append('UserTermsofUse', this.frmUserData.UserTermsofUse);
             frm.append('UserPrivacy', this.frmUserData.UserPrivacy);
-
-            axios.post(url, frm, header)
-            .then(res => {
-                // SweetAlert2로 성공 알림창 띄우기
-                Swal.fire({
-                icon: 'success',
-                title: '회원가입이 완료되었습니다.',
-                confirmButtonText: '확인',
-                }).then(() => {
-                // 페이지 이동
-                this.$router.push('/');
+            if(this.EmailDoubleCheck) {
+                axios.post(url, frm, header)
+                .then(res => {
+                    // SweetAlert2로 성공 알림창 띄우기
+                    Swal.fire({
+                    icon: 'success',
+                    title: '회원가입이 완료되었습니다.',
+                    confirmButtonText: '확인',
+                    }).then(() => {
+                    // 페이지 이동
+                    this.$router.push('/');
+                    });
+                })
+                .catch(err => {
+                    if (err.response.data.errors) {
+                    // SweetAlert2로 에러 메시지 띄우기
+                    Swal.fire({
+                        icon: 'error',
+                        title: '에러',
+                        text: '회원가입에 실패하였습니다. 다시 시도해주세요.',
+                        confirmButtonText: '확인',
+                    });
+                    // 에러 메시지를 컴포넌트의 상태에 저장
+                    this.RegistrationErrorMessage = err.response.data.errors;
+                    } else {
+                    // 예상치 못한 다른 종류의 에러 처리
+                    console.error('Unexpected error:', err);
+                    }
                 });
-            })
-            .catch(err => {
-                if (err.response.data.errors) {
-                // SweetAlert2로 에러 메시지 띄우기
+            } else {
                 Swal.fire({
                     icon: 'error',
-                    title: '에러',
-                    text: '회원가입에 실패하였습니다. 다시 시도해주세요.',
+                    title: '이메일 중복 체크를 해주세요.',
                     confirmButtonText: '확인',
-                });
-                // 에러 메시지를 컴포넌트의 상태에 저장
-                this.RegistrationErrorMessage = err.response.data.errors;
-                } else {
-                // 예상치 못한 다른 종류의 에러 처리
-                console.error('Unexpected error:', err);
-                }
-            });
+                })
+            }
+            
         },
         validateUserEmail() {
             if (!this.frmUserData.UserEmail.match(/^\S+@\S+\.\S+$/)) {
                 this.errors.UserEmail = '이메일 양식이 맞지 않습니다.';
+                this.EmailDoubleCheck = null;
             } else {
                 this.errors.UserEmail = '';
+                this.EmailDoubleCheck = null;
             }
         },
         validateUserPassword() {
@@ -525,6 +543,52 @@ export default {
 
             // this.frmUserData.UserAddress = `${this.sampleData.postcode} ${this.sampleData.roadAddress}`;
         },
+        postEmailDoubleCheck() {
+            const url = '/registrationEmailDoubleCheck';
+
+            let frm = new FormData();
+            frm.append('UserEmail', this.frmUserData.UserEmail);
+
+            axios.post(url, frm)
+            .then(res => {
+                console.log(res.data);
+                // SweetAlert2로 성공 알림창 띄우기
+                if(res.data.message) {
+                    Swal.fire({
+                    icon: 'success',
+                    title: '사용 가능한 이메일입니다.',
+                    confirmButtonText: '확인',
+                    }).then(() => {
+                        this.EmailDoubleCheck = true;
+                    });
+                } else if (res.data.message === false) {
+                    this.EmailDoubleerror = '이미 존재하는 이메일입니다.'
+                    Swal.fire({
+                    icon: 'error',
+                    title: '이미 존재하는 이메일입니다.',
+                    confirmButtonText: '확인',
+                    }).then(() => {
+                        this.EmailDoubleCheck = false;
+                    });
+                }
+            })
+            .catch(err => {
+                if (err.response.data.errors) {
+                // SweetAlert2로 에러 메시지 띄우기
+                Swal.fire({
+                    icon: 'error',
+                    title: '에러',
+                    text: '중복 확인에 실패하였습니다.',
+                    confirmButtonText: '확인',
+                });
+                // 에러 메시지를 컴포넌트의 상태에 저장
+                this.RegistrationErrorMessage = err.response.data.errors;
+                } else {
+                // 예상치 못한 다른 종류의 에러 처리
+                console.error('Unexpected error:', err);
+                }
+            });
+        }
     },
 
     // 카카오톡 주소 찾기 API 스크립트 불러오기

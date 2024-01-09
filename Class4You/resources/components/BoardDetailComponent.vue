@@ -56,14 +56,63 @@
                             </ul> -->
                         </div>
                         <div class="reco row jcC">
-                            <div class="row aiC cibal_class_name_jangnan">
-                                <p>{{newBoardItem.BoardRecommended}}</p>추천
+                            <!-- <div class="row aiC cibal_class_name_jangnan">
+                                <p>{{recommendationCount}}</p>추천
                                 <button type="button" @click="updateRecommendedBoardData()"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-hand-thumbs-up-fill" viewBox="0 0 16 16"><path d="M6.956 1.745C7.021.81 7.908.087 8.864.325l.261.066c.463.116.874.456 1.012.965.22.816.533 2.511.062 4.51a9.84 9.84 0 0 1 .443-.051c.713-.065 1.669-.072 2.516.21.518.173.994.681 1.2 1.273.184.532.16 1.162-.234 1.733.058.119.103.242.138.363.077.27.113.567.113.856 0 .289-.036.586-.113.856-.039.135-.09.273-.16.404.169.387.107.819-.003 1.148a3.163 3.163 0 0 1-.488.901c.054.152.076.312.076.465 0 .305-.089.625-.253.912C13.1 15.522 12.437 16 11.5 16H8c-.605 0-1.07-.081-1.466-.218a4.82 4.82 0 0 1-.97-.484l-.048-.03c-.504-.307-.999-.609-2.068-.722C2.682 14.464 2 13.846 2 13V9c0-.85.685-1.432 1.357-1.615.849-.232 1.574-.787 2.132-1.41.56-.627.914-1.28 1.039-1.639.199-.575.356-1.539.428-2.59z"/></svg></button>
-                            </div>
-                            <div class="row aiC cibal_class_name_jangnan">
+                            </div> -->
+                            <button @click="updateRecommendedBoardData()" class="high-five like_button_color">
+                                <span>좋아요 : {{recommendationCount}}</span>
+                                <div class="hands">
+                                    <svg class="left" viewBox="0 0 32 36">
+                                    <ellipse cx="14" cy="13" rx="9" ry="11" />
+                                    <path
+                                        d="M16.0011 5.5C15.5011 3.5 13.5012 4 12.5012 5.5C11.5012 7 9.5 14 9.75 20M16.0011 5.5C14.9998 8 13.9981 12 13.9994 16.5M16.0011 5.5C16.5011 4.5 17.5646 2.5 18.4994 2.5C19.737 2.5 20.7439 3.28645 20.5011 4.5M23.4981 7.5C23.4981 7.5 21.9994 12 21.9994 16M23.4981 7.5C24.9981 5.5 27.0011 7 27.0011 8.5C26.7527 10.9503 25.2188 11.8879 25.4985 25.5C25.6052 30.6943 21.6939 34 16.4985 34C11.5003 34 6.59828 29.4598 6.0011 23.5C5.5001 18.5 6.64678 15.1392 7.50115 14C9.00115 12 9.51575 14.5859 9.50102 16C9.48502 17.5364 9.65 20 9.65 20M23.4981 7.5C24 6 23.5 2.5 20.5011 4.5M20.5011 4.5C19.0011 8 17.9994 11.5 17.9994 16.5"
+                                    />
+                                    </svg>
+                                    <svg class="right" viewBox="0 0 32 36">
+                                    <ellipse cx="14" cy="13" rx="9" ry="11" />
+                                    <path
+                                        d="M16.0011 5.5C15.5011 3.5 13.5012 4 12.5012 5.5C11.5012 7 9.5 14 9.75 20M16.0011 5.5C14.9998 8 13.9981 12 13.9994 16.5M16.0011 5.5C16.5011 4.5 17.5646 2.5 18.4994 2.5C19.737 2.5 20.7439 3.28645 20.5011 4.5M23.4981 7.5C23.4981 7.5 21.9994 12 21.9994 16M23.4981 7.5C24.9981 5.5 27.0011 7 27.0011 8.5C26.7527 10.9503 25.2188 11.8879 25.4985 25.5C25.6052 30.6943 21.6939 34 16.4985 34C11.5003 34 6.59828 29.4598 6.0011 23.5C5.5001 18.5 6.64678 15.1392 7.50115 14C9.00115 12 9.51575 14.5859 9.50102 16C9.48502 17.5364 9.65 20 9.65 20M23.4981 7.5C24 6 23.5 2.5 20.5011 4.5M20.5011 4.5C19.0011 8 17.9994 11.5 17.9994 16.5"
+                                    />
+                                    </svg>
+                                </div>
+                                <div class="success like_button_bg_color"><span style="line-height: 38px;">{{recommendationCount}}</span></div>
+                            </button>
+                            <button @click="updateNotRecommendedBoardData()" class="high-five">
+                                <span>싫어요 : {{disapprovalCount}}</span>
+                                <div class="hands">
+                                    <svg class="left" viewBox="0 0 32 36">
+                                    <ellipse cx="14" cy="13" rx="9" ry="11" />
+                                    <path
+                                        d="M16.0011 5.5C15.5011 3.5 13.5012 4 12.5012 5.5C11.5012 7 9.5 14 9.75 20M16.0011 5.5C14.9998 8 13.9981 12 13.9994 16.5M16.0011 5.5C16.5011 4.5 17.5646 2.5 18.4994 2.5C19.737 2.5 20.7439 3.28645 20.5011 4.5M23.4981 7.5C23.4981 7.5 21.9994 12 21.9994 16M23.4981 7.5C24.9981 5.5 27.0011 7 27.0011 8.5C26.7527 10.9503 25.2188 11.8879 25.4985 25.5C25.6052 30.6943 21.6939 34 16.4985 34C11.5003 34 6.59828 29.4598 6.0011 23.5C5.5001 18.5 6.64678 15.1392 7.50115 14C9.00115 12 9.51575 14.5859 9.50102 16C9.48502 17.5364 9.65 20 9.65 20M23.4981 7.5C24 6 23.5 2.5 20.5011 4.5M20.5011 4.5C19.0011 8 17.9994 11.5 17.9994 16.5"
+                                    />
+                                    </svg>
+                                    <svg class="right" viewBox="0 0 32 36">
+                                    <ellipse cx="14" cy="13" rx="9" ry="11" />
+                                    <path
+                                        d="M16.0011 5.5C15.5011 3.5 13.5012 4 12.5012 5.5C11.5012 7 9.5 14 9.75 20M16.0011 5.5C14.9998 8 13.9981 12 13.9994 16.5M16.0011 5.5C16.5011 4.5 17.5646 2.5 18.4994 2.5C19.737 2.5 20.7439 3.28645 20.5011 4.5M23.4981 7.5C23.4981 7.5 21.9994 12 21.9994 16M23.4981 7.5C24.9981 5.5 27.0011 7 27.0011 8.5C26.7527 10.9503 25.2188 11.8879 25.4985 25.5C25.6052 30.6943 21.6939 34 16.4985 34C11.5003 34 6.59828 29.4598 6.0011 23.5C5.5001 18.5 6.64678 15.1392 7.50115 14C9.00115 12 9.51575 14.5859 9.50102 16C9.48502 17.5364 9.65 20 9.65 20M23.4981 7.5C24 6 23.5 2.5 20.5011 4.5M20.5011 4.5C19.0011 8 17.9994 11.5 17.9994 16.5"
+                                    />
+                                    </svg>
+                                </div>
+                                <div class="success"><span style="line-height: 38px;">{{disapprovalCount}}</span></div>
+                            </button>
+                            <!-- <div>
+                                <button @click="updateNotRecommendedBoardData()" class="button-star">
+                                    <canvas></canvas>
+                                    <div class="label">
+                                        <span class="default">비추<span class="success"> 완료</span></span>
+                                    </div>
+                                    <div class="number">
+                                        <span class="current">{{disapprovalCount}}</span>
+                                        <span class="new">{{disapprovalCount + 1}}</span>
+                                        <div class="add">+1</div>
+                                    </div>
+                                </button>
+                            </div> -->
+                            <!-- <div class="row aiC cibal_class_name_jangnan">
                                 <button type="button" @click="updateNotRecommendedBoardData()"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-hand-thumbs-down-fill" viewBox="0 0 16 16"><path d="M6.956 14.534c.065.936.952 1.659 1.908 1.42l.261-.065a1.378 1.378 0 0 0 1.012-.965c.22-.816.533-2.512.062-4.51.136.02.285.037.443.051.713.065 1.669.071 2.516-.211.518-.173.994-.68 1.2-1.272a1.896 1.896 0 0 0-.234-1.734c.058-.118.103-.242.138-.362.077-.27.113-.568.113-.856 0-.29-.036-.586-.113-.857a2.094 2.094 0 0 0-.16-.403c.169-.387.107-.82-.003-1.149a3.162 3.162 0 0 0-.488-.9c.054-.153.076-.313.076-.465a1.86 1.86 0 0 0-.253-.912C13.1.757 12.437.28 11.5.28H8c-.605 0-1.07.08-1.466.217a4.823 4.823 0 0 0-.97.485l-.048.029c-.504.308-.999.61-2.068.723C2.682 1.815 2 2.434 2 3.279v4c0 .851.685 1.433 1.357 1.616.849.232 1.574.787 2.132 1.41.56.626.914 1.28 1.039 1.638.199.575.356 1.54.428 2.591z"/></svg></button>
-                                비추천<p>{{newBoardItem.BoardNotRecommended}}</p>
-                            </div>
+                                비추천<p>{{disapprovalCount}}</p>
+                            </div> -->
                         </div>
                         <div class="board_button">
                             <div v-if="newBoardItem.UserID == $store.state.UserID"  class="row aiC">
@@ -139,6 +188,8 @@
 </template>
 <script>
 import Swal from 'sweetalert2';
+import * as THREE from 'three';
+import gsap from 'gsap';
 export default {
     name: 'BoardDetailComponent',
 
@@ -188,11 +239,66 @@ export default {
             },
             updateCommentData: {},
             updateCommentID: {},
+            recommendationCount: 0,
+            disapprovalCount: 0,
         };
     },
 
     mounted() {
         this.fetchData();
+
+        const scene = new THREE.Scene();
+        // 스크립트를 로드하는 함수를 정의
+        const loadScript = (src, callback) => {
+        const script = document.createElement('script');
+        script.type = 'text/javascript';
+        script.src = src;
+        script.onload = callback;
+        document.head.appendChild(script);
+        };
+
+        // 로드할 외부 스크립트들의 배열로 정의
+        const externalScriptsToLoad = [
+        'https://assets.codepen.io/16327/MorphSVGPlugin3.min.js',
+        'https://unpkg.co/gsap@3/dist/gsap.min.js'
+        ];
+
+        // 로드할 내부 스크립트의 경로를 정의
+        const internalScriptToLoad = '/js/LikeButtonScript.js';
+
+        // 외부 스크립트를 로드하는 함수
+        const loadExternalScripts = (scripts, callback) => {
+        let loadedScripts = 0;
+        const loadNextScript = () => {
+            if (loadedScripts < scripts.length) {
+            loadScript(scripts[loadedScripts], () => {
+                loadedScripts++;
+                loadNextScript();
+            });
+            } else {
+            callback();
+            }
+        };
+
+        loadNextScript();
+        };
+
+        // 내부 스크립트를 로드하는 함수
+        const loadInternalScript = (src, callback) => {
+            const script = document.createElement('script');
+            script.type = 'module';  // 여기에 type="module" 추가
+            script.src = src;
+            script.onload = callback;
+            document.head.appendChild(script);
+        };
+
+        // 외부 스크립트들을 로드한 후 내부 스크립트를 로드
+        loadExternalScripts(externalScriptsToLoad, () => {
+            loadInternalScript(internalScriptToLoad, () => {
+                // 모든 스크립트가 로드된 후 실행될 코드를 이곳에 추가
+                console.log('All scripts loaded!');
+            });
+        });
     },
 
     updated() {
@@ -207,6 +313,8 @@ export default {
                 this.newBoardItem = response.data.boardData;
                 this.nowUserID = response.data.userID;
                 this.newCommentItem = response.data.commentData;
+                this.recommendationCount = response.data.recommendationCount;
+                this.disapprovalCount = response.data.disapprovalCount;
                 console.log(response.data.commentData);
             })
             .catch(error => {
@@ -480,12 +588,16 @@ export default {
                 UserID: this.$store.state.UserID,
             })
             .then(response => {
-                // console.log(response);
+                console.log(response);
                 // console.log(this.newBoardItem);
                 // 서버 응답에 대한 로직 수행
                 // this.$router.push('/board');
                 // location.reload();
-                this.newBoardItem.BoardRecommended++;
+                if(response.data.message == 1) {
+                    this.recommendationCount++;
+                } else if(response.data.message == 0) {
+                    this.recommendationCount--;
+                }
             })
             .catch(error => {
                 // 에러 처리
@@ -503,6 +615,11 @@ export default {
                 // this.$router.push('/board');
                 // location.reload();
                 this.newBoardItem.BoardNotRecommended++;
+                if(response.data.message == 1) {
+                    this.disapprovalCount++;
+                } else if(response.data.message == 0) {
+                    this.disapprovalCount--;
+                }
             })
             .catch(error => {
                 // 에러 처리
