@@ -1,11 +1,13 @@
 <template>
-    <div>
+  <div>
+        <!-- <LoadingBar :loading="this.$store.state.loadingStatus"></LoadingBar> -->
         <router-view></router-view>
     </div>
 </template>
 
 <script>
-
+// import Swal from 'sweetalert2';
+import LoadingBar from './LoadingComponent';
 export default {
     name: 'AppComponent',
 
@@ -27,10 +29,12 @@ export default {
     },
 
     components: {
+      LoadingBar
     },
 }
 </script>
 <style>
+
     @import url('/css/common.css');
     #app {
   display: flex;

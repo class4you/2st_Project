@@ -9,6 +9,7 @@ use App\Models\User;
 use App\Models\Enrollment;
 use App\Models\Lesson;
 use App\Models\Chapter;
+use App\Models\ClassPayment;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 
@@ -49,13 +50,24 @@ class EnrollmentController extends Controller
                 ->where('ClassID', $ClassID)
                 ->value('EnrollmentID');
 
-            Log::debug($EnrollmentID);
+            $ClassPaymentData = [
+                'EnrollmentID' => $EnrollmentID,
+                'PaymentAmount' => $request->input('Payment'),
+                'PaymentMeans' => 1,
+                'PaymentState' => 1,
+            ];
+
+            Log::debug($ClassPaymentData);
+
+            ClassPayment::create($ClassPaymentData);
+
+            // Log::debug($EnrollmentID);
 
             $ChapterData = Chapter::select('ChapterID')
                 ->where('ClassID', $ClassID)
                 ->get();
 
-            Log::debug($ChapterData);
+            // Log::debug($ChapterData);
 
             foreach($ChapterData as $ChapterID) {
                 $ChapterStateData = [

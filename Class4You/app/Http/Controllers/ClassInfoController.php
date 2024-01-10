@@ -8,6 +8,7 @@ use App\Models\Instructor;
 use App\Models\Enrollment;
 use App\Models\Chapter;
 use App\Models\Lesson;
+use App\Models\User;
 use App\Models\ClassLanguagelink;
 use App\Models\ClassDiffiBanner;
 use Illuminate\Support\Facades\Auth;
@@ -362,6 +363,9 @@ class ClassInfoController extends Controller
 
         $UserID = Auth::id();
 
+        $userData = User::select('UserEmail', 'UserPhoneNumber', 'UserPostcode', 'UserRoadAddress', 'UserDetailedAddress', 'UserName')
+            ->where('UserID', $UserID)
+            ->first();
         // Log::debug($UserID);
 
         $existingEnrollment = Enrollment::where('UserID', $UserID)
@@ -499,7 +503,8 @@ class ClassInfoController extends Controller
                 'userCnt' => $userCnt,
                 'allLessonsData' => $allLessonsData,
                 'avgReviewRating' => $avgReviewRating,
-                'enrollmentChk' => $enrollmentChk
+                'enrollmentChk' => $enrollmentChk,
+                'userData' => $userData
             ]);
         }    
     }

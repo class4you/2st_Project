@@ -1,4 +1,4 @@
-<template>
+<!-- <template>
   <div>
     <div v-if="!completed">
       <h2>{{ questions[currentQuestion].question }}</h2>
@@ -108,4 +108,70 @@
       }
     }
   };
-  </script>
+  </script> -->
+
+  <template>
+    <h2 class="fw-bold mb-2" style="color:#4A5157">회원가입</h2>
+    <br />
+    <div class="form-outline form-white mb-4">
+        <input type="text" v-model="email" class="form-control form-control-lg" placeholder="email" />
+        <button class="btn btn-primary btn-sm" style=" color :#4A5157 ;border: none; background-color: white;"
+            v-on:click="sendEmail">이메일인증</button>
+    </div>
+    <div class="form-outline form-white mb-4">
+        <input type="text" class="form-control form-control-lg" placeholder="인증번호를 입력!" @input="updateEmailCheck" />
+        <button class="btn btn-primary btn-sm" style=" color :#4A5157 ;border: none; background-color: white;"
+            v-on:click="emailcheck">확인</button>
+    </div>
+    <button class="btn btn-primary btn-lg" style="color :#4A5157; border: none; background-color: white;"
+        v-on:click="join" v-show="isVisible">join</button>
+</template>
+
+<script>
+    export default {
+        name: 'join',
+        data() {
+            return {
+                email: '',
+                pwd: '',
+                nickname: '',
+                phone: '',
+                echeck: '',
+                isVisible: false
+            }
+        },
+        methods: {
+            sendEmail() {
+              const URL = '/emailChkSubmit';
+              const HEADER = {
+                headers: {
+                  'Content-Type': 'multipart/form-data',
+                }
+              };
+              const formData = new FormData();
+              formData.append('email', this.email);
+              axios.post(URL,formData,HEADER)
+              .then(res => {
+
+              })
+              .catch(err => {
+
+              })
+            },
+
+            updateEmailCheck(event) {
+                this.echeck = event.target.value;
+            },
+
+            emailcheck() {
+                const self = this;
+                if (self.echeck === self.emailKey) {
+                    alert('확인 완료');
+                    this.isVisible = true;
+                } else {
+                    alert('인증번호가 일치하지 않습니다.');
+                }
+            }
+        }
+    }
+</script>

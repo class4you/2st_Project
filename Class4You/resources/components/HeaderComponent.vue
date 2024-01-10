@@ -1,5 +1,5 @@
 <template>
-    <div v-if="$route.fullPath.indexOf('classwatch') === -1">
+    <div v-if="$route.fullPath.indexOf('classwatch') === -1 && $route.fullPath.indexOf('loading') === -1">
     <!-- <div v-if="$route.fullPath !== '/classwatch/' && $route.fullPath !== '/classwatch'"> -->
         <div id="top_banner" class="top_banner">
             <div class="desc">
@@ -126,6 +126,29 @@ export default {
 
     created() {
         this.loadUserLoginStatus();
+
+    },
+
+    mounted() {
+        axios.get('/getUserData')
+        .then(response2 => {
+            if (response2.data.userChk) {
+                Swal.fire({
+                    icon: 'success',
+                    title: '로그인 성공',
+                    text: '로그인에 성공했습니다.',
+                    confirmButtonText: '확인'
+                })
+                console.log(response2);
+                this.$store.commit('setSaveToLocalStorage', response2.data);
+                this.$store.commit('setUserLoginChk', response2.data.sessionDataCheck);
+                this.$store.commit('setUserID', response2.data.userId);
+            }
+
+        })
+        .catch(error => {
+            console.error('Error fetching data:', error);
+        });
     },
 
     computed: {
@@ -157,24 +180,26 @@ export default {
             }
         },
         loginWithKakao() {
-            // const url = '/login/kakao'
-            // const header = {
-            //     headers: {
-            //         "Content-Type": 'application/json',
-            //         'X-CSRF-TOKEN': document.head.querySelector('meta[name="csrf-token"]').content,
-            //     },
-            // }
-            // axios.get(url, header)
-            // .then(res => { 
-            //     console.log(res);
-            //     const userData = res.data;
+            axios.get('/login/kakao/callback')
+            // .then(response => {
+            //     // 서버에서 받은 응답(response)을 이용한 로직 수행
+            //     console.log(response.data);
 
-            // this.$store.commit('setUserData', userData);
+            //     // 리다이렉션 등 필요한 작업 수행
+            //     if (response.data.success) {
+            //     // 로그인이 성공하면 홈페이지로 이동
+            //     this.$router.push('/');
+            //     } else {
+            //     // 로그인 실패 등의 경우 처리
+            //     alert('로그인에 실패했습니다.');
+            //     }
             // })
-            // .catch(err => {
-            //     console.error('오류 발생:', err);
-            // })
-            location.href='/login/kakao';
+            // .catch(error => {
+            //     // 오류 처리
+            //     console.error('에러 발생:', error);
+            // });
+            location.href='/login/kakao?before_url=' + window.location.pathname;
+            
         },
         logoutWithKakao() {
             location.href='/logout/kakao/callback';

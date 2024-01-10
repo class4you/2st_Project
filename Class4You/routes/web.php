@@ -12,6 +12,7 @@ use App\Http\Controllers\ChapterController;
 use App\Http\Controllers\EnrollmentController;
 use App\Http\Controllers\LessonController;
 use Laravel\Socialite\Facades\Socialite;
+use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -44,6 +45,10 @@ Route::middleware('my.user.validation')->post('/registration', [UserController::
 Route::middleware('my.user.validation')->post('/registrationEmailDoubleCheck', [UserController::class, 'emaildoublecheck']);
 
 Route::get('/logout', [UserController::class, 'logout']);
+
+// 이메일 인증
+
+Route::post('/emailChkSubmit', [UserController::class, 'googleemailchk']);
 
 
 // 네이버 로그인
@@ -184,7 +189,8 @@ Route::delete('/deleteduserdata', [MyPageController::class, 'deleteUserpasswordD
 // });
 
 
-Route::get('/login/kakao', function () {
+Route::get('/login/kakao', function (Request $request) {
+    session()->put('before_url', $request->before_url);
     return Socialite::driver('kakao')->redirect();
 });
 

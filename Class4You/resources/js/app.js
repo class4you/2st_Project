@@ -12,6 +12,7 @@ import ClassBoardDetailComponent from '../components/ClassBoardDetailComponent.v
 // import ClassBoardMainComponent from '../components/ClassBoardMainComponent.vue';
 
 
+
 createApp({
     components: {
         AppComponent,
