@@ -101,11 +101,20 @@
                         <div v-for="data in noteData" :key="data.ClassNoteID" class="class_detail_watch_side_classnote_list_div">
                             <div class="class_detail_watch_side_classnote_list">
                                 <div class="class_detail_watch_side_classnote_list_text">
-                                    <p>{{ data.ClassNoteComment }}</p>
+                                    <textarea v-if="data.ClassNoteID == updateNoteID" v-model="data.ClassNoteComment" class="class_detail_watch_note_update_text" cols="30" rows="10"></textarea>
+                                    <p v-else>{{ data.ClassNoteComment }}</p>
                                 </div>
-                                <div class="class_detail_watch_side_classnote_list_btn">
+                                <div v-if="data.UserID == $store.state.UserID && data.ClassNoteID == updateNoteID" class="class_detail_watch_side_classnote_list_btn">
                                     <div class="class_detail_watch_side_classnote_list_btn_up">
-                                        <button>수정</button>
+                                        <button @click="updateClassNote(data)">수정</button>
+                                    </div>
+                                    <div class="class_detail_watch_side_classnote_list_btn_del">
+                                        <button @click="updateClassNote(false)">취소</button>
+                                    </div>
+                                </div>
+                                <div class="class_detail_watch_side_classnote_list_btn" v-else>
+                                    <div class="class_detail_watch_side_classnote_list_btn_up">
+                                        <button @click="updateNoteID = data.ClassNoteID">수정</button>
                                     </div>
                                     <div class="class_detail_watch_side_classnote_list_btn_del">
                                         <button @click="delClassNote(data)">삭제</button>
@@ -179,6 +188,8 @@ export default {
                     ClassNoteID: this.ClassNoteID,
                 }
             },
+            updateNoteData: {},
+            updateNoteID: {},
         }
     },
 
@@ -465,6 +476,46 @@ export default {
 					});
 				}
 			});
+        },
+        // 노트 수정 함수
+        updateClassNote(data) {
+            
+            console.log("data는 이거");
+            console.log(data);
+
+            if(data) {
+                this.updateNoteData = data;
+                console.log("updateNoteData는 이거");
+                console.log(this.updateNoteData);
+
+                axios.put('/classwatchnote', {
+                    ClassID: this.updateNoteData.ClassID,
+                    UserID: this.updateNoteData.UserID,
+                    ClassNoteID: this.updateNoteData.ClassNoteID,
+                    ClassNoteComment: this.updateNoteData.ClassNoteComment,
+                })
+                .then(response => {
+                    console.log(response);
+
+                    // this.updateNoteData = response.data;
+
+                    Swal.fire({
+					icon: 'success',
+					title: '수정',
+					text: '노트가 수정되었습니다.',
+					confirmButtonText: '확인'
+					})
+
+                    this.updateNoteID = false;
+                })
+                .catch(error => {
+					// 에러 처리
+                    // 콘솔 에러를 이렇게 사용하면 디테일한 메세지까지 확인할 수 있음.
+					console.error(error.response);
+				});
+            } else {
+                this.updateNoteID = false;
+            }
         },
     },
     

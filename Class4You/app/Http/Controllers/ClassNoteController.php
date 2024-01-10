@@ -86,4 +86,15 @@ class ClassNoteController extends Controller
         return response()->json($result);
     }
 
+    // 강의 노트 수정
+    public function putClassNoteData(Request $request) {
+        
+        $classNoteData = $request->only('EnrollmentID', 'ClassNoteID', 'ClassNoteComment');
+
+        $data = ClassNote::where('ClassNoteID', $request->ClassNoteID)
+            ->update($classNoteData);
+
+        return response()->json($data);
+    }
+
 }
