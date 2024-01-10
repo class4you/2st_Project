@@ -279,7 +279,7 @@ export default {
                 this.pagination = response.data.boardData.links;
                 this.page = response.data.boardData.current_page;
                 this.pageChk = response.data.boardData.current_page;
-				// console.log(response.data);
+				console.log(response.data);
 				// console.log(response.data.boardData.data);
 				// console.log(response.data.boardData.links);
 				// console.log(response.data.boardData.current_page);

@@ -8,6 +8,7 @@ use App\Models\BoardCategory;
 use App\Models\BoardLanguagelink;
 use App\Models\Comment;
 use App\Models\User;
+use App\Models\Enrollment;
 use App\Models\BoardRatingState;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
@@ -30,7 +31,8 @@ class BoardController extends Controller
             ->leftJoin('board_languagelinks', 'boards.BoardID', 'board_languagelinks.BoardID')
             // 최종적으로 보더 테이블과 유저즈, 코멘트즈들이 연결된 결과를 가져옴
             // 쉽게 설명하면 보더즈로 두 개의 테이블(유저와 코멘트)를 레프트 조인을 통해 값이 있는 애들만 불러오고 그 안에서 서브쿼리를 만들어서 콜백함수로 받아온 그룹에 보더 아이디와 보더즈의 보더 아이디와 다시 조인하는 것
-            ->select('boards.BoardID', 'boards.created_at', 'boards.UserID', 'boards.BoardTitle', 'boards.BoardComment', 'boards.BoardView', 'boards.BoardRecommended', 'boards.BoardNotRecommended', 'boards.BoardFlg', 'users.UserEmail', 'com.cnt', 'board_languagelinks.HTMLFlg', 'board_languagelinks.CSSFlg', 'board_languagelinks.JavaScriptFlg', 'board_languagelinks.PHPFlg', 'board_languagelinks.JAVAFlg', 'board_languagelinks.DataBaseFlg');
+            ->select('boards.BoardID', 'boards.created_at', 'boards.UserID', 'boards.BoardTitle', 'boards.BoardComment', 'boards.BoardView', 'boards.BoardRecommended', 'boards.BoardNotRecommended', 'boards.BoardFlg', 'users.UserEmail', 'com.cnt', 'board_languagelinks.HTMLFlg', 'board_languagelinks.CSSFlg', 'board_languagelinks.JavaScriptFlg', 'board_languagelinks.PHPFlg', 'board_languagelinks.JAVAFlg', 'board_languagelinks.DataBaseFlg')
+            ->orderBy('boards.created_at', 'desc');
 
         if($request->input('ClassID') == null) {
             $boardDataQuery->whereNull('boards.ClassID');
@@ -374,6 +376,31 @@ class BoardController extends Controller
     }
 
     // 강의 질문
+    public function postClassQuestion(Request $request) {
+
+        Log::debug("-----------------------------------------------");
+        Log::debug($request);
+
+        // 유저가 수강한 강의 조회
+        $EnrollmentData = Enrollment::select('EnrollmentID')
+            ->where('UserID', $request->UserID) 
+            ->where('ClassID', $request->ClassID) 
+            ->first();
+
+        // 조회한 수강 아이디($EnrollmentData)를 리뷰 데이터($request)에 추가    
+        $request->merge([
+            'EnrollmentID' => $EnrollmentData->EnrollmentID,
+            'BoardCategoryID' => 2,
+        ]);
+        $data = $request->only('EnrollmentID','UserID', 'ClassID', 'BoardID', 'BoardTitle', 'BoardComment', 'BoardCategoryID');
+
+        $result = Board::create($data);
+
+        Log::debug('====================================================');
+        Log::debug($data);
+
+        return response()->json($result);
+    }
 
 
 }
