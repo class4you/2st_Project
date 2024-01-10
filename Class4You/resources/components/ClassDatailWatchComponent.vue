@@ -98,21 +98,17 @@
                 <!-- 강의노트UI -->
                 <div v-if="clickFlgTab === 1" class="class_detail_watch_side_classnote_div">
                     <div>
-                        <div class="class_detail_watch_side_classnote_list_div">
+                        <div v-for="data in noteData" :key="data.ClassNoteID" class="class_detail_watch_side_classnote_list_div">
                             <div class="class_detail_watch_side_classnote_list">
                                 <div class="class_detail_watch_side_classnote_list_text">
-                                    <p>노트내용</p>
-                                    <p>노트내용</p>
-                                    <p>노트내용</p>
-                                    <p>노트내용</p>
-                                    <p>노트내용</p>
+                                    <p>{{ data.ClassNoteComment }}</p>
                                 </div>
                                 <div class="class_detail_watch_side_classnote_list_btn">
                                     <div class="class_detail_watch_side_classnote_list_btn_up">
                                         <button>수정</button>
                                     </div>
                                     <div class="class_detail_watch_side_classnote_list_btn_del">
-                                        <button>삭제</button>
+                                        <button @click="delClassNote(data)">삭제</button>
                                     </div>
                                 </div>
                             </div>
@@ -121,11 +117,11 @@
                         <div class="class_detail_watch_side_classnote_write_div">
                             <div class="class_detail_watch_side_classnote_write">
                                 <div class="class_detail_watch_side_classnote_write_text">
-                                    <textarea name="" id="" cols="30" rows="10" placeholder="메모해주세요"></textarea>
+                                    <textarea v-model="noteCommentData.ClassNoteComment" name="" id="" cols="30" rows="10" placeholder="메모해주세요"></textarea>
                                 </div>
                             </div>
                             <div class="class_detail_watch_side_classnote_write_btn">
-                                <button>노트입력</button>
+                                <button @click="addClassNote()">노트입력</button>
                             </div>
                         </div>
                     </div>
@@ -135,6 +131,9 @@
     </div>
 </template>
 <script>
+import Swal from 'sweetalert2';
+import axios from 'axios';
+
 export default {
     name: 'ClassDatailWatchComponent',
 
@@ -162,6 +161,24 @@ export default {
             clickFlgTab: 0,
             solve: null,
 			sortData: 0,
+
+            // 강의 노트
+            classNoteData: [],
+            noteData: [],
+            noteCommentData: {
+                ClassID: this.ClassID,
+                UserID: this.$store.state.UserID,
+                ClassNoteComment: '',
+                ClassNoteID: this.ClassNoteID,
+            },
+            newNoteCommentData() {
+                return {
+                    ClassID: this.ClassID,
+                    UserID: this.$store.state.UserID,
+                    ClassNoteComment: '',
+                    ClassNoteID: this.ClassNoteID,
+                }
+            },
         }
     },
 
@@ -202,6 +219,18 @@ export default {
                 }
                 // console.log(response.data.lessonData);
                 // this.videoId = response.data.lessonData
+                axios.get('/classwatchnote/' + this.ClassID)
+                .then(noteResponse => {
+                    console.log(noteResponse);
+                    // console.log(noteResponse.data.noteData);
+                    this.noteData = noteResponse.data.noteData;
+                    // console.log(this.noteData);
+                })
+                .catch(noteError => {
+                    // 두 번째 API 에러 처리
+                    console.error(noteError);
+                });
+
 			})
 			.catch(error => {
 			// 에러 처리
@@ -353,6 +382,90 @@ export default {
             this.player.destroy();
             this.initYoutubePlayer();
         },
+        // 노트 작성 함수
+        addClassNote() {
+
+            const url = '/classwatchnote'
+            const header = {
+                headers: {
+                    "Content-Type": 'multipart/form-data',
+                    // 'X-CSRF-TOKEN': document.head.querySelector('meta[name="csrf-token"]').content,
+                },
+            }
+
+            let frm = new FormData();
+            frm.append('ClassID',this.noteCommentData.ClassID);
+            frm.append('UserID',this.noteCommentData.UserID);
+            // frm.append('ClassNoteID',this.noteCommentData.ClassNoteID);
+            frm.append('ClassNoteComment',this.noteCommentData.ClassNoteComment);
+
+            axios.post(url, frm, header)
+            .then(res => {
+                // res가 왜 빈값인지 알아야함.
+                // console.log("res데이터 어디갔냐");
+                // console.log(res);
+                console.log(res.data);
+                // 작성된 노트 데이터
+                // console.log("작성된 노트 데이터");
+                // console.log(this.noteCommentData);
+                // 노트데이터 배열 리스트
+                // console.log(this.noteData);
+
+                this.noteData.unshift(res.data);
+                this.noteCommentData = this.newNoteCommentData();
+            })
+            .catch(err => {
+                console.log("전달안됨")
+            })
+        },
+        // 노트 삭제 함수
+        delClassNote(data) {
+            console.log(data);
+			// Display confirmation dialog using Swal.fire
+			Swal.fire({
+				title: '정말로 삭제하시겠습니까?',
+				text: '삭제 후에는 복구할 수 없습니다.',
+				icon: 'question',
+				showCancelButton: true,
+				confirmButtonColor: '#d33',
+				cancelButtonColor: '#3085d6',
+				confirmButtonText: '삭제',
+				cancelButtonText: '취소',
+			}).then((result) => {
+				// Check if the user clicked the confirm button
+				if (result.isConfirmed) {
+					const url = '/classwatchnote/' + data.ClassNoteID;
+					const header = {
+						headers: {
+							'Content-Type': 'multipart/form-data',
+							'X-CSRF-TOKEN': document.head.querySelector('meta[name="csrf-token"]').content,
+						},
+					};
+
+				axios
+					.delete(url, header)
+					.then((res) => {
+						Swal.fire({
+							icon: 'success',
+							title: '완료',
+							text: '노트가 삭제되었습니다.',
+							confirmButtonText: '확인'
+						})
+						// Remove the deleted item from the reviewClassItems array
+						this.noteData = this.noteData.filter((item) => item.ClassNoteID !== data.ClassNoteID);
+					})
+					.catch((err) => {
+						// Handle errors, e.g., display an alert
+						console.error(err);
+						Swal.fire({
+							icon: 'error',
+							title: '삭제 실패',
+							text: '삭제 중에 오류가 발생했습니다.',
+						});
+					});
+				}
+			});
+        },
     },
     
     mounted() {
@@ -380,6 +493,8 @@ export default {
         this.initYoutubePlayer();
         },
     },
+
+    
 
 }
 </script>
