@@ -1458,58 +1458,31 @@ th:last-child, td:last-child {
     text-decoration: none;
 }
 
-.class_board_view_all_pagination_li {
-    padding: 10px 15px;
-}
-
-.class_board_view_all_pagination_li>span {
-    margin: 0 10px;
-}
-
-.class_board_view_all_pagination_li>a {
-    margin: 0 10px;
-    text-decoration: none;
+.class_board_view_all_pagination_a>a {
     color: #000;
+    text-decoration: none;
 }
 
-.class_board_view_all_pagination_li>a:hover {
-    color: #fff;
+.class_board_view_all_pagination_div {
+    /* border: 2px solid #346ba3; */
+    border-radius: 5px;
+    padding: 10px;
+    margin: 0 8px;
 }
 
-.class_board_view_all_pagination_li:hover,
-.class_board_view_all_pagination_page:hover {
+.class_board_view_all_pagination_div:hover,
+.class_board_view_all_pagination_div:hover a {
     background-color: #346ba3;
     color: #fff;
     border-radius: 5px;
 }
 
 .class_board_view_all_pagination_page_on {
-    border: 2px solid #346ba3;
+    background-color: #346ba3;
     color: #fff;
     border-radius: 5px;
 }
 
-.class_board_view_all_pagination_page_on>span {
-    color: #000;
-    border-radius: 5px;
-}
-.class_board_view_all_pagination_page_on>span:hover {
-    color: #fff;
-}
-
-.class_board_view_all_pagination_page {
-    margin: 0 10px;
-    padding: 10px 15px;
-}
-
-.class_board_view_all_pagination_page>a {
-    color: #000;
-    text-decoration: none;
-}
-
-.class_board_view_all_pagination_page>a:hover {
-    color: #fff;
-}
 
 
 /* ============================================================================================================ */
