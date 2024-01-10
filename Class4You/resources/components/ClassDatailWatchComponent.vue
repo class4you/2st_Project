@@ -108,7 +108,7 @@
                                         <button>수정</button>
                                     </div>
                                     <div class="class_detail_watch_side_classnote_list_btn_del">
-                                        <button>삭제</button>
+                                        <button @click="delClassNote(data)">삭제</button>
                                     </div>
                                 </div>
                             </div>
@@ -131,6 +131,7 @@
     </div>
 </template>
 <script>
+import Swal from 'sweetalert2';
 import axios from 'axios';
 
 export default {
@@ -416,6 +417,54 @@ export default {
             .catch(err => {
                 console.log("전달안됨")
             })
+        },
+        // 노트 삭제 함수
+        delClassNote(data) {
+            console.log(data);
+			// Display confirmation dialog using Swal.fire
+			Swal.fire({
+				title: '정말로 삭제하시겠습니까?',
+				text: '삭제 후에는 복구할 수 없습니다.',
+				icon: 'question',
+				showCancelButton: true,
+				confirmButtonColor: '#d33',
+				cancelButtonColor: '#3085d6',
+				confirmButtonText: '삭제',
+				cancelButtonText: '취소',
+			}).then((result) => {
+				// Check if the user clicked the confirm button
+				if (result.isConfirmed) {
+					const url = '/classwatchnote/' + data.ClassNoteID;
+					const header = {
+						headers: {
+							'Content-Type': 'multipart/form-data',
+							'X-CSRF-TOKEN': document.head.querySelector('meta[name="csrf-token"]').content,
+						},
+					};
+
+				axios
+					.delete(url, header)
+					.then((res) => {
+						Swal.fire({
+							icon: 'success',
+							title: '완료',
+							text: '노트가 삭제되었습니다.',
+							confirmButtonText: '확인'
+						})
+						// Remove the deleted item from the reviewClassItems array
+						this.noteData = this.noteData.filter((item) => item.ClassNoteID !== data.ClassNoteID);
+					})
+					.catch((err) => {
+						// Handle errors, e.g., display an alert
+						console.error(err);
+						Swal.fire({
+							icon: 'error',
+							title: '삭제 실패',
+							text: '삭제 중에 오류가 발생했습니다.',
+						});
+					});
+				}
+			});
         },
     },
     

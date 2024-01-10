@@ -75,4 +75,15 @@ class ClassNoteController extends Controller
         return response()->json($result);
     }
 
+    // 강의 노트 삭제
+    public function delClassNoteData($ClassNoteID) {
+        
+        // 파라미터에 ClassID랑 ClassNoteID 확인해 봐야함. 지금 너무 헷갈림
+        if(Auth::check()) {
+            $result = ClassNote::destroy($ClassNoteID);
+        }
+
+        return response()->json($result);
+    }
+
 }
