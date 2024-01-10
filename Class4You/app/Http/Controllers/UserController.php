@@ -122,6 +122,7 @@ class UserController extends Controller
 
     public function kakaologin(Request $request)
     {
+        
         $user = Socialite::driver('kakao')->setHttpClient(new \GuzzleHttp\Client(['verify' => false]))->user();
 
         $userEmail = $user->email;
@@ -135,14 +136,15 @@ class UserController extends Controller
             $userId = Auth::id();
 
             if (Auth::check()) {         
+                session()->put('userChk', true);
                 $sessionDataCheck = Auth::check();
-                return response()->json([
-                    'success' => true,
-                    'message' => '로그인이 성공적으로 수행되었습니다.',
-                    'sessionDataCheck' => $sessionDataCheck,
-                    'userId' => $userId,
-                ]);
-                // return redirect('/');
+                // return response()->json([
+                //     'success' => true,
+                //     'message' => '로그인이 성공적으로 수행되었습니다.',
+                //     'sessionDataCheck' => $sessionDataCheck,
+                //     'userId' => $userId,
+                // ])->header('Location', '/');
+                return redirect('/');
     
             } else {
                 return response()->json([
@@ -172,8 +174,10 @@ class UserController extends Controller
         ]);
     }
 
-    public function getuserdata()
-    {
+    public function getuserdata(Request $request)
+    {  
+        $userChk = session()->get('userChk');
+        session()->remove('userChk');
         if (Auth::check()) {
             $userId = Auth::id();
             $sessionDataCheck = Auth::check();
@@ -182,6 +186,7 @@ class UserController extends Controller
                 'message' => '로그인이 성공적으로 수행되었습니다.',
                 'sessionDataCheck' => $sessionDataCheck,
                 'userId' => $userId,
+                'userChk' => $userChk,
             ]);
         }
 
