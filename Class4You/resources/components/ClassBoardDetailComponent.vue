@@ -754,10 +754,11 @@
             
         <div v-if="clickFlgTab === 2">    
             <div id="class_tab1" class="class_current class_detail_rating_form">
-                <form action="">
+                <!-- <form action=""> -->
                     <fieldset>
 
                         <div class="class_detail_rating_form_text">
+                            <input type="text" placeholder="제목을 작성해주세요.">
                             <textarea name="" id="" cols="30" rows="10" placeholder="강의에 대한 질문을 작성해주세요."></textarea>
                         </div>
 
@@ -769,7 +770,7 @@
                         </div>
 
                     </fieldset>
-                </form>
+                <!-- </form> -->
             </div>
 
             <div class="class_detail_community_list">
@@ -779,20 +780,17 @@
 					</div>
 				</div>
 
-				<div id="class_tab1" class="class_detail_commu_list_div">
+				<div v-for="data in classQuestionData" id="class_tab1" class="class_detail_commu_list_div">
 					<div class="class_detail_commu_list_user">
 						<div class="class_detail_rating_user_id">
-							<p>작성자ID</p>
+							<p>{{ hideEmail(data.UserEmail) }} : {{ data.BoardTitle }}</p>
 						</div>
 						<div class="class_detail_rating_user_date">
-							<p>2023-12-13</p>
+							<p>{{ data.created_at }}</p>
 						</div>
 					</div>
 					<div class="class_detail_commu_list_text">
-						<p>css 이렇게 많이 써본건 처음이야</p>
-						<p>css 이렇게 많이 써본건 처음이야</p>
-						<p>css 이렇게 많이 써본건 처음이야</p>
-						<p>내가 쓴글 수정삭제가능</p>
+						<p>{{ data.BoardComment }}</p>
 					</div>
 					<div class="class_detail_community_user_button">
 						<div class="class_detail_rating_user_updated_button">
@@ -992,7 +990,16 @@ export default {
 			],
 			page: {},
 
-			paymentUserData: {}
+			paymentUserData: {},
+			// 강의 질문
+			classQuestionData: [],
+			classQuestionItems: {
+				ClassID: this.ClassID,
+				UserID: this.$store.state.UserID,
+				UserEmail: this.$store.state.UserEmail,
+				BoardTitle: this.BoardTitle,
+				BoardComment: this.BoardComment,
+			},
         }
     },
 	mounted() {
@@ -1053,7 +1060,16 @@ export default {
 						// this.newReviewData = reviewResponse.data.classReviewData;
 						axios.get(`/board/data?page=${page}&ClassID=${this.ClassID}`)
 						.then(boardResponse => {
+							console.log('이건 값이 있어');
 							console.log(boardResponse.data);
+							console.log('이건 값이 없어');
+							console.log(boardResponse.data.data);
+							console.log('이건 값이 ');
+							console.log(boardResponse.data.boardData.data);
+							this.classQuestionData = boardResponse.data.boardData.data;
+							// const responseData = Array.isArray(boardResponse.data) ? boardResponse.data : [];
+							// console.log(responseData);
+							// this.classQuestionData = responseData;
 						}) 
                 })
                 .catch(reviewError => {
@@ -1353,7 +1369,37 @@ export default {
 				})
 				}
 			})
-			
+		},
+
+		// 강의 질문 함수
+		// 질문 작성 함수
+		addClassQuestion() {
+			const url = '`/board/data?ClassID=${this.ClassID}`'
+            const header = {
+                headers: {
+                    "Content-Type": 'multipart/form-data',
+                    // 'X-CSRF-TOKEN': document.head.querySelector('meta[name="csrf-token"]').content,
+                },
+            }
+			let frm = new FormData();
+            frm.append('ClassID',this.classQuestionItems.ClassID);
+            frm.append('UserID',this.classQuestionItems.UserID);
+            frm.append('BoardTitle',this.classQuestionItems.BoardTitle);
+            frm.append('BoardComment',this.classQuestionItems.BoardComment);
+
+			axios.post(url, frm, header)
+			.then(res => {
+				Swal.fire({
+					icon: 'success',
+					title: '완료',
+					text: '수강평이 작성되었습니다.',
+					confirmButtonText: '확인'
+            	})
+
+				console.log(res);
+				console.log(this.classQuestionItems);
+				
+			})
 		},
 	}
     

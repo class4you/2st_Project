@@ -124,6 +124,7 @@ Route::put('/lessonprogress', [LessonController::class, 'updateLessonProgress'])
 Route::post('/classwatchnote', [ClassNoteController::class, 'postClassNoteData']);
 Route::get('/classwatchnote/{ClassID}', [ClassNoteController::class, 'getClassNoteIndex']);
 Route::delete('/classwatchnote/{ClassNoteID}', [ClassNoteController::class, 'delClassNoteData']);
+Route::put('/classwatchnote', [ClassNoteController::class, 'putClassNoteData']);
 
 // test
 // Route::prefix('reviews')->group(function () {

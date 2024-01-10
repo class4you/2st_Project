@@ -2809,6 +2809,21 @@ progress[value]::-webkit-progress-bar{
     line-height: 20px;
 }
 
+.class_detail_watch_side_classnote_list_text>p {
+    white-space: pre;
+    margin-bottom: 8px;
+    font-size: 13px;
+}
+
+.class_detail_watch_note_update_text {
+    width: 100%;
+    border: 1px solid rgb(241 241 241);
+    border-radius: 5px;
+    resize: none;
+    padding: 5px;
+    margin-bottom: 5px;
+}
+
 .class_detail_watch_side_classnote_list_btn {
     display: flex;
     justify-content: flex-end;
