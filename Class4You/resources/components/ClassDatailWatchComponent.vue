@@ -104,6 +104,7 @@
                                     <textarea v-if="data.ClassNoteID == updateNoteID" v-model="data.ClassNoteComment" class="class_detail_watch_note_update_text" cols="30" rows="10"></textarea>
                                     <p v-else>{{ data.ClassNoteComment }}</p>
                                 </div>
+                                <!-- <div v-if="data.UserID == $store.state.UserID"> -->
                                 <div v-if="data.UserID == $store.state.UserID && data.ClassNoteID == updateNoteID" class="class_detail_watch_side_classnote_list_btn">
                                     <div class="class_detail_watch_side_classnote_list_btn_up">
                                         <button @click="updateClassNote(data)">수정</button>
@@ -112,6 +113,7 @@
                                         <button @click="updateClassNote(false)">취소</button>
                                     </div>
                                 </div>
+                                <!-- </div> -->
                                 <div class="class_detail_watch_side_classnote_list_btn" v-else>
                                     <div class="class_detail_watch_side_classnote_list_btn_up">
                                         <button @click="updateNoteID = data.ClassNoteID">수정</button>
@@ -424,6 +426,8 @@ export default {
 
                 this.noteData.unshift(res.data);
                 this.noteCommentData = this.newNoteCommentData();
+                // ClassNoteID값이 안들어가있음. 컨트롤러에서는 다 받아옴. 이거 확인되야 바로 수정가능할듯
+                console.log(this.noteCommentData);
             })
             .catch(err => {
                 console.log("전달안됨")
@@ -485,8 +489,8 @@ export default {
 
             if(data) {
                 this.updateNoteData = data;
-                console.log("updateNoteData는 이거");
-                console.log(this.updateNoteData);
+                // console.log("updateNoteData는 이거");
+                // console.log(this.updateNoteData);
 
                 axios.put('/classwatchnote', {
                     ClassID: this.updateNoteData.ClassID,
@@ -495,9 +499,10 @@ export default {
                     ClassNoteComment: this.updateNoteData.ClassNoteComment,
                 })
                 .then(response => {
-                    console.log(response);
+                    console.log('put되고나서 데이터값');
+                    console.log(response.data);
 
-                    // this.updateNoteData = response.data;
+                    this.updateNoteData = response.data;
 
                     Swal.fire({
 					icon: 'success',

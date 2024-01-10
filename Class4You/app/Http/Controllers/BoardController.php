@@ -180,6 +180,8 @@ class BoardController extends Controller
             ->where('BoardID', $BoardID)
             ->first();
 
+        Log::debug($boardData);
+
         $boardComment = Comment::select('users.UserEmail', 'comments.CommentContent', 'comments.created_at', 'comments.CommentID', 'users.UserID')
             ->join('boards', 'comments.BoardID', 'boards.BoardID')
             ->join('users', 'comments.UserID', 'users.UserID')
@@ -370,6 +372,8 @@ class BoardController extends Controller
             return response()->json(['error' => 'Board not found'], 404);
         }
     }
+
+    // 강의 질문
 
 
 }

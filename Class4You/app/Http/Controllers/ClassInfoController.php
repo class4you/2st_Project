@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\ClassInfo;
+use App\Models\Board;
 use App\Models\Instructor;
 use App\Models\Enrollment;
 use App\Models\Chapter;
@@ -469,9 +470,23 @@ class ClassInfoController extends Controller
                     
         //         }
         //     }
-        
+        // 강의 질문 정보
+        // $classQuestionData = ClassInfo::select('users.UserID',
+        //     'users.UserEmail',
+        //     'class_infos.ClassID',
+        //     'boards.BoardID',
+        //     'boards.BoardTitle',
+        //     'boards.BoardComment',
+        //     'boards.created_at',
+        //     'board_categories.BoardCategoryID')
+        //     ->join('boards','boards.ClassID','class_infos.ClassID')
+        //     ->join('users','users.UserID','boards.UserID')
+        //     ->join('board_categories','board_categories.BoardCategoryID','boards.BoardCategoryID')
+        //     ->where('class_infos.ClassID', $ClassID)
+        //     ->get();
 
-        // Log::debug($ClassID);
+        // Log::debug("----------------------------------------------------------");
+        // Log::debug($classQuestionData);
 
         // 해당 강의 태그 정보 가져오기
         // classboardshow와 다르게 한가지 정보만 가지고 오기 때문에 if문 사용
@@ -504,7 +519,8 @@ class ClassInfoController extends Controller
                 'allLessonsData' => $allLessonsData,
                 'avgReviewRating' => $avgReviewRating,
                 'enrollmentChk' => $enrollmentChk,
-                'userData' => $userData
+                'userData' => $userData,
+                // 'classQuestionData' => $classQuestionData,
             ]);
         }    
     }
