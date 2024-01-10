@@ -135,14 +135,14 @@ class UserController extends Controller
             $userId = Auth::id();
 
             if (Auth::check()) {         
-                // $sessionDataCheck = Auth::check();
-                // return response()->json([
-                //     'success' => true,
-                //     'message' => '로그인이 성공적으로 수행되었습니다.',
-                //     'sessionDataCheck' => $sessionDataCheck,
-                //     'userId' => $userId,
-                // ]);
-                return redirect('/');
+                $sessionDataCheck = Auth::check();
+                return response()->json([
+                    'success' => true,
+                    'message' => '로그인이 성공적으로 수행되었습니다.',
+                    'sessionDataCheck' => $sessionDataCheck,
+                    'userId' => $userId,
+                ]);
+                // return redirect('/');
     
             } else {
                 return response()->json([

@@ -17,8 +17,11 @@ use Illuminate\Support\Facades\DB;
 class ClassInfoController extends Controller
 {
     private $sharedData;
-    public function getNewClassMainData()
+    public function getNewClassMainData(Request $request)
     {
+        $previousUrl = $request->headers->get('referer');
+
+        Log::debug($previousUrl);
         $data = ClassInfo::select('class_infos.ClassID', 'class_infos.ClassImg', 'class_infos.ClassTitle', 'class_infos.ClassDescription')
         ->orderBy('created_at', 'desc')
         ->take(8)
