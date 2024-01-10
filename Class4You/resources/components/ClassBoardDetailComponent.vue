@@ -1100,6 +1100,7 @@ export default {
 					text: '수강평이 작성되었습니다.',
 					confirmButtonText: '확인'
             	})
+				console.log(res);
 				console.log(this.reviewClassItems);
                 // console.log(res.data[0]);
 				

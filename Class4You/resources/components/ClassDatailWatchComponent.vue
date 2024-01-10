@@ -98,14 +98,10 @@
                 <!-- 강의노트UI -->
                 <div v-if="clickFlgTab === 1" class="class_detail_watch_side_classnote_div">
                     <div>
-                        <div class="class_detail_watch_side_classnote_list_div">
+                        <div v-for="data in noteData" :key="data.ClassNoteID" class="class_detail_watch_side_classnote_list_div">
                             <div class="class_detail_watch_side_classnote_list">
                                 <div class="class_detail_watch_side_classnote_list_text">
-                                    <p>노트내용</p>
-                                    <p>노트내용</p>
-                                    <p>노트내용</p>
-                                    <p>노트내용</p>
-                                    <p>노트내용</p>
+                                    <p>{{ data.ClassNoteComment }}</p>
                                 </div>
                                 <div class="class_detail_watch_side_classnote_list_btn">
                                     <div class="class_detail_watch_side_classnote_list_btn_up">
@@ -121,11 +117,11 @@
                         <div class="class_detail_watch_side_classnote_write_div">
                             <div class="class_detail_watch_side_classnote_write">
                                 <div class="class_detail_watch_side_classnote_write_text">
-                                    <textarea name="" id="" cols="30" rows="10" placeholder="메모해주세요"></textarea>
+                                    <textarea v-model="noteCommentData.ClassNoteComment" name="" id="" cols="30" rows="10" placeholder="메모해주세요"></textarea>
                                 </div>
                             </div>
                             <div class="class_detail_watch_side_classnote_write_btn">
-                                <button>노트입력</button>
+                                <button @click="addClassNote()">노트입력</button>
                             </div>
                         </div>
                     </div>
@@ -135,6 +131,8 @@
     </div>
 </template>
 <script>
+import axios from 'axios';
+
 export default {
     name: 'ClassDatailWatchComponent',
 
@@ -162,6 +160,24 @@ export default {
             clickFlgTab: 0,
             solve: null,
 			sortData: 0,
+
+            // 강의 노트
+            classNoteData: [],
+            noteData: [],
+            noteCommentData: {
+                ClassID: this.ClassID,
+                UserID: this.$store.state.UserID,
+                ClassNoteComment: '',
+                ClassNoteID: this.ClassNoteID,
+            },
+            newNoteCommentData() {
+                return {
+                    ClassID: this.ClassID,
+                    UserID: this.$store.state.UserID,
+                    ClassNoteComment: '',
+                    ClassNoteID: this.ClassNoteID,
+                }
+            },
         }
     },
 
@@ -202,6 +218,18 @@ export default {
                 }
                 // console.log(response.data.lessonData);
                 // this.videoId = response.data.lessonData
+                axios.get('/classwatchnote/' + this.ClassID)
+                .then(noteResponse => {
+                    console.log(noteResponse);
+                    // console.log(noteResponse.data.noteData);
+                    this.noteData = noteResponse.data.noteData;
+                    // console.log(this.noteData);
+                })
+                .catch(noteError => {
+                    // 두 번째 API 에러 처리
+                    console.error(noteError);
+                });
+
 			})
 			.catch(error => {
 			// 에러 처리
@@ -353,6 +381,42 @@ export default {
             this.player.destroy();
             this.initYoutubePlayer();
         },
+        // 노트 작성 함수
+        addClassNote() {
+
+            const url = '/classwatchnote'
+            const header = {
+                headers: {
+                    "Content-Type": 'multipart/form-data',
+                    // 'X-CSRF-TOKEN': document.head.querySelector('meta[name="csrf-token"]').content,
+                },
+            }
+
+            let frm = new FormData();
+            frm.append('ClassID',this.noteCommentData.ClassID);
+            frm.append('UserID',this.noteCommentData.UserID);
+            // frm.append('ClassNoteID',this.noteCommentData.ClassNoteID);
+            frm.append('ClassNoteComment',this.noteCommentData.ClassNoteComment);
+
+            axios.post(url, frm, header)
+            .then(res => {
+                // res가 왜 빈값인지 알아야함.
+                // console.log("res데이터 어디갔냐");
+                // console.log(res);
+                console.log(res.data);
+                // 작성된 노트 데이터
+                // console.log("작성된 노트 데이터");
+                // console.log(this.noteCommentData);
+                // 노트데이터 배열 리스트
+                // console.log(this.noteData);
+
+                this.noteData.unshift(res.data);
+                this.noteCommentData = this.newNoteCommentData();
+            })
+            .catch(err => {
+                console.log("전달안됨")
+            })
+        },
     },
     
     mounted() {
@@ -380,6 +444,8 @@ export default {
         this.initYoutubePlayer();
         },
     },
+
+    
 
 }
 </script>

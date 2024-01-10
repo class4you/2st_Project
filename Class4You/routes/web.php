@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ClassBoardController;
 use App\Http\Controllers\ClassInfoController;
+use App\Http\Controllers\ClassNoteController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\BoardController;
 use App\Http\Controllers\MyPageController;
@@ -116,6 +117,9 @@ Route::get('/classwatchview/{ClassID}', [ChapterController::class, 'getNewClassW
 
 Route::put('/lessonprogress', [LessonController::class, 'updateLessonProgress']);
 
+// 강의 노트
+Route::post('/classwatchnote', [ClassNoteController::class, 'postClassNoteData']);
+Route::get('/classwatchnote/{ClassID}', [ClassNoteController::class, 'getClassNoteIndex']);
 
 // test
 // Route::prefix('reviews')->group(function () {
