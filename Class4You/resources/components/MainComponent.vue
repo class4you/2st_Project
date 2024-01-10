@@ -1,5 +1,6 @@
 <template>
     <div class="wrapper">
+        <!-- <LoadingBar :loading="this.$store.state.loadingStatus"></LoadingBar> -->
         <div class="container">
             <main class="contents">
                 <div class="main_mrap">
@@ -182,8 +183,9 @@
 
 import { defineComponent } from "vue";
 import { Carousel, Pagination, Slide, Navigation } from "vue3-carousel";
+import LoadingBar from './LoadingComponent';
 import axios from 'axios'
-import Swal from 'sweetalert2';
+// import Swal from 'sweetalert2';
 
 import "vue3-carousel/dist/carousel.css"; 
 
@@ -196,6 +198,7 @@ export default {
 		Slide,
 		Pagination,
         Navigation,
+        LoadingBar
 	},
     // href="/classBoard/HTML"
     data() {
@@ -258,23 +261,22 @@ export default {
             .then(response => {
                 console.log(response);
                 this.newClassItems = response.data;
-                return axios.get('/getUserData');
+                // return axios.get('/getUserData');
             })
-            .then(response2 => {
-                if (response2.data.userChk) {
-                    Swal.fire({
-                        icon: 'success',
-                        title: '로그인 성공',
-                        text: '로그인에 성공했습니다.',
-                        confirmButtonText: '확인'
-                    })
-                    console.log(response2);
-                    this.$store.commit('setSaveToLocalStorage', response2.data);
-                    this.$store.commit('setUserLoginChk', response2.data.sessionDataCheck);
-                    this.$store.commit('setUserID', response2.data.userId);
-                }
-
-            })
+            // .then(response2 => {
+            //     if (response2.data.userChk) {
+            //         Swal.fire({
+            //             icon: 'success',
+            //             title: '로그인 성공',
+            //             text: '로그인에 성공했습니다.',
+            //             confirmButtonText: '확인'
+            //         })
+            //         console.log(response2);
+            //         this.$store.commit('setSaveToLocalStorage', response2.data);
+            //         this.$store.commit('setUserLoginChk', response2.data.sessionDataCheck);
+            //         this.$store.commit('setUserID', response2.data.userId);
+            //     }
+            // })
             .catch(error => {
                 console.error('Error fetching data:', error);
             });

@@ -4,6 +4,20 @@ import router from "./router.js"
 import VueCookies from "vue-cookies";
 import Swal from 'sweetalert2';
 
+// axios.interceptors.request.use(function (config) {
+//     store.commit('LOADING_STATUS', true)
+
+//     const token = localStorage.getItem('user_token');
+//     config.headers.Authorization = "Bearer " + token;
+//     return config;
+// });
+
+// axios.interceptors.response.use(function (config) {
+//     store.commit('LOADING_STATUS', false)
+
+//     return config
+// });
+
 const store = createStore({
     
     // state() : 데이터를 저장하는 영역
@@ -52,6 +66,12 @@ const store = createStore({
         // setRegistrationErrorMessage(state, error) {
         //     state.RegistrationErrorMessage = error;
         // },
+        LOADING_STATUS(state, status) {
+            state.loading = status; // 'loading'은 Vuex 스토어의 state에 있어야 할 로딩 상태입니다.
+        },
+        LOADING_STATUS(state, status) {
+            state.loading = status; // 'loading'은 Vuex 스토어의 state에 있어야 할 로딩 상태입니다.
+        },
         setOpenLoginModal(state) {
             state.loginShowModal = true;
         },

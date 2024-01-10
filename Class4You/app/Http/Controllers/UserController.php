@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Mail;
 use Laravel\Socialite\Facades\Socialite;
 
 
@@ -135,8 +136,11 @@ class UserController extends Controller
             session()->save();
             $userId = Auth::id();
 
+            $beforeUrl = session()->get('before_url');
+            session()->remove('before_url');
             if (Auth::check()) {         
                 session()->put('userChk', true);
+                // $domain = request()->getHost();
                 $sessionDataCheck = Auth::check();
                 // return response()->json([
                 //     'success' => true,
@@ -144,7 +148,7 @@ class UserController extends Controller
                 //     'sessionDataCheck' => $sessionDataCheck,
                 //     'userId' => $userId,
                 // ])->header('Location', '/');
-                return redirect('/');
+                return redirect($beforeUrl);
     
             } else {
                 return response()->json([
@@ -200,5 +204,20 @@ class UserController extends Controller
     //     return redirect('/');
     // }
 
-    
+    public function googleemailchk(Request $request) { 
+
+        Log::debug($request);
+        // 이메일에 포함할 데이터 설정
+        $data = [
+            'email' => 'User', // 사용자 이름 또는 다른 필요한 데이터
+            'verification_link' => 'https://example.com/verify', // 인증 링크
+        ];
+
+        // 이메일 전송
+        Mail::send('mail.mail_form', ['data' => $data], function($message) use ($data, $request) {
+            $message->to($request->email)->subject('이메일인증');
+            $message->from('dldmldltmd@gmail.com');
+        });
+
+    }
 }

@@ -10,6 +10,7 @@ import BoardUpdateComponent from '../components/BoardUpdateComponent.vue';
 import ClassBoardDetailComponent from '../components/ClassBoardDetailComponent.vue';
 import ClassDatailWatchComponent from '../components/ClassDatailWatchComponent.vue';
 import UserMyPageComponent from '../components/UserMyPageComponent.vue';
+import LoadingComponent from '../components/LoadingComponent.vue';
 // import ClassBoardMainComponent from '../components/ClassBoardMainComponent.vue';
 import store from './store';
 
@@ -70,6 +71,10 @@ const routes = [
         props: true
     },
     {
+        path: '/loading',
+        component: LoadingComponent,
+    },
+    {
         path: '/test',
         component: TestComponent,
     },
@@ -85,6 +90,7 @@ const router = createRouter({
 });
 
 router.beforeEach((to, from, next) => {
+    
     const userId = localStorage.getItem('UserID');
 
     if (!userId) {
@@ -100,6 +106,7 @@ router.beforeEach((to, from, next) => {
         next();
     }
 });
+
 
 export default router;
 

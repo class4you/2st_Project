@@ -59,7 +59,8 @@
                                 </div>
                                 <div class="class_detail_container_r_payment_classes">
 									<a v-if="EnrollChk" :href="'/classwatch/' + detailClassItems.ClassID">강의 시청</a>
-                                    <a v-if="!EnrollChk && enrollflg" @click="postEnrollApp()">수강 신청</a>
+                                    <a v-if="!EnrollChk && enrollflg && detailClassItems.ClassPrice === 0" @click="postEnrollApp()">수강 신청</a>
+                                    <a v-if="!EnrollChk && enrollflg && detailClassItems.ClassPrice !== 0" @click="KGpay">수강 신청</a>
                                     <!-- <button v-else @click="postEnrollApp()">{{ classEnrollData.value }}</button> -->
                                 </div>
                             </div>
@@ -989,6 +990,9 @@ export default {
 				{ value: 4.0, emoji: '⭐⭐⭐⭐' },
 				{ value: 5.0, emoji: '⭐⭐⭐⭐⭐' },
 			],
+			page: {},
+
+			paymentUserData: {}
         }
     },
 	mounted() {
@@ -1001,7 +1005,7 @@ export default {
 	},
 
 	methods: {
-		fetchData() {
+		fetchData(page = 1) {
 		// 여기에서 정보를 추가로 조회하는 로직을 구현
 		// 예시: API를 호출하여 데이터를 가져옴\
 		axios.get('/classBoardDetail/' + this.ClassID)
@@ -1014,6 +1018,7 @@ export default {
 			this.EnrollChk = response.data.enrollmentChk;
 			this.languagesChk = response.data.result.languages[0].ClassLanguageName;
 			this.allLessonsData = response.data.allLessonsData;
+			this.paymentUserData = response.data.userData;
 			
 			if (response.data.avgReviewRating && response.data.avgReviewRating.avgRating !== undefined) {
 				// avgRating 값이 존재하는 경우
@@ -1046,6 +1051,10 @@ export default {
 						// this.pagination = reviewResponse.data.links;
 						this.EnrollChk = reviewResponse.data.enrollmentData;
 						// this.newReviewData = reviewResponse.data.classReviewData;
+						axios.get(`/board/data?page=${page}&ClassID=${this.ClassID}`)
+						.then(boardResponse => {
+							console.log(boardResponse.data);
+						}) 
                 })
                 .catch(reviewError => {
                     // 두 번째 API 에러 처리
@@ -1214,6 +1223,7 @@ export default {
             axios.post('/classEnrollAppPost', {
 				ClassID: this.ClassID,
         		UserID: this.$store.state.UserID,
+				Payment: this.detailClassItems.ClassPrice,
             })
             .then(res => { 
                 // console.log(res.data);
@@ -1297,8 +1307,55 @@ export default {
 			// console.log(data);
 			
 		
-		}
-	},
+		},
+		KGpay() {
+			const self = this;
+			const merchant_uid = this.ClassID;
+            const amount = this.detailClassItems.ClassPrice;
+            const buyer_email = this.paymentUserData.UserEmail;
+            const buyer_name = this.paymentUserData.UserName;
+            const buyer_tel = this.paymentUserData.UserPhoneNumber;
+            const buyer_addr = this.paymentUserData.UserRoadAddress + this.paymentUserData.UserRoadAddress;
+            const buyer_postcode = this.paymentUserData.UserPostcode;
+			IMP.init("imp78131745");
+			IMP.request_pay({
+				pg: 'html5_inicis',
+				pay_method: 'card',
+				merchant_uid: merchant_uid + '_' + new Date().getTime(),
+				name: 'Plantiful Point',
+				amount: amount,
+				buyer_email: buyer_email,
+				buyer_name: buyer_name,
+				buyer_tel: buyer_tel,
+				buyer_addr: buyer_addr,
+				buyer_postcode: buyer_postcode
+			}, function(response) {
+				//결제 후 호출되는 callback함수
+				if ( response.success ) { //결제 성공
+					console.log(response);
+				} else {
+					axios.post('/classEnrollAppPost', {
+					ClassID: self.ClassID,
+					UserID: self.$store.state.UserID,
+					Payment: self.detailClassItems.ClassPrice,
+				})
+				.then(res => { 
+					self.EnrollChk = true;
+					Swal.fire({
+						icon: 'success',
+						title: '성공',
+						text: '수강 신청에 성공하셨습니다.',
+						});
+					// window.location.reload();
+				})
+				.catch(err => {
+
+				})
+				}
+			})
+			
+		},
+	}
     
 }
 </script>
