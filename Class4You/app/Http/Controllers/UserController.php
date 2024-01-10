@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\EmailAuthState;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
@@ -11,6 +12,7 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Mail;
 use Laravel\Socialite\Facades\Socialite;
+use Illuminate\Support\Facades\DB;
 
 
 class UserController extends Controller
@@ -206,18 +208,128 @@ class UserController extends Controller
 
     public function googleemailchk(Request $request) { 
 
-        Log::debug($request);
-        // 이메일에 포함할 데이터 설정
-        $data = [
-            'email' => 'User', // 사용자 이름 또는 다른 필요한 데이터
-            'verification_link' => 'https://example.com/verify', // 인증 링크
-        ];
+        $userChkData = User::select('UserID', 'UserEmail')->where('UserEmail', $request->email)->first();
+        // Log::debug($request);
+        // Log::debug($userChkData->UserID);
+        if($userChkData) {
+            $randomValue = Str::random(8);
 
-        // 이메일 전송
-        Mail::send('mail.mail_form', ['data' => $data], function($message) use ($data, $request) {
-            $message->to($request->email)->subject('이메일인증');
-            $message->from('dldmldltmd@gmail.com');
-        });
+            $EmailAuthData = [
+                'UserID' => $userChkData->UserID,
+                'EmailStatus' => 1,
+                'EmailToken' => $randomValue,
+            ];
 
+            $EmailAuthChkData = EmailAuthState::where('UserID', $userChkData->UserID)->first();
+
+            EmailAuthState::create($EmailAuthData);
+
+            $data = [
+                'email' => $request->email,
+                'token' => $randomValue,
+            ];
+    
+            // 이메일 전송
+            Mail::send('mail.mail_form', ['data' => $data], function($message) use ($data, $request) {
+                $message->to($request->email)->subject('이메일인증');
+                $message->from('dldmldltmd@gmail.com');
+            });
+
+            return response()->json([
+                'success' => true,
+                'message' => '존재하는 이메일입니다',
+            ]);
+        } else {
+            return response()->json([
+                'success' => false,
+                'message' => '존재하지 않는 이메일입니다.',
+            ]);
+        }
+    }
+    
+    public function tokendatachk(Request $request) {
+        // Log::debug($request);
+
+        $userID = User::select('UserID')->where('UserEmail', $request->email)->first();
+
+        $emailAuthChk = EmailAuthState::where('UserID', $userID->UserID)->first();
+        // Log::debug($emailAuthChk);
+        if($emailAuthChk) {
+            $emailTokenAuthChk = EmailAuthState::where('UserID', $userID->UserID)
+                ->where('EmailToken', $request->token)
+                ->first();
+
+                if($emailTokenAuthChk) {
+                    $characters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#';
+                    $randomValue = $characters[rand(0, 25)];  // 영어 대문자
+                    $randomValue .= $characters[rand(26, 51)];  // 영어 소문자
+                    $randomValue .= $characters[rand(52, 61)];  // 숫자
+                    $randomValue .= $characters[rand(62, 65)];  // 특수문자
+                    
+                    // 나머지 글자를 랜덤하게 채우기
+                    while(strlen($randomValue) < 8) {
+                        $randomValue .= $characters[rand(0, strlen($characters) - 1)];
+                    }
+                    // 랜덤하게 섞기
+                    $randomValue = str_shuffle($randomValue);
+
+                    $data = [
+                        'password' => $randomValue,
+                    ];
+                    Mail::send('mail.mail_form_password', ['data' => $data], function($message) use ($data, $request) {
+                        $message->to($request->email)->subject('임시 비밀번호');
+                        $message->from('dldmldltmd@gmail.com');
+                    });
+
+                    $passwordHash = Hash::make($randomValue);
+
+                    User::where('UserID', $userID->UserID)
+                        ->update([
+                            'UserPassword' => $passwordHash,
+                        ]);
+                } else {
+
+                }
+            
+        }
+    }
+
+    public function tokendataupdate(Request $request) {
+
+        $userID = User::select('UserID')->where('UserEmail', $request->params['email'])->first();
+
+        $emailAuthChk = EmailAuthState::where('UserID', $userID->UserID)
+            ->orderBy('created_at', 'desc') 
+            ->first();
+        
+        // Log::debug($emailAuthChk);
+        
+        if($emailAuthChk->EmailStatus <= 3) {
+            $randomValue = Str::random(8);
+
+            EmailAuthState::where('UserID', $emailAuthChk->UserID,)
+                ->where('EmailAuthStateID', $emailAuthChk->EmailAuthStateID)
+                ->update([
+                    'EmailStatus' => DB::raw('EmailStatus + 1'),
+                    'EmailToken' => $randomValue,
+                ]);
+
+            $data = [
+                'email' => $request->params['email'],
+                'token' => $randomValue,
+            ];
+
+            // 이메일 전송
+            Mail::send('mail.mail_form', ['data' => $data], function($message) use ($data, $request) {
+                $message->to($request->params['email'])->subject('이메일인증');
+                $message->from('dldmldltmd@gmail.com');
+            });
+        } else {
+            return response()->json([
+                'success' => false,
+                'message' => '5분 후 다시 시도해주세요.',
+            ]);
+        }
+        
     }
 }

@@ -76,8 +76,8 @@
                     <button type="button" @click="submitUserLoginData()" style="cursor: pointer;">로그인</button>
                 </div>
                 <div class="login_modal_find_box">
-                    <!-- <span><a href="">비밀번호 찾기</a></span>
-                    <span>&#124;</span> -->
+                    <span><a @click="findPassword()">비밀번호 찾기</a></span>
+                    <span>&#124;</span>
                     <span><a href="/registration">회원가입 하기</a></span>
                 </div>
                 <div class="login_modal_easy_box">
@@ -85,9 +85,9 @@
                 </div>
                 <div class="login_modal_button">
                     <button type="button" @click="loginWithKakao" style="cursor: pointer;">카카오톡 로그인</button>
-                    
                 </div>
             </div>
+
         </div>
 
     </div>
@@ -99,6 +99,7 @@ import Swal from 'sweetalert2';
 
 
 import "vue3-carousel/dist/carousel.css"; 
+import { result } from "lodash";
 export default {
     name: 'HeaderComponent',
 
@@ -121,6 +122,9 @@ export default {
             top_banners: ['새로운 온라인 클래스 오픈', '풀스택 개발자를 위한 과정', '지금 결제 시 무료 강의 오픈', '오픈 찬스 지금 당장 확인하세요',],
             autoplay: true,
             autoplayDuration: 5000,
+            loginClickFlgTab: 1,
+            userEmailChk: {},
+            userEmailData: {},
         }
     },
 
@@ -203,10 +207,159 @@ export default {
         },
         logoutWithKakao() {
             location.href='/logout/kakao/callback';
+        },
+        findPassword() {
+            Swal.fire({
+                icon: 'info', // 추가: 아이콘 설정
+                title: '이메일 입력',
+                input: 'email',
+                inputLabel: '-',
+                inputPlaceholder: '인증번호를 받을 이메일을 입력해주세요',
+                showCancelButton: true,
+                cancelButtonText: '취소',
+                confirmButtonText: '인증번호 전송',
+                showLoaderOnConfirm: true,
+                preConfirm: (verificationCode) => {
+                    return new Promise((resolve) => {
+                        setTimeout(() => {
+                            resolve(verificationCode);
+                        }, 3000);
+                        this.userEmailData = verificationCode;
+                        const url = '/emailChkSubmit';
+                        const header = {
+                            headers: {
+                            'Content-Type': 'multipart/form-data',
+                            }
+                        };
+                        const formData = new FormData();
+                            formData.append('email', verificationCode);
+                            axios.post(url,formData, header)
+                        .then(res => {
+                            console.log(res.data);
+                            if(res.data.success === false) {
+                                    this.userEmailChk = false;
+                                    Swal.fire({
+                                    icon: 'warning', // 추가: 아이콘 설정
+                                    title: '에러',
+                                    text: '존재하지 않는 이메일입니다.',
+                                    confirmButtonText: 'Close',
+                                });
+                            }
+                        })
+                        .catch(err => {
+
+                        })
+                    });
+                }
+            }).then((result) => {
+                    if (this.userEmailChk && !result.dismiss && result.value) {
+                        // console.log(result.value);
+                        Swal.fire({
+                            icon: 'info',
+                            title: '인증번호 입력',
+                            html:
+                            '<div class="swal2-div">' +
+                                '<input id="verificationCodeInput" class="swal2-input email_chk_swal2_input" placeholder="인증번호를 입력해주세요.">' +
+                                '<button style="cursor:pointer;" type="button" id="resendButton" class="swal2-confirm email_chk_swal2_confirm">재전송</button>' +
+                            '</div>',
+                            showCancelButton: true,
+                            cancelButtonText: '취소',
+                            confirmButtonText: '인증',
+                            showLoaderOnConfirm: true,
+                            didOpen: (modalElement) => {
+                                const resendButton = modalElement.querySelector('#resendButton');
+                                // 재전송 버튼에 클릭 이벤트 추가
+                                resendButton.addEventListener('click', () => {
+                                    // 재전송 버튼 클릭 시 동작 처리
+                                    axios.put('/tokenChkUpdate', {
+                                        params: {
+                                            email: this.userEmailData,
+                                        }
+                                    })
+                                    .then(res => {
+                                        console.log(res.data);
+                                        if(res.data.success === false) {
+                                                // this.userEmailChk = false;
+                                                Swal.fire({
+                                                icon: 'warning', // 추가: 아이콘 설정
+                                                title: '횟수 초과',
+                                                text: '5분 후 다시 시도해주세요.',
+                                                confirmButtonText: 'Close',
+                                            });
+                                        }
+                                    })
+                                });
+                            },
+                            preConfirm: (verificationCode) => {
+                                const verificationCodeInputValue = document.getElementById('verificationCodeInput').value;
+                                console.log(resendButton);
+                                axios.get('/tokenChkSubmit', {
+                                    params: {
+                                        email: this.userEmailData,
+                                        token: verificationCodeInputValue
+                                    }
+                                })
+                                    .then(res => {
+                                        console.log(res.data);
+                                })
+
+                                return new Promise((resolve) => {
+                                    setTimeout(() => {
+                                        resolve(verificationCode);
+                                    }, 3000);
+                                    
+                                });
+                            },
+                        
+                    }).then((verificationResult) => {
+                        if (!verificationResult.dismiss && verificationResult.value) {
+                            // Third step: Display success message (in your case, send temporary password)
+                            Swal.fire({
+                                icon: 'success', // 추가: 아이콘 설정
+                                title: '인증 완료',
+                                text: '해당 이메일로 임시 비밀번호를 전송하였습니다.',
+                                confirmButtonText: '확인'
+                            });
+                        } else if (verificationResult.dismiss === Swal.DismissReason.cancel) {
+                            // User clicked cancel, handle it as needed
+                            Swal.fire({
+                                icon: 'warning', // 추가: 아이콘 설정
+                                title: '취소',
+                                text: '취소 처리 되었습니다.',
+                                confirmButtonText: 'Close'
+                            });
+                        } else {
+                            // Verification failed, handle it as needed
+                            Swal.fire({
+                                icon: 'error', // 추가: 아이콘 설정
+                                title: '에러',
+                                text: '이메일 및 인증번호 재확인 부탁드립니다.',
+                                confirmButtonText: 'Close'
+                            });
+                        }
+                    });
+                }
+            });
         }
     }
 }
 </script>
 <style>
 
+.swal2-div {
+    display: flex;
+}
+
+.email_chk_swal2_input {
+    margin: 1em 10px 3px;
+}
+.email_chk_swal2_confirm {
+    border: 0;
+    border-radius: 0.25em;
+    background-color: #7066e0;
+    color: #fff;
+    font-size: 1em;
+    padding: .625em 1.1em;
+    margin: 1em 0px 3px;
+}
 </style>

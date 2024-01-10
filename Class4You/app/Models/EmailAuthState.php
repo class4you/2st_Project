@@ -8,4 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class EmailAuthState extends Model
 {
     use HasFactory;
+
+    protected $primaryKey = 'EmailAuthStateID';
+
+    protected $fillable = [
+        'UserID',
+        'EmailStatus',
+        'EmailToken',
+    ];
 }

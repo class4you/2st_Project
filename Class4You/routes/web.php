@@ -51,6 +51,10 @@ Route::get('/logout', [UserController::class, 'logout']);
 
 Route::post('/emailChkSubmit', [UserController::class, 'googleemailchk']);
 
+Route::get('/tokenChkSubmit', [UserController::class, 'tokendatachk']);
+
+Route::put('/tokenChkUpdate', [UserController::class, 'tokendataupdate']);
+
 
 // 네이버 로그인
 // Route::get('/login/naver', function () {

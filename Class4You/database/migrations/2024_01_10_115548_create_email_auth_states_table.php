@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('email_auth_states', function (Blueprint $table) {
             $table->id('EmailAuthStateID');
             $table->integer('UserID');
+            $table->string('EmailToken');
             $table->char('EmailStatus', 1)->default(0);
             $table->timestamps();
             $table->softDeletes();
