@@ -58,9 +58,6 @@ Route::get('/logout', [UserController::class, 'logout']);
 // });
 
 
-Route::get('/login/kakao', function () {
-    return Socialite::driver('kakao')->redirect();
-});
 
 // Route::post('/login/kakao/callback', function () {
 //     $user = Socialite::driver('kakao')->setHttpClient(new \GuzzleHttp\Client(['verify' => false]))->user();
@@ -68,9 +65,6 @@ Route::get('/login/kakao', function () {
 
 
 
-Route::get('/login/kakao/callback', [UserController::class, 'kakaologin']);
-
-Route::get('/getUserData', [UserController::class, 'getuserdata']);
 
 // Route::get('/logout/kakao/callback', [UserController::class, 'kakaologout']);
 
@@ -194,7 +188,13 @@ Route::delete('/deleteduserdata', [MyPageController::class, 'deleteUserpasswordD
 // });
 
 
+Route::get('/login/kakao', function () {
+    return Socialite::driver('kakao')->redirect();
+});
 
+Route::get('/login/kakao/callback', [UserController::class, 'kakaologin']);
+
+Route::get('/getUserData', [UserController::class, 'getuserdata']);
 
 
 Route::any("{slug}", function ($slug) {
@@ -202,5 +202,13 @@ Route::any("{slug}", function ($slug) {
 });
 
 Route::any("{slug1}/{slug2}", function ($slug1, $slug2) {
+    return view('welcome');
+});
+
+Route::any("{slug1}/{slug2}/{slug3}", function ($slug1, $slug2, $slug3) {
+    return view('welcome');
+});
+
+Route::any("{slug1}/{slug2}/{slug3}/{slug4}", function ($slug1, $slug2, $slug3, $slug4) {
     return view('welcome');
 });

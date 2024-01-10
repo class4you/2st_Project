@@ -256,12 +256,18 @@ export default {
         fetchData() {
         axios.get('/getNewClassMainData')
             .then(response => {
-                // console.log(response.data);
+                console.log(response);
                 this.newClassItems = response.data;
                 return axios.get('/getUserData');
             })
             .then(response2 => {
-                if (response2.data.success) {
+                if (response2.data.userChk) {
+                    Swal.fire({
+                        icon: 'success',
+                        title: '로그인 성공',
+                        text: '로그인에 성공했습니다.',
+                        confirmButtonText: '확인'
+                    })
                     console.log(response2);
                     this.$store.commit('setSaveToLocalStorage', response2.data);
                     this.$store.commit('setUserLoginChk', response2.data.sessionDataCheck);
