@@ -303,6 +303,104 @@ const store = createStore({
             })
         },
 
+
+
+
+
+
+        // 관리자 페이지
+        submitInstructorLoginData(context, data) {
+            const url = '/instructorlogin'
+            
+            const header = {
+                headers: {
+                    "Content-Type": 'application/json',
+                    'X-CSRF-TOKEN': document.head.querySelector('meta[name="csrf-token"]').content,
+                },
+            }
+            const requestData = {
+                InstructorEmail: data.InstructorEmail,
+                InstructorPassword: data.InstructorPassword,
+            };
+            console.log(data);
+            
+
+            axios.post(url, requestData, header)
+            .then(res => { 
+                console.log(res);
+                context.dispatch('closeLoginModal');
+                if (res.data.success) {
+                    // context.commit('setSaveToLocalStorage', res.data);
+                    // context.commit('setUserLoginChk', res.data.sessionDataCheck);
+                    // context.commit('setUserID', res.data.userId);
+                    Swal.fire({
+                        icon: 'success',
+                        title: '로그인 성공',
+                        text: '로그인에 성공했습니다.',
+                        confirmButtonText: '확인'
+                    }).then((result) => {
+                        // 확인 버튼을 눌렀을 때(result.value가 true일 때) 페이지 리로드
+                        if (result.value) {
+                            router.push('/adminmain'); 
+                        }
+                    })
+                    // context.commit('setUserLoginChk', {sessionDataCheck:res.data.sessionDataCheck, UserID:res.data.userId});
+                    // console.log(res.data.sessionDataCheck)
+                    // console.log(res.data)
+                    // router.push('/'); 
+                } else if(res.data.success == false) {
+                    Swal.fire({
+                        icon: 'error',
+                        title: '로그인 실패',
+                        text: '이메일 또는 비밀번호를 확인해주세요.',
+                        confirmButtonText: '확인'
+                    });
+                    // console.log(err.response.data.errors)
+                }
+            })
+            .catch(err => {
+                // 서버 오류 등의 예외 처리
+                console.error('오류 발생:', err);
+                Swal.fire({
+                    icon: 'error',
+                    title: '로그인 실패',
+                    text: '이메일 또는 비밀번호를 확인해주세요.',
+                    confirmButtonText: '확인'
+                });
+            })
+            .finally(() => {
+                // location.reload();
+            })
+        },
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         // 댓글 작성 함수
         // submitCommentData(context, data) {
         //     const url = '/comments'
@@ -439,6 +537,8 @@ const store = createStore({
         //         context.commit('setRegistrationErrorMessage', err.response.data.errors);
         //     })
         // },
+
+        
 
 
     }, 

@@ -12,6 +12,7 @@ use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ChapterController;
 use App\Http\Controllers\EnrollmentController;
 use App\Http\Controllers\LessonController;
+use App\Http\Controllers\InstructorController;
 use Laravel\Socialite\Facades\Socialite;
 use Illuminate\Http\Request;
 
@@ -80,6 +81,18 @@ Route::put('/tokenChkUpdate', [UserController::class, 'tokendataupdate']);
 // Route::get('/login/kakao/callback', function () {
 //     return view('welcome');
 // });
+
+// 카카오 로그인
+
+Route::get('/login/kakao', function (Request $request) {
+    session()->put('before_url', $request->before_url);
+    return Socialite::driver('kakao')->redirect();
+});
+
+Route::get('/login/kakao/callback', [UserController::class, 'kakaologin']);
+
+Route::get('/getUserData', [UserController::class, 'getuserdata']);
+
 
 
 
@@ -202,15 +215,8 @@ Route::delete('/deleteduserdata', [MyPageController::class, 'deleteUserpasswordD
 //     return view('classBoardDetail');
 // });
 
-
-Route::get('/login/kakao', function (Request $request) {
-    session()->put('before_url', $request->before_url);
-    return Socialite::driver('kakao')->redirect();
-});
-
-Route::get('/login/kakao/callback', [UserController::class, 'kakaologin']);
-
-Route::get('/getUserData', [UserController::class, 'getuserdata']);
+// 관리자 로그인
+Route::post('/instructorlogin', [InstructorController::class, 'instructorloginpost']);
 
 
 Route::any("{slug}", function ($slug) {
@@ -221,10 +227,3 @@ Route::any("{slug1}/{slug2}", function ($slug1, $slug2) {
     return view('welcome');
 });
 
-Route::any("{slug1}/{slug2}/{slug3}", function ($slug1, $slug2, $slug3) {
-    return view('welcome');
-});
-
-Route::any("{slug1}/{slug2}/{slug3}/{slug4}", function ($slug1, $slug2, $slug3, $slug4) {
-    return view('welcome');
-});

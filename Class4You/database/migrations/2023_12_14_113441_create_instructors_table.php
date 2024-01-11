@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('InstructorFullName', 50)->nullable();
             $table->string('InstructorPhoneNumber', 20)->nullable();
             $table->string('InstructorHistory', 1000)->nullable();
+            $table->char('InstructorFlg', 1)->default(0);
             $table->timestamps();
             $table->softDeletes();
         });
