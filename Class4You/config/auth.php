@@ -40,6 +40,11 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
+        
+        'admin' => [
+            'driver' => 'session',
+            'provider' => 'admins', // 관리자 모델을 위한 프로바이더 추가
+        ],
     ],
 
     /*
@@ -69,6 +74,11 @@ return [
         //     'driver' => 'database',
         //     'table' => 'users',
         // ],
+
+        'admins' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Instructor::class,
+        ],
     ],
 
     /*
