@@ -131,10 +131,15 @@ class BoardController extends Controller
 
         // Log::debug($boardData);
 
+        $UserEmailData = User::select('UserEmail')
+            ->where('UserID', $request->UserID)
+            ->first();
+
         return response()->json([
             'boardData' => $boardData,
             'userCntData' => $userCntData,
             'enrollmentData' => $EnrollmentData,
+            'userEmailData' => $UserEmailData,
         ]);
     }
     
@@ -398,17 +403,29 @@ class BoardController extends Controller
             ->where('ClassID', $request->ClassID) 
             ->first();
 
+        $UserEmailData = User::select('UserEmail')
+            ->where('UserID', $request->UserID)
+            ->first();
+        
+        Log::debug("유저 이메일 데이터");
+        Log::debug($UserEmailData);
+
         // 조회한 수강 아이디($EnrollmentData)를 리뷰 데이터($request)에 추가    
         $request->merge([
             'EnrollmentID' => $EnrollmentData->EnrollmentID,
             'BoardCategoryID' => 2,
+            'UserEmail' => $UserEmailData->UserEmail,
         ]);
-        $data = $request->only('EnrollmentID','UserID', 'ClassID', 'BoardID', 'BoardTitle', 'BoardComment', 'BoardCategoryID');
+
+        $data = $request->only('EnrollmentID','UserID', 'ClassID', 'BoardID', 'BoardTitle', 'BoardComment', 'BoardCategoryID', 'UserEmail');
+
+        Log::debug('====================================================');
+        Log::debug($data);
 
         $result = Board::create($data);
 
         Log::debug('====================================================');
-        Log::debug($data);
+        Log::debug($result);
 
         return response()->json($result);
     }

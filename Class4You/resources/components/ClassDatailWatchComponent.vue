@@ -102,38 +102,41 @@
                             <div class="class_detail_watch_side_classnote_list">
                                 <div class="class_detail_watch_side_classnote_list_text">
                                     <textarea v-if="data.ClassNoteID == updateNoteID" v-model="data.ClassNoteComment" class="class_detail_watch_note_update_text" cols="30" rows="10"></textarea>
-                                    <p v-else>{{ data.ClassNoteComment }}</p>
+                                    <p v-else>{{ data.ClassNoteID }},{{ data.ClassNoteComment }}</p>
                                 </div>
-                                <!-- <div v-if="data.UserID == $store.state.UserID"> -->
-                                <div v-if="data.UserID == $store.state.UserID && data.ClassNoteID == updateNoteID" class="class_detail_watch_side_classnote_list_btn">
-                                    <div class="class_detail_watch_side_classnote_list_btn_up">
-                                        <button @click="updateClassNote(data)">수정</button>
+                                <div v-if="data.UserID == $store.state.UserID">
+                                    <div v-if="data.ClassNoteID == updateNoteID" class="class_detail_watch_side_classnote_list_btn">
+                                        <div class="class_detail_watch_side_classnote_list_btn_up">
+                                            <button @click="updateClassNote(data)">수정</button>
+                                        </div>
+                                        <div class="class_detail_watch_side_classnote_list_btn_del">
+                                            <button @click="updateClassNote(false)">취소</button>
+                                        </div>
                                     </div>
-                                    <div class="class_detail_watch_side_classnote_list_btn_del">
-                                        <button @click="updateClassNote(false)">취소</button>
-                                    </div>
-                                </div>
-                                <!-- </div> -->
-                                <div class="class_detail_watch_side_classnote_list_btn" v-else>
-                                    <div class="class_detail_watch_side_classnote_list_btn_up">
-                                        <button @click="updateNoteID = data.ClassNoteID">수정</button>
-                                    </div>
-                                    <div class="class_detail_watch_side_classnote_list_btn_del">
-                                        <button @click="delClassNote(data)">삭제</button>
+                                
+                                    <div v-else class="class_detail_watch_side_classnote_list_btn">
+                                        <div class="class_detail_watch_side_classnote_list_btn_up">
+                                            <button @click="updateNoteID = data.ClassNoteID">수정</button>
+                                        </div>
+                                        <div class="class_detail_watch_side_classnote_list_btn_del">
+                                            <button @click="delClassNote(data)">삭제</button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         
                         <div class="class_detail_watch_side_classnote_write_div">
-                            <div class="class_detail_watch_side_classnote_write">
-                                <div class="class_detail_watch_side_classnote_write_text">
-                                    <textarea v-model="noteCommentData.ClassNoteComment" name="" id="" cols="30" rows="10" placeholder="메모해주세요"></textarea>
+                            <fieldset>
+                                <div class="class_detail_watch_side_classnote_write">
+                                    <div class="class_detail_watch_side_classnote_write_text">
+                                        <textarea v-model="noteCommentData.ClassNoteComment" name="" id="" cols="30" rows="10" placeholder="메모해주세요"></textarea>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="class_detail_watch_side_classnote_write_btn">
-                                <button @click="addClassNote()">노트입력</button>
-                            </div>
+                                <div class="class_detail_watch_side_classnote_write_btn">
+                                    <button @click="addClassNote()">노트입력</button>
+                                </div>
+                            </fieldset>
                         </div>
                     </div>
                 </div>
@@ -420,7 +423,7 @@ export default {
                 console.log(res.data);
                 // 작성된 노트 데이터
                 // console.log("작성된 노트 데이터");
-                // console.log(this.noteCommentData);
+                console.log("작성된 노트 데이터", this.noteCommentData);
                 // 노트데이터 배열 리스트
                 // console.log(this.noteData);
 
