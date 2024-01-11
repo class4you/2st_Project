@@ -3,16 +3,17 @@
     <loading-component v-if="loading" />
     <div v-if="!loading" id="page-top">
         <div id="wrapper">
-
+            
             <!-- Sidebar -->
             <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
-
+                
                 <!-- Sidebar - Brand -->
                 <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
                     <div class="sidebar-brand-icon rotate-n-15">
                         <i class="fas fa-laugh-wink"></i>
                     </div>
                     <div class="sidebar-brand-text mx-3">Class 4 You</div>
+                    
                 </a>
 
                 <!-- Divider -->
@@ -23,10 +24,10 @@
                     <a class="nav-link" href="/adminmain">
                         <i class="fas fa-fw fa-tachometer-alt"></i>
                         <span>대시보드</span></a>
-                </li>
-                
-                <li class="nav-item">
-                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
+                    </li>
+                    
+                    <li class="nav-item">
+                        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
                         aria-expanded="true" aria-controls="collapseTwo">
                         <i class="fas fa-fw fa-cog"></i>
                         <span>유저 관리</span>
@@ -70,13 +71,13 @@
                     <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                         <div class="bg-white py-2 collapse-inner rounded">
                             <h6 class="collapse-header admin-main-h6-font-size">관리자 정보 수정</h6>
-                            <a class="collapse-item" href="login.html">Login</a>
-                            <a class="collapse-item" href="register.html">Register</a>
-                            <a class="collapse-item" href="forgot-password.html">Forgot Password</a>
+                            <a v-if="InstructorID == 1" class="collapse-item" href="login.html">강사 회원가입</a>
+                            <a class="collapse-item" href="register.html">관리자 정보 관리</a>
                             <div class="collapse-divider admin-main-h6-font-size"></div>
                             <h6 class="collapse-header">강의 업로드 관리</h6>
-                            <a class="collapse-item" href="404.html">404 Page</a>
-                            <a class="collapse-item" href="blank.html">Blank Page</a>
+                            <a class="collapse-item" href="404.html">강의 추가</a>
+                            <a class="collapse-item" href="404.html">강의 추가</a>
+                            <a class="collapse-item" href="404.html">강의 추가</a>
                         </div>
                     </div>
                 </li>
@@ -269,7 +270,7 @@
                             </div>
                         </li>
                         <div class="topbar-divider d-none d-sm-block"></div>
-                        <a href="">로그아웃</a>
+                        <button type="button" @click="instructorlogout">로그아웃</button>
                         <!-- Nav Item - User Information 관리자 프로필 창 -->
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
@@ -685,14 +686,39 @@
 </template>
 <script>
 import LoadingComponent from './LoadingComponent.vue';
-
+import Swal from 'sweetalert2';
 export default {
     name: 'AdminMainComponent',
 
     data() {
         return {
-        loading: true, // 로딩 상태를 나타내는 데이터
+            loading: true, // 로딩 상태를 나타내는 데이터
+            InstructorID : null,
         };
+    },
+
+    methods: {
+        
+        instructorlogout() {
+            axios.get('/instructorlogout')
+            .then(res => {
+                console.log(res);
+                localStorage.clear();
+                
+                Swal.fire({
+                    icon: 'success',
+                    title: '로그아웃 성공',
+                    text: '로그아웃에 성공했습니다.',
+                    confirmButtonText: '확인'
+                }).then(() => {
+                    // 확인 버튼을 눌렀을 때 실행할 코드
+                    location.reload();
+                });
+            })
+            .catch(err => {
+                // console.log(err.response.data);
+            });
+        }
     },
 
     beforeCreate() {
@@ -711,6 +737,7 @@ export default {
         allMinStyleLink.rel = 'stylesheet';
         allMinStyleLink.href = '/vendor/fontawesome-free/css/all.min.css';
         document.head.appendChild(allMinStyleLink);
+        
 
         // 스타일시트 로드 완료 후 로딩 상태 변경
         const checkLoad = () => {
@@ -724,6 +751,14 @@ export default {
         };
 
         checkLoad();
+    },
+
+    mounted() {
+        this.InstructorID = localStorage.getItem('InstructorID')
+    },
+
+    updated() {
+
     },
 
     components: {

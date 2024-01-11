@@ -2,8 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Models\User;
+use App\Models\ClassInfo;
+use App\Models\UserStatus;
+use App\Models\Enrollment;
+use App\Models\Board;
 use App\Models\Instructor;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
@@ -53,5 +58,120 @@ class InstructorController extends Controller
                 'message' => '인증 에러가 발생했습니다.',
             ]);
         }
+    }
+
+    public function instructorlogoutget() {
+        // 로그아웃 처리
+        Auth::guard('admin')->logout();
+        
+        $sessioninstructorDataCheck = Auth::guard('admin')->check();
+
+        return response()->json([
+            'message' => '로그아웃 성공',
+            'sessioninstructorDataCheck' => $sessioninstructorDataCheck,
+        ]);
+    }
+
+    public function instructoruserdata(Request $request) {
+        // Log::debug($request);
+        $instructorId = Auth::guard('admin')->id();
+
+        if($instructorId == 1) {
+            $userDataQuery = User::leftJoin('user_statuses', function($join) {
+                $join->on('users.UserID', '=', 'user_statuses.UserID');
+            })
+            ->select('users.*', 'user_statuses.UserStatus', 'user_statuses.SuspensionType', 'user_statuses.SuspendedUntil')
+            ->withTrashed()
+            ->orderBy('users.created_at', 'desc');
+        }
+
+        if ($request->has('search')) {
+            $searchTerm = $request->input('search');
+            $userDataQuery->where(function ($query) use ($searchTerm) {
+                $query->orWhere('users.UserName', 'LIKE', "%{$searchTerm}%");
+            });
+        }
+        $userData = $userDataQuery->paginate(10);
+
+        return response()->json([
+            'userData' => $userData,
+        ]);
+    }
+
+    public function instructoruserclassdata(Request $request) {
+
+        $instructorId = Auth::guard('admin')->id();
+
+        if($instructorId == 1) {
+            $ClassDataQuery = Enrollment::select('enrollments.UserID', 'enrollments.ClassID', 'class_infos.ClassTitle', 'class_infos.ClassPrice', 'class_infos.ClassDifficultyID', 'enrollments.created_at', 'enrollments.EnrollmentFlg')
+                ->join('users', 'enrollments.UserID' ,'users.UserID')
+                ->join('class_infos', 'enrollments.ClassID', 'class_infos.ClassID')
+                ->orderBy('users.created_at', 'desc');
+        }
+
+        if ($request->has('search')) {
+            $searchTerm = $request->input('search');
+            $ClassDataQuery->where(function ($query) use ($searchTerm) {
+                $query->orWhere('class_infos.ClassTitle', 'LIKE', "%{$searchTerm}%");
+            });
+        }
+
+        $ClassData = $ClassDataQuery->paginate(10);
+
+        return response()->json([
+            'classData' => $ClassData,
+        ]);
+
+    }
+
+    public function instructoruserboardquestion(Request $request) {
+
+        $instructorId = Auth::guard('admin')->id();
+
+        if($instructorId == 1) {
+            $boardQuestionDataQuery = Board::whereNotNull('ClassID')
+                ->withTrashed()
+                ->orderBy('boards.created_at', 'desc');
+        }
+
+        if ($request->has('search')) {
+            $searchTerm = $request->input('search');
+            $boardQuestionDataQuery->where(function ($query) use ($searchTerm) {
+                $query->orWhere('BoardTitle', 'LIKE', "%{$searchTerm}%")
+                    ->orWhere('BoardComment', 'LIKE', "%{$searchTerm}%");
+            });
+        }
+
+        $BoardData = $boardQuestionDataQuery->paginate(10);
+
+        return response()->json([
+            'boardData' => $BoardData,
+        ]);
+
+    }
+
+    public function instructoruserboardcommunity(Request $request) {
+        $instructorId = Auth::guard('admin')->id();
+
+        if($instructorId == 1) {
+            $boardQuestionDataQuery = Board::whereNull('ClassID')
+                ->withTrashed()
+                ->orderBy('boards.created_at', 'desc');
+        }
+
+        if ($request->has('search')) {
+            $searchTerm = $request->input('search');
+            $boardQuestionDataQuery->where(function ($query) use ($searchTerm) {
+                $query->orWhere('BoardTitle', 'LIKE', "%{$searchTerm}%")
+                    ->orWhere('BoardComment', 'LIKE', "%{$searchTerm}%");
+            });
+        }
+
+        $BoardData = $boardQuestionDataQuery->paginate(10);
+
+        return response()->json([
+            'boardData' => $BoardData,
+        ]);
+
     }
 }

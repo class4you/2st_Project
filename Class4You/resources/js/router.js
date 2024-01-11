@@ -145,10 +145,24 @@ router.beforeEach((to, from, next) => {
         // 사용자 아이디가 있는 경우는 정상적으로 진행
         next();
     }
+
+});
+
+router.beforeEach((to, from, next) => {
+    
+    const instructorId = localStorage.getItem('InstructorID');
+
+    if (!instructorId) {
+        if (to.path === '/adminmain' || to.path === '/adminuserdata' || to.path === '/adminuserclassdata' || to.path === '/adminuserstatedata' || to.path === '/adminboardquestiondata' || to.path === '/adminboardcommunitydata' || to.path === '/adminboardreportdata') {
+            next('/adminlogin');
+        } else {
+            // 다른 경우에는 정상적으로 진행
+            next();
+        }
+    } else {
+        next();
+    }
 });
 
 
 export default router;
-
-
-

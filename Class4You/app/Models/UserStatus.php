@@ -8,4 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 class UserStatus extends Model
 {
     use HasFactory;
+
+    protected $primaryKey = 'UserStatusID';
+
+    protected $fillable = [
+        'UserID',
+        'AccountSuspension',
+        'AccountTemporarilySuspended',
+
+    ];
 }

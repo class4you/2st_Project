@@ -16,8 +16,9 @@ return new class extends Migration
         Schema::create('user_statuses', function (Blueprint $table) {
             $table->id('UserStatusID');
             $table->integer('UserID');
-            $table->char('AccountSuspension', 1)->default(0);
-            $table->char('AccountTemporarilySuspended', 1)->default(0);
+            $table->char('UserStatus', 1)->default(0);
+            $table->char('SuspensionType', 1)->default(0);
+            $table->timestamp('SuspendedUntil')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

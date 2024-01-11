@@ -309,167 +309,63 @@
 
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
-                        <div class="card-header py-3">
+                        <div style="display: flex; align-items: center; justify-content: space-between;" class="card-header py-3">
                             <h6 class="m-0 font-weight-bold text-primary">유저 정보 테이블</h6>
+                            <form style="margin: 0px !important; border: 1px solid #ebebeb; border-radius: 8px;" class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                                <div class="input-group">
+                                    <input v-model="searchQuery" type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
+                                        aria-label="Search" aria-describedby="basic-addon2">
+                                    <div class="input-group-append">
+                                        <button @click="fetchData(1, searchQuery)" class="btn btn-primary" type="button">
+                                            <i class="fas fa-search fa-sm"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
                                 <table class="table table-bordered" style="text-align: center;" id="dataTable" width="100%" cellspacing="0">
                                     <colgroup>
+                                        <col style="width: 5%;">
+                                        <col style="width: 5%;">
+                                        <col style="width: 20%;">
+                                        <col style="width: 5%;">
+                                        <col style="width: 5%;">
                                         <col style="width: 10%;">
-                                        <col style="width: 10%;">
-                                        <col style="width: 10%;">
-                                        <col style="width: 10%;">
-                                        <col style="width: 10%;">
-                                        <col style="width: 10%;">
-                                        <col style="width: 10%;">
-                                        <col style="width: 10%;">
+                                        <col style="width: 5%;">
                                     </colgroup>
                                     <thead>
                                         <tr>
                                             <th>유저번호</th>
                                             <th>강의번호</th>
-                                            <th>이메일</th>
-                                            <th>이름</th>
-                                            <th>주소</th>
-                                            <th>생년월일</th>
-                                            <th>생성날짜</th>
-                                            <th>계정상태</th>
+                                            <th>강의제목</th>
+                                            <th>강의가격</th>
+                                            <th>강의난이도</th>
+                                            <th>수강날짜</th>
+                                            <th>수강상태</th>
                                         </tr>
                                     </thead>
-                                    <tfoot>
-                                        <tr>
-                                            <th>유저번호</th>
-                                            <th>강의번호</th>
-                                            <th>이메일</th>
-                                            <th>이름</th>
-                                            <th>주소</th>
-                                            <th>생년월일</th>
-                                            <th>생성날짜</th>
-                                            <th>계정상태</th>
-                                        </tr>
-                                    </tfoot>
                                     <tbody>
-                                        <tr>
-                                            <th>유저번호</th>
-                                            <th>강의번호</th>
-                                            <th>이메일</th>
-                                            <th>이름</th>
-                                            <th>주소</th>
-                                            <th>생년월일</th>
-                                            <th>생성날짜</th>
-                                            <th>계정상태</th>
+                                        <tr v-for="datas in classData">
+                                            <th>{{ datas.UserID }}</th>
+                                            <th>{{ datas.ClassID }}</th>
+                                            <th>{{ datas.ClassTitle }}</th>
+                                            <th>{{ datas.ClassPrice }}원</th>
+                                            <th>{{ datas.ClassDifficultyID }}</th>
+                                            <th>{{ datas.created_at }}</th>
+                                            <th>{{ datas.EnrollmentFlg == 0 ? '수강 중' : datas.EnrollmentFlg == 1 ? '수강 완료' : '상태를 확인할 수 없음'  }}</th>
                                         </tr>
-                                        <tr>
-                                            <th>유저번호</th>
-                                            <th>강의번호</th>
-                                            <th>이메일</th>
-                                            <th>이름</th>
-                                            <th>주소</th>
-                                            <th>생년월일</th>
-                                            <th>생성날짜</th>
-                                            <th>계정상태</th>
-                                        </tr>
-                                        <tr>
-                                            <th>유저번호</th>
-                                            <th>강의번호</th>
-                                            <th>이메일</th>
-                                            <th>이름</th>
-                                            <th>주소</th>
-                                            <th>생년월일</th>
-                                            <th>생성날짜</th>
-                                            <th>계정상태</th>
-                                        </tr>
-                                        <tr>
-                                            <th>유저번호</th>
-                                            <th>강의번호</th>
-                                            <th>이메일</th>
-                                            <th>이름</th>
-                                            <th>주소</th>
-                                            <th>생년월일</th>
-                                            <th>생성날짜</th>
-                                            <th>계정상태</th>
-                                        </tr>
-                                        <tr>
-                                            <th>유저번호</th>
-                                            <th>강의번호</th>
-                                            <th>이메일</th>
-                                            <th>이름</th>
-                                            <th>주소</th>
-                                            <th>생년월일</th>
-                                            <th>생성날짜</th>
-                                            <th>계정상태</th>
-                                        </tr>
-                                        <tr>
-                                            <th>유저번호</th>
-                                            <th>강의번호</th>
-                                            <th>이메일</th>
-                                            <th>이름</th>
-                                            <th>주소</th>
-                                            <th>생년월일</th>
-                                            <th>생성날짜</th>
-                                            <th>계정상태</th>
-                                        </tr>
-                                        <tr>
-                                            <th>유저번호</th>
-                                            <th>강의번호</th>
-                                            <th>이메일</th>
-                                            <th>이름</th>
-                                            <th>주소</th>
-                                            <th>생년월일</th>
-                                            <th>생성날짜</th>
-                                            <th>계정상태</th>
-                                        </tr>
-                                        <tr>
-                                            <th>유저번호</th>
-                                            <th>강의번호</th>
-                                            <th>이메일</th>
-                                            <th>이름</th>
-                                            <th>주소</th>
-                                            <th>생년월일</th>
-                                            <th>생성날짜</th>
-                                            <th>계정상태</th>
-                                        </tr>
-                                        <tr>
-                                            <th>유저번호</th>
-                                            <th>강의번호</th>
-                                            <th>이메일</th>
-                                            <th>이름</th>
-                                            <th>주소</th>
-                                            <th>생년월일</th>
-                                            <th>생성날짜</th>
-                                            <th>계정상태</th>
-                                        </tr>
-                                        <tr>
-                                            <th>유저번호</th>
-                                            <th>강의번호</th>
-                                            <th>이메일</th>
-                                            <th>이름</th>
-                                            <th>주소</th>
-                                            <th>생년월일</th>
-                                            <th>생성날짜</th>
-                                            <th>계정상태</th>
-                                        </tr>
-                                        <tr>
-                                            <th>유저번호</th>
-                                            <th>강의번호</th>
-                                            <th>이메일</th>
-                                            <th>이름</th>
-                                            <th>주소</th>
-                                            <th>생년월일</th>
-                                            <th>생성날짜</th>
-                                            <th>계정상태</th>
-                                        </tr>
-                                        <tr>
-                                            <th>유저번호</th>
-                                            <th>강의번호</th>
-                                            <th>이메일</th>
-                                            <th>이름</th>
-                                            <th>주소</th>
-                                            <th>생년월일</th>
-                                            <th>생성날짜</th>
-                                            <th>계정상태</th>
-                                        </tr>
+                                    </tbody>
+                                </table>
+                                <table style="display: flex; justify-content: right;">
+                                    <tbody v-for="(page, index) in pagination" :key="index">
+                                        <template v-if="page.url !== null">
+											<a class="qustuon_list_page_a" :class="{'page_on': page.label == pageChk}" @click.prevent="fetchData(page.label)" href="#">{{ replaceString(page.label) }}</a>
+										</template>
+										<template v-else>
+											<span>{{ replaceString(page.label) }}</span>
+                                        </template>
                                     </tbody>
                                 </table>
                             </div>
@@ -532,8 +428,47 @@ export default {
 
     data() {
         return {
-        loading: true, // 로딩 상태를 나타내는 데이터
+            loading: true, // 로딩 상태를 나타내는 데이터
+            classData: {},
+            pagination: {},
+			page: {},
+			pageChk: {},
+            searchQuery: '',
         };
+    },
+
+    methods: {
+        fetchData(page = 1) {
+            axios.get(`/instructoruserclassdata?page=${page}&search=${this.searchQuery}`)
+            .then(response => {
+                console.log(response.data)
+                console.log(response.data.classData.data)
+                this.classData = response.data.classData.data;
+                this.pagination = response.data.classData.links;
+                this.page = response.data.classData.current_page;
+                this.pageChk = response.data.classData.current_page;
+            })
+            .catch(error => {
+                // console.error('Error fetching data:', error);
+            });
+        },
+        replaceString(str) {
+			const arrList = {
+				'&laquo;': '≪',
+				'&raquo;': '≫'
+			}
+			//  &laquo; 이전
+			//  다음 &raquo;
+			str = str.replace('&laquo;', '<');
+			str = str.replace('&raquo;', '>');
+			// console.log(str);
+			return str;
+		},
+
+    },
+
+    mounted() {
+        this.fetchData();
     },
 
     beforeCreate() {

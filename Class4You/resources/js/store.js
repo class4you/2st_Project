@@ -55,7 +55,15 @@ const store = createStore({
             laravelData: [],
             // 수강평 데이터 저장용
             // classReviewData: [],
+            instructorData: {
+                instructorCheck: '',
+                instructorName: '',
+                instructoruserEmail: '',
+                instructorID: null,
+            },
 
+            instructorLoginChk: null,
+            instructorID: null,
 
         }
     },
@@ -119,6 +127,26 @@ const store = createStore({
         setLaravelData(state, data) {
 			state.laravelData = data;
 		},
+
+        setSaveInstructorToLocalStorage(state, data) {
+            // console.log(data);
+            state.instructorData.instructorCheck = data.sessionInstructorDataCheck;
+            state.instructorData.instructorID = data.instructorId;
+            localStorage.setItem('InstructorID', data.instructorId);
+            localStorage.setItem('instructorDataCheck', data.sessionInstructorDataCheck);
+
+            setTimeout(function() {
+                localStorage.clear();
+            }, 2 * 60 * 60 * 1000);
+
+        },
+        setInstructorLoginChk(state, instructorLoginChk) {
+            state.instructorLoginChk = instructorLoginChk;
+        },
+        setInstructorID(state, data) {
+            console.log(data);
+            state.instructorID = data;
+        },
     },
 
     // actions : ajax로 서버에 데이터를 요청할 때나 시간 함수등 비동기 처리는 actions에 정의
@@ -322,7 +350,7 @@ const store = createStore({
                 InstructorEmail: data.InstructorEmail,
                 InstructorPassword: data.InstructorPassword,
             };
-            console.log(data);
+            // console.log(data);
             
 
             axios.post(url, requestData, header)
@@ -330,9 +358,9 @@ const store = createStore({
                 console.log(res);
                 context.dispatch('closeLoginModal');
                 if (res.data.success) {
-                    // context.commit('setSaveToLocalStorage', res.data);
-                    // context.commit('setUserLoginChk', res.data.sessionDataCheck);
-                    // context.commit('setUserID', res.data.userId);
+                    context.commit('setSaveInstructorToLocalStorage', res.data);
+                    context.commit('sessionInstructorDataCheck', res.data.sessionInstructorDataCheck);
+                    context.commit('setInstructorID', res.data.instructorId);
                     Swal.fire({
                         icon: 'success',
                         title: '로그인 성공',

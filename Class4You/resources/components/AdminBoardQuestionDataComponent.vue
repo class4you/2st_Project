@@ -33,7 +33,7 @@
                         <div class="bg-white py-2 collapse-inner rounded">
                             <h6 class="collapse-header admin-main-h6-font-size">유저 정보 관리</h6>
                             <a class="collapse-item" href="/adminuserdata">유저 정보 리스트</a>
-                            <a class="collapse-item" href="/adminuserclassdata">유저 강의 리스트</a>
+                            <a class="collapse-item" href="/adminuserboardData">유저 강의 리스트</a>
                             <a class="collapse-item" href="/adminuserstatedata">유저 상태 리스트</a>
                         </div>
                     </div>
@@ -309,167 +309,66 @@
 
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
-                        <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">게시물 정보 테이블</h6>
+                        <div style="display: flex; align-items: center; justify-content: space-between;" class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">유저 정보 테이블</h6>
+                            <form style="margin: 0px !important; border: 1px solid #ebebeb; border-radius: 8px;" class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                                <div class="input-group">
+                                    <input v-model="searchQuery" type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
+                                        aria-label="Search" aria-describedby="basic-addon2">
+                                    <div class="input-group-append">
+                                        <button @click="fetchData(1, searchQuery)" class="btn btn-primary" type="button">
+                                            <i class="fas fa-search fa-sm"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
                                 <table class="table table-bordered" style="text-align: center;" id="dataTable" width="100%" cellspacing="0">
                                     <colgroup>
+                                        <col style="width: 5%;">
+                                        <col style="width: 5%;">
+                                        <col style="width: 5%;">
+                                        <col style="width: 15%;">
+                                        <col style="width: 25%;">
                                         <col style="width: 10%;">
-                                        <col style="width: 10%;">
-                                        <col style="width: 10%;">
-                                        <col style="width: 10%;">
-                                        <col style="width: 10%;">
-                                        <col style="width: 10%;">
-                                        <col style="width: 10%;">
-                                        <col style="width: 10%;">
+                                        <col style="width: 5%;">
+                                        <col style="width: 5%;">
                                     </colgroup>
                                     <thead>
                                         <tr>
-                                            <th>게시글번호</th>
                                             <th>강의번호</th>
+                                            <th>게시글번호</th>
                                             <th>유저번호</th>
-                                            <th>이메일</th>
                                             <th>제목</th>
                                             <th>내용</th>
                                             <th>생성날짜</th>
+                                            <th>해결유무</th>
                                             <th>게시물상태</th>
                                         </tr>
                                     </thead>
-                                    <tfoot>
-                                        <tr>
-                                            <th>게시글번호</th>
-                                            <th>강의번호</th>
-                                            <th>유저번호</th>
-                                            <th>이메일</th>
-                                            <th>제목</th>
-                                            <th>내용</th>
-                                            <th>생성날짜</th>
-                                            <th>게시물상태</th>
-                                        </tr>
-                                    </tfoot>
                                     <tbody>
-                                        <tr>
-                                            <th>게시글번호</th>
-                                            <th>강의번호</th>
-                                            <th>유저번호</th>
-                                            <th>이메일</th>
-                                            <th>제목</th>
-                                            <th>내용</th>
-                                            <th>생성날짜</th>
-                                            <th>게시물상태</th>
+                                        <tr v-for="datas in boardQuestionData">
+                                            <th>{{ datas.ClassID }}</th>
+                                            <th>{{ datas.BoardID }}</th>
+                                            <th>{{ datas.UserID }}</th>
+                                            <th>{{ datas.BoardTitle }}</th>
+                                            <th>{{ datas.BoardComment }}</th>
+                                            <th>{{ datas.created_at }}</th>
+                                            <th>{{ datas.BoardFlg == 0 ? '미해결' : datas.BoardFlg == 1 ? '해결' : '상태를 확인할 수 없음' }}</th>
+                                            <th>{{ datas.deleted_at == null ? '삭제' : datas.deleted_at !== null ? '미삭제' : '상태를 확인할 수 없음' }}</th>
                                         </tr>
-                                        <tr>
-                                            <th>게시글번호</th>
-                                            <th>강의번호</th>
-                                            <th>유저번호</th>
-                                            <th>이메일</th>
-                                            <th>제목</th>
-                                            <th>내용</th>
-                                            <th>생성날짜</th>
-                                            <th>게시물상태</th>
-                                        </tr>
-                                        <tr>
-                                            <th>게시글번호</th>
-                                            <th>강의번호</th>
-                                            <th>유저번호</th>
-                                            <th>이메일</th>
-                                            <th>제목</th>
-                                            <th>내용</th>
-                                            <th>생성날짜</th>
-                                            <th>게시물상태</th>
-                                        </tr>
-                                        <tr>
-                                            <th>게시글번호</th>
-                                            <th>강의번호</th>
-                                            <th>유저번호</th>
-                                            <th>이메일</th>
-                                            <th>제목</th>
-                                            <th>내용</th>
-                                            <th>생성날짜</th>
-                                            <th>게시물상태</th>
-                                        </tr>
-                                        <tr>
-                                            <th>게시글번호</th>
-                                            <th>강의번호</th>
-                                            <th>유저번호</th>
-                                            <th>이메일</th>
-                                            <th>제목</th>
-                                            <th>내용</th>
-                                            <th>생성날짜</th>
-                                            <th>게시물상태</th>
-                                        </tr>
-                                        <tr>
-                                            <th>게시글번호</th>
-                                            <th>강의번호</th>
-                                            <th>유저번호</th>
-                                            <th>이메일</th>
-                                            <th>제목</th>
-                                            <th>내용</th>
-                                            <th>생성날짜</th>
-                                            <th>게시물상태</th>
-                                        </tr>
-                                        <tr>
-                                            <th>게시글번호</th>
-                                            <th>강의번호</th>
-                                            <th>유저번호</th>
-                                            <th>이메일</th>
-                                            <th>제목</th>
-                                            <th>내용</th>
-                                            <th>생성날짜</th>
-                                            <th>게시물상태</th>
-                                        </tr>
-                                        <tr>
-                                            <th>게시글번호</th>
-                                            <th>강의번호</th>
-                                            <th>유저번호</th>
-                                            <th>이메일</th>
-                                            <th>제목</th>
-                                            <th>내용</th>
-                                            <th>생성날짜</th>
-                                            <th>게시물상태</th>
-                                        </tr>
-                                        <tr>
-                                            <th>게시글번호</th>
-                                            <th>강의번호</th>
-                                            <th>유저번호</th>
-                                            <th>이메일</th>
-                                            <th>제목</th>
-                                            <th>내용</th>
-                                            <th>생성날짜</th>
-                                            <th>게시물상태</th>
-                                        </tr>
-                                        <tr>
-                                            <th>게시글번호</th>
-                                            <th>강의번호</th>
-                                            <th>유저번호</th>
-                                            <th>이메일</th>
-                                            <th>제목</th>
-                                            <th>내용</th>
-                                            <th>생성날짜</th>
-                                            <th>게시물상태</th>
-                                        </tr>
-                                        <tr>
-                                            <th>게시글번호</th>
-                                            <th>강의번호</th>
-                                            <th>유저번호</th>
-                                            <th>이메일</th>
-                                            <th>제목</th>
-                                            <th>내용</th>
-                                            <th>생성날짜</th>
-                                            <th>게시물상태</th>
-                                        </tr>
-                                        <tr>
-                                            <th>게시글번호</th>
-                                            <th>강의번호</th>
-                                            <th>유저번호</th>
-                                            <th>이메일</th>
-                                            <th>제목</th>
-                                            <th>내용</th>
-                                            <th>생성날짜</th>
-                                            <th>게시물상태</th>
-                                        </tr>
+                                    </tbody>
+                                </table>
+                                <table style="display: flex; justify-content: right;">
+                                    <tbody v-for="(page, index) in pagination" :key="index">
+                                        <template v-if="page.url !== null">
+											<a class="qustuon_list_page_a" :class="{'page_on': page.label == pageChk}" @click.prevent="fetchData(page.label)" href="#">{{ replaceString(page.label) }}</a>
+										</template>
+										<template v-else>
+											<span>{{ replaceString(page.label) }}</span>
+                                        </template>
                                     </tbody>
                                 </table>
                             </div>
@@ -532,8 +431,47 @@ export default {
 
     data() {
         return {
-        loading: true, // 로딩 상태를 나타내는 데이터
+            loading: true, // 로딩 상태를 나타내는 데이터
+            boardQuestionData: {},
+            pagination: {},
+			page: {},
+			pageChk: {},
+            searchQuery: '',
         };
+    },
+
+    methods: {
+        fetchData(page = 1) {
+            axios.get(`/instructoruserboardquestion?page=${page}&search=${this.searchQuery}`)
+            .then(response => {
+                console.log(response.data)
+                console.log(response.data.boardData.data)
+                this.boardQuestionData = response.data.boardData.data;
+                this.pagination = response.data.boardData.links;
+                this.page = response.data.boardData.current_page;
+                this.pageChk = response.data.boardData.current_page;
+            })
+            .catch(error => {
+                // console.error('Error fetching data:', error);
+            });
+        },
+        replaceString(str) {
+			const arrList = {
+				'&laquo;': '≪',
+				'&raquo;': '≫'
+			}
+			//  &laquo; 이전
+			//  다음 &raquo;
+			str = str.replace('&laquo;', '<');
+			str = str.replace('&raquo;', '>');
+			// console.log(str);
+			return str;
+		},
+
+    },
+
+    mounted() {
+        this.fetchData();
     },
 
     beforeCreate() {

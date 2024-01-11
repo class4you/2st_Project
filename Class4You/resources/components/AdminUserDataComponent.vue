@@ -309,17 +309,29 @@
 
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
-                        <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">유저 정보 테이블</h6>
+                        <div style="display: flex; align-items: center; justify-content: space-between;" class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">강의 정보 테이블</h6>
+                            <form style="margin: 0px !important; border: 1px solid #ebebeb; border-radius: 8px;" class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                                <div class="input-group">
+                                    <input v-model="searchQuery" type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
+                                        aria-label="Search" aria-describedby="basic-addon2">
+                                    <div class="input-group-append">
+                                        <button @click="fetchData(1, searchQuery)" class="btn btn-primary" type="button">
+                                            <i class="fas fa-search fa-sm"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
                         </div>
+                            
                         <div class="card-body">
                             <div class="table-responsive">
                                 <table class="table table-bordered" style="text-align: center;" id="dataTable" width="100%" cellspacing="0">
                                     <colgroup>
+                                        <col style="width: 5%;">
                                         <col style="width: 10%;">
                                         <col style="width: 10%;">
-                                        <col style="width: 10%;">
-                                        <col style="width: 10%;">
+                                        <col style="width: 20%;">
                                         <col style="width: 10%;">
                                         <col style="width: 10%;">
                                         <col style="width: 10%;">
@@ -328,19 +340,18 @@
                                     <thead>
                                         <tr>
                                             <th>유저번호</th>
-                                            <th>강의번호</th>
                                             <th>이메일</th>
                                             <th>이름</th>
                                             <th>주소</th>
                                             <th>생년월일</th>
                                             <th>생성날짜</th>
                                             <th>계정상태</th>
+                                            <th>계정정지</th>
                                         </tr>
                                     </thead>
-                                    <tfoot>
+                                    <!-- <tfoot>
                                         <tr>
                                             <th>유저번호</th>
-                                            <th>강의번호</th>
                                             <th>이메일</th>
                                             <th>이름</th>
                                             <th>주소</th>
@@ -348,128 +359,30 @@
                                             <th>생성날짜</th>
                                             <th>계정상태</th>
                                         </tr>
-                                    </tfoot>
+                                    </tfoot> -->
                                     <tbody>
-                                        <tr>
-                                            <th>유저번호</th>
-                                            <th>강의번호</th>
-                                            <th>이메일</th>
-                                            <th>이름</th>
-                                            <th>주소</th>
-                                            <th>생년월일</th>
-                                            <th>생성날짜</th>
-                                            <th>계정상태</th>
+                                        <tr v-for="datas in userData">
+                                            <th>{{ datas.UserID }}</th>
+                                            <th>{{ datas.UserEmail }}</th>
+                                            <th>{{ datas.UserName }}</th>
+                                            <th>({{ datas.UserPostcode }}) {{ datas.UserRoadAddress }} {{ datas.UserDetailedAddress }}</th>
+                                            <th>{{ datas.UserBirthDate }}</th>
+                                            <th>{{ datas.created_at }}</th>
+                                            <th>{{ datas.UserStatus === null || datas.UserStatus === 0 ? '이용 중' : datas.UserStatus === 1 ? '임시 정지' : datas.UserStatus === 2 ? '영구 정지' : '상태를 확인할 수 없음'}}</th>
+                                            <th><button @click="userStateButton(datas.UserID)" type="button" style="padding: 0px 10px; border-radius: 3px; background-color: rgb(255, 95, 127); color: #fff; border: none;">계정 정지</button></th>
                                         </tr>
-                                        <tr>
-                                            <th>유저번호</th>
-                                            <th>강의번호</th>
-                                            <th>이메일</th>
-                                            <th>이름</th>
-                                            <th>주소</th>
-                                            <th>생년월일</th>
-                                            <th>생성날짜</th>
-                                            <th>계정상태</th>
-                                        </tr>
-                                        <tr>
-                                            <th>유저번호</th>
-                                            <th>강의번호</th>
-                                            <th>이메일</th>
-                                            <th>이름</th>
-                                            <th>주소</th>
-                                            <th>생년월일</th>
-                                            <th>생성날짜</th>
-                                            <th>계정상태</th>
-                                        </tr>
-                                        <tr>
-                                            <th>유저번호</th>
-                                            <th>강의번호</th>
-                                            <th>이메일</th>
-                                            <th>이름</th>
-                                            <th>주소</th>
-                                            <th>생년월일</th>
-                                            <th>생성날짜</th>
-                                            <th>계정상태</th>
-                                        </tr>
-                                        <tr>
-                                            <th>유저번호</th>
-                                            <th>강의번호</th>
-                                            <th>이메일</th>
-                                            <th>이름</th>
-                                            <th>주소</th>
-                                            <th>생년월일</th>
-                                            <th>생성날짜</th>
-                                            <th>계정상태</th>
-                                        </tr>
-                                        <tr>
-                                            <th>유저번호</th>
-                                            <th>강의번호</th>
-                                            <th>이메일</th>
-                                            <th>이름</th>
-                                            <th>주소</th>
-                                            <th>생년월일</th>
-                                            <th>생성날짜</th>
-                                            <th>계정상태</th>
-                                        </tr>
-                                        <tr>
-                                            <th>유저번호</th>
-                                            <th>강의번호</th>
-                                            <th>이메일</th>
-                                            <th>이름</th>
-                                            <th>주소</th>
-                                            <th>생년월일</th>
-                                            <th>생성날짜</th>
-                                            <th>계정상태</th>
-                                        </tr>
-                                        <tr>
-                                            <th>유저번호</th>
-                                            <th>강의번호</th>
-                                            <th>이메일</th>
-                                            <th>이름</th>
-                                            <th>주소</th>
-                                            <th>생년월일</th>
-                                            <th>생성날짜</th>
-                                            <th>계정상태</th>
-                                        </tr>
-                                        <tr>
-                                            <th>유저번호</th>
-                                            <th>강의번호</th>
-                                            <th>이메일</th>
-                                            <th>이름</th>
-                                            <th>주소</th>
-                                            <th>생년월일</th>
-                                            <th>생성날짜</th>
-                                            <th>계정상태</th>
-                                        </tr>
-                                        <tr>
-                                            <th>유저번호</th>
-                                            <th>강의번호</th>
-                                            <th>이메일</th>
-                                            <th>이름</th>
-                                            <th>주소</th>
-                                            <th>생년월일</th>
-                                            <th>생성날짜</th>
-                                            <th>계정상태</th>
-                                        </tr>
-                                        <tr>
-                                            <th>유저번호</th>
-                                            <th>강의번호</th>
-                                            <th>이메일</th>
-                                            <th>이름</th>
-                                            <th>주소</th>
-                                            <th>생년월일</th>
-                                            <th>생성날짜</th>
-                                            <th>계정상태</th>
-                                        </tr>
-                                        <tr>
-                                            <th>유저번호</th>
-                                            <th>강의번호</th>
-                                            <th>이메일</th>
-                                            <th>이름</th>
-                                            <th>주소</th>
-                                            <th>생년월일</th>
-                                            <th>생성날짜</th>
-                                            <th>계정상태</th>
-                                        </tr>
+                                    </tbody>
+                                </table>
+                                
+
+                                <table style="display: flex; justify-content: right;">
+                                    <tbody v-for="(page, index) in pagination" :key="index">
+                                        <template v-if="page.url !== null">
+											<a class="qustuon_list_page_a" :class="{'page_on': page.label == pageChk}" @click.prevent="fetchData(page.label)" href="#">{{ replaceString(page.label) }}</a>
+										</template>
+										<template v-else>
+											<span>{{ replaceString(page.label) }}</span>
+                                        </template>
                                     </tbody>
                                 </table>
                             </div>
@@ -526,16 +439,68 @@
 </template>
 <script>
 import LoadingComponent from './LoadingComponent.vue';
+import Swal from 'sweetalert2';
 
 export default {
     name: 'AdminUserDataComponent',
 
     data() {
         return {
-        loading: true, // 로딩 상태를 나타내는 데이터
+            loading: true, // 로딩 상태를 나타내는 데이터
+            userData: {},
+            pagination: {},
+			page: {},
+			pageChk: {},
+            searchQuery: '',
         };
     },
 
+    methods: {
+        fetchData(page = 1) {
+            axios.get(`/instructoruserdata?page=${page}&search=${this.searchQuery}`)
+            .then(response => {
+                console.log(response.data)
+                console.log(response.data.userData.data)
+                this.userData = response.data.userData.data;
+                this.pagination = response.data.userData.links;
+                this.page = response.data.userData.current_page;
+                this.pageChk = response.data.userData.current_page;
+            })
+            .catch(error => {
+                // console.error('Error fetching data:', error);
+            });
+        },
+        replaceString(str) {
+			const arrList = {
+				'&laquo;': '≪',
+				'&raquo;': '≫'
+			}
+			//  &laquo; 이전
+			//  다음 &raquo;
+			str = str.replace('&laquo;', '<');
+			str = str.replace('&raquo;', '>');
+			// console.log(str);
+			return str;
+		},
+        userStateButton(data) {
+            Swal.fire({
+                icon: 'info', // 추가: 아이콘 설정
+                title: '계정 정지',
+                input: 'email',
+                inputLabel: '아래에 원하는 정지 값을 입력하세요.',
+                inputPlaceholder: '영구정지 또는 날짜를 입력하세요',
+                showCancelButton: true,
+                cancelButtonText: '취소',
+                confirmButtonText: '정지',
+                showLoaderOnConfirm: true,
+            })
+        }
+
+    },
+
+    mounted() {
+        this.fetchData();
+    },
 
     beforeCreate() {
         // 스타일시트를 동적으로 로드한 후 로딩 상태 변경

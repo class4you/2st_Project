@@ -237,12 +237,12 @@ export default {
 		return {
 			newBoardItems: [],
 			newUserCntItems: [],
-			pagination: {},
-			page: {},
 			searchQuery: '',
 			solve: null,
 			sortData: 1,
 			current_page: 1,
+			pagination: {},
+			page: {},
 			pageChk: {},
 			boardCategory: 1,
 
