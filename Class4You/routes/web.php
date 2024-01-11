@@ -108,6 +108,8 @@ Route::put('/classboarddetailreview', [ReviewController::class, 'putClassReviewD
 Route::delete('/classboarddetailreview/{ReviewID}', [ReviewController::class, 'deletClassReview']);
 
 
+// 강의 질문
+Route::post('/board/data', [BoardController::class, 'postClassQuestion']);
 
 
 // 강의 시청

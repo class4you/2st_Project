@@ -22,7 +22,8 @@ class Board extends Model
         'BoardRecommended',
         'BoardNotRecommended',
         'BoardFlg',
-        'created_at'
+        'created_at',
+        'ClassID'
     ];
 
 

@@ -758,14 +758,14 @@
                     <fieldset>
 
                         <div class="class_detail_rating_form_text">
-                            <input type="text" placeholder="제목을 작성해주세요.">
-                            <textarea name="" id="" cols="30" rows="10" placeholder="강의에 대한 질문을 작성해주세요."></textarea>
+                            <input v-model="classQuestionItems.BoardTitle" type="text" placeholder="제목을 작성해주세요.">
+                            <textarea v-model="classQuestionItems.BoardComment" name="" id="" cols="30" rows="10" placeholder="강의에 대한 질문을 작성해주세요."></textarea>
                         </div>
 
                         <div class="class_detail_commu_form_content">
 
                             <div class="class_detail_rating_form_button">
-                                <button>질문 작성</button>
+                                <button @click="addClassQuestion()">질문 작성</button>
                             </div>
                         </div>
 
@@ -1000,6 +1000,15 @@ export default {
 				BoardTitle: this.BoardTitle,
 				BoardComment: this.BoardComment,
 			},
+			newClassQuestion() {
+				return {
+					ClassID: this.ClassID,
+					UserID: this.$store.state.UserID,
+					UserEmail: this.$store.state.UserEmail,
+					BoardTitle: this.BoardTitle,
+					BoardComment: this.BoardComment,
+				}
+			},
         }
     },
 	mounted() {
@@ -1060,11 +1069,11 @@ export default {
 						// this.newReviewData = reviewResponse.data.classReviewData;
 						axios.get(`/board/data?page=${page}&ClassID=${this.ClassID}`)
 						.then(boardResponse => {
-							console.log('이건 값이 있어');
-							console.log(boardResponse.data);
-							console.log('이건 값이 없어');
-							console.log(boardResponse.data.data);
-							console.log('이건 값이 ');
+							// console.log('이건 값이 있어');
+							// console.log(boardResponse.data);
+							// console.log('이건 값이 없어');
+							// console.log(boardResponse.data.data);
+							// console.log('이건 값이 ');
 							console.log(boardResponse.data.boardData.data);
 							this.classQuestionData = boardResponse.data.boardData.data;
 							// const responseData = Array.isArray(boardResponse.data) ? boardResponse.data : [];
@@ -1374,13 +1383,17 @@ export default {
 		// 강의 질문 함수
 		// 질문 작성 함수
 		addClassQuestion() {
-			const url = '`/board/data?ClassID=${this.ClassID}`'
+			// const url = '`/board/data?ClassID=${this.ClassID}`'
+			const url = '/board/data?ClassID=' + this.ClassID;
             const header = {
                 headers: {
                     "Content-Type": 'multipart/form-data',
+                    // "Content-Type": 'application/json',
                     // 'X-CSRF-TOKEN': document.head.querySelector('meta[name="csrf-token"]').content,
                 },
             }
+			
+
 			let frm = new FormData();
             frm.append('ClassID',this.classQuestionItems.ClassID);
             frm.append('UserID',this.classQuestionItems.UserID);
@@ -1392,13 +1405,21 @@ export default {
 				Swal.fire({
 					icon: 'success',
 					title: '완료',
-					text: '수강평이 작성되었습니다.',
+					text: '질문 게시글이 작성되었습니다.',
 					confirmButtonText: '확인'
             	})
 
-				console.log(res);
+				console.log(res.data);
 				console.log(this.classQuestionItems);
+				console.log(this.classQuestionData);
+
+				// this.classQuestionData.unshift(res.data);
+
+				this.classQuestionItems = this.newClassQuestion();
 				
+			})
+			.catch(error => {
+				console.error(error.response);
 			})
 		},
 	}
