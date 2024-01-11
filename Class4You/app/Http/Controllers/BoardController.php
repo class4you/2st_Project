@@ -123,11 +123,18 @@ class BoardController extends Controller
 
         // Log::debug($UserCntData);
 
+        // 유저가 수강한 강의 조회
+        $EnrollmentData = Enrollment::select('EnrollmentID')
+            ->where('UserID', $request->UserID) 
+            ->where('ClassID', $request->ClassID) 
+            ->first();
+
         // Log::debug($boardData);
 
         return response()->json([
             'boardData' => $boardData,
-            'userCntData' => $userCntData
+            'userCntData' => $userCntData,
+            'enrollmentData' => $EnrollmentData,
         ]);
     }
     
@@ -376,6 +383,10 @@ class BoardController extends Controller
     }
 
     // 강의 질문
+    // 강의 질문 게시글 불러오기
+    
+
+    // 강의 질문 게시글 작성 함수
     public function postClassQuestion(Request $request) {
 
         Log::debug("-----------------------------------------------");
@@ -400,6 +411,40 @@ class BoardController extends Controller
         Log::debug($data);
 
         return response()->json($result);
+    }
+
+    // 강의 게시글 삭제
+    public function delClassQuestion($BoardID) {
+
+        // Log::debug("========================================================");
+        // Log::debug($BoardID);
+
+        if(Auth::check()) {
+            $result = Board::destroy($BoardID);
+        }
+        // Review::destroy($ReviewID);
+        // $result = Review::destroy($ReviewID);
+        // Log::debug("========================================================");
+        // Log::debug($result);
+
+        return response()->json($result);
+    }
+
+    // 강의 게시글 수정
+    public function putClassQuestion(Request $request) {
+
+        Log::debug('====================================================');
+        Log::debug($request);
+        
+        $classQuestionData = $request->only('EnrollmentID','UserID', 'ClassID', 'BoardID', 'BoardTitle', 'BoardComment', 'BoardCategoryID');
+
+        $data = Board::where('BoardID', $request->BoardID)
+                    ->update($classQuestionData);
+
+        Log::debug('====================================================');
+        Log::debug($classQuestionData);
+
+        return response()->json($classQuestionData);            
     }
 
 

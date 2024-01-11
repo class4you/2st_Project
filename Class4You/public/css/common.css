@@ -2009,6 +2009,10 @@ ul.class_tabs li.class_current {
     outline-width: thin;
 }
 
+.class_detail_rating_form_text_input {
+    width: 100%;
+}
+
 .class_detail_rating_form_content {
     display: flex;
     align-items: center;
