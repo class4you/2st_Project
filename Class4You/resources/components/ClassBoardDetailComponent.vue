@@ -753,12 +753,12 @@
             <!-- 커뮤니티 -->
             
         <div v-if="clickFlgTab === 2">    
-            <div id="class_tab1" class="class_current class_detail_rating_form">
+            <div v-if="EnrollChk" id="class_tab1" class="class_current class_detail_rating_form">
                 <!-- <form action=""> -->
                     <fieldset>
 
                         <div class="class_detail_rating_form_text">
-                            <input v-model="classQuestionItems.BoardTitle" type="text" placeholder="제목을 작성해주세요.">
+                            <input v-model="classQuestionItems.BoardTitle" class="class_detail_rating_form_text_input" type="text" placeholder="제목을 작성해주세요.">
                             <textarea v-model="classQuestionItems.BoardComment" name="" id="" cols="30" rows="10" placeholder="강의에 대한 질문을 작성해주세요."></textarea>
                         </div>
 
@@ -780,26 +780,39 @@
 					</div>
 				</div>
 
-				<div v-for="data in classQuestionData" id="class_tab1" class="class_detail_commu_list_div">
+				<div v-for="data in classQuestionData" :key="data.BoardID" id="class_tab1" class="class_detail_commu_list_div">
 					<div class="class_detail_commu_list_user">
 						<div class="class_detail_rating_user_id">
-							<p>{{ hideEmail(data.UserEmail) }} : {{ data.BoardTitle }}</p>
+							<p v-if="data.BoardID == updateClassQuestionBoardID">{{ hideEmail(data.UserEmail) }} : <input v-model="data.BoardTitle"  type="text"></p>
+							<p v-else>{{ hideEmail(data.UserEmail) }} : {{ data.BoardTitle }}</p>
 						</div>
 						<div class="class_detail_rating_user_date">
 							<p>{{ data.created_at }}</p>
 						</div>
 					</div>
 					<div class="class_detail_commu_list_text">
-						<p>{{ data.BoardComment }}</p>
+						<textarea v-if="data.BoardID == updateClassQuestionBoardID" v-model="data.BoardComment" cols="30" rows="10"></textarea>
+						<p v-else>{{ data.BoardComment }}</p>
 					</div>
-					<div class="class_detail_community_user_button">
-						<div class="class_detail_rating_user_updated_button">
-							<button>수정</button>
+					<div v-if="data.UserID == $store.state.UserID">
+						<div v-if="data.BoardID == updateClassQuestionBoardID" class="class_detail_community_user_button">
+							<div class="class_detail_rating_user_updated_button">
+								<button @click="updateClassQuestion(data)">수정</button>
+							</div>
+							<div class="class_detail_rating_user_delete_button">
+								<button @click="updateClassQuestion(false)">취소</button>
+							</div>
 						</div>
-						<div class="class_detail_rating_user_delete_button">
-							<button>삭제</button>
+						<div v-else class="class_detail_community_user_button">
+							<div class="class_detail_rating_user_updated_button">
+								<button @click="updateClassQuestionBoardID = data.BoardID">수정</button>
+							</div>
+							<div class="class_detail_rating_user_delete_button">
+								<button @click="delClassQuestion(data)">삭제</button>
+							</div>
 						</div>
 					</div>
+					
 				</div>
         	</div>
 
@@ -1009,6 +1022,8 @@ export default {
 					BoardComment: this.BoardComment,
 				}
 			},
+			updateClassQuestionData: {},
+			updateClassQuestionBoardID: {},
         }
     },
 	mounted() {
@@ -1076,9 +1091,8 @@ export default {
 							// console.log('이건 값이 ');
 							console.log(boardResponse.data.boardData.data);
 							this.classQuestionData = boardResponse.data.boardData.data;
-							// const responseData = Array.isArray(boardResponse.data) ? boardResponse.data : [];
-							// console.log(responseData);
-							// this.classQuestionData = responseData;
+							// this.EnrollChk = boardResponse.data.boardData.enrollmentData;
+							
 						}) 
                 })
                 .catch(reviewError => {
@@ -1392,7 +1406,6 @@ export default {
                     // 'X-CSRF-TOKEN': document.head.querySelector('meta[name="csrf-token"]').content,
                 },
             }
-			
 
 			let frm = new FormData();
             frm.append('ClassID',this.classQuestionItems.ClassID);
@@ -1409,12 +1422,19 @@ export default {
 					confirmButtonText: '확인'
             	})
 
+				console.log("res.data임");
 				console.log(res.data);
+				console.log("classQuestionItems임");
 				console.log(this.classQuestionItems);
+				console.log("classQuestionData임");
 				console.log(this.classQuestionData);
 
+				// console.log("Before unshift - classQuestionData:", this.classQuestionData);
+        		// this.classQuestionData.unshift(res.data);
+        		// console.log("After unshift - classQuestionData:", this.classQuestionData);
+        
 				// this.classQuestionData.unshift(res.data);
-
+				
 				this.classQuestionItems = this.newClassQuestion();
 				
 			})
@@ -1422,6 +1442,103 @@ export default {
 				console.error(error.response);
 			})
 		},
+		// 강의 질문 삭제 함수
+		delClassQuestion(data) {
+
+			console.log(data);
+
+			Swal.fire({
+				title: '정말로 삭제하시겠습니까?',
+				text: '삭제 후에는 복구할 수 없습니다.',
+				icon: 'question',
+				showCancelButton: true,
+				confirmButtonColor: '#d33',
+				cancelButtonColor: '#3085d6',
+				confirmButtonText: '삭제',
+				cancelButtonText: '취소',
+			}).then((result) => {
+				// Check if the user clicked the confirm button
+				if (result.isConfirmed) {
+					// const url = '/board/data?BoardID=' + this.BoardID;
+					const url = `/board/data/${data.BoardID}`;
+					const header = {
+						headers: {
+							'Content-Type': 'multipart/form-data',
+							'X-CSRF-TOKEN': document.head.querySelector('meta[name="csrf-token"]').content,
+						},
+					};
+
+				axios
+					.delete(url, header)
+					.then((res) => {
+						Swal.fire({
+							icon: 'success',
+							title: '완료',
+							text: '게시글이 삭제되었습니다.',
+							confirmButtonText: '확인'
+						})
+
+						console.log('res',res);
+						console.log(res.data);
+						// Remove the deleted item from the reviewClassItems array
+						this.classQuestionData = this.classQuestionData.filter((item) => item.BoardID !== data.BoardID);
+					})
+					.catch((err) => {
+						// Handle errors, e.g., display an alert
+						console.error(err);
+						Swal.fire({
+							icon: 'error',
+							title: '삭제 실패',
+							text: '삭제 중에 오류가 발생했습니다.',
+						});
+					});
+				}
+			});
+		},
+		// 강의 게시글 수정
+		updateClassQuestion(data) {
+			if(data) {
+				this.updateClassQuestionData = data;
+				// console.log(this.updataReviewData);
+				// console.log(data);
+				
+				axios.put('/board/data', {
+					ClassID : this.updateClassQuestionData.ClassID,
+					UserID: this.updateClassQuestionData.UserID,
+					BoardID: this.updateClassQuestionData.BoardID,
+					BoardTitle: this.updateClassQuestionData.BoardTitle,
+					BoardComment: this.updateClassQuestionData.BoardComment,
+				})
+				.then(response => {
+					// 여기서는 백엔드 db만 데이터가 변경되는것.
+					console.log(response);
+					// console.log(this.updataReviewData);
+					// console.log(this.classReviewData);
+					console.log('레스폰스데이터입니다',response.data);
+					// console.log(this.reviewClassItems);
+					// 서버 응답에 대한 로직 수행
+					
+					// this.updataReviewData.ReviewRating = this.classReviewData.ReviewRating;
+					this.updateClassQuestionData = response.data;
+
+					Swal.fire({
+					icon: 'success',
+					title: '수정',
+					text: '게시글이 수정되었습니다.',
+					confirmButtonText: '확인'
+					})
+
+					this.updateClassQuestionBoardID = false;
+					
+				})
+				.catch(error => {
+					// 에러 처리
+					console.error(error);
+				});
+			} else {
+				this.updataClassQuestionBoardID = false;
+			}
+		}
 	}
     
 }

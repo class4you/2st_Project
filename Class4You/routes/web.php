@@ -123,6 +123,8 @@ Route::delete('/classboarddetailreview/{ReviewID}', [ReviewController::class, 'd
 
 // 강의 질문
 Route::post('/board/data', [BoardController::class, 'postClassQuestion']);
+Route::delete('/board/data/{BoardID}', [BoardController::class, 'delClassQuestion']);
+Route::put('/board/data', [BoardController::class, 'putClassQuestion']);
 
 
 // 강의 시청
