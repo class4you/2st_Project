@@ -11,6 +11,13 @@ import ClassBoardDetailComponent from '../components/ClassBoardDetailComponent.v
 import ClassDatailWatchComponent from '../components/ClassDatailWatchComponent.vue';
 import UserMyPageComponent from '../components/UserMyPageComponent.vue';
 import LoadingComponent from '../components/LoadingComponent.vue';
+import AdminMainComponent from '../components/AdminMainComponent.vue';
+import AdminUserDataComponent from '../components/AdminUserDataComponent.vue';
+import AdminBoardCommunityDataComponent from '../components/AdminBoardCommunityDataComponent.vue';
+import AdminUserClassDataComponent from '../components/AdminUserClassDataComponent.vue';
+import AdminUserStateDataComponent from '../components/AdminUserStateDataComponent.vue';
+import AdminBoardQuestionDataComponent from '../components/AdminBoardQuestionDataComponent.vue';
+import AdminBoardReportDataComponent from '../components/AdminBoardReportDataComponent.vue';
 // import ClassBoardMainComponent from '../components/ClassBoardMainComponent.vue';
 import store from './store';
 
@@ -73,6 +80,34 @@ const routes = [
     {
         path: '/loading',
         component: LoadingComponent,
+    },
+    {
+        path: '/adminmain',
+        component: AdminMainComponent,
+    },
+    {
+        path: '/adminuserdata',
+        component: AdminUserDataComponent,
+    },
+    {
+        path: '/adminuserclassdata',
+        component: AdminUserClassDataComponent,
+    },
+    {
+        path: '/adminuserstatedata',
+        component: AdminUserStateDataComponent,
+    },
+    {
+        path: '/adminboardquestiondata',
+        component: AdminBoardQuestionDataComponent,
+    },
+    {
+        path: '/adminboardcommunitydata',
+        component: AdminBoardCommunityDataComponent,
+    },
+    {
+        path: '/adminboardreportdata',
+        component: AdminBoardReportDataComponent,
     },
     {
         path: '/test',

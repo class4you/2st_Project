@@ -1,5 +1,5 @@
 <template>
-    <div v-if="$route.fullPath.indexOf('classwatch') === -1 && $route.fullPath.indexOf('loading') === -1">
+    <div v-if="$route.fullPath.indexOf('classwatch') === -1 && $route.fullPath.indexOf('loading') === -1 && $route.fullPath.indexOf('admin') === -1">
         <footer>
             <div class="footer_main">
 

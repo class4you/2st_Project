@@ -304,7 +304,7 @@ class UserController extends Controller
         
         // Log::debug($emailAuthChk);
         
-        if($emailAuthChk->EmailStatus <= 3) {
+        if($emailAuthChk->EmailStatus < 3) {
             $randomValue = Str::random(8);
 
             EmailAuthState::where('UserID', $emailAuthChk->UserID,)

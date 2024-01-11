@@ -1,5 +1,5 @@
 <template>
-    <div v-if="$route.fullPath.indexOf('classwatch') === -1 && $route.fullPath.indexOf('loading') === -1">
+    <div v-if="$route.fullPath.indexOf('classwatch') === -1 && $route.fullPath.indexOf('loading') === -1 && $route.fullPath.indexOf('admin') === -1">
     <!-- <div v-if="$route.fullPath !== '/classwatch/' && $route.fullPath !== '/classwatch'"> -->
         <div id="top_banner" class="top_banner">
             <div class="desc">
@@ -270,24 +270,31 @@ export default {
                                 const resendButton = modalElement.querySelector('#resendButton');
                                 // 재전송 버튼에 클릭 이벤트 추가
                                 resendButton.addEventListener('click', () => {
-                                    // 재전송 버튼 클릭 시 동작 처리
-                                    axios.put('/tokenChkUpdate', {
-                                        params: {
-                                            email: this.userEmailData,
-                                        }
-                                    })
-                                    .then(res => {
-                                        console.log(res.data);
-                                        if(res.data.success === false) {
-                                                // this.userEmailChk = false;
-                                                Swal.fire({
-                                                icon: 'warning', // 추가: 아이콘 설정
-                                                title: '횟수 초과',
-                                                text: '5분 후 다시 시도해주세요.',
-                                                confirmButtonText: 'Close',
-                                            });
-                                        }
-                                    })
+                                    resendButton.style.opacity = "0.3";
+                                    resendButton.style.pointerEvents = "none";
+                                    
+                                    setTimeout(() => {
+                                        resendButton.style.opacity = "1";
+                                        resendButton.style.pointerEvents = "auto";
+                                        // 재전송 버튼 클릭 시 동작 처리
+                                        axios.put('/tokenChkUpdate', {
+                                            params: {
+                                                email: this.userEmailData,
+                                            }
+                                        })
+                                        .then(res => {
+                                            console.log(res.data);
+                                            if(res.data.success === false) {
+                                                    // this.userEmailChk = false;
+                                                    Swal.fire({
+                                                    icon: 'warning', // 추가: 아이콘 설정
+                                                    title: '횟수 초과',
+                                                    text: '5분 후 다시 시도해주세요.',
+                                                    confirmButtonText: 'Close',
+                                                });
+                                            }
+                                        })
+                                    },2000);
                                 });
                             },
                             preConfirm: (verificationCode) => {
@@ -331,10 +338,10 @@ export default {
                         } else {
                             // Verification failed, handle it as needed
                             Swal.fire({
-                                icon: 'error', // 추가: 아이콘 설정
-                                title: '에러',
-                                text: '이메일 및 인증번호 재확인 부탁드립니다.',
-                                confirmButtonText: 'Close'
+                                icon: 'warning', // 추가: 아이콘 설정
+                                title: '횟수 초과',
+                                text: '5분 후 다시 시도해주세요.',
+                                confirmButtonText: 'Close',
                             });
                         }
                     });
