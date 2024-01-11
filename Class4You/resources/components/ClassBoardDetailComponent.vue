@@ -759,7 +759,7 @@
 
                         <div class="class_detail_rating_form_text">
                             <input v-model="classQuestionItems.BoardTitle" class="class_detail_rating_form_text_input" type="text" placeholder="제목을 작성해주세요.">
-                            <textarea v-model="classQuestionItems.BoardComment" name="" id="" cols="30" rows="10" placeholder="강의에 대한 질문을 작성해주세요."></textarea>
+                            <textarea v-model="classQuestionItems.BoardComment" cols="30" rows="10" placeholder="강의에 대한 질문을 작성해주세요."></textarea>
                         </div>
 
                         <div class="class_detail_commu_form_content">
@@ -783,16 +783,23 @@
 				<div v-for="data in classQuestionData" :key="data.BoardID" id="class_tab1" class="class_detail_commu_list_div">
 					<div class="class_detail_commu_list_user">
 						<div class="class_detail_rating_user_id">
-							<p v-if="data.BoardID == updateClassQuestionBoardID">{{ hideEmail(data.UserEmail) }} : <input v-model="data.BoardTitle"  type="text"></p>
-							<p v-else>{{ hideEmail(data.UserEmail) }} : {{ data.BoardTitle }}</p>
+							<div class="class_detail_rating_user_id_info">
+								<p class="class_detail_rating_user_email">{{ hideEmail(data.UserEmail) }}</p>
+							</div>
 						</div>
 						<div class="class_detail_rating_user_date">
 							<p>{{ data.created_at }}</p>
 						</div>
 					</div>
 					<div class="class_detail_commu_list_text">
-						<textarea v-if="data.BoardID == updateClassQuestionBoardID" v-model="data.BoardComment" cols="30" rows="10"></textarea>
-						<p v-else>{{ data.BoardComment }}</p>
+						<div v-if="data.BoardID == updateClassQuestionBoardID" class="class_detail_commu_list_text_div" style="display: flex;">
+							<input v-model="data.BoardTitle" type="text">
+							<textarea v-model="data.BoardComment" cols="30" rows="10"></textarea>
+						</div>
+						<div v-else>
+							<p>{{ data.BoardTitle }}</p>
+							<p>{{ data.BoardComment }}</p>
+						</div>
 					</div>
 					<div v-if="data.UserID == $store.state.UserID">
 						<div v-if="data.BoardID == updateClassQuestionBoardID" class="class_detail_community_user_button">
@@ -1148,8 +1155,10 @@ export default {
 					text: '수강평이 작성되었습니다.',
 					confirmButtonText: '확인'
             	})
-				console.log(res);
+				console.log(res.data);
 				console.log(this.reviewClassItems);
+				console.log(this.reviewClassItems.UserEmail);
+				
                 // console.log(res.data[0]);
 				
 				// 기존 수강평 데이터의 [0]번 방에 작성한 수강평 추가
@@ -1407,11 +1416,17 @@ export default {
                 },
             }
 
+			// console.log(this.UserEmail);
+			// console.log(this.classQuestionItems.UserEmail);
+			// console.log(this.$store.state.UserEmail);
+			// console.log(UserEmail);
+
 			let frm = new FormData();
             frm.append('ClassID',this.classQuestionItems.ClassID);
             frm.append('UserID',this.classQuestionItems.UserID);
             frm.append('BoardTitle',this.classQuestionItems.BoardTitle);
             frm.append('BoardComment',this.classQuestionItems.BoardComment);
+
 
 			axios.post(url, frm, header)
 			.then(res => {
@@ -1422,20 +1437,22 @@ export default {
 					confirmButtonText: '확인'
             	})
 
-				console.log("res.data임");
+				console.log("res.data임-객체");
 				console.log(res.data);
 				console.log("classQuestionItems임");
 				console.log(this.classQuestionItems);
-				console.log("classQuestionData임");
+				console.log("classQuestionData임-배열");
 				console.log(this.classQuestionData);
 
 				// console.log("Before unshift - classQuestionData:", this.classQuestionData);
         		// this.classQuestionData.unshift(res.data);
         		// console.log("After unshift - classQuestionData:", this.classQuestionData);
         
+				// this.classQuestionData.push(res.data);
 				// this.classQuestionData.unshift(res.data);
 				
-				this.classQuestionItems = this.newClassQuestion();
+				// this.classQuestionItems = this.newClassQuestion();
+				location.reload();
 				
 			})
 			.catch(error => {

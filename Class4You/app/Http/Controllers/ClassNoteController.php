@@ -51,7 +51,9 @@ class ClassNoteController extends Controller
 
         Log::debug($request->UserID);
         Log::debug($request->ClassID);
+        Log::debug('프론트에서 받은 데이터---------------------------------------------');
         Log::debug($request);
+        Log::debug($request->all());
 
         $EnrollmentData = Enrollment::select('EnrollmentID')
             ->where('UserID', $request->UserID) 
@@ -59,14 +61,14 @@ class ClassNoteController extends Controller
             ->first();
 
         $request->merge(['EnrollmentID' => $EnrollmentData->EnrollmentID]);
-        $data = $request->only('EnrollmentID', 'ClassNoteComment');
+        $data = $request->only('EnrollmentID', 'ClassNoteComment', 'ClassNoteID');
         
 
         Log::debug($data);
 
         $result = ClassNote::create($data);
 
-        Log::debug("-------------------------------------------");
+        Log::debug("작성된 데이터-------------------------------------------");
         Log::debug($result);
 
         

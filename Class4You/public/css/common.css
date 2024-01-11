@@ -2007,10 +2007,16 @@ ul.class_tabs li.class_current {
     border-radius: 4px;
     outline-color: #858484;
     outline-width: thin;
+    white-space: pre;
 }
 
 .class_detail_rating_form_text_input {
     width: 100%;
+    outline: 1px solid #ededed;
+    background-color: #fff;
+    margin: 5px 0;
+    padding: 5px;
+    border-radius: 3px;
 }
 
 .class_detail_rating_form_content {
@@ -2290,6 +2296,14 @@ ul.class_tabs li.class_current {
     margin-top: 10px;
     padding: 10px 0px 0px 0px;
     /* border-bottom: 1px solid #f2f2f2; */
+}
+
+.class_detail_commu_list_text>p {
+    white-space: pre;
+}
+
+.class_detail_commu_list_text_div {
+    
 }
 
 /* ============================================================================================================ */
