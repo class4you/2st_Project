@@ -2265,8 +2265,22 @@ ul.class_tabs li.class_current {
     gap: 10px;
 }
 
+.class_detail_community_btn_answer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.class_detail_community_instructor_answer {
+    color: #9b9898;
+    font-size: 15px;
+    font-weight: bold;
+}
+
 .class_detail_commu_list_div {
-    margin: 10px 0;
+    /* margin: 10px 0; */
     padding: 20px;
     line-height: 20px;
     border-bottom: 2px solid #002d426f;
@@ -2288,12 +2302,12 @@ ul.class_tabs li.class_current {
     color: #0000007e;
     display: flex;
     justify-content: space-between;
-    padding: 0px 0px 20px 0px;
+    padding: 0px 0px 10px 0px;
     border-bottom: 1px solid #f2f2f2;
 }
 
 .class_detail_commu_list_text {
-    margin-top: 10px;
+    /* margin-top: 10px; */
     padding: 10px 0px 0px 0px;
     /* border-bottom: 1px solid #f2f2f2; */
 }
@@ -2302,8 +2316,44 @@ ul.class_tabs li.class_current {
     white-space: pre;
 }
 
-.class_detail_commu_list_text_div {
-    
+.class_detail_commu_list_text_div1 {
+    display: flex;
+    flex-direction: column;
+}
+
+.class_detail_commu_list_update_text_title>input {
+    width: 100%;
+    outline: 1px solid #ededed;
+    margin: 5px 0;
+    padding: 5px;
+    border-radius: 3px;
+}
+
+.class_detail_commu_list_update_text_comment>textarea {
+    width: 100%;
+    resize: none;
+    border: 1px solid #ededed;
+    margin: 5px 0;
+    padding: 5px;
+    border-radius: 3px;
+}
+
+.class_detail_commu_list_text_board_title {
+    border: 1px solid #f2f2f2;
+    margin-bottom: 8px;
+    padding: 10px;
+    font-size: 15px;
+    font-weight: bold;
+    border-radius: 5px;
+    color: #0000007e;
+}
+
+.class_detail_commu_list_text_board_comment {
+    padding: 10px;
+    border: 1px solid #ededed;
+    border-radius: 5px;
+    white-space: pre;
+    font-size: 15px;
 }
 
 /* ============================================================================================================ */
