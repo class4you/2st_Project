@@ -177,19 +177,19 @@ export default {
 			sortData: 0,
 
             // 강의 노트
-            classNoteData: [],
+            // classNoteData: [],
             noteData: [],
             noteCommentData: {
                 ClassID: this.ClassID,
                 UserID: this.$store.state.UserID,
-                ClassNoteComment: '',
+                ClassNoteComment: this.ClassNoteComment,
                 ClassNoteID: this.ClassNoteID,
             },
             newNoteCommentData() {
                 return {
                     ClassID: this.ClassID,
                     UserID: this.$store.state.UserID,
-                    ClassNoteComment: '',
+                    ClassNoteComment: this.ClassNoteComment,
                     ClassNoteID: this.ClassNoteID,
                 }
             },
@@ -237,7 +237,7 @@ export default {
                 // this.videoId = response.data.lessonData
                 axios.get('/classwatchnote/' + this.ClassID)
                 .then(noteResponse => {
-                    console.log(noteResponse);
+                    console.log('노트레스폰스데이터',noteResponse);
                     // console.log(noteResponse.data.noteData);
                     this.noteData = noteResponse.data.noteData;
                     // console.log(this.noteData);
@@ -420,17 +420,19 @@ export default {
                 // res가 왜 빈값인지 알아야함.
                 // console.log("res데이터 어디갔냐");
                 // console.log(res);
-                console.log(res.data);
+                console.log("레스데이터", res.data);
                 // 작성된 노트 데이터
                 // console.log("작성된 노트 데이터");
                 console.log("작성된 노트 데이터", this.noteCommentData);
                 // 노트데이터 배열 리스트
-                // console.log(this.noteData);
+                console.log(this.noteData);
+                // console.log(this.classNoteData);
 
-                this.noteData.unshift(res.data);
+                // this.noteData.unshift(res.data[0]);
+                // this.noteCommentData.unshift(this.noteData[0]);
                 this.noteCommentData = this.newNoteCommentData();
                 // ClassNoteID값이 안들어가있음. 컨트롤러에서는 다 받아옴. 이거 확인되야 바로 수정가능할듯
-                console.log(this.noteCommentData);
+                // console.log(this.noteCommentData);
             })
             .catch(err => {
                 console.log("전달안됨")

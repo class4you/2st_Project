@@ -404,7 +404,10 @@ class BoardController extends Controller
             ->first();
 
         $UserEmailData = User::select('UserEmail')
-            ->where('UserID', $request->UserID)
+            ->join('enrollments','enrollments.UserID','users.UserID')
+            ->join('class_infos','class_infos.ClassID','enrollments.ClassID')
+            ->where('users.UserID', $request->UserID)
+            ->where('class_infos.ClassID', $request->ClassID) 
             ->first();
         
         Log::debug("유저 이메일 데이터");
@@ -424,10 +427,24 @@ class BoardController extends Controller
 
         $result = Board::create($data);
 
-        Log::debug('====================================================');
-        Log::debug($result);
+        // Log::debug('====================================================');
+        // Log::debug($result);
 
-        return response()->json($result);
+        $responseData = Board::select('boards.BoardID',
+            'boards.ClassID',
+            'boards.UserID',
+            'boards.BoardTitle',
+            'boards.BoardComment',
+            'boards.BoardCategoryID',
+            'boards.created_at',
+            'users.UserEmail')
+            ->join('users','boards.UserID','users.UserID')
+            ->where('boards.ClassID', $result->ClassID)
+            ->orderBy('boards.created_at','desc')
+            ->get();
+
+        return response()->json($responseData);
+        // return response()->json($result);
     }
 
     // 강의 게시글 삭제

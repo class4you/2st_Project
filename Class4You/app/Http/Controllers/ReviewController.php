@@ -87,6 +87,7 @@ class ReviewController extends Controller
 
         // Log::debug($request->UserID);
         // Log::debug($request->ClassID);
+        Log::debug($request);
 
         // 유저가 제출한 리뷰 데이터의 사용자 ID와 클래스 ID에 해당하는 수강 아이디 조회
         // 유저가 수강한 강의 조회

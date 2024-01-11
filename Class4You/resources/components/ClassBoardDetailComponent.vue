@@ -816,7 +816,7 @@
 								<summary>
 									<p>강사 답변 보기</p>
 								</summary>
-								<div>
+								<div style="margin-top: 5px;">
 									<p>코멘트코멘트코멘트</p>
 									<p>코멘트코멘트코멘트</p>
 									<p>코멘트코멘트코멘트</p>
@@ -1044,6 +1044,7 @@ export default {
 			classQuestionItems: {
 				ClassID: this.ClassID,
 				UserID: this.$store.state.UserID,
+				BoardID: this.BoardID,
 				UserEmail: this.$store.state.UserEmail,
 				BoardTitle: this.BoardTitle,
 				BoardComment: this.BoardComment,
@@ -1051,6 +1052,7 @@ export default {
 			newClassQuestion() {
 				return {
 					ClassID: this.ClassID,
+					BoardID: this.BoardID,
 					UserID: this.$store.state.UserID,
 					UserEmail: this.$store.state.UserEmail,
 					BoardTitle: this.BoardTitle,
@@ -1465,6 +1467,7 @@ export default {
 					confirmButtonText: '확인'
             	})
 
+				console.log(res.data.data);
 				console.log("res.data임-객체");
 				console.log(res.data);
 				console.log("classQuestionItems임");
@@ -1477,10 +1480,10 @@ export default {
         		// console.log("After unshift - classQuestionData:", this.classQuestionData);
         
 				// this.classQuestionData.push(res.data);
-				// this.classQuestionData.unshift(res.data);
+				this.classQuestionData.unshift(res.data[0]);
 				
-				// this.classQuestionItems = this.newClassQuestion();
-				location.reload();
+				this.classQuestionItems = this.newClassQuestion();
+				// location.reload();
 				
 			})
 			.catch(error => {
