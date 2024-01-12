@@ -72,9 +72,19 @@ class ClassNoteController extends Controller
         Log::debug($result);
 
         
-            // Log::debug($responseData);
-
+        // $responseData = ClassNote::select('class_notes.ClassNoteID',
+        //     'class_notes.ClassNoteComment',
+        //     'enrollments.UserID',
+        //     'enrollments.ClassID')
+        //     ->join('enrollments','class_notes.EnrollmentID','enrollments.EnrollmentID')
+        //     ->where('enrollments.UserID', $result->UserID)
+        //     ->where('enrollments.ClassID', $result->ClassID)
+        //     ->orderBy('class_notes.created_at', 'desc')
+        //     ->get();
+        //     Log::debug($responseData);
+            
         return response()->json($result);
+        // return response()->json($responseData);
     }
 
     // 강의 노트 삭제

@@ -792,32 +792,60 @@
 						</div>
 					</div>
 					<div class="class_detail_commu_list_text">
-						<div v-if="data.BoardID == updateClassQuestionBoardID" class="class_detail_commu_list_text_div" style="display: flex;">
-							<input v-model="data.BoardTitle" type="text">
-							<textarea v-model="data.BoardComment" cols="30" rows="10"></textarea>
+						<div v-if="data.BoardID == updateClassQuestionBoardID" class="class_detail_commu_list_text_div1">
+							<div class="class_detail_commu_list_update_text_title">
+								<input v-model="data.BoardTitle" type="text">
+							</div>
+							<div class="class_detail_commu_list_update_text_comment">
+								<textarea v-model="data.BoardComment" cols="30" rows="10"></textarea>
+							</div>
 						</div>
-						<div v-else>
-							<p>{{ data.BoardTitle }}</p>
-							<p>{{ data.BoardComment }}</p>
+						<div class="class_detail_commu_list_text_div2" v-else>
+							<div class="class_detail_commu_list_text_board_title">
+								<p>{{ data.BoardTitle }}</p>
+							</div>
+							<div class="class_detail_commu_list_text_board_comment">
+								<p>{{ data.BoardComment }}</p>
+							</div>
 						</div>
 					</div>
-					<div v-if="data.UserID == $store.state.UserID">
-						<div v-if="data.BoardID == updateClassQuestionBoardID" class="class_detail_community_user_button">
-							<div class="class_detail_rating_user_updated_button">
-								<button @click="updateClassQuestion(data)">수정</button>
+					<div class="class_detail_community_btn_answer">
+
+						<div class="class_detail_community_instructor_answer">
+							<details>
+								<summary>
+									<p>강사 답변 보기</p>
+								</summary>
+								<div style="margin-top: 5px;">
+									<p>코멘트코멘트코멘트</p>
+									<p>코멘트코멘트코멘트</p>
+									<p>코멘트코멘트코멘트</p>
+									<p>코멘트코멘트코멘트</p>
+									<p>코멘트코멘트코멘트</p>
+									<p>코멘트코멘트코멘트</p>
+								</div>
+							</details>
+						</div>
+
+						<div v-if="data.UserID == $store.state.UserID">
+							<div v-if="data.BoardID == updateClassQuestionBoardID" class="class_detail_community_user_button">
+								<div class="class_detail_rating_user_updated_button">
+									<button @click="updateClassQuestion(data)">수정</button>
+								</div>
+								<div class="class_detail_rating_user_delete_button">
+									<button @click="updateClassQuestion(false)">취소</button>
+								</div>
 							</div>
-							<div class="class_detail_rating_user_delete_button">
-								<button @click="updateClassQuestion(false)">취소</button>
+							<div v-else class="class_detail_community_user_button">
+								<div class="class_detail_rating_user_updated_button">
+									<button @click="updateClassQuestionBoardID = data.BoardID">수정</button>
+								</div>
+								<div class="class_detail_rating_user_delete_button">
+									<button @click="delClassQuestion(data)">삭제</button>
+								</div>
 							</div>
 						</div>
-						<div v-else class="class_detail_community_user_button">
-							<div class="class_detail_rating_user_updated_button">
-								<button @click="updateClassQuestionBoardID = data.BoardID">수정</button>
-							</div>
-							<div class="class_detail_rating_user_delete_button">
-								<button @click="delClassQuestion(data)">삭제</button>
-							</div>
-						</div>
+					
 					</div>
 					
 				</div>
@@ -1016,6 +1044,7 @@ export default {
 			classQuestionItems: {
 				ClassID: this.ClassID,
 				UserID: this.$store.state.UserID,
+				BoardID: this.BoardID,
 				UserEmail: this.$store.state.UserEmail,
 				BoardTitle: this.BoardTitle,
 				BoardComment: this.BoardComment,
@@ -1023,6 +1052,7 @@ export default {
 			newClassQuestion() {
 				return {
 					ClassID: this.ClassID,
+					BoardID: this.BoardID,
 					UserID: this.$store.state.UserID,
 					UserEmail: this.$store.state.UserEmail,
 					BoardTitle: this.BoardTitle,
@@ -1157,7 +1187,7 @@ export default {
             	})
 				console.log(res.data);
 				console.log(this.reviewClassItems);
-				console.log(this.reviewClassItems.UserEmail);
+				// console.log(this.reviewClassItems.UserEmail);
 				
                 // console.log(res.data[0]);
 				
@@ -1437,6 +1467,7 @@ export default {
 					confirmButtonText: '확인'
             	})
 
+				console.log(res.data.data);
 				console.log("res.data임-객체");
 				console.log(res.data);
 				console.log("classQuestionItems임");
@@ -1449,10 +1480,10 @@ export default {
         		// console.log("After unshift - classQuestionData:", this.classQuestionData);
         
 				// this.classQuestionData.push(res.data);
-				// this.classQuestionData.unshift(res.data);
+				this.classQuestionData.unshift(res.data[0]);
 				
-				// this.classQuestionItems = this.newClassQuestion();
-				location.reload();
+				this.classQuestionItems = this.newClassQuestion();
+				// location.reload();
 				
 			})
 			.catch(error => {
@@ -1553,7 +1584,7 @@ export default {
 					console.error(error);
 				});
 			} else {
-				this.updataClassQuestionBoardID = false;
+				this.updateClassQuestionBoardID = false;
 			}
 		}
 	}

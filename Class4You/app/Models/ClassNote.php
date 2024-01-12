@@ -26,7 +26,6 @@ class ClassNote extends Model
     protected $fillable = [
         'EnrollmentID',
         'ClassNoteID',
-        'UserID',
         'ClassNoteComment',
         'created_at',
     ];

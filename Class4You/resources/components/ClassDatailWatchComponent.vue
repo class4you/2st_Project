@@ -98,12 +98,13 @@
                 <!-- 강의노트UI -->
                 <div v-if="clickFlgTab === 1" class="class_detail_watch_side_classnote_div">
                     <div>
-                        <div v-for="data in noteData" :key="data.ClassNoteID" class="class_detail_watch_side_classnote_list_div">
-                            <div class="class_detail_watch_side_classnote_list">
+                        <div class="class_detail_watch_side_classnote_list_div">
+                            <div v-for="data in noteData" :key="data.ClassNoteID" class="class_detail_watch_side_classnote_list">
                                 <div class="class_detail_watch_side_classnote_list_text">
                                     <textarea v-if="data.ClassNoteID == updateNoteID" v-model="data.ClassNoteComment" class="class_detail_watch_note_update_text" cols="30" rows="10"></textarea>
                                     <p v-else>{{ data.ClassNoteID }},{{ data.ClassNoteComment }}</p>
                                 </div>
+
                                 <div v-if="data.UserID == $store.state.UserID">
                                     <div v-if="data.ClassNoteID == updateNoteID" class="class_detail_watch_side_classnote_list_btn">
                                         <div class="class_detail_watch_side_classnote_list_btn_up">
@@ -130,7 +131,7 @@
                             <fieldset>
                                 <div class="class_detail_watch_side_classnote_write">
                                     <div class="class_detail_watch_side_classnote_write_text">
-                                        <textarea v-model="noteCommentData.ClassNoteComment" name="" id="" cols="30" rows="10" placeholder="메모해주세요"></textarea>
+                                        <textarea v-model="noteCommentData.ClassNoteComment" cols="30" rows="10" placeholder="메모해주세요"></textarea>
                                     </div>
                                 </div>
                                 <div class="class_detail_watch_side_classnote_write_btn">
@@ -177,19 +178,19 @@ export default {
 			sortData: 0,
 
             // 강의 노트
-            classNoteData: [],
+            // classNoteData: [],
             noteData: [],
             noteCommentData: {
                 ClassID: this.ClassID,
                 UserID: this.$store.state.UserID,
-                ClassNoteComment: '',
+                ClassNoteComment: this.ClassNoteComment,
                 ClassNoteID: this.ClassNoteID,
             },
             newNoteCommentData() {
                 return {
                     ClassID: this.ClassID,
                     UserID: this.$store.state.UserID,
-                    ClassNoteComment: '',
+                    ClassNoteComment: this.ClassNoteComment,
                     ClassNoteID: this.ClassNoteID,
                 }
             },
@@ -237,7 +238,7 @@ export default {
                 // this.videoId = response.data.lessonData
                 axios.get('/classwatchnote/' + this.ClassID)
                 .then(noteResponse => {
-                    console.log(noteResponse);
+                    console.log('노트레스폰스데이터',noteResponse);
                     // console.log(noteResponse.data.noteData);
                     this.noteData = noteResponse.data.noteData;
                     // console.log(this.noteData);
@@ -405,7 +406,7 @@ export default {
             const header = {
                 headers: {
                     "Content-Type": 'multipart/form-data',
-                    // 'X-CSRF-TOKEN': document.head.querySelector('meta[name="csrf-token"]').content,
+                    'X-CSRF-TOKEN': document.head.querySelector('meta[name="csrf-token"]').content,
                 },
             }
 
@@ -417,20 +418,29 @@ export default {
 
             axios.post(url, frm, header)
             .then(res => {
-                // res가 왜 빈값인지 알아야함.
+                // res가 왜 빈값인지 알아야함.>해결
                 // console.log("res데이터 어디갔냐");
                 // console.log(res);
-                console.log(res.data);
+                console.log("레스데이터", res.data);
+                // 여기엔 있음
+                // console.log("노트아이디", res.data.ClassNoteID);
                 // 작성된 노트 데이터
                 // console.log("작성된 노트 데이터");
-                console.log("작성된 노트 데이터", this.noteCommentData);
+                // console.log("this.noteCommentData", this.noteCommentData);
                 // 노트데이터 배열 리스트
-                // console.log(this.noteData);
-
+                // console.log("this.noteData",this.noteData);
+                // 밑에 둘다 ID없음
+                // console.log("노트아이디찾자",this.noteData.ClassNoteID);
+                // console.log("노트아이디찾자",this.noteCommentData.ClassNoteID);
+                // console.log(this.classNoteData);
+                
+                this.noteCommentData.ClassNoteID = res.data.ClassNoteID;
+                // console.log("노트아이디찾자",this.noteCommentData.ClassNoteID);
                 this.noteData.unshift(res.data);
+                // this.noteCommentData.unshift(this.noteData[0]);
                 this.noteCommentData = this.newNoteCommentData();
                 // ClassNoteID값이 안들어가있음. 컨트롤러에서는 다 받아옴. 이거 확인되야 바로 수정가능할듯
-                console.log(this.noteCommentData);
+                // console.log(this.noteCommentData);
             })
             .catch(err => {
                 console.log("전달안됨")

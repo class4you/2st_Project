@@ -11,6 +11,14 @@ class Board extends Model
 {
     use HasFactory, SoftDeletes;
 
+    public function user() {
+        return $this->belongsTo(User::class, 'UserID');
+    }
+
+    public function enrollment() {
+        return $this->belongsTo(Enrollment::class, 'UserID');
+    }
+
     protected $primaryKey = 'BoardID';
 
     protected $fillable = [
