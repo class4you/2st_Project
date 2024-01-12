@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 
 class InstructorController extends Controller
 {
@@ -246,6 +247,17 @@ class InstructorController extends Controller
         $data['InstructorPassword'] = Hash::make($data['InstructorPassword']);
 
         $result = Instructor::create($data);
+
+        
+        $admindata = [
+            'email' => $request->InstructorEmail,
+        ];
+
+        Mail::send('mail.mail_form_admin', ['data' => $admindata], function($message) use ($data, $request) {
+            $message->to('jmh4912@naver.com')->subject('강사 회원가입 요청');
+            $message->from('dldmldltmd@gmail.com');
+        });
+
 
         Log::debug("result");
         Log::debug($result);
