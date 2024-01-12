@@ -239,10 +239,7 @@ class InstructorController extends Controller
         ]);
     }
 
-    public function instructorinquiry(Request $request) {
-
-
-        
+    public function postRegistInstructor(Request $request) {
         $admindata = [
             'Email' => $request->InstructorEmail,
             'PhoneNumber' => $request->InstructorPhoneNumber,

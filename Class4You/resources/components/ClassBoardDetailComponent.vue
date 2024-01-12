@@ -800,6 +800,7 @@
 								<textarea v-model="data.BoardComment" cols="30" rows="10"></textarea>
 							</div>
 						</div>
+
 						<div class="class_detail_commu_list_text_div2" v-else>
 							<div class="class_detail_commu_list_text_board_title">
 								<p>{{ data.BoardTitle }}</p>
@@ -808,25 +809,7 @@
 								<p>{{ data.BoardComment }}</p>
 							</div>
 						</div>
-					</div>
-					<div class="class_detail_community_btn_answer">
-
-						<div class="class_detail_community_instructor_answer">
-							<details>
-								<summary>
-									<p>강사 답변 보기</p>
-								</summary>
-								<div style="margin-top: 5px;">
-									<p>코멘트코멘트코멘트</p>
-									<p>코멘트코멘트코멘트</p>
-									<p>코멘트코멘트코멘트</p>
-									<p>코멘트코멘트코멘트</p>
-									<p>코멘트코멘트코멘트</p>
-									<p>코멘트코멘트코멘트</p>
-								</div>
-							</details>
-						</div>
-
+					
 						<div v-if="data.UserID == $store.state.UserID">
 							<div v-if="data.BoardID == updateClassQuestionBoardID" class="class_detail_community_user_button">
 								<div class="class_detail_rating_user_updated_button">
@@ -845,7 +828,26 @@
 								</div>
 							</div>
 						</div>
-					
+					</div>	
+
+					<div class="class_detail_community_btn_answer">
+
+						<div class="class_detail_community_instructor_answer">
+							<details>
+								<summary>
+									<p>✔강사 답변 보기</p>
+								</summary>
+								<div style="margin-top: 5px;">
+									<p>코멘트코멘트코멘트</p>
+									<p>코멘트코멘트코멘트</p>
+									<p>코멘트코멘트코멘트</p>
+									<p>코멘트코멘트코멘트</p>
+									<p>코멘트코멘트코멘트</p>
+									<p>코멘트코멘트코멘트</p>
+								</div>
+							</details>
+						</div>
+
 					</div>
 					
 				</div>
