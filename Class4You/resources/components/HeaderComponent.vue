@@ -84,7 +84,7 @@
                     <p>간편 로그인</p>
                 </div>
                 <div class="login_modal_button">
-                    <button type="button" @click="loginWithKakao" style="cursor: pointer;">카카오톡 로그인</button>
+                    <button type="button" @click="loginWithKakao" style="cursor: pointer; background-color: #F7E600; color: #3A1D1D ;">카카오톡 로그인</button>
                 </div>
             </div>
 

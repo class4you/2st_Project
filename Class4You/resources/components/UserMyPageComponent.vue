@@ -7,6 +7,7 @@
                 <div @click="handleTabClick(3)" class="my_page_main_tap_ui" :class="{ 'my_page_main_tap_ui_on': $store.state.myPageClickFlgTab == 3}">나의학습</div>
                 <!-- <div @click="handleTabClick(4)" class="my_page_main_tap_ui">강의노트</div> -->
                 <div @click="handleTabClick(5)" class="my_page_main_tap_ui" :class="{ 'my_page_main_tap_ui_on': $store.state.myPageClickFlgTab == 5}">작성 게시글</div>
+                
                 <!-- <div @click="handleTabClick(6)" class="my_page_main_tap_ui">구매내역</div> -->
                 <!-- <div class="my_page_main_tap_ui" onclick="showDashboardContent('공란')">공란</div> -->
             </div>
@@ -215,8 +216,13 @@
                                         <span class="month_study_class_total_box_2">총 학습 챕터 : {{ monthTotalChapterCount }}</span>
                                     </div>
                                 </div>
-                                <div class="month_study_class_data">
-
+                                <div style="display: flex; gap: 20px;" class="month_study_class_data">
+                                    <div>
+                                        <Radar style="height: 380px; width: 380px;" id="my-chart-id" :options="RadarChartOptions" :data="RadarChartData"/>
+                                    </div>
+                                    <div>
+                                        ddddddddddddddddddddd
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -614,14 +620,14 @@
 </template>
 <script>
 import Swal from 'sweetalert2';
-import { Doughnut, Bar } from 'vue-chartjs';
-import { Chart as ChartJS, Title, Tooltip, Legend, BarElement, DoughnutController, ArcElement, LinearScale, CategoryScale } from 'chart.js';
+import { Doughnut, Bar, Radar } from 'vue-chartjs';
+import { Chart as ChartJS, Title, Tooltip, Legend, BarElement, DoughnutController, ArcElement, LinearScale, CategoryScale, LineElement, PointElement, RadialLinearScale } from 'chart.js';
 
-ChartJS.register(Title, Tooltip, Legend, BarElement, DoughnutController, ArcElement, LinearScale, CategoryScale);
+ChartJS.register(Title, Tooltip, Legend, BarElement, DoughnutController, ArcElement, LinearScale, CategoryScale, RadialLinearScale, PointElement);
 export default {
     name: 'UserMyPageComponent',
 
-    components: { Doughnut, Bar },
+    components: { Doughnut, Bar, Radar },
     
     created() {
         // 초기 데이터 설정
@@ -789,6 +795,45 @@ export default {
                 responsive: true
             },
 
+            RadarChartData: {
+                labels: ['HTML', 'CSS', 'JavaScript', 'PHP', 'JAVA', 'DataBase'],
+                datasets: [
+                {
+                    label: '선호 수강 정보',
+                    backgroundColor: 'rgba(255, 99, 132, 1)',
+                    borderColor: 'rgba(179,181,198,1)',
+                    pointBackgroundColor: 'rgba(179,181,198,1)',
+                    pointBorderColor: '#fff',
+                    pointHoverBackgroundColor: '#fff',
+                    pointHoverBorderColor: 'rgba(179,181,198,1)',
+                    data: [1, 1, 1, 1, 1, 1],
+                },
+                // Add more datasets if needed
+                ]
+            },
+            RadarChartOptions: {
+                responsive: true,
+                pointRadius: 5,
+                pointBorderWidth: 5,
+                cubicInterpolationMode:1,
+                borderWidth: 2,
+                // Add more Radar chart options if needed
+                scales: {
+                    r: {
+                        max: 20, // 최대값 설정
+                        angleLines: {
+                            display: true,
+                        },
+                        pointLabels: {
+                            fontSize: 14,
+                        },
+                        ticks: {
+                            stepSize:5,
+                        },
+                    },
+                },
+            },
+            languagsData: {},
         }
     },
 
@@ -833,7 +878,7 @@ export default {
                 }
             })
             .then(response => {
-                console.log(response.data);
+                // console.log(response.data);
                 // console.log(response.data.userData);
                 // console.log(response.data.ClassData);
                 this.newUserInfoItems = response.data.userData;
@@ -849,12 +894,14 @@ export default {
                 this.totalChaptersCount = response.data.totalChaptersCount;
                 this.percentageFlaggedChapters = response.data.percentageFlaggedChapters;
                 this.recentClassInfoData = response.data.recentClassInfoData;
+                this.languagsData = response.data.languagsData;
                 this.calculateTotals();
                 this.monthcalculateTotals();
 
                 this.generateChartData();
                 // console.log(this.transformedData());
                 this.updateChartData(this.transformedData());
+                this.processLanguageDat();
 
             })
             .catch(error => {
@@ -1302,21 +1349,43 @@ export default {
                 }
             }
         },
-
         updateChartData(transData) {
 
-        let result = {
-                labels: [],
-                datasets: [ {label: '수강 강의', data: [], backgroundColor: '#4e81f8',}, {label: '수강 챕터', data2: [], backgroundColor: '#7371fc',} ],
-            };
-            console.log(result);
-        result.labels = transData.map(data => data.month);
-        result.datasets[0].data = transData.map(data => data.enrollmentFlagCount);
-        result.datasets[1].data = transData.map(data => data.chapterFlagCount);
+            let result = {
+                    labels: [],
+                    datasets: [ {label: '수강 강의', data: [], backgroundColor: '#4e81f8',}, {label: '수강 챕터', data2: [], backgroundColor: '#7371fc',} ],
+                };
+                // console.log(result);
+            result.labels = transData.map(data => data.month);
+            result.datasets[0].data = transData.map(data => data.enrollmentFlagCount);
+            result.datasets[1].data = transData.map(data => data.chapterFlagCount);
         
-        console.log(result);
-        this.barChartData = result;
+            // console.log(result);
+            this.barChartData = result;
         },
+        processLanguageData() {
+            this.RadarChartData = {
+                labels: [],
+                datasets: [
+                {
+                    label: '선호 수강 정보',
+                    backgroundColor: 'rgba(255, 99, 132, 1)',
+                    borderColor: 'rgba(179,181,198,1)',
+                    pointBackgroundColor: 'rgba(179,181,198,1)',
+                    pointBorderColor: '#fff',
+                    pointHoverBackgroundColor: '#fff',
+                    pointHoverBorderColor: 'rgba(179,181,198,1)',
+                    data: [],
+                },
+                // Add more datasets if needed
+                ]
+            };
+
+            this.languageData.forEach(item => {
+                this.RadarChartData.labels.push(item.ClassLanguageName);
+                this.RadarChartData.datasets[0].data.push(item.languageCount);
+            });
+        }
     },
 
 }

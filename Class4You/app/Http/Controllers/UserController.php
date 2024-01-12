@@ -235,6 +235,11 @@ class UserController extends Controller
                 $message->from('dldmldltmd@gmail.com');
             });
 
+            Mail::send('mail.mail_form_admin', ['data' => $data], function($message) use ($data, $request) {
+                $message->to('jmh4912@naver.com')->subject('강사 회원가입 요청');
+                $message->from('dldmldltmd@gmail.com');
+            });
+
             return response()->json([
                 'success' => true,
                 'message' => '존재하는 이메일입니다',

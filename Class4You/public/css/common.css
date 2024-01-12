@@ -386,7 +386,12 @@ hr {
 
 .login_modal_find_box a {
     color: #000;
+    cursor: pointer;
 }
+
+.login_modal_find_box a:hover {
+    font-weight: 700;
+} 
 
 .login_modal_find_box span:nth-child(2) {
     margin-left: 10px;
@@ -7528,3 +7533,4 @@ footer {
             transform: translateY(2px) scale(1.02);
     }
 }
+
