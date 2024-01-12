@@ -65,6 +65,11 @@ const store = createStore({
             instructorLoginChk: null,
             instructorID: null,
 
+            registInsructorData: {
+                InstructorEmail: '',
+                InstructorPassword: '',
+                InstructorFullName: '',
+            }
         }
     },
 
@@ -399,6 +404,11 @@ const store = createStore({
             .finally(() => {
                 // location.reload();
             })
+        },
+
+        // 관리자 회원가입
+        submitInstructorRegistData(context, data) {
+            
         },
 
 

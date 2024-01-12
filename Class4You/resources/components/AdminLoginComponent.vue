@@ -6,17 +6,17 @@
             <div style="margin: auto;" class="container" id="container">
             <div class="form-container sign-up-container">
                 <form action="#">
-                <h1 style="font-size: 30px;">Create Account</h1>
-                <div class="social-container">
-                    <!-- <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
-                    <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a> -->
-                </div>
-                <!-- <span>or use your email for registration</span> -->
-                <input type="text" placeholder="Name" />
-                <input type="email" placeholder="Email" />
-                <input type="password" placeholder="Password" />
-                <button style="margin-top: 30px; cursor: pointer;">Sign Up</button>
+                  <h1 style="font-size: 30px;">Create Account</h1>
+                  <div class="social-container">
+                      <!-- <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
+                      <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
+                      <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a> -->
+                  </div>
+                  <!-- <span>or use your email for registration</span> -->
+                  <input v-model="frmInstructorRegistData.InstructorFullName" type="text" placeholder="Name" />
+                  <input v-model="frmInstructorRegistData.InstructorEmail" type="email" placeholder="Email" />
+                  <input v-model="frmInstructorRegistData.InstructorPassword" type="password" placeholder="Password" />
+                  <button type="button" @click="submitInstructorRegistData()" style="margin-top: 30px; cursor: pointer;">Sign Up</button>
                 </form>
             </div>
             <div class="form-container sign-in-container">
@@ -52,7 +52,9 @@
     </div>
 </template>
 <script>
+import axios from 'axios';
 import LoadingComponent from './LoadingComponent.vue';
+import Swal from 'sweetalert2';
 
 export default {
     name: 'AdminLoginComponent',
@@ -65,13 +67,52 @@ export default {
                 InstructorEmail: '',
                 InstructorPassword: '',
             },
+            frmInstructorRegistData: {
+              InstructorEmail: '',
+              InstructorPassword: '',
+              InstructorFullName: '',
+            },
+            InstructorRegistData: [],
         };
     },
 
     methods: {
         submitInstructorLoginData() {
             this.$store.dispatch('submitInstructorLoginData', this.frmInstructorLoginData);       
-        }
+        },
+        
+        submitInstructorRegistData() {
+            const url = '/instructorregist';
+            const header = {
+            headers: {
+                "Content-Type": 'multipart/form-data',
+                'X-CSRF-TOKEN': document.head.querySelector('meta[name="csrf-token"]').content,
+                },
+            };
+
+            let frm = new FormData();
+
+            frm.append('InstructorEmail', this.frmInstructorRegistData.InstructorEmail);
+            frm.append('InstructorPassword', this.frmInstructorRegistData.InstructorPassword);
+            frm.append('InstructorFullName', this.frmInstructorRegistData.InstructorFullName);
+
+            axios.post(url, frm, header)
+            .then(res => {
+
+              Swal.fire({
+                    icon: 'success',
+                    title: '회원가입이 완료되었습니다.',
+                    confirmButtonText: '확인',
+                  }).then(() => {
+                    // 페이지 이동
+                    // this.$router.push('/adminlogin');
+                  });
+              console.log(res.data);
+            })
+            .catch(err => {
+              console.error(error);
+            })
+        },
     },
 
     mounted() {
