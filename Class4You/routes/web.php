@@ -233,6 +233,9 @@ Route::get('/instructoruserstatedata', [InstructorController::class, 'instructor
 Route::get('/instructoruserboardquestion', [InstructorController::class, 'instructoruserboardquestion']);
 // 게시물 전체 정보 리스트 데이터
 Route::get('/instructoruserboardcommunity', [InstructorController::class, 'instructoruserboardcommunity']);
+// 관리자 회원가입
+// Route::post('/instructorregist', [InstructorController::class, 'postRegistInstructor']);
+Route::post('/instructorregist', [InstructorController::class, 'postRegistInstructor']);
 
 Route::any("{slug}", function ($slug) {
     return view('welcome');

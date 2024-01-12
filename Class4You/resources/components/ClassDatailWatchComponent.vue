@@ -100,10 +100,16 @@
                     <div>
                         <div class="class_detail_watch_side_classnote_list_div">
                             <div v-for="data in noteData" :key="data.ClassNoteID" class="class_detail_watch_side_classnote_list">
-                                <div class="class_detail_watch_side_classnote_list_text">
-                                    <textarea v-if="data.ClassNoteID == updateNoteID" v-model="data.ClassNoteComment" class="class_detail_watch_note_update_text" cols="30" rows="10"></textarea>
-                                    <p v-else>{{ data.ClassNoteID }},{{ data.ClassNoteComment }}</p>
+                                <div v-if="data.ClassNoteID == updateNoteID" class="class_detail_watch_side_classnote_list_text">
+                                    <div>
+                                        <textarea v-model="data.ClassNoteComment" class="class_detail_watch_note_update_text" cols="30" rows="10"></textarea>
+                                    </div>
                                 </div>
+                                <div v-else  class="class_detail_watch_side_classnote_list_text">   
+                                    <div>
+                                        <p>{{ data.ClassNoteID }},{{ data.ClassNoteComment }}</p>
+                                    </div>
+                                </div> 
 
                                 <div v-if="data.UserID == $store.state.UserID">
                                     <div v-if="data.ClassNoteID == updateNoteID" class="class_detail_watch_side_classnote_list_btn">

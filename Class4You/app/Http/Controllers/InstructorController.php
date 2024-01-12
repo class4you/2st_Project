@@ -234,4 +234,22 @@ class InstructorController extends Controller
             'userStateData' => $userStateData,
         ]);
     }
+
+    public function postRegistInstructor(Request $request) {
+
+        Log::debug("request");
+        Log::debug($request);
+
+        $data = $request->only('InstructorEmail', 'InstructorFullName', 'InstructorPassword');
+
+        // 비밀번호 암호화
+        $data['InstructorPassword'] = Hash::make($data['InstructorPassword']);
+
+        $result = Instructor::create($data);
+
+        Log::debug("result");
+        Log::debug($result);
+
+        return response()->json($result);
+    }
 }
