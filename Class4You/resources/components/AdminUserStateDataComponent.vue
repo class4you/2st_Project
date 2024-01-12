@@ -310,8 +310,19 @@
 
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
-                        <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">유저 정보 테이블</h6>
+                        <div style="display: flex; align-items: center; justify-content: space-between;" class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">강의 정보 테이블</h6>
+                            <form style="margin: 0px !important; border: 1px solid #ebebeb; border-radius: 8px;" class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                                <div class="input-group">
+                                    <input v-model="searchQuery" type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
+                                        aria-label="Search" aria-describedby="basic-addon2">
+                                    <div class="input-group-append">
+                                        <button @click="fetchData(1, searchQuery)" class="btn btn-primary" type="button">
+                                            <i class="fas fa-search fa-sm"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
@@ -324,152 +335,27 @@
                                         <col style="width: 10%;">
                                         <col style="width: 10%;">
                                         <col style="width: 10%;">
-                                        <col style="width: 10%;">
                                     </colgroup>
                                     <thead>
                                         <tr>
+                                            <th>유저상태</th>
                                             <th>유저번호</th>
-                                            <th>강의번호</th>
-                                            <th>이메일</th>
-                                            <th>이름</th>
-                                            <th>주소</th>
-                                            <th>생년월일</th>
-                                            <th>생성날짜</th>
-                                            <th>계정상태</th>
+                                            <th>정지유무</th>
+                                            <th>정지일수</th>
+                                            <th>정지일자</th>
+                                            <th>정지횟수</th>
+                                            <th>정지수정</th>
                                         </tr>
                                     </thead>
-                                    <tfoot>
-                                        <tr>
-                                            <th>유저번호</th>
-                                            <th>강의번호</th>
-                                            <th>이메일</th>
-                                            <th>이름</th>
-                                            <th>주소</th>
-                                            <th>생년월일</th>
-                                            <th>생성날짜</th>
-                                            <th>계정상태</th>
-                                        </tr>
-                                    </tfoot>
                                     <tbody>
-                                        <tr>
-                                            <th>유저번호</th>
-                                            <th>강의번호</th>
-                                            <th>이메일</th>
-                                            <th>이름</th>
-                                            <th>주소</th>
-                                            <th>생년월일</th>
-                                            <th>생성날짜</th>
-                                            <th>계정상태</th>
-                                        </tr>
-                                        <tr>
-                                            <th>유저번호</th>
-                                            <th>강의번호</th>
-                                            <th>이메일</th>
-                                            <th>이름</th>
-                                            <th>주소</th>
-                                            <th>생년월일</th>
-                                            <th>생성날짜</th>
-                                            <th>계정상태</th>
-                                        </tr>
-                                        <tr>
-                                            <th>유저번호</th>
-                                            <th>강의번호</th>
-                                            <th>이메일</th>
-                                            <th>이름</th>
-                                            <th>주소</th>
-                                            <th>생년월일</th>
-                                            <th>생성날짜</th>
-                                            <th>계정상태</th>
-                                        </tr>
-                                        <tr>
-                                            <th>유저번호</th>
-                                            <th>강의번호</th>
-                                            <th>이메일</th>
-                                            <th>이름</th>
-                                            <th>주소</th>
-                                            <th>생년월일</th>
-                                            <th>생성날짜</th>
-                                            <th>계정상태</th>
-                                        </tr>
-                                        <tr>
-                                            <th>유저번호</th>
-                                            <th>강의번호</th>
-                                            <th>이메일</th>
-                                            <th>이름</th>
-                                            <th>주소</th>
-                                            <th>생년월일</th>
-                                            <th>생성날짜</th>
-                                            <th>계정상태</th>
-                                        </tr>
-                                        <tr>
-                                            <th>유저번호</th>
-                                            <th>강의번호</th>
-                                            <th>이메일</th>
-                                            <th>이름</th>
-                                            <th>주소</th>
-                                            <th>생년월일</th>
-                                            <th>생성날짜</th>
-                                            <th>계정상태</th>
-                                        </tr>
-                                        <tr>
-                                            <th>유저번호</th>
-                                            <th>강의번호</th>
-                                            <th>이메일</th>
-                                            <th>이름</th>
-                                            <th>주소</th>
-                                            <th>생년월일</th>
-                                            <th>생성날짜</th>
-                                            <th>계정상태</th>
-                                        </tr>
-                                        <tr>
-                                            <th>유저번호</th>
-                                            <th>강의번호</th>
-                                            <th>이메일</th>
-                                            <th>이름</th>
-                                            <th>주소</th>
-                                            <th>생년월일</th>
-                                            <th>생성날짜</th>
-                                            <th>계정상태</th>
-                                        </tr>
-                                        <tr>
-                                            <th>유저번호</th>
-                                            <th>강의번호</th>
-                                            <th>이메일</th>
-                                            <th>이름</th>
-                                            <th>주소</th>
-                                            <th>생년월일</th>
-                                            <th>생성날짜</th>
-                                            <th>계정상태</th>
-                                        </tr>
-                                        <tr>
-                                            <th>유저번호</th>
-                                            <th>강의번호</th>
-                                            <th>이메일</th>
-                                            <th>이름</th>
-                                            <th>주소</th>
-                                            <th>생년월일</th>
-                                            <th>생성날짜</th>
-                                            <th>계정상태</th>
-                                        </tr>
-                                        <tr>
-                                            <th>유저번호</th>
-                                            <th>강의번호</th>
-                                            <th>이메일</th>
-                                            <th>이름</th>
-                                            <th>주소</th>
-                                            <th>생년월일</th>
-                                            <th>생성날짜</th>
-                                            <th>계정상태</th>
-                                        </tr>
-                                        <tr>
-                                            <th>유저번호</th>
-                                            <th>강의번호</th>
-                                            <th>이메일</th>
-                                            <th>이름</th>
-                                            <th>주소</th>
-                                            <th>생년월일</th>
-                                            <th>생성날짜</th>
-                                            <th>계정상태</th>
+                                        <tr v-for="datas in userStateData">
+                                            <th>{{ datas.UserStatus === '0' ? '정상' : datas.UserStatus === '1' ? '정지' : '알수없음' }}</th>
+                                            <th>{{ datas.UserID }}</th>
+                                            <th>{{ datas.SuspensionType === null || datas.SuspensionType === '0' ? '정상' : datas.SuspensionType === '1' ? '임시 정지' : datas.SuspensionType === '2' ? '영구 정지' : '상태를 확인할 수 없음'}}</th>
+                                            <th>{{ calculateSuspensionDays(datas.SuspendedUntil, datas.created_at) }}</th>
+                                            <th>{{ datas.created_at }}</th>
+                                            <th>{{  datas.status_count }}</th>
+                                            <th>정지수정</th>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -533,8 +419,61 @@ export default {
 
     data() {
         return {
-        loading: true, // 로딩 상태를 나타내는 데이터
+            loading: true, // 로딩 상태를 나타내는 데이터
+            userStateData: {},
+            pagination: {},
+			page: {},
+			pageChk: {},
+            searchQuery: '',
         };
+    },
+
+    methods: {
+        fetchData(page = 1) {
+            axios.get(`/instructoruserstatedata?page=${page}&search=${this.searchQuery}`)
+            .then(response => {
+                console.log(response.data)
+                // console.log(response.data.userStateData.data)
+                this.userStateData = response.data.userStateData.data;
+                this.pagination = response.data.userStateData.links;
+                this.page = response.data.userStateData.current_page;
+                this.pageChk = response.data.userStateData.current_page;
+            })
+            .catch(error => {
+                // console.error('Error fetching data:', error);
+            });
+        },
+        replaceString(str) {
+			const arrList = {
+				'&laquo;': '≪',
+				'&raquo;': '≫'
+			}
+			//  &laquo; 이전
+			//  다음 &raquo;
+			str = str.replace('&laquo;', '<');
+			str = str.replace('&raquo;', '>');
+			// console.log(str);
+			return str;
+		},
+        calculateSuspensionDays(suspendedUntil, createdAt) {
+            // suspendedUntil과 createdAt은 ISO 8601 형식의 문자열이라고 가정합니다.
+            const suspendedUntilDate = new Date(suspendedUntil);
+            const createdAtDate = new Date(createdAt);
+
+            // 두 날짜의 차이를 계산하여 일수를 반환합니다.
+            const timeDiff = suspendedUntilDate - createdAtDate;
+            const daysDiff = Math.ceil(timeDiff / (1000 * 60 * 60 * 24));
+
+            if(daysDiff < -10000) {
+                return '영구정지'
+            }
+
+            return daysDiff + '일';
+        }
+    },
+
+    mounted() {
+        this.fetchData();
     },
 
     beforeCreate() {

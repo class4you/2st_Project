@@ -7,4 +7,6 @@ composer require laravel/socialite
 composer require overtrue/socialite
 composer require socialiteproviders/naver
 composer require socialiteproviders/kakao
+php artisan schedule:run
+스케쥴러 실행
 -->

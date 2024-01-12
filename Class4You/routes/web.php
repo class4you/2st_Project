@@ -219,10 +219,16 @@ Route::delete('/deleteduserdata', [MyPageController::class, 'deleteUserpasswordD
 Route::post('/instructorlogin', [InstructorController::class, 'instructorloginpost']);
 // 로그아웃
 Route::get('/instructorlogout', [InstructorController::class, 'instructorlogoutget']);
-// 유저 정보 리스트데이터
+// 유저 정보 리스트 데이터
 Route::get('/instructoruserdata', [InstructorController::class, 'instructoruserdata']);
+// 유저 계정 정지
+Route::post('/instructoruserstate', [InstructorController::class, 'instructoruserstate']);
 // 유저 강의 정보 리스트 데이터
 Route::get('/instructoruserclassdata', [InstructorController::class, 'instructoruserclassdata']);
+// 유저 계정 상태 리스트 데이터
+Route::get('/instructoruserstatedata', [InstructorController::class, 'instructoruserstatedata']);
+
+
 // 게시물 정보 리스트 데이터
 Route::get('/instructoruserboardquestion', [InstructorController::class, 'instructoruserboardquestion']);
 // 게시물 전체 정보 리스트 데이터
@@ -230,7 +236,6 @@ Route::get('/instructoruserboardcommunity', [InstructorController::class, 'instr
 // 관리자 회원가입
 // Route::post('/instructorregist', [InstructorController::class, 'postRegistInstructor']);
 Route::post('/instructorregist', [InstructorController::class, 'postRegistInstructor']);
-
 
 Route::any("{slug}", function ($slug) {
     return view('welcome');

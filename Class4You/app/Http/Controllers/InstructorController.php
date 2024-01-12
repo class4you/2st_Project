@@ -175,6 +175,66 @@ class InstructorController extends Controller
 
     }
 
+    public function instructoruserstate(Request $request) {
+
+        if($request->Date == '9999-01-01') {
+            $UserStateDate = UserStatus::create([
+                'UserID' => $request->UserID,
+                'UserStatus' => '1',
+                'SuspensionType' => '2',
+            ]);
+
+            return response()->json([
+                'userStateData' => $UserStateDate,
+            ]);
+
+        } else {
+            $UserStateDate = UserStatus::create([
+                'UserID' => $request->UserID,
+                'UserStatus' => '1',
+                'SuspensionType' => '1',
+                'SuspendedUntil' => $request->Date,
+            ]);
+
+            return response()->json([
+                'userStateData' => $UserStateDate,
+            ]);
+        }
+    }
+
+    public function instructoruserstatedata(Request $request) {
+        $instructorId = Auth::guard('admin')->id();
+
+        if($instructorId == 1) {
+            $userStateDataQuery = UserStatus::select(
+                'UserID',
+                'UserStatus',
+                'SuspensionType',
+                'SuspendedUntil',
+                'created_at'
+            )
+            ->addSelect(DB::raw('(
+                SELECT COUNT(*)
+                FROM user_statuses t2
+                WHERE t2.UserID = user_statuses.UserID AND t2.created_at >= user_statuses.created_at
+            ) as status_count'))
+            ->orderBy('created_at', 'desc');
+        }
+
+        // if ($request->has('search')) {
+        //     $searchTerm = $request->input('search');
+        //     $userStateDataQuery->where(function ($query) use ($searchTerm) {
+        //         $query->where('UserID', $searchTerm);
+        //     });
+        // }
+        $userStateData = $userStateDataQuery->paginate(10);
+        
+        Log::debug($userStateData);
+        return response()->json([
+            'userStateData' => $userStateData,
+        ]);
+    }
+
     public function postRegistInstructor(Request $request) {
 
         Log::debug("request");

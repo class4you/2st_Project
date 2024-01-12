@@ -4,6 +4,7 @@ namespace App\Console;
 
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
+use App\Models\UserStatus;
 
 class Kernel extends ConsoleKernel
 {
@@ -15,7 +16,11 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')->hourly();
+        $schedule->call(function () {
+            // 정지 기간이 지난 경우 UserStatus를 0으로 업데이트
+            UserStatus::where('SuspendedUntil', '<=', now())
+                ->update(['UserStatus' => 0]);
+        })->daily(); // 매일 실행
     }
 
     /**
