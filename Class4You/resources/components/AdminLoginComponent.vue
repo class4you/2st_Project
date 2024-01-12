@@ -106,6 +106,8 @@ export default {
                   }).then(() => {
                     // 페이지 이동
                     // this.$router.push('/adminlogin');
+                    this.frmInstructorRegistData = '';
+                    // location.reload();
                   });
               console.log(res.data);
             })

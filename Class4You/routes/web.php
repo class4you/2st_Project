@@ -235,7 +235,7 @@ Route::get('/instructoruserboardquestion', [InstructorController::class, 'instru
 Route::get('/instructoruserboardcommunity', [InstructorController::class, 'instructoruserboardcommunity']);
 // 관리자 회원가입
 // Route::post('/instructorregist', [InstructorController::class, 'postRegistInstructor']);
-Route::post('/instructorregist', [InstructorController::class, 'postRegistInstructor']);
+Route::middleware('my.user.validation')->post('/instructorregist', [InstructorController::class, 'postRegistInstructor']);
 
 Route::any("{slug}", function ($slug) {
     return view('welcome');
