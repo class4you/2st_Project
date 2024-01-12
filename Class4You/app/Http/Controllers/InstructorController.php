@@ -248,7 +248,7 @@ class InstructorController extends Controller
 
         $result = Instructor::create($data);
 
-        
+        // 관리자 승인 이메일 요청 >> 블레이드 탬플릿
         $admindata = [
             'email' => $request->InstructorEmail,
         ];
@@ -257,7 +257,6 @@ class InstructorController extends Controller
             $message->to('jmh4912@naver.com')->subject('강사 회원가입 요청');
             $message->from('dldmldltmd@gmail.com');
         });
-
 
         Log::debug("result");
         Log::debug($result);
