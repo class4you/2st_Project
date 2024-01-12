@@ -335,6 +335,7 @@
                                         <col style="width: 10%;">
                                         <col style="width: 10%;">
                                         <col style="width: 10%;">
+                                        <col style="width: 10%;">
                                     </colgroup>
                                     <thead>
                                         <tr>
@@ -344,7 +345,8 @@
                                             <th>정지일수</th>
                                             <th>정지일자</th>
                                             <th>정지횟수</th>
-                                            <th>정지수정</th>
+                                            <th>정지해제</th>
+                                            <th>영구정지</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -352,10 +354,12 @@
                                             <th>{{ datas.UserStatus === '0' ? '정상' : datas.UserStatus === '1' ? '정지' : '알수없음' }}</th>
                                             <th>{{ datas.UserID }}</th>
                                             <th>{{ datas.SuspensionType === null || datas.SuspensionType === '0' ? '정상' : datas.SuspensionType === '1' ? '임시 정지' : datas.SuspensionType === '2' ? '영구 정지' : '상태를 확인할 수 없음'}}</th>
-                                            <th>{{ calculateSuspensionDays(datas.SuspendedUntil, datas.created_at) }}</th>
+                                            <th v-if="datas.UserStatus !== '0'">{{ calculateSuspensionDays(datas.SuspendedUntil, datas.created_at) }}</th>
+                                            <th v-else>정지 해제</th>
                                             <th>{{ datas.created_at }}</th>
                                             <th>{{  datas.status_count }}</th>
-                                            <th>정지수정</th>
+                                            <th><button @click="userStateButton1(datas.UserStatusID)" type="button" style="padding: 0px 10px; border-radius: 3px; background-color: rgb(255, 95, 127); color: #fff; border: none;">정지 해제</button></th>
+                                            <th><button @click="userStateButton2(datas.UserStatusID)" type="button" style="padding: 0px 10px; border-radius: 3px; background-color: rgb(255, 95, 127); color: #fff; border: none;">영구 정지</button></th>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -413,6 +417,7 @@
 </template>
 <script>
 import LoadingComponent from './LoadingComponent.vue';
+import Swal from 'sweetalert2';
 
 export default {
     name: 'AdminUserStateDataComponent',
@@ -432,7 +437,7 @@ export default {
         fetchData(page = 1) {
             axios.get(`/instructoruserstatedata?page=${page}&search=${this.searchQuery}`)
             .then(response => {
-                console.log(response.data)
+                // console.log(response.data.userStateData.data)
                 // console.log(response.data.userStateData.data)
                 this.userStateData = response.data.userStateData.data;
                 this.pagination = response.data.userStateData.links;
@@ -456,19 +461,98 @@ export default {
 			return str;
 		},
         calculateSuspensionDays(suspendedUntil, createdAt) {
-            // suspendedUntil과 createdAt은 ISO 8601 형식의 문자열이라고 가정합니다.
+            // console.log(suspendedUntil);
             const suspendedUntilDate = new Date(suspendedUntil);
             const createdAtDate = new Date(createdAt);
-
             // 두 날짜의 차이를 계산하여 일수를 반환합니다.
             const timeDiff = suspendedUntilDate - createdAtDate;
             const daysDiff = Math.ceil(timeDiff / (1000 * 60 * 60 * 24));
 
-            if(daysDiff < -10000) {
+            if(daysDiff === null) {
+                return '정상'
+            } else if(daysDiff < -10000) {
                 return '영구정지'
-            }
+            } 
 
             return daysDiff + '일';
+        },
+        userStateButton1(data) {
+            Swal.fire({
+                title: '정지 해제',
+                text: '정말로 정지 해제시키시겠습니까?',
+                icon: 'question',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: '해제',
+                cancelButtonText: '취소'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    const UserStatusID = data;
+
+                        axios.put(`/instructoruserstateput`,{
+                            UserStatusID: UserStatusID,
+                            value: '0',
+                        }).then(response => {
+                            const updatedUser = response.data.userStateData;
+                            console.log(updatedUser);
+                            // this.userData에서 UserID에 해당하는 사용자를 찾아서 인덱스를 가져옴
+                            const userIndex = this.userStateData.findIndex(user => user.UserStatusID === updatedUser.UserStatusID);
+                            // UserID에 해당하는 사용자가 이미 존재하면 업데이트
+                            if (userIndex !== -1) {
+                                // 기존 사용자의 데이터를 업데이트
+                                this.userStateData[userIndex].SuspensionType = updatedUser.SuspensionType;
+                                this.userStateData[userIndex].SuspendedUntil = updatedUser.SuspendedUntil;
+                                this.userStateData[userIndex].UserStatus = updatedUser.UserStatus;
+                            }
+                        }).catch(error => {
+                            // 에러 처리
+                            console.error(error);
+                        });
+                    
+                }
+            });
+        },
+        userStateButton2(data) {
+            Swal.fire({
+                title: '영구 정지',
+                text: '정말로 영구 정지시키시겠습니까?',
+                icon: 'question',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: '정지',
+                cancelButtonText: '취소'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    const value = '1';
+                    const UserStatusID = data;
+
+                        axios.put(`/instructoruserstateput`,{
+                            UserStatusID: UserStatusID,
+                            value: value,
+                        }).then(response => {
+                            // console.log(this.userData);
+                            // console.log(response);
+                            const updatedUser = response.data.userStateData;
+                            console.log(updatedUser);
+                            // this.userData에서 UserID에 해당하는 사용자를 찾아서 인덱스를 가져옴
+                            const userIndex = this.userStateData.findIndex(user => user.UserStatusID === updatedUser.UserStatusID);
+                            // UserID에 해당하는 사용자가 이미 존재하면 업데이트
+                            if (userIndex !== -1) {
+                                // 기존 사용자의 데이터를 업데이트
+                                this.userStateData[userIndex].SuspensionType = updatedUser.SuspensionType;
+                                this.userStateData[userIndex].SuspendedUntil = updatedUser.SuspendedUntil;
+                                this.userStateData[userIndex].UserStatus = updatedUser.UserStatus;
+                            }
+                            // this.userData = response.data;
+                        }).catch(error => {
+                            // 에러 처리
+                            console.error(error);
+                        });
+                    
+                }
+            });
         }
     },
 

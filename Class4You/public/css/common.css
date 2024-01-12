@@ -6056,7 +6056,22 @@ background-color: rgba(225, 223, 234, 0.224);
     font-weight: 700;
 }
 
+.radar_right_data_title {
+    padding: 15px;
+    margin-bottom: 20px;
+    font-size: 17px;
+    border-bottom: 1px solid #bababa;
+}
 
+.radar_right_data {
+    width: 100%;
+    padding: 10px;
+    background-color: rgba(255, 99, 132, 0.8);
+    margin-bottom: 10px;
+    border-radius: 5px;
+    color: #fff;
+    
+}
 
 @media only screen and (max-width: 1250px) {
     .weekly_study_class_data_cover {

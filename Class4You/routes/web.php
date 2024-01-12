@@ -227,15 +227,18 @@ Route::post('/instructoruserstate', [InstructorController::class, 'instructoruse
 Route::get('/instructoruserclassdata', [InstructorController::class, 'instructoruserclassdata']);
 // 유저 계정 상태 리스트 데이터
 Route::get('/instructoruserstatedata', [InstructorController::class, 'instructoruserstatedata']);
+// 유저 계정 상태 수정
+Route::put('/instructoruserstateput', [InstructorController::class, 'instructoruserstateput']);
 
 
 // 게시물 정보 리스트 데이터
 Route::get('/instructoruserboardquestion', [InstructorController::class, 'instructoruserboardquestion']);
 // 게시물 전체 정보 리스트 데이터
 Route::get('/instructoruserboardcommunity', [InstructorController::class, 'instructoruserboardcommunity']);
+// 관리자 계정 문의하기
+Route::post('/instructorinquiry', [InstructorController::class, 'instructorinquiry']);
 // 관리자 회원가입
 // Route::post('/instructorregist', [InstructorController::class, 'postRegistInstructor']);
-Route::middleware('my.user.validation')->post('/instructorregist', [InstructorController::class, 'postRegistInstructor']);
 
 Route::any("{slug}", function ($slug) {
     return view('welcome');

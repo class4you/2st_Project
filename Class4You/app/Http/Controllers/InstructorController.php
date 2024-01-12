@@ -78,10 +78,10 @@ class InstructorController extends Controller
         $instructorId = Auth::guard('admin')->id();
 
         if($instructorId == 1) {
-            $userDataQuery = User::leftJoin('user_statuses', function($join) {
+            $userDataQuery = User::select('users.UserID', 'users.UserEmail', 'users.UserName', 'users.UserBirthDate', 'users.UserPostcode', 'users.UserRoadAddress', 'users.UserDetailedAddress', 'users.created_at', 'users.deleted_at', 'user_statuses.UserStatusID', 'user_statuses.UserStatus', 'user_statuses.SuspensionType', 'user_statuses.SuspendedUntil')
+            ->leftJoin('user_statuses', function($join) {
                 $join->on('users.UserID', '=', 'user_statuses.UserID');
             })
-            ->select('users.*', 'user_statuses.UserStatus', 'user_statuses.SuspensionType', 'user_statuses.SuspendedUntil')
             ->withTrashed()
             ->orderBy('users.created_at', 'desc');
         }
@@ -178,12 +178,14 @@ class InstructorController extends Controller
 
     public function instructoruserstate(Request $request) {
 
-        if($request->Date == '9999-01-01') {
+        Log::debug($request);
+        if($request->ban == 'ban') {
             $UserStateDate = UserStatus::create([
                 'UserID' => $request->UserID,
                 'UserStatus' => '1',
                 'SuspensionType' => '2',
             ]);
+
 
             return response()->json([
                 'userStateData' => $UserStateDate,
@@ -208,6 +210,7 @@ class InstructorController extends Controller
 
         if($instructorId == 1) {
             $userStateDataQuery = UserStatus::select(
+                'UserStatusID',
                 'UserID',
                 'UserStatus',
                 'SuspensionType',
@@ -220,48 +223,97 @@ class InstructorController extends Controller
                 WHERE t2.UserID = user_statuses.UserID AND t2.created_at >= user_statuses.created_at
             ) as status_count'))
             ->orderBy('created_at', 'desc');
-        }
 
+        }
+        
         // if ($request->has('search')) {
-        //     $searchTerm = $request->input('search');
-        //     $userStateDataQuery->where(function ($query) use ($searchTerm) {
-        //         $query->where('UserID', $searchTerm);
-        //     });
-        // }
+            //     $searchTerm = $request->input('search');
+            //     $userStateDataQuery->where(function ($query) use ($searchTerm) {
+                //         $query->where('UserID', $searchTerm);
+                //     });
+                // }
         $userStateData = $userStateDataQuery->paginate(10);
         
-        Log::debug($userStateData);
         return response()->json([
             'userStateData' => $userStateData,
         ]);
     }
 
-    public function postRegistInstructor(Request $request) {
+    public function instructorinquiry(Request $request) {
 
-        Log::debug("request");
-        Log::debug($request);
-
-        $data = $request->only('InstructorEmail', 'InstructorFullName', 'InstructorPassword');
-
-        // 비밀번호 암호화
-        $data['InstructorPassword'] = Hash::make($data['InstructorPassword']);
-
-        $result = Instructor::create($data);
 
         
         $admindata = [
-            'email' => $request->InstructorEmail,
+            'Email' => $request->InstructorEmail,
+            'PhoneNumber' => $request->InstructorPhoneNumber,
+            'FullName' => $request->InstructorFullName,
         ];
 
-        Mail::send('mail.mail_form_admin', ['data' => $admindata], function($message) use ($data, $request) {
-            $message->to('jmh4912@naver.com')->subject('강사 회원가입 요청');
+        Mail::send('mail.mail_form_admin', ['data' => $admindata], function($message) use ($admindata, $request) {
+            $message->to('jmh4912@naver.com')->subject('강사 문의하기');
             $message->from('dldmldltmd@gmail.com');
         });
 
-
-        Log::debug("result");
-        Log::debug($result);
-
-        return response()->json($result);
     }
+
+    public function instructoruserstateput(Request $request) {
+        Log::debug($request);
+        if($request->value == 0) {
+            $UserStateDate = UserStatus::where('UserStatusID', $request->UserStatusID)
+            ->update([
+                'UserStatus' => '0',
+                'SuspensionType' => '0',
+                'SuspendedUntil' => null,
+            ]);
+            
+            $UserStateDate = UserStatus::where('UserStatusID', $request->UserStatusID)->first();
+
+            return response()->json([
+                'userStateData' => $UserStateDate,
+            ]);
+        } else if ($request->value == 1) {
+            $UserStateDate = UserStatus::where('UserStatusID', $request->UserStatusID)
+            ->update([
+                'UserStatus' => '1',
+                'SuspensionType' => '2',
+                'SuspendedUntil' => null,
+            ]);
+
+            $UserStateDate = UserStatus::where('UserStatusID', $request->UserStatusID)->first();
+
+            Log::debug($UserStateDate);
+            return response()->json([
+                'userStateData' => $UserStateDate,
+            ]);
+        }
+    }
+
+    // public function postRegistInstructor(Request $request) {
+
+    //     Log::debug("request");
+    //     Log::debug($request);
+
+    //     $data = $request->only('InstructorEmail', 'InstructorFullName', 'InstructorPassword');
+
+    //     // 비밀번호 암호화
+    //     $data['InstructorPassword'] = Hash::make($data['InstructorPassword']);
+
+    //     $result = Instructor::create($data);
+
+        
+    //     $admindata = [
+    //         'email' => $request->InstructorEmail,
+    //     ];
+
+    //     Mail::send('mail.mail_form_admin', ['data' => $admindata], function($message) use ($data, $request) {
+    //         $message->to('jmh4912@naver.com')->subject('강사 회원가입 요청');
+    //         $message->from('dldmldltmd@gmail.com');
+    //     });
+
+
+    //     Log::debug("result");
+    //     Log::debug($result);
+
+    //     return response()->json($result);
+    // }
 }

@@ -330,8 +330,9 @@
                                     <colgroup>
                                         <col style="width: 5%;">
                                         <col style="width: 10%;">
+                                        <col style="width: 5%;">
+                                        <col style="width: 20%;">
                                         <col style="width: 10%;">
-                                        <col style="width: 25%;">
                                         <col style="width: 10%;">
                                         <col style="width: 10%;">
                                         <col style="width: 10%;">
@@ -347,7 +348,8 @@
                                             <th>생성날짜</th>
                                             <th>탈퇴여부</th>
                                             <th>계정상태</th>
-                                            <th>계정정지</th>
+                                            <th>임시정지</th>
+                                            <th>영구정지</th>
                                         </tr>
                                     </thead>
                                     <!-- <tfoot>
@@ -371,7 +373,8 @@
                                             <th>{{ datas.created_at }}</th>
                                             <th>{{ datas.deleted_at === null ? 'X' : datas.deleted_at !== null ? 'O' : '?' }}</th>
                                             <th>{{ datas.SuspensionType === null || datas.SuspensionType === '0' ? '정상' : datas.SuspensionType === '1' ? '임시 정지' : datas.SuspensionType === '2' ? '영구 정지' : '상태를 확인할 수 없음'}}</th>
-                                            <th><button @click="userStateButton(datas.UserID)" type="button" style="padding: 0px 10px; border-radius: 3px; background-color: rgb(255, 95, 127); color: #fff; border: none;">계정 정지</button></th>
+                                            <th><button @click="userStateButton1(datas.UserID)" type="button" style="padding: 0px 10px; border-radius: 3px; background-color: rgb(255, 95, 127); color: #fff; border: none;">임시 정지</button></th>
+                                            <th><button @click="userStateButton2(datas.UserID)" type="button" style="padding: 0px 10px; border-radius: 3px; background-color: rgb(255, 95, 127); color: #fff; border: none;">영구 정지</button></th>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -484,12 +487,12 @@ export default {
 			// console.log(str);
 			return str;
 		},
-        userStateButton(data) {
+        userStateButton1(data) {
             Swal.fire({
-                icon: 'info', // 추가: 아이콘 설정
+                icon: 'question', // 추가: 아이콘 설정
                 title: '계정 정지',
-                input: 'text',
-                inputLabel: '원하는 정지일(YY-MM-DD) 또는 영구정지(9999-01-01)',
+                input: 'date',
+                inputLabel: '원하는 정지일(YY-MM-DD)을 입력해주세요.',
                 inputPlaceholder: '원하는 정지 날짜를 입력해주세요.',
                 showCancelButton: true,
                 cancelButtonText: '취소',
@@ -521,6 +524,43 @@ export default {
                             console.error(error);
                         });
                     }
+                }
+            });
+        },
+        userStateButton2(data) {
+            Swal.fire({
+                title: '영구 정지',
+                text: '정말로 영구 정지시키시겠습니까?',
+                icon: 'question',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: '변경',
+                cancelButtonText: '취소'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    const UserID = data;
+
+                        axios.post(`/instructoruserstate`,{
+                            UserID: UserID,
+                            ban: 'ban',
+                        }).then(response => {
+                            // console.log(this.userData);
+                            // console.log(response.data);
+                            const updatedUser = response.data.userStateData;
+                            // this.userData에서 UserID에 해당하는 사용자를 찾아서 인덱스를 가져옴
+                            const userIndex = this.userData.findIndex(user => user.UserID === updatedUser.UserID);
+                            // UserID에 해당하는 사용자가 이미 존재하면 업데이트
+                            if (userIndex !== -1) {
+                                // 기존 사용자의 데이터를 업데이트
+                                this.userData[userIndex].SuspensionType = updatedUser.SuspensionType;
+                            }
+                            // this.userData = response.data;
+                        }).catch(error => {
+                            // 에러 처리
+                            console.error(error);
+                        });
+                    
                 }
             });
         }

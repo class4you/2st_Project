@@ -208,7 +208,7 @@ class MypageController extends Controller
 
         // 전체 유저 통계
         
-        $languagsData = Enrollment::join('class_infos', 'enrollments.ClassID', '=', 'class_infos.ClassID')
+        $languagesData = Enrollment::join('class_infos', 'enrollments.ClassID', '=', 'class_infos.ClassID')
             ->join('class_languagelinks', 'class_infos.ClassID', '=', 'class_languagelinks.ClassID')
             ->join('class_languages', 'class_languagelinks.ClassLanguageID', '=', 'class_languages.ClassLanguageID')
             ->select('class_languages.ClassLanguageName', DB::raw('COUNT(class_languages.ClassLanguageName) as languageCount'))
@@ -216,6 +216,25 @@ class MypageController extends Controller
             ->whereBetween('enrollments.updated_at', [$request->yearStart, $request->yearEnd])
             ->groupBy('class_languages.ClassLanguageName')
             ->get();
+
+            
+        $languagesType = ['HTML', 'CSS', 'JavaScript', 'PHP', 'JAVA', 'DataBase'];
+
+        // 언어 타입 배열과 데이터를 기반으로 결과 생성
+        $languagesData = collect($languagesType)->map(function ($languageType) use ($languagesData) {
+            // 데이터에서 해당 언어 찾기
+            $languageData = $languagesData->firstWhere('ClassLanguageName', $languageType);
+
+            // 해당 언어가 없으면 0으로 초기화
+            $languageCount = $languageData ? $languageData->languageCount : 0;
+
+            return [
+                'ClassLanguageName' => $languageType,
+                'languageCount' => $languageCount,
+            ];
+        });
+
+
 
         // Log::debug($languagsData);
         // ==============================================================================================
@@ -310,7 +329,7 @@ class MypageController extends Controller
             'flaggedChaptersCount' =>  $flaggedChaptersCount,
             'totalChaptersCount' =>  $totalChaptersCount,
             'percentageFlaggedChapters' =>  $percentageFlaggedChapters,
-            'languagsData' =>  $languagsData,
+            'languagsData' =>  $languagesData,
         ]);
     }
 
@@ -329,6 +348,7 @@ class MypageController extends Controller
                 return response()->json($user);
             }
         }
+
 
     }
 

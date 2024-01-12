@@ -216,12 +216,16 @@
                                         <span class="month_study_class_total_box_2">총 학습 챕터 : {{ monthTotalChapterCount }}</span>
                                     </div>
                                 </div>
-                                <div style="display: flex; gap: 20px;" class="month_study_class_data">
+                                <div style="display: grid; gap: 20px; grid-template-columns: 1fr 1fr;" class="month_study_class_data">
                                     <div>
                                         <Radar style="height: 380px; width: 380px;" id="my-chart-id" :options="RadarChartOptions" :data="RadarChartData"/>
                                     </div>
-                                    <div>
-                                        ddddddddddddddddddddd
+                                    <div style="border: 1px solid #eaeaea; padding: 10px; border-radius: 5px;">
+                                        <div class="radar_right_data_title">사용자 언어 통계</div>
+                                        <div v-for="data in languagsData" class="radar_right_data">
+                                            <span>{{ data.ClassLanguageName }} : </span>
+                                            <span>{{ data.languageCount}}</span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -796,17 +800,9 @@ export default {
             },
 
             RadarChartData: {
-                labels: ['HTML', 'CSS', 'JavaScript', 'PHP', 'JAVA', 'DataBase'],
+                labels: [],
                 datasets: [
                 {
-                    label: '선호 수강 정보',
-                    backgroundColor: 'rgba(255, 99, 132, 1)',
-                    borderColor: 'rgba(179,181,198,1)',
-                    pointBackgroundColor: 'rgba(179,181,198,1)',
-                    pointBorderColor: '#fff',
-                    pointHoverBackgroundColor: '#fff',
-                    pointHoverBorderColor: 'rgba(179,181,198,1)',
-                    data: [1, 1, 1, 1, 1, 1],
                 },
                 // Add more datasets if needed
                 ]
@@ -878,7 +874,7 @@ export default {
                 }
             })
             .then(response => {
-                // console.log(response.data);
+                console.log(response.data);
                 // console.log(response.data.userData);
                 // console.log(response.data.ClassData);
                 this.newUserInfoItems = response.data.userData;
@@ -901,7 +897,7 @@ export default {
                 this.generateChartData();
                 // console.log(this.transformedData());
                 this.updateChartData(this.transformedData());
-                this.processLanguageDat();
+                this.processLanguageData(this.transformedData2());
 
             })
             .catch(error => {
@@ -917,6 +913,17 @@ export default {
                     month,
                     enrollmentFlagCount: data.enrollmentFlagCount,
                     chapterFlagCount: data.chapterFlagCount,
+                };
+            });
+        },
+
+        
+        transformedData2() {
+            return Object.entries(this.languagsData).map(([key,data]) => {
+                return {
+                    key,
+                    ClassLanguageName: data.ClassLanguageName,
+                    languageCount: data.languageCount,
                 };
             });
         },
@@ -1363,14 +1370,16 @@ export default {
             // console.log(result);
             this.barChartData = result;
         },
-        processLanguageData() {
+        processLanguageData(transData) {
+            console.log(transData);
             this.RadarChartData = {
                 labels: [],
                 datasets: [
                 {
                     label: '선호 수강 정보',
-                    backgroundColor: 'rgba(255, 99, 132, 1)',
-                    borderColor: 'rgba(179,181,198,1)',
+                    fill: true,
+                    backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                    borderColor: 'rgba(0,0,0,0.1)',
                     pointBackgroundColor: 'rgba(179,181,198,1)',
                     pointBorderColor: '#fff',
                     pointHoverBackgroundColor: '#fff',
@@ -1381,7 +1390,7 @@ export default {
                 ]
             };
 
-            this.languageData.forEach(item => {
+            transData.forEach(item => {
                 this.RadarChartData.labels.push(item.ClassLanguageName);
                 this.RadarChartData.datasets[0].data.push(item.languageCount);
             });

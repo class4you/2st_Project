@@ -6,7 +6,7 @@
             <div style="margin: auto;" class="container" id="container">
             <div class="form-container sign-up-container">
                 <form action="#">
-                  <h1 style="font-size: 30px;">Create Account</h1>
+                  <h1 style="font-size: 30px;">Inquiry</h1>
                   <div class="social-container">
                       <!-- <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
                       <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
@@ -15,8 +15,8 @@
                   <!-- <span>or use your email for registration</span> -->
                   <input v-model="frmInstructorRegistData.InstructorFullName" type="text" placeholder="Name" />
                   <input v-model="frmInstructorRegistData.InstructorEmail" type="email" placeholder="Email" />
-                  <input v-model="frmInstructorRegistData.InstructorPassword" type="password" placeholder="Password" />
-                  <button type="button" @click="submitInstructorRegistData()" style="margin-top: 30px; cursor: pointer;">Sign Up</button>
+                  <input v-model="frmInstructorRegistData.InstructorPhoneNumber" type="text" placeholder="PhoneNumber" />
+                  <button type="button" @click="submitInstructorInquiryData()" style="margin-top: 30px; cursor: pointer;">Inquiry</button>
                 </form>
             </div>
             <div class="form-container sign-in-container">
@@ -42,9 +42,9 @@
                     <button class="ghost" id="signIn">Sign In</button>
                 </div>
                 <div class="overlay-panel overlay-right">
-                    <h1>관리자 계정이 없으신가요?</h1>
-                    <p style="font-weight: 600;">최초 관리자 승인 후 로그인 가능합니다.</p>
-                    <button class="ghost" id="signUp">Sign Up</button>
+                    <h1>관리자 계정을 잊으셨나요?</h1>
+                    <p style="font-weight: 600;">고객센터에 문의 바랍니다.</p>
+                    <button class="ghost" id="signUp">Inquiry</button>
                 </div>
                 </div>
             </div>
@@ -69,7 +69,7 @@ export default {
             },
             frmInstructorRegistData: {
               InstructorEmail: '',
-              InstructorPassword: '',
+              InstructorPhoneNumber: '',
               InstructorFullName: '',
             },
             InstructorRegistData: [],
@@ -81,8 +81,8 @@ export default {
             this.$store.dispatch('submitInstructorLoginData', this.frmInstructorLoginData);       
         },
         
-        submitInstructorRegistData() {
-            const url = '/instructorregist';
+        submitInstructorInquiryData() {
+            const url = '/instructorinquiry';
             const header = {
             headers: {
                 "Content-Type": 'multipart/form-data',
@@ -93,7 +93,7 @@ export default {
             let frm = new FormData();
 
             frm.append('InstructorEmail', this.frmInstructorRegistData.InstructorEmail);
-            frm.append('InstructorPassword', this.frmInstructorRegistData.InstructorPassword);
+            frm.append('InstructorPhoneNumber', this.frmInstructorRegistData.InstructorPhoneNumber);
             frm.append('InstructorFullName', this.frmInstructorRegistData.InstructorFullName);
 
             axios.post(url, frm, header)
@@ -101,7 +101,7 @@ export default {
 
               Swal.fire({
                     icon: 'success',
-                    title: '회원가입이 완료되었습니다.',
+                    title: '문의되었습니다.',
                     confirmButtonText: '확인',
                   }).then(() => {
                     // 페이지 이동
