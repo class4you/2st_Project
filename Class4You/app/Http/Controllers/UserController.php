@@ -13,6 +13,7 @@ use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Mail;
 use Laravel\Socialite\Facades\Socialite;
 use Illuminate\Support\Facades\DB;
+use Laravel\Socialite\Two\InvalidStateException;
 
 
 class UserController extends Controller
@@ -125,8 +126,11 @@ class UserController extends Controller
 
     public function kakaologin(Request $request)
     {
-        
-        $user = Socialite::driver('kakao')->setHttpClient(new \GuzzleHttp\Client(['verify' => false]))->user();
+        try{
+            $user = Socialite::driver('kakao')->setHttpClient(new \GuzzleHttp\Client(['verify' => false]))->user();
+        } catch(InvalidStateException $e) {
+            $user = Socialite::driver('kakao')->setHttpClient(new \GuzzleHttp\Client(['verify' => false]))->stateless()->user();
+        }
 
         $userEmail = $user->email;
         

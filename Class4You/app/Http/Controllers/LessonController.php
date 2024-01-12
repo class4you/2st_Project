@@ -52,16 +52,17 @@ class LessonController extends Controller
         // 챕터의 플래그를 확인해서 해당 챕터에 리슨이 전부 완료됐는지 확인하는 쿼리문
         $allLessonsCompleted = LessonState::where('ChapterStateID', $ChapterStateID)
         ->where('EnrollmentID', $EnrollmentID)
-        ->where('LessonFlg', 0) // 아직 완료되지 않은 강의
+        ->where('LessonFlg', '0') // 아직 완료되지 않은 강의
         ->doesntExist(); // 완료되지 않은 강의가 하나도 없다면 true 반환
         Log::debug('챕터 확인'.$allLessonsCompleted);
         
         // 모든 강의가 완료되었다면 챕터 플래그를 1로 업데이트
         if ($allLessonsCompleted) {
             $aaa = ChapterState::where('ChapterStateID', $ChapterStateID)
-                ->where('EnrollmentID', $EnrollmentID)
-                ->update(['ChapterFlg' => 1]);
+                ->where('EnrollmentID', $EnrollmentID)  
+                ->update(['ChapterFlg' => '1']);
             
+                Log::debug('업데이트 확인'.$aaa);
                 Log::debug('업데이트 확인'.$ChapterStateID);
             // 해당 강의의 모든 챕터가 1인지 확인
             $EnrollmentDataID = ChapterState::where('ChapterStateID', $ChapterStateID)->value('EnrollmentID');
@@ -75,7 +76,7 @@ class LessonController extends Controller
             // 모든 챕터가 완료되었다면 강의 플래그를 1로 업데이트
             if ($allChaptersCompleted) {
                 Enrollment::where('EnrollmentID', $EnrollmentDataID)
-                    ->update(['EnrollmentFlg' => 1]);
+                    ->update(['EnrollmentFlg' => '1']);
             }
             // Log::debug($allLessonsCompleted);
         }
