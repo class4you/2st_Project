@@ -1187,7 +1187,7 @@ export default {
             	})
 				console.log(res.data);
 				console.log(this.reviewClassItems);
-				console.log(this.reviewClassItems.UserEmail);
+				// console.log(this.reviewClassItems.UserEmail);
 				
                 // console.log(res.data[0]);
 				
