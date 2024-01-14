@@ -577,7 +577,7 @@ export default {
 
     methods: {
         fetchData() {
-            axios.get('/adminboardreportdata')
+            axios.get('/instructorboardreportdata')
                 .then(response => {
 
                     console.log(response);
