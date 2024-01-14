@@ -249,6 +249,8 @@ Route::post('/instructorinquiry', [InstructorController::class, 'instructorinqui
 // 관리자 회원가입
 // Route::post('/instructorregist', [InstructorController::class, 'postRegistInstructor']);
 
+// 두개의 프레임워크에서 같은 라우터 주소를 사용하면 서버 측 라라벨 라우터가 먼저 동작하게되면서 vue에서 정의한 라우터는 호출되지 않음.
+// 각각 다른 역할을 하는 프레임 워크이기에 다른 주소 공간을 사용해야함. 라우터 명이 겹치지 않는 것이 중요!
 Route::get('/instructorboardreportdata', [ReportController::class, 'getAdminBoardReportData']);
 
 
