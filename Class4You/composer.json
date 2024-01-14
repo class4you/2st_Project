@@ -12,7 +12,7 @@
         "laravel/sanctum": "^2.14",
         "laravel/socialite": "^5.11",
         "laravel/tinker": "^2.7",
-        "overtrue/socialite": "^4.9",
+        "overtrue/socialite": "^4.10",
         "socialiteproviders/kakao": "^4.2",
         "socialiteproviders/naver": "^4.1"
     },

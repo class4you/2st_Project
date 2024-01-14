@@ -53,7 +53,7 @@
                         </div> -->
                     </div>
 
-                    <hr style="margin: 0px; padding: 0px;">
+                    <!-- <hr style="margin: 0px; padding: 0px;"> -->
 
                     <div class="main_new_text">
                         <h3>NEW 신규강의</h3>
@@ -349,6 +349,14 @@ export default {
     width: 100%;
 }
 
+.carousel__pagination {
+    position: absolute;
+    bottom: 0px;
+    background-color: rgba(255,255,255, 0.2);
+    padding: 5px;
+    width: 100%;
+}
+
 .carousel__pagination-button::after {
     display: inline-block;
     width: 10px;
@@ -372,6 +380,23 @@ export default {
 
 .carousel__icon {
     color: #fff;
+}
+
+@media screen and (max-width: 1000px) {
+    .carousel__pagination {
+        padding: 3px;
+    }
+}
+
+@media screen and (max-width: 450px) {
+    .carousel__pagination {
+        padding: 0px;
+    }
+
+    .carousel__pagination-button::after {
+        width: 5px;
+        height: 5px;
+    }
 }
 
 </style>

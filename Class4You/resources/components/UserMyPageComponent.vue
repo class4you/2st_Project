@@ -216,9 +216,9 @@
                                         <span class="month_study_class_total_box_2">총 학습 챕터 : {{ monthTotalChapterCount }}</span>
                                     </div>
                                 </div>
-                                <div style="display: grid; gap: 20px; grid-template-columns: 1fr 1fr;" class="month_study_class_data">
+                                <div class="month_study_class_data_chart">
                                     <div>
-                                        <Radar style="height: 380px; width: 380px;" id="my-chart-id" :options="RadarChartOptions" :data="RadarChartData"/>
+                                        <Radar style="border: 1px solid #eaeaea; height: 80%; width: 80%; padding: 10px;" id="my-chart-id" :options="RadarChartOptions" :data="RadarChartData"/>
                                     </div>
                                     <div style="border: 1px solid #eaeaea; padding: 10px; border-radius: 5px;">
                                         <div class="radar_right_data_title">사용자 언어 통계</div>

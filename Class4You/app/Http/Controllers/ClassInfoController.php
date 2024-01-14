@@ -24,7 +24,7 @@ class ClassInfoController extends Controller
 
         $data = ClassInfo::select('class_infos.ClassID', 'class_infos.ClassImg', 'class_infos.ClassTitle', 'class_infos.ClassDescription')
         ->orderBy('created_at', 'desc')
-        ->take(8)
+        ->take(10)
         ->get();
     
         foreach ($data as $classInfo) {
