@@ -350,7 +350,17 @@
                                         </tr>
                                     </tfoot>
                                     <tbody>
-                                        <tr>
+                                        <tr v-for="data in boardReportData" :key="data.ReportID">
+                                            <th>{{ data.ReportID }}</th>
+                                            <th>강의번호</th>
+                                            <th>{{ data.UserID }}</th>
+                                            <th>{{ data.UserEmail }}</th>
+                                            <th>제목</th>
+                                            <th>{{data.ReportContent}}</th>
+                                            <th>{{data.created_at}}</th>
+                                            <th>{{data.ReportState}}</th>
+                                        </tr>
+                                        <!-- <tr>
                                             <th>게시글번호</th>
                                             <th>강의번호</th>
                                             <th>유저번호</th>
@@ -459,17 +469,7 @@
                                             <th>내용</th>
                                             <th>생성날짜</th>
                                             <th>게시물상태</th>
-                                        </tr>
-                                        <tr>
-                                            <th>게시글번호</th>
-                                            <th>강의번호</th>
-                                            <th>유저번호</th>
-                                            <th>이메일</th>
-                                            <th>제목</th>
-                                            <th>내용</th>
-                                            <th>생성날짜</th>
-                                            <th>게시물상태</th>
-                                        </tr>
+                                        </tr> -->
                                     </tbody>
                                 </table>
                             </div>
@@ -525,6 +525,7 @@
     </div>
 </template>
 <script>
+import axios from 'axios';
 import LoadingComponent from './LoadingComponent.vue';
 
 export default {
@@ -532,9 +533,12 @@ export default {
 
     data() {
         return {
-        loading: true, // 로딩 상태를 나타내는 데이터
+            loading: true, // 로딩 상태를 나타내는 데이터
+            boardReportData: [],
         };
     },
+
+    
 
     beforeCreate() {
         // 스타일시트를 동적으로 로드한 후 로딩 상태 변경
@@ -565,6 +569,26 @@ export default {
         };
 
         checkLoad();
+    },
+
+    mounted() {
+        this.fetchData();
+    },
+
+    methods: {
+        fetchData() {
+            axios.get('/adminboardreportdata')
+                .then(response => {
+
+                    console.log(response);
+                    console.log(response.data);
+
+                    this.boardReportData = response.data.boardReportData;
+                })
+                .catch(error => {
+                    console.error(error);
+                });
+        },
     },
 
     components: {

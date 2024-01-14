@@ -686,12 +686,16 @@ export default {
                     });
                 }
             }).then((result) => {
-                Swal.fire({
-                    icon: 'success', // 추가: 아이콘 설정
-                    title: '신고 완료',
-                    text: '게시글이 신고되었습니다.',
-                    confirmButtonText: '확인'
-                });
+                if(result.isConfirmed) {
+                    Swal.fire({
+                        icon: 'success', // 추가: 아이콘 설정
+                        title: '신고 완료',
+                        text: '게시글이 신고되었습니다.',
+                        confirmButtonText: '확인'
+                    })
+                } else if(result.isDismissed) {
+
+                };
             })
         },
     }

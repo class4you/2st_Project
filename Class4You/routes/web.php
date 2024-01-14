@@ -242,6 +242,10 @@ Route::post('/instructorinquiry', [InstructorController::class, 'instructorinqui
 // 관리자 회원가입
 // Route::post('/instructorregist', [InstructorController::class, 'postRegistInstructor']);
 
+
+// 신고 게시글 리스트 
+Route::get('/adminboardreportdata', [ReportController::class, 'getAdminBoardReportData']);
+
 Route::any("{slug}", function ($slug) {
     return view('welcome');
 });
