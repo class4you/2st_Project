@@ -96,6 +96,7 @@
                                 </div>
                                 <div class="success"><span style="line-height: 38px;">{{disapprovalCount}}</span></div>
                             </button>
+                            
                             <!-- <div>
                                 <button @click="updateNotRecommendedBoardData()" class="button-star">
                                     <canvas></canvas>
@@ -114,7 +115,14 @@
                                 비추천<p>{{disapprovalCount}}</p>
                             </div> -->
                         </div>
+                        
                         <div class="board_button">
+                            <div class="board_detail_report_div">
+                                <div class="board_detail_report_btn">
+                                    <button type="button" @click="boardReport()">🚨게시글 신고</button>
+                                </div>
+                            </div>
+
                             <div v-if="newBoardItem.UserID == $store.state.UserID"  class="row aiC">
                                 <a v-if="newBoardItem.BoardFlg == '0'" @click="updatecompleteBoardData()" class="board_complete">해결</a>
                                 <a :href="'/boardupdate/' + newBoardItem.BoardID" v-if="$store.state.UserID" class="board_rewrite">수정</a>
@@ -123,6 +131,8 @@
                                 <a @click="deleteBoardData(newBoardItem.BoardID)" class="board_delete">삭제</a>
                             </div>
                         </div>
+
+                        
                     </div>
             
                     <div class="reviewBox border-t-none">
@@ -241,6 +251,15 @@ export default {
             updateCommentID: {},
             recommendationCount: 0,
             disapprovalCount: 0,
+
+            // 게시글 신고
+            boardReportData: {
+                UserID: this.$store.state.UserID,
+                UserEmail: this.$store.state.UserEmail,
+                BoardID: this.BoardID,
+                ReportContent: this.ReportContent,
+            },
+            reportData: {},
         };
     },
 
@@ -626,7 +645,56 @@ export default {
                 console.error(error);
             });
         },
-    },
+
+        // 게시글 신고
+        boardReport() {
+            Swal.fire({
+                icon: 'info', // 추가: 아이콘 설정
+                title: '게시글 신고 사유',
+                input: 'textarea',
+                inputLabel: '-',
+                inputPlaceholder: '게시글 신고사유를 입력해주세요',
+                showCancelButton: true,
+                cancelButtonText: '취소',
+                confirmButtonText: '신고하기',
+                showLoaderOnConfirm: true,
+                
+                preConfirm: (ReportContent) => {
+                    return new Promise((resolve) => {
+                        setTimeout(() => {
+                            resolve(ReportContent);
+                        }, 3000);
+
+                        const url = '/reportSubmit';
+                        const header = {
+                            headers: {
+                            'Content-Type': 'multipart/form-data',
+                            }
+                        };
+                        const formData = new FormData();
+                            formData.append('ReportContent', ReportContent);
+                            formData.append('BoardID', this.boardReportData.BoardID);
+                            
+                        axios.post(url, formData, header)
+                        .then(res => {
+                            console.log(res.data);
+                            
+                        })
+                        .catch(err => {
+
+                        })
+                    });
+                }
+            }).then((result) => {
+                Swal.fire({
+                    icon: 'success', // 추가: 아이콘 설정
+                    title: '신고 완료',
+                    text: '게시글이 신고되었습니다.',
+                    confirmButtonText: '확인'
+                });
+            })
+        },
+    }
 };
 </script>
 <style scoped>

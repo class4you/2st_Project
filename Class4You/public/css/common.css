@@ -4447,7 +4447,7 @@ background-color: rgba(225, 223, 234, 0.224);
 /* 수정 삭제 버튼 */
 .board_button {
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
     gap: 15px;
 }
 
@@ -5286,7 +5286,16 @@ background-color: rgba(225, 223, 234, 0.224);
     opacity: 1;
 }
 
+/* 커뮤니티 게시판 _ 게시글 신고버튼------------------------------------------------------------------------- */
+.board_detail_report_div {
+    text-align: end;
+}
 
+.board_detail_report_btn>button {
+    background: transparent;
+    border: none;
+    color: #747272;
+}
 
 
 

@@ -13,6 +13,7 @@ use App\Http\Controllers\ChapterController;
 use App\Http\Controllers\EnrollmentController;
 use App\Http\Controllers\LessonController;
 use App\Http\Controllers\InstructorController;
+use App\Http\Controllers\ReportController;
 use Laravel\Socialite\Facades\Socialite;
 use Illuminate\Http\Request;
 
@@ -200,7 +201,8 @@ Route::middleware('my.user.validation')->put('/userbasicdataupdate', [MyPageCont
 Route::middleware('my.user.validation')->put('/userpassworddataupdate', [MyPageController::class, 'putUserpasswordData']);
 Route::delete('/deleteduserdata', [MyPageController::class, 'deleteUserpasswordData']);
 
-
+// 게시글 신고
+Route::post('/reportSubmit', [ReportController::class, 'postReportData']);
 
 
 // 자유게시판 디테일페이지로 이동 라우터
