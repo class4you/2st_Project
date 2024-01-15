@@ -254,6 +254,9 @@ Route::post('/instructorinquiry', [InstructorController::class, 'instructorinqui
 // 각각 다른 역할을 하는 프레임 워크이기에 다른 주소 공간을 사용해야함. 라우터 명이 겹치지 않는 것이 중요!
 Route::get('/instructorboardreportdata', [ReportController::class, 'getAdminBoardReportData']);
 
+// 강의 작성 데이터
+Route::get('/instructorclassinsertdata', [InstructorController::class, 'getinstructorclassinsertdata']);
+
 
 // 신고 게시글 리스트 
 

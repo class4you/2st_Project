@@ -18,6 +18,7 @@ import AdminUserClassDataComponent from '../components/AdminUserClassDataCompone
 import AdminUserStateDataComponent from '../components/AdminUserStateDataComponent.vue';
 import AdminBoardQuestionDataComponent from '../components/AdminBoardQuestionDataComponent.vue';
 import AdminBoardReportDataComponent from '../components/AdminBoardReportDataComponent.vue';
+import AdminClassInsertComponent from '../components/AdminClassInsertComponent.vue';
 import AdminLoginComponent from '../components/AdminLoginComponent.vue';
 // import ClassBoardMainComponent from '../components/ClassBoardMainComponent.vue';
 import store from './store';
@@ -113,6 +114,10 @@ const routes = [
     {
         path: '/adminboardreportdata',
         component: AdminBoardReportDataComponent,
+    },
+    {
+        path: '/adminclassinsert',
+        component: AdminClassInsertComponent,
     },
     {
         path: '/test',

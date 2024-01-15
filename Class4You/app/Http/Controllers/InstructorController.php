@@ -52,7 +52,7 @@ class InstructorController extends Controller
                 // 'sessionCheckUserName' => $sessionDataUserName,
                 // 'sessionCheckUserEmail' => $sessionDataUserEmail,
                 'instructorId' => $instructorId,
-                'instructorIdChk' =>  $adminChk,
+                'adminChk' =>  $adminChk,
             ]);
 
         } else {
@@ -79,11 +79,10 @@ class InstructorController extends Controller
         // Log::debug($request);
         $instructorId = Auth::guard('admin')->id();
 
-        if($instructorId == 1) {
-            $userDataQuery = User::select('users.UserID', 'users.UserEmail', 'users.UserName', 'users.UserBirthDate', 'users.UserPostcode', 'users.UserRoadAddress', 'users.UserDetailedAddress', 'users.created_at', 'users.deleted_at', 'user_statuses.UserStatusID', 'user_statuses.UserStatus', 'user_statuses.SuspensionType', 'user_statuses.SuspendedUntil')
-            ->leftJoin('user_statuses', function($join) {
-                $join->on('users.UserID', '=', 'user_statuses.UserID');
-            })
+        $adminChk = Instructor::where('InstructorID', $instructorId)->where('InstructorFlg', 1)->first();
+
+        if($adminChk) {
+            $userDataQuery = User::select('users.UserID', 'users.UserEmail', 'users.UserName', 'users.UserBirthDate', 'users.UserPostcode', 'users.UserRoadAddress', 'users.UserDetailedAddress', 'users.created_at', 'users.deleted_at', 'users.UserState')
             ->withTrashed()
             ->orderBy('users.created_at', 'desc');
         }
@@ -105,7 +104,9 @@ class InstructorController extends Controller
 
         $instructorId = Auth::guard('admin')->id();
 
-        if($instructorId == 1) {
+        $adminChk = Instructor::where('InstructorID', $instructorId)->where('InstructorFlg', 1)->first();
+        
+        if($adminChk) {
             $ClassDataQuery = Enrollment::select('enrollments.UserID', 'enrollments.ClassID', 'class_infos.ClassTitle', 'class_infos.ClassPrice', 'class_infos.ClassDifficultyID', 'enrollments.created_at', 'enrollments.EnrollmentFlg')
                 ->join('users', 'enrollments.UserID' ,'users.UserID')
                 ->join('class_infos', 'enrollments.ClassID', 'class_infos.ClassID')
@@ -131,7 +132,9 @@ class InstructorController extends Controller
 
         $instructorId = Auth::guard('admin')->id();
 
-        if($instructorId == 1) {
+        $adminChk = Instructor::where('InstructorID', $instructorId)->where('InstructorFlg', 1)->first();
+
+        if($adminChk) {
             $boardQuestionDataQuery = Board::whereNotNull('ClassID')
                 ->withTrashed()
                 ->orderBy('boards.created_at', 'desc');
@@ -156,7 +159,9 @@ class InstructorController extends Controller
     public function instructoruserboardcommunity(Request $request) {
         $instructorId = Auth::guard('admin')->id();
 
-        if($instructorId == 1) {
+        $adminChk = Instructor::where('InstructorID', $instructorId)->where('InstructorFlg', 1)->first();
+        
+        if($adminChk) {
             $boardQuestionDataQuery = Board::whereNull('ClassID')
                 ->withTrashed()
                 ->orderBy('boards.created_at', 'desc');
@@ -182,10 +187,17 @@ class InstructorController extends Controller
 
         Log::debug($request);
         if($request->ban == 'ban') {
-            $UserStateDate = UserStatus::create([
+            UserStatus::create([
                 'UserID' => $request->UserID,
                 'UserStatus' => '1',
                 'SuspensionType' => '2',
+            ]);
+
+            $UserStateDate = User::find($request->UserID);
+
+            $UserStateDate->update([
+                'UserID' => $request->UserID,
+                'UserState' => '2',
             ]);
 
 
@@ -194,12 +206,20 @@ class InstructorController extends Controller
             ]);
 
         } else {
-            $UserStateDate = UserStatus::create([
+            UserStatus::create([
                 'UserID' => $request->UserID,
                 'UserStatus' => '1',
                 'SuspensionType' => '1',
                 'SuspendedUntil' => $request->Date,
             ]);
+
+            $UserStateDate = User::find($request->UserID);
+
+            $UserStateDate->update([
+                'UserID' => $request->UserID,
+                'UserState' => '1',
+            ]);
+
 
             return response()->json([
                 'userStateData' => $UserStateDate,
@@ -210,7 +230,9 @@ class InstructorController extends Controller
     public function instructoruserstatedata(Request $request) {
         $instructorId = Auth::guard('admin')->id();
 
-        if($instructorId == 1) {
+        $adminChk = Instructor::where('InstructorID', $instructorId)->where('InstructorFlg', 1)->first();
+
+        if($adminChk) {
             $userStateDataQuery = UserStatus::select(
                 'UserStatusID',
                 'UserID',
@@ -222,10 +244,9 @@ class InstructorController extends Controller
             ->addSelect(DB::raw('(
                 SELECT COUNT(*)
                 FROM user_statuses t2
-                WHERE t2.UserID = user_statuses.UserID AND t2.created_at >= user_statuses.created_at
+                WHERE t2.UserID = user_statuses.UserID AND t2.created_at <= user_statuses.created_at
             ) as status_count'))
             ->orderBy('created_at', 'desc');
-
         }
         
         // if ($request->has('search')) {
@@ -264,6 +285,14 @@ class InstructorController extends Controller
                 'SuspensionType' => '0',
                 'SuspendedUntil' => null,
             ]);
+
+            $User = User::find($request->UserID);
+
+            $User->update([
+                'UserID' => $request->UserID,
+                'UserState' => '0',
+            ]);
+
             
             $UserStateDate = UserStatus::where('UserStatusID', $request->UserStatusID)->first();
 
@@ -278,6 +307,13 @@ class InstructorController extends Controller
                 'SuspendedUntil' => null,
             ]);
 
+            $User = User::find($request->UserID);
+
+            $User->update([
+                'UserID' => $request->UserID,
+                'UserState' => '2',
+            ]);
+
             $UserStateDate = UserStatus::where('UserStatusID', $request->UserStatusID)->first();
 
             Log::debug($UserStateDate);
@@ -285,6 +321,33 @@ class InstructorController extends Controller
                 'userStateData' => $UserStateDate,
             ]);
         }
+    }
+
+    public function getinstructorclassinsertdata(Request $request) {
+        $instructorId = Auth::guard('admin')->id();
+        Log::debug($instructorId);
+        // Log::debug($request);
+        $ClassData = Classinfo::join('chapters', 'class_infos.ClassID', '=', 'chapters.ClassID')
+            ->join('lessons', 'chapters.ChapterID', '=', 'lessons.ChapterID')
+            ->leftJoin('enrollments', 'class_infos.ClassID', '=', 'enrollments.ClassID') // LEFT JOIN으로 변경
+            ->where('class_infos.InstructorID', $instructorId)
+            ->select(
+                'class_infos.ClassID',
+                'class_infos.CategoryID',
+                'class_infos.ClassDifficultyID',
+                'class_infos.ClassTitle',
+                'class_infos.ClassPrice',
+                DB::raw('COUNT(DISTINCT chapters.ChapterID) as chapter_count'),
+                DB::raw('COUNT(lessons.LessonID) as lesson_count'),
+                DB::raw('COUNT(DISTINCT enrollments.UserID) as enrollment_count') // 수정된 부분
+            )
+            ->groupBy('class_infos.ClassID', 'class_infos.CategoryID', 'class_infos.ClassDifficultyID', 'class_infos.ClassTitle', 'class_infos.ClassPrice')
+            ->paginate(10);
+
+            Log::debug($ClassData);
+            return response()->json([
+                'ClassData' => $ClassData,
+            ]);
     }
 
     // public function postRegistInstructor(Request $request) {

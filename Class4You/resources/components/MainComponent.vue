@@ -60,8 +60,8 @@
                     <!-- <hr style="margin: 0px; padding: 0px;"> -->
 
                     <div class="main_new_text">
-                        <h3>NEW 신규강의</h3>
-                        <a href="#">2024년 당신의 커리어를 책임질 LINE-UP</a>
+                        <h3>따끈따끈, 신규 강의를 만나보세요! 🙋🏻‍♀️ <span style="font-size: 15px; color:crimson;">NEW!!</span></h3>
+                        <a href="#">2024년 당신의 커리어를 책임질  <span style="color:crimson;">LINE-UP</span></a>
                     </div>
 
                     <div class="main_container_new_box">
@@ -117,7 +117,7 @@
                     <img class="main_banner" src="/img/event_banner_1.png" alt="">
 
                     <div class="main_new_text">
-                        <h3>HOT 추천강의</h3>
+                        <h3>기본부터 실무까지 제시해주는 로드맵 🏃🏻‍♀️ <span style="font-size: 15px; color:crimson;">RoadMap!!</span></h3>
                         <a href="#">Class 4 You의 대표 강의들을 만나보세요.</a>
                     </div>
 
@@ -147,9 +147,14 @@
                     </div>
 
                         <img class="main_banner" src="/img/event_banner_2.png" alt="">
+                        <!-- <div>
+
+                        </div> -->
+                        
+                        
 
                     <div class="main_new_text">
-                        <h3>학습 가이드</h3>
+                        <h3>뭘 배워할지 모르는 당신을 위한 학습 가이드 🏃🏻‍♀️ <span style="font-size: 15px; color:crimson;">guide!!</span></h3>
                         <a href="#">내게 딱 맞는 학습 순서가 궁금하다면?</a>
                     </div>
 

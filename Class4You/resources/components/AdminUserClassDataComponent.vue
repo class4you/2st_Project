@@ -21,19 +21,18 @@
                     <a class="nav-link" href="/adminmain">
                         <i class="fas fa-fw fa-tachometer-alt"></i>
                         <span>대시보드</span></a>
-                </li>
-                
-                <li class="nav-item">
-                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-                        aria-expanded="true" aria-controls="collapseTwo">
+                    </li>
+                    
+                <li  v-if="adminChk === 'true'" class="nav-item">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
                         <i class="fas fa-fw fa-cog"></i>
                         <span>유저 관리</span>
                     </a>
-                    <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                         <div class="bg-white py-2 collapse-inner rounded">
                             <h6 class="collapse-header admin-main-h6-font-size">유저 정보 관리</h6>
                             <a class="collapse-item" href="/adminuserdata">유저 정보 리스트</a>
-                            <a class="collapse-item active" href="/adminuserclassdata">유저 강의 리스트</a>
+                            <a class="collapse-item" href="/adminuserclassdata">유저 강의 리스트</a>
                             <a class="collapse-item" href="/adminuserstatedata">유저 상태 리스트</a>
                         </div>
                     </div>
@@ -68,13 +67,13 @@
                     <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                         <div class="bg-white py-2 collapse-inner rounded">
                             <h6 class="collapse-header admin-main-h6-font-size">관리자 정보 수정</h6>
-                            <a class="collapse-item" href="login.html">Login</a>
-                            <a class="collapse-item" href="register.html">Register</a>
-                            <a class="collapse-item" href="forgot-password.html">Forgot Password</a>
+                            <a v-if="adminChk === 'true'" class="collapse-item" href="login.html">강사 회원가입</a>
+                            <a class="collapse-item" href="register.html">강사 정보 관리</a>
                             <div class="collapse-divider admin-main-h6-font-size"></div>
                             <h6 class="collapse-header">강의 업로드 관리</h6>
-                            <a class="collapse-item" href="404.html">404 Page</a>
-                            <a class="collapse-item" href="blank.html">Blank Page</a>
+                            <a class="collapse-item" href="404.html">강의 추가</a>
+                            <a class="collapse-item" href="404.html">챕터 추가</a>
+                            <a class="collapse-item" href="404.html">레슨 추가</a>
                         </div>
                     </div>
                 </li>
@@ -434,6 +433,7 @@ export default {
 			page: {},
 			pageChk: {},
             searchQuery: '',
+            adminChk: false,
         };
     },
 
@@ -469,6 +469,8 @@ export default {
 
     mounted() {
         this.fetchData();
+
+        this.adminChk = localStorage.getItem('adminChk');
     },
 
     beforeCreate() {

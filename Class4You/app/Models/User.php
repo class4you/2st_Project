@@ -31,6 +31,7 @@ class User extends Authenticatable
         'UserDetailedAddress',
         'UserTermsofUse',
         'UserPrivacy',
+        'UserState',
     ];
     /**
      * The attributes that should be hidden for serialization.
@@ -55,6 +56,9 @@ class User extends Authenticatable
         return $date->format('Y-m-d');
     }
 
-    
+    public function userStatus()
+    {
+        return $this->hasOne(UserStatus::class, 'UserID', 'UserID');
+    }
 
 }
