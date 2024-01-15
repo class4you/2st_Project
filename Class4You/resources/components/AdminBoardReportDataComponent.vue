@@ -354,7 +354,7 @@
                                 </table>
                             </div>
 
-                            <table class="admin_board_report_page_table" style="display: flex; justify-content: right; font-size: 18px;">
+                            <table class="admin_board_report_page_table" style="display: flex; justify-content: right; font-size: 15px;">
                                 <tbody v-for="(page, index) in pagination" :key="index">
                                     <template v-if="page.url !== null">
                                         <a class="qustuon_list_page_a" :class="{'page_on': page.label == pageChk}" @click.prevent="fetchData(page.label)" href="#">{{ replaceString(page.label) }}</a>
