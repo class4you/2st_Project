@@ -6133,7 +6133,7 @@ background-color: rgba(225, 223, 234, 0.224);
     margin-bottom: 5px;
     font-size: 13px;
     border: 1px solid #e7e7e7;
-    background-color: #fafafa;
+    /* background-color: #fafafa; */
     padding: 20px;
     width: 100%;
 }
