@@ -19,6 +19,10 @@ class Report extends Model
         return $this->belongsTo(Board::class, 'BoardID');
     }
 
+    public function comment() {
+        return $this->belongsTo(Comment::class, 'CommentID');
+    }
+
     protected $table = 'reports';
 
     protected $primaryKey = 'ReportID';

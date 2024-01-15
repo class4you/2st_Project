@@ -158,7 +158,10 @@
                             <div class="item">
                                 <div class="commentInfo row aiC jcB">
                                     <p class="comment_writer">작성자<span>{{ hideEmail(item.UserEmail) }}</span></p>
-                                    <p>작성일<span>{{ item.created_at }}</span></p>
+                                    <div class="comment_created_report_div">
+                                        <p>작성일<span>{{ item.created_at }}</span></p>
+                                        <button type="button" @click="commentReport()">🚨댓글신고</button>
+                                    </div>
                                 </div>
                                 <div class="commentText">
                                     <textarea v-if="item.CommentID == updateCommentID" v-model="item.CommentContent" class="board_comment_update_textarea"></textarea>
@@ -257,9 +260,15 @@ export default {
                 UserID: this.$store.state.UserID,
                 UserEmail: this.$store.state.UserEmail,
                 BoardID: this.BoardID,
+                CommentID: this.CommentID,
                 ReportContent: this.ReportContent,
             },
-            reportData: {},
+            newReportData: {},
+            commentReportData: {
+                UserID: this.$store.state.UserID,
+                CommentID: this.CommentID,
+                ReportContent: this.ReportContent,
+            },
         };
     },
 
@@ -334,7 +343,8 @@ export default {
                 this.newCommentItem = response.data.commentData;
                 this.recommendationCount = response.data.recommendationCount;
                 this.disapprovalCount = response.data.disapprovalCount;
-                console.log(response.data.commentData);
+                this.newReportData = response.data.reportData;
+                console.log(response.data.newReportData);
             })
             .catch(error => {
                 console.error('Error fetching data:', error);
@@ -691,6 +701,57 @@ export default {
                         icon: 'success', // 추가: 아이콘 설정
                         title: '신고 완료',
                         text: '게시글이 신고되었습니다.',
+                        confirmButtonText: '확인'
+                    })
+                } else if(result.isDismissed) {
+
+                };
+            })
+        },
+        commentReport() {
+            Swal.fire({
+                icon: 'info', // 추가: 아이콘 설정
+                title: '댓글 신고 사유',
+                input: 'textarea',
+                inputLabel: '-',
+                inputPlaceholder: '댓글 신고사유를 입력해주세요',
+                showCancelButton: true,
+                cancelButtonText: '취소',
+                confirmButtonText: '신고하기',
+                showLoaderOnConfirm: true,
+                
+                preConfirm: (ReportContent) => {
+                    return new Promise((resolve) => {
+                        setTimeout(() => {
+                            resolve(ReportContent);
+                        }, 3000);
+
+                        const url = '/reportCommentSubmit';
+                        const header = {
+                            headers: {
+                            'Content-Type': 'multipart/form-data',
+                            }
+                        };
+                        const formData = new FormData();
+                            formData.append('ReportContent', ReportContent);
+                            formData.append('CommentID', this.commentReportData.CommentID);
+                            
+                        axios.post(url, formData, header)
+                        .then(res => {
+                            console.log(res.data);
+                            
+                        })
+                        .catch(err => {
+
+                        })
+                    });
+                }
+            }).then((result) => {
+                if(result.isConfirmed) {
+                    Swal.fire({
+                        icon: 'success', // 추가: 아이콘 설정
+                        title: '신고 완료',
+                        text: '댓글이 신고되었습니다.',
                         confirmButtonText: '확인'
                     })
                 } else if(result.isDismissed) {

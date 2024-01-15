@@ -3713,6 +3713,17 @@ background-color: rgba(225, 223, 234, 0.224);
     color: #006effdc!important;
 }
 
+.comment_created_report_div {
+    display: flex;
+    align-items: center;
+}
+
+.comment_created_report_div>button {
+    background: transparent;
+    border: none;
+    color: #747272;
+}
+
 .comment_count {
     margin-right: 12px;
 }

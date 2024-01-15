@@ -203,6 +203,7 @@ Route::delete('/deleteduserdata', [MyPageController::class, 'deleteUserpasswordD
 
 // 게시글 신고
 Route::post('/reportSubmit', [ReportController::class, 'postReportData']);
+Route::post('/reportcommentsubmit', [ReportController::class, 'postCommentReportData']);
 
 
 // 자유게시판 디테일페이지로 이동 라우터

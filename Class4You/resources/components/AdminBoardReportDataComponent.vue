@@ -323,153 +323,42 @@
                                         <col style="width: 10%;">
                                         <col style="width: 10%;">
                                         <col style="width: 10%;">
-                                        <col style="width: 10%;">
                                     </colgroup>
                                     <thead>
                                         <tr>
-                                            <th>게시글번호</th>
-                                            <th>강의번호</th>
-                                            <th>유저번호</th>
-                                            <th>이메일</th>
-                                            <th>제목</th>
-                                            <th>내용</th>
-                                            <th>생성날짜</th>
+                                            <th>번호</th>
+                                            <th>신고글번호</th>
+                                            <th>게시글/댓글</th>
+                                            <th>신고자</th>
+                                            <th>신고내용</th>
+                                            <th>신고일</th>
                                             <th>게시물상태</th>
                                         </tr>
                                     </thead>
                                     <tfoot>
                                         <tr>
-                                            <th>게시글번호</th>
-                                            <th>강의번호</th>
-                                            <th>유저번호</th>
-                                            <th>이메일</th>
-                                            <th>제목</th>
-                                            <th>내용</th>
-                                            <th>생성날짜</th>
+                                            <th>번호</th>
+                                            <th>신고글번호</th>
+                                            <th>게시글/댓글</th>
+                                            <th>신고자</th>
+                                            <th>신고내용</th>
+                                            <th>신고일</th>
                                             <th>게시물상태</th>
                                         </tr>
                                     </tfoot>
                                     <tbody>
                                         <tr v-for="data in boardReportData" :key="data.ReportID">
                                             <th>{{ data.ReportID }}</th>
-                                            <th>강의번호</th>
+                                            <th v-if="data.BoardID">{{ data.BoardID }}</th>
+                                            <th v-else="!data.BoardID">{{ data.CommentID }}</th>
+                                            <th v-if="data.BoardID">게시글</th>
+                                            <th v-else="!data.BoardID">댓글</th>
                                             <th>{{ data.UserID }}</th>
-                                            <th>{{ data.UserEmail }}</th>
-                                            <th>제목</th>
                                             <th>{{data.ReportContent}}</th>
                                             <th>{{data.created_at}}</th>
-                                            <th>{{data.ReportState}}</th>
+                                            <th v-if="data.ReportState == 0">미처리</th>
+                                            <th v-if="data.ReportState == 1">처리</th>
                                         </tr>
-                                        <!-- <tr>
-                                            <th>게시글번호</th>
-                                            <th>강의번호</th>
-                                            <th>유저번호</th>
-                                            <th>이메일</th>
-                                            <th>제목</th>
-                                            <th>내용</th>
-                                            <th>생성날짜</th>
-                                            <th>게시물상태</th>
-                                        </tr>
-                                        <tr>
-                                            <th>게시글번호</th>
-                                            <th>강의번호</th>
-                                            <th>유저번호</th>
-                                            <th>이메일</th>
-                                            <th>제목</th>
-                                            <th>내용</th>
-                                            <th>생성날짜</th>
-                                            <th>게시물상태</th>
-                                        </tr>
-                                        <tr>
-                                            <th>게시글번호</th>
-                                            <th>강의번호</th>
-                                            <th>유저번호</th>
-                                            <th>이메일</th>
-                                            <th>제목</th>
-                                            <th>내용</th>
-                                            <th>생성날짜</th>
-                                            <th>게시물상태</th>
-                                        </tr>
-                                        <tr>
-                                            <th>게시글번호</th>
-                                            <th>강의번호</th>
-                                            <th>유저번호</th>
-                                            <th>이메일</th>
-                                            <th>제목</th>
-                                            <th>내용</th>
-                                            <th>생성날짜</th>
-                                            <th>게시물상태</th>
-                                        </tr>
-                                        <tr>
-                                            <th>게시글번호</th>
-                                            <th>강의번호</th>
-                                            <th>유저번호</th>
-                                            <th>이메일</th>
-                                            <th>제목</th>
-                                            <th>내용</th>
-                                            <th>생성날짜</th>
-                                            <th>게시물상태</th>
-                                        </tr>
-                                        <tr>
-                                            <th>게시글번호</th>
-                                            <th>강의번호</th>
-                                            <th>유저번호</th>
-                                            <th>이메일</th>
-                                            <th>제목</th>
-                                            <th>내용</th>
-                                            <th>생성날짜</th>
-                                            <th>게시물상태</th>
-                                        </tr>
-                                        <tr>
-                                            <th>게시글번호</th>
-                                            <th>강의번호</th>
-                                            <th>유저번호</th>
-                                            <th>이메일</th>
-                                            <th>제목</th>
-                                            <th>내용</th>
-                                            <th>생성날짜</th>
-                                            <th>게시물상태</th>
-                                        </tr>
-                                        <tr>
-                                            <th>게시글번호</th>
-                                            <th>강의번호</th>
-                                            <th>유저번호</th>
-                                            <th>이메일</th>
-                                            <th>제목</th>
-                                            <th>내용</th>
-                                            <th>생성날짜</th>
-                                            <th>게시물상태</th>
-                                        </tr>
-                                        <tr>
-                                            <th>게시글번호</th>
-                                            <th>강의번호</th>
-                                            <th>유저번호</th>
-                                            <th>이메일</th>
-                                            <th>제목</th>
-                                            <th>내용</th>
-                                            <th>생성날짜</th>
-                                            <th>게시물상태</th>
-                                        </tr>
-                                        <tr>
-                                            <th>게시글번호</th>
-                                            <th>강의번호</th>
-                                            <th>유저번호</th>
-                                            <th>이메일</th>
-                                            <th>제목</th>
-                                            <th>내용</th>
-                                            <th>생성날짜</th>
-                                            <th>게시물상태</th>
-                                        </tr>
-                                        <tr>
-                                            <th>게시글번호</th>
-                                            <th>강의번호</th>
-                                            <th>유저번호</th>
-                                            <th>이메일</th>
-                                            <th>제목</th>
-                                            <th>내용</th>
-                                            <th>생성날짜</th>
-                                            <th>게시물상태</th>
-                                        </tr> -->
                                     </tbody>
                                 </table>
                             </div>
