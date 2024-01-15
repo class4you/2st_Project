@@ -60,12 +60,13 @@ class ReportController extends Controller
         // Log::debug($request);
         
         $boardReportData = Report::orderBy('created_at', 'desc')
-                                ->get();
+                                ->paginate(10);
         // $boardReportData = Report::paginate(10);
 
         // $pageBoardReportData = $boardReportData->paginate(10);
 
         // $queryBuilder = Report::query();
+        // $queryBuilder->orderBy('created_at', 'desc');
 
         // paginate 메서드를 사용하여 페이지네이션 적용
         // $boardReportData = $queryBuilder->paginate(10);

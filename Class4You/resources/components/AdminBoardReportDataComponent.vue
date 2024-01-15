@@ -353,18 +353,20 @@
                                     </tbody>
                                 </table>
                             </div>
+
+                            <table class="admin_board_report_page_table" style="display: flex; justify-content: right; font-size: 18px;">
+                                <tbody v-for="(page, index) in pagination" :key="index">
+                                    <template v-if="page.url !== null">
+                                        <a class="qustuon_list_page_a" :class="{'page_on': page.label == pageChk}" @click.prevent="fetchData(page.label)" href="#">{{ replaceString(page.label) }}</a>
+                                    </template>
+                                    <template v-else>
+                                        <span>{{ replaceString(page.label) }}</span>
+                                    </template>
+                                </tbody>
+                            </table>
                         </div>
 
-                        <!-- <table style="display: flex; justify-content: right;">
-                            <tbody v-for="(page, index) in pagination" :key="index">
-                                <template v-if="page.url !== null">
-                                    <a class="qustuon_list_page_a" :class="{'page_on': page.label == pageChk}" @click.prevent="fetchData(page.label)" href="#">{{ replaceString(page.label) }}</a>
-                                </template>
-                                <template v-else>
-                                    <span>{{ replaceString(page.label) }}</span>
-                                </template>
-                            </tbody>
-                        </table> -->
+                        
                     </div>
 
                 </div>
@@ -475,37 +477,39 @@ export default {
     },
 
     methods: {
-        // fetchData(page = 1) {
-        fetchData() {
-            // axios.get(`/instructorboardreportdata?page=${page}`)
-            axios.get('/instructorboardreportdata')
+        fetchData(page = 1) {
+        // fetchData() {
+            axios.get(`/instructorboardreportdata?page=${page}`)
+            // axios.get('/instructorboardreportdata')
                 .then(response => {
 
                     console.log(response);
                     console.log(response.data);
 
-                    this.boardReportData = response.data.boardReportData;
-                    // this.boardReportData = response.data.boardReportData.reportData;
-                    // this.pagination = response.data.boardReportData.links;
-                    // this.page = response.data.boardReportData.current_page;
-                    // this.pageChk = response.data.boardReportData.current_page;
+                    this.boardReportData = response.data.boardReportData.data;
+                    this.pagination = response.data.boardReportData.links;
+                    this.page = response.data.boardReportData.current_page;
+                    this.pageChk = response.data.boardReportData.current_page;
+
+                    console.log(this.pagination);
+                    console.log(this.page);
                 })
                 .catch(error => {
                     console.error(error);
                 });
         },
-        // replaceString(str) {
-		// 	const arrList = {
-		// 		'&laquo;': '≪',
-		// 		'&raquo;': '≫'
-		// 	}
-		// 	//  &laquo; 이전
-		// 	//  다음 &raquo;
-		// 	str = str.replace('&laquo;', '<');
-		// 	str = str.replace('&raquo;', '>');
-		// 	// console.log(str);
-		// 	return str;
-		// },
+        replaceString(str) {
+			const arrList = {
+				'&laquo;': '≪',
+				'&raquo;': '≫'
+			}
+			//  &laquo; 이전
+			//  다음 &raquo;
+			str = str.replace('&laquo;', '<');
+			str = str.replace('&raquo;', '>');
+			// console.log(str);
+			return str;
+		},
     },
 
     components: {
