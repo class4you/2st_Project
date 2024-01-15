@@ -11,6 +11,7 @@ use App\Models\Instructor;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Database\Eloquent\Builder;
 
 class ReportController extends Controller
 {
@@ -58,11 +59,23 @@ class ReportController extends Controller
         // Log::debug("리퀘스트값");
         // Log::debug($request);
         
-        $boardReportData = Report::get();
+        $boardReportData = Report::orderBy('created_at', 'desc')
+                                ->get();
+        // $boardReportData = Report::paginate(10);
+
+        // $pageBoardReportData = $boardReportData->paginate(10);
+
+        // $queryBuilder = Report::query();
+
+        // paginate 메서드를 사용하여 페이지네이션 적용
+        // $boardReportData = $queryBuilder->paginate(10);
 
         Log::debug("데이터값==============================================================");
         Log::debug($boardReportData);
 
-        return response()->json(['boardReportData' => $boardReportData]);
+        return response()->json([
+            'boardReportData' => $boardReportData,
+            // 'pageBoardReportData' => $pageBoardReportData,
+        ]);
     }
 }
