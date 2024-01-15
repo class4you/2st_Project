@@ -60,6 +60,7 @@ const store = createStore({
                 instructorName: '',
                 instructoruserEmail: '',
                 instructorID: null,
+                instructorIdChk: null,
             },
 
             instructorLoginChk: null,
@@ -134,11 +135,13 @@ const store = createStore({
 		},
 
         setSaveInstructorToLocalStorage(state, data) {
-            // console.log(data);
+            console.log(data);
             state.instructorData.instructorCheck = data.sessionInstructorDataCheck;
             state.instructorData.instructorID = data.instructorId;
+            state.instructorData.instructorIdChk = data.instructorIdChk;
             localStorage.setItem('InstructorID', data.instructorId);
             localStorage.setItem('instructorDataCheck', data.sessionInstructorDataCheck);
+            localStorage.setItem('instructorIdChk', data.instructorIdChk);
 
             setTimeout(function() {
                 localStorage.clear();

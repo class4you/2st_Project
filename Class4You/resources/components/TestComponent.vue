@@ -175,43 +175,82 @@
         }
     }
 </script> -->
-
 <template>
-  <Radar id="my-chart-id" :options="chartOptions" :data="chartData"/>
+  <div>
+    <button
+      class="like-button"
+      :class="{ 'liked': liked }"
+      @click="toggleLike"
+    >
+      <span v-if="liked">좋아요 취소</span>
+      <span v-else>좋아요</span>
+      <span class="icon" v-if="liked">&#10084;</span>
+      <span class="icon" v-else>&#9825;</span>
+    </button>
+
+    <button
+      class="dislike-button"
+      :class="{ 'disliked': disliked }"
+      @click="toggleDislike"
+    >
+      <span v-if="disliked">싫어요 취소</span>
+      <span v-else>싫어요</span>
+      <span class="icon" v-if="disliked">&#128078;</span>
+      <span class="icon" v-else>&#128078;</span>
+    </button>
+  </div>
 </template>
 
 <script>
-import { Radar } from 'vue-chartjs'
-import { Chart as ChartJS, Title, Tooltip, Legend, LineElement, PointElement, LinearScale, RadialLinearScale } from 'chart.js'
-
-ChartJS.register(Title, Tooltip, Legend, LineElement, PointElement, LinearScale, RadialLinearScale)
-
 export default {
-  name: 'RadarChart',
-  components: { Radar },
   data() {
     return {
-      chartData: {
-        labels: ['Eating', 'Drinking', 'Sleeping', 'Designing', 'Coding', 'Cycling', 'Running'],
-        datasets: [
-          {
-            label: 'My First dataset',
-            backgroundColor: 'rgba(179,181,198,0.2)',
-            borderColor: 'rgba(179,181,198,1)',
-            pointBackgroundColor: 'rgba(179,181,198,1)',
-            pointBorderColor: '#fff',
-            pointHoverBackgroundColor: '#fff',
-            pointHoverBorderColor: 'rgba(179,181,198,1)',
-            data: [65, 59, 90, 81, 56, 55, 40]
-          },
-          // Add more datasets if needed
-        ]
-      },
-      chartOptions: {
-        responsive: true
-        // Add more Radar chart options if needed
+      liked: false,
+      disliked: false,
+    };
+  },
+  methods: {
+    toggleLike() {
+      this.liked = !this.liked;
+      if (this.disliked) {
+        this.disliked = false;
       }
-    }
-  }
-}
+    },
+    toggleDislike() {
+      this.disliked = !this.disliked;
+      if (this.liked) {
+        this.liked = false;
+      }
+    },
+  },
+};
 </script>
+
+<style scoped>
+.like-button,
+.dislike-button {
+  cursor: pointer;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 16px;
+  margin-right: 10px;
+  transition: background-color 0.3s;
+}
+
+.like-button:hover,
+.dislike-button:hover {
+  background-color: #2980b9;
+}
+
+.like-button.liked,
+.dislike-button.disliked {
+  background-color: #e74c3c;
+}
+
+.icon {
+  margin-left: 5px;
+  font-size: 18px;
+  vertical-align: middle;
+}
+</style>

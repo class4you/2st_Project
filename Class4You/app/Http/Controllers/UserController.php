@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Mail;
 use Laravel\Socialite\Facades\Socialite;
 use Illuminate\Support\Facades\DB;
 use Laravel\Socialite\Two\InvalidStateException;
+use Redirect;
 
 
 class UserController extends Controller
@@ -155,6 +156,8 @@ class UserController extends Controller
                 //     'userId' => $userId,
                 // ])->header('Location', '/');
                 return redirect($beforeUrl);
+                // return redirect()->route($beforeUrl);
+                // return Redirect::route($beforeUrl);
     
             } else {
                 return response()->json([
@@ -165,6 +168,8 @@ class UserController extends Controller
         } else {
             session()->put('user', $userEmail);
             return redirect('/registration');
+            // return redirect()->route('/registration');
+            
         }
 
         // dd($user);

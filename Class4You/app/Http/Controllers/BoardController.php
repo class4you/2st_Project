@@ -194,7 +194,7 @@ class BoardController extends Controller
             ->where('BoardID', $BoardID)
             ->first();
 
-        Log::debug($boardData);
+        // Log::debug($boardData);
 
         $boardComment = Comment::select('users.UserEmail', 'comments.CommentContent', 'comments.created_at', 'comments.CommentID', 'users.UserID')
             ->join('boards', 'comments.BoardID', 'boards.BoardID')
@@ -212,6 +212,13 @@ class BoardController extends Controller
         ->where('BoardRating', -1)
         ->count();
 
+        $recommendationState = BoardRatingState::where('BoardID', $BoardID)
+        ->where('UserID', $UserID)
+        ->first();
+
+        
+        $recommendationState = $recommendationState ? true : false;
+        Log::debug($recommendationState);
         // Log::debug($boardComment);
 
         return response()->json([
@@ -220,6 +227,7 @@ class BoardController extends Controller
             'commentData' => $boardComment,
             'recommendationCount' => $recommendationCount,
             'disapprovalCount' => $disapprovalCount,
+            'recommendationState' => $recommendationState
         ]);
     }
     // 자유게시판 디테일 페이지 댓글 불러오기

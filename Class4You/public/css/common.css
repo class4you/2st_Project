@@ -737,12 +737,63 @@ footer {
     margin-top: 20px;
 }
 
-.main_container_new_card_tag li {
+/* 언어별 태그 색상 */
+.main_container_new_card_tag_HTML {
     padding: 5px 20px;
     margin-right: 10px;
     border-radius: 5px;
     color:#ffffff;
-    background:#346ba3;
+    background:#48cae4;
+    font-size: 10px;
+    font-weight: 700;
+}
+
+.main_container_new_card_tag_CSS {
+    padding: 5px 20px;
+    margin-right: 10px;
+    border-radius: 5px;
+    color:#ffffff;
+    background:#00b4d8;
+    font-size: 10px;
+    font-weight: 700;
+}
+
+.main_container_new_card_tag_JAVASCRIPT {
+    padding: 5px 20px;
+    margin-right: 10px;
+    border-radius: 5px;
+    color:#ffffff;
+    background:#0096c7;
+    font-size: 10px;
+    font-weight: 700;
+}
+
+.main_container_new_card_tag_PHP {
+    padding: 5px 20px;
+    margin-right: 10px;
+    border-radius: 5px;
+    color:#ffffff;
+    background:#0077b6;
+    font-size: 10px;
+    font-weight: 700;
+}
+
+.main_container_new_card_tag_JAVA {
+    padding: 5px 20px;
+    margin-right: 10px;
+    border-radius: 5px;
+    color:#ffffff;
+    background:#023e8a;
+    font-size: 10px;
+    font-weight: 700;
+}
+
+.main_container_new_card_tag_DATABASE {
+    padding: 5px 20px;
+    margin-right: 10px;
+    border-radius: 5px;
+    color:#ffffff;
+    background:#03045e;
     font-size: 10px;
     font-weight: 700;
 }
@@ -7318,9 +7369,11 @@ footer {
     transform: translateZ(0);
     transition: transform 0.15s, background-color 0.15s;
   }
+
   .high-five:active {
     transform: scale(0.98, 0.97) translateZ(0);
   }
+  
   .high-five .hands {
     display: flex;
     align-items: center;

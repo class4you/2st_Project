@@ -40,7 +40,9 @@ class InstructorController extends Controller
         $instructorId = Auth::guard('admin')->id();
         if (Auth::guard('admin')->check()) {
             // session(['user' => Auth::user()]);
-            $instructorIdChk = ($instructorId == 1) ? true : false;
+            $adminChk = Instructor::where('InstructorID', $instructorId)->where('InstructorFlg', 1)->first();
+            // $instructorIdChk = ($instructorId == 1) ? true : false;
+            $adminChk =  $adminChk ? true : false;
             $sessionInstructorDataCheck = Auth::guard('admin')->check();
 
             return response()->json([
@@ -50,7 +52,7 @@ class InstructorController extends Controller
                 // 'sessionCheckUserName' => $sessionDataUserName,
                 // 'sessionCheckUserEmail' => $sessionDataUserEmail,
                 'instructorId' => $instructorId,
-                'instructorIdChk' => $instructorIdChk,
+                'instructorIdChk' =>  $adminChk,
             ]);
 
         } else {

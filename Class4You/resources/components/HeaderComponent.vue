@@ -184,7 +184,7 @@ export default {
             }
         },
         loginWithKakao() {
-            axios.get('/login/kakao/callback')
+            // axios.get('/login/kakao/callback')
             // .then(response => {
             //     // 서버에서 받은 응답(response)을 이용한 로직 수행
             //     console.log(response.data);
