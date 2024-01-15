@@ -320,39 +320,28 @@
                                         <col style="width: 10%;">
                                         <col style="width: 10%;">
                                         <col style="width: 10%;">
-                                        <col style="width: 10%;">
+                                        <col style="width: 30%;">
                                         <col style="width: 10%;">
                                         <col style="width: 10%;">
                                     </colgroup>
                                     <thead>
                                         <tr>
                                             <th>번호</th>
-                                            <th>신고글번호</th>
                                             <th>게시글/댓글</th>
+                                            <th>신고글번호</th>
                                             <th>신고자</th>
                                             <th>신고내용</th>
                                             <th>신고일</th>
                                             <th>게시물상태</th>
                                         </tr>
                                     </thead>
-                                    <tfoot>
-                                        <tr>
-                                            <th>번호</th>
-                                            <th>신고글번호</th>
-                                            <th>게시글/댓글</th>
-                                            <th>신고자</th>
-                                            <th>신고내용</th>
-                                            <th>신고일</th>
-                                            <th>게시물상태</th>
-                                        </tr>
-                                    </tfoot>
                                     <tbody>
                                         <tr v-for="data in boardReportData" :key="data.ReportID">
                                             <th>{{ data.ReportID }}</th>
-                                            <th v-if="data.BoardID">{{ data.BoardID }}</th>
-                                            <th v-else="!data.BoardID">{{ data.CommentID }}</th>
                                             <th v-if="data.BoardID">게시글</th>
                                             <th v-else="!data.BoardID">댓글</th>
+                                            <th v-if="data.BoardID">{{ data.BoardID }}</th>
+                                            <th v-if="data.CommentID">{{ data.CommentID }}</th>
                                             <th>{{ data.UserID }}</th>
                                             <th>{{data.ReportContent}}</th>
                                             <th>{{data.created_at}}</th>
