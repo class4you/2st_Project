@@ -163,7 +163,7 @@
                                     <p class="comment_writer">작성자<span>{{ hideEmail(item.UserEmail) }}</span></p>
                                     <div class="comment_created_report_div">
                                         <p>작성일<span>{{ item.created_at }}</span></p>
-                                        <button type="button" @click="commentReport()">🚨댓글신고</button>
+                                        <button type="button" @click="commentReport(item.CommentID)">🚨댓글신고</button>
                                     </div>
                                 </div>
                                 <div class="commentText">
@@ -272,7 +272,7 @@ export default {
                 CommentID: this.CommentID,
                 ReportContent: this.ReportContent,
             },
-            reportData: {},
+            reportData: [],
 
             recommendationState: false,
         };
@@ -350,6 +350,7 @@ export default {
                 this.recommendationCount = response.data.recommendationCount;
                 this.disapprovalCount = response.data.disapprovalCount;
                 this.recommendationState = response.data.recommendationState;
+                this.reportData = response.data.commentReportData;
                 console.log(response.data.commentData);
             })
             .catch(error => {
@@ -714,7 +715,9 @@ export default {
                 };
             })
         },
-        commentReport() {
+        commentReport(data) {
+            console.log(data);
+            const CommentID = data;
             Swal.fire({
                 icon: 'info', // 추가: 아이콘 설정
                 title: '댓글 신고 사유',
@@ -732,20 +735,18 @@ export default {
                             resolve(ReportContent);
                         }, 3000);
 
-                        const url = '/reportCommentSubmit';
-                        const header = {
-                            headers: {
-                            'Content-Type': 'multipart/form-data',
-                            }
-                        };
+                        // const url = '/reportCommentSubmit';
+                        const url = '/reportSubmit';
                         const formData = new FormData();
                             formData.append('ReportContent', ReportContent);
-                            formData.append('CommentID', this.commentReportData.CommentID);
-                            
-                        axios.post(url, formData, header)
+                            formData.append('CommentID', CommentID);
+                            // formData.append('BoardID', this.commentReportData.BoardID);
+
+                            console.log(formData);
+
+                        axios.post(url, formData)
                         .then(res => {
                             console.log(res.data);
-                            
                         })
                         .catch(err => {
 

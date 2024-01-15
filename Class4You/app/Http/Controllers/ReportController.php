@@ -35,6 +35,7 @@ class ReportController extends Controller
     // 댓글 신고 함수
     public function postCommentReportData(Request $request) {
 
+        // Log::all("postCommentReportData method called");
         Log::debug("리퀘스트값==============================================");
         Log::debug($request);
         
@@ -43,9 +44,12 @@ class ReportController extends Controller
 
         $result = Report::create($data);
 
+        Log::debug($result);
+
         $responseData = Report::all();
 
         return response()->json($responseData);
+
     }
 
     // 관리자 신고 게시글 리스트 출력 함수
