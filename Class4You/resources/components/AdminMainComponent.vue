@@ -71,7 +71,7 @@
                     <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                         <div class="bg-white py-2 collapse-inner rounded">
                             <h6 class="collapse-header admin-main-h6-font-size">관리자 정보 수정</h6>
-                            <a v-if="InstructorID == 1" class="collapse-item" href="login.html">강사 회원가입</a>
+                            <a v-if="instructorIdChk" class="collapse-item" href="login.html">강사 회원가입</a>
                             <a class="collapse-item" href="register.html">관리자 정보 관리</a>
                             <div class="collapse-divider admin-main-h6-font-size"></div>
                             <h6 class="collapse-header">강의 업로드 관리</h6>
@@ -694,6 +694,7 @@ export default {
         return {
             loading: true, // 로딩 상태를 나타내는 데이터
             InstructorID : null,
+            instructorIdChk: false,
         };
     },
 
@@ -754,7 +755,9 @@ export default {
     },
 
     mounted() {
-        this.InstructorID = localStorage.getItem('InstructorID')
+        this.InstructorID = localStorage.getItem('InstructorID');
+        this.instructorIdChk = localStorage.getItem('instructorIdChk');
+        console.log(localStorage.getItem('instructorIdChk'));
     },
 
     updated() {

@@ -101,7 +101,7 @@
                                                 <p>{{ item.ClassDescription }}</p>
                                             </div>
                                             <ul class="main_container_new_card_tag"> 
-                                                <li v-for="item2 in item.languages" :key="item2.id">{{ item2.ClassLanguageName }}</li>
+                                                <li v-for="item2 in item.languages" :key="item2.id"  :class="{'main_container_new_card_tag_HTML': item2.ClassLanguageName === 'HTML',  'main_container_new_card_tag_CSS': item2.ClassLanguageName === 'CSS',  'main_container_new_card_tag_JAVASCRIPT': item2.ClassLanguageName === 'JavaScript', 'main_container_new_card_tag_PHP': item2.ClassLanguageName === 'PHP', 'main_container_new_card_tag_JAVA': item2.ClassLanguageName === 'JAVA', 'main_container_new_card_tag_DATABASE': item2.ClassLanguageName === 'DataBase'}">{{ item2.ClassLanguageName }}</li>
                                             </ul>
                                         </li>
                                     </a>
