@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Board;
+use App\Models\Comment;
 use App\Models\User;
 use App\Models\Report;
 use App\Models\Instructor;
@@ -16,7 +17,7 @@ class ReportController extends Controller
     // 게시판 신고 함수
     public function postReportData(Request $request) {
 
-        Log::debug("리퀘스트값");
+        Log::debug("리퀘스트값==============================================");
         Log::debug($request);
 
         $data = new Report;
@@ -29,6 +30,22 @@ class ReportController extends Controller
         Log::debug($data);
 
         return response()->json(['success' => true]);
+    }
+
+    // 댓글 신고 함수
+    public function postCommentReportData(Request $request) {
+
+        Log::debug("리퀘스트값==============================================");
+        Log::debug($request);
+        
+        $data = $request->only('ReportID','BoardID','CommentID','UserID','ReportContent','ReportState');
+        $data['UserID'] = Auth::id(); 
+
+        $result = Report::create($data);
+
+        $responseData = Report::all();
+
+        return response()->json($responseData);
     }
 
     // 관리자 신고 게시글 리스트 출력 함수
