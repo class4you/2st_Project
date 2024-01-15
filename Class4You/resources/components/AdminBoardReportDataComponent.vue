@@ -315,11 +315,12 @@
                             <div class="table-responsive">
                                 <table class="table table-bordered" style="text-align: center;" id="dataTable" width="100%" cellspacing="0">
                                     <colgroup>
+                                        <col style="width: 5%;">
                                         <col style="width: 10%;">
                                         <col style="width: 10%;">
                                         <col style="width: 10%;">
+                                        <col style="width: 25%;">
                                         <col style="width: 10%;">
-                                        <col style="width: 30%;">
                                         <col style="width: 10%;">
                                         <col style="width: 10%;">
                                     </colgroup>
@@ -332,6 +333,7 @@
                                             <th>신고내용</th>
                                             <th>신고일</th>
                                             <th>게시물상태</th>
+                                            <th>게시물삭제</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -346,11 +348,23 @@
                                             <th>{{data.created_at}}</th>
                                             <th v-if="data.ReportState == 0">미처리</th>
                                             <th v-if="data.ReportState == 1">처리</th>
+                                            <th><button type="button" style="padding: 0px 10px; border-radius: 3px; background-color: rgb(255, 95, 127); color: #fff; border: none;">게시물삭제</button></th>
                                         </tr>
                                     </tbody>
                                 </table>
                             </div>
                         </div>
+
+                        <!-- <table style="display: flex; justify-content: right;">
+                            <tbody v-for="(page, index) in pagination" :key="index">
+                                <template v-if="page.url !== null">
+                                    <a class="qustuon_list_page_a" :class="{'page_on': page.label == pageChk}" @click.prevent="fetchData(page.label)" href="#">{{ replaceString(page.label) }}</a>
+                                </template>
+                                <template v-else>
+                                    <span>{{ replaceString(page.label) }}</span>
+                                </template>
+                            </tbody>
+                        </table> -->
                     </div>
 
                 </div>
@@ -411,7 +425,10 @@ export default {
     data() {
         return {
             loading: true, // 로딩 상태를 나타내는 데이터
-            boardReportData: [],
+            boardReportData: {},
+            pagination: {},
+			page: {},
+			pageChk: {},
             adminChk: false,
         };
     },
@@ -458,7 +475,9 @@ export default {
     },
 
     methods: {
+        // fetchData(page = 1) {
         fetchData() {
+            // axios.get(`/instructorboardreportdata?page=${page}`)
             axios.get('/instructorboardreportdata')
                 .then(response => {
 
@@ -466,11 +485,27 @@ export default {
                     console.log(response.data);
 
                     this.boardReportData = response.data.boardReportData;
+                    // this.boardReportData = response.data.boardReportData.reportData;
+                    // this.pagination = response.data.boardReportData.links;
+                    // this.page = response.data.boardReportData.current_page;
+                    // this.pageChk = response.data.boardReportData.current_page;
                 })
                 .catch(error => {
                     console.error(error);
                 });
         },
+        // replaceString(str) {
+		// 	const arrList = {
+		// 		'&laquo;': '≪',
+		// 		'&raquo;': '≫'
+		// 	}
+		// 	//  &laquo; 이전
+		// 	//  다음 &raquo;
+		// 	str = str.replace('&laquo;', '<');
+		// 	str = str.replace('&raquo;', '>');
+		// 	// console.log(str);
+		// 	return str;
+		// },
     },
 
     components: {
