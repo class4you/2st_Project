@@ -11,15 +11,19 @@
                                     <div class="main_visual_slider_track">
                                         <div class="main_visual_slider_track_slick">
                                             <div class="main_visual_slider_track_slick_item">
-                                                <Carousel ref="carousel" :autoplay="autoplayDuration" :wrap-around="true" @after-slide="updateIndex" >
+                                                <Carousel ref="carousel" :autoplay="autoplayDuration" :wrap-around="true" @after-slide="updateIndex">
                                                     <Slide v-for="slide in giftItems" :key="slide.id">
                                                         <a href="">
                                                             <img :src="slide.images[0]">
                                                         </a>
                                                     </Slide>
-                                                    <template #addons>
+                                                    <!-- <template #addons>
                                                         <Pagination />
                                                         <div style="margin-bottom: 10px;"></div>
+                                                    </template> -->
+                                                    <template #addons>
+                                                        <Navigation />
+                                                        <!-- <Pagination /> -->
                                                     </template>
                                                 </Carousel>
                                             </div>
@@ -57,7 +61,7 @@
 
                     <div class="main_new_text">
                         <h3>NEW 신규강의</h3>
-                        <a href="#">모든 신규강의 보러가기 ></a>
+                        <a href="#">2024년 당신의 커리어를 책임질 LINE-UP</a>
                     </div>
 
                     <div class="main_container_new_box">
@@ -114,7 +118,7 @@
 
                     <div class="main_new_text">
                         <h3>HOT 추천강의</h3>
-                        <a href="#">모든 추천강의 보러가기 ></a>
+                        <a href="#">Class 4 You의 대표 강의들을 만나보세요.</a>
                     </div>
 
                     <div class="main_container_hot_box">
@@ -146,7 +150,7 @@
 
                     <div class="main_new_text">
                         <h3>학습 가이드</h3>
-                        <a href="#">원하는 키워드를 눌러보세요</a>
+                        <a href="#">내게 딱 맞는 학습 순서가 궁금하다면?</a>
                     </div>
 
                     <div class="main_container_keyword_box">
@@ -398,5 +402,49 @@ export default {
         height: 5px;
     }
 }
+.carousel__next {
+    width: 150px;
+    height: 150px;
+    font-size: 250px;
+    opacity: 0.3;
+}
 
+.carousel__next:hover {
+    color: #fff;
+    width: 150px;
+    height: 150px;
+    font-size: 250px;
+    opacity: 0.8;
+}
+
+.carousel__prev {
+    width: 150px;
+    height: 150px;
+    font-size: 250px;
+    opacity: 0.3;
+}
+
+.carousel__prev:hover {
+    color: #fff;
+    width: 150px;
+    height: 150px;
+    font-size: 250px;
+    opacity: 0.8;
+}
+
+@media screen and (max-width: 800px) {
+    .carousel__next {
+        width: 80px;
+        height: 80px;
+        font-size: 250px;
+        opacity: 0.3;
+    }
+
+    .carousel__prev {
+        width: 80px;
+        height: 80px;
+        font-size: 250px;
+        opacity: 0.3;
+    }
+}
 </style>

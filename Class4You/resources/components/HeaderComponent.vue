@@ -1,19 +1,22 @@
 <template>
-    <div v-if="$route.fullPath.indexOf('classwatch') === -1 && $route.fullPath.indexOf('loading') === -1 && $route.fullPath.indexOf('admin') === -1">
-    <!-- <div v-if="$route.fullPath !== '/classwatch/' && $route.fullPath !== '/classwatch'"> -->
-        <div id="top_banner" class="top_banner">
-            <div class="desc">
-                <ul id="list_txt" class="list_txt">
-                    <Carousel ref="carousel" :autoplay="autoplayDuration" :wrap-around="true">
-                        <Slide v-for="slide in top_banners" :key="slide.id">
-                            <li><a href="">{{ slide }}</a></li>
-                        </Slide>
-                    </Carousel>
-                </ul>
-            </div>
-        </div>
+    <div class="Header_box_bg" v-if="$route.fullPath.indexOf('classwatch') === -1 && $route.fullPath.indexOf('loading') === -1 && $route.fullPath.indexOf('admin') === -1">
 
-        <header id="header" style="border-bottom: 0.5px solid rgba(114, 114, 114, 0.1);">
+    </div>
+    <div class="Header_box" v-if="$route.fullPath.indexOf('classwatch') === -1 && $route.fullPath.indexOf('loading') === -1 && $route.fullPath.indexOf('admin') === -1">
+    <!-- <div v-if="$route.fullPath !== '/classwatch/' && $route.fullPath !== '/classwatch'"> -->
+            <div id="top_banner" class="top_banner">
+                <div class="desc">
+                    <ul id="list_txt" class="list_txt">
+                        <Carousel ref="carousel" :autoplay="autoplayDuration" :wrap-around="true">
+                            <Slide v-for="slide in top_banners" :key="slide.id">
+                                <li><a href="">{{ slide }}</a></li>
+                            </Slide>
+                        </Carousel>
+                    </ul>
+                </div>
+            </div>
+
+        <header id="header" style="border-bottom: 0.5px solid rgba(114, 114, 114, 0.1); background-color: #fff;">
             <div class="navigation">
                 <ul class="nav_left side_nav">
                     <li><a href="" class="menu_btn"><img src="/img/menu.png" alt="">전체 강의</a>
