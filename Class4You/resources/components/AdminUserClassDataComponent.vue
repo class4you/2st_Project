@@ -349,8 +349,8 @@
                                         <tr v-for="datas in classData">
                                             <th>{{ datas.UserID }}</th>
                                             <th>{{ datas.ClassID }}</th>
-                                            <th>{{ datas.ClassTitle }}</th>
-                                            <th>{{ datas.ClassPrice }}원</th>
+                                            <th style="text-align: left;">{{ datas.ClassTitle }}</th>
+                                            <th style="text-align: right;">{{ datas.ClassPrice }}원</th>
                                             <th>{{ datas.ClassDifficultyID }}</th>
                                             <th>{{ datas.created_at }}</th>
                                             <th>{{ datas.EnrollmentFlg == 0 ? '수강 중' : datas.EnrollmentFlg == 1 ? '수강 완료' : '상태를 확인할 수 없음'  }}</th>

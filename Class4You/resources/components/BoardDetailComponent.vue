@@ -131,7 +131,21 @@
                                 <a :href="'/boardupdate/' + newBoardItem.BoardID" v-if="$store.state.UserID" class="board_rewrite">수정</a>
                                 <!-- <a @click="deleteBoardData(newBoardItem.BoardID)" class="board_delete">삭제</a> -->
                                 <!-- <button @click="deleteBoardData(newBoardItem.BoardID)" class="board_delete">삭제</button> -->
-                                <a @click="deleteBoardData(newBoardItem.BoardID)" class="board_delete">삭제</a>
+                                <!-- <a @click="deleteBoardData(newBoardItem.BoardID)" class="board_delete">삭제</a> -->
+                                <button @click="deleteBoardData(newBoardItem.BoardID)" class="class_detail_rating_user_delete_button">
+									<div class="class_detail_rating_user_delete_trash">
+										<div class="class_detail_rating_user_delete_top">
+											<div class="class_detail_rating_user_delete_paper"></div>
+										</div>
+										<div class="class_detail_rating_user_delete_box"></div>
+										<div class="class_detail_rating_user_delete_check">
+											<svg viewBox="0 0 8 6">
+												<polyline points="1 3.4 2.71428571 5 7 1"></polyline>
+											</svg>
+										</div>
+									</div>
+									<span>삭제</span>
+								</button>
                             </div>
                         </div>
 
@@ -180,7 +194,21 @@
                                             <!-- <button class="comment_editBtn">수정</button> -->
                                         <div v-else>
                                             <button @click="updateCommentID = item.CommentID" class="commentActions_updateBtn">수정</button>
-                                            <button @click="deleteCommentData(item.CommentID)" class="commentActions_deleteBtn">삭제</button>
+                                            <button @click="deleteCommentData(item.CommentID)" class="class_detail_rating_user_delete_button">
+                                                <div class="class_detail_rating_user_delete_trash">
+                                                    <div class="class_detail_rating_user_delete_top">
+                                                        <div class="class_detail_rating_user_delete_paper"></div>
+                                                    </div>
+                                                    <div class="class_detail_rating_user_delete_box"></div>
+                                                    <div class="class_detail_rating_user_delete_check">
+                                                        <svg viewBox="0 0 8 6">
+                                                            <polyline points="1 3.4 2.71428571 5 7 1"></polyline>
+                                                        </svg>
+                                                    </div>
+                                                </div>
+                                                <span>삭제</span>
+                                            </button>
+                                            <!-- <button @click="deleteCommentData(item.CommentID)" class="commentActions_deleteBtn">삭제</button> -->
                                             <!-- <button class="commentActions_reportBtn">신고</button> -->
                                         </div>
                                     </div>
@@ -442,7 +470,19 @@ export default {
 
         // 댓글 삭제 불러오기
         // sweetalert2을 이용한 알러트 출력 방법
-        deleteCommentData(deleteCommentID) {
+        async deleteCommentData(deleteCommentID) {
+
+            const button = document.querySelector('.class_detail_rating_user_delete_button');
+
+                if (!button.classList.contains('delete')) {
+                button.classList.add('delete');
+                setTimeout(() => {
+                    button.classList.remove('delete');
+                    this.handleDeleteConfirmation2(data);
+                }, 1000);
+            }
+        },
+        async handleDeleteConfirmation2(data) {
             console.log(deleteCommentID);
                 Swal.fire({
                 title: '정말로 삭제하시겠습니까?',
@@ -515,6 +555,7 @@ export default {
 
                 }
             });
+
         },
 
         // 댓글 수정
@@ -552,7 +593,20 @@ export default {
 		},
 
         // 게시판 삭제 불러오기
-        deleteBoardData(data) {
+        async deleteBoardData(data) {
+
+            
+			const button = document.querySelector('.class_detail_rating_user_delete_button');
+
+                if (!button.classList.contains('delete')) {
+                button.classList.add('delete');
+                setTimeout(() => {
+                    button.classList.remove('delete');
+                    this.handleDeleteConfirmation(data);
+                }, 1000);
+            }
+        },
+        async handleDeleteConfirmation(data) {
             Swal.fire({
                 title: '정말로 삭제하시겠습니까?',
                 text: "삭제 후에는 복구할 수 없습니다.",
@@ -595,6 +649,7 @@ export default {
                     });
                 }
             });    
+
         },
 
         // 게시판 수정 게시판 페이지

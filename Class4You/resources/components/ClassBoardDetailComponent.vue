@@ -45,11 +45,11 @@
                                     <!-- <span>{{ classRatingData }}</span> -->
                                 </span>
                                 <span style="margin-right: 5px;">🙍‍♂️🙍‍♀️</span>
-                                <span>{{ enrollmentCnt }}명</span>
+                                <span>{{ enrollmentCnt != null ? enrollmentCnt : '0' }}명</span>
                             </div>
                             <div class="class_detail_container_r_language">
                                 <span class="class_detail_container_r_language_icon">#</span>
-                                <span v-for="language in detailClassItems.languages" :key="language.id">
+                                <span v-for="language in detailClassItems.languages" :key="language.id" :class="{'main_container_new_card_tag_HTML': language.ClassLanguageName === 'HTML',  'main_container_new_card_tag_CSS': language.ClassLanguageName === 'CSS',  'main_container_new_card_tag_JAVASCRIPT': language.ClassLanguageName === 'JavaScript', 'main_container_new_card_tag_PHP': language.ClassLanguageName === 'PHP', 'main_container_new_card_tag_JAVA': language.ClassLanguageName === 'JAVA', 'main_container_new_card_tag_DATABASE': language.ClassLanguageName === 'DataBase'}">
 									{{ language.ClassLanguageName }}
 								</span>
                             </div>
@@ -58,9 +58,54 @@
                                     <span>가격: {{ detailClassItems.ClassPrice === 0 ? '무료' : detailClassItems.ClassPrice + '원' }}</span>
                                 </div>
                                 <div class="class_detail_container_r_payment_classes">
-									<a v-if="EnrollChk" :href="'/classwatch/' + detailClassItems.ClassID">강의 시청</a>
+									<a v-if="EnrollChk" :href="'/classwatch/' + detailClassItems.ClassID" class="class_enrollment_button">
+										<div class="class_enrollment_paper class_enrollment_left"></div>
+										<div class="class_enrollment_paper class_enrollment_middle"></div>
+										<div class="class_enrollment_paper class_enrollment_right"></div>
+										<div class="class_enrollment_inner">
+											<div class="class_enrollment_zipper">
+												<div class="class_enrollment_line"></div>
+												<div class="class_enrollment_gradient"></div>
+											</div>
+											<span>강의 시청</span>
+											<svg viewBox="0 0 20 16">
+												<polyline points="3 8.75 7.75 13.5 17 2.5"></polyline>
+											</svg>
+										</div>
+									</a>
+									<a v-if="!EnrollChk && enrollflg && detailClassItems.ClassPrice === 0" @click="postEnrollApp()" class="class_enrollment_button">
+										<div class="class_enrollment_paper class_enrollment_left"></div>
+										<div class="class_enrollment_paper class_enrollment_middle"></div>
+										<div class="class_enrollment_paper class_enrollment_right"></div>
+										<div class="class_enrollment_inner">
+											<div class="class_enrollment_zipper">
+												<div class="class_enrollment_line"></div>
+												<div class="class_enrollment_gradient"></div>
+											</div>
+											<span>수강 신청</span>
+											<svg viewBox="0 0 20 16">
+												<polyline points="3 8.75 7.75 13.5 17 2.5"></polyline>
+											</svg>
+										</div>
+									</a>
+									<a v-if="!EnrollChk && enrollflg && detailClassItems.ClassPrice !== 0" @click="KGpay" class="class_enrollment_button">
+										<div class="class_enrollment_paper class_enrollment_left"></div>
+										<div class="class_enrollment_paper class_enrollment_middle"></div>
+										<div class="class_enrollment_paper class_enrollment_right"></div>
+										<div class="class_enrollment_inner">
+											<div class="class_enrollment_zipper">
+												<div class="class_enrollment_line"></div>
+												<div class="class_enrollment_gradient"></div>
+											</div>
+											<span>수강 신청</span>
+											<svg viewBox="0 0 20 16">
+												<polyline points="3 8.75 7.75 13.5 17 2.5"></polyline>
+											</svg>
+										</div>
+									</a>
+									<!-- <a v-if="EnrollChk" :href="'/classwatch/' + detailClassItems.ClassID">강의 시청</a>
                                     <a v-if="!EnrollChk && enrollflg && detailClassItems.ClassPrice === 0" @click="postEnrollApp()">수강 신청</a>
-                                    <a v-if="!EnrollChk && enrollflg && detailClassItems.ClassPrice !== 0" @click="KGpay">수강 신청</a>
+                                    <a v-if="!EnrollChk && enrollflg && detailClassItems.ClassPrice !== 0" @click="KGpay">수강 신청</a> -->
                                     <!-- <button v-else @click="postEnrollApp()">{{ classEnrollData.value }}</button> -->
                                 </div>
                             </div>
@@ -90,7 +135,7 @@
 						<p style="font-weight: bold;">
 							💡{{ languagesChk }}란,
 						</p>
-						<p>{{ detailClassItems.ClassIntroduction }}</p>
+						<p>- {{ detailClassItems.ClassIntroduction }}</p>
 					</div>
 				</div>
 			
@@ -173,8 +218,8 @@
 									{{ item.ChapterTitle }}
 								</span>
 							</div>
-							<div v-for="(item2, item2Index) in item.lessons" class="class_tab_content_lesson_title">
-								<p>{{item2Index + 1}}.lessons : {{ item2.LessonTitle }}</p>
+							<div v-for="(language, languageIndex) in item.lessons" class="class_tab_content_lesson_title">
+								<p>{{languageIndex + 1}}.lessons : {{ language.LessonTitle }}</p>
 							</div>
 							<div class="class_tab_content_lesson_content">
 								<p>{{ classCuriData.LessonContent }}</p>
@@ -197,9 +242,9 @@
 									{{ item.ChapterTitle }}
 								</span>
 							</summary>
-							<div v-for="(item2, item2Index) in item.lessons" class="class_tab_content_lesson_title">
+							<div v-for="(language, languageIndex) in item.lessons" class="class_tab_content_lesson_title">
 								<!-- <span>Lesson</span> -->
-								<p>lessons{{item2Index + 1}}. {{ item2.LessonTitle }}</p>
+								<p>lessons{{languageIndex + 1}}. {{ language.LessonTitle }}</p>
 							</div>
 							<div class="class_tab_content_lesson_content">
 								<p>{{ classCuriData.LessonContent }}</p>
@@ -214,7 +259,7 @@
 			<div class="class_tab_content_div" style="display: inline-block;">
 				
 					<div class="class_tab_content_title">
-						<p>강의 특징</p>
+						<!-- <p>강의 특징</p> -->
 					</div>
 					<div class="class_tab_content_classpoint_ment">
 						<span>💻이 <strong>강의</strong>의 특징은,</span>
@@ -372,7 +417,7 @@
 
 			<div class="class_tab_content_div">
 				<div class="class_tab_content_title">
-					<p>강사 이력</p>
+					<!-- <p>강사 이력</p> -->
 				</div>
 				<div id="class_tab1" class="class_tab_content">
 					<!-- <p>{{detailClassItems.InstructorID}}</p> -->
@@ -399,7 +444,7 @@
         </div>
 
             <!-- 수강평 -->
-        <div v-if="clickFlgTab === 1">    
+        <div style="padding: 10px 30px; border-left: 1px solid #ededed; border-right: 1px solid #ededed;" v-if="clickFlgTab === 1">    
             <div v-if="EnrollChk" id="class_tab1" class="class_current class_detail_rating_form">
                 <!-- <form name="myform" id="myform" method="post"> -->
                     <fieldset>
@@ -593,7 +638,7 @@
 								<!-- <button @click="classReviewUpdate(data)">수정</button> -->
 							<!-- </div> -->
 							<div v-if="data.UserID == $store.state.UserID">
-								<div v-if="data.ReviewID == updataReviewID">
+								<div style="display: grid; justify-content: space-between; grid-template-columns: 1fr 1fr;" v-if="data.ReviewID == updataReviewID">
 									<div class="class_detail_rating_user_delete_reating">
 										<!-- <fieldset class="class_detail_rating_star_form" name="myform">
 											<input v-model="classReviewData.ReviewRating" class="class_detail_rating_star_input" type="radio" name="rating" value="5" id="rate1">
@@ -736,9 +781,21 @@
 									<div class="class_detail_rating_user_updated_button">
 										<button @click="updataReviewID = data.ReviewID">수정</button>
 									</div>
-									<div class="class_detail_rating_user_delete_button">
-										<button @click="deleteClassReview(data)">삭제</button>
-									</div>
+
+										<button @click="deleteClassReview(data)" class="class_detail_rating_user_delete_button">
+											<div class="class_detail_rating_user_delete_trash">
+												<div class="class_detail_rating_user_delete_top">
+													<div class="class_detail_rating_user_delete_paper"></div>
+												</div>
+												<div class="class_detail_rating_user_delete_box"></div>
+												<div class="class_detail_rating_user_delete_check">
+													<svg viewBox="0 0 8 6">
+														<polyline points="1 3.4 2.71428571 5 7 1"></polyline>
+													</svg>
+												</div>
+											</div>
+											<span>삭제</span>
+										</button>
 								</div>
 							</div>
 						</div>
@@ -815,17 +872,31 @@
 								<div class="class_detail_rating_user_updated_button">
 									<button @click="updateClassQuestion(data)">수정</button>
 								</div>
-								<div class="class_detail_rating_user_delete_button">
-									<button @click="updateClassQuestion(false)">취소</button>
-								</div>
+								<!-- <div class="class_detail_rating_user_delete_button">
+								</div> -->
+								<button class="class_detail_rating_user_delete_button" style="line-height: 25px; color: #fff; background-color: #2B3044; font-weight: 700; border:" @click="updateClassQuestion(false)">취소</button>
 							</div>
 							<div v-else class="class_detail_community_user_button">
 								<div class="class_detail_rating_user_updated_button">
 									<button @click="updateClassQuestionBoardID = data.BoardID">수정</button>
 								</div>
-								<div class="class_detail_rating_user_delete_button">
+								<button @click="delClassQuestion(data)" class="class_detail_rating_user_delete_button">
+									<div class="class_detail_rating_user_delete_trash">
+										<div class="class_detail_rating_user_delete_top">
+											<div class="class_detail_rating_user_delete_paper"></div>
+										</div>
+										<div class="class_detail_rating_user_delete_box"></div>
+										<div class="class_detail_rating_user_delete_check">
+											<svg viewBox="0 0 8 6">
+												<polyline points="1 3.4 2.71428571 5 7 1"></polyline>
+											</svg>
+										</div>
+									</div>
+									<span>삭제</span>
+								</button>
+								<!-- <div class="class_detail_rating_user_delete_button">
 									<button @click="delClassQuestion(data)">삭제</button>
-								</div>
+								</div> -->
 							</div>
 						</div>
 					</div>	
@@ -1019,7 +1090,7 @@ export default {
 				ClassID: this.ClassID,
 				UserID: this.$store.state.UserID
 			},
-			enrollmentCnt: {},
+			enrollmentCnt: null,
 			// pagination: {},
 			// page: {},
 			solve: null,
@@ -1242,83 +1313,96 @@ export default {
 		// 	this.$store.dispatch('deleteClassReview', data);
 		// },
 
-		deleteClassReview(data) {
-			console.log(data);
-			// Display confirmation dialog using Swal.fire
-			Swal.fire({
-				title: '정말로 삭제하시겠습니까?',
-				text: '삭제 후에는 복구할 수 없습니다.',
-				icon: 'question',
-				showCancelButton: true,
-				confirmButtonColor: '#d33',
-				cancelButtonColor: '#3085d6',
-				confirmButtonText: '삭제',
-				cancelButtonText: '취소',
-			}).then((result) => {
-				// Check if the user clicked the confirm button
-				if (result.isConfirmed) {
-					const url = '/classboarddetailreview/' + data.ReviewID;
-					const header = {
-						headers: {
-							'Content-Type': 'multipart/form-data',
-							'X-CSRF-TOKEN': document.head.querySelector('meta[name="csrf-token"]').content,
-						},
-					};
+		async deleteClassReview(data) {
+    		const button = document.querySelector('.class_detail_rating_user_delete_button');
 
-				axios
-					.delete(url, header)
-					.then((res) => {
-						Swal.fire({
-							icon: 'success',
-							title: '완료',
-							text: '수강평이 삭제되었습니다.',
-							confirmButtonText: '확인'
-						})
-						// Remove the deleted item from the reviewClassItems array
-						this.reviewClassItems = this.reviewClassItems.filter((item) => item.ReviewID !== data.ReviewID);
-					})
-					.catch((err) => {
-						// Handle errors, e.g., display an alert
-						console.error(err);
-						Swal.fire({
-							icon: 'error',
-							title: '삭제 실패',
-							text: '삭제 중에 오류가 발생했습니다.',
-						});
-					});
-				}
-			});
+			if (!button.classList.contains('delete')) {
+			button.classList.add('delete');
+			setTimeout(() => {
+				button.classList.remove('delete');
+				this.handleDeleteConfirmation(data);
+			}, 1000);
+			}
 		},
+		async handleDeleteConfirmation(data) {
+			const result = await Swal.fire({
+			title: '정말로 삭제하시겠습니까?',
+			text: '삭제 후에는 복구할 수 없습니다.',
+			icon: 'question',
+			showCancelButton: true,
+			confirmButtonColor: '#d33',
+			cancelButtonColor: '#3085d6',
+			confirmButtonText: '삭제',
+			cancelButtonText: '취소',
+			});
 
-		postEnrollApp() {
-			// this.$store.dispatch('postClassEnrollApp', this.classEnrollData);
-			if(!this.$store.state.UserID) {
+			if (result.isConfirmed) {
+			const url = '/classboarddetailreview/' + data.ReviewID;
+			const header = {
+				headers: {
+				'Content-Type': 'multipart/form-data',
+				'X-CSRF-TOKEN': document.head.querySelector('meta[name="csrf-token"]').content,
+				},
+			};
+
+			try {
+				const res = await axios.delete(url, header);
 				Swal.fire({
-                    icon: 'error',
-                    title: '에러',
-                    text: '로그인 후 수강신청 해주세요.',
+				icon: 'success',
+				title: '완료',
+				text: '수강평이 삭제되었습니다.',
+				confirmButtonText: '확인'
+				});
+
+				this.reviewClassItems = this.reviewClassItems.filter((item) => item.ReviewID !== data.ReviewID);
+			} catch (err) {
+				console.error(err);
+				Swal.fire({
+				icon: 'error',
+				title: '삭제 실패',
+				text: '삭제 중에 오류가 발생했습니다.',
 				});
 			}
+			}
+		},
 
-            axios.post('/classEnrollAppPost', {
-				ClassID: this.ClassID,
-        		UserID: this.$store.state.UserID,
-				Payment: this.detailClassItems.ClassPrice,
-            })
-            .then(res => { 
-                // console.log(res.data);
+		async postEnrollApp() {
+			if (!this.$store.state.UserID) {
+				Swal.fire({
+					icon: 'error',
+					title: '에러',
+					text: '로그인 후 수강신청 해주세요.',
+				});
+				return; // 로그인되지 않았을 때 함수 종료
+			}
+
+			const button = document.querySelector('.class_enrollment_button');
+
+			if (!button.classList.contains('compress')) {
+				button.classList.add('compress');
+				setTimeout(() => button.classList.remove('compress'), 1000);
+			}
+
+			try {
+				await new Promise(resolve => setTimeout(resolve, 500)); // 4초 대기
+				const response = await axios.post('/classEnrollAppPost', {
+					ClassID: this.ClassID,
+					UserID: this.$store.state.UserID,
+					Payment: this.detailClassItems.ClassPrice,
+				});
+
 				this.EnrollChk = true;
 				Swal.fire({
-                    icon: 'success',
-                    title: '성공',
-                    text: '수강 신청에 성공하셨습니다.',
-                    });
-                // window.location.reload();
-            })
-            .catch(err => {
-                // console.log(err.response.data.errors)
-                // context.commit('setRegistrationErrorMessage', err.response.data.errors);
-            })
+					icon: 'success',
+					title: '성공',
+					text: '수강 신청에 성공하셨습니다.',
+				});
+				// window.location.reload();
+			} catch (error) {
+				// 실패 처리
+				console.error(error);
+				// context.commit('setRegistrationErrorMessage', error.response.data.errors);
+			}
 		},
 		
 		clickTab() {
@@ -1389,50 +1473,70 @@ export default {
 		
 		},
 		KGpay() {
+			const button = document.querySelector('.class_enrollment_button');
+
+			if (!button.classList.contains('compress')) {
+				button.classList.add('compress');
+				setTimeout(() => button.classList.remove('compress'), 1000);
+			}
+
 			const self = this;
 			const merchant_uid = this.ClassID;
-            const amount = this.detailClassItems.ClassPrice;
-            const buyer_email = this.paymentUserData.UserEmail;
-            const buyer_name = this.paymentUserData.UserName;
-            const buyer_tel = this.paymentUserData.UserPhoneNumber;
-            const buyer_addr = this.paymentUserData.UserRoadAddress + this.paymentUserData.UserRoadAddress;
-            const buyer_postcode = this.paymentUserData.UserPostcode;
-			IMP.init("imp78131745");
-			IMP.request_pay({
-				pg: 'html5_inicis',
-				pay_method: 'card',
-				merchant_uid: merchant_uid + '_' + new Date().getTime(),
-				name: 'Plantiful Point',
-				amount: amount,
-				buyer_email: buyer_email,
-				buyer_name: buyer_name,
-				buyer_tel: buyer_tel,
-				buyer_addr: buyer_addr,
-				buyer_postcode: buyer_postcode
-			}, function(response) {
-				//결제 후 호출되는 callback함수
-				if ( response.success ) { //결제 성공
-					console.log(response);
-				} else {
-					axios.post('/classEnrollAppPost', {
+			const amount = this.detailClassItems.ClassPrice;
+			const buyer_email = this.paymentUserData.UserEmail;
+			const buyer_name = this.paymentUserData.UserName;
+			const buyer_tel = this.paymentUserData.UserPhoneNumber;
+			const buyer_addr = this.paymentUserData.UserRoadAddress + this.paymentUserData.UserRoadAddress;
+			const buyer_postcode = this.paymentUserData.UserPostcode;
+
+			const paymentPromise = new Promise((resolve, reject) => {
+				IMP.init("imp78131745");
+				IMP.request_pay({
+					pg: 'html5_inicis',
+					pay_method: 'card',
+					merchant_uid: merchant_uid + '_' + new Date().getTime(),
+					name: 'Plantiful Point',
+					amount: amount,
+					buyer_email: buyer_email,
+					buyer_name: buyer_name,
+					buyer_tel: buyer_tel,
+					buyer_addr: buyer_addr,
+					buyer_postcode: buyer_postcode
+				}, function (response) {
+					// 결제 후 호출되는 callback 함수
+					if (response.success) { // 결제 성공
+						console.log(response);
+						resolve(); // Promise를 성공(resolve) 상태로 변경
+					} else {
+						reject(); // Promise를 실패(reject) 상태로 변경
+					}
+				});
+			});
+
+			paymentPromise.then(() => {
+				// IMP.request_pay 완료 후 실행되는 코드
+				// 이 부분에 추가로 실행할 코드를 작성
+			}).catch(() => {
+				// 결제 실패 시 처리
+				axios.post('/classEnrollAppPost', {
 					ClassID: self.ClassID,
 					UserID: self.$store.state.UserID,
 					Payment: self.detailClassItems.ClassPrice,
 				})
-				.then(res => { 
-					self.EnrollChk = true;
-					Swal.fire({
-						icon: 'success',
-						title: '성공',
-						text: '수강 신청에 성공하셨습니다.',
+					.then(res => {
+						self.EnrollChk = true;
+						Swal.fire({
+							icon: 'success',
+							title: '성공',
+							text: '수강 신청에 성공하셨습니다.',
 						});
-					// window.location.reload();
-				})
-				.catch(err => {
-
-				})
-				}
-			})
+						// window.location.reload();
+					})
+					.catch(err => {
+						// 실패 처리
+						console.error(err);
+					});
+			});
 		},
 
 		// 강의 질문 함수
@@ -1492,11 +1596,26 @@ export default {
 				console.error(error.response);
 			})
 		},
+
+		
 		// 강의 질문 삭제 함수
-		delClassQuestion(data) {
+		async delClassQuestion(data) {
 
-			console.log(data);
+			const button = document.querySelector('.class_detail_rating_user_delete_button');
 
+			if (!button.classList.contains('delete')) {
+			button.classList.add('delete');
+			setTimeout(() => {
+				button.classList.remove('delete');
+				this.handleDeleteConfirmation2(data);
+			}, 1000);
+			}
+
+			// console.log(data);
+
+
+		},
+		async handleDeleteConfirmation2(data) {
 			Swal.fire({
 				title: '정말로 삭제하시겠습니까?',
 				text: '삭제 후에는 복구할 수 없습니다.',
@@ -1588,7 +1707,8 @@ export default {
 			} else {
 				this.updateClassQuestionBoardID = false;
 			}
-		}
+		},
+
 	}
     
 }

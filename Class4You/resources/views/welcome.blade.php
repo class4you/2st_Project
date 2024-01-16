@@ -12,6 +12,7 @@
     <script src="{{ asset('vendor/jquery/jquery.min.js') }}"></script>
     <script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ asset('vendor/jquery-easing/jquery.easing.min.js') }}"></script>
+    {{-- <script src="{{ asset('js/hotcardscript.js') }}"></script> --}}
     {{-- <script src="{{ asset('js/sb-admin-2.min.js') }}"></script> --}}
 
     <title>Class 4 You</title>
@@ -37,5 +38,6 @@
     {{-- <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js'></script> --}}
     <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
     <script src="https://www.youtube.com/iframe_api"></script>
+    {{-- <script src='https://unpkg.com/splitting/dist/splitting.min.js'></script> --}}
 </body>
 </html>

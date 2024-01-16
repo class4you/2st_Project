@@ -464,7 +464,7 @@ export default {
         fetchData(page = 1) {
             axios.get(`/instructoruserdata?page=${page}&search=${this.searchQuery}`)
             .then(response => {
-                // console.log(response.data)
+                console.log(response.data)
                 // console.log(response.data.userData.data)
                 this.userData = response.data.userData.data;
                 this.pagination = response.data.userData.links;
