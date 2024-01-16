@@ -1,7 +1,7 @@
 <template>
     <!-- Page Wrapper -->
     <!-- <loading-component v-if="loading" /> -->
-    <div class="bg-gradient-primary">
+    <div style="background-color:#7b9ffb; height: 100vh" class="bg-gradient-primary">
         <!-- <h2>Weekly Coding Challenge #1: Sign in/up Form</h2> -->
             <div style="margin: auto;" class="container" id="container">
             <div class="form-container sign-up-container">
@@ -42,9 +42,11 @@
                     <button class="ghost" id="signIn">Sign In</button>
                 </div>
                 <div class="overlay-panel overlay-right">
-                    <h1>관리자 계정을 잊으셨나요?</h1>
-                    <p style="font-weight: 600;">고객센터에 문의 바랍니다.</p>
-                    <button class="ghost" id="signUp">Inquiry</button>
+                  <img src="/img/adminlogin.png" alt="">
+                    <!-- <h1>관리자 계정을 잊으셨나요?</h1> -->
+                    <!-- <p style="font-weight: 600;">고객센터에 문의 바랍니다.</p> -->
+                    <!-- <button class="ghost" id="signUp">Inquiry</button> -->
+                    <!-- <button class="ghost">Inquiry</button> -->
                 </div>
                 </div>
             </div>

@@ -3365,6 +3365,9 @@ progress[value]::-webkit-progress-bar{
     flex-direction: column;
 }
 
+.question_list {
+}
+
 .community_right_side {
     flex: 1 0 196px;
     margin-top: 32px;
@@ -3729,7 +3732,7 @@ background-color: rgba(225, 223, 234, 0.224);
 }
 
 .question_content_body {
-    height: 24px;
+    height: 40px;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: normal;

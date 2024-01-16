@@ -65,21 +65,18 @@
                     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
                         aria-expanded="true" aria-controls="collapsePages">
                         <i class="fas fa-fw fa-folder"></i>
-                        <span>관리자 정보</span>
+                        <span>강의 관리</span>
                     </a>
-                    <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                    <div id="collapsePages" class="collapse show" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                         <div class="bg-white py-2 collapse-inner rounded">
-                            <h6 class="collapse-header admin-main-h6-font-size">관리자 정보 수정</h6>
-                            <a v-if="adminChk === 'true'" class="collapse-item" href="login.html">강사 회원가입</a>
-                            <a class="collapse-item" href="register.html">강사 정보 관리</a>
-                            <div class="collapse-divider admin-main-h6-font-size"></div>
-                            <h6 class="collapse-header">강의 업로드 관리</h6>
-                            <a class="collapse-item" href="404.html">강의 추가</a>
-                            <a class="collapse-item" href="404.html">챕터 추가</a>
-                            <a class="collapse-item" href="404.html">레슨 추가</a>
+                            <h6 class="collapse-header admin-main-h6-font-size ">강의 정보 수정</h6>
+                            <a class="collapse-item active" href="/adminclassinsert">강의 관리</a>
+                            <a class="collapse-item" href="/adminchapterinsert">챕터 관리</a>
+                            <a class="collapse-item" href="/adminlnsertinsert">레슨 관리</a>
                         </div>
                     </div>
                 </li>
+                
 
                 <hr class="sidebar-divider">
 
@@ -317,9 +314,20 @@
 
                         <!-- DataTales Example -->
                         <div class="card shadow mb-4">
-                            <div class="card-header py-3">
-                                <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
-                            </div>
+                            <div style="display: flex; align-items: center; justify-content: space-between;" class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">유저 정보 테이블</h6>
+                            <form style="margin: 0px !important; border: 1px solid #ebebeb; border-radius: 8px;" class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                                <div class="input-group">
+                                    <input v-model="searchQuery" type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
+                                        aria-label="Search" aria-describedby="basic-addon2">
+                                    <div class="input-group-append">
+                                        <button @click="fetchData(1, searchQuery)" class="btn btn-primary" type="button">
+                                            <i class="fas fa-search fa-sm"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
                             <div class="card-body">
                                 <div class="table-responsive">
                                     <table class="table table-bordered" style="text-align: center;" id="dataTable" width="100%" cellspacing="0">
@@ -365,14 +373,24 @@
                                             <th>{{ datas.ClassID }}</th>
                                             <th>{{ datas.CategoryID }}</th>
                                             <th>{{ datas.ClassDifficultyID }}</th>
-                                            <th>{{ datas.ClassTitle }}</th>
-                                            <th>{{ datas.ClassPrice }}원</th>
-                                            <th>{{ datas.chapter_count }}</th>
-                                            <th>{{ datas.lesson_count }}</th>
-                                            <th>{{ datas.enrollment_count }}</th>
+                                            <th style="text-align: left;">{{ datas.ClassTitle }}</th>
+                                            <th style="text-align: right;">{{ datas.ClassPrice }}원</th>
+                                            <th>{{ datas.chapter_count }}개</th>
+                                            <th>{{ datas.lesson_count }}개</th>
+                                            <th>{{ datas.enrollment_count }}명</th>
                                             <th><button type="button" style="padding: 0px 10px; border-radius: 3px; background-color: rgb(255, 95, 127); color: #fff; border: none;">수정</button></th>
                                             <th><button type="button" style="padding: 0px 10px; border-radius: 3px; background-color: rgb(255, 95, 127); color: #fff; border: none;">삭제</button></th>
                                         </tr>
+                                    </tbody>
+                                </table>
+                                <table style="display: flex; justify-content: right;">
+                                    <tbody v-for="(page, index) in pagination" :key="index">
+                                        <template v-if="page.url !== null">
+											<a class="qustuon_list_page_a" :class="{'page_on': page.label == pageChk}" @click.prevent="fetchData(page.label)" href="#">{{ replaceString(page.label) }}</a>
+										</template>
+										<template v-else>
+											<span>{{ replaceString(page.label) }}</span>
+                                        </template>
                                     </tbody>
                                 </table>
                                 </div>
@@ -439,6 +457,10 @@ export default {
             InstructorID : null,
             adminChk: false,
             classData: {},
+            pagination: {},
+			page: {},
+			pageChk: {},
+            searchQuery: '',
         };
     },
 
@@ -449,9 +471,9 @@ export default {
                 console.log(response.data)
                 // console.log(response.data.userData.data)
                 this.classData = response.data.ClassData.data;
-                this.pagination = response.data.userData.links;
-                this.page = response.data.userData.current_page;
-                this.pageChk = response.data.userData.current_page;
+                this.pagination = response.data.ClassData.links;
+                this.page = response.data.ClassData.current_page;
+                this.pageChk = response.data.ClassData.current_page;
             })
             .catch(error => {
                 // console.error('Error fetching data:', error);
@@ -477,7 +499,19 @@ export default {
             .catch(err => {
                 // console.log(err.response.data);
             });
-        }
+        },
+        replaceString(str) {
+			const arrList = {
+				'&laquo;': '≪',
+				'&raquo;': '≫'
+			}
+			//  &laquo; 이전
+			//  다음 &raquo;
+			str = str.replace('&laquo;', '<');
+			str = str.replace('&raquo;', '>');
+			// console.log(str);
+			return str;
+		},
     },
 
     beforeCreate() {
