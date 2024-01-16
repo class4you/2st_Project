@@ -300,12 +300,12 @@
 
                     <!-- Page Heading -->
                     <h1 class="h3 mb-2 text-gray-800">게시물 정보</h1>
-                    <p class="mb-4">해당 정보는 해당 강사의 강의에 질문을 남긴 게시물에 대한 정보를 출력합니다. </p>
+                    <p class="mb-4">해당 정보는 신고 당한 게시물에 대한 정보를 출력합니다. </p>
 
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">게시물 정보 테이블</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">신고 게시글 테이블</h6>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">

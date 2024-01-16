@@ -60,7 +60,14 @@
 							
 							<ul class="class_main_container_new_card_tag"> 
 						@forelse($item->languages as $language)
-								<li>{{$language->ClassLanguageName}}</li>
+								<li class="@if ($language->ClassLanguageName == 'HTML') main_container_new_card_tag_HTML 
+											@elseif ($language->ClassLanguageName == 'CSS') main_container_new_card_tag_CSS 
+											@elseif ($language->ClassLanguageName == 'JavaScript') main_container_new_card_tag_JAVASCRIPT 
+											@elseif ($language->ClassLanguageName == 'PHP') main_container_new_card_tag_PHP 
+											@elseif ($language->ClassLanguageName == 'JAVA') main_container_new_card_tag_JAVA 
+											@elseif ($language->ClassLanguageName == 'DataBase') main_container_new_card_tag_DATABASE 
+											@endif">
+									{{$language->ClassLanguageName}}</li>
 							@empty
 						@endforelse
 							</ul>
@@ -109,7 +116,13 @@
 							</div>
 							<ul class="class_main_container_new_card_tag"> 
 							@forelse($item->languages as $language)
-								<li>{{$language->ClassLanguageName}}</li>
+								<li class="@if ($language->ClassLanguageName == 'HTML') main_container_new_card_tag_HTML 
+									@elseif ($language->ClassLanguageName == 'CSS') main_container_new_card_tag_CSS 
+									@elseif ($language->ClassLanguageName == 'JavaScript') main_container_new_card_tag_JAVASCRIPT 
+									@elseif ($language->ClassLanguageName == 'PHP') main_container_new_card_tag_PHP 
+									@elseif ($language->ClassLanguageName == 'JAVA') main_container_new_card_tag_JAVA 
+									@elseif ($language->ClassLanguageName == 'DataBase') main_container_new_card_tag_DATABASE 
+									@endif">{{$language->ClassLanguageName}}</li>
 								@empty
 							@endforelse
 							</ul>
@@ -155,7 +168,13 @@
 							</div>
 							<ul class="class_main_container_new_card_tag"> 
 							@forelse($item->languages as $language)
-								<li>{{$language->ClassLanguageName}}</li>
+								<li class="@if ($language->ClassLanguageName == 'HTML') main_container_new_card_tag_HTML 
+									@elseif ($language->ClassLanguageName == 'CSS') main_container_new_card_tag_CSS 
+									@elseif ($language->ClassLanguageName == 'JavaScript') main_container_new_card_tag_JAVASCRIPT 
+									@elseif ($language->ClassLanguageName == 'PHP') main_container_new_card_tag_PHP 
+									@elseif ($language->ClassLanguageName == 'JAVA') main_container_new_card_tag_JAVA 
+									@elseif ($language->ClassLanguageName == 'DataBase') main_container_new_card_tag_DATABASE 
+									@endif">{{$language->ClassLanguageName}}</li>
 							@empty
 						@endforelse
 							</ul>
@@ -201,7 +220,13 @@
 							</div>
 							<ul class="class_main_container_new_card_tag"> 
 							@forelse($item->languages as $language)
-								<li>{{$language->ClassLanguageName}}</li>
+								<li class="@if ($language->ClassLanguageName == 'HTML') main_container_new_card_tag_HTML 
+									@elseif ($language->ClassLanguageName == 'CSS') main_container_new_card_tag_CSS 
+									@elseif ($language->ClassLanguageName == 'JavaScript') main_container_new_card_tag_JAVASCRIPT 
+									@elseif ($language->ClassLanguageName == 'PHP') main_container_new_card_tag_PHP 
+									@elseif ($language->ClassLanguageName == 'JAVA') main_container_new_card_tag_JAVA 
+									@elseif ($language->ClassLanguageName == 'DataBase') main_container_new_card_tag_DATABASE 
+									@endif">{{$language->ClassLanguageName}}</li>
 							@empty
 						@endforelse
 							</ul>
