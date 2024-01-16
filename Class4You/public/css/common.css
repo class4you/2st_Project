@@ -2394,7 +2394,7 @@ ul.class_tabs li.class_current {
 }
 
 .class_detail_community_user_button {
-    margin-top: 10px;
+    /* margin-top: 10px; */
     display: flex;
     justify-content: end;
     gap: 10px;
@@ -2418,7 +2418,7 @@ ul.class_tabs li.class_current {
 
 .class_detail_commu_list_div {
     /* margin: 10px 0; */
-    padding: 20px;
+    padding-bottom: 15px;
     line-height: 20px;
     border-bottom: 2px solid #002d426f;
 }
@@ -2439,18 +2439,29 @@ ul.class_tabs li.class_current {
     color: #0000007e;
     display: flex;
     justify-content: space-between;
-    padding: 0px 5px 10px 5px;
+    padding: 0px 0px 0px 10px;
     /* border-bottom: 1px solid #f2f2f2; */
+    align-items: center;
+}
+
+.class_detail_commu_user_id {
+    font-weight: 700;
+    color: #00000057;
+    display: flex;
+    border: 1px solid #eff3fa;
+    background-color: #eff3fa;
+    border-radius: 5px;
+    padding: 5px;
 }
 
 .class_detail_commu_list_text {
     /* margin-top: 10px; */
-    padding: 10px 0px 0px 0px;
+    /* padding: 10px 0px 0px 0px; */
     /* border-bottom: 1px solid #f2f2f2; */
-    border: 1px solid #ededed;
+    /* border: 1px solid #ededed; */
     border-radius: 5px;
     margin: 7px 0;
-    background-color: #ededed;
+    /* background-color: #ededed; */
     padding: 5px 0;
 }
 
@@ -2481,25 +2492,37 @@ ul.class_tabs li.class_current {
     border-radius: 3px;
 }
 
-.class_detail_commu_list_text_board_title {
-    border: 1px solid #f2f2f2;
-    margin: 7px;
+.class_detail_commu_list_text_board_title>p {
+    /* border: 1px solid #f2f2f2; */
+    /* margin: 7px; */
     padding: 10px;
-    font-size: 15px;
+    /* font-size: 15px; */
     font-weight: bold;
-    border-radius: 5px;
-    color: #0000007e;
-    background-color: #fff;
+    /* border-radius: 5px; */
+    color: #000;
+    /* background-color: #fff; */
+}
+
+.class_detail_commu_list_text_board_tag {
+    /* background-color: #eff3fa;
+    display: inline-block;
+    padding: 0.35em 0.65em;
+    font-size: .75em;
+    font-weight: 700;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline; */
 }
 
 .class_detail_commu_list_text_board_comment {
     padding: 10px;
-    margin: 7px;
-    border: 1px solid #ededed;
-    border-radius: 5px;
+    /* margin: 7px; */
+    /* border: 1px solid #ededed; */
+    /* border-radius: 5px; */
     white-space: pre;
-    font-size: 15px;
-    background-color: #fff;
+    /* font-size: 15px; */
+    /* background-color: #fff; */
+    color: #858383;
 }
 
 /* ============================================================================================================ */
