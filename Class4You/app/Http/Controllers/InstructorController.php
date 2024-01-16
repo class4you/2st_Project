@@ -90,7 +90,8 @@ class InstructorController extends Controller
         if ($request->has('search')) {
             $searchTerm = $request->input('search');
             $userDataQuery->where(function ($query) use ($searchTerm) {
-                $query->orWhere('users.UserName', 'LIKE', "%{$searchTerm}%");
+                $query->orWhere('users.UserName', 'LIKE', "%{$searchTerm}%")
+                ->orWhere('users.UserID', 'LIKE', "%{$searchTerm}%");
             });
         }
         $userData = $userDataQuery->paginate(10);
@@ -116,7 +117,8 @@ class InstructorController extends Controller
         if ($request->has('search')) {
             $searchTerm = $request->input('search');
             $ClassDataQuery->where(function ($query) use ($searchTerm) {
-                $query->orWhere('class_infos.ClassTitle', 'LIKE', "%{$searchTerm}%");
+                $query->orWhere('class_infos.ClassTitle', 'LIKE', "%{$searchTerm}%")
+                    ->orWhere('class_infos.ClassID', 'LIKE', "%{$searchTerm}%");
             });
         }
 
@@ -144,7 +146,8 @@ class InstructorController extends Controller
             $searchTerm = $request->input('search');
             $boardQuestionDataQuery->where(function ($query) use ($searchTerm) {
                 $query->orWhere('BoardTitle', 'LIKE', "%{$searchTerm}%")
-                    ->orWhere('BoardComment', 'LIKE', "%{$searchTerm}%");
+                    ->orWhere('BoardComment', 'LIKE', "%{$searchTerm}%")
+                    ->orWhere('BoardID', 'LIKE', "%{$searchTerm}%");
             });
         }
 
@@ -171,7 +174,8 @@ class InstructorController extends Controller
             $searchTerm = $request->input('search');
             $boardQuestionDataQuery->where(function ($query) use ($searchTerm) {
                 $query->orWhere('BoardTitle', 'LIKE', "%{$searchTerm}%")
-                    ->orWhere('BoardComment', 'LIKE', "%{$searchTerm}%");
+                    ->orWhere('BoardComment', 'LIKE', "%{$searchTerm}%")
+                    ->orWhere('BoardID', 'LIKE', "%{$searchTerm}%");
             });
         }
 
@@ -325,12 +329,16 @@ class InstructorController extends Controller
 
     public function getinstructorclassinsertdata(Request $request) {
         $instructorId = Auth::guard('admin')->id();
-        Log::debug($instructorId);
+        $searchTerm = $request->input('search');
+
+        // Log::debug($searchTerm);
         // Log::debug($request);
-        $ClassData = Classinfo::join('chapters', 'class_infos.ClassID', '=', 'chapters.ClassID')
+        // Log::debug($request);
+        $ClassDataQuery = Classinfo::join('chapters', 'class_infos.ClassID', '=', 'chapters.ClassID')
             ->join('lessons', 'chapters.ChapterID', '=', 'lessons.ChapterID')
             ->leftJoin('enrollments', 'class_infos.ClassID', '=', 'enrollments.ClassID') // LEFT JOIN으로 변경
-            ->where('class_infos.InstructorID', $instructorId)
+            // ->orWhere('class_infos.ClassTitle', 'LIKE', "%css%")
+            // ->where('class_infos.InstructorID', $instructorId)
             ->select(
                 'class_infos.ClassID',
                 'class_infos.CategoryID',
@@ -338,16 +346,48 @@ class InstructorController extends Controller
                 'class_infos.ClassTitle',
                 'class_infos.ClassPrice',
                 DB::raw('COUNT(DISTINCT chapters.ChapterID) as chapter_count'),
-                DB::raw('COUNT(lessons.LessonID) as lesson_count'),
-                DB::raw('COUNT(DISTINCT enrollments.UserID) as enrollment_count') // 수정된 부분
+                DB::raw('COUNT(DISTINCT lessons.LessonID) as lesson_count'),
+                DB::raw('COUNT(DISTINCT enrollments.UserID) as enrollment_count')
             )
             ->groupBy('class_infos.ClassID', 'class_infos.CategoryID', 'class_infos.ClassDifficultyID', 'class_infos.ClassTitle', 'class_infos.ClassPrice')
-            ->paginate(10);
+            ->orderBy('class_infos.created_at', 'desc');
 
-            Log::debug($ClassData);
-            return response()->json([
-                'ClassData' => $ClassData,
-            ]);
+        if ($request->has('search')) {
+            $searchTerm = $request->input('search');
+            $ClassDataQuery->where(function ($query) use ($searchTerm) {
+                $query->orWhere('class_infos.ClassTitle', 'LIKE', "%{$searchTerm}%")
+                    ->orWhere('class_infos.ClassID', 'LIKE', "%{$searchTerm}%");
+            });
+        }
+
+        $ClassData = $ClassDataQuery->paginate(10);
+
+        // $ClassDataQuery = Classinfo::join('chapters', 'class_infos.ClassID', '=', 'chapters.ClassID')
+        // ->join('lessons', 'chapters.ChapterID', '=', 'lessons.ChapterID')
+        // ->leftJoin('enrollments', 'class_infos.ClassID', '=', 'enrollments.ClassID');
+
+
+        // if (!$searchTerm == 'undefined') {
+        //     $ClassDataQuery->orWhere('class_infos.ClassTitle', 'LIKE', "%{$searchTerm}%");
+        // }
+        
+
+        // $ClassData = $ClassDataQuery->select(
+        //         'class_infos.ClassID',
+        //         'class_infos.CategoryID',
+        //         'class_infos.ClassDifficultyID',
+        //         'class_infos.ClassTitle',
+        //         'class_infos.ClassPrice',
+        //         DB::raw('COUNT(DISTINCT chapters.ChapterID) as chapter_count'),
+        //         DB::raw('COUNT(lessons.LessonID) as lesson_count'),
+        //         DB::raw('COUNT(DISTINCT enrollments.UserID) as enrollment_count') // 수정된 부분
+        //     )
+        //     ->groupBy('class_infos.ClassID', 'class_infos.CategoryID', 'class_infos.ClassDifficultyID', 'class_infos.ClassTitle', 'class_infos.ClassPrice')
+        //     ->paginate(10);
+
+        return response()->json([
+            'ClassData' => $ClassData,
+        ]);
     }
 
     // public function postRegistInstructor(Request $request) {

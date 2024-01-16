@@ -192,9 +192,9 @@
                                             <button @click="updateCommentID = false" class="commentActions_deleteBtn">취소</button>
                                         </div>    
                                             <!-- <button class="comment_editBtn">수정</button> -->
-                                        <div v-else>
+                                        <div style="display: flex;" v-else>
                                             <button @click="updateCommentID = item.CommentID" class="commentActions_updateBtn">수정</button>
-                                            <button @click="deleteCommentData(item.CommentID)" class="class_detail_rating_user_delete_button">
+                                            <button @click="deleteCommentData(item.CommentID)" class="class_detail_rating_user_delete_button" style="padding: 5px 20px">
                                                 <div class="class_detail_rating_user_delete_trash">
                                                     <div class="class_detail_rating_user_delete_top">
                                                         <div class="class_detail_rating_user_delete_paper"></div>
@@ -478,12 +478,12 @@ export default {
                 button.classList.add('delete');
                 setTimeout(() => {
                     button.classList.remove('delete');
-                    this.handleDeleteConfirmation2(data);
+                    this.handleDeleteConfirmation2(deleteCommentID);
                 }, 1000);
             }
         },
-        async handleDeleteConfirmation2(data) {
-            console.log(deleteCommentID);
+        async handleDeleteConfirmation2(deleteCommentID) {
+            // console.log(deleteCommentID);
                 Swal.fire({
                 title: '정말로 삭제하시겠습니까?',
                 text: "삭제 후에는 복구할 수 없습니다.",

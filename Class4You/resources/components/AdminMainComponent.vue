@@ -22,9 +22,9 @@
                 <!-- Nav Item - Dashboard -->
                 <li class="nav-item active">
                     <a class="nav-link" href="/adminmain">
-                        <i class="fas fa-fw fa-tachometer-alt"></i>
-                        <span>대시보드</span></a>
-                    </li>
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span>대시보드</span></a>
+                </li>
                     
                 <li  v-if="adminChk === 'true'" class="nav-item">
                     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
@@ -65,21 +65,18 @@
                     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
                         aria-expanded="true" aria-controls="collapsePages">
                         <i class="fas fa-fw fa-folder"></i>
-                        <span>관리자 정보</span>
+                        <span>강의 관리</span>
                     </a>
                     <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                         <div class="bg-white py-2 collapse-inner rounded">
-                            <h6 class="collapse-header admin-main-h6-font-size">관리자 정보 수정</h6>
-                            <a v-if="adminChk === 'true'" class="collapse-item" href="login.html">강사 회원가입</a>
-                            <a class="collapse-item" href="register.html">강사 정보 관리</a>
-                            <div class="collapse-divider admin-main-h6-font-size"></div>
-                            <h6 class="collapse-header">강의 업로드 관리</h6>
-                            <a class="collapse-item" href="/adminclassinsert">강의 추가</a>
-                            <a class="collapse-item" href="404.html">챕터 추가</a>
-                            <a class="collapse-item" href="404.html">레슨 추가</a>
+                            <h6 class="collapse-header admin-main-h6-font-size">강의 정보 수정</h6>
+                            <a class="collapse-item" href="/adminclassinsert">강의 관리</a>
+                            <a class="collapse-item" href="/adminchapterinsert">챕터 관리</a>
+                            <a class="collapse-item" href="/adminlnsertinsert">레슨 관리</a>
                         </div>
                     </div>
                 </li>
+
 
                 <hr class="sidebar-divider">
 
