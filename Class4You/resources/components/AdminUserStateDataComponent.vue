@@ -304,12 +304,12 @@
 
                     <!-- Page Heading -->
                     <h1 class="h3 mb-2 text-gray-800">유저 정보</h1>
-                    <p class="mb-4">해당 정보는 해당 강사의 강의를 수강 중인 유저에 대한 정보를 출력합니다. </p>
+                    <p class="mb-4">해당 정보는 유저의 계정상태 대한 정보를 출력합니다. </p>
 
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div style="display: flex; align-items: center; justify-content: space-between;" class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">강의 정보 테이블</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">유저 계정 상태 테이블</h6>
                             <form style="margin: 0px !important; border: 1px solid #ebebeb; border-radius: 8px;" class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
                                 <div class="input-group">
                                     <input v-model="searchQuery" type="text" class="form-control bg-light border-0 small" placeholder="Search for..."

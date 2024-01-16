@@ -304,12 +304,12 @@
 
                     <!-- Page Heading -->
                     <h1 class="h3 mb-2 text-gray-800">게시물 정보</h1>
-                    <p class="mb-4">해당 정보는 해당 강사의 강의에 질문을 남긴 게시물에 대한 정보를 출력합니다. </p>
+                    <p class="mb-4">해당 정보는 해당 강사의 강의에 질문을 남긴 게시글에 대한 정보를 출력합니다. </p>
 
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div style="display: flex; align-items: center; justify-content: space-between;" class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">유저 정보 테이블</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">강의질문 게시글 테이블</h6>
                             <form style="margin: 0px !important; border: 1px solid #ebebeb; border-radius: 8px;" class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
                                 <div class="input-group">
                                     <input v-model="searchQuery" type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
@@ -326,12 +326,13 @@
                             <div class="table-responsive">
                                 <table class="table table-bordered" style="text-align: center;" id="dataTable" width="100%" cellspacing="0">
                                     <colgroup>
+                                        <col style="width: 4%;">
                                         <col style="width: 5%;">
-                                        <col style="width: 5%;">
-                                        <col style="width: 5%;">
+                                        <col style="width: 4%;">
                                         <col style="width: 15%;">
                                         <col style="width: 25%;">
-                                        <col style="width: 10%;">
+                                        <col style="width: 7%;">
+                                        <col style="width: 5%;">
                                         <col style="width: 5%;">
                                         <col style="width: 5%;">
                                     </colgroup>
@@ -345,6 +346,7 @@
                                             <th>생성날짜</th>
                                             <th>해결유무</th>
                                             <th>게시물상태</th>
+                                            <th>답변하기</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -357,10 +359,11 @@
                                             <th>{{ datas.created_at }}</th>
                                             <th>{{ datas.BoardFlg == 0 ? '미해결' : datas.BoardFlg == 1 ? '해결' : '상태를 확인할 수 없음' }}</th>
                                             <th>{{ datas.deleted_at == null ? '삭제' : datas.deleted_at !== null ? '미삭제' : '상태를 확인할 수 없음' }}</th>
+                                            <th><button type="button" style="padding: 0px 8px; border-radius: 3px; background-color: rgb(255, 95, 127); color: #fff; border: none;">답변하기</button></th>
                                         </tr>
                                     </tbody>
                                 </table>
-                                <table style="display: flex; justify-content: right;">
+                                <table style="display: flex; justify-content: right; font-size: 15px;">
                                     <tbody v-for="(page, index) in pagination" :key="index">
                                         <template v-if="page.url !== null">
 											<a class="qustuon_list_page_a" :class="{'page_on': page.label == pageChk}" @click.prevent="fetchData(page.label)" href="#">{{ replaceString(page.label) }}</a>
