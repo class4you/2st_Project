@@ -135,7 +135,7 @@
 						<p style="font-weight: bold;">
 							💡{{ languagesChk }}란,
 						</p>
-						<p>{{ detailClassItems.ClassIntroduction }}</p>
+						<p>- {{ detailClassItems.ClassIntroduction }}</p>
 					</div>
 				</div>
 			
@@ -444,7 +444,7 @@
         </div>
 
             <!-- 수강평 -->
-        <div v-if="clickFlgTab === 1">    
+        <div style="padding: 10px 30px; border-left: 1px solid #ededed; border-right: 1px solid #ededed;" v-if="clickFlgTab === 1">    
             <div v-if="EnrollChk" id="class_tab1" class="class_current class_detail_rating_form">
                 <!-- <form name="myform" id="myform" method="post"> -->
                     <fieldset>
@@ -638,7 +638,7 @@
 								<!-- <button @click="classReviewUpdate(data)">수정</button> -->
 							<!-- </div> -->
 							<div v-if="data.UserID == $store.state.UserID">
-								<div v-if="data.ReviewID == updataReviewID">
+								<div style="display: grid; justify-content: space-between; grid-template-columns: 1fr 1fr;" v-if="data.ReviewID == updataReviewID">
 									<div class="class_detail_rating_user_delete_reating">
 										<!-- <fieldset class="class_detail_rating_star_form" name="myform">
 											<input v-model="classReviewData.ReviewRating" class="class_detail_rating_star_input" type="radio" name="rating" value="5" id="rate1">
@@ -781,9 +781,21 @@
 									<div class="class_detail_rating_user_updated_button">
 										<button @click="updataReviewID = data.ReviewID">수정</button>
 									</div>
-									<div class="class_detail_rating_user_delete_button">
-										<button @click="deleteClassReview(data)">삭제</button>
-									</div>
+
+										<button @click="deleteClassReview(data)" class="class_detail_rating_user_delete_button">
+											<div class="class_detail_rating_user_delete_trash">
+												<div class="class_detail_rating_user_delete_top">
+													<div class="class_detail_rating_user_delete_paper"></div>
+												</div>
+												<div class="class_detail_rating_user_delete_box"></div>
+												<div class="class_detail_rating_user_delete_check">
+													<svg viewBox="0 0 8 6">
+														<polyline points="1 3.4 2.71428571 5 7 1"></polyline>
+													</svg>
+												</div>
+											</div>
+											<span>삭제</span>
+										</button>
 								</div>
 							</div>
 						</div>
@@ -860,17 +872,31 @@
 								<div class="class_detail_rating_user_updated_button">
 									<button @click="updateClassQuestion(data)">수정</button>
 								</div>
-								<div class="class_detail_rating_user_delete_button">
-									<button @click="updateClassQuestion(false)">취소</button>
-								</div>
+								<!-- <div class="class_detail_rating_user_delete_button">
+								</div> -->
+								<button class="class_detail_rating_user_delete_button" style="line-height: 25px; color: #fff; background-color: #2B3044; font-weight: 700; border:" @click="updateClassQuestion(false)">취소</button>
 							</div>
 							<div v-else class="class_detail_community_user_button">
 								<div class="class_detail_rating_user_updated_button">
 									<button @click="updateClassQuestionBoardID = data.BoardID">수정</button>
 								</div>
-								<div class="class_detail_rating_user_delete_button">
+								<button @click="delClassQuestion(data)" class="class_detail_rating_user_delete_button">
+									<div class="class_detail_rating_user_delete_trash">
+										<div class="class_detail_rating_user_delete_top">
+											<div class="class_detail_rating_user_delete_paper"></div>
+										</div>
+										<div class="class_detail_rating_user_delete_box"></div>
+										<div class="class_detail_rating_user_delete_check">
+											<svg viewBox="0 0 8 6">
+												<polyline points="1 3.4 2.71428571 5 7 1"></polyline>
+											</svg>
+										</div>
+									</div>
+									<span>삭제</span>
+								</button>
+								<!-- <div class="class_detail_rating_user_delete_button">
 									<button @click="delClassQuestion(data)">삭제</button>
-								</div>
+								</div> -->
 							</div>
 						</div>
 					</div>	
@@ -1287,52 +1313,57 @@ export default {
 		// 	this.$store.dispatch('deleteClassReview', data);
 		// },
 
-		deleteClassReview(data) {
-			console.log(data);
-			// Display confirmation dialog using Swal.fire
-			Swal.fire({
-				title: '정말로 삭제하시겠습니까?',
-				text: '삭제 후에는 복구할 수 없습니다.',
-				icon: 'question',
-				showCancelButton: true,
-				confirmButtonColor: '#d33',
-				cancelButtonColor: '#3085d6',
-				confirmButtonText: '삭제',
-				cancelButtonText: '취소',
-			}).then((result) => {
-				// Check if the user clicked the confirm button
-				if (result.isConfirmed) {
-					const url = '/classboarddetailreview/' + data.ReviewID;
-					const header = {
-						headers: {
-							'Content-Type': 'multipart/form-data',
-							'X-CSRF-TOKEN': document.head.querySelector('meta[name="csrf-token"]').content,
-						},
-					};
+		async deleteClassReview(data) {
+    		const button = document.querySelector('.class_detail_rating_user_delete_button');
 
-				axios
-					.delete(url, header)
-					.then((res) => {
-						Swal.fire({
-							icon: 'success',
-							title: '완료',
-							text: '수강평이 삭제되었습니다.',
-							confirmButtonText: '확인'
-						})
-						// Remove the deleted item from the reviewClassItems array
-						this.reviewClassItems = this.reviewClassItems.filter((item) => item.ReviewID !== data.ReviewID);
-					})
-					.catch((err) => {
-						// Handle errors, e.g., display an alert
-						console.error(err);
-						Swal.fire({
-							icon: 'error',
-							title: '삭제 실패',
-							text: '삭제 중에 오류가 발생했습니다.',
-						});
-					});
-				}
+			if (!button.classList.contains('delete')) {
+			button.classList.add('delete');
+			setTimeout(() => {
+				button.classList.remove('delete');
+				this.handleDeleteConfirmation(data);
+			}, 1000);
+			}
+		},
+		async handleDeleteConfirmation(data) {
+			const result = await Swal.fire({
+			title: '정말로 삭제하시겠습니까?',
+			text: '삭제 후에는 복구할 수 없습니다.',
+			icon: 'question',
+			showCancelButton: true,
+			confirmButtonColor: '#d33',
+			cancelButtonColor: '#3085d6',
+			confirmButtonText: '삭제',
+			cancelButtonText: '취소',
 			});
+
+			if (result.isConfirmed) {
+			const url = '/classboarddetailreview/' + data.ReviewID;
+			const header = {
+				headers: {
+				'Content-Type': 'multipart/form-data',
+				'X-CSRF-TOKEN': document.head.querySelector('meta[name="csrf-token"]').content,
+				},
+			};
+
+			try {
+				const res = await axios.delete(url, header);
+				Swal.fire({
+				icon: 'success',
+				title: '완료',
+				text: '수강평이 삭제되었습니다.',
+				confirmButtonText: '확인'
+				});
+
+				this.reviewClassItems = this.reviewClassItems.filter((item) => item.ReviewID !== data.ReviewID);
+			} catch (err) {
+				console.error(err);
+				Swal.fire({
+				icon: 'error',
+				title: '삭제 실패',
+				text: '삭제 중에 오류가 발생했습니다.',
+				});
+			}
+			}
 		},
 
 		async postEnrollApp() {
@@ -1565,11 +1596,26 @@ export default {
 				console.error(error.response);
 			})
 		},
+
+		
 		// 강의 질문 삭제 함수
-		delClassQuestion(data) {
+		async delClassQuestion(data) {
 
-			console.log(data);
+			const button = document.querySelector('.class_detail_rating_user_delete_button');
 
+			if (!button.classList.contains('delete')) {
+			button.classList.add('delete');
+			setTimeout(() => {
+				button.classList.remove('delete');
+				this.handleDeleteConfirmation2(data);
+			}, 1000);
+			}
+
+			// console.log(data);
+
+
+		},
+		async handleDeleteConfirmation2(data) {
 			Swal.fire({
 				title: '정말로 삭제하시겠습니까?',
 				text: '삭제 후에는 복구할 수 없습니다.',
