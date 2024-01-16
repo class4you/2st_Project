@@ -352,8 +352,8 @@
                                             <th>{{ datas.ClassID }}</th>
                                             <th>{{ datas.BoardID }}</th>
                                             <th>{{ datas.UserID }}</th>
-                                            <th>{{ datas.BoardTitle }}</th>
-                                            <th>{{ datas.BoardComment }}</th>
+                                            <th style="text-align: left;">{{ datas.BoardTitle }}</th>
+                                            <th style="text-align: left;">{{ datas.BoardComment }}</th>
                                             <th>{{ datas.created_at }}</th>
                                             <th>{{ datas.BoardFlg == 0 ? '미해결' : datas.BoardFlg == 1 ? '해결' : '상태를 확인할 수 없음' }}</th>
                                             <th>{{ datas.deleted_at == null ? '삭제' : datas.deleted_at !== null ? '미삭제' : '상태를 확인할 수 없음' }}</th>

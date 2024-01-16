@@ -344,7 +344,7 @@
                                             <th v-if="data.BoardID">{{ data.BoardID }}</th>
                                             <th v-if="data.CommentID">{{ data.CommentID }}</th>
                                             <th>{{ data.UserID }}</th>
-                                            <th>{{data.ReportContent}}</th>
+                                            <th style="text-align: left;">{{data.ReportContent}}</th>
                                             <th>{{data.created_at}}</th>
                                             <th v-if="data.ReportState == 0">미처리</th>
                                             <th v-if="data.ReportState == 1">처리</th>
