@@ -5416,6 +5416,11 @@ background-color: rgba(225, 223, 234, 0.224);
 
 
 
+/* 신고게시글 정보 페이징*/
+.admin_board_report_page_table {
+    gap: 5px;
+}
+
 
 
 
