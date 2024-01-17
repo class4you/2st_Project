@@ -127,8 +127,9 @@ const routes = [
         props: true
     },
     {
-        path: '/adminlnsertinsert',
+        path: '/adminlessoninsert/:ChapterID',
         component: AdminLessonInsertComponent,
+        props: true
     },
     {
         path: '/test',

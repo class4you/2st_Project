@@ -70,9 +70,7 @@
                     <div id="collapsePages" class="collapse show" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                         <div class="bg-white py-2 collapse-inner rounded">
                             <h6 class="collapse-header admin-main-h6-font-size ">강의 정보 수정</h6>
-                            <a class="collapse-item" href="/adminclassinsert">강의 관리</a>
-                            <a class="collapse-item" href="/adminchapterinsert">챕터 관리</a>
-                            <a class="collapse-item active" href="/adminlnsertinsert">레슨 관리</a>
+                            <a class="collapse-item active" href="/adminclassinsert">강의 관리</a>
                         </div>
                     </div>
                 </li>
@@ -316,17 +314,6 @@
                         <div class="card shadow mb-4">
                             <div style="display: flex; align-items: center; justify-content: space-between;" class="card-header py-3">
                             <h6 class="m-0 font-weight-bold text-primary">유저 정보 테이블</h6>
-                            <form style="margin: 0px !important; border: 1px solid #ebebeb; border-radius: 8px;" class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-                                <div class="input-group">
-                                    <input v-model="searchQuery" type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
-                                        aria-label="Search" aria-describedby="basic-addon2">
-                                    <div class="input-group-append">
-                                        <button @click="fetchData(1, searchQuery)" class="btn btn-primary" type="button">
-                                            <i class="fas fa-search fa-sm"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                            </form>
                         </div>
                             <div class="card-body">
                                 <div class="table-responsive">
@@ -336,23 +323,17 @@
                                         <col style="width: 5%;">
                                         <col style="width: 5%;">
                                         <col style="width: 20%;">
-                                        <col style="width: 5%;">
-                                        <col style="width: 5%;">
-                                        <col style="width: 5%;">
-                                        <col style="width: 5%;">
+                                        <col style="width: 20%;">
                                         <col style="width: 5%;">
                                         <col style="width: 5%;">
                                     </colgroup>
                                     <thead>
                                         <tr>
-                                            <th>강의번호</th>
-                                            <th>카테고리</th>
-                                            <th>강의난이도</th>
-                                            <th>강의제목</th>
-                                            <th>가격</th>
-                                            <th>챕터 수</th>
-                                            <th>레슨 수</th>
-                                            <th>수강생 수</th>
+                                            <th>챕터번호</th>
+                                            <th>레슨번호</th>
+                                            <th>유튜브아이디</th>
+                                            <th>레슨제목</th>
+                                            <th>레슨내용</th>
                                             <th>수정</th>
                                             <th>삭제</th>
                                         </tr>
@@ -369,28 +350,15 @@
                                         </tr>
                                     </tfoot> -->
                                     <tbody>
-                                        <tr v-for="datas in classData">
-                                            <th>{{ datas.ClassID }}</th>
-                                            <th>{{ datas.CategoryID }}</th>
-                                            <th>{{ datas.ClassDifficultyID }}</th>
-                                            <th style="text-align: left;">{{ datas.ClassTitle }}</th>
-                                            <th style="text-align: right;">{{ datas.ClassPrice }}원</th>
-                                            <th>{{ datas.chapter_count }}개</th>
-                                            <th>{{ datas.lesson_count }}개</th>
-                                            <th>{{ datas.enrollment_count }}명</th>
+                                        <tr v-for="datas in lessonData">
+                                            <th>{{ datas.ChapterID }}</th>
+                                            <th>{{ datas.LessonID }}</th>
+                                            <th>{{ datas.LessonVideoID }}</th>
+                                            <th style="text-align: left;">{{ datas.LessonTitle }}</th>
+                                            <th style="text-align: left;">{{ datas.LessonContent }}</th>
                                             <th><button type="button" style="padding: 0px 10px; border-radius: 3px; background-color: rgb(255, 95, 127); color: #fff; border: none;">수정</button></th>
                                             <th><button type="button" style="padding: 0px 10px; border-radius: 3px; background-color: rgb(255, 95, 127); color: #fff; border: none;">삭제</button></th>
                                         </tr>
-                                    </tbody>
-                                </table>
-                                <table style="display: flex; justify-content: right;">
-                                    <tbody v-for="(page, index) in pagination" :key="index">
-                                        <template v-if="page.url !== null">
-											<a class="qustuon_list_page_a" :class="{'page_on': page.label == pageChk}" @click.prevent="fetchData(page.label)" href="#">{{ replaceString(page.label) }}</a>
-										</template>
-										<template v-else>
-											<span>{{ replaceString(page.label) }}</span>
-                                        </template>
                                     </tbody>
                                 </table>
                                 </div>
@@ -451,29 +419,28 @@ import Swal from 'sweetalert2';
 export default {
     name: 'AdminClassInsertComponent',
 
+    props: ['ChapterID'],
+
     data() {
         return {
             loading: true, // 로딩 상태를 나타내는 데이터
             InstructorID : null,
             adminChk: false,
-            classData: {},
-            pagination: {},
-			page: {},
-			pageChk: {},
-            searchQuery: '',
+            lessonData: {},
         };
     },
 
     methods: {
         fetchData(page = 1) {
-            axios.get(`/instructorclassinsertdata?page=${page}&search=${this.searchQuery}`)
+            axios.get(`/instructorlessoninsertdata/${this.ChapterID}`, {
+                params: {
+                    page: page
+                }
+            })
             .then(response => {
                 console.log(response.data)
                 // console.log(response.data.userData.data)
-                this.classData = response.data.ClassData.data;
-                this.pagination = response.data.ClassData.links;
-                this.page = response.data.ClassData.current_page;
-                this.pageChk = response.data.ClassData.current_page;
+                this.lessonData = response.data.LessonData;
             })
             .catch(error => {
                 // console.error('Error fetching data:', error);
