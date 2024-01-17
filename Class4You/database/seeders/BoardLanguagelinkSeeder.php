@@ -16,8 +16,8 @@ class BoardLanguagelinkSeeder extends Seeder
     public function run()
     {
         $faker = Faker::create();
-        for ($i = 0; $i < 100; $i++) {
-            $board = $faker->numberBetween(874, 1273);
+        for ($i = 0; $i < 5000; $i++) {
+            $board = $faker->numberBetween(1, 10633);
             $HTML = $faker->numberBetween(0, 1);
             $CSS = $faker->numberBetween(0, 1);
             $JavaScript = $faker->numberBetween(0, 1);

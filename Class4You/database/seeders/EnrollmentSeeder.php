@@ -15,7 +15,7 @@ class EnrollmentSeeder extends Seeder
      */
     public function run()
     {
-        $userIds = range(1, 20);
+        $userIds = range(1, 50000);
 
         // 시더를 돌릴 클래스 아이디 범위
         $classIds = range(1, 216);

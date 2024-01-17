@@ -14,6 +14,8 @@ class BoardRatingStateSeeder extends Seeder
      */
     public function run()
     {
-        //
+
     }
+
+    
 }
