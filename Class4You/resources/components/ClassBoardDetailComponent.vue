@@ -838,7 +838,7 @@
 				</div>
 
 				<div v-for="data in classQuestionData" :key="data.BoardID" id="class_tab1" class="class_detail_commu_list_div">
-					<div class="class_detail_commu_list_user">
+					<!-- <div class="class_detail_commu_list_user" style="font-size: 13px;">
 						<div class="class_detail_rating_user_id">
 							<div class="class_detail_rating_user_id_info">
 								<p class="class_detail_rating_user_email">{{ hideEmail(data.UserEmail) }}</p>
@@ -847,7 +847,7 @@
 						<div class="class_detail_rating_user_date">
 							<p>{{ data.created_at }}</p>
 						</div>
-					</div>
+					</div> -->
 					<div class="class_detail_commu_list_text">
 						<div v-if="data.BoardID == updateClassQuestionBoardID" class="class_detail_commu_list_text_div1">
 							<div class="class_detail_commu_list_update_text_title">
@@ -859,7 +859,13 @@
 						</div>
 
 						<div class="class_detail_commu_list_text_div2" v-else>
-							<div class="class_detail_commu_list_text_board_title">
+							<div class="class_detail_commu_list_text_board_title" style="display: flex;">
+								<span class="class_detail_commu_list_text_board_tag">
+									<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-question-circle" viewBox="0 0 16 16">
+  										<path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+  										<path d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286zm1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94z"/>
+									</svg>
+								</span>
 								<p>{{ data.BoardTitle }}</p>
 							</div>
 							<div class="class_detail_commu_list_text_board_comment">
@@ -868,19 +874,59 @@
 						</div>
 					
 						<div v-if="data.UserID == $store.state.UserID">
-							<div v-if="data.BoardID == updateClassQuestionBoardID" class="class_detail_community_user_button">
-								<div class="class_detail_rating_user_updated_button">
-									<button @click="updateClassQuestion(data)">수정</button>
+							<div class="class_detail_commu_list_user" style="font-size: 13px;">
+								<div class="class_detail_commu_user_id">
+									<div class="class_detail_rating_user_id_info">
+										<p class="class_detail_rating_user_email">{{ hideEmail(data.UserEmail) }}</p>
+									</div>
+									<div class="class_detail_rating_user_date">
+										<p>{{ data.created_at }}</p>
+									</div>
 								</div>
-								<!-- <div class="class_detail_rating_user_delete_button">
-								</div> -->
-								<button class="class_detail_rating_user_delete_button" style="line-height: 25px; color: #fff; background-color: #2B3044; font-weight: 700; border:" @click="updateClassQuestion(false)">취소</button>
+								
+
+								<div v-if="data.BoardID == updateClassQuestionBoardID" class="class_detail_community_user_button">
+									<div class="class_detail_rating_user_updated_button">
+										<button @click="updateClassQuestion(data)">수정</button>
+									</div>
+									<button class="class_detail_rating_user_delete_button" style="line-height: 25px; color: #fff; background-color: #2B3044; font-weight: 700; border:" @click="updateClassQuestion(false)">취소</button>
+								</div>
+								<div v-else class="class_detail_community_user_button">
+									<div class="class_detail_rating_user_updated_button">
+										<button @click="updateClassQuestionBoardID = data.BoardID">수정</button>
+									</div>
+									<button @click="delClassQuestion(data)" class="class_detail_rating_user_delete_button">
+										<div class="class_detail_rating_user_delete_trash">
+											<div class="class_detail_rating_user_delete_top">
+												<div class="class_detail_rating_user_delete_paper"></div>
+											</div>
+											<div class="class_detail_rating_user_delete_box"></div>
+											<div class="class_detail_rating_user_delete_check">
+												<svg viewBox="0 0 8 6">
+													<polyline points="1 3.4 2.71428571 5 7 1"></polyline>
+												</svg>
+											</div>
+										</div>
+										<span>삭제</span>
+									</button>
+								</div>
+
 							</div>
-							<div v-else class="class_detail_community_user_button">
-								<div class="class_detail_rating_user_updated_button">
+							<!-- <div v-if="data.BoardID == updateClassQuestionBoardID" class="class_detail_community_user_button"> -->
+								<!-- <div class="class_detail_rating_user_updated_button">
+									<button @click="updateClassQuestion(data)">수정</button>
+								</div> -->
+
+								<!-- 안살림 <div class="class_detail_rating_user_delete_button">
+								</div> -->
+								
+								<!-- <button class="class_detail_rating_user_delete_button" style="line-height: 25px; color: #fff; background-color: #2B3044; font-weight: 700; border:" @click="updateClassQuestion(false)">취소</button> -->
+							<!-- </div> -->
+							<!-- <div v-else class="class_detail_community_user_button"> -->
+								<!-- <div class="class_detail_rating_user_updated_button">
 									<button @click="updateClassQuestionBoardID = data.BoardID">수정</button>
-								</div>
-								<button @click="delClassQuestion(data)" :class="{ 'class_detail_rating_user_delete_button': true, ['boardID_' + data.BoardID]: true }">
+								</div> -->
+								<!-- <button @click="delClassQuestion(data)" class="class_detail_rating_user_delete_button">
 									<div class="class_detail_rating_user_delete_trash">
 										<div class="class_detail_rating_user_delete_top">
 											<div class="class_detail_rating_user_delete_paper"></div>
@@ -893,11 +939,11 @@
 										</div>
 									</div>
 									<span>삭제</span>
-								</button>
-								<!-- <div class="class_detail_rating_user_delete_button">
+								</button> -->
+								<!-- 안살림 <div class="class_detail_rating_user_delete_button">
 									<button @click="delClassQuestion(data)">삭제</button>
 								</div> -->
-							</div>
+							<!-- </div> -->
 						</div>
 					</div>	
 
