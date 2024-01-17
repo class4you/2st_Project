@@ -34,13 +34,13 @@ class BoardController extends Controller
             ->select('boards.BoardID', 'boards.created_at', 'boards.UserID', 'boards.BoardTitle', 'boards.BoardComment', 'boards.BoardView', 'boards.BoardRecommended', 'boards.BoardNotRecommended', 'boards.BoardFlg', 'users.UserEmail', 'com.cnt', 'board_languagelinks.HTMLFlg', 'board_languagelinks.CSSFlg', 'board_languagelinks.JavaScriptFlg', 'board_languagelinks.PHPFlg', 'board_languagelinks.JAVAFlg', 'board_languagelinks.DataBaseFlg');
             // 
 
-        if($request->input('ClassID') == null) {
-            $boardDataQuery->whereNull('boards.ClassID');
-        } else if($request->input('ClassID') !== null) {
-            $boardDataQuery->where('boards.ClassID', $request->input('ClassID'));
-        }
-        // $boardDataQuery = Board::join('users', 'boards.UserID', 'users.UserID');
-        // ->orderBy('boards.created_at', 'desc');
+        // if($request->input('ClassID') == null) {
+        //     $boardDataQuery->whereNull('boards.ClassID');
+        // } else if($request->input('ClassID') !== null) {
+        //     $boardDataQuery->where('boards.ClassID', $request->input('ClassID'));
+        // }
+        // // $boardDataQuery = Board::join('users', 'boards.UserID', 'users.UserID');
+        // // ->orderBy('boards.created_at', 'desc');
     
         // 게시물 당 댓글 수를 계산하기 위한 쿼리
         $commentCountQuery = Board::Join('comments', 'boards.BoardID', 'comments.BoardID')
@@ -113,6 +113,7 @@ class BoardController extends Controller
         // 페이징 처리
         $boardData = $boardDataQuery->orderBy('boards.created_at', 'desc')->paginate(10);
 
+        Log::debug($boardData);
         // 유저 이메일값과 코멘트 값 갯수를 내림차순으로
         $userCntData = User::select('users.UserEmail', DB::raw('count(*) as cnt'))
             ->join('comments', 'users.UserID', 'comments.UserID')

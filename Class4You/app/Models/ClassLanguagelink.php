@@ -12,4 +12,9 @@ class ClassLanguagelink extends Model
     public function language() {
         return $this->belongsTo(ClassLanguage::class, 'ClassLanguageID');
     }
+
+    protected $fillable = [
+        'ClassID',
+        'ClassLanguageID',
+    ];
 }

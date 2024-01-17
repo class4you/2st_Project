@@ -21,9 +21,9 @@ return new class extends Migration
             $table->string('UserName', 50);
             $table->string('UserPhoneNumber', 20);
             $table->date('UserBirthDate');
-            $table->string('UserPostcode');
-            $table->string('UserRoadAddress');
-            $table->string('UserDetailedAddress');
+            $table->string('UserPostcode')->nullable();
+            $table->string('UserRoadAddress')->nullable();
+            $table->string('UserDetailedAddress')->nullable();
             $table->char('UserTermsofUse',1)->default(0);
             $table->char('UserPrivacy',1)->default(0);
             $table->timestamps();

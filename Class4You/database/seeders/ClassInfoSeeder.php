@@ -519,7 +519,7 @@ class ClassInfoSeeder extends Seeder
                     'ClassDescription' => $ClassDescription[$Index],
                     'ClassIntroduction' => $ClassIntroduction[$Index],
                     'ClassPoint' => $ClassPoint[$Index],
-                    'ClassPrice' => 0,
+                    'ClassPrice' => 47600,
                 ]);
                 $Index++;
             }
@@ -634,7 +634,7 @@ class ClassInfoSeeder extends Seeder
                     'ClassDescription' => $ClassDescription[$Index],
                     'ClassIntroduction' => $ClassIntroduction[$Index],
                     'ClassPoint' => $ClassPoint[$Index],
-                    'ClassPrice' => 0,
+                    'ClassPrice' => 130000,
                 ]);
                 $Index++;
             }
@@ -992,7 +992,7 @@ class ClassInfoSeeder extends Seeder
                     'ClassDescription' => $ClassDescription[$Index],
                     'ClassIntroduction' => $ClassIntroduction[$Index],
                     'ClassPoint' => $ClassPoint[$Index],
-                    'ClassPrice' => 0,
+                    'ClassPrice' => 47600,
                 ]);
                 $Index++;
             }
@@ -1107,7 +1107,7 @@ class ClassInfoSeeder extends Seeder
                     'ClassDescription' => $ClassDescription[$Index],
                     'ClassIntroduction' => $ClassIntroduction[$Index],
                     'ClassPoint' => $ClassPoint[$Index],
-                    'ClassPrice' => 0,
+                    'ClassPrice' => 130000,
                 ]);
                 $Index++;
             }
@@ -1566,7 +1566,7 @@ class ClassInfoSeeder extends Seeder
                     'ClassDescription' => $ClassDescription[$Index],
                     'ClassIntroduction' => $ClassIntroduction[$Index],
                     'ClassPoint' => $ClassPoint[$Index],
-                    'ClassPrice' => 0,
+                    'ClassPrice' => 47600,
                 ]);
                 $Index++;
             }
@@ -1719,7 +1719,7 @@ class ClassInfoSeeder extends Seeder
                     'ClassDescription' => $ClassDescription[$Index],
                     'ClassIntroduction' => $ClassIntroduction[$Index],
                     'ClassPoint' => $ClassPoint[$Index],
-                    'ClassPrice' => 0,
+                    'ClassPrice' => 130000,
                 ]);
                 $Index++;
             }
@@ -2080,7 +2080,7 @@ class ClassInfoSeeder extends Seeder
                     'ClassDescription' => $ClassDescription[$Index],
                     'ClassIntroduction' => $ClassIntroduction[$Index],
                     'ClassPoint' => $ClassPoint[$Index],
-                    'ClassPrice' => 0,
+                    'ClassPrice' => 47600,
                 ]);
                 $Index++;
             }
@@ -2201,7 +2201,7 @@ class ClassInfoSeeder extends Seeder
                     'ClassDescription' => $ClassDescription[$Index],
                     'ClassIntroduction' => $ClassIntroduction[$Index],
                     'ClassPoint' => $ClassPoint[$Index],
-                    'ClassPrice' => 0,
+                    'ClassPrice' => 130000,
                 ]);
                 $Index++;
             }
@@ -2611,7 +2611,7 @@ class ClassInfoSeeder extends Seeder
                     'ClassDescription' => $ClassDescription[$Index],
                     'ClassIntroduction' => $ClassIntroduction[$Index],
                     'ClassPoint' => $ClassPoint[$Index],
-                    'ClassPrice' => 0,
+                    'ClassPrice' => 47600,
                 ]);
                 $Index++;
             }
@@ -2748,7 +2748,7 @@ class ClassInfoSeeder extends Seeder
                     'ClassDescription' => $ClassDescription[$Index],
                     'ClassIntroduction' => $ClassIntroduction[$Index],
                     'ClassPoint' => $ClassPoint[$Index],
-                    'ClassPrice' => 0,
+                    'ClassPrice' => 130000,
                 ]);
                 $Index++;
             }
@@ -3207,7 +3207,7 @@ class ClassInfoSeeder extends Seeder
                     'ClassDescription' => $ClassDescription[$Index],
                     'ClassIntroduction' => $ClassIntroduction[$Index],
                     'ClassPoint' => $ClassPoint[$Index],
-                    'ClassPrice' => 0,
+                    'ClassPrice' => 47600,
                 ]);
                 $Index++;
             }
@@ -3360,7 +3360,7 @@ class ClassInfoSeeder extends Seeder
                     'ClassDescription' => $ClassDescription[$Index],
                     'ClassIntroduction' => $ClassIntroduction[$Index],
                     'ClassPoint' => $ClassPoint[$Index],
-                    'ClassPrice' => 0,
+                    'ClassPrice' => 130000,
                 ]);
                 $Index++;
             }

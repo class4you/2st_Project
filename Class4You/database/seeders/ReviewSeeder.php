@@ -18,9 +18,9 @@ class ReviewSeeder extends Seeder
     {
         $faker = Faker::create();
         foreach (range(1, 10) as $index) {
-            $date = $faker->dateTimeBetween('-1 years');
+            $date = $faker->dateTimeBetween('-2 years');
             $rating = $faker->numberBetween(1, 5);
-            $enrollment = $faker->numberBetween(1, 249);
+            $enrollment = $faker->numberBetween(1, 50000);
 
             Review::create([
                 'EnrollmentID' => $enrollment,
@@ -33,9 +33,9 @@ EOT,
                 'created_at' => $date,
             ]);
 
-            $date = $faker->dateTimeBetween('-1 years');
+            $date = $faker->dateTimeBetween('-2 years');
             $rating = $faker->numberBetween(1, 5);
-            $enrollment = $faker->numberBetween(1, 249);
+            $enrollment = $faker->numberBetween(1, 50000);
 
             Review::create([
                 'EnrollmentID' => $enrollment,
@@ -47,9 +47,9 @@ EOT,
                 'created_at' => $date,
             ]);
 
-            $date = $faker->dateTimeBetween('-1 years');
+            $date = $faker->dateTimeBetween('-2 years');
             $rating = $faker->numberBetween(1, 5);
-            $enrollment = $faker->numberBetween(1, 249);
+            $enrollment = $faker->numberBetween(1, 50000);
 
             Review::create([
                 'EnrollmentID' => $enrollment,
@@ -64,9 +64,9 @@ EOT,
                 'created_at' => $date,
             ]);
 
-            $date = $faker->dateTimeBetween('-1 years');
+            $date = $faker->dateTimeBetween('-2 years');
             $rating = $faker->numberBetween(1, 5);
-            $enrollment = $faker->numberBetween(1, 249);
+            $enrollment = $faker->numberBetween(1, 50000);
 
             Review::create([
                 'EnrollmentID' => $enrollment,
@@ -77,9 +77,9 @@ EOT,
                 'created_at' => $date,
             ]);
 
-            $date = $faker->dateTimeBetween('-1 years');
+            $date = $faker->dateTimeBetween('-2 years');
             $rating = $faker->numberBetween(1, 5);
-            $enrollment = $faker->numberBetween(1, 249);
+            $enrollment = $faker->numberBetween(1, 50000);
 
             Review::create([
                 'EnrollmentID' => $enrollment,
@@ -90,9 +90,9 @@ EOT,
                 'created_at' => $date,
             ]);
 
-            $date = $faker->dateTimeBetween('-1 years');
+            $date = $faker->dateTimeBetween('-2 years');
             $rating = $faker->numberBetween(1, 5);
-            $enrollment = $faker->numberBetween(1, 249);
+            $enrollment = $faker->numberBetween(1, 50000);
 
             Review::create([
                 'EnrollmentID' => $enrollment,
@@ -104,9 +104,9 @@ EOT,
                 'created_at' => $date,
             ]);
 
-            $date = $faker->dateTimeBetween('-1 years');
+            $date = $faker->dateTimeBetween('-2 years');
             $rating = $faker->numberBetween(1, 5);
-            $enrollment = $faker->numberBetween(1, 249);
+            $enrollment = $faker->numberBetween(1, 50000);
 
             Review::create([
                 'EnrollmentID' => $enrollment,
@@ -118,9 +118,9 @@ EOT,
                 'created_at' => $date,
             ]);
 
-            $date = $faker->dateTimeBetween('-1 years');
+            $date = $faker->dateTimeBetween('-2 years');
             $rating = $faker->numberBetween(1, 5);
-            $enrollment = $faker->numberBetween(1, 249);
+            $enrollment = $faker->numberBetween(1, 50000);
 
             Review::create([
                 'EnrollmentID' => $enrollment,
@@ -136,9 +136,9 @@ EOT,
                 'created_at' => $date,
             ]);
 
-            $date = $faker->dateTimeBetween('-1 years');
+            $date = $faker->dateTimeBetween('-2 years');
             $rating = $faker->numberBetween(1, 5);
-            $enrollment = $faker->numberBetween(1, 249);
+            $enrollment = $faker->numberBetween(1, 50000);
 
             Review::create([
                 'EnrollmentID' => $enrollment,
@@ -153,9 +153,9 @@ EOT,
                 'created_at' => $date,
             ]);
 
-            $date = $faker->dateTimeBetween('-1 years');
+            $date = $faker->dateTimeBetween('-2 years');
             $rating = $faker->numberBetween(1, 5);
-            $enrollment = $faker->numberBetween(1, 249);
+            $enrollment = $faker->numberBetween(1, 50000);
 
             Review::create([
                 'EnrollmentID' => $enrollment,
@@ -167,9 +167,9 @@ EOT,
                 'created_at' => $date,
             ]);
 
-            $date = $faker->dateTimeBetween('-1 years');
+            $date = $faker->dateTimeBetween('-2 years');
             $rating = $faker->numberBetween(1, 5);
-            $enrollment = $faker->numberBetween(1, 249);
+            $enrollment = $faker->numberBetween(1, 50000);
 
             Review::create([
                 'EnrollmentID' => $enrollment,
@@ -184,9 +184,9 @@ EOT,
                 'created_at' => $date,
             ]);
 
-            $date = $faker->dateTimeBetween('-1 years');
+            $date = $faker->dateTimeBetween('-2 years');
             $rating = $faker->numberBetween(1, 5);
-            $enrollment = $faker->numberBetween(1, 249);
+            $enrollment = $faker->numberBetween(1, 50000);
 
             Review::create([
                 'EnrollmentID' => $enrollment,
@@ -198,9 +198,9 @@ EOT,
                 'created_at' => $date,
             ]);
 
-            $date = $faker->dateTimeBetween('-1 years');
+            $date = $faker->dateTimeBetween('-2 years');
             $rating = $faker->numberBetween(1, 5);
-            $enrollment = $faker->numberBetween(1, 249);
+            $enrollment = $faker->numberBetween(1, 50000);
 
             Review::create([
                 'EnrollmentID' => $enrollment,
@@ -213,9 +213,9 @@ EOT,
                 'created_at' => $date,
             ]);
 
-            $date = $faker->dateTimeBetween('-1 years');
+            $date = $faker->dateTimeBetween('-2 years');
             $rating = $faker->numberBetween(1, 5);
-            $enrollment = $faker->numberBetween(1, 249);
+            $enrollment = $faker->numberBetween(1, 50000);
 
             Review::create([
                 'EnrollmentID' => $enrollment,
@@ -228,9 +228,9 @@ EOT,
                 'created_at' => $date,
             ]);
 
-            $date = $faker->dateTimeBetween('-1 years');
+            $date = $faker->dateTimeBetween('-2 years');
             $rating = $faker->numberBetween(1, 5);
-            $enrollment = $faker->numberBetween(1, 249);
+            $enrollment = $faker->numberBetween(1, 50000);
 
             Review::create([
                 'EnrollmentID' => $enrollment,
@@ -249,9 +249,9 @@ EOT,
                 'created_at' => $date,
             ]);
 
-            $date = $faker->dateTimeBetween('-1 years');
+            $date = $faker->dateTimeBetween('-2 years');
             $rating = $faker->numberBetween(1, 5);
-            $enrollment = $faker->numberBetween(1, 249);
+            $enrollment = $faker->numberBetween(1, 50000);
             
             Review::create([
                 'EnrollmentID' => $enrollment,
@@ -263,9 +263,9 @@ EOT,
                 'created_at' => $date,
             ]);
 
-            $date = $faker->dateTimeBetween('-1 years');
+            $date = $faker->dateTimeBetween('-2 years');
             $rating = $faker->numberBetween(1, 5);
-            $enrollment = $faker->numberBetween(1, 249);
+            $enrollment = $faker->numberBetween(1, 50000);
             
             Review::create([
                 'EnrollmentID' => $enrollment,
@@ -279,9 +279,9 @@ EOT,
                 'created_at' => $date,
             ]);
             
-            $date = $faker->dateTimeBetween('-1 years');
+            $date = $faker->dateTimeBetween('-2 years');
             $rating = $faker->numberBetween(1, 5);
-            $enrollment = $faker->numberBetween(1, 249);
+            $enrollment = $faker->numberBetween(1, 50000);
 
             Review::create([
                 'EnrollmentID' => $enrollment,
@@ -294,9 +294,9 @@ EOT,
                 'created_at' => $date,
             ]);
 
-            $date = $faker->dateTimeBetween('-1 years');
+            $date = $faker->dateTimeBetween('-2 years');
             $rating = $faker->numberBetween(1, 5);
-            $enrollment = $faker->numberBetween(1, 249);
+            $enrollment = $faker->numberBetween(1, 50000);
 
             Review::create([
                 'EnrollmentID' => $enrollment,
@@ -308,9 +308,9 @@ EOT,
                 'created_at' => $date,
             ]);
 
-            $date = $faker->dateTimeBetween('-1 years');
+            $date = $faker->dateTimeBetween('-2 years');
             $rating = $faker->numberBetween(1, 5);
-            $enrollment = $faker->numberBetween(1, 249);
+            $enrollment = $faker->numberBetween(1, 50000);
 
             Review::create([
                 'EnrollmentID' => $enrollment,
@@ -323,9 +323,9 @@ EOT,
                 'created_at' => $date,
             ]);
 
-            $date = $faker->dateTimeBetween('-1 years');
+            $date = $faker->dateTimeBetween('-2 years');
             $rating = $faker->numberBetween(1, 5);
-            $enrollment = $faker->numberBetween(1, 249);
+            $enrollment = $faker->numberBetween(1, 50000);
 
             Review::create([
                 'EnrollmentID' => $enrollment,
@@ -340,9 +340,9 @@ EOT,
                 'created_at' => $date,
             ]);
 
-            $date = $faker->dateTimeBetween('-1 years');
+            $date = $faker->dateTimeBetween('-2 years');
             $rating = $faker->numberBetween(1, 5);
-            $enrollment = $faker->numberBetween(1, 249);
+            $enrollment = $faker->numberBetween(1, 50000);
 
             Review::create([
                 'EnrollmentID' => $enrollment,
@@ -355,9 +355,9 @@ EOT,
                 'created_at' => $date,
             ]);
 
-            $date = $faker->dateTimeBetween('-1 years');
+            $date = $faker->dateTimeBetween('-2 years');
             $rating = $faker->numberBetween(1, 5);
-            $enrollment = $faker->numberBetween(1, 249);
+            $enrollment = $faker->numberBetween(1, 50000);
 
             Review::create([
                 'EnrollmentID' => $enrollment,
@@ -369,9 +369,9 @@ EOT,
                 'created_at' => $date,
             ]);
 
-            $date = $faker->dateTimeBetween('-1 years');
+            $date = $faker->dateTimeBetween('-2 years');
             $rating = $faker->numberBetween(1, 5);
-            $enrollment = $faker->numberBetween(1, 249);
+            $enrollment = $faker->numberBetween(1, 50000);
 
             Review::create([
                 'EnrollmentID' => $enrollment,
@@ -383,9 +383,9 @@ EOT,
                 'created_at' => $date,
             ]);
 
-            $date = $faker->dateTimeBetween('-1 years');
+            $date = $faker->dateTimeBetween('-2 years');
             $rating = $faker->numberBetween(1, 5);
-            $enrollment = $faker->numberBetween(1, 249);
+            $enrollment = $faker->numberBetween(1, 50000);
 
             Review::create([
                 'EnrollmentID' => $enrollment,
@@ -397,9 +397,9 @@ EOT,
                 'created_at' => $date,
             ]);
 
-            $date = $faker->dateTimeBetween('-1 years');
+            $date = $faker->dateTimeBetween('-2 years');
             $rating = $faker->numberBetween(1, 5);
-            $enrollment = $faker->numberBetween(1, 249);
+            $enrollment = $faker->numberBetween(1, 50000);
 
             Review::create([
                 'EnrollmentID' => $enrollment,
@@ -412,9 +412,9 @@ EOT,
                 'created_at' => $date,
             ]);
 
-            $date = $faker->dateTimeBetween('-1 years');
+            $date = $faker->dateTimeBetween('-2 years');
             $rating = $faker->numberBetween(1, 5);
-            $enrollment = $faker->numberBetween(1, 249);
+            $enrollment = $faker->numberBetween(1, 50000);
 
             Review::create([
                 'EnrollmentID' => $enrollment,
@@ -429,9 +429,9 @@ EOT,
                 'created_at' => $date,
             ]);
 
-            $date = $faker->dateTimeBetween('-1 years');
+            $date = $faker->dateTimeBetween('-2 years');
             $rating = $faker->numberBetween(1, 5);
-            $enrollment = $faker->numberBetween(1, 249);
+            $enrollment = $faker->numberBetween(1, 50000);
 
             Review::create([
                 'EnrollmentID' => $enrollment,
@@ -443,9 +443,9 @@ EOT,
                 'created_at' => $date,
             ]);
 
-            $date = $faker->dateTimeBetween('-1 years');
+            $date = $faker->dateTimeBetween('-2 years');
             $rating = $faker->numberBetween(1, 5);
-            $enrollment = $faker->numberBetween(1, 249);
+            $enrollment = $faker->numberBetween(1, 50000);
 
             Review::create([
                 'EnrollmentID' => $enrollment,
@@ -466,9 +466,9 @@ EOT,
                 'created_at' => $date,
             ]);
 
-            $date = $faker->dateTimeBetween('-1 years');
+            $date = $faker->dateTimeBetween('-2 years');
             $rating = $faker->numberBetween(1, 5);
-            $enrollment = $faker->numberBetween(1, 249);
+            $enrollment = $faker->numberBetween(1, 50000);
 
             Review::create([
                 'EnrollmentID' => $enrollment,
@@ -479,9 +479,9 @@ EOT,
                 'created_at' => $date,
             ]);
 
-            $date = $faker->dateTimeBetween('-1 years');
+            $date = $faker->dateTimeBetween('-2 years');
             $rating = $faker->numberBetween(1, 5);
-            $enrollment = $faker->numberBetween(1, 249);
+            $enrollment = $faker->numberBetween(1, 50000);
 
             Review::create([
                 'EnrollmentID' => $enrollment,
@@ -496,9 +496,9 @@ EOT,
                 'created_at' => $date,
             ]);
 
-            $date = $faker->dateTimeBetween('-1 years');
+            $date = $faker->dateTimeBetween('-2 years');
             $rating = $faker->numberBetween(1, 5);
-            $enrollment = $faker->numberBetween(1, 249);
+            $enrollment = $faker->numberBetween(1, 50000);
 
             Review::create([
                 'EnrollmentID' => $enrollment,
@@ -513,9 +513,9 @@ EOT,
                 'created_at' => $date,
             ]);
 
-            $date = $faker->dateTimeBetween('-1 years');
+            $date = $faker->dateTimeBetween('-2 years');
             $rating = $faker->numberBetween(1, 5);
-            $enrollment = $faker->numberBetween(1, 249);
+            $enrollment = $faker->numberBetween(1, 50000);
 
             Review::create([
                 'EnrollmentID' => $enrollment,
@@ -528,9 +528,9 @@ EOT,
                 'created_at' => $date,
             ]);
 
-            $date = $faker->dateTimeBetween('-1 years');
+            $date = $faker->dateTimeBetween('-2 years');
             $rating = $faker->numberBetween(1, 5);
-            $enrollment = $faker->numberBetween(1, 249);
+            $enrollment = $faker->numberBetween(1, 50000);
 
             Review::create([
                 'EnrollmentID' => $enrollment,
@@ -544,9 +544,9 @@ EOT,
                 'created_at' => $date,
             ]);
             
-            $date = $faker->dateTimeBetween('-1 years');
+            $date = $faker->dateTimeBetween('-2 years');
             $rating = $faker->numberBetween(1, 5);
-            $enrollment = $faker->numberBetween(1, 249);
+            $enrollment = $faker->numberBetween(1, 50000);
 
             Review::create([
                 'EnrollmentID' => $enrollment,
@@ -557,9 +557,9 @@ EOT,
                 'created_at' => $date,
             ]);
 
-            $date = $faker->dateTimeBetween('-1 years');
+            $date = $faker->dateTimeBetween('-2 years');
             $rating = $faker->numberBetween(1, 5);
-            $enrollment = $faker->numberBetween(1, 249);
+            $enrollment = $faker->numberBetween(1, 50000);
 
             Review::create([
                 'EnrollmentID' => $enrollment,
@@ -571,9 +571,9 @@ EOT,
                 'created_at' => $date,
             ]);
 
-            $date = $faker->dateTimeBetween('-1 years');
+            $date = $faker->dateTimeBetween('-2 years');
             $rating = $faker->numberBetween(1, 5);
-            $enrollment = $faker->numberBetween(1, 249);
+            $enrollment = $faker->numberBetween(1, 50000);
 
             Review::create([
                 'EnrollmentID' => $enrollment,
@@ -586,9 +586,9 @@ EOT,
                 'created_at' => $date,
             ]);
 
-            $date = $faker->dateTimeBetween('-1 years');
+            $date = $faker->dateTimeBetween('-2 years');
             $rating = $faker->numberBetween(1, 5);
-            $enrollment = $faker->numberBetween(1, 249);
+            $enrollment = $faker->numberBetween(1, 50000);
 
             Review::create([
                 'EnrollmentID' => $enrollment,
@@ -599,9 +599,9 @@ EOT,
                 'created_at' => $date,
             ]);
 
-            $date = $faker->dateTimeBetween('-1 years');
+            $date = $faker->dateTimeBetween('-2 years');
             $rating = $faker->numberBetween(1, 5);
-            $enrollment = $faker->numberBetween(1, 249);
+            $enrollment = $faker->numberBetween(1, 50000);
 
             Review::create([
                 'EnrollmentID' => $enrollment,
@@ -615,9 +615,9 @@ EOT,
             ]);
 
             
-            $date = $faker->dateTimeBetween('-1 years');
+            $date = $faker->dateTimeBetween('-2 years');
             $rating = $faker->numberBetween(1, 5);
-            $enrollment = $faker->numberBetween(1, 249);
+            $enrollment = $faker->numberBetween(1, 50000);
 
             Review::create([
                 'EnrollmentID' => $enrollment,
@@ -630,9 +630,9 @@ EOT,
                 'created_at' => $date,
             ]);
 
-            $date = $faker->dateTimeBetween('-1 years');
+            $date = $faker->dateTimeBetween('-2 years');
             $rating = $faker->numberBetween(1, 5);
-            $enrollment = $faker->numberBetween(1, 249);
+            $enrollment = $faker->numberBetween(1, 50000);
 
             Review::create([
                 'EnrollmentID' => $enrollment,
@@ -645,9 +645,9 @@ EOT,
                 'created_at' => $date,
             ]);
 
-            $date = $faker->dateTimeBetween('-1 years');
+            $date = $faker->dateTimeBetween('-2 years');
             $rating = $faker->numberBetween(1, 5);
-            $enrollment = $faker->numberBetween(1, 249);
+            $enrollment = $faker->numberBetween(1, 50000);
 
             Review::create([
                 'EnrollmentID' => $enrollment,
@@ -661,9 +661,9 @@ EOT,
                 'created_at' => $date,
             ]);
 
-            $date = $faker->dateTimeBetween('-1 years');
+            $date = $faker->dateTimeBetween('-2 years');
             $rating = $faker->numberBetween(1, 5);
-            $enrollment = $faker->numberBetween(1, 249);
+            $enrollment = $faker->numberBetween(1, 50000);
 
             Review::create([
                 'EnrollmentID' => $enrollment,
@@ -677,9 +677,9 @@ EOT,
                 'created_at' => $date,
             ]);
 
-            $date = $faker->dateTimeBetween('-1 years');
+            $date = $faker->dateTimeBetween('-2 years');
             $rating = $faker->numberBetween(1, 5);
-            $enrollment = $faker->numberBetween(1, 249);
+            $enrollment = $faker->numberBetween(1, 50000);
 
             Review::create([
                 'EnrollmentID' => $enrollment,
@@ -692,9 +692,9 @@ EOT,
                 'created_at' => $date,
             ]);
 
-            $date = $faker->dateTimeBetween('-1 years');
+            $date = $faker->dateTimeBetween('-2 years');
             $rating = $faker->numberBetween(1, 5);
-            $enrollment = $faker->numberBetween(1, 249);
+            $enrollment = $faker->numberBetween(1, 50000);
 
             Review::create([
                 'EnrollmentID' => $enrollment,
@@ -708,9 +708,9 @@ EOT,
                 'created_at' => $date,
             ]);
 
-            $date = $faker->dateTimeBetween('-1 years');
+            $date = $faker->dateTimeBetween('-2 years');
             $rating = $faker->numberBetween(1, 5);
-            $enrollment = $faker->numberBetween(1, 249);
+            $enrollment = $faker->numberBetween(1, 50000);
 
             Review::create([
                 'EnrollmentID' => $enrollment,
@@ -725,9 +725,9 @@ EOT,
                 'created_at' => $date,
             ]);
 
-            $date = $faker->dateTimeBetween('-1 years');
+            $date = $faker->dateTimeBetween('-2 years');
             $rating = $faker->numberBetween(1, 5);
-            $enrollment = $faker->numberBetween(1, 249);
+            $enrollment = $faker->numberBetween(1, 50000);
 
             Review::create([
                 'EnrollmentID' => $enrollment,
@@ -742,9 +742,9 @@ EOT,
                 'created_at' => $date,
             ]);
 
-            $date = $faker->dateTimeBetween('-1 years');
+            $date = $faker->dateTimeBetween('-2 years');
             $rating = $faker->numberBetween(1, 5);
-            $enrollment = $faker->numberBetween(1, 249);
+            $enrollment = $faker->numberBetween(1, 50000);
 
             Review::create([
                 'EnrollmentID' => $enrollment,
@@ -759,9 +759,9 @@ EOT,
                 'created_at' => $date,
             ]);
             
-            $date = $faker->dateTimeBetween('-1 years');
+            $date = $faker->dateTimeBetween('-2 years');
             $rating = $faker->numberBetween(1, 5);
-            $enrollment = $faker->numberBetween(1, 249);
+            $enrollment = $faker->numberBetween(1, 50000);
 
             Review::create([
                 'EnrollmentID' => $enrollment,
@@ -773,9 +773,9 @@ EOT,
                 'created_at' => $date,
             ]);
 
-            $date = $faker->dateTimeBetween('-1 years');
+            $date = $faker->dateTimeBetween('-2 years');
             $rating = $faker->numberBetween(1, 5);
-            $enrollment = $faker->numberBetween(1, 249);
+            $enrollment = $faker->numberBetween(1, 50000);
 
             Review::create([
                 'EnrollmentID' => $enrollment,
@@ -788,9 +788,9 @@ EOT,
                 'created_at' => $date,
             ]);
 
-            $date = $faker->dateTimeBetween('-1 years');
+            $date = $faker->dateTimeBetween('-2 years');
             $rating = $faker->numberBetween(1, 5);
-            $enrollment = $faker->numberBetween(1, 249);
+            $enrollment = $faker->numberBetween(1, 50000);
 
             Review::create([
                 'EnrollmentID' => $enrollment,
@@ -805,9 +805,9 @@ EOT,
                 'created_at' => $date,
             ]);
 
-            $date = $faker->dateTimeBetween('-1 years');
+            $date = $faker->dateTimeBetween('-2 years');
             $rating = $faker->numberBetween(1, 5);
-            $enrollment = $faker->numberBetween(1, 249);
+            $enrollment = $faker->numberBetween(1, 50000);
 
             Review::create([
                 'EnrollmentID' => $enrollment,
@@ -819,9 +819,9 @@ EOT,
                 'created_at' => $date,
             ]);
 
-            $date = $faker->dateTimeBetween('-1 years');
+            $date = $faker->dateTimeBetween('-2 years');
             $rating = $faker->numberBetween(1, 5);
-            $enrollment = $faker->numberBetween(1, 249);
+            $enrollment = $faker->numberBetween(1, 50000);
 
             Review::create([
                 'EnrollmentID' => $enrollment,
@@ -842,9 +842,9 @@ EOT,
                 'created_at' => $date,
             ]);
 
-            $date = $faker->dateTimeBetween('-1 years');
+            $date = $faker->dateTimeBetween('-2 years');
             $rating = $faker->numberBetween(1, 5);
-            $enrollment = $faker->numberBetween(1, 249);
+            $enrollment = $faker->numberBetween(1, 50000);
 
             Review::create([
                 'EnrollmentID' => $enrollment,
@@ -855,9 +855,9 @@ EOT,
                 'created_at' => $date,
             ]);
 
-            $date = $faker->dateTimeBetween('-1 years');
+            $date = $faker->dateTimeBetween('-2 years');
             $rating = $faker->numberBetween(1, 5);
-            $enrollment = $faker->numberBetween(1, 249);
+            $enrollment = $faker->numberBetween(1, 50000);
 
             Review::create([
                 'EnrollmentID' => $enrollment,
@@ -872,9 +872,9 @@ EOT,
                 'created_at' => $date,
             ]);
 
-            $date = $faker->dateTimeBetween('-1 years');
+            $date = $faker->dateTimeBetween('-2 years');
             $rating = $faker->numberBetween(1, 5);
-            $enrollment = $faker->numberBetween(1, 249);
+            $enrollment = $faker->numberBetween(1, 50000);
 
             Review::create([
                 'EnrollmentID' => $enrollment,
@@ -889,9 +889,9 @@ EOT,
                 'created_at' => $date,
             ]);
 
-            $date = $faker->dateTimeBetween('-1 years');
+            $date = $faker->dateTimeBetween('-2 years');
             $rating = $faker->numberBetween(1, 5);
-            $enrollment = $faker->numberBetween(1, 249);
+            $enrollment = $faker->numberBetween(1, 50000);
 
             Review::create([
                 'EnrollmentID' => $enrollment,
@@ -904,9 +904,9 @@ EOT,
                 'created_at' => $date,
             ]);
 
-            $date = $faker->dateTimeBetween('-1 years');
+            $date = $faker->dateTimeBetween('-2 years');
             $rating = $faker->numberBetween(1, 5);
-            $enrollment = $faker->numberBetween(1, 249);
+            $enrollment = $faker->numberBetween(1, 50000);
 
             Review::create([
                 'EnrollmentID' => $enrollment,
@@ -920,9 +920,9 @@ EOT,
                 'created_at' => $date,
             ]);
             
-            $date = $faker->dateTimeBetween('-1 years');
+            $date = $faker->dateTimeBetween('-2 years');
             $rating = $faker->numberBetween(1, 5);
-            $enrollment = $faker->numberBetween(1, 249);
+            $enrollment = $faker->numberBetween(1, 50000);
 
             Review::create([
                 'EnrollmentID' => $enrollment,
@@ -933,9 +933,9 @@ EOT,
                 'created_at' => $date,
             ]);
 
-            $date = $faker->dateTimeBetween('-1 years');
+            $date = $faker->dateTimeBetween('-2 years');
             $rating = $faker->numberBetween(1, 5);
-            $enrollment = $faker->numberBetween(1, 249);
+            $enrollment = $faker->numberBetween(1, 50000);
 
             Review::create([
                 'EnrollmentID' => $enrollment,
