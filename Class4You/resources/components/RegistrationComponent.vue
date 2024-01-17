@@ -218,7 +218,7 @@
                             <tr>
                                 <th><label for="password">password</label><span style="color: red;">*</span></th>
                                 <td>
-                                    <input type="password" id="password" name="UserPassword" v-model="frmUserData.UserPassword" @input="validateUserPassword" placeholder="영대소문자,숫자,특수문자(!@#)를 포함한 8~17자" minlength="8" maxlength="17">
+                                    <input type="password" id="password" name="UserPassword" v-model="frmUserData.UserPassword" @input="validateUserPassword" placeholder="영대소문자,숫자,특수문자(!@#)를 포함한 8~16자" minlength="8" maxlength="17">
                                     <div class="error_message" v-if="errors.UserPassword">{{ errors.UserPassword }}</div>
                                     <div class="success_message" v-else-if="!errors.UserPassword && frmUserData.UserPassword">유효한 비밀번호입니다.</div>
                                     <div class="error_message" v-else-if="RegistrationErrorMessage.UserPassword">{{ RegistrationErrorMessage.UserPassword }}</div>
