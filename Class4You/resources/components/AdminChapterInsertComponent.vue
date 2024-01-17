@@ -8,7 +8,7 @@
             <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
                 
                 <!-- Sidebar - Brand -->
-                <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+                <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/adminmain">
                     <div class="sidebar-brand-icon rotate-n-15">
                         <i class="fas fa-laugh-wink"></i>
                     </div>
@@ -305,15 +305,13 @@
                     <div class="container-fluid">
 
                         <!-- Page Heading -->
-                        <h1 class="h3 mb-2 text-gray-800">강의</h1>
-                        <p class="mb-4">DataTables is a third party plugin that is used to generate the demo table below.
-                            For more information about DataTables, please visit the <a target="_blank"
-                                href="https://datatables.net">official DataTables documentation</a>.</p>
+                        <h1 class="h3 mb-2 text-gray-800">Chapter</h1>
+                        <p class="mb-4">원하는 강의의 챕터를 업로드 할 수 있습니다. 챕터 클릭시 해당 레슨으로 이동합니다.</p>
 
                         <!-- DataTales Example -->
                         <div class="card shadow mb-4">
                             <div style="display: flex; align-items: center; justify-content: space-between;" class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">유저 정보 테이블</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">챕터 정보 테이블</h6>
                         </div>
                             <div class="card-body">
                                 <div class="table-responsive">
