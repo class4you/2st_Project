@@ -31,8 +31,8 @@ class BoardController extends Controller
             ->leftJoin('board_languagelinks', 'boards.BoardID', 'board_languagelinks.BoardID')
             // 최종적으로 보더 테이블과 유저즈, 코멘트즈들이 연결된 결과를 가져옴
             // 쉽게 설명하면 보더즈로 두 개의 테이블(유저와 코멘트)를 레프트 조인을 통해 값이 있는 애들만 불러오고 그 안에서 서브쿼리를 만들어서 콜백함수로 받아온 그룹에 보더 아이디와 보더즈의 보더 아이디와 다시 조인하는 것
-            ->select('boards.BoardID', 'boards.created_at', 'boards.UserID', 'boards.BoardTitle', 'boards.BoardComment', 'boards.BoardView', 'boards.BoardRecommended', 'boards.BoardNotRecommended', 'boards.BoardFlg', 'users.UserEmail', 'com.cnt', 'board_languagelinks.HTMLFlg', 'board_languagelinks.CSSFlg', 'board_languagelinks.JavaScriptFlg', 'board_languagelinks.PHPFlg', 'board_languagelinks.JAVAFlg', 'board_languagelinks.DataBaseFlg')
-            ->orderBy('boards.created_at', 'desc');
+            ->select('boards.BoardID', 'boards.created_at', 'boards.UserID', 'boards.BoardTitle', 'boards.BoardComment', 'boards.BoardView', 'boards.BoardRecommended', 'boards.BoardNotRecommended', 'boards.BoardFlg', 'users.UserEmail', 'com.cnt', 'board_languagelinks.HTMLFlg', 'board_languagelinks.CSSFlg', 'board_languagelinks.JavaScriptFlg', 'board_languagelinks.PHPFlg', 'board_languagelinks.JAVAFlg', 'board_languagelinks.DataBaseFlg');
+            // 
 
         if($request->input('ClassID') == null) {
             $boardDataQuery->whereNull('boards.ClassID');
@@ -111,7 +111,7 @@ class BoardController extends Controller
         }
 
         // 페이징 처리
-        $boardData = $boardDataQuery->paginate(10);
+        $boardData = $boardDataQuery->orderBy('boards.created_at', 'desc')->paginate(10);
 
         // 유저 이메일값과 코멘트 값 갯수를 내림차순으로
         $userCntData = User::select('users.UserEmail', DB::raw('count(*) as cnt'))

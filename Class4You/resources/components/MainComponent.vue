@@ -64,36 +64,77 @@
                             <h3 element="h3" class="category-menu__title"><b class="category-menu__title-bold">카테고리</b>에 따라 강의를 찾아보세요. 🙋🏻‍♀️ <span style="font-size: 15px; color:crimson;">GOOD!</span></h3>
                             <ul class="category-menu__list">
                                 <li class="category-menu__list-item">
-                                    <a href="/category_online_programming" class="category-menu__link">
+                                    <a :href="'/classboarddetail/' + 100" class="category-menu__link">
                                         <div role="img" class="category-menu__icon common-category-icon common-category-icon--large" style="mask-image: url(&quot;https://storage.googleapis.com/static.fastcampus.co.kr/prod/uploads/202107/043549-406/ico-prog-large.svg&quot;);">
                                         </div> 
                                         <span class="category-menu__text">프로그래밍</span>
                                     </a>
                                 </li>
                                 <li class="category-menu__list-item">
-                                    <a href="/category_online_datascience" class="category-menu__link">
+                                    <a :href="'/classboarddetail/' + 164" class="category-menu__link">
                                         <div role="img" class="category-menu__icon common-category-icon common-category-icon--large" style="mask-image: url(&quot;https://storage.googleapis.com/static.fastcampus.co.kr/prod/uploads/202107/043531-406/ico-data-large.svg&quot;);">
                                         </div>
                                         <span class="category-menu__text">데이터사이언스</span>
                                     </a>
                                 </li>
                                 <li class="category-menu__list-item">
-                                    <a href="/category_online_datasciencedl" class="category-menu__link">
+                                    <a :href="'/classboarddetail/' + 116" class="category-menu__link">
                                         <div role="img" class="category-menu__icon common-category-icon common-category-icon--large" style="mask-image: url(&quot;https://storage.googleapis.com/static.fastcampus.co.kr/prod/uploads/202306/024644-397/icon-category-ai.svg&quot;);">
                                         </div> 
                                         <span class="category-menu__text">인공지능</span>
                                     </a>
                                 </li>
                                 <li class="category-menu__list-item">
-                                    <a href="/category_online_dgn" class="category-menu__link">
+                                    <a :href="'/classboarddetail/' + 6" class="category-menu__link">
                                         <div role="img" class="category-menu__icon common-category-icon common-category-icon--large" style="mask-image: url(&quot;https://storage.googleapis.com/static.fastcampus.co.kr/prod/uploads/202107/043648-406/ico-dgn-large.svg&quot;);">
                                         </div>
                                         <span class="category-menu__text">디자인</span>
                                     </a>
                                 </li>
                                 <li class="category-menu__list-item">
-                                    <a href="/category_online_video" class="category-menu__link">
-                                        <div role="img" class="category-menu__icon common-category-icon common-category-icon--large" style="mask-image: url(&quot;https://storage.googleapis.com/static.fastcampus.co.kr/prod/uploads/202107/043744-406/ico-video-large.svg&quot;);"></div> <span class="category-menu__text">영상/3D</span></a></li><li class="category-menu__list-item"><a href="/category_online_illust" class="category-menu__link"><div role="img" class="category-menu__icon common-category-icon common-category-icon--large" style="mask-image: url(&quot;https://storage.googleapis.com/static.fastcampus.co.kr/prod/uploads/202301/091216-17/brushicon-48.png&quot;);"></div> <span class="category-menu__text">일러스트</span></a></li><li class="category-menu__list-item"><a href="/category_online_finance" class="category-menu__link"><div role="img" class="category-menu__icon common-category-icon common-category-icon--large" style="mask-image: url(&quot;https://storage.googleapis.com/static.fastcampus.co.kr/prod/uploads/202107/043809-406/ico-fin-large.svg&quot;);"></div> <span class="category-menu__text">금융/투자</span></a></li><li class="category-menu__list-item"><a href="/category_online_marketing" class="category-menu__link"><div role="img" class="category-menu__icon common-category-icon common-category-icon--large" style="mask-image: url(&quot;https://storage.googleapis.com/static.fastcampus.co.kr/prod/uploads/202107/043837-406/ico-mktg-large.svg&quot;);"></div> <span class="category-menu__text">마케팅</span></a></li><li class="category-menu__list-item"><a href="/category_online_biz" class="category-menu__link"><div role="img" class="category-menu__icon common-category-icon common-category-icon--large" style="mask-image: url(&quot;https://storage.googleapis.com/static.fastcampus.co.kr/prod/uploads/202109/110537-317/ico-product-large.svg&quot;);"></div> <span class="category-menu__text">업무 생산성</span></a></li><li class="category-menu__list-item"><a href="/category_online_bizplanning" class="category-menu__link"><div role="img" class="category-menu__icon common-category-icon common-category-icon--large" style="mask-image: url(&quot;https://storage.googleapis.com/static.fastcampus.co.kr/prod/uploads/202306/024711-397/icon-category-bizplan.svg&quot;);"></div> <span class="category-menu__text">비즈니스/기획</span></a></li><li class="category-menu__list-item"><a href="/2023branding" class="category-menu__link"><div role="img" class="category-menu__icon common-category-icon common-category-icon--large" style="mask-image: url(&quot;https://storage.googleapis.com/static.fastcampus.co.kr/prod/uploads/202312/163916-397/trophy.svg&quot;);">
+                                    <a :href="'/classboarddetail/' + 4" class="category-menu__link">
+                                        <div role="img" class="category-menu__icon common-category-icon common-category-icon--large" style="mask-image: url(&quot;https://storage.googleapis.com/static.fastcampus.co.kr/prod/uploads/202107/043744-406/ico-video-large.svg&quot;);"></div> 
+                                        <span class="category-menu__text">영상/3D</span>
+                                    </a>
+                                </li>
+                                <li class="category-menu__list-item">
+                                <a :href="'/classboarddetail/' + 33" class="category-menu__link">
+                                    <div role="img" class="category-menu__icon common-category-icon common-category-icon--large" style="mask-image: url(&quot;https://storage.googleapis.com/static.fastcampus.co.kr/prod/uploads/202301/091216-17/brushicon-48.png&quot;);">
+                                    </div>
+                                        <span class="category-menu__text">일러스트</span>
+                                    </a>
+                                </li>
+                                <li class="category-menu__list-item">
+                                    <a :href="'/classboarddetail/' + 12" class="category-menu__link">
+                                        <div role="img" class="category-menu__icon common-category-icon common-category-icon--large" style="mask-image: url(&quot;https://storage.googleapis.com/static.fastcampus.co.kr/prod/uploads/202107/043809-406/ico-fin-large.svg&quot;);">
+                                        </div> 
+                                        <span class="category-menu__text">금융/투자</span>
+                                    </a>
+                                </li>
+                                <li class="category-menu__list-item">
+                                    <a :href="'/classboarddetail/' + 19" class="category-menu__link">
+                                        <div role="img" class="category-menu__icon common-category-icon common-category-icon--large" style="mask-image: url(&quot;https://storage.googleapis.com/static.fastcampus.co.kr/prod/uploads/202107/043837-406/ico-mktg-large.svg&quot;);">
+                                        </div> 
+                                        <span class="category-menu__text">마케팅</span>
+                                    </a>
+                                </li>
+                                <li class="category-menu__list-item">
+                                    <a :href="'/classboarddetail/' + 21" class="category-menu__link">
+                                        <div role="img" class="category-menu__icon common-category-icon common-category-icon--large" style="mask-image: url(&quot;https://storage.googleapis.com/static.fastcampus.co.kr/prod/uploads/202109/110537-317/ico-product-large.svg&quot;);">
+                                        </div>
+                                        <span class="category-menu__text">업무 생산성</span>
+                                    </a>
+                                </li>
+                                <li class="category-menu__list-item">
+                                    <a :href="'/classboarddetail/' + 41" class="category-menu__link">
+                                        <div role="img" class="category-menu__icon common-category-icon common-category-icon--large" style="mask-image: url(&quot;https://storage.googleapis.com/static.fastcampus.co.kr/prod/uploads/202306/024711-397/icon-category-bizplan.svg&quot;);">
+                                        </div>
+                                        <span class="category-menu__text">비즈니스/기획</span>
+                                    </a>
+                                </li>
+                                <li class="category-menu__list-item">
+                                    <a :href="'/classboarddetail/' + 1" class="category-menu__link">
+                                        <div role="img" class="category-menu__icon common-category-icon common-category-icon--large" style="mask-image: url(&quot;https://storage.googleapis.com/static.fastcampus.co.kr/prod/uploads/202312/163916-397/trophy.svg&quot;);">
                                         </div>
                                         <span class="category-menu__text">2024 명예의전당</span>
                                     </a>

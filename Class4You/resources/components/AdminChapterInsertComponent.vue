@@ -451,6 +451,8 @@ import Swal from 'sweetalert2';
 export default {
     name: 'AdminClassInsertComponent',
 
+    props: ['ClassID'],
+
     data() {
         return {
             loading: true, // 로딩 상태를 나타내는 데이터
@@ -466,14 +468,17 @@ export default {
 
     methods: {
         fetchData(page = 1) {
-            axios.get(`/instructorclassinsertdata?page=${page}&search=${this.searchQuery}`)
+
+            axios.get('/instructorchapterinsertdata', {
+                ClassID : this.ClassID,
+            })
             .then(response => {
                 console.log(response.data)
                 // console.log(response.data.userData.data)
-                this.classData = response.data.ClassData.data;
-                this.pagination = response.data.ClassData.links;
-                this.page = response.data.ClassData.current_page;
-                this.pageChk = response.data.ClassData.current_page;
+                // this.classData = response.data.ClassData.data;
+                // this.pagination = response.data.ClassData.links;
+                // this.page = response.data.ClassData.current_page;
+                // this.pageChk = response.data.ClassData.current_page;
             })
             .catch(error => {
                 // console.error('Error fetching data:', error);

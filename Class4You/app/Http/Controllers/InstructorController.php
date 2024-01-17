@@ -390,6 +390,11 @@ class InstructorController extends Controller
         ]);
     }
 
+    public function getinstructorchapterinsertdata(Request $request) {
+        Log::debug('오냐');
+        Log::debug($request);
+
+    }
     // public function postRegistInstructor(Request $request) {
 
     //     Log::debug("request");
