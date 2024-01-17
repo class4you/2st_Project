@@ -895,7 +895,7 @@
 									<div class="class_detail_rating_user_updated_button">
 										<button @click="updateClassQuestionBoardID = data.BoardID">수정</button>
 									</div>
-									<button @click="delClassQuestion(data)" class="class_detail_rating_user_delete_button">
+									<button @click="delClassQuestion(data)" :class="{ 'class_detail_rating_user_delete_button': true, ['boardID_' + data.BoardID]: true }">
 										<div class="class_detail_rating_user_delete_trash">
 											<div class="class_detail_rating_user_delete_top">
 												<div class="class_detail_rating_user_delete_paper"></div>
@@ -1646,11 +1646,7 @@ export default {
 		
 		// 강의 질문 삭제 함수
 		async delClassQuestion(data) {
-			// console.log('강의 질문 삭제');
-			// console.log(data);
 			const button = document.querySelector('.class_detail_rating_user_delete_button.boardID_' + data.BoardID);
-			// console.log(button);
-
 			if (!button.classList.contains('delete')) {
 			button.classList.add('delete');
 			setTimeout(() => {
