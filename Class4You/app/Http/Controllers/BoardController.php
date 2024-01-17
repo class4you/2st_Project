@@ -96,19 +96,19 @@ class BoardController extends Controller
             }
         }
 
-        // // 최신순 좋아요순 댓글많은순 조회순 등
-        // if ($request->has('sort')) {
-        //     $sortData = $request->input('sort');
-        //     if($sortData == 1) {
-        //         $boardDataQuery->orderBy('boards.created_at', 'desc');
-        //     } else if($sortData == 2) {
-        //         $boardDataQuery->orderBy('com.cnt', 'desc');
-        //     } else if($sortData == 3) {
-        //         $boardDataQuery->orderBy('boards.BoardRecommended', 'desc');
-        //     } else if($sortData == 4) {
-        //         $boardDataQuery->orderBy('boards.BoardView', 'desc');
-        //     }
-        // }
+        // 최신순 좋아요순 댓글많은순 조회순 등
+        if ($request->has('sort')) {
+            $sortData = $request->input('sort');
+            if($sortData == 1) {
+                $boardDataQuery->orderBy('boards.created_at', 'desc');
+            } else if($sortData == 2) {
+                $boardDataQuery->orderBy('com.cnt', 'desc');
+            } else if($sortData == 3) {
+                $boardDataQuery->orderBy('boards.BoardRecommended', 'desc');
+            } else if($sortData == 4) {
+                $boardDataQuery->orderBy('boards.BoardView', 'desc');
+            }
+        }
 
         // 페이징 처리
         $boardData = $boardDataQuery->orderBy('boards.created_at', 'desc')->paginate(10);
