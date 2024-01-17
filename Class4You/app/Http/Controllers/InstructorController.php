@@ -423,24 +423,195 @@ class InstructorController extends Controller
     }
 
     public function getinstructormain() {
-        $currentMonth = Carbon::now()->format('m');
-        $currentYear = Carbon::now()->year;
 
-        $monthlyPaymentSum = ClassPayment::whereMonth('created_at', $currentMonth)
+        // 월간 연간 결제 금액
+        $currentMonth = date('m');
+        $currentYear = date('Y');
+
+        $monthlyPaymentSum = ClassPayment::whereMonth('created_at', '=', $currentMonth)
+            ->whereYear('created_at', '=', $currentYear)
             ->sum('PaymentAmount');
 
         $yearPaymentSum = ClassPayment::whereYear('created_at', $currentYear)
             ->sum('PaymentAmount');
-        
-        $userCount = User::count('UserID');
+        // ========================
 
+
+
+        // 총 회원 수
+        $userCount = User::count('UserID');
+        // ========================
+
+        // 총 회원 수
         $userCountDelete = User::whereNotNull('deleted_at')->withTrashed()->count('UserID');
+        // ========================
+
+        // 작년, 현재 유저 수 비교
+        // $currentYear = date('Y');
+        // $lastYear = $currentYear - 1;
+        
+        // $userCounts = User::selectRaw('YEAR(created_at) as year, MONTH(created_at) as month, COUNT(UserID) as count')
+        //     ->whereYear('created_at', '>=', $lastYear)
+        //     ->whereYear('created_at', '<=', $currentYear)
+        //     ->groupBy('year', 'month')
+        //     ->orderBy('year', 'asc')
+        //     ->orderBy('month', 'asc')
+        //     ->get();
+        
+        // $userCountsByYear = [];
+        
+        // foreach ($userCounts as $monthlyUserCount) {
+        //     $year = $monthlyUserCount->year;
+        //     $month = $monthlyUserCount->month;
+        //     $count = $monthlyUserCount->count;
+        
+        //     // 해당 년도의 배열이 없다면 새로 생성
+        //     if (!isset($userCountsByYear[$year])) {
+        //         $userCountsByYear[$year] = [];
+        //     }
+        
+        //     // 해당 월의 데이터가 없으면 0으로 초기화
+        //     for ($m = 1; $m <= 12; $m++) {
+        //         if (!array_key_exists($m, $userCountsByYear[$year])) {
+        //             $userCountsByYear[$year][$m] = 0;
+        //         }
+        //     }
+        
+        //     // 해당 월의 데이터 추가
+        //     $userCountsByYear[$year][$month] = $count;
+        // }
+
+        $currentYear = date('Y');
+        $lastYear = $currentYear - 1;
+
+        $userCounts = User::selectRaw('YEAR(created_at) as year, MONTH(created_at) as month, COUNT(UserID) as count')
+            ->whereYear('created_at', '>=', $lastYear)
+            ->whereYear('created_at', '<=', $currentYear)
+            ->groupBy('year', 'month')
+            ->orderBy('year', 'asc')
+            ->orderBy('month', 'asc')
+            ->get();
+
+        $userCountsByYear = [];
+
+        foreach ($userCounts as $monthlyUserCount) {
+            $year = $monthlyUserCount->year;
+            $month = $monthlyUserCount->month;
+            $count = $monthlyUserCount->count;
+
+            // 해당 년도의 배열이 없다면 새로 생성
+            if (!isset($userCountsByYear[$year])) {
+                $userCountsByYear[$year] = [];
+            }
+
+            // 해당 월의 데이터가 없으면 0으로 초기화
+            for ($m = 1; $m <= 12; $m++) {
+                if (!array_key_exists($m, $userCountsByYear[$year])) {
+                    $userCountsByYear[$year][$m] = 0;
+                }
+            }
+
+            // 해당 월의 데이터 추가
+            $userCountsByYear[$year][$month] = [
+                'userCount' => $count, // chapterFlagCount에 사용자 수 저장
+            ];
+        }
+
+        // ========================
+
+        // 연령대 인원 조회
+        // 'FLOOR(DATEDIFF(NOW(), UserBirthDate) / 365.25 / 10) * 10 as age_group, 이걸 통해서 사용자의 나이를 10년 단위로 그룹화
+        // groupBy('age_group')을 사용하여 나이 그룹에 따라 그룹화
+        $userAgeCounts = User::selectRaw('FLOOR(DATEDIFF(NOW(), UserBirthDate) / 365.25 / 10) * 10 as age_group, COUNT(UserID) as count')
+            ->whereNotNull('UserBirthDate')
+            ->groupBy('age_group')
+            ->orderBy('age_group', 'asc')
+            ->get();
+
+        // $userCountsByAgeGroup 배열은 나이의 키로 할당, 해당 나이 그룹에 속하는 사용자 수를 값으로 하는 연관 배열
+        $userCountsByAgeGroup = [];
+
+        // 포이치 돌려서 각 나이대에 값 할당
+        foreach ($userAgeCounts as $userAgeCount) {
+            $ageGroup = $userAgeCount->age_group;
+
+            // 해당 연령 그룹의 배열이 없다면 새로 생성
+            if (!isset($userCountsByAgeGroup[$ageGroup])) {
+                $userCountsByAgeGroup[$ageGroup] = 0;
+            }
+
+            // 해당 연령 그룹의 데이터 추가
+            $userCountsByAgeGroup[$ageGroup] += $userAgeCount->count;
+        }
+
+        // Log::debug($userCountsByAgeGroup);
+        // ========================
+
+        // 가장 인기 있는 강의 TOP 5
+        $classTopData = Enrollment::select('ClassID', \DB::raw('COUNT(UserID) as user_count'))
+            ->groupBy('ClassID')
+            ->orderByDesc('user_count')
+            ->limit(8)
+            ->get();
+            // Log::debug($classTopData);
+        // ========================
+
+        // 가장 인기 있는 언어
+        $classLanguage = Enrollment::join('class_languagelinks', 'enrollments.ClassID', '=', 'class_languagelinks.ClassID')
+            ->select('class_languagelinks.ClassLanguageID', \DB::raw('COUNT(enrollments.UserID) as user_count'))
+            ->groupBy('class_languagelinks.ClassLanguageID')
+            ->orderByDesc('user_count')
+            ->get();
+
+        // 각 언어 ID를 언어 이름으로 변환
+        $languageMapping = [
+            1 => 'HTML',
+            2 => 'CSS',
+            3 => 'JavaScript',
+            4 => 'PHP',
+            5 => 'JAVA',
+            6 => 'DataBase',
+        ];
+
+        // map함수는 컬렉션 안에 있는 각 항목에 대해서 아래 작업을 수행하고 새로운 값으로 반환하는 함수
+        // $item은 $classLanguage 컬렉션에서 각 항목을 나타냄
+        // $item->ClassLanguageID는 현재 항목의 ClassLanguageID 값을 나타냄
+        // $languageMapping[$languageID]는 $languageMapping 배열에서 아이디 값을 토대로 맞는 언어 이름 값을 찾음
+        // isset($languageMapping[$languageID]) ? $languageMapping[$languageID] : "Unknown"는 해당 언어 ID에 대응하는 언어 이름이 $languageMapping에 존재하는지 확인하고, 존재하지 않으면 "Unknown"을 사용 (삼항연산자)
+        $classLanguage = $classLanguage->map(function ($item) use ($languageMapping) {
+            $languageID = $item->ClassLanguageID;
+            $languageName = isset($languageMapping[$languageID]) ? $languageMapping[$languageID] : "Unknown";
+            
+            return [
+                'language_name' => $languageName,
+                'user_count' => $item->user_count,
+            ];
+        });
+
+        // Log::debug($ClassLanguage);
+        // ========================
+
+        // 가장 인기 있는 강의 단계
+        $classDifficultyLevels = Enrollment::join('class_infos', 'enrollments.ClassID', '=', 'class_infos.ClassID')
+            ->select('class_infos.ClassDifficultyID', \DB::raw('COUNT(enrollments.UserID) as user_count'))
+            ->groupBy('class_infos.ClassDifficultyID')
+            ->orderByDesc('user_count')
+            ->get();
+
+        // Log::debug($classDifficultyLevels);
+        // ========================
+
 
         return response()->json([
             'monthlyPaymentSum' => $monthlyPaymentSum,
             'yearPaymentSum' => $yearPaymentSum,
             'userCount' => $userCount,
             'userCountDelete' => $userCountDelete,
+            'userCountsByYear' => $userCountsByYear,
+            'userCountsByAgeGroup' => $userCountsByAgeGroup,
+            'classTopData' => $classTopData,
+            'classLanguage' => $classLanguage,
+            'classDifficultyLevels' => $classDifficultyLevels,
         ]);
     }
 

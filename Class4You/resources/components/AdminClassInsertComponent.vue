@@ -357,7 +357,7 @@
                                             <th>{{ datas.ClassID }}</th>
                                             <th>{{ datas.CategoryID }}</th>
                                             <th>{{ datas.ClassDifficultyID }}</th>
-                                            <th style="text-align: left;"><a :href="'/adminchapterinsert/' + datas.ClassID">{{ datas.ClassTitle }}</a></th>
+                                            <th style="text-align: left; color: #000;"><a :href="'/adminchapterinsert/' + datas.ClassID">{{ datas.ClassTitle }}</a></th>
                                             <th style="text-align: right;">{{ datas.ClassPrice }}원</th>
                                             <th>{{ datas.chapter_count }}개</th>
                                             <th>{{ datas.lesson_count }}개</th>

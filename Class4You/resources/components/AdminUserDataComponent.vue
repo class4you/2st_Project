@@ -307,13 +307,14 @@
                             <div class="table-responsive">
                                 <table class="table table-bordered" style="text-align: center;" id="dataTable" width="100%" cellspacing="0">
                                     <colgroup>
+                                        <col style="width: 10%;">
+                                        <col style="width: 10%;">
                                         <col style="width: 5%;">
-                                        <col style="width: 10%;">
+                                        <col style="width: 30%;">
+                                        <col style="width: 8%;">
+                                        <col style="width: 8%;">
                                         <col style="width: 5%;">
-                                        <col style="width: 20%;">
-                                        <col style="width: 10%;">
-                                        <col style="width: 10%;">
-                                        <col style="width: 10%;">
+                                        <col style="width: 5%;">
                                         <col style="width: 10%;">
                                         <col style="width: 10%;">
                                     </colgroup>
@@ -347,7 +348,8 @@
                                             <th>{{ datas.UserID }}</th>
                                             <th>{{ datas.UserEmail }}</th>
                                             <th>{{ datas.UserName }}</th>
-                                            <th>({{ datas.UserPostcode }}) {{ datas.UserRoadAddress }} {{ datas.UserDetailedAddress }}</th>
+                                            <th v-if="datas.UserPostcode && datas.UserRoadAddress && datas.UserDetailedAddress">({{ datas.UserPostcode }}) {{ datas.UserRoadAddress }} {{ datas.UserDetailedAddress }}</th>
+                                            <th v-else>주소 값이 없습니다.</th>
                                             <th>{{ datas.UserBirthDate }}</th>
                                             <th>{{ datas.created_at }}</th>
                                             <th>{{ datas.deleted_at === null ? 'X' : datas.deleted_at !== null ? 'O' : '?' }}</th>

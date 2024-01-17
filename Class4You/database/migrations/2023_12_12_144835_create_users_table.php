@@ -26,6 +26,7 @@ return new class extends Migration
             $table->string('UserDetailedAddress')->nullable();
             $table->char('UserTermsofUse',1)->default(0);
             $table->char('UserPrivacy',1)->default(0);
+            $table->char('UserState',1)->default(0);
             $table->timestamps();
             $table->softDeletes();
         });

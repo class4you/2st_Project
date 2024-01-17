@@ -76,6 +76,7 @@
                 </li>
 
 
+
                 <hr class="sidebar-divider">
 
                 <div class="text-center d-none d-md-inline">
@@ -100,6 +101,11 @@
 
                     <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
 
+                <!-- {{ classLanguage }} -->
+                <!-- {{ classDifficultyLevels }} -->
+                <!-- {{ classTopData }} -->
+                <!-- {{ userCountsByAgeGroup }} -->
+                <!-- {{ userCountsByYear }} -->
                         <!-- <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
                             <i class="fa fa-bars"></i>
                         </button>
@@ -308,7 +314,7 @@
                                             <div class="col mr-2">
                                                 <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                                     월간 결제 금액 (Monthly)</div>
-                                                <div class="h5 mb-0 font-weight-bold text-gray-800">&#8361;{{ monthlyPaymentSum }}</div>
+                                                <div class="h5 mb-0 font-weight-bold text-gray-800">&#8361;{{ formatNumber(monthlyPaymentSum) }}원</div>
                                             </div>
                                             <div class="col-auto">
                                                 <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
@@ -326,7 +332,7 @@
                                             <div class="col mr-2">
                                                 <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
                                                     연간 결제 금액 (Annual)</div>
-                                                <div class="h5 mb-0 font-weight-bold text-gray-800">&#8361;{{ yearPaymentSum }}</div>
+                                                <div class="h5 mb-0 font-weight-bold text-gray-800">&#8361;{{ formatNumber(yearPaymentSum) }}원</div>
                                             </div>
                                             <div class="col-auto">
                                                 <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
@@ -669,6 +675,12 @@ export default {
             userCount: {},
             userCountDelete: {},
 
+            classLanguage: {},
+            classDifficultyLevels: {},
+            classTopData: {},
+            userCountsByAgeGroup: {},
+            userCountsByYear: {},
+
             LineChartData: {
                 labels: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
                 datasets: [
@@ -773,6 +785,14 @@ export default {
                 this.yearPaymentSum = response.data.yearPaymentSum;
                 this.userCount = response.data.userCount;
                 this.userCountDelete = response.data.userCountDelete;
+                
+                this.userCountsByYear = response.data.userCountsByYear;
+                this.userCountsByAgeGroup = response.data.userCountsByAgeGroup;
+                this.classTopData = response.data.classTopData;
+                this.classLanguage = response.data.classLanguage;
+                this.classDifficultyLevels = response.data.classDifficultyLevels;
+
+                this.updateLineChartData(this.linetransformedData());
             })
             .catch(error => {
                 // console.error('Error fetching data:', error);
@@ -797,7 +817,41 @@ export default {
             .catch(err => {
                 // console.log(err.response.data);
             });
-        }
+        },
+
+        formatNumber(value) {
+            // console.log(value);
+            return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+        },
+        linetransformedData() {
+            return Object.entries(this.userCountsByYear).map(([Year, monthlyData]) => {
+                // 각 월의 사용자 수를 배열로 저장
+                const monthlyCounts = Array.from({ length: 12 }, (_, index) => monthlyData[index + 1] || 0);
+
+                // 각 월의 사용자 수를 총합하여 Count에 저장
+                const totalCount = monthlyCounts.reduce((sum, count) => sum + count, 0);
+
+                return {
+                    Year,
+                    Month: monthlyCounts, // 1부터 12까지의 배열
+                };
+            });
+        },
+
+        updateLineChartData(transData) {
+            console.log(transData);
+            let result = {
+                    labels: [],
+                    datasets: [ {label: '수강 강의', data: [], backgroundColor: '#4e81f8',}, {label: '수강 챕터', data2: [], backgroundColor: '#7371fc',} ],
+                };
+                // console.log(result);
+            result.labels = transData.map(data => data.month);
+            result.datasets[0].data = transData.map(data => data.enrollmentFlagCount);
+            result.datasets[1].data = transData.map(data => data.chapterFlagCount);
+
+            // console.log(result);
+            this.barChartData = result;
+        },
     },
 
     beforeCreate() {

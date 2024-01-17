@@ -39,8 +39,9 @@ class BoardController extends Controller
         // } else if($request->input('ClassID') !== null) {
         //     $boardDataQuery->where('boards.ClassID', $request->input('ClassID'));
         // }
-        // // $boardDataQuery = Board::join('users', 'boards.UserID', 'users.UserID');
-        // // ->orderBy('boards.created_at', 'desc');
+
+        // $boardDataQuery = Board::join('users', 'boards.UserID', 'users.UserID');
+        // ->orderBy('boards.created_at', 'desc');
     
         // 게시물 당 댓글 수를 계산하기 위한 쿼리
         $commentCountQuery = Board::Join('comments', 'boards.BoardID', 'comments.BoardID')

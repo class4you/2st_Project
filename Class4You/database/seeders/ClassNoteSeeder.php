@@ -22,7 +22,7 @@ class ClassNoteSeeder extends Seeder
         foreach (range(1, 10) as $index) {
 
             $date = $faker->dateTimeBetween('-2 years');
-            $enrollmentID = $faker->numberBetween(1, 253);
+            $enrollmentID = $faker->numberBetween(1, 50000);
 
             ClassNote::create([
                 'EnrollmentID' => $enrollmentID,
@@ -35,7 +35,7 @@ class ClassNoteSeeder extends Seeder
 
 
             $date = $faker->dateTimeBetween('-2 years');
-            $enrollmentID = $faker->numberBetween(1, 253);
+            $enrollmentID = $faker->numberBetween(1, 50000);
 
             ClassNote::create([
                 'EnrollmentID' => $enrollmentID,
@@ -49,7 +49,7 @@ class ClassNoteSeeder extends Seeder
 
             
             $date = $faker->dateTimeBetween('-2 years');
-            $enrollmentID = $faker->numberBetween(1, 253);
+            $enrollmentID = $faker->numberBetween(1, 50000);
 
             ClassNote::create([
                 'EnrollmentID' => $enrollmentID,
@@ -62,7 +62,7 @@ class ClassNoteSeeder extends Seeder
 
                         
             $date = $faker->dateTimeBetween('-2 years');
-            $enrollmentID = $faker->numberBetween(1, 253);
+            $enrollmentID = $faker->numberBetween(1, 50000);
 
             ClassNote::create([
                 'EnrollmentID' => $enrollmentID,
@@ -76,7 +76,7 @@ class ClassNoteSeeder extends Seeder
 
                         
             $date = $faker->dateTimeBetween('-2 years');
-            $enrollmentID = $faker->numberBetween(1, 253);
+            $enrollmentID = $faker->numberBetween(1, 50000);
 
             ClassNote::create([
                 'EnrollmentID' => $enrollmentID,
@@ -89,7 +89,7 @@ class ClassNoteSeeder extends Seeder
 
                         
             $date = $faker->dateTimeBetween('-2 years');
-            $enrollmentID = $faker->numberBetween(1, 253);
+            $enrollmentID = $faker->numberBetween(1, 50000);
 
             ClassNote::create([
                 'EnrollmentID' => $enrollmentID,
@@ -101,7 +101,7 @@ class ClassNoteSeeder extends Seeder
 
                         
             $date = $faker->dateTimeBetween('-2 years');
-            $enrollmentID = $faker->numberBetween(1, 253);
+            $enrollmentID = $faker->numberBetween(1, 50000);
 
             ClassNote::create([
                 'EnrollmentID' => $enrollmentID,
@@ -114,7 +114,7 @@ class ClassNoteSeeder extends Seeder
 
                         
             $date = $faker->dateTimeBetween('-2 years');
-            $enrollmentID = $faker->numberBetween(1, 253);
+            $enrollmentID = $faker->numberBetween(1, 50000);
 
             ClassNote::create([
                 'EnrollmentID' => $enrollmentID,
@@ -128,7 +128,7 @@ class ClassNoteSeeder extends Seeder
 
                         
             $date = $faker->dateTimeBetween('-2 years');
-            $enrollmentID = $faker->numberBetween(1, 253);
+            $enrollmentID = $faker->numberBetween(1, 50000);
 
             ClassNote::create([
                 'EnrollmentID' => $enrollmentID,
@@ -141,7 +141,7 @@ class ClassNoteSeeder extends Seeder
 
                         
             $date = $faker->dateTimeBetween('-2 years');
-            $enrollmentID = $faker->numberBetween(1, 253);
+            $enrollmentID = $faker->numberBetween(1, 50000);
 
             ClassNote::create([
                 'EnrollmentID' => $enrollmentID,
@@ -155,7 +155,7 @@ class ClassNoteSeeder extends Seeder
 
                         
             $date = $faker->dateTimeBetween('-2 years');
-            $enrollmentID = $faker->numberBetween(1, 253);
+            $enrollmentID = $faker->numberBetween(1, 50000);
 
             ClassNote::create([
                 'EnrollmentID' => $enrollmentID,
@@ -169,7 +169,7 @@ class ClassNoteSeeder extends Seeder
 
                         
             $date = $faker->dateTimeBetween('-2 years');
-            $enrollmentID = $faker->numberBetween(1, 253);
+            $enrollmentID = $faker->numberBetween(1, 50000);
 
             ClassNote::create([
                 'EnrollmentID' => $enrollmentID,
@@ -181,7 +181,7 @@ class ClassNoteSeeder extends Seeder
 
                         
             $date = $faker->dateTimeBetween('-2 years');
-            $enrollmentID = $faker->numberBetween(1, 253);
+            $enrollmentID = $faker->numberBetween(1, 50000);
 
             ClassNote::create([
                 'EnrollmentID' => $enrollmentID,
@@ -195,7 +195,7 @@ class ClassNoteSeeder extends Seeder
 
                         
             $date = $faker->dateTimeBetween('-2 years');
-            $enrollmentID = $faker->numberBetween(1, 253);
+            $enrollmentID = $faker->numberBetween(1, 50000);
 
             ClassNote::create([
                 'EnrollmentID' => $enrollmentID,
@@ -208,7 +208,7 @@ class ClassNoteSeeder extends Seeder
 
                         
             $date = $faker->dateTimeBetween('-2 years');
-            $enrollmentID = $faker->numberBetween(1, 253);
+            $enrollmentID = $faker->numberBetween(1, 50000);
 
             ClassNote::create([
                 'EnrollmentID' => $enrollmentID,
@@ -220,7 +220,7 @@ class ClassNoteSeeder extends Seeder
 
                         
             $date = $faker->dateTimeBetween('-2 years');
-            $enrollmentID = $faker->numberBetween(1, 253);
+            $enrollmentID = $faker->numberBetween(1, 50000);
 
             ClassNote::create([
                 'EnrollmentID' => $enrollmentID,
@@ -235,7 +235,7 @@ class ClassNoteSeeder extends Seeder
 
                         
             $date = $faker->dateTimeBetween('-2 years');
-            $enrollmentID = $faker->numberBetween(1, 253);
+            $enrollmentID = $faker->numberBetween(1, 50000);
 
             ClassNote::create([
                 'EnrollmentID' => $enrollmentID,
@@ -251,7 +251,7 @@ class ClassNoteSeeder extends Seeder
 
                         
             $date = $faker->dateTimeBetween('-2 years');
-            $enrollmentID = $faker->numberBetween(1, 253);
+            $enrollmentID = $faker->numberBetween(1, 50000);
 
             ClassNote::create([
                 'EnrollmentID' => $enrollmentID,
@@ -265,7 +265,7 @@ class ClassNoteSeeder extends Seeder
 
                         
             $date = $faker->dateTimeBetween('-2 years');
-            $enrollmentID = $faker->numberBetween(1, 253);
+            $enrollmentID = $faker->numberBetween(1, 50000);
 
             ClassNote::create([
                 'EnrollmentID' => $enrollmentID,
@@ -278,7 +278,7 @@ class ClassNoteSeeder extends Seeder
 
                         
             $date = $faker->dateTimeBetween('-2 years');
-            $enrollmentID = $faker->numberBetween(1, 253);
+            $enrollmentID = $faker->numberBetween(1, 50000);
 
             ClassNote::create([
                 'EnrollmentID' => $enrollmentID,
@@ -291,7 +291,7 @@ class ClassNoteSeeder extends Seeder
 
                         
             $date = $faker->dateTimeBetween('-2 years');
-            $enrollmentID = $faker->numberBetween(1, 253);
+            $enrollmentID = $faker->numberBetween(1, 50000);
 
             ClassNote::create([
                 'EnrollmentID' => $enrollmentID,
@@ -303,7 +303,7 @@ class ClassNoteSeeder extends Seeder
             ]);
 
             $date = $faker->dateTimeBetween('-2 years');
-        $enrollmentID = $faker->numberBetween(1, 253);
+        $enrollmentID = $faker->numberBetween(1, 50000);
 
         ClassNote::create([
             'EnrollmentID' => $enrollmentID,
@@ -316,7 +316,7 @@ class ClassNoteSeeder extends Seeder
 
                     
         $date = $faker->dateTimeBetween('-2 years');
-        $enrollmentID = $faker->numberBetween(1, 253);
+        $enrollmentID = $faker->numberBetween(1, 50000);
 
         ClassNote::create([
             'EnrollmentID' => $enrollmentID,
@@ -328,7 +328,7 @@ class ClassNoteSeeder extends Seeder
 
                     
         $date = $faker->dateTimeBetween('-2 years');
-        $enrollmentID = $faker->numberBetween(1, 253);
+        $enrollmentID = $faker->numberBetween(1, 50000);
 
         ClassNote::create([
             'EnrollmentID' => $enrollmentID,
@@ -343,7 +343,7 @@ class ClassNoteSeeder extends Seeder
 
                     
         $date = $faker->dateTimeBetween('-2 years');
-        $enrollmentID = $faker->numberBetween(1, 253);
+        $enrollmentID = $faker->numberBetween(1, 50000);
 
         ClassNote::create([
             'EnrollmentID' => $enrollmentID,
@@ -359,7 +359,7 @@ class ClassNoteSeeder extends Seeder
 
                     
         $date = $faker->dateTimeBetween('-2 years');
-        $enrollmentID = $faker->numberBetween(1, 253);
+        $enrollmentID = $faker->numberBetween(1, 50000);
 
         ClassNote::create([
             'EnrollmentID' => $enrollmentID,
@@ -372,7 +372,7 @@ class ClassNoteSeeder extends Seeder
         ]);
 
         $date = $faker->dateTimeBetween('-2 years');
-        $enrollmentID = $faker->numberBetween(1, 253);
+        $enrollmentID = $faker->numberBetween(1, 50000);
 
         ClassNote::create([
             'EnrollmentID' => $enrollmentID,
@@ -387,7 +387,7 @@ class ClassNoteSeeder extends Seeder
             
 
         $date = $faker->dateTimeBetween('-2 years');
-        $enrollmentID = $faker->numberBetween(1, 253);
+        $enrollmentID = $faker->numberBetween(1, 50000);
 
         ClassNote::create([
             'EnrollmentID' => $enrollmentID,
@@ -402,7 +402,7 @@ class ClassNoteSeeder extends Seeder
 
                     
         $date = $faker->dateTimeBetween('-2 years');
-        $enrollmentID = $faker->numberBetween(1, 253);
+        $enrollmentID = $faker->numberBetween(1, 50000);
 
         ClassNote::create([
             'EnrollmentID' => $enrollmentID,
@@ -418,7 +418,7 @@ class ClassNoteSeeder extends Seeder
 
                     
         $date = $faker->dateTimeBetween('-2 years');
-        $enrollmentID = $faker->numberBetween(1, 253);
+        $enrollmentID = $faker->numberBetween(1, 50000);
 
         ClassNote::create([
             'EnrollmentID' => $enrollmentID,
@@ -432,7 +432,7 @@ class ClassNoteSeeder extends Seeder
 
                     
         $date = $faker->dateTimeBetween('-2 years');
-        $enrollmentID = $faker->numberBetween(1, 253);
+        $enrollmentID = $faker->numberBetween(1, 50000);
 
         ClassNote::create([
             'EnrollmentID' => $enrollmentID,
@@ -445,7 +445,7 @@ class ClassNoteSeeder extends Seeder
 
                     
         $date = $faker->dateTimeBetween('-2 years');
-        $enrollmentID = $faker->numberBetween(1, 253);
+        $enrollmentID = $faker->numberBetween(1, 50000);
 
         ClassNote::create([
             'EnrollmentID' => $enrollmentID,
@@ -458,7 +458,7 @@ class ClassNoteSeeder extends Seeder
 
                     
         $date = $faker->dateTimeBetween('-2 years');
-        $enrollmentID = $faker->numberBetween(1, 253);
+        $enrollmentID = $faker->numberBetween(1, 50000);
 
         ClassNote::create([
             'EnrollmentID' => $enrollmentID,
@@ -470,7 +470,7 @@ class ClassNoteSeeder extends Seeder
         ]);
 
         $date = $faker->dateTimeBetween('-2 years');
-        $enrollmentID = $faker->numberBetween(1, 253);
+        $enrollmentID = $faker->numberBetween(1, 50000);
 
         ClassNote::create([
             'EnrollmentID' => $enrollmentID,
@@ -483,7 +483,7 @@ class ClassNoteSeeder extends Seeder
 
 
         $date = $faker->dateTimeBetween('-2 years');
-        $enrollmentID = $faker->numberBetween(1, 253);
+        $enrollmentID = $faker->numberBetween(1, 50000);
 
         ClassNote::create([
             'EnrollmentID' => $enrollmentID,
@@ -497,7 +497,7 @@ class ClassNoteSeeder extends Seeder
 
         
         $date = $faker->dateTimeBetween('-2 years');
-        $enrollmentID = $faker->numberBetween(1, 253);
+        $enrollmentID = $faker->numberBetween(1, 50000);
 
         ClassNote::create([
             'EnrollmentID' => $enrollmentID,
@@ -510,7 +510,7 @@ class ClassNoteSeeder extends Seeder
 
                     
         $date = $faker->dateTimeBetween('-2 years');
-        $enrollmentID = $faker->numberBetween(1, 253);
+        $enrollmentID = $faker->numberBetween(1, 50000);
 
         ClassNote::create([
             'EnrollmentID' => $enrollmentID,
@@ -524,7 +524,7 @@ class ClassNoteSeeder extends Seeder
 
                     
         $date = $faker->dateTimeBetween('-2 years');
-        $enrollmentID = $faker->numberBetween(1, 253);
+        $enrollmentID = $faker->numberBetween(1, 50000);
 
         ClassNote::create([
             'EnrollmentID' => $enrollmentID,
@@ -537,7 +537,7 @@ class ClassNoteSeeder extends Seeder
 
                     
         $date = $faker->dateTimeBetween('-2 years');
-        $enrollmentID = $faker->numberBetween(1, 253);
+        $enrollmentID = $faker->numberBetween(1, 50000);
 
         ClassNote::create([
             'EnrollmentID' => $enrollmentID,
@@ -549,7 +549,7 @@ class ClassNoteSeeder extends Seeder
 
                     
         $date = $faker->dateTimeBetween('-2 years');
-        $enrollmentID = $faker->numberBetween(1, 253);
+        $enrollmentID = $faker->numberBetween(1, 50000);
 
         ClassNote::create([
             'EnrollmentID' => $enrollmentID,
@@ -562,7 +562,7 @@ class ClassNoteSeeder extends Seeder
 
                     
         $date = $faker->dateTimeBetween('-2 years');
-        $enrollmentID = $faker->numberBetween(1, 253);
+        $enrollmentID = $faker->numberBetween(1, 50000);
 
         ClassNote::create([
             'EnrollmentID' => $enrollmentID,
@@ -576,7 +576,7 @@ class ClassNoteSeeder extends Seeder
 
                     
         $date = $faker->dateTimeBetween('-2 years');
-        $enrollmentID = $faker->numberBetween(1, 253);
+        $enrollmentID = $faker->numberBetween(1, 50000);
 
         ClassNote::create([
             'EnrollmentID' => $enrollmentID,
@@ -589,7 +589,7 @@ class ClassNoteSeeder extends Seeder
 
                     
         $date = $faker->dateTimeBetween('-2 years');
-        $enrollmentID = $faker->numberBetween(1, 253);
+        $enrollmentID = $faker->numberBetween(1, 50000);
 
         ClassNote::create([
             'EnrollmentID' => $enrollmentID,
@@ -603,7 +603,7 @@ class ClassNoteSeeder extends Seeder
 
                     
         $date = $faker->dateTimeBetween('-2 years');
-        $enrollmentID = $faker->numberBetween(1, 253);
+        $enrollmentID = $faker->numberBetween(1, 50000);
 
         ClassNote::create([
             'EnrollmentID' => $enrollmentID,
@@ -617,7 +617,7 @@ class ClassNoteSeeder extends Seeder
 
                     
         $date = $faker->dateTimeBetween('-2 years');
-        $enrollmentID = $faker->numberBetween(1, 253);
+        $enrollmentID = $faker->numberBetween(1, 50000);
 
         ClassNote::create([
             'EnrollmentID' => $enrollmentID,
@@ -629,7 +629,7 @@ class ClassNoteSeeder extends Seeder
 
                     
         $date = $faker->dateTimeBetween('-2 years');
-        $enrollmentID = $faker->numberBetween(1, 253);
+        $enrollmentID = $faker->numberBetween(1, 50000);
 
         ClassNote::create([
             'EnrollmentID' => $enrollmentID,
@@ -643,7 +643,7 @@ class ClassNoteSeeder extends Seeder
 
                     
         $date = $faker->dateTimeBetween('-2 years');
-        $enrollmentID = $faker->numberBetween(1, 253);
+        $enrollmentID = $faker->numberBetween(1, 50000);
 
         ClassNote::create([
             'EnrollmentID' => $enrollmentID,
@@ -656,7 +656,7 @@ class ClassNoteSeeder extends Seeder
 
                     
         $date = $faker->dateTimeBetween('-2 years');
-        $enrollmentID = $faker->numberBetween(1, 253);
+        $enrollmentID = $faker->numberBetween(1, 50000);
 
         ClassNote::create([
             'EnrollmentID' => $enrollmentID,
@@ -668,7 +668,7 @@ class ClassNoteSeeder extends Seeder
 
                     
         $date = $faker->dateTimeBetween('-2 years');
-        $enrollmentID = $faker->numberBetween(1, 253);
+        $enrollmentID = $faker->numberBetween(1, 50000);
 
         ClassNote::create([
             'EnrollmentID' => $enrollmentID,
@@ -683,7 +683,7 @@ class ClassNoteSeeder extends Seeder
 
                     
         $date = $faker->dateTimeBetween('-2 years');
-        $enrollmentID = $faker->numberBetween(1, 253);
+        $enrollmentID = $faker->numberBetween(1, 50000);
 
         ClassNote::create([
             'EnrollmentID' => $enrollmentID,
@@ -699,7 +699,7 @@ class ClassNoteSeeder extends Seeder
 
                     
         $date = $faker->dateTimeBetween('-2 years');
-        $enrollmentID = $faker->numberBetween(1, 253);
+        $enrollmentID = $faker->numberBetween(1, 50000);
 
         ClassNote::create([
             'EnrollmentID' => $enrollmentID,
@@ -713,7 +713,7 @@ class ClassNoteSeeder extends Seeder
 
                     
         $date = $faker->dateTimeBetween('-2 years');
-        $enrollmentID = $faker->numberBetween(1, 253);
+        $enrollmentID = $faker->numberBetween(1, 50000);
 
         ClassNote::create([
             'EnrollmentID' => $enrollmentID,
@@ -726,7 +726,7 @@ class ClassNoteSeeder extends Seeder
 
                     
         $date = $faker->dateTimeBetween('-2 years');
-        $enrollmentID = $faker->numberBetween(1, 253);
+        $enrollmentID = $faker->numberBetween(1, 50000);
 
         ClassNote::create([
             'EnrollmentID' => $enrollmentID,
@@ -739,7 +739,7 @@ class ClassNoteSeeder extends Seeder
 
                     
         $date = $faker->dateTimeBetween('-2 years');
-        $enrollmentID = $faker->numberBetween(1, 253);
+        $enrollmentID = $faker->numberBetween(1, 50000);
 
         ClassNote::create([
             'EnrollmentID' => $enrollmentID,
@@ -751,7 +751,7 @@ class ClassNoteSeeder extends Seeder
         ]);
 
         $date = $faker->dateTimeBetween('-2 years');
-    $enrollmentID = $faker->numberBetween(1, 253);
+    $enrollmentID = $faker->numberBetween(1, 50000);
 
     ClassNote::create([
         'EnrollmentID' => $enrollmentID,
@@ -764,7 +764,7 @@ class ClassNoteSeeder extends Seeder
 
                 
     $date = $faker->dateTimeBetween('-2 years');
-    $enrollmentID = $faker->numberBetween(1, 253);
+    $enrollmentID = $faker->numberBetween(1, 50000);
 
     ClassNote::create([
         'EnrollmentID' => $enrollmentID,
@@ -776,7 +776,7 @@ class ClassNoteSeeder extends Seeder
 
                 
     $date = $faker->dateTimeBetween('-2 years');
-    $enrollmentID = $faker->numberBetween(1, 253);
+    $enrollmentID = $faker->numberBetween(1, 50000);
 
     ClassNote::create([
         'EnrollmentID' => $enrollmentID,
@@ -791,7 +791,7 @@ class ClassNoteSeeder extends Seeder
 
                 
     $date = $faker->dateTimeBetween('-2 years');
-    $enrollmentID = $faker->numberBetween(1, 253);
+    $enrollmentID = $faker->numberBetween(1, 50000);
 
     ClassNote::create([
         'EnrollmentID' => $enrollmentID,
@@ -807,7 +807,7 @@ class ClassNoteSeeder extends Seeder
 
                 
     $date = $faker->dateTimeBetween('-2 years');
-    $enrollmentID = $faker->numberBetween(1, 253);
+    $enrollmentID = $faker->numberBetween(1, 50000);
 
     ClassNote::create([
         'EnrollmentID' => $enrollmentID,
@@ -820,7 +820,7 @@ class ClassNoteSeeder extends Seeder
     ]);
 
     $date = $faker->dateTimeBetween('-2 years');
-    $enrollmentID = $faker->numberBetween(1, 253);
+    $enrollmentID = $faker->numberBetween(1, 50000);
 
     ClassNote::create([
         'EnrollmentID' => $enrollmentID,
@@ -835,7 +835,7 @@ class ClassNoteSeeder extends Seeder
         
 
     $date = $faker->dateTimeBetween('-2 years');
-    $enrollmentID = $faker->numberBetween(1, 253);
+    $enrollmentID = $faker->numberBetween(1, 50000);
 
     ClassNote::create([
         'EnrollmentID' => $enrollmentID,
@@ -850,7 +850,7 @@ class ClassNoteSeeder extends Seeder
 
                 
     $date = $faker->dateTimeBetween('-2 years');
-    $enrollmentID = $faker->numberBetween(1, 253);
+    $enrollmentID = $faker->numberBetween(1, 50000);
 
     ClassNote::create([
         'EnrollmentID' => $enrollmentID,
@@ -866,7 +866,7 @@ class ClassNoteSeeder extends Seeder
 
                 
     $date = $faker->dateTimeBetween('-2 years');
-    $enrollmentID = $faker->numberBetween(1, 253);
+    $enrollmentID = $faker->numberBetween(1, 50000);
 
     ClassNote::create([
         'EnrollmentID' => $enrollmentID,
@@ -880,7 +880,7 @@ class ClassNoteSeeder extends Seeder
 
                 
     $date = $faker->dateTimeBetween('-2 years');
-    $enrollmentID = $faker->numberBetween(1, 253);
+    $enrollmentID = $faker->numberBetween(1, 50000);
 
     ClassNote::create([
         'EnrollmentID' => $enrollmentID,
@@ -893,7 +893,7 @@ class ClassNoteSeeder extends Seeder
 
                 
     $date = $faker->dateTimeBetween('-2 years');
-    $enrollmentID = $faker->numberBetween(1, 253);
+    $enrollmentID = $faker->numberBetween(1, 50000);
 
     ClassNote::create([
         'EnrollmentID' => $enrollmentID,
@@ -906,7 +906,7 @@ class ClassNoteSeeder extends Seeder
 
                 
     $date = $faker->dateTimeBetween('-2 years');
-    $enrollmentID = $faker->numberBetween(1, 253);
+    $enrollmentID = $faker->numberBetween(1, 50000);
 
     ClassNote::create([
         'EnrollmentID' => $enrollmentID,
@@ -917,7 +917,7 @@ class ClassNoteSeeder extends Seeder
         'created_at' => $date,
     ]);
     $date = $faker->dateTimeBetween('-2 years');
-    $enrollmentID = $faker->numberBetween(1, 253);
+    $enrollmentID = $faker->numberBetween(1, 50000);
 
     ClassNote::create([
         'EnrollmentID' => $enrollmentID,
@@ -930,7 +930,7 @@ class ClassNoteSeeder extends Seeder
 
 
     $date = $faker->dateTimeBetween('-2 years');
-    $enrollmentID = $faker->numberBetween(1, 253);
+    $enrollmentID = $faker->numberBetween(1, 50000);
 
     ClassNote::create([
         'EnrollmentID' => $enrollmentID,
@@ -944,7 +944,7 @@ class ClassNoteSeeder extends Seeder
 
     
     $date = $faker->dateTimeBetween('-2 years');
-    $enrollmentID = $faker->numberBetween(1, 253);
+    $enrollmentID = $faker->numberBetween(1, 50000);
 
     ClassNote::create([
         'EnrollmentID' => $enrollmentID,
@@ -957,7 +957,7 @@ class ClassNoteSeeder extends Seeder
 
                 
     $date = $faker->dateTimeBetween('-2 years');
-    $enrollmentID = $faker->numberBetween(1, 253);
+    $enrollmentID = $faker->numberBetween(1, 50000);
 
     ClassNote::create([
         'EnrollmentID' => $enrollmentID,
@@ -971,7 +971,7 @@ class ClassNoteSeeder extends Seeder
 
                 
     $date = $faker->dateTimeBetween('-2 years');
-    $enrollmentID = $faker->numberBetween(1, 253);
+    $enrollmentID = $faker->numberBetween(1, 50000);
 
     ClassNote::create([
         'EnrollmentID' => $enrollmentID,
@@ -984,7 +984,7 @@ class ClassNoteSeeder extends Seeder
 
                 
     $date = $faker->dateTimeBetween('-2 years');
-    $enrollmentID = $faker->numberBetween(1, 253);
+    $enrollmentID = $faker->numberBetween(1, 50000);
 
     ClassNote::create([
         'EnrollmentID' => $enrollmentID,
@@ -996,7 +996,7 @@ class ClassNoteSeeder extends Seeder
 
                 
     $date = $faker->dateTimeBetween('-2 years');
-    $enrollmentID = $faker->numberBetween(1, 253);
+    $enrollmentID = $faker->numberBetween(1, 50000);
 
     ClassNote::create([
         'EnrollmentID' => $enrollmentID,
@@ -1009,7 +1009,7 @@ class ClassNoteSeeder extends Seeder
 
                 
     $date = $faker->dateTimeBetween('-2 years');
-    $enrollmentID = $faker->numberBetween(1, 253);
+    $enrollmentID = $faker->numberBetween(1, 50000);
 
     ClassNote::create([
         'EnrollmentID' => $enrollmentID,
@@ -1023,7 +1023,7 @@ class ClassNoteSeeder extends Seeder
 
                 
     $date = $faker->dateTimeBetween('-2 years');
-    $enrollmentID = $faker->numberBetween(1, 253);
+    $enrollmentID = $faker->numberBetween(1, 50000);
 
     ClassNote::create([
         'EnrollmentID' => $enrollmentID,
@@ -1036,7 +1036,7 @@ class ClassNoteSeeder extends Seeder
 
                 
     $date = $faker->dateTimeBetween('-2 years');
-    $enrollmentID = $faker->numberBetween(1, 253);
+    $enrollmentID = $faker->numberBetween(1, 50000);
 
     ClassNote::create([
         'EnrollmentID' => $enrollmentID,
@@ -1050,7 +1050,7 @@ class ClassNoteSeeder extends Seeder
 
                 
     $date = $faker->dateTimeBetween('-2 years');
-    $enrollmentID = $faker->numberBetween(1, 253);
+    $enrollmentID = $faker->numberBetween(1, 50000);
 
     ClassNote::create([
         'EnrollmentID' => $enrollmentID,
@@ -1064,7 +1064,7 @@ class ClassNoteSeeder extends Seeder
 
                 
     $date = $faker->dateTimeBetween('-2 years');
-    $enrollmentID = $faker->numberBetween(1, 253);
+    $enrollmentID = $faker->numberBetween(1, 50000);
 
     ClassNote::create([
         'EnrollmentID' => $enrollmentID,
@@ -1076,7 +1076,7 @@ class ClassNoteSeeder extends Seeder
 
                 
     $date = $faker->dateTimeBetween('-2 years');
-    $enrollmentID = $faker->numberBetween(1, 253);
+    $enrollmentID = $faker->numberBetween(1, 50000);
 
     ClassNote::create([
         'EnrollmentID' => $enrollmentID,
@@ -1090,7 +1090,7 @@ class ClassNoteSeeder extends Seeder
 
                 
     $date = $faker->dateTimeBetween('-2 years');
-    $enrollmentID = $faker->numberBetween(1, 253);
+    $enrollmentID = $faker->numberBetween(1, 50000);
 
     ClassNote::create([
         'EnrollmentID' => $enrollmentID,
@@ -1103,7 +1103,7 @@ class ClassNoteSeeder extends Seeder
 
                 
     $date = $faker->dateTimeBetween('-2 years');
-    $enrollmentID = $faker->numberBetween(1, 253);
+    $enrollmentID = $faker->numberBetween(1, 50000);
 
     ClassNote::create([
         'EnrollmentID' => $enrollmentID,
@@ -1115,7 +1115,7 @@ class ClassNoteSeeder extends Seeder
 
                 
     $date = $faker->dateTimeBetween('-2 years');
-    $enrollmentID = $faker->numberBetween(1, 253);
+    $enrollmentID = $faker->numberBetween(1, 50000);
 
     ClassNote::create([
         'EnrollmentID' => $enrollmentID,
@@ -1130,7 +1130,7 @@ class ClassNoteSeeder extends Seeder
 
                 
     $date = $faker->dateTimeBetween('-2 years');
-    $enrollmentID = $faker->numberBetween(1, 253);
+    $enrollmentID = $faker->numberBetween(1, 50000);
 
     ClassNote::create([
         'EnrollmentID' => $enrollmentID,
@@ -1146,7 +1146,7 @@ class ClassNoteSeeder extends Seeder
 
                 
     $date = $faker->dateTimeBetween('-2 years');
-    $enrollmentID = $faker->numberBetween(1, 253);
+    $enrollmentID = $faker->numberBetween(1, 50000);
 
     ClassNote::create([
         'EnrollmentID' => $enrollmentID,
@@ -1160,7 +1160,7 @@ class ClassNoteSeeder extends Seeder
 
                 
     $date = $faker->dateTimeBetween('-2 years');
-    $enrollmentID = $faker->numberBetween(1, 253);
+    $enrollmentID = $faker->numberBetween(1, 50000);
 
     ClassNote::create([
         'EnrollmentID' => $enrollmentID,
@@ -1173,7 +1173,7 @@ class ClassNoteSeeder extends Seeder
 
                 
     $date = $faker->dateTimeBetween('-2 years');
-    $enrollmentID = $faker->numberBetween(1, 253);
+    $enrollmentID = $faker->numberBetween(1, 50000);
 
     ClassNote::create([
         'EnrollmentID' => $enrollmentID,
@@ -1186,7 +1186,7 @@ class ClassNoteSeeder extends Seeder
 
                 
     $date = $faker->dateTimeBetween('-2 years');
-    $enrollmentID = $faker->numberBetween(1, 253);
+    $enrollmentID = $faker->numberBetween(1, 50000);
 
     ClassNote::create([
         'EnrollmentID' => $enrollmentID,
@@ -1198,7 +1198,7 @@ class ClassNoteSeeder extends Seeder
     ]);
 
     $date = $faker->dateTimeBetween('-2 years');
-$enrollmentID = $faker->numberBetween(1, 253);
+$enrollmentID = $faker->numberBetween(1, 50000);
 
 ClassNote::create([
     'EnrollmentID' => $enrollmentID,
@@ -1211,7 +1211,7 @@ ClassNote::create([
 
             
 $date = $faker->dateTimeBetween('-2 years');
-$enrollmentID = $faker->numberBetween(1, 253);
+$enrollmentID = $faker->numberBetween(1, 50000);
 
 ClassNote::create([
     'EnrollmentID' => $enrollmentID,
@@ -1223,7 +1223,7 @@ ClassNote::create([
 
             
 $date = $faker->dateTimeBetween('-2 years');
-$enrollmentID = $faker->numberBetween(1, 253);
+$enrollmentID = $faker->numberBetween(1, 50000);
 
 ClassNote::create([
     'EnrollmentID' => $enrollmentID,
@@ -1238,7 +1238,7 @@ ClassNote::create([
 
             
 $date = $faker->dateTimeBetween('-2 years');
-$enrollmentID = $faker->numberBetween(1, 253);
+$enrollmentID = $faker->numberBetween(1, 50000);
 
 ClassNote::create([
     'EnrollmentID' => $enrollmentID,
@@ -1254,7 +1254,7 @@ ClassNote::create([
 
             
 $date = $faker->dateTimeBetween('-2 years');
-$enrollmentID = $faker->numberBetween(1, 253);
+$enrollmentID = $faker->numberBetween(1, 50000);
 
 ClassNote::create([
     'EnrollmentID' => $enrollmentID,
@@ -1267,7 +1267,7 @@ ClassNote::create([
 ]);
 
 $date = $faker->dateTimeBetween('-2 years');
-$enrollmentID = $faker->numberBetween(1, 253);
+$enrollmentID = $faker->numberBetween(1, 50000);
 
 ClassNote::create([
     'EnrollmentID' => $enrollmentID,
@@ -1282,7 +1282,7 @@ ClassNote::create([
     
 
 $date = $faker->dateTimeBetween('-2 years');
-$enrollmentID = $faker->numberBetween(1, 253);
+$enrollmentID = $faker->numberBetween(1, 50000);
 
 ClassNote::create([
     'EnrollmentID' => $enrollmentID,
@@ -1297,7 +1297,7 @@ ClassNote::create([
 
             
 $date = $faker->dateTimeBetween('-2 years');
-$enrollmentID = $faker->numberBetween(1, 253);
+$enrollmentID = $faker->numberBetween(1, 50000);
 
 ClassNote::create([
     'EnrollmentID' => $enrollmentID,
@@ -1313,7 +1313,7 @@ ClassNote::create([
 
             
 $date = $faker->dateTimeBetween('-2 years');
-$enrollmentID = $faker->numberBetween(1, 253);
+$enrollmentID = $faker->numberBetween(1, 50000);
 
 ClassNote::create([
     'EnrollmentID' => $enrollmentID,
@@ -1327,7 +1327,7 @@ ClassNote::create([
 
             
 $date = $faker->dateTimeBetween('-2 years');
-$enrollmentID = $faker->numberBetween(1, 253);
+$enrollmentID = $faker->numberBetween(1, 50000);
 
 ClassNote::create([
     'EnrollmentID' => $enrollmentID,
@@ -1340,7 +1340,7 @@ ClassNote::create([
 
             
 $date = $faker->dateTimeBetween('-2 years');
-$enrollmentID = $faker->numberBetween(1, 253);
+$enrollmentID = $faker->numberBetween(1, 50000);
 
 ClassNote::create([
     'EnrollmentID' => $enrollmentID,
@@ -1353,7 +1353,7 @@ ClassNote::create([
 
             
 $date = $faker->dateTimeBetween('-2 years');
-$enrollmentID = $faker->numberBetween(1, 253);
+$enrollmentID = $faker->numberBetween(1, 50000);
 
 ClassNote::create([
     'EnrollmentID' => $enrollmentID,
@@ -1364,7 +1364,7 @@ ClassNote::create([
     'created_at' => $date,
 ]);
 $date = $faker->dateTimeBetween('-2 years');
-$enrollmentID = $faker->numberBetween(1, 253);
+$enrollmentID = $faker->numberBetween(1, 50000);
 
 ClassNote::create([
     'EnrollmentID' => $enrollmentID,
@@ -1377,7 +1377,7 @@ ClassNote::create([
 
 
 $date = $faker->dateTimeBetween('-2 years');
-$enrollmentID = $faker->numberBetween(1, 253);
+$enrollmentID = $faker->numberBetween(1, 50000);
 
 ClassNote::create([
     'EnrollmentID' => $enrollmentID,
@@ -1391,7 +1391,7 @@ ClassNote::create([
 
 
 $date = $faker->dateTimeBetween('-2 years');
-$enrollmentID = $faker->numberBetween(1, 253);
+$enrollmentID = $faker->numberBetween(1, 50000);
 
 ClassNote::create([
     'EnrollmentID' => $enrollmentID,
@@ -1404,7 +1404,7 @@ ClassNote::create([
 
             
 $date = $faker->dateTimeBetween('-2 years');
-$enrollmentID = $faker->numberBetween(1, 253);
+$enrollmentID = $faker->numberBetween(1, 50000);
 
 ClassNote::create([
     'EnrollmentID' => $enrollmentID,
@@ -1418,7 +1418,7 @@ ClassNote::create([
 
             
 $date = $faker->dateTimeBetween('-2 years');
-$enrollmentID = $faker->numberBetween(1, 253);
+$enrollmentID = $faker->numberBetween(1, 50000);
 
 ClassNote::create([
     'EnrollmentID' => $enrollmentID,
@@ -1431,7 +1431,7 @@ ClassNote::create([
 
             
 $date = $faker->dateTimeBetween('-2 years');
-$enrollmentID = $faker->numberBetween(1, 253);
+$enrollmentID = $faker->numberBetween(1, 50000);
 
 ClassNote::create([
     'EnrollmentID' => $enrollmentID,
@@ -1443,7 +1443,7 @@ ClassNote::create([
 
             
 $date = $faker->dateTimeBetween('-2 years');
-$enrollmentID = $faker->numberBetween(1, 253);
+$enrollmentID = $faker->numberBetween(1, 50000);
 
 ClassNote::create([
     'EnrollmentID' => $enrollmentID,
@@ -1456,7 +1456,7 @@ ClassNote::create([
 
             
 $date = $faker->dateTimeBetween('-2 years');
-$enrollmentID = $faker->numberBetween(1, 253);
+$enrollmentID = $faker->numberBetween(1, 50000);
 
 ClassNote::create([
     'EnrollmentID' => $enrollmentID,
@@ -1470,7 +1470,7 @@ ClassNote::create([
 
             
 $date = $faker->dateTimeBetween('-2 years');
-$enrollmentID = $faker->numberBetween(1, 253);
+$enrollmentID = $faker->numberBetween(1, 50000);
 
 ClassNote::create([
     'EnrollmentID' => $enrollmentID,
@@ -1483,7 +1483,7 @@ ClassNote::create([
 
             
 $date = $faker->dateTimeBetween('-2 years');
-$enrollmentID = $faker->numberBetween(1, 253);
+$enrollmentID = $faker->numberBetween(1, 50000);
 
 ClassNote::create([
     'EnrollmentID' => $enrollmentID,
@@ -1497,7 +1497,7 @@ ClassNote::create([
 
             
 $date = $faker->dateTimeBetween('-2 years');
-$enrollmentID = $faker->numberBetween(1, 253);
+$enrollmentID = $faker->numberBetween(1, 50000);
 
 ClassNote::create([
     'EnrollmentID' => $enrollmentID,
@@ -1511,7 +1511,7 @@ ClassNote::create([
 
             
 $date = $faker->dateTimeBetween('-2 years');
-$enrollmentID = $faker->numberBetween(1, 253);
+$enrollmentID = $faker->numberBetween(1, 50000);
 
 ClassNote::create([
     'EnrollmentID' => $enrollmentID,
@@ -1523,7 +1523,7 @@ ClassNote::create([
 
             
 $date = $faker->dateTimeBetween('-2 years');
-$enrollmentID = $faker->numberBetween(1, 253);
+$enrollmentID = $faker->numberBetween(1, 50000);
 
 ClassNote::create([
     'EnrollmentID' => $enrollmentID,
@@ -1537,7 +1537,7 @@ ClassNote::create([
 
             
 $date = $faker->dateTimeBetween('-2 years');
-$enrollmentID = $faker->numberBetween(1, 253);
+$enrollmentID = $faker->numberBetween(1, 50000);
 
 ClassNote::create([
     'EnrollmentID' => $enrollmentID,
@@ -1550,7 +1550,7 @@ ClassNote::create([
 
             
 $date = $faker->dateTimeBetween('-2 years');
-$enrollmentID = $faker->numberBetween(1, 253);
+$enrollmentID = $faker->numberBetween(1, 50000);
 
 ClassNote::create([
     'EnrollmentID' => $enrollmentID,
@@ -1562,7 +1562,7 @@ ClassNote::create([
 
             
 $date = $faker->dateTimeBetween('-2 years');
-$enrollmentID = $faker->numberBetween(1, 253);
+$enrollmentID = $faker->numberBetween(1, 50000);
 
 ClassNote::create([
     'EnrollmentID' => $enrollmentID,
@@ -1577,7 +1577,7 @@ ClassNote::create([
 
             
 $date = $faker->dateTimeBetween('-2 years');
-$enrollmentID = $faker->numberBetween(1, 253);
+$enrollmentID = $faker->numberBetween(1, 50000);
 
 ClassNote::create([
     'EnrollmentID' => $enrollmentID,
@@ -1593,7 +1593,7 @@ ClassNote::create([
 
             
 $date = $faker->dateTimeBetween('-2 years');
-$enrollmentID = $faker->numberBetween(1, 253);
+$enrollmentID = $faker->numberBetween(1, 50000);
 
 ClassNote::create([
     'EnrollmentID' => $enrollmentID,
@@ -1607,7 +1607,7 @@ ClassNote::create([
 
             
 $date = $faker->dateTimeBetween('-2 years');
-$enrollmentID = $faker->numberBetween(1, 253);
+$enrollmentID = $faker->numberBetween(1, 50000);
 
 ClassNote::create([
     'EnrollmentID' => $enrollmentID,
@@ -1620,7 +1620,7 @@ ClassNote::create([
 
             
 $date = $faker->dateTimeBetween('-2 years');
-$enrollmentID = $faker->numberBetween(1, 253);
+$enrollmentID = $faker->numberBetween(1, 50000);
 
 ClassNote::create([
     'EnrollmentID' => $enrollmentID,
@@ -1633,7 +1633,7 @@ ClassNote::create([
 
             
 $date = $faker->dateTimeBetween('-2 years');
-$enrollmentID = $faker->numberBetween(1, 253);
+$enrollmentID = $faker->numberBetween(1, 50000);
 
 ClassNote::create([
     'EnrollmentID' => $enrollmentID,
@@ -1645,7 +1645,7 @@ ClassNote::create([
 ]);
 
 $date = $faker->dateTimeBetween('-2 years');
-$enrollmentID = $faker->numberBetween(1, 253);
+$enrollmentID = $faker->numberBetween(1, 50000);
 
 ClassNote::create([
 'EnrollmentID' => $enrollmentID,
@@ -1658,7 +1658,7 @@ EOT,
 
         
 $date = $faker->dateTimeBetween('-2 years');
-$enrollmentID = $faker->numberBetween(1, 253);
+$enrollmentID = $faker->numberBetween(1, 50000);
 
 ClassNote::create([
 'EnrollmentID' => $enrollmentID,
@@ -1670,7 +1670,7 @@ EOT,
 
         
 $date = $faker->dateTimeBetween('-2 years');
-$enrollmentID = $faker->numberBetween(1, 253);
+$enrollmentID = $faker->numberBetween(1, 50000);
 
 ClassNote::create([
 'EnrollmentID' => $enrollmentID,
@@ -1685,7 +1685,7 @@ EOT,
 
         
 $date = $faker->dateTimeBetween('-2 years');
-$enrollmentID = $faker->numberBetween(1, 253);
+$enrollmentID = $faker->numberBetween(1, 50000);
 
 ClassNote::create([
 'EnrollmentID' => $enrollmentID,
@@ -1701,7 +1701,7 @@ EOT,
 
         
 $date = $faker->dateTimeBetween('-2 years');
-$enrollmentID = $faker->numberBetween(1, 253);
+$enrollmentID = $faker->numberBetween(1, 50000);
 
 ClassNote::create([
 'EnrollmentID' => $enrollmentID,
@@ -1714,7 +1714,7 @@ EOT,
 ]);
 
 $date = $faker->dateTimeBetween('-2 years');
-$enrollmentID = $faker->numberBetween(1, 253);
+$enrollmentID = $faker->numberBetween(1, 50000);
 
 ClassNote::create([
 'EnrollmentID' => $enrollmentID,
@@ -1729,7 +1729,7 @@ EOT,
 
 
 $date = $faker->dateTimeBetween('-2 years');
-$enrollmentID = $faker->numberBetween(1, 253);
+$enrollmentID = $faker->numberBetween(1, 50000);
 
 ClassNote::create([
 'EnrollmentID' => $enrollmentID,
@@ -1744,7 +1744,7 @@ EOT,
 
         
 $date = $faker->dateTimeBetween('-2 years');
-$enrollmentID = $faker->numberBetween(1, 253);
+$enrollmentID = $faker->numberBetween(1, 50000);
 
 ClassNote::create([
 'EnrollmentID' => $enrollmentID,
@@ -1760,7 +1760,7 @@ EOT,
 
         
 $date = $faker->dateTimeBetween('-2 years');
-$enrollmentID = $faker->numberBetween(1, 253);
+$enrollmentID = $faker->numberBetween(1, 50000);
 
 ClassNote::create([
 'EnrollmentID' => $enrollmentID,
@@ -1774,7 +1774,7 @@ EOT,
 
         
 $date = $faker->dateTimeBetween('-2 years');
-$enrollmentID = $faker->numberBetween(1, 253);
+$enrollmentID = $faker->numberBetween(1, 50000);
 
 ClassNote::create([
 'EnrollmentID' => $enrollmentID,
@@ -1787,7 +1787,7 @@ EOT,
 
         
 $date = $faker->dateTimeBetween('-2 years');
-$enrollmentID = $faker->numberBetween(1, 253);
+$enrollmentID = $faker->numberBetween(1, 50000);
 
 ClassNote::create([
 'EnrollmentID' => $enrollmentID,
@@ -1800,7 +1800,7 @@ EOT,
 
         
 $date = $faker->dateTimeBetween('-2 years');
-$enrollmentID = $faker->numberBetween(1, 253);
+$enrollmentID = $faker->numberBetween(1, 50000);
 
 ClassNote::create([
 'EnrollmentID' => $enrollmentID,
