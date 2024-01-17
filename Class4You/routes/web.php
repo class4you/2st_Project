@@ -225,6 +225,8 @@ Route::prefix('instructor')->group(function() {
 
 });
 
+// 관리자 메인
+Route::get('/instructormain', [InstructorController::class, 'getinstructormain']);
 // 관리자 로그인
 Route::post('/instructorlogin', [InstructorController::class, 'instructorloginpost']);
 // 로그아웃

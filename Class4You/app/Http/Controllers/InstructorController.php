@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Chapter;
+use App\Models\ClassPayment;
 use App\Models\Lesson;
 use App\Models\User;
 use App\Models\ClassInfo;
@@ -11,6 +12,7 @@ use App\Models\Enrollment;
 use App\Models\Board;
 use App\Models\Instructor;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
@@ -420,6 +422,27 @@ class InstructorController extends Controller
         ]);
     }
 
+    public function getinstructormain() {
+        $currentMonth = Carbon::now()->format('m');
+        $currentYear = Carbon::now()->year;
+
+        $monthlyPaymentSum = ClassPayment::whereMonth('created_at', $currentMonth)
+            ->sum('PaymentAmount');
+
+        $yearPaymentSum = ClassPayment::whereYear('created_at', $currentYear)
+            ->sum('PaymentAmount');
+        
+        $userCount = User::count('UserID');
+
+        $userCountDelete = User::whereNotNull('deleted_at')->withTrashed()->count('UserID');
+
+        return response()->json([
+            'monthlyPaymentSum' => $monthlyPaymentSum,
+            'yearPaymentSum' => $yearPaymentSum,
+            'userCount' => $userCount,
+            'userCountDelete' => $userCountDelete,
+        ]);
+    }
 
 
     // public function postRegistInstructor(Request $request) {
