@@ -216,7 +216,7 @@ export default {
 }
 </script> -->
 
-<template>
+<!-- <template>
   <div>
     <Line :data="LineChartdata" :options="LineChartoptions"/>
   </div>
@@ -254,4 +254,91 @@ export default {
 </script>
 <style>
   
+</style> -->
+
+<template>
+    <div class="admin_answer_modal" style="display: flex;">
+      <!-- 버튼을 클릭하면 showModal 값이 true로 변경되어 모달이 나타납니다. -->
+      <div class="admin_answer_modal_btn">
+        <button @click="handleModalClick()">모달 열기</button>
+      </div>
+
+      <!-- 모달이 나타나는지 여부를 v-if 디렉티브로 제어합니다. -->
+      <Transition name="adminModal" class="admin_modal_container"  :class="{ 'admin_modal_show': showModal }">
+        <!-- 모달 내용 -->
+        <div v-if="showModal" class="admin_modal_content" style="display: flex;">
+          <div class="admin_modal_content_text">
+            <textarea rows="4" cols="50"></textarea>
+          </div>
+          <div>
+            <span @click="showModal = false" class="admin_answer_modal_close">❌</span>
+          </div>
+        </div>
+      </Transition>
+
+    </div>
+</template>
+
+<script>
+export default {
+  data() {
+    return {
+      showModal: false, // 모달의 초기 상태
+    };
+  },
+
+  methods: {
+    handleModalClick() {
+      console.log("버튼 클릭됨");
+      this.showModal = true;
+      console.log(this.showModal);
+    },
+  }
+};
+</script>
+
+<style>
+  /* 모달 스타일 */
+.admin_modal_container {
+  display: none;
+  border-radius: 10px;
+  padding: 20px;
+  border: 1px solid #ededed;
+}
+
+.admin_modal_container.admin_modal_show {
+  display: block; /* 클릭 이벤트 후에 보이게 설정됨 */
+}
+
+.admin_modal_content_text {
+  border: 1px solid #ededed;
+  border-radius: 5px;
+}
+
+.admin_modal_content_text>textarea {
+  background: transparent;
+  border: none;
+  resize: none;
+}
+
+/* 모달 내용 스타일 */
+/* .modal-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: flex;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+} */
+
+/* 모달 닫기 버튼 스타일 */
+.admin_answer_modal_close {
+  /* position: absolute;
+  top: 0;
+  right: 0;
+  font-size: 20px; */
+  cursor: pointer;
+}
 </style>
