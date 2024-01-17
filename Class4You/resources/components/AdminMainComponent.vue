@@ -98,15 +98,12 @@
                 <!-- Main Content -->
                 <div id="content">
 
-                    <!-- Topbar -->
                     <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
 
-                        <!-- Sidebar Toggle (Topbar) -->
-                        <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                        <!-- <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
                             <i class="fa fa-bars"></i>
                         </button>
 
-                        <!-- Topbar Search -->
                         <form
                             class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
                             <div class="input-group">
@@ -120,16 +117,13 @@
                             </div>
                         </form>
 
-                        <!-- Topbar Navbar -->
                        <ul class="navbar-nav ml-auto">
 
-                        <!-- Nav Item - Search Dropdown (Visible Only XS) -->
                         <li class="nav-item dropdown no-arrow d-sm-none">
                             <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fas fa-search fa-fw"></i>
                             </a>
-                            <!-- Dropdown - Messages -->
                             <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
                                 aria-labelledby="searchDropdown">
                                 <form class="form-inline mr-auto w-100 navbar-search">
@@ -147,15 +141,12 @@
                             </div>
                         </li>
 
-                        <!-- Nav Item - Alerts 알람표시부 -->
                         <li class="nav-item dropdown no-arrow mx-1">
                             <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fas fa-bell fa-fw"></i>
-                                <!-- Counter - Alerts -->
                                 <span class="badge badge-danger badge-counter">3+</span>
                             </a>
-                            <!-- Dropdown - Alerts 알람모달 -->
                             <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="alertsDropdown">
                                 <h6 class="dropdown-header">
@@ -198,15 +189,12 @@
                             </div>
                         </li>
 
-                        <!-- Nav Item - Messages 질문게시판 알람 -->
                         <li class="nav-item dropdown no-arrow mx-1">
                             <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fas fa-envelope fa-fw"></i>
-                                <!-- Counter - Messages -->
                                 <span class="badge badge-danger badge-counter">7</span>
                             </a>
-                            <!-- Dropdown - Messages -->
                             <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="messagesDropdown">
                                 <h6 class="dropdown-header">
@@ -265,7 +253,6 @@
                         </li>
                         <div class="topbar-divider d-none d-sm-block"></div>
                         <button type="button" @click="instructorlogout">로그아웃</button>
-                        <!-- Nav Item - User Information 관리자 프로필 창 -->
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -273,7 +260,6 @@
                                 <img class="img-profile rounded-circle"
                                     src="img/undraw_profile.svg">
                             </a>
-                            <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="userDropdown">
                                 <a class="dropdown-item" href="#">
@@ -296,7 +282,7 @@
                             </div>
                         </li>
 
-                    </ul>
+                    </ul> -->
 
                     </nav>
                     <!-- End of Topbar -->
@@ -322,10 +308,10 @@
                                             <div class="col mr-2">
                                                 <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                                     월간 결제 금액 (Monthly)</div>
-                                                <div class="h5 mb-0 font-weight-bold text-gray-800">&#8361;40,000</div>
+                                                <div class="h5 mb-0 font-weight-bold text-gray-800">&#8361;{{ monthlyPaymentSum }}</div>
                                             </div>
                                             <div class="col-auto">
-                                                <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                                                <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
                                             </div>
                                         </div>
                                     </div>
@@ -340,7 +326,7 @@
                                             <div class="col mr-2">
                                                 <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
                                                     연간 결제 금액 (Annual)</div>
-                                                <div class="h5 mb-0 font-weight-bold text-gray-800">&#8361;215,000</div>
+                                                <div class="h5 mb-0 font-weight-bold text-gray-800">&#8361;{{ yearPaymentSum }}</div>
                                             </div>
                                             <div class="col-auto">
                                                 <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
@@ -351,47 +337,53 @@
                             </div>
 
                             <!-- Earnings (Monthly) Card Example 대시보드 카드3 -->
-                            <div class="col-xl-3 col-md-6 mb-4">
-                                <div class="card border-left-info shadow h-100 py-2">
-                                    <div class="card-body">
-                                        <div class="row no-gutters align-items-center">
-                                            <div class="col mr-2">
-                                                <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
-                                                    신규 신고 게시글
-                                                </div>
-                                                <div class="row no-gutters align-items-center">
-                                                    <div class="col-auto">
-                                                        <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">10</div>
-                                                    </div>
-                                                    <div class="col">
-                                                        <div class="progress progress-sm mr-2">
-                                                            <div class="progress-bar bg-info" role="progressbar"
-                                                                style="width: 50%" aria-valuenow="50" aria-valuemin="0"
-                                                                aria-valuemax="100"></div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-auto">
-                                                <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
 
-                            <!-- Pending Requests Card Example 대시보드 카드4 -->
                             <div class="col-xl-3 col-md-6 mb-4">
                                 <div class="card border-left-warning shadow h-100 py-2">
                                     <div class="card-body">
                                         <div class="row no-gutters align-items-center">
                                             <div class="col mr-2">
                                                 <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                                                    강의 질문 게시글</div>
-                                                <div class="h5 mb-0 font-weight-bold text-gray-800">8</div>
+                                                    총 회원 수
+                                                </div>
+                                                <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                    {{ userCount }}명
+                                                </div>
                                             </div>
                                             <div class="col-auto">
-                                                <i class="fas fa-comments fa-2x text-gray-300"></i>
+                                                <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+
+                            <!-- Pending Requests Card Example 대시보드 카드4 -->
+                            <div class="col-xl-3 col-md-6 mb-4">
+                                <div class="card border-left-info shadow h-100 py-2">
+                                    <div class="card-body">
+                                        <div class="row no-gutters align-items-center">
+                                            <div class="col mr-2">
+                                                <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
+                                                    총 탈퇴 수
+                                                </div>
+                                                <div class="row no-gutters align-items-center">
+                                                    <div class="col-auto">
+                                                        <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">{{ userCountDelete }}명</div>
+                                                    </div>
+                                                    <div class="col">
+                                                        <!-- <div class="progress progress-sm mr-2">
+                                                            <div class="progress-bar bg-info" role="progressbar"
+                                                                style="width: 50%" aria-valuenow="50" aria-valuemin="0"
+                                                                aria-valuemax="100">
+                                                            </div>
+                                                        </div> -->
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-auto">
+                                                <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
                                             </div>
                                         </div>
                                     </div>
@@ -409,7 +401,7 @@
                                     <!-- Card Header - Dropdown -->
                                     <div
                                         class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                        <h6 class="m-0 font-weight-bold text-primary">전년 대비 결제 금액 통계</h6>
+                                        <h6 class="m-0 font-weight-bold text-primary">전년 대비 유저 회원가입 수</h6>
                                         <div class="dropdown no-arrow">
                                             <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
                                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -428,7 +420,7 @@
                                     <!-- Card Body -->
                                     <div class="card-body">
                                         <div class="chart-area">
-                                            <canvas id="myAreaChart"></canvas>
+                                            <Line :data="LineChartData" :options="LineChartOptions"/>
                                         </div>
                                     </div>
                                 </div>
@@ -440,7 +432,7 @@
                                     <!-- Card Header - Dropdown -->
                                     <div
                                         class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                        <h6 class="m-0 font-weight-bold text-primary">Revenue Sources</h6>
+                                        <h6 class="m-0 font-weight-bold text-primary">유저 나이대</h6>
                                         <div class="dropdown no-arrow">
                                             <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
                                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -458,8 +450,8 @@
                                     </div>
                                     <!-- Card Body -->
                                     <div class="card-body">
-                                        <div class="chart-pie pt-4 pb-2">
-                                            <canvas id="myPieChart"></canvas>
+                                        <div class="chart-pie pt-4 pb-2" style="padding-top: 0px !important;">
+                                            <Radar :data="RadarChartData" :options="RadarChartOptions"/>
                                         </div>
                                         <div class="mt-4 text-center small">
                                             <span class="mr-2">
@@ -475,158 +467,128 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
-
-                        <!-- Content Row -->
-                        <div class="row">
-
-                            <!-- Content Column -->
-                            <div class="col-lg-6 mb-4">
-
-                                <!-- Project Card Example -->
+                            <div class="col-xl-4 col-lg-5">
                                 <div class="card shadow mb-4">
-                                    <div class="card-header py-3">
-                                        <h6 class="m-0 font-weight-bold text-primary">Projects</h6>
+                                    <!-- Card Header - Dropdown -->
+                                    <div
+                                        class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                        <h6 class="m-0 font-weight-bold text-primary">인기 강의</h6>
+                                        <div class="dropdown no-arrow">
+                                            <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                                            </a>
+                                            <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
+                                                aria-labelledby="dropdownMenuLink">
+                                                <div class="dropdown-header">Dropdown Header:</div>
+                                                <a class="dropdown-item" href="#">Action</a>
+                                                <a class="dropdown-item" href="#">Another action</a>
+                                                <div class="dropdown-divider"></div>
+                                                <a class="dropdown-item" href="#">Something else here</a>
+                                            </div>
+                                        </div>
                                     </div>
+                                    <!-- Card Body -->
                                     <div class="card-body">
-                                        <h4 class="small font-weight-bold">총 회원 수 <span
-                                                class="float-right">20%</span></h4>
-                                        <div class="progress mb-4">
-                                            <div class="progress-bar bg-danger" role="progressbar" style="width: 20%"
-                                                aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
+                                        <div class="chart-pie pt-4 pb-2" style="padding-top: 0px !important;">
+                                            <Doughnut :data="DoughnutChartData" :options="DoughnutChartOptions"/>
                                         </div>
-                                        <h4 class="small font-weight-bold">차단 수 <span
-                                                class="float-right">40%</span></h4>
-                                        <div class="progress mb-4">
-                                            <div class="progress-bar bg-warning" role="progressbar" style="width: 40%"
-                                                aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
-                                        </div>
-                                        <h4 class="small font-weight-bold">탈퇴 수 <span
-                                                class="float-right">60%</span></h4>
-                                        <div class="progress mb-4">
-                                            <div class="progress-bar" role="progressbar" style="width: 60%"
-                                                aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
-                                        </div>
-                                        <h4 class="small font-weight-bold">Payout Details <span
-                                                class="float-right">80%</span></h4>
-                                        <div class="progress mb-4">
-                                            <div class="progress-bar bg-info" role="progressbar" style="width: 80%"
-                                                aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
-                                        </div>
-                                        <h4 class="small font-weight-bold">Account Setup <span
-                                                class="float-right">Complete!</span></h4>
-                                        <div class="progress">
-                                            <div class="progress-bar bg-success" role="progressbar" style="width: 100%"
-                                                aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                                        <div class="mt-4 text-center small">
+                                            <span class="mr-2">
+                                                <i class="fas fa-circle text-primary"></i> Direct
+                                            </span>
+                                            <span class="mr-2">
+                                                <i class="fas fa-circle text-success"></i> Social
+                                            </span>
+                                            <span class="mr-2">
+                                                <i class="fas fa-circle text-info"></i> Referral
+                                            </span>
                                         </div>
                                     </div>
                                 </div>
-
-                                <!-- Color System -->
-                                <!-- <div class="row">
-                                    <div class="col-lg-6 mb-4">
-                                        <div class="card bg-primary text-white shadow">
-                                            <div class="card-body">
-                                                Primary
-                                                <div class="text-white-50 small">#4e73df</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6 mb-4">
-                                        <div class="card bg-success text-white shadow">
-                                            <div class="card-body">
-                                                Success
-                                                <div class="text-white-50 small">#1cc88a</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6 mb-4">
-                                        <div class="card bg-info text-white shadow">
-                                            <div class="card-body">
-                                                Info
-                                                <div class="text-white-50 small">#36b9cc</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6 mb-4">
-                                        <div class="card bg-warning text-white shadow">
-                                            <div class="card-body">
-                                                Warning
-                                                <div class="text-white-50 small">#f6c23e</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6 mb-4">
-                                        <div class="card bg-danger text-white shadow">
-                                            <div class="card-body">
-                                                Danger
-                                                <div class="text-white-50 small">#e74a3b</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6 mb-4">
-                                        <div class="card bg-secondary text-white shadow">
-                                            <div class="card-body">
-                                                Secondary
-                                                <div class="text-white-50 small">#858796</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6 mb-4">
-                                        <div class="card bg-light text-black shadow">
-                                            <div class="card-body">
-                                                Light
-                                                <div class="text-black-50 small">#f8f9fc</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6 mb-4">
-                                        <div class="card bg-dark text-white shadow">
-                                            <div class="card-body">
-                                                Dark
-                                                <div class="text-white-50 small">#5a5c69</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div> -->
-
                             </div>
 
-                            <div class="col-lg-6 mb-4">
-
-                                <!-- Illustrations -->
-                                <!-- <div class="card shadow mb-4">
-                                    <div class="card-header py-3">
-                                        <h6 class="m-0 font-weight-bold text-primary">Illustrations</h6>
-                                    </div>
-                                    <div class="card-body">
-                                        <div class="text-center">
-                                            <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 25rem;"
-                                                src="img/undraw_posting_photo.svg" alt="...">
-                                        </div>
-                                        <p>Add some quality, svg illustrations to your project courtesy of <a
-                                                target="_blank" rel="nofollow" href="https://undraw.co/">unDraw</a>, a
-                                            constantly updated collection of beautiful svg images that you can use
-                                            completely free and without attribution!</p>
-                                        <a target="_blank" rel="nofollow" href="https://undraw.co/">Browse Illustrations on
-                                            unDraw &rarr;</a>
-                                    </div>
-                                </div> -->
-
-                                <!-- Approach -->
+                            <div class="col-xl-4 col-lg-5">
                                 <div class="card shadow mb-4">
-                                    <div class="card-header py-3">
-                                        <h6 class="m-0 font-weight-bold text-primary">Development Approach</h6>
+                                    <!-- Card Header - Dropdown -->
+                                    <div
+                                        class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                        <h6 class="m-0 font-weight-bold text-primary">인기 언어</h6>
+                                        <div class="dropdown no-arrow">
+                                            <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                                            </a>
+                                            <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
+                                                aria-labelledby="dropdownMenuLink">
+                                                <div class="dropdown-header">Dropdown Header:</div>
+                                                <a class="dropdown-item" href="#">Action</a>
+                                                <a class="dropdown-item" href="#">Another action</a>
+                                                <div class="dropdown-divider"></div>
+                                                <a class="dropdown-item" href="#">Something else here</a>
+                                            </div>
+                                        </div>
                                     </div>
+                                    <!-- Card Body -->
                                     <div class="card-body">
-                                        <p>SB Admin 2 makes extensive use of Bootstrap 4 utility classes in order to reduce
-                                            CSS bloat and poor page performance. Custom CSS classes are used to create
-                                            custom components and custom utility classes.</p>
-                                        <p class="mb-0">Before working with this theme, you should become familiar with the
-                                            Bootstrap framework, especially the utility classes.</p>
+                                        <div class="chart-pie pt-4 pb-2" style="padding-top: 0px !important;">
+                                            <Pie :data="PieChartData" :options="PieChartOptions"/>
+                                        
+                                        </div>
+                                        <div class="mt-4 text-center small">
+                                            <span class="mr-2">
+                                                <i class="fas fa-circle text-primary"></i> Direct
+                                            </span>
+                                            <span class="mr-2">
+                                                <i class="fas fa-circle text-success"></i> Social
+                                            </span>
+                                            <span class="mr-2">
+                                                <i class="fas fa-circle text-info"></i> Referral
+                                            </span>
+                                        </div>
                                     </div>
                                 </div>
+                            </div>
 
+                            <div class="col-xl-4 col-lg-5">
+                                <div class="card shadow mb-4">
+                                    <!-- Card Header - Dropdown -->
+                                    <div
+                                        class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                        <h6 class="m-0 font-weight-bold text-primary">인기 단계</h6>
+                                        <div class="dropdown no-arrow">
+                                            <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                                            </a>
+                                            <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
+                                                aria-labelledby="dropdownMenuLink">
+                                                <div class="dropdown-header">Dropdown Header:</div>
+                                                <a class="dropdown-item" href="#">Action</a>
+                                                <a class="dropdown-item" href="#">Another action</a>
+                                                <div class="dropdown-divider"></div>
+                                                <a class="dropdown-item" href="#">Something else here</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Card Body -->
+                                    <div class="card-body">
+                                        <div class="chart-pie pt-4 pb-2" style="padding-top: 0px !important;">
+                                            <PolarArea :data="PolarAreaChartData" :options="PolarAreaChartOptions" />
+                                        </div>
+                                        <div class="mt-4 text-center small">
+                                            <span class="mr-2">
+                                                <i class="fas fa-circle text-primary"></i> Direct
+                                            </span>
+                                            <span class="mr-2">
+                                                <i class="fas fa-circle text-success"></i> Social
+                                            </span>
+                                            <span class="mr-2">
+                                                <i class="fas fa-circle text-info"></i> Referral
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
 
@@ -681,19 +643,141 @@
 <script>
 import LoadingComponent from './LoadingComponent.vue';
 import Swal from 'sweetalert2';
+import { Doughnut, Bar, Radar, Line, PolarArea, Pie } from 'vue-chartjs';
+import { Chart as ChartJS, Title, Tooltip, Legend, BarElement, DoughnutController, ArcElement, LinearScale, CategoryScale, PointElement, RadialLinearScale, LineElement} from 'chart.js';
+
+ChartJS.register(Title, Tooltip, Legend, BarElement, DoughnutController, ArcElement, LinearScale, CategoryScale, RadialLinearScale, PointElement, LineElement);
+
 export default {
     name: 'AdminMainComponent',
 
+    components: {
+        LoadingComponent,
+        Line,
+        PolarArea,
+        Doughnut,
+        Radar,
+        Pie
+    },
     data() {
         return {
             loading: true, // 로딩 상태를 나타내는 데이터
             InstructorID : null,
             adminChk: false,
+            monthlyPaymentSum: {},
+            yearPaymentSum: {},
+            userCount: {},
+            userCountDelete: {},
+
+            LineChartData: {
+                labels: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+                datasets: [
+                    {
+                        label: '작년',
+                        backgroundColor: '#f87979',
+                        data: [40, 39, 10, 40, 39, 80, 40, 10, 40, 39, 80, 40]
+                    },
+                    {
+                        label: '이번년',
+                        backgroundColor: '#000',
+                        data: [12, 19, 40, 20, 89, 8, 4, 101, 54, 39, 65, 20]
+                    }
+                ],
+            },
+            LineChartOptions: {
+                responsive: true,
+                maintainAspectRatio: false
+            },
+
+            PolarAreaChartData: {
+                labels: [
+                    'Eating',
+                    'Drinking',
+                    'Sleeping',
+                    'Designing',
+                    'Coding',
+                    'Cycling',
+                    'Running',
+                ],
+                datasets: [
+                    {
+                    label: 'My Second dataset',
+                    backgroundColor: 'rgba(255,99,132,0.2)',
+                    pointBackgroundColor: 'rgba(255,99,132,1)',
+                    pointBorderColor: '#fff',
+                    pointHoverBackgroundColor: '#fff',
+                    pointHoverBorderColor: 'rgba(255,99,132,1)',
+                    data: [28, 48, 40, 19, 96, 27, 100]
+                    }
+                ]
+            },
+            PolarAreaChartOptions: {
+                responsive: true,
+                maintainAspectRatio: false
+            },
+
+            DoughnutChartData: {
+                labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+                datasets: [
+                    {
+                        label: 'Data One',
+                        backgroundColor: '#f87979',
+                        data: [40, 39, 10, 40, 39, 80, 40]
+                    }
+                ]
+            },
+            DoughnutChartOptions: {
+                responsive: true,
+                maintainAspectRatio: false
+            },
+
+            RadarChartData: {
+                labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+                datasets: [
+                    {
+                        label: 'Data One',
+                        backgroundColor: '#f87979',
+                        data: [40, 39, 10, 40, 39, 80, 40]
+                    }
+                ]
+            },
+            RadarChartOptions: {
+                responsive: true,
+                maintainAspectRatio: false
+            },
+            
+            PieChartData: {
+                labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+                datasets: [
+                    {
+                        label: 'Data One',
+                        backgroundColor: '#f87979',
+                        data: [40, 39, 10, 40, 39, 80, 40]
+                    }
+                ]
+            },
+            PieChartOptions: {
+                responsive: true,
+                maintainAspectRatio: false
+            },
+
         };
     },
 
     methods: {
-        
+        fetchData() {
+            axios.get('/instructormain')
+            .then(response => {
+                console.log(response.data);
+                this.monthlyPaymentSum = response.data.monthlyPaymentSum;
+                this.yearPaymentSum = response.data.yearPaymentSum;
+                this.userCount = response.data.userCount;
+                this.userCountDelete = response.data.userCountDelete;
+            })
+            .catch(error => {
+                // console.error('Error fetching data:', error);
+            });
+        },
         instructorlogout() {
             axios.get('/instructorlogout')
             .then(res => {
@@ -752,14 +836,11 @@ export default {
         this.InstructorID = localStorage.getItem('InstructorID');
         this.adminChk = localStorage.getItem('adminChk');
         console.log(localStorage.getItem('adminChk'));
+        this.fetchData();
     },
 
     updated() {
 
-    },
-
-    components: {
-        LoadingComponent,
     },
 }
 </script>

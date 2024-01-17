@@ -169,8 +169,21 @@ router.beforeEach((to, from, next) => {
     
     const instructorId = localStorage.getItem('InstructorID');
 
+    const adminPaths = [
+        '/adminmain',
+        '/adminuserdata',
+        '/adminuserclassdata',
+        '/adminuserstatedata',
+        '/adminboardquestiondata',
+        '/adminboardcommunitydata',
+        '/adminboardreportdata',
+        '/adminclassinsert',
+        '/adminchapterinsert',
+        '/adminlessoninsert'
+    ];
+
     if (!instructorId) {
-        if (to.path === '/adminmain' || to.path === '/adminuserdata' || to.path === '/adminuserclassdata' || to.path === '/adminuserstatedata' || to.path === '/adminboardquestiondata' || to.path === '/adminboardcommunitydata' || to.path === '/adminboardreportdata') {
+        if (adminPaths.includes(to.path)) {
             next('/adminlogin');
         } else {
             // 다른 경우에는 정상적으로 진행

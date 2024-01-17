@@ -175,7 +175,7 @@
         }
     }
 </script> -->
-
+<!-- 
 <template>
   <Radar id="my-chart-id" :options="chartOptions" :data="chartData"/>
 </template>
@@ -214,4 +214,44 @@ export default {
     }
   }
 }
+</script> -->
+
+<template>
+  <div>
+    <Line :data="LineChartdata" :options="LineChartoptions"/>
+  </div>
+</template>
+<script>
+import { Doughnut, Bar, Radar, Line } from 'vue-chartjs';
+import { Chart as ChartJS, Title, Tooltip, Legend, BarElement, DoughnutController, ArcElement, LinearScale, CategoryScale, PointElement, RadialLinearScale, LineElement} from 'chart.js';
+
+ChartJS.register(Title, Tooltip, Legend, BarElement, DoughnutController, ArcElement, LinearScale, CategoryScale, RadialLinearScale, PointElement, LineElement);
+
+export default {
+  components: {
+        Line
+    },
+
+    data() {
+      return {
+        LineChartdata: {
+                labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+                datasets: [
+                    {
+                        label: 'Data One',
+                        backgroundColor: '#f87979',
+                        data: [40, 39, 10, 40, 39, 80, 40]
+                    }
+                ]
+            },
+            LineChartoptions: {
+                responsive: true,
+                maintainAspectRatio: false
+            }
+      }
+    }
+}
 </script>
+<style>
+  
+</style>
