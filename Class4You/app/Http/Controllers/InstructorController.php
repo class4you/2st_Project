@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Chapter;
+use App\Models\Lesson;
 use App\Models\User;
 use App\Models\ClassInfo;
 use App\Models\UserStatus;
@@ -390,11 +392,36 @@ class InstructorController extends Controller
         ]);
     }
 
-    public function getinstructorchapterinsertdata(Request $request) {
-        Log::debug('오냐');
-        Log::debug($request);
+    public function getinstructorchapterinsertdata($ClassID) {
+        $ChapterData = Chapter::select(
+            'chapters.ClassID',
+            'chapters.ChapterID',
+            'chapters.ChapterTitle',
+            DB::raw('COUNT(lessons.LessonID) AS TotalLessons')
+        )
+            ->join('lessons', 'chapters.ChapterID', 'lessons.ChapterID')
+            ->where('chapters.ClassID', $ClassID)
+            ->groupBy('chapters.ClassID', 'chapters.ChapterID', 'chapters.ChapterTitle')
+            ->get();
+        Log::debug($ChapterData);
 
+        return response()->json([
+            'ChapterData' => $ChapterData,
+        ]);
     }
+
+    public function getinstructorlessoninsertdata($ChapterID) {
+
+        $LessonData = Lesson::where('ChapterID', $ChapterID)
+            ->get();
+
+        return response()->json([
+            'LessonData' => $LessonData,
+        ]);
+    }
+
+
+
     // public function postRegistInstructor(Request $request) {
 
     //     Log::debug("request");

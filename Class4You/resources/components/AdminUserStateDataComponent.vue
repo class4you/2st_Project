@@ -68,8 +68,6 @@
                         <div class="bg-white py-2 collapse-inner rounded">
                             <h6 class="collapse-header admin-main-h6-font-size">강의 정보 수정</h6>
                             <a class="collapse-item" href="/adminclassinsert">강의 관리</a>
-                            <a class="collapse-item" href="/adminchapterinsert">챕터 관리</a>
-                            <a class="collapse-item" href="/adminlnsertinsert">레슨 관리</a>
                         </div>
                     </div>
                 </li>

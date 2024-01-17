@@ -256,7 +256,10 @@ Route::get('/instructorboardreportdata', [ReportController::class, 'getAdminBoar
 
 // 강의 작성 데이터
 Route::get('/instructorclassinsertdata', [InstructorController::class, 'getinstructorclassinsertdata']);
-Route::get('/instructorchapterinsertdata', [InstructorController::class, 'getinstructorchapterinsertdata']);
+// 챕터 작성 데이터
+Route::get('/instructorchapterinsertdata/{ClassID}', [InstructorController::class, 'getinstructorchapterinsertdata']);
+// 레슨 작성 데이터
+Route::get('/instructorlessoninsertdata/{ChapterID}', [InstructorController::class, 'getinstructorlessoninsertdata']);
 
 
 // 신고 게시글 리스트 
