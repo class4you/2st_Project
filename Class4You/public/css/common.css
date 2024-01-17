@@ -2440,10 +2440,10 @@ ul.class_tabs li.class_current {
 .class_detail_commu_list_user {
     color: #0000007e;
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
     padding: 0px 0px 0px 10px;
     /* border-bottom: 1px solid #f2f2f2; */
-    align-items: center;
+    /* align-items: center; */
 }
 
 .class_detail_commu_user_id {
@@ -2492,6 +2492,14 @@ ul.class_tabs li.class_current {
     margin: 5px 0;
     padding: 5px;
     border-radius: 3px;
+}
+
+.class_detail_commu_list_text_board_title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: bold;
+    border-bottom: 1px solid #ededed;
 }
 
 .class_detail_commu_list_text_board_title>p {
