@@ -2310,13 +2310,14 @@ ul.class_tabs li.class_current {
 }
 
 .class_detail_rating_user_updated_button>button {
-    padding: 11px 30px;
+    padding: 8px 20px;
     background-color: #2B3044;
     border-radius: 5px;
     /* border: 0.8px solid #cdc9c9; */
     border: none;
     color: #fff;
     cursor: pointer;
+    opacity: 0.8;
 }
 
 .class_detail_rating_user_cancel_button>button {
@@ -2332,6 +2333,7 @@ ul.class_tabs li.class_current {
 
 .class_detail_rating_user_updated_button>button:hover {
     background-color: #1E2235;
+    opacity: 1;
 }
 
 .class_detail_rating_user_delete_button>button:hover {
@@ -2448,10 +2450,10 @@ ul.class_tabs li.class_current {
     font-weight: 700;
     color: #00000057;
     display: flex;
-    border: 1px solid #eff3fa;
-    background-color: #eff3fa;
+    /* border: 1px solid #eff3fa; */
+    /* background-color: #eff3fa; */
     border-radius: 5px;
-    padding: 5px;
+    padding: 5px 0;
 }
 
 .class_detail_commu_list_text {
@@ -2495,7 +2497,7 @@ ul.class_tabs li.class_current {
 .class_detail_commu_list_text_board_title>p {
     /* border: 1px solid #f2f2f2; */
     /* margin: 7px; */
-    padding: 10px;
+    padding: 10px 0;
     /* font-size: 15px; */
     font-weight: bold;
     /* border-radius: 5px; */
@@ -2512,6 +2514,7 @@ ul.class_tabs li.class_current {
     text-align: center;
     white-space: nowrap;
     vertical-align: baseline; */
+    margin: 10px 3px;
 }
 
 .class_detail_commu_list_text_board_comment {
@@ -8806,7 +8809,7 @@ footer {
     border: none;
     outline: none;
     background: none;
-    padding: 8px 30px;
+    padding: 5px 20px;
     border-radius: 7px;
     /* min-width: 30px; */
     -webkit-appearance: none;
