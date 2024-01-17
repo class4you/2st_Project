@@ -6,7 +6,7 @@
             <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
                 <!-- Sidebar - Brand -->
-                <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+                <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/adminmain">
                     <div class="sidebar-brand-icon rotate-n-15">
                         <i class="fas fa-laugh-wink"></i>
                     </div>
@@ -359,7 +359,7 @@
                                 </table>
                                 
 
-                                <table style="display: flex; justify-content: right; font-size: 15px;">
+                                <table style="display: flex; justify-content: center; font-size: 15px; gap: 8px;">
                                     <tbody v-for="(page, index) in pagination" :key="index">
                                         <template v-if="page.url !== null">
 											<a class="qustuon_list_page_a" :class="{'page_on': page.label == pageChk}" @click.prevent="fetchData(page.label)" href="#">{{ replaceString(page.label) }}</a>

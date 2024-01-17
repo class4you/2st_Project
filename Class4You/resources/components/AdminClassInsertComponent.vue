@@ -8,7 +8,7 @@
             <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
                 
                 <!-- Sidebar - Brand -->
-                <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+                <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/adminmain">
                     <div class="sidebar-brand-icon rotate-n-15">
                         <i class="fas fa-laugh-wink"></i>
                     </div>
@@ -292,15 +292,13 @@
                     <div class="container-fluid">
 
                         <!-- Page Heading -->
-                        <h1 class="h3 mb-2 text-gray-800">강의</h1>
-                        <p class="mb-4">DataTables is a third party plugin that is used to generate the demo table below.
-                            For more information about DataTables, please visit the <a target="_blank"
-                                href="https://datatables.net">official DataTables documentation</a>.</p>
+                        <h1 class="h3 mb-2 text-gray-800">Class</h1>
+                        <p class="mb-4">강의를 업로드 하는 공간입니다. 원하는 강의를 선택하면 해당 강의의 챕터로 이동합니다.</p>
 
                         <!-- DataTales Example -->
                         <div class="card shadow mb-4">
                             <div style="display: flex; align-items: center; justify-content: space-between;" class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">유저 정보 테이블</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">강의 정보 테이블</h6>
                             <form style="margin: 0px !important; border: 1px solid #ebebeb; border-radius: 8px;" class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
                                 <div class="input-group">
                                     <input v-model="searchQuery" type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
@@ -369,7 +367,7 @@
                                         </tr>
                                     </tbody>
                                 </table>
-                                <table style="display: flex; justify-content: right;">
+                                <table style="display: flex; justify-content: center; gap: 8px;">
                                     <tbody v-for="(page, index) in pagination" :key="index">
                                         <template v-if="page.url !== null">
 											<a class="qustuon_list_page_a" :class="{'page_on': page.label == pageChk}" @click.prevent="fetchData(page.label)" href="#">{{ replaceString(page.label) }}</a>
