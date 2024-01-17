@@ -122,8 +122,9 @@ const routes = [
         component: AdminClassInsertComponent,
     },
     {
-        path: '/adminchapterinsert',
+        path: '/adminchapterinsert/:ClassID',
         component: AdminChapterInsertComponent,
+        props: true
     },
     {
         path: '/adminlnsertinsert',

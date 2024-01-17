@@ -132,7 +132,7 @@
                                 <!-- <a @click="deleteBoardData(newBoardItem.BoardID)" class="board_delete">삭제</a> -->
                                 <!-- <button @click="deleteBoardData(newBoardItem.BoardID)" class="board_delete">삭제</button> -->
                                 <!-- <a @click="deleteBoardData(newBoardItem.BoardID)" class="board_delete">삭제</a> -->
-                                <button @click="deleteBoardData(newBoardItem.BoardID)" class="class_detail_rating_user_delete_button">
+                                <button @click="deleteBoardData(newBoardItem.BoardID)" :class="{ 'class_detail_rating_user_delete_button': true, ['boardID' + newBoardItem.BoardID]: true }" >
 									<div class="class_detail_rating_user_delete_trash">
 										<div class="class_detail_rating_user_delete_top">
 											<div class="class_detail_rating_user_delete_paper"></div>
@@ -194,7 +194,7 @@
                                             <!-- <button class="comment_editBtn">수정</button> -->
                                         <div style="display: flex;" v-else>
                                             <button @click="updateCommentID = item.CommentID" class="commentActions_updateBtn">수정</button>
-                                            <button @click="deleteCommentData(item.CommentID)" class="class_detail_rating_user_delete_button" style="padding: 5px 20px">
+                                            <button @click="deleteCommentData(item.CommentID)" :class="{ 'class_detail_rating_user_delete_button': true, ['commentID' + item.CommentID]: true }" style="padding: 5px 20px">
                                                 <div class="class_detail_rating_user_delete_trash">
                                                     <div class="class_detail_rating_user_delete_top">
                                                         <div class="class_detail_rating_user_delete_paper"></div>
@@ -472,7 +472,7 @@ export default {
         // sweetalert2을 이용한 알러트 출력 방법
         async deleteCommentData(deleteCommentID) {
 
-            const button = document.querySelector('.class_detail_rating_user_delete_button');
+            const button = document.querySelector('.class_detail_rating_user_delete_button.commentID' + deleteCommentID);
 
                 if (!button.classList.contains('delete')) {
                 button.classList.add('delete');
@@ -594,10 +594,7 @@ export default {
 
         // 게시판 삭제 불러오기
         async deleteBoardData(data) {
-
-            
-			const button = document.querySelector('.class_detail_rating_user_delete_button');
-
+			const button = document.querySelector('.class_detail_rating_user_delete_button.boardID' + data);
                 if (!button.classList.contains('delete')) {
                 button.classList.add('delete');
                 setTimeout(() => {
