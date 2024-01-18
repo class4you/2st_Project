@@ -139,7 +139,7 @@
                         <div class="board_button">
                             <div class="board_detail_report_div">
                                 <div class="board_detail_report_btn">
-                                    <button type="button" @click="boardReport()">🚨게시글 신고</button>
+                                    <button type="button" @click="boardReport()">🚨 게시글 신고</button>
                                 </div>
                             </div>
 
@@ -194,7 +194,7 @@
                                     <p class="comment_writer">작성자<span>{{ hideEmail(item.UserEmail) }}</span></p>
                                     <div class="comment_created_report_div">
                                         <p>작성일<span>{{ item.created_at }}</span></p>
-                                        <button type="button" @click="commentReport(item.CommentID)">🚨댓글신고</button>
+                                        
                                     </div>
                                 </div>
                                 <div class="commentText">
@@ -203,6 +203,7 @@
                                 </div>
                                 
                                 <div class="commentActions row aiC">
+                                    <button style="" class="comment_report_btn" type="button" @click="commentReport(item.CommentID)">🚨 댓글신고</button>
                                     <div v-if="item.UserID == $store.state.UserID" style="margin-left: auto;">
                                         <div v-if="item.CommentID == updateCommentID" >
                                             <button @click="addUpdateComment(item)" class="commentActions_updateBtn">수정</button>
@@ -774,7 +775,6 @@ export default {
                 cancelButtonText: '취소',
                 confirmButtonText: '신고하기',
                 showLoaderOnConfirm: true,
-                
                 preConfirm: (ReportContent) => {
                     return new Promise((resolve) => {
                         setTimeout(() => {

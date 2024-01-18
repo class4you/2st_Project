@@ -1,7 +1,7 @@
 <template>
     <!-- Page Wrapper -->
     <!-- <loading-component v-if="loading" /> -->
-    <div style="background-color:#7b9ffb; height: 100vh" class="bg-gradient-primary">
+    <div style="background-color:#cad9ff6a; height: 100vh" class="bg-gradient-primary">
         <!-- <h2>Weekly Coding Challenge #1: Sign in/up Form</h2> -->
             <div style="margin: auto;" class="container" id="container">
             <div class="form-container sign-up-container">

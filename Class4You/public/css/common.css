@@ -4806,6 +4806,17 @@ background-color: rgba(225, 223, 234, 0.224);
     background-color: #4744ff99;
 }
 
+.comment_report_btn {
+    padding: 0px !important; 
+    font-size: 14px; 
+    cursor: pointer; 
+    background-color: transparent; 
+    opacity: 0.5;
+}
+
+.comment_report_btn:hover {
+    opacity: 1;
+}
 
 .commentActions button {
     margin-right: 10px;
@@ -5526,9 +5537,15 @@ background-color: rgba(225, 223, 234, 0.224);
 .board_detail_report_btn>button {
     background: transparent;
     border: none;
-    color: #999;
+    color: #000000;
+    cursor: pointer;
+    font-size: 15px;
+    opacity: 0.5;
 }
 
+.board_detail_report_btn>button:hover {
+    opacity: 1;
+}
 
 
 /* 신고게시글 정보 페이징*/
@@ -9521,6 +9538,7 @@ code, .main_banner_code_card .main_banner_code_line-numbers {
     padding: 0 20px;
     color: #666;
     transition: transform 0.3s ease-in-out;
+    
   }
 
   .header_dropdown_box_btn .header_dropdown_box_dropdown li:hover {
@@ -9546,7 +9564,7 @@ code, .main_banner_code_card .main_banner_code_line-numbers {
     border-bottom: 1px solid rgba(0, 0, 0, 0.05);
     padding: 16px 0;
     color: inherit;
-    font-size: 10px;
+    font-size: 12px;
     text-decoration: none;
   }
   
@@ -10004,6 +10022,10 @@ code, .main_banner_code_card .main_banner_code_line-numbers {
   opacity: 0.5;
   }
 
+  .header_top_btn_cta__wrapper:hover {
+    opacity: 1;
+  }
+
   .header_top_cta__button{
     position: relative;
     width: 70px;
@@ -10035,7 +10057,6 @@ code, .main_banner_code_card .main_banner_code_line-numbers {
         &:after{
             border: 1px solid #4e81f8;
             transform: rotate(135deg);
-            opacity: 1;
         }
     }
   }
