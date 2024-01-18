@@ -208,9 +208,11 @@ class BoardController extends Controller
 
         
         $likeCount = BoardRatingState::where('BoardID', $BoardID)
-        ->where('BoardRating', 1)
-        ->count();
-
+            ->whereIn('BoardRating', [1, -1])
+            ->sum('BoardRating');
+        
+        // Log::debug($likeCount);
+        
         // $disapprovalCount = BoardRatingState::where('BoardID', $BoardID)
         // ->where('BoardRating', -1)
         // ->count();
@@ -219,10 +221,14 @@ class BoardController extends Controller
         ->where('UserID', $UserID)
         ->first();
 
+        if ($recommendationState) {
+            $boardRating = $recommendationState->BoardRating;
+            // Log::debug($boardRating);
         
-        $recommendationState = $recommendationState ? true : false;
-        Log::debug($recommendationState);
-        // Log::debug($boardComment);
+            $recommendationState = $boardRating === 1 ? 'like' : ($boardRating === -1 ? 'hate' : false);
+        } else {
+            // Log::debug('Recommendation state not found.');
+        }
 
         return response()->json([
             'boardData' => $boardData,
@@ -304,11 +310,10 @@ class BoardController extends Controller
         $UserID = $request->input('UserID');
         $BoardID = $request->input('BoardID');
 
-        Log::debug($request);
         $userRating = BoardRatingState::where('UserID', $UserID)
             ->where('BoardID', $BoardID)
             ->first();
-        Log::debug($userRating);
+
 
             if ($userRating) {
                 if($userRating->BoardRating == 1) {
@@ -336,8 +341,29 @@ class BoardController extends Controller
                     'BoardID' => $BoardID,
                     'BoardRating' => 1,
                 ]);
-                return response()->json(['message' => 1]);
             }
+
+            $recommendationState = BoardRatingState::where('BoardID', $BoardID)
+                ->where('UserID', $UserID)
+                ->first();
+
+            if ($recommendationState) {
+                $boardRating = $recommendationState->BoardRating;
+            
+                $recommendationState = $boardRating === 1 ? 'like' : ($boardRating === -1 ? 'hate' : false);
+            } else {
+            }
+
+                        
+            $likeCount = BoardRatingState::where('BoardID', $BoardID)
+            ->whereIn('BoardRating', [1, -1])
+            ->sum('BoardRating');
+    
+
+            return response()->json([
+                'recommendationState' => $recommendationState,
+                'likeCount' => $likeCount,
+            ]);
 
         // $boardId = $request->input('BoardID');
         
@@ -365,7 +391,6 @@ class BoardController extends Controller
         $userRating = BoardRatingState::where('UserID', $UserID)
             ->where('BoardID', $BoardID)
             ->first();
-
             if ($userRating) {
                 if($userRating->BoardRating == -1) {
                     $userRating  -> update([
@@ -392,8 +417,29 @@ class BoardController extends Controller
                     'BoardID' => $BoardID,
                     'BoardRating' => 1,
                 ]);
-                return response()->json(['message' => 1]);
             }
+
+        $recommendationState = BoardRatingState::where('BoardID', $BoardID)
+        ->where('UserID', $UserID)
+        ->first();
+
+        if ($recommendationState) {
+            $boardRating = $recommendationState->BoardRating;
+        
+            $recommendationState = $boardRating === 1 ? 'like' : ($boardRating === -1 ? 'hate' : false);
+        } else {
+        }
+
+                
+        $likeCount = BoardRatingState::where('BoardID', $BoardID)
+            ->whereIn('BoardRating', [1, -1])
+            ->sum('BoardRating');
+        
+    
+        return response()->json([
+            'recommendationState' => $recommendationState,
+            'likeCount' => $likeCount,
+        ]);
 
 
         // $boardId = $request->input('BoardID');
