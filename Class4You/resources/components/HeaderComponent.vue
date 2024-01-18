@@ -19,7 +19,7 @@
         <header id="header" style="border-bottom: 0.5px solid rgba(114, 114, 114, 0.1); background-color: #fff;">
             <div class="navigation">
                 <ul class="nav_left side_nav">
-                    <li><a href="" class="menu_btn"><img src="/img/menu.png" alt="">전체 강의</a>
+                    <!-- <li><a href="" class="menu_btn"><img src="/img/menu.png" alt="">전체 강의</a>
                         <ul class="dropdown">
                             <li><a href="/classBoard/HTML">HTML</a></li>
                             <li><a href="/classBoard/CSS">CSS</a></li>
@@ -27,9 +27,22 @@
                             <li><a href="/classBoard/PHP">PHP</a></li>
                             <li><a href="/classBoard/JAVA">JAVA</a></li>
                             <li><a href="/classBoard/DataBase">DataBase</a></li>
-                            <!-- 필요한 만큼 강의 항목을 추가 -->
                         </ul>
-                    </li>
+                    </li> -->
+                    
+                <div class="header_dropdown_box_container">
+                    <button class="header_dropdown_box_btn"><span>전체강의</span><i class="header_dropdown_box_material-icons" ><svg style="position: relative; top: 2px;" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-text-right" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M6 12.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm-4-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5zm4-3a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm-4-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5z"/></svg></i>
+                    <ul class="header_dropdown_box_dropdown">
+                        <li><a href="/classBoard/HTML">HTML</a></li>
+                            <li><a href="/classBoard/CSS">CSS</a></li>
+                            <li><a href="/classBoard/JavaScript">Java Script</a></li>
+                            <li><a href="/classBoard/PHP">PHP</a></li>
+                            <li><a href="/classBoard/JAVA">JAVA</a></li>
+                            <li><a href="/classBoard/DataBase">DataBase</a></li>
+                    </ul>
+                    </button>
+                </div>
+
                     <!-- <li><a href="">추천 강의</a></li> -->
                     <!-- <li><a href="">신규 강의</a></li> -->
                     <li>|</li>
@@ -93,6 +106,13 @@
 
         </div>
 
+        <div  @click="scrollToTop" class="header_top_btn_cta__wrapper">
+            <div class="header_top_cta__button">
+                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="#4e81f8" class="bi bi-triangle-half header_top_cta__svg" viewBox="0 0 16 16">
+                <path d="M8.065 2.016A.13.13 0 0 0 8.002 2v11.983l6.856.017a.12.12 0 0 0 .066-.017.162.162 0 0 0 .054-.06.176.176 0 0 0-.002-.183L8.12 2.073a.146.146 0 0 0-.054-.057zm-1.043-.45a1.13 1.13 0 0 1 1.96 0l6.856 11.667c.458.778-.091 1.767-.98 1.767H1.146c-.889 0-1.437-.99-.98-1.767L7.022 1.566z"/>
+            </svg>
+            </div>
+        </div>
     </div>
 </template>
 <script>
@@ -128,6 +148,7 @@ export default {
             loginClickFlgTab: 1,
             userEmailChk: {},
             userEmailData: {},
+            showScrollButton: false,
         }
     },
 
@@ -136,6 +157,9 @@ export default {
 
     },
 
+    beforeDestroy() {
+        window.removeEventListener('scroll', this.handleScroll);
+    },
     mounted() {
         axios.get('/getUserData')
         .then(response2 => {
@@ -152,10 +176,12 @@ export default {
                 this.$store.commit('setUserID', response2.data.userId);
             }
 
+            
         })
         .catch(error => {
             console.error('Error fetching data:', error);
         });
+        window.addEventListener('scroll', this.handleScroll);
     },
 
     computed: {
@@ -165,6 +191,15 @@ export default {
     },
 
     methods: {
+        scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        },
+        handleScroll() {
+            this.showScrollButton = window.scrollY > 100;
+        },
         loginOpenModal() {
             this.$store.commit('setOpenLoginModal');
         }, 

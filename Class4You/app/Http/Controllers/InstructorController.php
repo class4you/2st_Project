@@ -338,11 +338,9 @@ class InstructorController extends Controller
         // Log::debug($searchTerm);
         // Log::debug($request);
         // Log::debug($request);
-        $ClassDataQuery = Classinfo::join('chapters', 'class_infos.ClassID', '=', 'chapters.ClassID')
-            ->join('lessons', 'chapters.ChapterID', '=', 'lessons.ChapterID')
-            ->leftJoin('enrollments', 'class_infos.ClassID', '=', 'enrollments.ClassID') // LEFT JOIN으로 변경
-            // ->orWhere('class_infos.ClassTitle', 'LIKE', "%css%")
-            // ->where('class_infos.InstructorID', $instructorId)
+        $ClassDataQuery = Classinfo::leftJoin('enrollments', 'class_infos.ClassID', '=', 'enrollments.ClassID')
+            ->leftJoin('chapters', 'class_infos.ClassID', '=', 'chapters.ClassID')
+            ->leftJoin('lessons', 'chapters.ChapterID', '=', 'lessons.ChapterID')
             ->select(
                 'class_infos.ClassID',
                 'class_infos.CategoryID',
@@ -354,16 +352,16 @@ class InstructorController extends Controller
                 DB::raw('COUNT(DISTINCT enrollments.UserID) as enrollment_count')
             )
             ->groupBy('class_infos.ClassID', 'class_infos.CategoryID', 'class_infos.ClassDifficultyID', 'class_infos.ClassTitle', 'class_infos.ClassPrice')
-            ->orderBy('class_infos.created_at', 'desc');
-
-        if ($request->has('search')) {
+            ->orderByDesc('class_infos.created_at');
+        
+        if ($request->filled('search')) {
             $searchTerm = $request->input('search');
             $ClassDataQuery->where(function ($query) use ($searchTerm) {
                 $query->orWhere('class_infos.ClassTitle', 'LIKE', "%{$searchTerm}%")
                     ->orWhere('class_infos.ClassID', 'LIKE', "%{$searchTerm}%");
             });
         }
-
+        
         $ClassData = $ClassDataQuery->paginate(10);
 
         // $ClassDataQuery = Classinfo::join('chapters', 'class_infos.ClassID', '=', 'chapters.ClassID')

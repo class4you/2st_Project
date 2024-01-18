@@ -74,12 +74,12 @@
                         </div>
                     </div>
                 </li>
-
+<!-- 
                 <li class="nav-item">
                     <a class="nav-link" href="/admininformation">
                     <i class="fas fa-fw fa-cog"></i>
                     <span>관리자 ㆍ 강사 정보 관리</span></a>
-                </li>
+                </li> -->
 
                 <li class="nav-item">
                     <a class="nav-link" href="/adminregistration">
@@ -464,7 +464,7 @@ export default {
         fetchData(page = 1) {
             axios.get(`/instructorclassinsertdata?page=${page}&search=${this.searchQuery}`)
             .then(response => {
-                console.log(response.data)
+                console.log('오냐');
                 // console.log(response.data.userData.data)
                 this.classData = response.data.ClassData.data;
                 this.pagination = response.data.ClassData.links;
@@ -517,10 +517,10 @@ export default {
         styleLink.href = '/css/sb-admin-2.css';
         document.head.appendChild(styleLink);
 
-        const minStyleLink = document.createElement('link');
-        minStyleLink.rel = 'stylesheet';
-        minStyleLink.href = '/css/sb-admin-2.min.css';
-        document.head.appendChild(minStyleLink);
+        // const minStyleLink = document.createElement('link');
+        // minStyleLink.rel = 'stylesheet';
+        // minStyleLink.href = '/css/sb-admin-2.min.css';
+        // document.head.appendChild(minStyleLink);
 
         const allMinStyleLink = document.createElement('link');
         allMinStyleLink.rel = 'stylesheet';
@@ -530,7 +530,7 @@ export default {
 
         // 스타일시트 로드 완료 후 로딩 상태 변경
         const checkLoad = () => {
-        if (styleLink.sheet && minStyleLink.sheet && allMinStyleLink.sheet) {
+        if (styleLink.sheet && allMinStyleLink.sheet) {
             // 스타일시트가 로드되었음을 확인하면 로딩 상태 변경
             this.loading = false;
         } else {
