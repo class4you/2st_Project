@@ -668,7 +668,7 @@ import { Chart as ChartJS, Title, Tooltip, Legend, BarElement, DoughnutControlle
 ChartJS.register(Title, Tooltip, Legend, BarElement, DoughnutController, ArcElement, LinearScale, CategoryScale, RadialLinearScale, PointElement, LineElement);
 
 export default {
-    name: 'AdminMainComponent',
+    name: 'AdminInformationComponent',
 
     components: {
         LoadingComponent,

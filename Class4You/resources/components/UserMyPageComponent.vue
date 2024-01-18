@@ -1357,7 +1357,7 @@ methods: {
         }
     },
     updateChartData(transData) {
-
+        console.log(transData);
         let result = {
                 labels: [],
                 datasets: [ {label: '수강 강의', data: [], backgroundColor: '#4e81f8',}, {label: '수강 챕터', data2: [], backgroundColor: '#7371fc',} ],
@@ -1371,7 +1371,7 @@ methods: {
         this.barChartData = result;
     },
     processLanguageData(transData) {
-        console.log(transData);
+        // console.log(transData);
         this.RadarChartData = {
             labels: [],
             datasets: [

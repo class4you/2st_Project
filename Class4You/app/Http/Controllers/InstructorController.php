@@ -480,7 +480,7 @@ class InstructorController extends Controller
         //     // 해당 월의 데이터 추가
         //     $userCountsByYear[$year][$month] = $count;
         // }
-
+        
         $currentYear = date('Y');
         $lastYear = $currentYear - 1;
 
@@ -494,27 +494,21 @@ class InstructorController extends Controller
 
         $userCountsByYear = [];
 
+        // 1월부터 12월까지의 데이터 그룹화
+        for ($month = 1; $month <= 12; $month++) {
+            $userCountsByYear[$month] = [
+                'lastYear' => 0,
+                'currentYear' => 0,
+            ];
+        }
+
         foreach ($userCounts as $monthlyUserCount) {
             $year = $monthlyUserCount->year;
             $month = $monthlyUserCount->month;
             $count = $monthlyUserCount->count;
 
-            // 해당 년도의 배열이 없다면 새로 생성
-            if (!isset($userCountsByYear[$year])) {
-                $userCountsByYear[$year] = [];
-            }
-
-            // 해당 월의 데이터가 없으면 0으로 초기화
-            for ($m = 1; $m <= 12; $m++) {
-                if (!array_key_exists($m, $userCountsByYear[$year])) {
-                    $userCountsByYear[$year][$m] = 0;
-                }
-            }
-
-            // 해당 월의 데이터 추가
-            $userCountsByYear[$year][$month] = [
-                'userCount' => $count, // chapterFlagCount에 사용자 수 저장
-            ];
+            // 해당 년도에 따라 값을 넣어줌
+            $userCountsByYear[$month][$year === $lastYear ? 'lastYear' : 'currentYear'] = $count;
         }
 
         // ========================
@@ -527,21 +521,24 @@ class InstructorController extends Controller
             ->groupBy('age_group')
             ->orderBy('age_group', 'asc')
             ->get();
-
-        // $userCountsByAgeGroup 배열은 나이의 키로 할당, 해당 나이 그룹에 속하는 사용자 수를 값으로 하는 연관 배열
+        
+        // $userCountsByAgeGroup 배열은 나이대의 키로 할당, 해당 나이대에 속하는 사용자 수와 연령을 값으로 하는 연관 배열
         $userCountsByAgeGroup = [];
-
+        
         // 포이치 돌려서 각 나이대에 값 할당
         foreach ($userAgeCounts as $userAgeCount) {
             $ageGroup = $userAgeCount->age_group;
-
+        
             // 해당 연령 그룹의 배열이 없다면 새로 생성
             if (!isset($userCountsByAgeGroup[$ageGroup])) {
-                $userCountsByAgeGroup[$ageGroup] = 0;
+                $userCountsByAgeGroup[$ageGroup] = [
+                    'age_group' => $ageGroup,
+                    'count' => 0,
+                ];
             }
-
+        
             // 해당 연령 그룹의 데이터 추가
-            $userCountsByAgeGroup[$ageGroup] += $userAgeCount->count;
+            $userCountsByAgeGroup[$ageGroup]['count'] += $userAgeCount->count;
         }
 
         // Log::debug($userCountsByAgeGroup);
