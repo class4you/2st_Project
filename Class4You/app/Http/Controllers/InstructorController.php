@@ -618,7 +618,7 @@ class InstructorController extends Controller
     //     Log::debug("request");
     //     Log::debug($request);
 
-    //     $data = $request->only('InstructorEmail', 'InstructorFullName', 'InstructorPassword');
+    //     $data = $request->only('InstructorEmail', 'InstructorFullName', 'InstructorPhoneNumber', 'InstructorPassword');
 
     //     // 비밀번호 암호화
     //     $data['InstructorPassword'] = Hash::make($data['InstructorPassword']);
