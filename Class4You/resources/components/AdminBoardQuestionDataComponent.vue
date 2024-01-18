@@ -351,14 +351,29 @@
                                             <th>{{ datas.created_at }}</th>
                                             <th>{{ datas.BoardFlg == 0 ? '미해결' : datas.BoardFlg == 1 ? '해결' : '상태를 확인할 수 없음' }}</th>
                                             <th>{{ datas.deleted_at == null ? '삭제' : datas.deleted_at !== null ? '미삭제' : '상태를 확인할 수 없음' }}</th>
-                                            <th><button type="button" style="padding: 0px 8px; border-radius: 3px; background-color: rgb(255, 95, 127); color: #fff; border: none;">답변하기</button></th>
+                                            <th><button type="button" @click="handleModalClick()" style="padding: 0px 8px; border-radius: 3px; background-color: rgb(255, 95, 127); color: #fff; border: none;">답변하기</button></th>
                                         </tr>
                                     </tbody>
+                                    
+                                
                                 </table>
+
+                                <div class="admin_modal_container" :class="{ 'admin_modal_show': showModal }">
+                                    <!-- 모달 내용 -->
+                                    <div class="admin_modal_content" style="display: flex;">
+                                        <div class="admin_modal_content_text">
+                                            <textarea rows="4" cols="50"></textarea>
+                                        </div>
+                                        <div>
+                                            <span @click="showModal = false" class="admin_answer_modal_close">❌</span>
+                                        </div>
+                                    </div>
+                                </div>
+
                                 <table style="display: flex; justify-content: center; font-size: 15px; gap: 8px;">
                                     <tbody v-for="(page, index) in pagination" :key="index">
                                         <template v-if="page.url !== null">
-											<a class="qustuon_list_page_a" :class="{'page_on': page.label == pageChk}" @click.prevent="fetchData(page.label)" href="#">{{ replaceString(page.label) }}</a>
+											<a class="admin_qustuon_list_page_a" :class="{'admin_page_on': page.label == pageChk}" @click.prevent="fetchData(page.label)" href="#">{{ replaceString(page.label) }}</a>
 										</template>
 										<template v-else>
 											<span>{{ replaceString(page.label) }}</span>
@@ -432,6 +447,7 @@ export default {
 			pageChk: {},
             searchQuery: '',
             adminChk: false,
+            showModal: false,
         };
     },
 
@@ -462,6 +478,12 @@ export default {
 			// console.log(str);
 			return str;
 		},
+        handleModalClick() {
+            console.log("버튼 클릭됨");
+
+            this.showModal = true;
+            console.log(this.showModal);
+        },
 
     },
 
@@ -508,5 +530,34 @@ export default {
 }
 </script>
 <style>
-    
+/* 모달 스타일 */
+.admin_modal_container {
+  display: none;
+  border-radius: 10px;
+  padding: 20px;
+  border: 1px solid #ededed;
+}
+
+.admin_modal_container.admin_modal_show {
+    display: inline-block; /* 클릭 이벤트 후에 보이게 설정됨 */
+    position: relative;
+    bottom: 50vh;
+    left: 50vh;
+    background-color: #ededed;
+}
+
+.admin_modal_content_text {
+  border: 1px solid;
+  border-radius: 5px;
+}
+
+.admin_modal_content_text>textarea {
+  background: transparent;
+  border: none;
+  resize: none;
+}
+
+.admin_answer_modal_close {
+    cursor: pointer;
+}
 </style>

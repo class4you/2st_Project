@@ -106,8 +106,9 @@
                                     </div>
                                 </div>
                                 <div v-else  class="class_detail_watch_side_classnote_list_text">   
-                                    <div>
-                                        <p>{{ data.ClassNoteID }},{{ data.ClassNoteComment }}</p>
+                                    <div style="font-size: 15px; font-weight: 700; color: #535151; white-space: pre;">
+                                        <p>{{ data.ClassNoteComment }}</p>
+                                        <!-- <p>{{ data }}</p> -->
                                     </div>
                                 </div> 
 
@@ -128,6 +129,7 @@
                                         <div class="class_detail_watch_side_classnote_list_btn_del">
                                             <button @click="delClassNote(data)">삭제</button>
                                         </div>
+                                        <!-- {{ data }} -->
                                     </div>
                                 </div>
                             </div>
@@ -428,6 +430,7 @@ export default {
                 // console.log("res데이터 어디갔냐");
                 // console.log(res);
                 console.log("레스데이터", res.data);
+                console.log("UserID값", res.data.UserID);
                 // 여기엔 있음
                 // console.log("노트아이디", res.data.ClassNoteID);
                 // 작성된 노트 데이터

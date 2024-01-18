@@ -890,7 +890,7 @@
 								</div>
 
 							</div>
-							<div class="class_detail_commu_list_text_board_comment">
+							<div class="class_detail_commu_list_text_board_comment" style="white-space: pre-wrap;">
 								<p>{{ data.BoardComment }}</p>
 							</div>
 						</div>
