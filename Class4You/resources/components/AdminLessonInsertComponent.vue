@@ -321,8 +321,8 @@
                                         <col style="width: 5%;">
                                         <col style="width: 20%;">
                                         <col style="width: 20%;">
-                                        <col style="width: 5%;">
-                                        <col style="width: 5%;">
+                                        <!-- <col style="width: 5%;">
+                                        <col style="width: 5%;"> -->
                                     </colgroup>
                                     <thead>
                                         <tr>
@@ -331,8 +331,8 @@
                                             <th>유튜브아이디</th>
                                             <th>레슨제목</th>
                                             <th>레슨내용</th>
-                                            <th>수정</th>
-                                            <th>삭제</th>
+                                            <!-- <th>수정</th>
+                                            <th>삭제</th> -->
                                         </tr>
                                     </thead>
                                     <!-- <tfoot>
@@ -353,8 +353,8 @@
                                             <th>{{ datas.LessonVideoID }}</th>
                                             <th style="text-align: left;">{{ datas.LessonTitle }}</th>
                                             <th style="text-align: left;">{{ datas.LessonContent }}</th>
-                                            <th><button type="button" style="padding: 0px 10px; border-radius: 3px; background-color: rgb(255, 95, 127); color: #fff; border: none;">수정</button></th>
-                                            <th><button type="button" style="padding: 0px 10px; border-radius: 3px; background-color: rgb(255, 95, 127); color: #fff; border: none;">삭제</button></th>
+                                            <!-- <th><button type="button" style="padding: 0px 10px; border-radius: 3px; background-color: rgb(255, 95, 127); color: #fff; border: none;">수정</button></th>
+                                            <th><button type="button" style="padding: 0px 10px; border-radius: 3px; background-color: rgb(255, 95, 127); color: #fff; border: none;">삭제</button></th> -->
                                         </tr>
                                     </tbody>
                                 </table>

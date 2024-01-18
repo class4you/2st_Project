@@ -335,8 +335,8 @@
                                         <col style="width: 5%;">
                                         <col style="width: 5%;">
                                         <col style="width: 5%;">
-                                        <col style="width: 5%;">
-                                        <col style="width: 5%;">
+                                        <!-- <col style="width: 5%;">
+                                        <col style="width: 5%;"> -->
                                     </colgroup>
                                     <thead>
                                         <tr>
@@ -348,8 +348,8 @@
                                             <th>챕터 수</th>
                                             <th>레슨 수</th>
                                             <th>수강생 수</th>
-                                            <th>수정</th>
-                                            <th>삭제</th>
+                                            <!-- <th>수정</th>
+                                            <th>삭제</th> -->
                                         </tr>
                                     </thead>
                                     <!-- <tfoot>
@@ -374,8 +374,8 @@
                                             <th>{{ datas.chapter_count }}개</th>
                                             <th>{{ datas.lesson_count }}개</th>
                                             <th>{{ datas.enrollment_count }}명</th>
-                                            <th><button type="button" style="padding: 0px 10px; border-radius: 3px; background-color: rgb(255, 95, 127); color: #fff; border: none;">수정</button></th>
-                                            <th><button type="button" style="padding: 0px 10px; border-radius: 3px; background-color: rgb(255, 95, 127); color: #fff; border: none;">삭제</button></th>
+                                            <!-- <th><button type="button" style="padding: 0px 10px; border-radius: 3px; background-color: rgb(255, 95, 127); color: #fff; border: none;">수정</button></th>
+                                            <th><button type="button" style="padding: 0px 10px; border-radius: 3px; background-color: rgb(255, 95, 127); color: #fff; border: none;">삭제</button></th> -->
                                         </tr>
                                     </tbody>
                                 </table>
