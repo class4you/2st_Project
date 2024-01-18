@@ -348,13 +348,24 @@
 
                                 <div class="admin_modal_container" :class="{ 'admin_modal_show': showModal }">
                                     <!-- 모달 내용 -->
-                                    <div class="admin_modal_content" style="display: flex;">
-                                        <div class="admin_modal_content_text">
-                                            <textarea rows="4" cols="50"></textarea>
+                                    <div class="admin_modal_content">
+                                        <div class="admin_modal_content_label_span">
+                                            <div class="admin_modal_content_label">
+                                                <label for="">답변하기</label>
+                                            </div>
+                                            <div>
+                                                <span @click="showModal = false" class="admin_answer_modal_close">❌</span>
+                                            </div>
                                         </div>
-                                        <div>
-                                            <span @click="showModal = false" class="admin_answer_modal_close">❌</span>
-                                        </div>
+                                        <fieldset>
+                                            <div class="admin_modal_content_text">
+                                                <textarea></textarea>
+                                                <div class="admin_modal_content_text_btn" style="text-align: end;">
+                                                    <button>전송</button>
+                                                </div>
+                                            </div>
+                                            
+                                        </fieldset>
                                     </div>
                                 </div>
 
@@ -520,29 +531,83 @@ export default {
 <style>
 /* 모달 스타일 */
 .admin_modal_container {
-  display: none;
-  border-radius: 10px;
-  padding: 20px;
-  border: 1px solid #ededed;
+    display: none;
+    /* position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 100;
+    opacity: 0.5; */
+    background-color: rgba(255,255,255,0.5);
+    /* opacity: 0.5; */
 }
 
 .admin_modal_container.admin_modal_show {
-    display: inline-block; /* 클릭 이벤트 후에 보이게 설정됨 */
+    /* display: inline-block;
     position: relative;
     bottom: 50vh;
     left: 50vh;
-    background-color: #ededed;
+    background-color: #ededed; */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 100;
+}
+
+.admin_modal_content_label_span{
+    display: flex;
+    flex-direction: row;
+    /* gap: 50px; */
+    justify-content: space-between;
+    align-items: center;
+}
+
+.admin_modal_content {
+    display: flex; 
+    flex-direction: column;
+    flex-wrap: wrap;
+    width: 50%;
+    margin-left: 25%;
+    margin-top: 15%;
+}
+
+.admin_modal_content_label {
+    font-weight: 700;
+    color: #4d4c4c;
 }
 
 .admin_modal_content_text {
-  border: 1px solid;
+  border: 1px solid rgba(89 90 91 / 30%);
   border-radius: 5px;
+  height: 30vh;
+  padding: 10px;
+  background-color: rgba(89 90 91 / 30%);
+  display: flex;
+    flex-direction: column;
+}
+
+.admin_modal_content_text_btn>button {
+    border: none;
+    padding: 5px 10px;
+    margin-top: 5px;
+    border-radius: 5px;
+    font-size: 13px;
 }
 
 .admin_modal_content_text>textarea {
-  background: transparent;
-  border: none;
-  resize: none;
+    background-color: #fff;
+    border: none;
+    resize: none;
+    /* padding: 10px; */
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  /* position: relative;
+    top: 50%;
+    right: 50%; */
 }
 
 .admin_answer_modal_close {
