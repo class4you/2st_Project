@@ -72,11 +72,11 @@
                     </div>
                 </li>
 
-                <li class="nav-item">
+                <!-- <li class="nav-item">
                     <a class="nav-link" href="/admininformation">
                     <i class="fas fa-fw fa-cog"></i>
                     <span>관리자 ㆍ 강사 정보 관리</span></a>
-                </li>
+                </li> -->
 
                 <li class="nav-item">
                     <a class="nav-link" href="/adminregistration">
@@ -438,6 +438,7 @@ export default {
 			pageChk: {},
             searchQuery: '',
             adminChk: false,
+            amdinID: null,
         };
     },
 
@@ -495,6 +496,8 @@ export default {
         this.fetchData();
 
         this.adminChk = localStorage.getItem('adminChk');
+
+        this.adminID = localStorage.getItem('InstructorID');
     },
 
     beforeCreate() {
