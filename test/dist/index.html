@@ -2,19 +2,50 @@
 <html lang="en" >
 <head>
   <meta charset="UTF-8">
-  <title>CodePen - Button Hover</title>
-  <link rel="stylesheet" href="./style.css">
+  <title>Flipping Business Card</title>
+  <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css"> -->
+<!-- <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.5.0/css/all.css'> -->
+<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Inconsolata'><link rel="stylesheet" href="./style.css">
 
 </head>
 <body>
-  <div class="button_container">
-    <p class="description">A simple pure CSS hover effect</p>
-    <button class="btn"><span>Like 1</span></button>
-    <p class="link">
-      Design by 
-      <a href="https://dribbble.com/skytrip" target="_blank">SkyTrip</a>
-    </p>
+<!-- partial:index.partial.html -->
+<div class="main_banner_code_card">
+  <div class="main_banner_code_card-back">
+    <div class="main_banner_code_line-numbers">
+      <div>1</div>
+      <div>2</div>
+      <div>3</div>
+      <div>4</div>
+      <div>5</div>
+      <div>6</div>
+      <div>7</div>
+      <div>8</div>
+      <div>9</div>
+    </div><code><span class="main_banner_code_variable">const </span><span class="main_banner_code_function">aboutMe </span><span class="main_banner_code_operator">= </span><span>{</span>
+      <div class="main_banner_code_indent"> <span class="main_banner_code_property">name</span><span class="main_banner_code_operator">: </span><span class="main_banner_code_string">'Joshua Ward'</span><span>,</span></div>
+      <div class="main_banner_code_indent"> <span class="main_banner_code_property">title</span><span class="main_banner_code_operator">: </span><span class="main_banner_code_string">'Sr. UI/UX Developer'</span><span>,</span></div>
+      <div class="main_banner_code_indent"> <span class="main_banner_code_property">contact</span><span class="main_banner_code_operator">: </span><span>{</span>
+        <div class="main_banner_code_indent"> <span class="main_banner_code_property">email</span><span class="main_banner_code_operator">: </span><span class="main_banner_code_string">'josh@geekstudios.co'</span><span>,</span></div>
+        <div class="main_banner_code_indent"><span class="main_banner_code_property">website</span><span class="main_banner_code_operator">:</span><span class="main_banner_code_string">'geekstudios.co'</span></div><span>}</span>
+      </div><span>}</span></code>
   </div>
-  
+  <div class="main_banner_code_card-front">
+    <div class="main_banner_code_line-numbers">
+      <div>1</div>
+      <div>2</div>
+      <div>3</div>
+      <div>4</div>
+      <div>5</div>
+      <div>6</div>
+      <div>7</div>
+      <div>8</div>
+      <div>9</div>
+    </div><code><span class="main_banner_code_variable">this</span><span>.</span><span class="method">addEventListener</span><span>(</span><span class="main_banner_code_string">'mouseover'</span><span>, </span><span class="main_banner_code_function">() => </span><span>{ </span>
+      <div class="main_banner_code_indent"><span class="main_banner_code_variable">this</span><span>.</span><span class="main_banner_code_property">flipCard </span><span>= </span><span class="boolean">true</span><span>;</span></div><span>});</span></code>
+  </div>
+</div>
+<!-- partial -->
+  <!-- <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script> -->
 </body>
 </html>

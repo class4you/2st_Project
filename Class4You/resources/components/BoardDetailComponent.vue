@@ -61,8 +61,9 @@
                                 <button type="button" @click="updateRecommendedBoardData()"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-hand-thumbs-up-fill" viewBox="0 0 16 16"><path d="M6.956 1.745C7.021.81 7.908.087 8.864.325l.261.066c.463.116.874.456 1.012.965.22.816.533 2.511.062 4.51a9.84 9.84 0 0 1 .443-.051c.713-.065 1.669-.072 2.516.21.518.173.994.681 1.2 1.273.184.532.16 1.162-.234 1.733.058.119.103.242.138.363.077.27.113.567.113.856 0 .289-.036.586-.113.856-.039.135-.09.273-.16.404.169.387.107.819-.003 1.148a3.163 3.163 0 0 1-.488.901c.054.152.076.312.076.465 0 .305-.089.625-.253.912C13.1 15.522 12.437 16 11.5 16H8c-.605 0-1.07-.081-1.466-.218a4.82 4.82 0 0 1-.97-.484l-.048-.03c-.504-.307-.999-.609-2.068-.722C2.682 14.464 2 13.846 2 13V9c0-.85.685-1.432 1.357-1.615.849-.232 1.574-.787 2.132-1.41.56-.627.914-1.28 1.039-1.639.199-.575.356-1.539.428-2.59z"/></svg></button>
                             </div> -->
 
-                            <button @click="updateRecommendedBoardData()" class="high-five like_button_color">
-                                <span>좋아요</span>
+                            <!-- <button @click="updateRecommendedBoardData()" class="high-five like_button_color" :class="{'detali_like_state_on': recommendationState === 'like'}">
+                                <span v-if="recommendationState === 'like'">Like!</span>
+                                <span v-else>좋아요</span>
                                 <div class="hands">
                                     <svg class="left" viewBox="0 0 32 36">
                                     <ellipse cx="14" cy="13" rx="9" ry="11" />
@@ -77,13 +78,28 @@
                                     />
                                     </svg>
                                 </div>
-                                <div class="success like_button_bg_color"><span style="line-height: 38px;">{{recommendationCount}}</span></div>
-                            </button>
+                                <div class="success like_button_bg_color"><span style="line-height: 38px;">Like!</span></div>
+                            </button> -->
+                            <div style="display: flex; padding: 15px 30px; gap: 20px; border: 1px solid #c6c6c61f; box-shadow: 0px 5px 10px 1px #ebebeb; border-radius: 20px;">
+                                <svg style="position: relative; top: -6px" class="board_detail_like" :class="{ 'click': likeisClicked }" @click="updateRecommendedBoardData()" xmlns="http://www.w3.org/2000/svg" version="1.0" width="300.000000pt" height="300.000000pt" viewBox="0 0 300.000000 300.000000" preserveAspectRatio="xMidYMid meet">
+                                    <g transform="translate(0.000000,300.000000) scale(0.100000,-0.100000)" stroke="none">
+                                    <path d="M963 2645 c-37 -19 -60 -40 -82 -73 -56 -88 -64 -137 -70 -462 l-6 -295 -225 -5 c-211 -5 -228 -7 -273 -29 -84 -41 -130 -124 -130 -236 0 -57 21 -152 118 -525 64 -250 128 -475 140 -500 27 -52 68 -94 108 -109 38 -15 945 -15 983 -1 32 13 243 161 296 208 57 51 60 81 56 517 -3 348 -5 383 -22 415 -10 19 -143 159 -296 310 -251 249 -281 282 -313 347 -35 71 -64 180 -87 320 -7 41 -21 87 -34 105 -30 45 -89 50 -163 13z"/>
+                                    <path d="M2134 1666 c-67 -29 -64 -1 -64 -623 0 -414 3 -569 12 -588 24 -52 41 -55 373 -55 l307 0 29 29 29 29 0 574 c0 636 3 605 -66 634 -47 20 -574 20 -620 0z"/>
+                                    </g>
+                                </svg>
 
-                            <div class="board_detail_like_num">{{ likeCount }}</div>
+                                <div class="board_detail_like_num">{{ likeCount }}</div>
 
-                            <button @click="updateNotRecommendedBoardData()" class="high-five">
-                                <span>싫어요</span>
+                                <svg style="position: relative; top: 6px" class="board_detail_like" :class="{ 'click': hateisClicked }"  @click="updateNotRecommendedBoardData()" xmlns="http://www.w3.org/2000/svg" version="1.0" width="300.000000pt" height="300.000000pt" viewBox="0 0 300.000000 300.000000" preserveAspectRatio="xMidYMid meet">
+                                    <g transform="translate(0.000000,300.000000) scale(0.100000,-0.100000)" stroke="none">
+                                    <path d="M209 2571 l-29 -29 0 -574 c0 -636 -3 -605 66 -634 48 -20 570 -20 618 0 69 29 66 -1 66 623 0 414 -3 569 -12 588 -24 52 -41 55 -373 55 l-307 0 -29 -29z"/>
+                                    <path d="M1471 2589 c-30 -12 -244 -163 -293 -207 -57 -51 -60 -81 -56 -517 3 -348 5 -383 22 -415 10 -19 143 -159 296 -310 251 -249 281 -282 313 -347 35 -71 64 -180 87 -320 16 -100 42 -137 99 -141 65 -5 141 36 180 96 56 88 64 137 70 462 l6 295 225 5 c211 5 228 7 273 29 84 41 130 124 130 236 0 57 -21 152 -118 525 -64 250 -128 475 -140 500 -27 52 -68 94 -108 109 -36 14 -952 14 -986 0z"/>
+                                    </g>
+                                </svg>
+                            </div>
+                            <!-- <button @click="updateNotRecommendedBoardData()" class="high-five" :class="{'detali_hate_state_on': recommendationState === 'hate'}">
+                                <span v-if="recommendationState === 'hate'">Hate!</span>
+                                <span v-else>싫어요</span>
                                 <div class="hands">
                                     <svg class="left" viewBox="0 0 32 36">
                                     <ellipse cx="14" cy="13" rx="9" ry="11" />
@@ -98,8 +114,8 @@
                                     />
                                     </svg>
                                 </div>
-                                <div class="success"><span style="line-height: 38px;">{{disapprovalCount}}</span></div>
-                            </button>
+                                <div class="success"><span style="line-height: 38px;">Hate!</span></div>
+                            </button> -->
                             
                             <!-- <div>
                                 <button @click="updateNotRecommendedBoardData()" class="button-star">
@@ -306,6 +322,9 @@ export default {
             reportData: [],
 
             recommendationState: false,
+            
+            likeisClicked: false,
+            hateisClicked: false,
         };
     },
 
@@ -374,7 +393,7 @@ export default {
         fetchData() {
         axios.get('/boarddetail/' + this.BoardID)
             .then(response => {
-            console.log(response.data);
+            // console.log(response.data);
                 this.newBoardItem = response.data.boardData;
                 this.nowUserID = response.data.userID;
                 this.newCommentItem = response.data.commentData;
@@ -383,7 +402,16 @@ export default {
                 this.likeCount = response.data.likeCount;
                 this.recommendationState = response.data.recommendationState;
                 this.reportData = response.data.commentReportData;
-                console.log(response.data.commentData);
+                // console.log(response.data.commentData);
+
+                if(this.recommendationState === 'like') {
+                    this.likeisClicked = true;
+                } else if(this.recommendationState === 'hate') {
+                    this.hateisClicked = true;
+                } else {
+                    this.likeisClicked = false;
+                    this.hateisClicked = false;
+                }
             })
             .catch(error => {
                 console.error('Error fetching data:', error);
@@ -528,8 +556,8 @@ export default {
             	    })
                     // console.log(this.commentItems);
                     // console.log(res.data);
-                    console.log('response before');
-                    console.log(res.data ? 'true' : 'false');
+                    // console.log('response before');
+                    // console.log(res.data ? 'true' : 'false');
                     // console.log(this.commentData);
                     // console.log(this.commentItems);
                     // this.newCommentItem = [this.newCommentItem];
@@ -567,7 +595,7 @@ export default {
 			// console.log(data);
 			this.updateCommentData = data;
 			// console.log(this.updataReviewData);
-			console.log(data);
+			// console.log(data);
 			
 			axios.put( '/comments', {
                 BoardID: this.BoardID,
@@ -680,16 +708,24 @@ export default {
                 UserID: this.$store.state.UserID,
             })
             .then(response => {
-                console.log(response);
+                console.log(response.data);
+                this.recommendationState = response.data.recommendationState;
+                this.likeCount = response.data.likeCount;
+
+                if(this.recommendationState === 'like') {
+                    this.likeisClicked = true;
+                    this.hateisClicked = false;
+                } else if(this.recommendationState === 'hate') {
+                    this.likeisClicked = false;
+                    this.hateisClicked = true;
+                } else {
+                    this.likeisClicked = false;
+                    this.hateisClicked = false;
+                }
                 // console.log(this.newBoardItem);
                 // 서버 응답에 대한 로직 수행
                 // this.$router.push('/board');
                 // location.reload();
-                if(response.data.message == 1) {
-                    this.recommendationCount++;
-                } else if(response.data.message == 0) {
-                    this.recommendationCount--;
-                }
             })
             .catch(error => {
                 // 에러 처리
@@ -702,16 +738,23 @@ export default {
                 UserID: this.$store.state.UserID,
             })
             .then(response => {
-                console.log(response.data);
+                // console.log(response.data);
+                this.recommendationState = response.data.recommendationState;
+                this.likeCount = response.data.likeCount;
+
+                if(this.recommendationState === 'like') {
+                    this.likeisClicked = true;
+                    this.hateisClicked = false;
+                } else if(this.recommendationState === 'hate') {
+                    this.likeisClicked = false;
+                    this.hateisClicked = true;
+                } else {
+                    this.likeisClicked = false;
+                    this.hateisClicked = false;
+                }
                 // 서버 응답에 대한 로직 수행
                 // this.$router.push('/board');
                 // location.reload();
-                this.newBoardItem.BoardNotRecommended++;
-                if(response.data.message == 1) {
-                    this.disapprovalCount++;
-                } else if(response.data.message == 0) {
-                    this.disapprovalCount--;
-                }
             })
             .catch(error => {
                 // 에러 처리
@@ -821,6 +864,12 @@ export default {
 
                 };
             })
+        },
+        liketoggleClick() {
+            this.likeisClicked = !this.likeisClicked;
+        },
+        hatetoggleClick() {
+            this.hateisClicked = !this.hateisClicked;
         },
     }
 };

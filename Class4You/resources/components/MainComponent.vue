@@ -198,61 +198,63 @@
                         </ul>
                     </div>
 
-                    <img class="main_banner" src="/img/event_banner_1.png" alt="" style="margin-bottom: 50px;">
+                    <!-- <img class="main_banner" src="/img/event_banner_1.png" alt="" style="margin-bottom: 50px;"> -->
+
+
 
                     <div class="main_banner_wrapper">
                             <article class="main_bottum_banner_wrapper">
                                 <div class="marquee">
                                     <div class="marquee__group">
-                                    <svg style="background-color: rgb(245, 246, 255); border: 2px solid #FF5722;">
+                                    <svg style="background-color: rgb(245, 246, 255); border: 1px solid #FF5722;">
                                         <use xlink:href="#mcdonalds" />
                                     </svg>
-                                    <svg style="background-color: rgb(245, 246, 255); border: 2px solid #1E1E1E;">
+                                    <svg style="background-color: rgb(245, 246, 255); border: 1px solid #1E1E1E;">
                                         <use xlink:href="#jordan" />
                                     </svg>
-                                    <svg style="background-color: rgb(245, 246, 255); border: 2px solid #cdb710;">
+                                    <svg style="background-color: rgb(245, 246, 255); border: 1px solid #cdb710;">
                                         <use xlink:href="#aws" />
                                     </svg>
-                                    <svg style="background-color: rgb(245, 246, 255); border: 2px solid #056D86;">
+                                    <svg style="background-color: rgb(245, 246, 255); border: 1px solid #056D86;">
                                         <use xlink:href="#spotify" />
                                     </svg>
-                                    <svg style="background-color: rgb(245, 246, 255); border: 2px solid #7D90C7;"> 
+                                    <svg style="background-color: rgb(245, 246, 255); border: 1px solid #7D90C7;"> 
                                         <use xlink:href="#burger-king" />
                                     </svg>
-                                    <svg style="background-color: rgb(245, 246, 255); border: 2px solid #EC2025;">
+                                    <svg style="background-color: rgb(245, 246, 255); border: 1px solid #EC2025;">
                                         <use xlink:href="#honda" />
                                     </svg>
-                                    <svg style="background-color: rgb(245, 246, 255); border: 2px solid #369AD6;">
+                                    <svg style="background-color: rgb(245, 246, 255); border: 1px solid #369AD6;">
                                         <use xlink:href="#notion" />
                                     </svg>
-                                    <svg style="background-color: rgb(245, 246, 255); border: 2px solid #000;">
+                                    <svg style="background-color: rgb(245, 246, 255); border: 1px solid #000;">
                                         <use xlink:href="#hulu" />
                                     </svg>
                                     </div>
 
                                     <div aria-hidden="true" class="marquee__group">
-                                    <svg style="background-color: rgb(245, 246, 255); border: 2px solid #FF5722;">
+                                    <svg style="background-color: rgb(245, 246, 255); border: 1px solid #FF5722;">
                                         <use xlink:href="#mcdonalds" />
                                     </svg>
-                                    <svg style="background-color: rgb(245, 246, 255); border: 2px solid #1E1E1E;">
+                                    <svg style="background-color: rgb(245, 246, 255); border: 1px solid #1E1E1E;">
                                         <use xlink:href="#jordan" />
                                     </svg>
-                                    <svg style="background-color: rgb(245, 246, 255); border: 2px solid #cdb710;">
+                                    <svg style="background-color: rgb(245, 246, 255); border: 1px solid #cdb710;">
                                         <use xlink:href="#aws" />
                                     </svg>
-                                    <svg style="background-color: rgb(245, 246, 255); border: 2px solid #056D86;">
+                                    <svg style="background-color: rgb(245, 246, 255); border: 1px solid #056D86;">
                                         <use xlink:href="#spotify" />
                                     </svg>
-                                    <svg style="background-color: rgb(245, 246, 255); border: 2px solid #7D90C7;">
+                                    <svg style="background-color: rgb(245, 246, 255); border: 1px solid #7D90C7;">
                                         <use xlink:href="#burger-king" />
                                     </svg>
-                                    <svg style="background-color: rgb(245, 246, 255); border: 2px solid #EC2025;">
+                                    <svg style="background-color: rgb(245, 246, 255); border: 1px solid #EC2025;">
                                         <use xlink:href="#honda" />
                                     </svg>
-                                    <svg style="background-color: rgb(245, 246, 255); border: 2px solid #369AD6;">
+                                    <svg style="background-color: rgb(245, 246, 255); border: 1px solid #369AD6;">
                                         <use xlink:href="#notion" />
                                     </svg>
-                                    <svg style="background-color: rgb(245, 246, 255); border: 2px solid #000;">
+                                    <svg style="background-color: rgb(245, 246, 255); border: 1px solid #000;">
                                         <use xlink:href="#hulu" />
                                     </svg>
                                     </div>
@@ -260,28 +262,28 @@
 
                                 <div class="marquee marquee--reverse">
                                     <div class="marquee__group">
-                                    <svg style="background-color: rgb(245, 246, 255); border: 2px solid #FF5722;">
+                                    <svg style="background-color: rgb(245, 246, 255); border: 1px solid #FF5722;">
                                         <use xlink:href="#hulu" />
                                     </svg>
-                                    <svg style="background-color: rgb(245, 246, 255); border: 2px solid #1E1E1E;">
+                                    <svg style="background-color: rgb(245, 246, 255); border: 1px solid #1E1E1E;">
                                         <use xlink:href="#notion" />
                                     </svg>
-                                    <svg style="background-color: rgb(245, 246, 255); border: 2px solid #cdb710;">
+                                    <svg style="background-color: rgb(245, 246, 255); border: 1px solid #cdb710;">
                                         <use xlink:href="#honda" />
                                     </svg>
-                                    <svg style="background-color: rgb(245, 246, 255); border: 2px solid #056D86;">
+                                    <svg style="background-color: rgb(245, 246, 255); border: 1px solid #056D86;">
                                         <use xlink:href="#burger-king" />
                                     </svg>
-                                    <svg style="background-color: rgb(245, 246, 255); border: 2px solid #7D90C7;">
+                                    <svg style="background-color: rgb(245, 246, 255); border: 1px solid #7D90C7;">
                                         <use xlink:href="#spotify" />
                                     </svg>
-                                    <svg style="background-color: rgb(245, 246, 255); border: 2px solid #EC2025;">
+                                    <svg style="background-color: rgb(245, 246, 255); border: 1px solid #EC2025;">
                                         <use xlink:href="#aws" />
                                     </svg>
-                                    <svg style="background-color: rgb(245, 246, 255); border: 2px solid #369AD6;">
+                                    <svg style="background-color: rgb(245, 246, 255); border: 1px solid #369AD6;">
                                         <use xlink:href="#jordan" />
                                     </svg>
-                                    <svg style="background-color: rgb(245, 246, 255); border: 2px solid #000;">
+                                    <svg style="background-color: rgb(245, 246, 255); border: 1px solid #000;">
                                         <use xlink:href="#mcdonalds" />
                                     </svg>
                                     </div>
@@ -396,6 +398,8 @@
                                 </svg>
                         </div>
 
+
+
                         
                     <div class="main_new_text">
                         <h3>기본부터 실무까지 제시해주는 로드맵 🏃🏻‍♀️ <span style="font-size: 15px; color:crimson;">RoadMap!!</span></h3>
@@ -466,7 +470,113 @@
                         </ul>
                     </div>
 
-
+                    <div style="display: flex; gap: 30px; padding: 50px 10vw; justify-content: center;">
+                        <div class="main_banner_code_card">
+                            <div class="main_banner_code_card-back">
+                                <div class="main_banner_code_line-numbers">
+                                <div>1</div>
+                                <div>2</div>
+                                <div>3</div>
+                                <div>4</div>
+                                <div>5</div>
+                                <div>6</div>
+                                <div>7</div>
+                                <div>8</div>
+                                <div>9</div>
+                                </div><code><span class="main_banner_code_variable">const </span><span class="main_banner_code_function">aboutMe </span><span class="main_banner_code_operator">= </span><span>{</span>
+                                <div class="main_banner_code_indent"> <span class="main_banner_code_property">name</span><span class="main_banner_code_operator">: </span><span class="main_banner_code_string">'정명호'</span><span>,</span></div>
+                                <div class="main_banner_code_indent"> <span class="main_banner_code_property">title</span><span class="main_banner_code_operator">: </span><span class="main_banner_code_string">'Sr. UI/UX Developer'</span><span>,</span></div>
+                                <div class="main_banner_code_indent"> <span class="main_banner_code_property">contact</span><span class="main_banner_code_operator">: </span><span>{</span>
+                                    <div class="main_banner_code_indent"> <span class="main_banner_code_property">email</span><span class="main_banner_code_operator">: </span><span class="main_banner_code_string">'josh@geekstudios.co'</span><span>,</span></div>
+                                    <div class="main_banner_code_indent"><span class="main_banner_code_property">website</span><span class="main_banner_code_operator">:</span><span class="main_banner_code_string">'geekstudios.co'</span></div><span>}</span>
+                                </div><span>}</span></code>
+                            </div>
+                            <div class="main_banner_code_card-front">
+                                <div class="main_banner_code_line-numbers">
+                                <div>1</div>
+                                <div>2</div>
+                                <div>3</div>
+                                <div>4</div>
+                                <div>5</div>
+                                <div>6</div>
+                                <div>7</div>
+                                <div>8</div>
+                                <div>9</div>
+                                </div><code><span class="main_banner_code_variable">this</span><span>.</span><span class="method">우리를 소개할게요</span><span>(</span><span class="main_banner_code_string">'mouseover'</span><span>, </span><span class="main_banner_code_function">() => </span><span>{ </span>
+                                <div class="main_banner_code_indent"><span class="main_banner_code_variable">this</span><span>.</span><span class="main_banner_code_property">flipCard </span><span>= </span><span class="boolean">true</span><span>;</span></div><span>});</span></code>
+                            </div>
+                        </div>
+                        <div class="main_banner_code_card">
+                            <div class="main_banner_code_card-back">
+                                <div class="main_banner_code_line-numbers">
+                                <div>1</div>
+                                <div>2</div>
+                                <div>3</div>
+                                <div>4</div>
+                                <div>5</div>
+                                <div>6</div>
+                                <div>7</div>
+                                <div>8</div>
+                                <div>9</div>
+                                </div><code><span class="main_banner_code_variable">const </span><span class="main_banner_code_function">aboutMe </span><span class="main_banner_code_operator">= </span><span>{</span>
+                                <div class="main_banner_code_indent"> <span class="main_banner_code_property">name</span><span class="main_banner_code_operator">: </span><span class="main_banner_code_string">'Joshua Ward'</span><span>,</span></div>
+                                <div class="main_banner_code_indent"> <span class="main_banner_code_property">title</span><span class="main_banner_code_operator">: </span><span class="main_banner_code_string">'Sr. UI/UX Developer'</span><span>,</span></div>
+                                <div class="main_banner_code_indent"> <span class="main_banner_code_property">contact</span><span class="main_banner_code_operator">: </span><span>{</span>
+                                    <div class="main_banner_code_indent"> <span class="main_banner_code_property">email</span><span class="main_banner_code_operator">: </span><span class="main_banner_code_string">'josh@geekstudios.co'</span><span>,</span></div>
+                                    <div class="main_banner_code_indent"><span class="main_banner_code_property">website</span><span class="main_banner_code_operator">:</span><span class="main_banner_code_string">'geekstudios.co'</span></div><span>}</span>
+                                </div><span>}</span></code>
+                            </div>
+                            <div class="main_banner_code_card-front">
+                                <div class="main_banner_code_line-numbers">
+                                <div>1</div>
+                                <div>2</div>
+                                <div>3</div>
+                                <div>4</div>
+                                <div>5</div>
+                                <div>6</div>
+                                <div>7</div>
+                                <div>8</div>
+                                <div>9</div>
+                                </div><code><span class="main_banner_code_variable">this</span><span>.</span><span class="method">addEventListener</span><span>(</span><span class="main_banner_code_string">'mouseover'</span><span>, </span><span class="main_banner_code_function">() => </span><span>{ </span>
+                                <div class="main_banner_code_indent"><span class="main_banner_code_variable">this</span><span>.</span><span class="main_banner_code_property">flipCard </span><span>= </span><span class="boolean">true</span><span>;</span></div><span>});</span></code>
+                            </div>
+                        </div>
+                        <div class="main_banner_code_card">
+                            <div class="main_banner_code_card-back">
+                                <div class="main_banner_code_line-numbers">
+                                <div>1</div>
+                                <div>2</div>
+                                <div>3</div>
+                                <div>4</div>
+                                <div>5</div>
+                                <div>6</div>
+                                <div>7</div>
+                                <div>8</div>
+                                <div>9</div>
+                                </div><code><span class="main_banner_code_variable">const </span><span class="main_banner_code_function">aboutMe </span><span class="main_banner_code_operator">= </span><span>{</span>
+                                <div class="main_banner_code_indent"> <span class="main_banner_code_property">name</span><span class="main_banner_code_operator">: </span><span class="main_banner_code_string">'Joshua Ward'</span><span>,</span></div>
+                                <div class="main_banner_code_indent"> <span class="main_banner_code_property">title</span><span class="main_banner_code_operator">: </span><span class="main_banner_code_string">'Sr. UI/UX Developer'</span><span>,</span></div>
+                                <div class="main_banner_code_indent"> <span class="main_banner_code_property">contact</span><span class="main_banner_code_operator">: </span><span>{</span>
+                                    <div class="main_banner_code_indent"> <span class="main_banner_code_property">email</span><span class="main_banner_code_operator">: </span><span class="main_banner_code_string">'josh@geekstudios.co'</span><span>,</span></div>
+                                    <div class="main_banner_code_indent"><span class="main_banner_code_property">website</span><span class="main_banner_code_operator">:</span><span class="main_banner_code_string">'geekstudios.co'</span></div><span>}</span>
+                                </div><span>}</span></code>
+                            </div>
+                            <div class="main_banner_code_card-front">
+                                <div class="main_banner_code_line-numbers">
+                                <div>1</div>
+                                <div>2</div>
+                                <div>3</div>
+                                <div>4</div>
+                                <div>5</div>
+                                <div>6</div>
+                                <div>7</div>
+                                <div>8</div>
+                                <div>9</div>
+                                </div><code><span class="main_banner_code_variable">this</span><span>.</span><span class="method">addEventListener</span><span>(</span><span class="main_banner_code_string">'mouseover'</span><span>, </span><span class="main_banner_code_function">() => </span><span>{ </span>
+                                <div class="main_banner_code_indent"><span class="main_banner_code_variable">this</span><span>.</span><span class="main_banner_code_property">flipCard </span><span>= </span><span class="boolean">true</span><span>;</span></div><span>});</span></code>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </main>
         </div>
