@@ -360,25 +360,25 @@
 
                                 <div class="admin_modal_container" :class="{ 'admin_modal_show': showModal }">
                                     <!-- 모달 내용 -->
-                                    <div class="admin_modal_content">
-                                        <div class="admin_modal_content_label_span">
-                                            <div class="admin_modal_content_label">
-                                                <label for="">답변하기</label>
-                                            </div>
-                                            <div>
-                                                <span @click="showModal = false" class="admin_answer_modal_close">❌</span>
-                                            </div>
-                                        </div>
-                                        <fieldset>
-                                            <div class="admin_modal_content_text">
-                                                <textarea></textarea>
-                                                <div class="admin_modal_content_text_btn" style="text-align: end;">
-                                                    <button>전송</button>
+                                    <form>
+                                        <div class="admin_modal_content">
+                                            <div class="admin_modal_content_label_span">
+                                                <div class="admin_modal_content_label">
+                                                    <label for="">답변하기</label>
+                                                </div>
+                                                <div>
+                                                    <span @click="showModal = false" class="admin_answer_modal_close">❌</span>
                                                 </div>
                                             </div>
                                             
-                                        </fieldset>
-                                    </div>
+                                            <div class="admin_modal_content_text">
+                                                <textarea v-model="questionAnswerData.comment"></textarea>
+                                                <div class="admin_modal_content_text_btn" style="text-align: end;">
+                                                    <button type="button" @click="submitAnswer()">전송</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
                                 </div>
 
                                 <table style="display: flex; justify-content: center; font-size: 15px; gap: 8px;">
@@ -444,6 +444,7 @@
     </div>
 </template>
 <script>
+import axios from 'axios';
 import LoadingComponent from './LoadingComponent.vue';
 
 export default {
@@ -459,6 +460,13 @@ export default {
             searchQuery: '',
             adminChk: false,
             showModal: false,
+            questionAnswerData: {
+                CommentContent: '',
+                InstructorID: this.InstructorID,
+                BoardID: this.BoardID,
+                UserID: this.UserID,
+            },
+            questionAnswerItems: [],
         };
     },
 
@@ -494,6 +502,26 @@ export default {
 
             this.showModal = true;
             console.log(this.showModal);
+        },
+        submitAnswer() {
+            const url = '/instructoruserboardquestion';
+            const header = {
+            headers: {
+                "Content-Type": 'multipart/form-data',
+                // 'X-CSRF-TOKEN': document.head.querySelector('meta[name="csrf-token"]').content,
+                },
+            };
+
+            let frm = new FormData();
+
+            frm.append('CommentContent', this.questionAnswerData.CommentContent);
+            frm.append('InstructorID', this.questionAnswerData.InstructorID);
+
+            axios.post(url, frm, header)
+                .then(res => {
+
+                })
+                .catch()
         },
 
     },
@@ -613,7 +641,7 @@ export default {
     background-color: #fff;
     border: none;
     resize: none;
-    /* padding: 10px; */
+    padding: 10px;
     width: 100%;
     height: 100%;
     overflow: hidden;
