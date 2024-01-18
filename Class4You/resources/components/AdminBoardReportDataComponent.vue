@@ -102,7 +102,16 @@
                 <div id="content">
 
                     <!-- Topbar -->
-                    <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+                    <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow" style="display: flex; justify-content: flex-end;">
+
+                        <div class="admin_logout_btn_container" id="admin_container">
+                            <button @click="instructorlogout()" class="admin_logout_btn">
+                                <span class="admin_circle" aria-hidden="true">
+                                    <span class="admin_icon admin_arrow"></span>
+                                </span>
+                                <span class="admin_logout_button_text">Logout</span>
+                            </button>
+                        </div>
 
                     <!-- <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
                             <i class="fa fa-bars"></i>
@@ -340,7 +349,8 @@
                                             <th>{{data.created_at}}</th>
                                             <th v-if="data.ReportState == 0">미처리</th>
                                             <th v-if="data.ReportState == 1">처리</th>
-                                            <th><button @click="delReportBoard(data.ReportID)" type="button" style="padding: 0px 10px; border-radius: 3px; background-color: rgb(255, 95, 127); color: #fff; border: none;">게시물삭제</button></th>
+                                            <th v-if="data.ReportState == 0"><button @click="delReportBoard(data.ReportID)" type="button" style="padding: 0px 10px; border-radius: 3px; background-color: rgb(255, 95, 127); color: #fff; border: none;">게시물삭제</button></th>
+                                            <th v-if="data.ReportState == 1"><button type="button" style="padding: 0px 10px; border-radius: 3px; background-color: #4e73df; color: #fff; border: none;">처리완료</button></th>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -547,6 +557,26 @@ export default {
                     });
                 }
             });    
+        },
+        instructorlogout() {
+            axios.get('/instructorlogout')
+            .then(res => {
+                console.log(res);
+                localStorage.clear();
+                
+                Swal.fire({
+                    icon: 'success',
+                    title: '로그아웃 성공',
+                    text: '로그아웃에 성공했습니다.',
+                    confirmButtonText: '확인'
+                }).then(() => {
+                    // 확인 버튼을 눌렀을 때 실행할 코드
+                    location.reload();
+                });
+            })
+            .catch(err => {
+                // console.log(err.response.data);
+            });
         },
     },
 

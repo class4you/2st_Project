@@ -245,6 +245,7 @@ Route::put('/instructoruserstateput', [InstructorController::class, 'instructoru
 
 // 게시물 정보 리스트 데이터
 Route::get('/instructoruserboardquestion', [InstructorController::class, 'instructoruserboardquestion']);
+Route::post('/adminboardquestiondata', [CommentController::class, 'questionAnswerComment']);
 // 게시물 전체 정보 리스트 데이터
 Route::get('/instructoruserboardcommunity', [InstructorController::class, 'instructoruserboardcommunity']);
 // 관리자 계정 문의하기

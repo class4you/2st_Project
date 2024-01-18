@@ -83,8 +83,8 @@ class ReportController extends Controller
     // 관리자 신고 게시글 삭제함수
     public function delAdminBoardReportData($ReportID) {
 
-        Log::debug("ReportID");
-        Log::debug($ReportID);
+        // Log::debug("ReportID");
+        // Log::debug($ReportID);
 
         $delReportData = Report::find($ReportID);
 
@@ -95,10 +95,13 @@ class ReportController extends Controller
                                 ->where('boards.BoardID', $delReportData->BoardID)
                                 ->get();
 
-        Log::debug("Boarddata");
-        Log::debug($delBoardData);
+        // Log::debug("Boarddata");
+        // Log::debug($delBoardData);
 
         $data = Board::destroy($delReportData->BoardID);
+
+        $delReportData->update(['ReportState' => '1']);
+        // Log::debug($delReportData);
 
         return response()->json($data);
 

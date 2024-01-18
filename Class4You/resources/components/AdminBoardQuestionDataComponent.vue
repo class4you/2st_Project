@@ -102,7 +102,16 @@
                 <div id="content">
 
                     <!-- Topbar -->
-                    <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+                    <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow" style="display: flex; justify-content: flex-end;">
+
+                        <div class="admin_logout_btn_container" id="admin_container">
+                            <button @click="instructorlogout()" class="admin_logout_btn">
+                                <span class="admin_circle" aria-hidden="true">
+                                    <span class="admin_icon admin_arrow"></span>
+                                </span>
+                                <span class="admin_logout_button_text">Logout</span>
+                            </button>
+                        </div>
 
                     <!-- <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
                             <i class="fa fa-bars"></i>
@@ -350,8 +359,8 @@
                                             <th style="text-align: left;">{{ datas.BoardComment }}</th>
                                             <th>{{ datas.created_at }}</th>
                                             <th>{{ datas.BoardFlg == 0 ? '미해결' : datas.BoardFlg == 1 ? '해결' : '상태를 확인할 수 없음' }}</th>
-                                            <th>{{ datas.deleted_at == null ? '삭제' : datas.deleted_at !== null ? '미삭제' : '상태를 확인할 수 없음' }}</th>
-                                            <th><button type="button" @click="handleModalClick()" style="padding: 0px 8px; border-radius: 3px; background-color: rgb(255, 95, 127); color: #fff; border: none;">답변하기</button></th>
+                                            <th>{{ datas.deleted_at == null ? '미삭제' : datas.deleted_at !== null ? '삭제' : '상태를 확인할 수 없음' }}</th>
+                                            <th><button type="button" @click="handleModalClick(datas.BoardID)" style="padding: 0px 8px; border-radius: 3px; background-color: rgb(255, 95, 127); color: #fff; border: none;">답변하기</button></th>
                                         </tr>
                                     </tbody>
                                     
@@ -373,11 +382,11 @@
                                             
                                             <div class="admin_modal_content_text">
                                             
-                                                    <!-- <textarea v-model="questionAnswerData.comment"></textarea> -->
-                                                    <textarea></textarea>
+                                                    <textarea v-model="questionAnswerData.CommentContent"></textarea>
+                                                    <!-- <textarea></textarea> -->
                                                     <div class="admin_modal_content_text_btn" style="text-align: end;">
-                                                        <!-- <button type="button" @click="submitAnswer()">전송</button> -->
-                                                        <button>전송</button>
+                                                        <button type="button" @click="submitAnswer()">전송</button>
+                                                        <!-- <button>전송</button> -->
                                                     </div>
                                                 
                                             </div>
@@ -449,9 +458,12 @@ export default {
                 CommentContent: '',
                 InstructorID: this.InstructorID,
                 BoardID: this.BoardID,
-                UserID: this.UserID,
+                UserID: this.$store.state.UserID
             },
-            questionAnswerItems: [],
+            // questionAnswerItems: [],
+            // questionAnswerData: {},
+            amdinID: null,
+            commentBoardID: null,
         };
     },
 
@@ -482,36 +494,69 @@ export default {
 			// console.log(str);
 			return str;
 		},
-        handleModalClick() {
+        handleModalClick(data) {
+            console.log(data);
             console.log("버튼 클릭됨");
+
+            this.commentBoardID = data;
 
             this.showModal = true;
             console.log(this.showModal);
+            
         },
-        // submitAnswer() {
-        //     console.log("모달 상태:", this.showModal);
+        submitAnswer() {
+            // console.log("모달 상태:", this.showModal);
+            // console.log("데이터값:", this.boardData);
+            console.log("데이터값1:", this.boardQuestionData);
+            console.log("데이터값2:", this.questionAnswerData);
 
-        //     const url = '/instructoruserboardquestion';
-        //     const header = {
-        //     headers: {
-        //         "Content-Type": 'multipart/form-data',
-        //         // 'X-CSRF-TOKEN': document.head.querySelector('meta[name="csrf-token"]').content,
-        //         },
-        //     };
+            const url = '/adminboardquestiondata';
+            const header = {
+            headers: {
+                "Content-Type": 'multipart/form-data',
+                // 'X-CSRF-TOKEN': document.head.querySelector('meta[name="csrf-token"]').content,
+                },
+            };
 
-        //     let frm = new FormData();
+            let frm = new FormData();
 
-        //     frm.append('CommentContent', this.questionAnswerData.CommentContent);
-        //     frm.append('InstructorID', this.questionAnswerData.InstructorID);
+            frm.append('CommentContent', this.questionAnswerData.CommentContent);
+            frm.append('BoardID', this.commentBoardID);
+            frm.append('InstructorID', this.adminID);
 
-        //     axios.post(url, frm, header)
-        //         .then(res => {
-        //             console.log(res);
-        //         })
-        //         .catch(err => {
+            console.log("데이터값:", this.questionAnswerData);
+            console.log("데이터값:", this.boardQuestionData);
+            // console.log(frm);
 
-        //         });
-        // },
+            axios.post(url, frm, header)
+                .then(res => {
+                    console.log("questionAnswerData",res);
+                })
+                .catch(err => {
+
+                });
+
+        },
+        instructorlogout() {
+            axios.get('/instructorlogout')
+            .then(res => {
+                console.log(res);
+                localStorage.clear();
+                
+                Swal.fire({
+                    icon: 'success',
+                    title: '로그아웃 성공',
+                    text: '로그아웃에 성공했습니다.',
+                    confirmButtonText: '확인'
+                }).then(() => {
+                    // 확인 버튼을 눌렀을 때 실행할 코드
+                    location.reload();
+                });
+            })
+            .catch(err => {
+                // console.log(err.response.data);
+            });
+        },
 
     },
 
@@ -519,6 +564,7 @@ export default {
         this.fetchData();
 
         this.adminChk = localStorage.getItem('adminChk');
+        this.adminID = localStorage.getItem('InstructorID');
     },
 
     beforeCreate() {

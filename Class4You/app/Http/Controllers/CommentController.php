@@ -5,9 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\Comment;
 use App\Models\User;
 use App\Models\Board;
+use App\Models\Instructor;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\DB;
 
 class CommentController extends Controller
 {
@@ -71,14 +73,29 @@ class CommentController extends Controller
         return response()->json($data);
     }
 
-    // public function questionAnswerComment(Request $request) {
-    //     Log::debug($request);
+    public function questionAnswerComment(Request $request) {
+        Log::debug($request);
 
-    //     $data = $request->only('InstructorID', 'CommentContent', 'BoardID', 'UserID');
+        // $result = DB::table('class_infos')
+        //     ->join('instructors', 'class_infos.InstructorID', '=', 'instructors.InstructorID')
+        //     ->join('boards', 'class_infos.ClassID', '=', 'boards.ClassID')
+        //     ->select('boards.ClassID', 'instructors.InstructorID', 'boards.BoardID', 'boards.UserID')
+        //     ->where('boards.ClassID', '=', $request->ClassID)
+        //     ->get();
 
-    //     $result = Comment::create($data);
-    //     Log::debug($result);
+        $data = $request->only('InstructorID', 'CommentContent', 'BoardID', 'UserID');
 
-    //     return response()->json($result);
-    // }
+        // $instructorID = $request->input('InstructorID');
+        // $boardID = $request->input('BoardID');
+        // $userID = $request->input('UserID');
+
+        // $commentContent = $request->input('CommentContent');
+
+        $result = Comment::create($data);
+        Log::debug($result);
+
+        return response()->json($result);
+    }
+
+
 }
