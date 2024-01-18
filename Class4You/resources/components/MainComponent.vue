@@ -61,7 +61,8 @@
 
                     <div class="desktop-element category-main-app__menu-wrapper vn-grid-medium">
                         <div class="category-menu category-main-app__menu" data-v-fb686d86="">
-                            <h3 element="h3" class="category-menu__title"><b class="category-menu__title-bold">카테고리</b>에 따라 강의를 찾아보세요. 🙋🏻‍♀️ <span style="font-size: 15px; color:crimson;">GOOD!</span></h3>
+                            <!-- <h3 element="h3" class="category-menu__title"><b class="category-menu__title-bold">카테고리</b>에 따라 강의를 찾아보세요. 🙋🏻 <span style="font-size: 15px; color:crimson;">GOOD!</span></h3> -->
+                            <h3 element="h3" class="category-menu__title"><b class="category-menu__title-bold">카테고리</b>에 따라 강의를 찾아보세요. 👍 <span style="font-size: 15px; color:crimson;">CHOOSE!</span></h3>
                             <ul class="category-menu__list">
                                 <li class="category-menu__list-item">
                                     <a :href="'/classboarddetail/' + 100" class="category-menu__link">

@@ -544,6 +544,8 @@ export default {
                     // this.newBoardItem = this.delBoard();
                     // router.push('/board');
                     // this.$router.push('/board');
+                    // this.delBoardReportData = this.delBoardReportData.filter((item) => item.ReportID !== delReportID);
+                    location.reload('/adminboardreportdata');
                 })
                 .catch((err) => {
 

@@ -94,11 +94,22 @@ class ReportController extends Controller
                                 ->join('reports','reports.UserID','boards.UserID')
                                 ->where('boards.BoardID', $delReportData->BoardID)
                                 ->get();
+        
+        $delCommentData = Comment::select('comments.CommentID',
+                                        'comments.UserID',
+                                        'comments.CommentContent')
+                                    ->join('reports','reports.UserID','comments.UserID')
+                                    ->where('comments.CommentID', $delReportData->CommentID)
+                                    ->get();                        
 
         // Log::debug("Boarddata");
         // Log::debug($delBoardData);
 
-        $data = Board::destroy($delReportData->BoardID);
+        if ($delReportData->BoardID) {
+            $data = Board::destroy($delReportData->BoardID);
+        } else {
+            $data = Comment::destroy($delReportData->CommentID);
+        }
 
         $delReportData->update(['ReportState' => '1']);
         // Log::debug($delReportData);

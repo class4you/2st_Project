@@ -838,6 +838,7 @@
 				</div>
 
 				<div v-for="data in classQuestionData" :key="data.BoardID" id="class_tab1" class="class_detail_commu_list_div">
+				<!-- <div id="class_tab1" class="class_detail_commu_list_div"> -->
 					<!-- <div class="class_detail_commu_list_user" style="font-size: 13px;">
 						<div class="class_detail_rating_user_id">
 							<div class="class_detail_rating_user_id_info">
@@ -848,6 +849,7 @@
 							<p>{{ data.created_at }}</p>
 						</div>
 					</div> -->
+					<!-- <div v-for="data in classQuestionData" :key="data.BoardID" class="class_detail_commu_list_text"> -->
 					<div class="class_detail_commu_list_text">
 						<div v-if="data.BoardID == updateClassQuestionBoardID" class="class_detail_commu_list_text_div1">
 							<div class="class_detail_commu_list_update_text_title">
@@ -988,11 +990,7 @@
 								</summary>
 								<div style="margin-top: 5px;">
 									<p>코멘트코멘트코멘트</p>
-									<p>코멘트코멘트코멘트</p>
-									<p>코멘트코멘트코멘트</p>
-									<p>코멘트코멘트코멘트</p>
-									<p>코멘트코멘트코멘트</p>
-									<p>코멘트코멘트코멘트</p>
+									<!-- <p>{{ data.CommentContent }}</p> -->
 								</div>
 							</details>
 						</div>
@@ -1200,6 +1198,7 @@ export default {
 				BoardTitle: this.BoardTitle,
 				BoardComment: this.BoardComment,
 			},
+			classQuestionAnswerData:{},
 			newClassQuestion() {
 				return {
 					ClassID: this.ClassID,
@@ -1212,6 +1211,7 @@ export default {
 			},
 			updateClassQuestionData: {},
 			updateClassQuestionBoardID: {},
+			answerData: {},
         }
     },
 	mounted() {
@@ -1265,11 +1265,13 @@ export default {
 				// })
 				.then(reviewResponse => {
                     // 두 번째 API 응답에 대한 로직 수행
-                    // console.log(reviewResponse.data);
+                    console.log(reviewResponse.data);
 						this.reviewClassItems = reviewResponse.data.reviewsData;
 						// this.pagination = reviewResponse.data.links;
 						this.EnrollChk = reviewResponse.data.enrollmentData;
 						// this.newReviewData = reviewResponse.data.classReviewData;
+						console.log('classID',this.ClassID);
+
 						axios.get(`/board/data?page=${page}&ClassID=${this.ClassID}`)
 						.then(boardResponse => {
 							// console.log('이건 값이 있어');
@@ -1277,8 +1279,10 @@ export default {
 							// console.log('이건 값이 없어');
 							// console.log(boardResponse.data.data);
 							// console.log('이건 값이 ');
-							console.log(boardResponse.data.boardData.data);
+							console.log('강의질문데이터',boardResponse.data.boardData.data);
 							this.classQuestionData = boardResponse.data.boardData.data;
+							this.classQuestionAnswerData = boardResponse.data.boardData.data.answerData;
+							console.log('강의답변데이터',boardResponse.data.boardData.data.answerData);
 							// this.EnrollChk = boardResponse.data.boardData.enrollmentData;
 							
 						}) 

@@ -480,6 +480,34 @@ class BoardController extends Controller
 
     // 강의 질문
     // 강의 질문 게시글 불러오기
+    public function getClassQuestion($ClassID) {
+
+        // $result = Board::join('comments','boards.BoardID','comments.BoardID')
+        //                     ->where('comments.ClassID', $ClassID)
+        //                     ->get();
+
+        $responseData = Board::select('boards.BoardID',
+                'boards.ClassID',
+                'boards.UserID',
+                'boards.BoardTitle',
+                'boards.BoardComment',
+                'boards.BoardCategoryID',
+                'boards.created_at',
+                'users.UserEmail',
+                'comments.CommentContent',
+                'comments.CommentID',
+                'comments.InstructorID')
+                ->join('users','boards.UserID','users.UserID')
+                ->join('comments','boards.BoardID','comments.BoardID')
+                ->where('boards.ClassID', $ClassID)
+                // ->where('boards.BoardID', $result->BoardID)
+                ->orderBy('boards.created_at','desc')
+                ->get();
+
+        Log::debug($responseData);
+
+        return response()->json($responseData);
+    }
     
 
     // 강의 질문 게시글 작성 함수
@@ -521,18 +549,39 @@ class BoardController extends Controller
         // Log::debug('====================================================');
         // Log::debug($result);
 
+        // 기존 받아오는 데이터
+        // $responseData = Board::select('boards.BoardID',
+        //     'boards.ClassID',
+        //     'boards.UserID',
+        //     'boards.BoardTitle',
+        //     'boards.BoardComment',
+        //     'boards.BoardCategoryID',
+        //     'boards.created_at',
+        //     'users.UserEmail')
+        //     ->join('users','boards.UserID','users.UserID')
+        //     ->where('boards.ClassID', $result->ClassID)
+        //     ->orderBy('boards.created_at','desc')
+        //     ->get();
+
         $responseData = Board::select('boards.BoardID',
-            'boards.ClassID',
-            'boards.UserID',
-            'boards.BoardTitle',
-            'boards.BoardComment',
-            'boards.BoardCategoryID',
-            'boards.created_at',
-            'users.UserEmail')
-            ->join('users','boards.UserID','users.UserID')
-            ->where('boards.ClassID', $result->ClassID)
-            ->orderBy('boards.created_at','desc')
-            ->get();
+                'boards.ClassID',
+                'boards.UserID',
+                'boards.BoardTitle',
+                'boards.BoardComment',
+                'boards.BoardCategoryID',
+                'boards.created_at',
+                'users.UserEmail',
+                'comments.CommentContent',
+                'comments.CommentID',
+                'comments.InstructorID')
+                ->join('users','boards.UserID','users.UserID')
+                ->join('comments','boards.BoardID','comments.BoardID')
+                ->where('boards.ClassID', $result->ClassID)
+                // ->where('boards.BoardID', $result->BoardID)
+                ->orderBy('boards.created_at','desc')
+                ->get();
+
+                Log::debug($responseData);        
 
         return response()->json($responseData);
         // return response()->json($result);
