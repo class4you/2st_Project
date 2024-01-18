@@ -4627,6 +4627,7 @@ background-color: rgba(225, 223, 234, 0.224);
     display: flex;
     justify-content: space-between;
     gap: 15px;
+    align-items: center;
 }
 
 .board_rewrite {    
