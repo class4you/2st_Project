@@ -75,14 +75,14 @@
                     </div>
                 </li>
 
-                <li class="nav-item">
-                    <a class="nav-link" href="/adminregistration">
+                <li class="nav-item active">
+                    <a class="nav-link" href="/admininformation">
                     <i class="fas fa-fw fa-cog"></i>
                     <span>관리자 ㆍ 강사 정보 관리</span></a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="/admininformation">
+                    <a class="nav-link" href="/adminregistration">
                     <i class="fas fa-fw fa-cog"></i>
                     <span>강사 회원 가입</span></a>
                 </li>
@@ -310,307 +310,64 @@
                     <!-- Begin Page Content -->
                     <div class="container-fluid">
 
-                        <!-- Page Heading -->
-                        <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                            <h1 class="h3 mb-0 text-gray-800">대시보드</h1>
-                            <!-- <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
-                                <i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a> -->
-                        </div>
-
-                        <!-- Content Row -->
-                        <div class="row">
-
-                            <!-- Earnings (Monthly) Card Example 대시보드 카드1 -->
-                            <div class="col-xl-3 col-md-6 mb-4">
-                                <div class="card border-left-primary shadow h-100 py-2">
-                                    <div class="card-body">
-                                        <div class="row no-gutters align-items-center">
-                                            <div class="col mr-2">
-                                                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                                    월간 결제 금액 (Monthly)</div>
-                                                <div class="h5 mb-0 font-weight-bold text-gray-800">&#8361;{{ formatNumber(monthlyPaymentSum) }}원</div>
-                                            </div>
-                                            <div class="col-auto">
-                                                <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
-                                            </div>
-                                        </div>
+                        <div style="width: 80%; background-color: #fff; border-radius: 50px; border: 1px solid rgba(0,0,0,0.3); margin: auto; margin-top: 30px;">
+                            <div style="min-width: 100%;" class="col-lg-7">
+                                <div class="p-5">
+                                    <div class="text-center">
+                                        <h1 class="h4 text-gray-900 mb-4">Create an Account!</h1>
+                                        <p>테스트</p>
                                     </div>
-                                </div>
-                            </div>
-
-                            <!-- Earnings (Monthly) Card Example 대시보드 카드2 -->
-                            <div class="col-xl-3 col-md-6 mb-4">
-                                <div class="card border-left-success shadow h-100 py-2">
-                                    <div class="card-body">
-                                        <div class="row no-gutters align-items-center">
-                                            <div class="col mr-2">
-                                                <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                                    연간 결제 금액 (Annual)</div>
-                                                <div class="h5 mb-0 font-weight-bold text-gray-800">&#8361;{{ formatNumber(yearPaymentSum) }}원</div>
-                                            </div>
-                                            <div class="col-auto">
-                                                <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                                    <form style="text-align: center;" class="user">
+                                        <div class="form-group row">
+                                            <div class="col-sm-6 mb-3 mb-sm-0">
+                                                <input style="text-align: center; font-size: 20px;" type="text" class="form-control form-control-user" id="exampleFirstName"
+                                                    placeholder="First Name">
                                             </div>
                                         </div>
+                                        <div class="form-group row">
+                                            <div class="col-sm-6 mb-3 mb-sm-0">
+                                                <input style="text-align: center; font-size: 20px;" type="text" class="form-control form-control-user" id="exampleFirstName"
+                                                    placeholder="First Name">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="col-sm-6 mb-3 mb-sm-0">
+                                                <input style="text-align: center; font-size: 20px;" type="text" class="form-control form-control-user" id="exampleFirstName"
+                                                    placeholder="First Name">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="col-sm-6 mb-3 mb-sm-0">
+                                                <input style="text-align: center; font-size: 20px;" type="text" class="form-control form-control-user" id="exampleFirstName"
+                                                    placeholder="First Name">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <div style="display: flex; gap: 20px;" class="col-sm-6 mb-3 mb-sm-0">
+                                                <input style="text-align: center; font-size: 20px;" type="text" class="form-control form-control-user" id="exampleFirstName"placeholder="First Name">
+                                                <input style="text-align: center; font-size: 20px;" type="text" class="form-control form-control-user" id="exampleFirstName"placeholder="First Name">
+                                                <input style="text-align: center; font-size: 20px;" type="text" class="form-control form-control-user" id="exampleFirstName"placeholder="First Name">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <div style="display: flex; gap: 20px;" class="col-sm-6 mb-3 mb-sm-0">
+                                                <a href="login.html" class="btn btn-primary btn-user btn-block">Register Account</a>
+                                            </div>
+
+                                        </div>
+
+                                        <hr>
+                                    </form>
+                                    <hr>
+                                    <div class="text-center">
+                                        <a class="small" href="forgot-password.html">Forgot Password?</a>
                                     </div>
-                                </div>
-                            </div>
-
-                            <!-- Earnings (Monthly) Card Example 대시보드 카드3 -->
-
-                            <div class="col-xl-3 col-md-6 mb-4">
-                                <div class="card border-left-warning shadow h-100 py-2">
-                                    <div class="card-body">
-                                        <div class="row no-gutters align-items-center">
-                                            <div class="col mr-2">
-                                                <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                                                    총 회원 수
-                                                </div>
-                                                <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                                    {{ formatNumber(userCount) }}명
-                                                </div>
-                                            </div>
-                                            <div class="col-auto">
-                                                <i class="fas fa-calendar fa-2x text-gray-300"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            
-
-                            <!-- Pending Requests Card Example 대시보드 카드4 -->
-                            <div class="col-xl-3 col-md-6 mb-4">
-                                <div class="card border-left-info shadow h-100 py-2">
-                                    <div class="card-body">
-                                        <div class="row no-gutters align-items-center">
-                                            <div class="col mr-2">
-                                                <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
-                                                    총 탈퇴 수
-                                                </div>
-                                                <div class="row no-gutters align-items-center">
-                                                    <div class="col-auto">
-                                                        <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">{{ formatNumber(userCountDelete) }}명</div>
-                                                    </div>
-                                                    <div class="col">
-                                                        <!-- <div class="progress progress-sm mr-2">
-                                                            <div class="progress-bar bg-info" role="progressbar"
-                                                                style="width: 50%" aria-valuenow="50" aria-valuemin="0"
-                                                                aria-valuemax="100">
-                                                            </div>
-                                                        </div> -->
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-auto">
-                                                <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
-                                            </div>
-                                        </div>
+                                    <div class="text-center">
+                                        <a class="small" href="login.html">Already have an account? Login!</a>
                                     </div>
                                 </div>
                             </div>
                         </div>
-
-                        <!-- Content Row -->
-
-                        <div class="row">
-
-                            <!-- Area Chart 통계차트 -->
-                            <div class="col-xl-8 col-lg-7">
-                                <div class="card shadow mb-4">
-                                    <!-- Card Header - Dropdown -->
-                                    <div
-                                        class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                        <h6 class="m-0 font-weight-bold text-primary">전년 대비 유저 회원가입 수</h6>
-                                        <div class="dropdown no-arrow">
-                                            <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
-                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                                            </a>
-                                            <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
-                                                aria-labelledby="dropdownMenuLink">
-                                                <div class="dropdown-header">Dropdown Header:</div>
-                                                <a class="dropdown-item" href="#">Action</a>
-                                                <a class="dropdown-item" href="#">Another action</a>
-                                                <div class="dropdown-divider"></div>
-                                                <a class="dropdown-item" href="#">Something else here</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- Card Body -->
-                                    <div class="card-body">
-                                        <div class="chart-area">
-                                            <Line :data="LineChartData" :options="LineChartOptions"/>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Pie Chart 원형차트 -->
-                            <div class="col-xl-4 col-lg-5">
-                                <div class="card shadow mb-4">
-                                    <!-- Card Header - Dropdown -->
-                                    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                        <h6 class="m-0 font-weight-bold text-primary">유저 나이대</h6>
-                                        <div class="dropdown no-arrow">
-                                            <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
-                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                                            </a>
-                                            <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
-                                                aria-labelledby="dropdownMenuLink">
-                                                <div class="dropdown-header">Dropdown Header:</div>
-                                                <a class="dropdown-item" href="#">Action</a>
-                                                <a class="dropdown-item" href="#">Another action</a>
-                                                <div class="dropdown-divider"></div>
-                                                <a class="dropdown-item" href="#">Something else here</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- Card Body -->
-                                    <div class="card-body">
-                                        <div class="chart-pie pt-4 pb-2" style="padding-top: 0px !important;">
-                                            <Radar style="margin-top: 20px;" :data="RadarChartData" :options="RadarChartOptions"/>
-                                        </div>
-                                        <div class="mt-4 text-center small">
-                                            <!-- <span class="mr-2">
-                                                <i class="fas fa-circle text-primary"></i> Direct
-                                            </span>
-                                            <span class="mr-2">
-                                                <i class="fas fa-circle text-success"></i> Social
-                                            </span>
-                                            <span class="mr-2">
-                                                <i class="fas fa-circle text-info"></i> Referral
-                                            </span> -->
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xl-4 col-lg-5">
-                                <div class="card shadow mb-4">
-                                    <!-- Card Header - Dropdown -->
-                                    <div
-                                        class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                        <h6 class="m-0 font-weight-bold text-primary">인기 강의</h6>
-                                        <div class="dropdown no-arrow">
-                                            <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
-                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                                            </a>
-                                            <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
-                                                aria-labelledby="dropdownMenuLink">
-                                                <div class="dropdown-header">Dropdown Header:</div>
-                                                <a class="dropdown-item" href="#">Action</a>
-                                                <a class="dropdown-item" href="#">Another action</a>
-                                                <div class="dropdown-divider"></div>
-                                                <a class="dropdown-item" href="#">Something else here</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- Card Body -->
-                                    <div class="card-body">
-                                        <div class="chart-pie pt-4 pb-2" style="padding-top: 0px !important;">
-                                            <Doughnut :data="DoughnutChartData" :options="DoughnutChartOptions"/>
-                                        </div>
-                                        <div class="mt-4 text-center small">
-                                            <!-- <span class="mr-2">
-                                                <i class="fas fa-circle text-primary"></i> Direct
-                                            </span>
-                                            <span class="mr-2">
-                                                <i class="fas fa-circle text-success"></i> Social
-                                            </span>
-                                            <span class="mr-2">
-                                                <i class="fas fa-circle text-info"></i> Referral
-                                            </span> -->
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-xl-4 col-lg-5">
-                                <div class="card shadow mb-4">
-                                    <!-- Card Header - Dropdown -->
-                                    <div
-                                        class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                        <h6 class="m-0 font-weight-bold text-primary">인기 언어</h6>
-                                        <div class="dropdown no-arrow">
-                                            <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
-                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                                            </a>
-                                            <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
-                                                aria-labelledby="dropdownMenuLink">
-                                                <div class="dropdown-header">Dropdown Header:</div>
-                                                <a class="dropdown-item" href="#">Action</a>
-                                                <a class="dropdown-item" href="#">Another action</a>
-                                                <div class="dropdown-divider"></div>
-                                                <a class="dropdown-item" href="#">Something else here</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- Card Body -->
-                                    <div class="card-body">
-                                        <div class="chart-pie pt-4 pb-2" style="padding-top: 0px !important;">
-                                            <Pie :data="PieChartData" :options="PieChartOptions"/>
-                                        
-                                        </div>
-                                        <div class="mt-4 text-center small">
-                                            <!-- <span class="mr-2">
-                                                <i class="fas fa-circle text-primary"></i> Direct
-                                            </span>
-                                            <span class="mr-2">
-                                                <i class="fas fa-circle text-success"></i> Social
-                                            </span>
-                                            <span class="mr-2">
-                                                <i class="fas fa-circle text-info"></i> Referral
-                                            </span> -->
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-xl-4 col-lg-5">
-                                <div class="card shadow mb-4">
-                                    <!-- Card Header - Dropdown -->
-                                    <div
-                                        class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                        <h6 class="m-0 font-weight-bold text-primary">인기 단계</h6>
-                                        <div class="dropdown no-arrow">
-                                            <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
-                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                                            </a>
-                                            <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
-                                                aria-labelledby="dropdownMenuLink">
-                                                <div class="dropdown-header">Dropdown Header:</div>
-                                                <a class="dropdown-item" href="#">Action</a>
-                                                <a class="dropdown-item" href="#">Another action</a>
-                                                <div class="dropdown-divider"></div>
-                                                <a class="dropdown-item" href="#">Something else here</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- Card Body -->
-                                    <div class="card-body">
-                                        <div class="chart-pie pt-4 pb-2" style="padding-top: 0px !important;">
-                                            <PolarArea :data="PolarAreaChartData" :options="PolarAreaChartOptions" />
-                                        </div>
-                                        <div class="mt-4 text-center small">
-                                            <!-- <span class="mr-2">
-                                                <i class="fas fa-circle text-primary"></i> Direct
-                                            </span>
-                                            <span class="mr-2">
-                                                <i class="fas fa-circle text-success"></i> Social
-                                            </span>
-                                            <span class="mr-2">
-                                                <i class="fas fa-circle text-info"></i> Referral
-                                            </span> -->
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
                     </div>
                     <!-- /.container-fluid -->
 
@@ -662,155 +419,18 @@
 <script>
 import LoadingComponent from './LoadingComponent.vue';
 import Swal from 'sweetalert2';
-import { Doughnut, Bar, Radar, Line, PolarArea, Pie } from 'vue-chartjs';
-import { Chart as ChartJS, Title, Tooltip, Legend, BarElement, DoughnutController, ArcElement, LinearScale, CategoryScale, PointElement, RadialLinearScale, LineElement} from 'chart.js';
-
-ChartJS.register(Title, Tooltip, Legend, BarElement, DoughnutController, ArcElement, LinearScale, CategoryScale, RadialLinearScale, PointElement, LineElement);
 
 export default {
-    name: 'AdminInformationComponent',
+    name: 'AdminRegistrationComponent',
 
     components: {
         LoadingComponent,
-        Line,
-        PolarArea,
-        Doughnut,
-        Radar,
-        Pie
     },
     data() {
         return {
             loading: true, // 로딩 상태를 나타내는 데이터
             InstructorID : null,
             adminChk: false,
-            monthlyPaymentSum: {},
-            yearPaymentSum: {},
-            userCount: {},
-            userCountDelete: {},
-
-            classLanguage: {},
-            classDifficultyLevels: {},
-            classTopData: {},
-            userCountsByAgeGroup: {},
-            userCountsByYear: {},
-
-            LineChartData: {
-                labels: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
-                datasets: [
-                    {
-                        label: '?',
-                        backgroundColor: '#f87979',
-                        data: [40, 39, 10, 40, 39, 80, 40, 10, 40, 39, 80, 40]
-                    },
-                    {
-                        label: '?',
-                        backgroundColor: '#000',
-                        data: [12, 19, 40, 20, 89, 8, 4, 101, 54, 39, 65, 20]
-                    }
-                ],
-            },
-            LineChartOptions: {
-                responsive: true,
-                maintainAspectRatio: false,
-                pointRadius: 3,
-                pointBorderWidth: 3,
-                cubicInterpolationMode:1,
-                borderWidth: 2,
-                pointHitRadius: 50,
-            },
-
-            RadarChartData: {
-                labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-                datasets: [
-                    {
-                        label: 'Data One',
-                        backgroundColor: 'rgba(255,99,132,0.2)',
-                        borderColor: 'rgba(255,99,132,1)',
-                        pointBackgroundColor: 'rgba(255,99,132,1)',
-                        pointBorderColor: '#fff',
-                        pointHoverBackgroundColor: '#fff',
-                        pointHoverBorderColor: 'rgba(255,99,132,1)',
-                        data: [40, 39, 10, 40, 39, 80, 40]
-                    }
-                ]
-            },
-            RadarChartOptions: {
-                responsive: true,
-                maintainAspectRatio: false,
-                fill: true,
-                pointHitRadius: 50,
-                pointRadius: 8,
-                pointBorderWidth: 5,
-                cubicInterpolationMode:1,
-                borderWidth: 2,
-                plugins: {
-                    legend: {
-                        display: false
-                    }
-                }
-            },
-
-            
-            DoughnutChartData: {
-                labels: ['January'],
-                datasets: [
-                    {
-                        label: 'Data One',
-                        backgroundColor: '#f87979',
-                        data: [40, 39, 10, 40, 39, 80, 40]
-                    }
-                ]
-            },
-            DoughnutChartOptions: {
-                responsive: true,
-                maintainAspectRatio: false,
-                responsive: true,
-                plugins: {
-                    legend: {
-                        display: true
-                    }
-                }
-            },
-
-
-
-            PieChartData: {
-                labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-                datasets: [
-                    {
-                        label: 'Data One',
-                        backgroundColor: '#f87979',
-                        data: [40, 39, 10, 40, 39, 80, 40]
-                    }
-                ]
-            },
-            PieChartOptions: {
-                responsive: true,
-                maintainAspectRatio: false
-            },
-
-
-            PolarAreaChartData: {
-                labels: [
-                    'Eating',
-                ],
-                datasets: [
-                    {
-                    label: 'My Second dataset',
-                    backgroundColor: 'rgba(255,99,132,0.2)',
-                    pointBackgroundColor: 'rgba(255,99,132,1)',
-                    pointBorderColor: '#fff',
-                    pointHoverBackgroundColor: '#fff',
-                    pointHoverBorderColor: 'rgba(255,99,132,1)',
-                    data: [28, 48, 40, 19, 96, 27, 100]
-                    }
-                ]
-            },
-            PolarAreaChartOptions: {
-                responsive: true,
-                maintainAspectRatio: false,
-            },
-            
 
         };
     },
@@ -820,26 +440,7 @@ export default {
             axios.get('/instructormain')
             .then(response => {
                 console.log(response.data);
-                this.monthlyPaymentSum = response.data.monthlyPaymentSum;
-                this.yearPaymentSum = response.data.yearPaymentSum;
-                this.userCount = response.data.userCount;
-                this.userCountDelete = response.data.userCountDelete;
-                
-                this.userCountsByYear = response.data.userCountsByYear;
-                this.userCountsByAgeGroup = response.data.userCountsByAgeGroup;
-                this.classTopData = response.data.classTopData;
-                this.classLanguage = response.data.classLanguage;
-                this.classDifficultyLevels = response.data.classDifficultyLevels;
-
-                this.updateLineChartData(this.linetransformedData());
-
-                this.updateRadarChartData(this.radartransformedData());
-
-                this.updateDoughnutChartData(this.doughnuttransformedData());
-
-                this.updatePieChartData(this.pietransformedData());
-
-                this.updatePolarAreaChartData(this.polarAreatransformedData());
+               
             })
             .catch(error => {
                 // console.error('Error fetching data:', error);
@@ -867,173 +468,6 @@ export default {
             });
         },
 
-        formatNumber(value) {
-            // console.log(value);
-            return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
-        },
-
-        linetransformedData() {
-            // this.monthlyStats 객체를 배열로 변환하고, 각 항목에 대해 새로운 객체를 생성하여 반환
-            return Object.entries(this.userCountsByYear).map(([month, data]) => {
-                return {
-                    // 각 객체의 속성으로는 'month', 'enrollmentFlagCount', 'chapterFlagCount'가 있음
-                    month,
-                    lastYear: data.lastYear,
-                    currentYear: data.currentYear,
-                };
-            });
-        },
-
-        updateLineChartData(transData) {
-
-            let result = {
-                    labels: [],
-                    datasets: [ {label: '전년도 회원', data: [], backgroundColor: '#f87979', borderColor: '#f87979'}, {label: '이번년도 회원', data2: [], backgroundColor: '#7371fc', borderColor: '#7371fc'} ],
-                };
-                // console.log(result);
-            result.labels = transData.map(data => `${data.month}월`);
-            result.datasets[0].data = transData.map(data => data.lastYear);
-            result.datasets[1].data = transData.map(data => data.currentYear);
-        
-            // console.log(result);
-            this.LineChartData = result;
-        },
-
-        radartransformedData() {
-            return Object.entries(this.userCountsByAgeGroup).map(([key,data]) => {
-                return {
-                    key,
-                    age_group: data.age_group,
-                    count: data.count,
-                };
-            });
-        },
-
-        updateRadarChartData(transData) {
-            // console.log(transData);
-            this.RadarChartData = {
-                labels: [],
-                datasets: [
-                {
-                    label: '수강 나이대 정보',
-                    backgroundColor: 'rgba(255,99,132,0.2)',
-                    borderColor: 'rgba(0,0,0,0.1)',
-                    pointBackgroundColor: ['#f94144','#f3722c','#f8961e','#f9844a','#f9c74f','#90be6d','#43aa8b','#4d908e','#577590','#277da1','#35007a'],
-                    pointBorderColor: '#fff',
-                    pointHoverBackgroundColor: '#fff',
-                    pointHoverBorderColor: 'rgba(255,99,132,1)',
-                    data: [],
-                },
-                // Add more datasets if needed
-                ]
-            };
-            transData.forEach(item => {
-                this.RadarChartData.labels.push(`${item.age_group}대`);
-                this.RadarChartData.datasets[0].data.push(item.count);
-            });
-            // console.log(this.PolarAreaChartData.labels);
-        },
-
-        doughnuttransformedData() {
-            return Object.entries(this.classTopData).map(([key,data]) => {
-                return {
-                    key,
-                    classID: data.ClassID,
-                    user_count: data.user_count,
-                };
-            });
-        },
-
-        updateDoughnutChartData(transData) {
-            // console.log(transData);
-            this.DoughnutChartData = {
-                labels: [],
-                datasets: [
-                    {
-                        label: '수강 인원',
-                        backgroundColor: ['#ffadad','#ffd6a5','#fdffb6','#caffbf','#9bf6ff','#a0c4ff','#bdb2ff','#ffc6ff'],
-                        pointBackgroundColor: 'rgba(179,181,198,1)',
-                        pointBorderColor: '#fff',
-                        pointHoverBackgroundColor: '#fff',
-                        pointHoverBorderColor: 'rgba(179,181,198,1)',
-                        data: [],
-                    },
-                ],
-            };
-            transData.forEach(item => {
-                this.DoughnutChartData.labels.push(`아이디 : ${item.classID}`);
-                this.DoughnutChartData.datasets[0].data.push(item.user_count);
-            });
-            // console.log(this.PolarAreaChartData.labels);
-        },
-
-        pietransformedData() {
-            return Object.entries(this.classLanguage).map(([key,data]) => {
-                return {
-                    key,
-                    language_name: data.language_name,
-                    user_count: data.user_count,
-                };
-            });
-        },
-
-        updatePieChartData(transData) {
-            console.log(transData);
-            this.PieChartData = {
-                labels: [],
-                datasets: [
-                {
-                    label: '수강 인원',
-                    backgroundColor: ['#ffadad','#ffd6a5','#fdffb6','#caffbf','#9bf6ff','#a0c4ff'],
-                    pointBackgroundColor: 'rgba(179,181,198,1)',
-                    pointBorderColor: '#fff',
-                    pointHoverBackgroundColor: '#fff',
-                    pointHoverBorderColor: 'rgba(179,181,198,1)',
-                    data: [],
-                },
-                // Add more datasets if needed
-                ]
-            };
-            transData.forEach(item => {
-                this.PieChartData.labels.push(`언어명 : ${item.language_name}`);
-                this.PieChartData.datasets[0].data.push(item.user_count);
-            });
-            // console.log(this.PolarAreaChartData.labels);
-        },
-
-        polarAreatransformedData() {
-            return Object.entries(this.classDifficultyLevels).map(([key,data]) => {
-                return {
-                    key,
-                    classDifficultyID: data.ClassDifficultyID,
-                    user_count: data.user_count,
-                };
-            });
-        },
-
-        updatePolarAreaChartData(transData) {
-            console.log(transData);
-            this.PolarAreaChartData = {
-                labels: [],
-                datasets: [
-                {
-                    label: '수강 인원',
-                    backgroundColor: ['#ffadad','#ffd6a5','#fdffb6','#caffbf'],
-                    pointBackgroundColor: 'rgba(179,181,198,1)',
-                    pointBorderColor: '#fff',
-                    pointHoverBackgroundColor: '#fff',
-                    pointHoverBorderColor: 'rgba(179,181,198,1)',
-                    data: [],
-                },
-                // Add more datasets if needed
-                ]
-            };
-            transData.forEach(item => {
-                this.PolarAreaChartData.labels.push(`난이도 : ${item.classDifficultyID}`);
-                this.PolarAreaChartData.datasets[0].data.push(item.user_count);
-            });
-            // console.log(this.PolarAreaChartData.labels);
-        },
     },
 
     beforeCreate() {
