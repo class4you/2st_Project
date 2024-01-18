@@ -8,7 +8,7 @@
             <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
                 
                 <!-- Sidebar - Brand -->
-                <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+                <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/adminmain">
                     <div class="sidebar-brand-icon rotate-n-15">
                         <i class="fas fa-laugh-wink"></i>
                     </div>
@@ -314,57 +314,57 @@
                             <div style="min-width: 100%;" class="col-lg-7">
                                 <div class="p-5">
                                     <div class="text-center">
-                                        <h1 class="h4 text-gray-900 mb-4">Create an Account!</h1>
-                                        <p>테스트</p>
+                                        <h1 class="h4 text-gray-900 mb-4">강사 회원 가입</h1>
                                     </div>
                                     <form style="text-align: center;" class="user">
                                         <div class="form-group row">
                                             <div class="col-sm-6 mb-3 mb-sm-0">
-                                                <input style="text-align: center; font-size: 20px;" type="text" class="form-control form-control-user" id="exampleFirstName"
-                                                    placeholder="First Name">
+                                                <input v-model="frmInstructorRegistData.InstructorFullName" style="text-align: center; font-size: 20px;" type="text" class="form-control form-control-user" id="name"
+                                                    placeholder="InstructorName">
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <div class="col-sm-6 mb-3 mb-sm-0">
-                                                <input style="text-align: center; font-size: 20px;" type="text" class="form-control form-control-user" id="exampleFirstName"
-                                                    placeholder="First Name">
+                                                <input v-model="frmInstructorRegistData.InstructorEmail" style="text-align: center; font-size: 20px;" type="email" class="form-control form-control-user" id="email"
+                                                    placeholder="InstructorEmail">
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <div class="col-sm-6 mb-3 mb-sm-0">
-                                                <input style="text-align: center; font-size: 20px;" type="text" class="form-control form-control-user" id="exampleFirstName"
-                                                    placeholder="First Name">
+                                                <input v-model="frmInstructorRegistData.InstructorPassword" style="text-align: center; font-size: 20px;" type="password" class="form-control form-control-user" id="password"
+                                                    placeholder="InstructorPassword">
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <div class="col-sm-6 mb-3 mb-sm-0">
-                                                <input style="text-align: center; font-size: 20px;" type="text" class="form-control form-control-user" id="exampleFirstName"
-                                                    placeholder="First Name">
+                                                <input v-model="frmInstructorRegistData.InstructorPasswordChk" style="text-align: center; font-size: 20px;" type="password" class="form-control form-control-user" id="password_chk"
+                                                    placeholder="InstructorPasswordChk">
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <div style="display: flex; gap: 20px;" class="col-sm-6 mb-3 mb-sm-0">
-                                                <input style="text-align: center; font-size: 20px;" type="text" class="form-control form-control-user" id="exampleFirstName" placeholder="First Name">
-                                                <input style="text-align: center; font-size: 20px;" type="text" class="form-control form-control-user" id="exampleFirstName" placeholder="First Name">
-                                                <input style="text-align: center; font-size: 20px;" type="text" class="form-control form-control-user" id="exampleFirstName" placeholder="First Name">
+                                                <input v-model="frmInstructorRegistData.InstructorPhoneNumber1" style="text-align: center; font-size: 20px;" type="text" class="form-control form-control-user" id="phone_number1" placeholder="***">
+                                                <input v-model="frmInstructorRegistData.InstructorPhoneNumber2" style="text-align: center; font-size: 20px;" type="text" class="form-control form-control-user" id="phone_number2" placeholder="****">
+                                                <input v-model="frmInstructorRegistData.InstructorPhoneNumber3" style="text-align: center; font-size: 20px;" type="text" class="form-control form-control-user" id="phone_number3" placeholder="****">
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <div style="display: flex; gap: 20px;" class="col-sm-6 mb-3 mb-sm-0">
-                                                <a href="login.html" class="btn btn-primary btn-user btn-block">Register Account</a>
+                                                <!-- <a href="login.html" class="btn btn-primary btn-user btn-block">Register Account</a> -->
+                                                <button @click="submitInstructorData()" type="button" class="btn btn-primary btn-user btn-block">회원가입</button>
                                             </div>
 
                                         </div>
 
                                         <hr>
                                     </form>
-                                    <hr>
-                                    <div class="text-center">
+                                    <!-- <hr> -->
+                                    <!-- <div class="text-center">
                                         <a class="small" href="forgot-password.html">Forgot Password?</a>
                                     </div>
                                     <div class="text-center">
                                         <a class="small" href="login.html">Already have an account? Login!</a>
-                                    </div>
+                                    </div> -->
                                 </div>
                             </div>
                         </div>
@@ -417,6 +417,7 @@
     </div>
 </template>
 <script>
+import axios from 'axios';
 import LoadingComponent from './LoadingComponent.vue';
 import Swal from 'sweetalert2';
 
@@ -431,6 +432,16 @@ export default {
             loading: true, // 로딩 상태를 나타내는 데이터
             InstructorID : null,
             adminChk: false,
+            frmInstructorRegistData: {
+                InstructorEmail: '',
+                InstructorPhoneNumber1: '',
+                InstructorPhoneNumber2: '',
+                InstructorPhoneNumber3: '',
+                InstructorFullName: '',
+                InstructorPassword: '',
+                InstructorPasswordChk: '',
+            },
+            InstructorRegistData: [],
 
         };
     },
@@ -465,6 +476,42 @@ export default {
             })
             .catch(err => {
                 // console.log(err.response.data);
+            });
+        },
+
+        submitInstructorData() {
+            const url = '/instructorregist';
+            const header = {
+            headers: {
+                "Content-Type": 'multipart/form-data',
+                // 'X-CSRF-TOKEN': document.head.querySelector('meta[name="csrf-token"]').content,
+                },
+            };
+
+            let frm = new FormData();
+            const InstructorPhoneNumber = this.frmInstructorRegistData.InstructorPhoneNumber1 + this.frmInstructorRegistData.InstructorPhoneNumber2 + this.frmInstructorRegistData.InstructorPhoneNumber3
+
+            frm.append('InstructorFullName', this.frmInstructorRegistData.InstructorFullName);
+            frm.append('InstructorEmail', this.frmInstructorRegistData.InstructorEmail);
+            frm.append('InstructorPassword', this.frmInstructorRegistData.InstructorPassword);
+            frm.append('InstructorPasswordChk', this.frmInstructorRegistData.InstructorPasswordChk);
+            frm.append('InstructorPhoneNumber', InstructorPhoneNumber);
+
+            axios.post(url, frm, header)
+            .then(res => {
+                // console.log(res);
+
+                Swal.fire({
+                    icon: 'success',
+                    title: '회원가입이 완료되었습니다.',
+                    confirmButtonText: '확인',
+                    }).then(() => {
+                    // 페이지 이동
+                    this.$router.push('/adminmain');
+                    });
+            })
+            .catch(err => {
+                // console.error(err);
             });
         },
 
