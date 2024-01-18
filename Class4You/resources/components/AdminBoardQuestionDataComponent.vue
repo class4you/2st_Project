@@ -357,8 +357,8 @@
                                     
                                 
                                 </table>
-
-                                <div class="admin_modal_container" :class="{ 'admin_modal_show': showModal }">
+                            
+                                <div id="admin_modal_container" class="admin_modal_container" :class="{ 'admin_modal_show': showModal }">
                                     <!-- 모달 내용 -->
                                     <form>
                                         <div class="admin_modal_content">
@@ -372,15 +372,19 @@
                                             </div>
                                             
                                             <div class="admin_modal_content_text">
-                                                <textarea v-model="questionAnswerData.comment"></textarea>
-                                                <div class="admin_modal_content_text_btn" style="text-align: end;">
-                                                    <button type="button" @click="submitAnswer()">전송</button>
-                                                </div>
+                                            
+                                                    <!-- <textarea v-model="questionAnswerData.comment"></textarea> -->
+                                                    <textarea></textarea>
+                                                    <div class="admin_modal_content_text_btn" style="text-align: end;">
+                                                        <!-- <button type="button" @click="submitAnswer()">전송</button> -->
+                                                        <button>전송</button>
+                                                    </div>
+                                                
                                             </div>
                                         </div>
                                     </form>
                                 </div>
-
+                            
                                 <table style="display: flex; justify-content: center; font-size: 15px; gap: 8px;">
                                     <tbody v-for="(page, index) in pagination" :key="index">
                                         <template v-if="page.url !== null">
@@ -503,26 +507,30 @@ export default {
             this.showModal = true;
             console.log(this.showModal);
         },
-        submitAnswer() {
-            const url = '/instructoruserboardquestion';
-            const header = {
-            headers: {
-                "Content-Type": 'multipart/form-data',
-                // 'X-CSRF-TOKEN': document.head.querySelector('meta[name="csrf-token"]').content,
-                },
-            };
+        // submitAnswer() {
+        //     console.log("모달 상태:", this.showModal);
 
-            let frm = new FormData();
+        //     const url = '/instructoruserboardquestion';
+        //     const header = {
+        //     headers: {
+        //         "Content-Type": 'multipart/form-data',
+        //         // 'X-CSRF-TOKEN': document.head.querySelector('meta[name="csrf-token"]').content,
+        //         },
+        //     };
 
-            frm.append('CommentContent', this.questionAnswerData.CommentContent);
-            frm.append('InstructorID', this.questionAnswerData.InstructorID);
+        //     let frm = new FormData();
 
-            axios.post(url, frm, header)
-                .then(res => {
+        //     frm.append('CommentContent', this.questionAnswerData.CommentContent);
+        //     frm.append('InstructorID', this.questionAnswerData.InstructorID);
 
-                })
-                .catch()
-        },
+        //     axios.post(url, frm, header)
+        //         .then(res => {
+        //             console.log(res);
+        //         })
+        //         .catch(err => {
+
+        //         });
+        // },
 
     },
 

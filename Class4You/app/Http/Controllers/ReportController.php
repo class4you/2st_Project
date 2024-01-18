@@ -79,4 +79,28 @@ class ReportController extends Controller
             // 'pageBoardReportData' => $pageBoardReportData,
         ]);
     }
+
+    // 관리자 신고 게시글 삭제함수
+    public function delAdminBoardReportData($ReportID) {
+
+        Log::debug("ReportID");
+        Log::debug($ReportID);
+
+        $delReportData = Report::find($ReportID);
+
+        $delBoardData = Board::select('boards.BoardID',
+                                    'boards.UserID',
+                                    'boards.BoardComment')
+                                ->join('reports','reports.UserID','boards.UserID')
+                                ->where('boards.BoardID', $delReportData->BoardID)
+                                ->get();
+
+        Log::debug("Boarddata");
+        Log::debug($delBoardData);
+
+        $data = Board::destroy($delReportData->BoardID);
+
+        return response()->json($data);
+
+    }
 }

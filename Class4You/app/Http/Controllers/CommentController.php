@@ -70,4 +70,15 @@ class CommentController extends Controller
 
         return response()->json($data);
     }
+
+    // public function questionAnswerComment(Request $request) {
+    //     Log::debug($request);
+
+    //     $data = $request->only('InstructorID', 'CommentContent', 'BoardID', 'UserID');
+
+    //     $result = Comment::create($data);
+    //     Log::debug($result);
+
+    //     return response()->json($result);
+    // }
 }

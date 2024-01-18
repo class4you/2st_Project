@@ -340,7 +340,7 @@
                                             <th>{{data.created_at}}</th>
                                             <th v-if="data.ReportState == 0">미처리</th>
                                             <th v-if="data.ReportState == 1">처리</th>
-                                            <th><button type="button" style="padding: 0px 10px; border-radius: 3px; background-color: rgb(255, 95, 127); color: #fff; border: none;">게시물삭제</button></th>
+                                            <th><button @click="delReportBoard(data.ReportID)" type="button" style="padding: 0px 10px; border-radius: 3px; background-color: rgb(255, 95, 127); color: #fff; border: none;">게시물삭제</button></th>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -410,6 +410,7 @@
     </div>
 </template>
 <script>
+import Swal from 'sweetalert2';
 import axios from 'axios';
 import LoadingComponent from './LoadingComponent.vue';
 
@@ -424,6 +425,7 @@ export default {
 			page: {},
 			pageChk: {},
             adminChk: false,
+            delBoardReportData: {},
         };
     },
 
@@ -502,6 +504,50 @@ export default {
 			// console.log(str);
 			return str;
 		},
+        delReportBoard(delReportID) {
+            Swal.fire({
+                title: '정말로 삭제하시겠습니까?',
+                text: "삭제 후에는 복구할 수 없습니다.",
+                icon: 'question',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#3085d6',
+                confirmButtonText: '삭제',
+                cancelButtonText: '취소'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // const url = '/boarddetail/' + data
+                    const url = '/instructorboardreportdata/' + delReportID
+                    const header = {
+                        headers: {
+                            "Content-Type": 'multipart/form-data',
+                            'X-CSRF-TOKEN': document.head.querySelector('meta[name="csrf-token"]').content,
+                        },
+                    // this.$store.dispatch('delBoardData', data);
+                    };
+                
+            axios
+                .delete(url, header)
+                .then((res) => {
+
+                    console.log(this.delBoardReportData);
+                    // this.newBoardItem = this.delBoard();
+                    // router.push('/board');
+                    // this.$router.push('/board');
+                })
+                .catch((err) => {
+
+                    console.error(err);
+                    Swal.fire({
+							icon: 'error',
+							title: '삭제 실패',
+							text: '삭제 중에 오류가 발생했습니다.',
+						});
+                        console.log(err.response);
+                    });
+                }
+            });    
+        },
     },
 
     components: {
