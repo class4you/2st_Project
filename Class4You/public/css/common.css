@@ -3990,12 +3990,21 @@ background-color: rgba(225, 223, 234, 0.224);
 .jcS{-webkit-box-pack: start; -ms-flex-pack: start; justify-content: flex-start;}
 .jcE{-webkit-box-pack: end; -ms-flex-pack: end; justify-content: flex-end;}
 .jcC{-webkit-box-pack: center; -ms-flex-pack: center; justify-content: center;font-size: 15px;
-    font-weight: 500; gap: 20px; }
+    font-weight: 500; gap: 20px; align-items: center; }
 .jcB{-webkit-box-pack: justify; -ms-flex-pack: justify; justify-content: space-between;}
 .aiS{-webkit-box-align: start; -ms-flex-align: start; align-items: flex-start;} 
 .aiE{-webkit-box-align: end; -ms-flex-align: end; align-items: flex-end;}
 .aiC{-webkit-box-align: center; -ms-flex-align: center; align-items: center;}
 
+.board_detail_like_num {
+    border: 1px solid #c6c6c61f;
+    color: #0400ff6d;
+    padding: 13px 20px;
+    font-size: 20px;
+    font-weight: 700;
+    border-radius: 5px;
+    box-shadow: 0px 5px 10px 1px #ebebeb;
+}
 /* z-index 설정 */
 /* #wrap{width: 100%;} */
 
@@ -7553,6 +7562,7 @@ footer {
     border-radius: 7px;
     transform: translateZ(0);
     transition: transform 0.15s, background-color 0.15s;
+    box-shadow: 0px 5px 10px 1px #ebebeb;
   }
 
   .high-five:active {

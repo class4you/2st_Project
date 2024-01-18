@@ -257,88 +257,50 @@ export default {
 </style> -->
 
 <template>
-    <div class="admin_answer_modal" style="display: flex;">
-      <!-- 버튼을 클릭하면 showModal 값이 true로 변경되어 모달이 나타납니다. -->
-      <div class="admin_answer_modal_btn">
-        <button @click="handleModalClick()">모달 열기</button>
-      </div>
+  <div >
 
-      <!-- 모달이 나타나는지 여부를 v-if 디렉티브로 제어합니다. -->
-      <Transition name="adminModal" class="admin_modal_container"  :class="{ 'admin_modal_show': showModal }">
-        <!-- 모달 내용 -->
-        <div v-if="showModal" class="admin_modal_content" style="display: flex;">
-          <div class="admin_modal_content_text">
-            <textarea rows="4" cols="50"></textarea>
-          </div>
-          <div>
-            <span @click="showModal = false" class="admin_answer_modal_close">❌</span>
-          </div>
-        </div>
-      </Transition>
-
-    </div>
+   <svg class="board_detail_like" :class="{ 'click': isClicked }" @mouseover="startTransition" @mouseout="resetTransition" @click="toggleClick" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+    <path d="M313.4 32.9c26 5.2 42.9 30.5 37.7 56.5l-2.3 11.4c-5.3 26.7-15.1 52.1-28.8 75.2H464c26.5 0 48 21.5 48 48c0 18.5-10.5 34.6-25.9 42.6C497 275.4 504 288.9 504 304c0 23.4-16.8 42.9-38.9 47.1c4.4 7.3 6.9 15.8 6.9 24.9c0 21.3-13.9 39.4-33.1 45.6c.7 3.3 1.1 6.8 1.1 10.4c0 26.5-21.5 48-48 48H294.5c-19 0-37.5-5.6-53.3-16.1l-38.5-25.7C176 420.4 160 390.4 160 358.3V320 272 247.1c0-29.2 13.3-56.7 36-75l7.4-5.9c26.5-21.2 44.6-51 51.2-84.2l2.3-11.4c5.2-26 30.5-42.9 56.5-37.7zM32 192H96c17.7 0 32 14.3 32 32V448c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32V224c0-17.7 14.3-32 32-32z"/>  
+  </svg>
+  </div>
 </template>
 
 <script>
 export default {
   data() {
     return {
-      showModal: false, // 모달의 초기 상태
+      isClicked: false,
+      isHovered: false,
     };
   },
-
   methods: {
-    handleModalClick() {
-      console.log("버튼 클릭됨");
-      this.showModal = true;
-      console.log(this.showModal);
+    toggleClick() {
+      this.isClicked = !this.isClicked;
     },
-  }
+    startTransition() {
+      this.isHovered = true;
+    },
+    resetTransition() {
+      this.isHovered = false;
+    },
+  },
 };
 </script>
 
-<style>
-  /* 모달 스타일 */
-.admin_modal_container {
-  display: none;
-  border-radius: 10px;
-  padding: 20px;
-  border: 1px solid #ededed;
-}
-
-.admin_modal_container.admin_modal_show {
-  display: block; /* 클릭 이벤트 후에 보이게 설정됨 */
-}
-
-.admin_modal_content_text {
-  border: 1px solid #ededed;
-  border-radius: 5px;
-}
-
-.admin_modal_content_text>textarea {
-  background: transparent;
-  border: none;
-  resize: none;
-}
-
-/* 모달 내용 스타일 */
-/* .modal-content {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  display: flex;
-  transform: translate(-50%, -50%);
-  background-color: white;
-  padding: 20px;
-  border-radius: 10px;
-} */
-
-/* 모달 닫기 버튼 스타일 */
-.admin_answer_modal_close {
-  /* position: absolute;
-  top: 0;
-  right: 0;
-  font-size: 20px; */
+<style scoped>
+.board_detail_like {
   cursor: pointer;
+  height: 50px;
+  width: 50px;
+  fill: #ddd;
+  transition: fill 0.5s;
+}
+
+.board_detail_like:hover {
+  fill: rgba(242, 71, 134, 0.3);
+}
+
+.board_detail_like.click {
+  fill: rgb(242, 71, 134);
 }
 </style>

@@ -137,6 +137,7 @@ class BoardController extends Controller
             ->where('UserID', $request->UserID)
             ->first();
 
+
         return response()->json([
             'boardData' => $boardData,
             'userCntData' => $userCntData,
@@ -206,13 +207,13 @@ class BoardController extends Controller
             ->get();
 
         
-        $recommendationCount = BoardRatingState::where('BoardID', $BoardID)
+        $likeCount = BoardRatingState::where('BoardID', $BoardID)
         ->where('BoardRating', 1)
         ->count();
 
-        $disapprovalCount = BoardRatingState::where('BoardID', $BoardID)
-        ->where('BoardRating', -1)
-        ->count();
+        // $disapprovalCount = BoardRatingState::where('BoardID', $BoardID)
+        // ->where('BoardRating', -1)
+        // ->count();
 
         $recommendationState = BoardRatingState::where('BoardID', $BoardID)
         ->where('UserID', $UserID)
@@ -227,8 +228,7 @@ class BoardController extends Controller
             'boardData' => $boardData,
             'userID' => $userData,
             'commentData' => $boardComment,
-            'recommendationCount' => $recommendationCount,
-            'disapprovalCount' => $disapprovalCount,
+            'likeCount' => $likeCount,
             'recommendationState' => $recommendationState
         ]);
     }
@@ -304,14 +304,32 @@ class BoardController extends Controller
         $UserID = $request->input('UserID');
         $BoardID = $request->input('BoardID');
 
+        Log::debug($request);
         $userRating = BoardRatingState::where('UserID', $UserID)
             ->where('BoardID', $BoardID)
             ->first();
         Log::debug($userRating);
 
             if ($userRating) {
-                $userRating->delete();
-                return response()->json(['message' => 0]);
+                if($userRating->BoardRating == 1) {
+                    $userRating  -> update([
+                        'UserID' => $UserID,
+                        'BoardID' => $BoardID,
+                        'BoardRating' => 0,
+                    ]);
+                } else if($userRating->BoardRating == -1) {
+                    $userRating  -> update([
+                        'UserID' => $UserID,
+                        'BoardID' => $BoardID,
+                        'BoardRating' => 1,
+                    ]);
+                } else if ($userRating->BoardRating == 0) {
+                    $userRating  -> update([
+                        'UserID' => $UserID,
+                        'BoardID' => $BoardID,
+                        'BoardRating' => 1,
+                    ]);
+                }
             } else {
                 BoardRatingState::create([
                     'UserID' => $UserID,
@@ -349,13 +367,30 @@ class BoardController extends Controller
             ->first();
 
             if ($userRating) {
-                $userRating->delete();
-                return response()->json(['message' => 0]);
+                if($userRating->BoardRating == -1) {
+                    $userRating  -> update([
+                        'UserID' => $UserID,
+                        'BoardID' => $BoardID,
+                        'BoardRating' => 0,
+                    ]);
+                } else if($userRating->BoardRating == 1) {
+                    $userRating  -> update([
+                        'UserID' => $UserID,
+                        'BoardID' => $BoardID,
+                        'BoardRating' => -1,
+                    ]);
+                } else if ($userRating->BoardRating == 0) {
+                    $userRating  -> update([
+                        'UserID' => $UserID,
+                        'BoardID' => $BoardID,
+                        'BoardRating' => -1,
+                    ]);
+                }
             } else {
                 BoardRatingState::create([
                     'UserID' => $UserID,
                     'BoardID' => $BoardID,
-                    'BoardRating' => -1,
+                    'BoardRating' => 1,
                 ]);
                 return response()->json(['message' => 1]);
             }

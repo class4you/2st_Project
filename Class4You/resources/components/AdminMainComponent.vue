@@ -76,13 +76,13 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="/adminregistration">
+                    <a class="nav-link" href="/admininformation">
                     <i class="fas fa-fw fa-cog"></i>
                     <span>관리자 ㆍ 강사 정보 관리</span></a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="/admininformation">
+                    <a class="nav-link" href="/adminregistration">
                     <i class="fas fa-fw fa-cog"></i>
                     <span>강사 회원 가입</span></a>
                 </li>
@@ -1058,10 +1058,10 @@ export default {
         const checkLoad = () => {
         if (styleLink.sheet && minStyleLink.sheet && allMinStyleLink.sheet) {
             // 스타일시트가 로드되었음을 확인하면 로딩 상태 변경
-            this.loading = false;
+            // this.loading = false;
         } else {
             // 스타일시트가 아직 로드되지 않았으면 재귀적으로 체크
-            setTimeout(checkLoad, 10);
+            // setTimeout(checkLoad, 10);
         }
         };
 
@@ -1073,6 +1073,10 @@ export default {
         this.adminChk = localStorage.getItem('adminChk');
         // console.log(localStorage.getItem('adminChk'));
         this.fetchData();
+        
+        setTimeout(() => {
+            this.loading = false;
+        }, 1500);
     },
 
     updated() {

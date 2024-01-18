@@ -62,7 +62,7 @@
                             </div> -->
 
                             <button @click="updateRecommendedBoardData()" class="high-five like_button_color">
-                                <span>좋아요 : {{recommendationCount}}</span>
+                                <span>좋아요</span>
                                 <div class="hands">
                                     <svg class="left" viewBox="0 0 32 36">
                                     <ellipse cx="14" cy="13" rx="9" ry="11" />
@@ -80,9 +80,10 @@
                                 <div class="success like_button_bg_color"><span style="line-height: 38px;">{{recommendationCount}}</span></div>
                             </button>
 
+                            <div class="board_detail_like_num">{{ likeCount }}</div>
 
                             <button @click="updateNotRecommendedBoardData()" class="high-five">
-                                <span>싫어요 : {{disapprovalCount}}</span>
+                                <span>싫어요</span>
                                 <div class="hands">
                                     <svg class="left" viewBox="0 0 32 36">
                                     <ellipse cx="14" cy="13" rx="9" ry="11" />
@@ -283,8 +284,10 @@ export default {
             },
             updateCommentData: {},
             updateCommentID: {},
-            recommendationCount: 0,
-            disapprovalCount: 0,
+            // recommendationCount: 0,
+            // disapprovalCount: 0,
+
+            likeCount: 0,
 
             // 게시글 신고
             boardReportData: {
@@ -375,8 +378,9 @@ export default {
                 this.newBoardItem = response.data.boardData;
                 this.nowUserID = response.data.userID;
                 this.newCommentItem = response.data.commentData;
-                this.recommendationCount = response.data.recommendationCount;
-                this.disapprovalCount = response.data.disapprovalCount;
+                // this.recommendationCount = response.data.recommendationCount;
+                // this.disapprovalCount = response.data.disapprovalCount;
+                this.likeCount = response.data.likeCount;
                 this.recommendationState = response.data.recommendationState;
                 this.reportData = response.data.commentReportData;
                 console.log(response.data.commentData);
