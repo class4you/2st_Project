@@ -21,6 +21,8 @@ import AdminBoardReportDataComponent from '../components/AdminBoardReportDataCom
 import AdminClassInsertComponent from '../components/AdminClassInsertComponent.vue';
 import AdminChapterInsertComponent from '../components/AdminChapterInsertComponent.vue';
 import AdminLessonInsertComponent from '../components/AdminLessonInsertComponent.vue';
+import AdminRegistrationComponent from '../components/AdminRegistrationComponent.vue';
+import AdminInformationComponent from '../components/AdminInformationComponent.vue';
 import AdminLoginComponent from '../components/AdminLoginComponent.vue';
 // import ClassBoardMainComponent from '../components/ClassBoardMainComponent.vue';
 import store from './store';
@@ -130,6 +132,14 @@ const routes = [
         path: '/adminlessoninsert/:ChapterID',
         component: AdminLessonInsertComponent,
         props: true
+    },
+    {
+        path: '/adminregistration',
+        component: AdminRegistrationComponent,
+    },
+    {
+        path: '/admininformation',
+        component: AdminInformationComponent,
     },
     {
         path: '/test',

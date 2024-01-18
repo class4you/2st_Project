@@ -1,16 +1,19 @@
 <template>
-<loading-component v-if="loading" />
+    <!-- Page Wrapper -->
+    <loading-component v-if="loading" />
     <div v-if="!loading" id="page-top">
         <div id="wrapper">
+            
             <!-- Sidebar -->
             <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
-
+                
                 <!-- Sidebar - Brand -->
-                <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/adminmain">
+                <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
                     <div class="sidebar-brand-icon rotate-n-15">
                         <i class="fas fa-laugh-wink"></i>
                     </div>
                     <div class="sidebar-brand-text mx-3">Class 4 You</div>
+                    
                 </a>
 
                 <!-- Divider -->
@@ -19,9 +22,9 @@
                 <!-- Nav Item - Dashboard -->
                 <li class="nav-item active">
                     <a class="nav-link" href="/adminmain">
-                        <i class="fas fa-fw fa-tachometer-alt"></i>
-                        <span>대시보드</span></a>
-                    </li>
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span>대시보드</span></a>
+                </li>
                     
                 <li  v-if="adminChk === 'true'" class="nav-item">
                     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
@@ -45,11 +48,11 @@
                         <i class="fas fa-fw fa-wrench"></i>
                         <span>게시글 관리</span>
                     </a>
-                    <div id="collapseUtilities" class="collapse show" aria-labelledby="headingUtilities"
+                    <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
                         data-parent="#accordionSidebar">
                         <div class="bg-white py-2 collapse-inner rounded">
                             <h6 class="collapse-header admin-main-h6-font-size">게시글 정보 관리</h6>
-                            <a class="collapse-item active" href="/adminboardquestiondata">강의 질문 게시글 리스트</a>
+                            <a class="collapse-item" href="/adminboardquestiondata">강의 질문 게시글 리스트</a>
                             <a class="collapse-item" href="/adminboardcommunitydata">커뮤니티 게시글 리스트</a>
                             <a class="collapse-item" href="/adminboardreportdata">신고 게시글 리스트</a>
                             <!-- <a class="collapse-item" href="utilities-animation.html">Animations</a>
@@ -84,13 +87,18 @@
                     <span>강사 회원 가입</span></a>
                 </li>
 
-                <!-- Divider -->
-                <hr class="sidebar-divider d-none d-md-block">
+                <hr class="sidebar-divider">
 
-                <!-- Sidebar Toggler (Sidebar) -->
                 <div class="text-center d-none d-md-inline">
                     <button class="rounded-circle border-0" id="sidebarToggle"></button>
                 </div>
+
+                <!-- Sidebar Message -->
+                <!-- <div class="sidebar-card d-none d-lg-flex">
+                    <img class="sidebar-card-illustration mb-2" src="img/undraw_rocket.svg" alt="...">
+                    <p class="text-center mb-2"><strong>SB Admin Pro</strong> is packed with premium features, components, and more!</p>
+                    <a class="btn btn-success btn-sm" href="https://startbootstrap.com/theme/sb-admin-pro">Upgrade to Pro!</a>
+                </div> -->
 
             </ul>
             <!-- End of Sidebar -->
@@ -101,10 +109,17 @@
                 <!-- Main Content -->
                 <div id="content">
 
-                    <!-- Topbar -->
-                    <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+                    <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow" style="display: flex; justify-content: flex-end;">
 
-                    <!-- <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                        <div class="admin_logout_btn_container" id="admin_container">
+                            <button @click="instructorlogout()" class="admin_logout_btn">
+                                <span class="admin_circle" aria-hidden="true">
+                                    <span class="admin_icon admin_arrow"></span>
+                                </span>
+                                <span class="admin_logout_button_text">Logout</span>
+                            </button>
+                        </div>
+                        <!-- <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
                             <i class="fa fa-bars"></i>
                         </button>
 
@@ -257,6 +272,7 @@
                         </li>
                         <div class="topbar-divider d-none d-sm-block"></div>
                         <button type="button" @click="instructorlogout">로그아웃</button>
+
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -294,108 +310,65 @@
                     <!-- Begin Page Content -->
                     <div class="container-fluid">
 
-                    <!-- Page Heading -->
-                    <h1 class="h3 mb-2 text-gray-800">게시물 정보</h1>
-                    <p class="mb-4">해당 정보는 해당 강사의 강의에 질문을 남긴 게시글에 대한 정보를 출력합니다. </p>
-
-                    <!-- DataTales Example -->
-                    <div class="card shadow mb-4">
-                        <div style="display: flex; align-items: center; justify-content: space-between;" class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">강의질문 게시글 테이블</h6>
-                            <form style="margin: 0px !important; border: 1px solid #ebebeb; border-radius: 8px;" class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-                                <div class="input-group">
-                                    <input v-model="searchQuery" type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
-                                        aria-label="Search" aria-describedby="basic-addon2">
-                                    <div class="input-group-append">
-                                        <button @click="fetchData(1, searchQuery)" class="btn btn-primary" type="button">
-                                            <i class="fas fa-search fa-sm"></i>
-                                        </button>
+                        <div style="width: 80%; background-color: #fff; border-radius: 50px; border: 1px solid rgba(0,0,0,0.3); margin: auto; margin-top: 30px;">
+                            <div style="min-width: 100%;" class="col-lg-7">
+                                <div class="p-5">
+                                    <div class="text-center">
+                                        <h1 class="h4 text-gray-900 mb-4">Create an Account!</h1>
+                                        <p>테스트</p>
                                     </div>
-                                </div>
-                            </form>
-                        </div>
-                        <div class="card-body">
-                            <div class="table-responsive">
-                                <table class="table table-bordered" style="text-align: center;" id="dataTable" width="100%" cellspacing="0">
-                                    <colgroup>
-                                        <col style="width: 4%;">
-                                        <col style="width: 5%;">
-                                        <col style="width: 4%;">
-                                        <col style="width: 15%;">
-                                        <col style="width: 25%;">
-                                        <col style="width: 7%;">
-                                        <col style="width: 5%;">
-                                        <col style="width: 5%;">
-                                        <col style="width: 5%;">
-                                    </colgroup>
-                                    <thead>
-                                        <tr>
-                                            <th>강의번호</th>
-                                            <th>게시글번호</th>
-                                            <th>유저번호</th>
-                                            <th>제목</th>
-                                            <th>내용</th>
-                                            <th>생성날짜</th>
-                                            <th>해결유무</th>
-                                            <th>게시물상태</th>
-                                            <th>답변하기</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr v-for="datas in boardQuestionData">
-                                            <th>{{ datas.ClassID }}</th>
-                                            <th>{{ datas.BoardID }}</th>
-                                            <th>{{ datas.UserID }}</th>
-                                            <th style="text-align: left;">{{ datas.BoardTitle }}</th>
-                                            <th style="text-align: left;">{{ datas.BoardComment }}</th>
-                                            <th>{{ datas.created_at }}</th>
-                                            <th>{{ datas.BoardFlg == 0 ? '미해결' : datas.BoardFlg == 1 ? '해결' : '상태를 확인할 수 없음' }}</th>
-                                            <th>{{ datas.deleted_at == null ? '삭제' : datas.deleted_at !== null ? '미삭제' : '상태를 확인할 수 없음' }}</th>
-                                            <th><button type="button" @click="handleModalClick()" style="padding: 0px 8px; border-radius: 3px; background-color: rgb(255, 95, 127); color: #fff; border: none;">답변하기</button></th>
-                                        </tr>
-                                    </tbody>
-                                    
-                                
-                                </table>
-
-                                <div class="admin_modal_container" :class="{ 'admin_modal_show': showModal }">
-                                    <!-- 모달 내용 -->
-                                    <div class="admin_modal_content">
-                                        <div class="admin_modal_content_label_span">
-                                            <div class="admin_modal_content_label">
-                                                <label for="">답변하기</label>
-                                            </div>
-                                            <div>
-                                                <span @click="showModal = false" class="admin_answer_modal_close">❌</span>
+                                    <form style="text-align: center;" class="user">
+                                        <div class="form-group row">
+                                            <div class="col-sm-6 mb-3 mb-sm-0">
+                                                <input style="text-align: center; font-size: 20px;" type="text" class="form-control form-control-user" id="exampleFirstName"
+                                                    placeholder="First Name">
                                             </div>
                                         </div>
-                                        <fieldset>
-                                            <div class="admin_modal_content_text">
-                                                <textarea></textarea>
-                                                <div class="admin_modal_content_text_btn" style="text-align: end;">
-                                                    <button>전송</button>
-                                                </div>
+                                        <div class="form-group row">
+                                            <div class="col-sm-6 mb-3 mb-sm-0">
+                                                <input style="text-align: center; font-size: 20px;" type="text" class="form-control form-control-user" id="exampleFirstName"
+                                                    placeholder="First Name">
                                             </div>
-                                            
-                                        </fieldset>
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="col-sm-6 mb-3 mb-sm-0">
+                                                <input style="text-align: center; font-size: 20px;" type="text" class="form-control form-control-user" id="exampleFirstName"
+                                                    placeholder="First Name">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="col-sm-6 mb-3 mb-sm-0">
+                                                <input style="text-align: center; font-size: 20px;" type="text" class="form-control form-control-user" id="exampleFirstName"
+                                                    placeholder="First Name">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <div style="display: flex; gap: 20px;" class="col-sm-6 mb-3 mb-sm-0">
+                                                <input style="text-align: center; font-size: 20px;" type="text" class="form-control form-control-user" id="exampleFirstName"placeholder="First Name">
+                                                <input style="text-align: center; font-size: 20px;" type="text" class="form-control form-control-user" id="exampleFirstName"placeholder="First Name">
+                                                <input style="text-align: center; font-size: 20px;" type="text" class="form-control form-control-user" id="exampleFirstName"placeholder="First Name">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <div style="display: flex; gap: 20px;" class="col-sm-6 mb-3 mb-sm-0">
+                                                <a href="login.html" class="btn btn-primary btn-user btn-block">Register Account</a>
+                                            </div>
+
+                                        </div>
+
+                                        <hr>
+                                    </form>
+                                    <hr>
+                                    <div class="text-center">
+                                        <a class="small" href="forgot-password.html">Forgot Password?</a>
+                                    </div>
+                                    <div class="text-center">
+                                        <a class="small" href="login.html">Already have an account? Login!</a>
                                     </div>
                                 </div>
-
-                                <table style="display: flex; justify-content: center; font-size: 15px; gap: 8px;">
-                                    <tbody v-for="(page, index) in pagination" :key="index">
-                                        <template v-if="page.url !== null">
-											<a class="admin_qustuon_list_page_a" :class="{'admin_page_on': page.label == pageChk}" @click.prevent="fetchData(page.label)" href="#">{{ replaceString(page.label) }}</a>
-										</template>
-										<template v-else>
-											<span>{{ replaceString(page.label) }}</span>
-                                        </template>
-                                    </tbody>
-                                </table>
                             </div>
                         </div>
                     </div>
-
-                </div>
                     <!-- /.container-fluid -->
 
                 </div>
@@ -405,7 +378,7 @@
                 <footer class="sticky-footer bg-white">
                     <div class="container my-auto">
                         <div class="copyright text-center my-auto">
-                            <span>Copyright &copy; Your Website 2020</span>
+                            <span>Copyright &copy; Your Website 2021</span>
                         </div>
                     </div>
                 </footer>
@@ -445,63 +418,56 @@
 </template>
 <script>
 import LoadingComponent from './LoadingComponent.vue';
+import Swal from 'sweetalert2';
 
 export default {
-    name: 'AdminBoardDataComponent',
+    name: 'AdminRegistrationComponent',
 
+    components: {
+        LoadingComponent,
+    },
     data() {
         return {
             loading: true, // 로딩 상태를 나타내는 데이터
-            boardQuestionData: {},
-            pagination: {},
-			page: {},
-			pageChk: {},
-            searchQuery: '',
+            InstructorID : null,
             adminChk: false,
-            showModal: false,
+
         };
     },
 
     methods: {
-        fetchData(page = 1) {
-            axios.get(`/instructoruserboardquestion?page=${page}&search=${this.searchQuery}`)
+        fetchData() {
+            axios.get('/instructormain')
             .then(response => {
-                console.log(response.data)
-                console.log(response.data.boardData.data)
-                this.boardQuestionData = response.data.boardData.data;
-                this.pagination = response.data.boardData.links;
-                this.page = response.data.boardData.current_page;
-                this.pageChk = response.data.boardData.current_page;
+                console.log(response.data);
+               
             })
             .catch(error => {
                 // console.error('Error fetching data:', error);
             });
         },
-        replaceString(str) {
-			const arrList = {
-				'&laquo;': '≪',
-				'&raquo;': '≫'
-			}
-			//  &laquo; 이전
-			//  다음 &raquo;
-			str = str.replace('&laquo;', '<');
-			str = str.replace('&raquo;', '>');
-			// console.log(str);
-			return str;
-		},
-        handleModalClick() {
-            console.log("버튼 클릭됨");
 
-            this.showModal = true;
-            console.log(this.showModal);
+        instructorlogout() {
+            axios.get('/instructorlogout')
+            .then(res => {
+                console.log(res);
+                localStorage.clear();
+                
+                Swal.fire({
+                    icon: 'success',
+                    title: '로그아웃 성공',
+                    text: '로그아웃에 성공했습니다.',
+                    confirmButtonText: '확인'
+                }).then(() => {
+                    // 확인 버튼을 눌렀을 때 실행할 코드
+                    location.reload();
+                });
+            })
+            .catch(err => {
+                // console.log(err.response.data);
+            });
         },
 
-    },
-
-    mounted() {
-        this.fetchData();
-
-        this.adminChk = localStorage.getItem('adminChk');
     },
 
     beforeCreate() {
@@ -520,6 +486,7 @@ export default {
         allMinStyleLink.rel = 'stylesheet';
         allMinStyleLink.href = '/vendor/fontawesome-free/css/all.min.css';
         document.head.appendChild(allMinStyleLink);
+        
 
         // 스타일시트 로드 완료 후 로딩 상태 변경
         const checkLoad = () => {
@@ -535,94 +502,18 @@ export default {
         checkLoad();
     },
 
-    components: {
-        LoadingComponent,
+    mounted() {
+        this.InstructorID = localStorage.getItem('InstructorID');
+        this.adminChk = localStorage.getItem('adminChk');
+        // console.log(localStorage.getItem('adminChk'));
+        this.fetchData();
+    },
+
+    updated() {
+
     },
 }
 </script>
-<style>
-/* 모달 스타일 */
-.admin_modal_container {
-    display: none;
-    /* position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    z-index: 100;
-    opacity: 0.5; */
-    background-color: rgba(255,255,255,0.5);
-    /* opacity: 0.5; */
-}
+<style scoped>
 
-.admin_modal_container.admin_modal_show {
-    /* display: inline-block;
-    position: relative;
-    bottom: 50vh;
-    left: 50vh;
-    background-color: #ededed; */
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    z-index: 100;
-}
-
-.admin_modal_content_label_span{
-    display: flex;
-    flex-direction: row;
-    /* gap: 50px; */
-    justify-content: space-between;
-    align-items: center;
-}
-
-.admin_modal_content {
-    display: flex; 
-    flex-direction: column;
-    flex-wrap: wrap;
-    width: 50%;
-    margin-left: 25%;
-    margin-top: 15%;
-}
-
-.admin_modal_content_label {
-    font-weight: 700;
-    color: #4d4c4c;
-}
-
-.admin_modal_content_text {
-  border: 1px solid rgba(89 90 91 / 30%);
-  border-radius: 5px;
-  height: 30vh;
-  padding: 10px;
-  background-color: rgba(89 90 91 / 30%);
-  display: flex;
-    flex-direction: column;
-}
-
-.admin_modal_content_text_btn>button {
-    border: none;
-    padding: 5px 10px;
-    margin-top: 5px;
-    border-radius: 5px;
-    font-size: 13px;
-}
-
-.admin_modal_content_text>textarea {
-    background-color: #fff;
-    border: none;
-    resize: none;
-    /* padding: 10px; */
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-  /* position: relative;
-    top: 50%;
-    right: 50%; */
-}
-
-.admin_answer_modal_close {
-    cursor: pointer;
-}
 </style>

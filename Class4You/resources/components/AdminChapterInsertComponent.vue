@@ -74,6 +74,18 @@
                         </div>
                     </div>
                 </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="/adminregistration">
+                    <i class="fas fa-fw fa-cog"></i>
+                    <span>관리자 ㆍ 강사 정보 관리</span></a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="/admininformation">
+                    <i class="fas fa-fw fa-cog"></i>
+                    <span>강사 회원 가입</span></a>
+                </li>
                 
 
                 <hr class="sidebar-divider">
