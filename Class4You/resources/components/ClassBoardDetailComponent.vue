@@ -18,7 +18,7 @@
                                 <div class="class_detail_container_r_banner_label">
                                     <span>NEW</span>
                                 </div>
-                                <span>{{languagesChk}}</span>
+                                <span >{{languagesChk}}</span>
                             </div>
                             <div class="class_detail_container_r_title_box">
                                 <h2 class="class_detail_container_r_title">
@@ -56,7 +56,7 @@
                             </div>
                             <div class="class_detail_container_r_payment_box">
                                 <div class="class_detail_container_r_payment_price">
-                                    <span>가격: {{ detailClassItems.ClassPrice === 0 ? '무료' : detailClassItems.ClassPrice + '원' }}</span>
+                                    <span>가격: {{ detailClassItems.ClassPrice === 0 ? '무료' : formatNumber(detailClassItems.ClassPrice) + '원' }}</span>
                                 </div>
                                 <div class="class_detail_container_r_payment_classes">
 									<a v-if="EnrollChk" :href="'/classwatch/' + detailClassItems.ClassID" class="class_enrollment_button">
@@ -1807,6 +1807,10 @@ export default {
 				this.updateClassQuestionBoardID = false;
 			}
 		},
+		formatNumber(value) {
+            // console.log(value);
+            return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+        },
 
 	}
     

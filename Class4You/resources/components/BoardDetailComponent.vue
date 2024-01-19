@@ -139,7 +139,7 @@
                         <div class="board_button">
                             <div class="board_detail_report_div">
                                 <div class="board_detail_report_btn">
-                                    <button type="button" @click="boardReport()">🚨 게시글 신고</button>
+                                    <button v-if="$store.state.userLoginChk" type="button" @click="boardReport()">🚨 게시글 신고</button>
                                 </div>
                             </div>
 
@@ -203,7 +203,7 @@
                                 </div>
                                 
                                 <div class="commentActions row aiC">
-                                    <button style="" class="comment_report_btn" type="button" @click="commentReport(item.CommentID)">🚨 댓글신고</button>
+                                    <button v-if="$store.state.userLoginChk" class="comment_report_btn" type="button" @click="commentReport(item.CommentID)">🚨 댓글신고</button>
                                     <div v-if="item.UserID == $store.state.UserID" style="margin-left: auto;">
                                         <div v-if="item.CommentID == updateCommentID" >
                                             <button @click="addUpdateComment(item)" class="commentActions_updateBtn">수정</button>
@@ -434,70 +434,79 @@ export default {
 
         // 댓글 작성 함수
         addBoardComment() {
-            const url = '/comments'
-            const header = {
-                headers: {
-                    "Content-Type": 'multipart/form-data',
-                    'X-CSRF-TOKEN': document.head.querySelector('meta[name="csrf-token"]').content,
-                },
-            }
+            if (this.$store.state.userLoginChk) {
+                const url = '/comments'
+                const header = {
+                    headers: {
+                        "Content-Type": 'multipart/form-data',
+                        'X-CSRF-TOKEN': document.head.querySelector('meta[name="csrf-token"]').content,
+                    },
+                }
 
-            // TODO : data 부분 찾아가지고 변경해야댐
-            // if(!data.UserID) {
-            //     Swal.fire({
-            //         icon: 'error',
-            //         title: '로그인 확인',
-            //         text: '로그인 후 작성해주세요.',
-            //         confirmButtonText: '확인'
-            //     });
-            // } else if(!data.CommentContent) {
-            //     Swal.fire({
-            //         icon: 'error',
-            //         title: '내용 확인',
-            //         text: '내용을 입력해주세요.',
-            //         confirmButtonText: '확인'
-            //     });
-            // }
-            let frm = new FormData();
-            // console.log(data);
+                // TODO : data 부분 찾아가지고 변경해야댐
+                // if(!data.UserID) {
+                //     Swal.fire({
+                //         icon: 'error',
+                //         title: '로그인 확인',
+                //         text: '로그인 후 작성해주세요.',
+                //         confirmButtonText: '확인'
+                //     });
+                // } else if(!data.CommentContent) {
+                //     Swal.fire({
+                //         icon: 'error',
+                //         title: '내용 확인',
+                //         text: '내용을 입력해주세요.',
+                //         confirmButtonText: '확인'
+                //     });
+                // }
+                let frm = new FormData();
+                // console.log(data);
 
-            frm.append('BoardID',this.commentData.BoardID);
-            frm.append('UserID',this.commentData.UserID);
-            frm.append('UserEmail',this.commentData.UserEmail);
-            frm.append('CommentContent',this.commentData.CommentContent);
+                frm.append('BoardID',this.commentData.BoardID);
+                frm.append('UserID',this.commentData.UserID);
+                frm.append('UserEmail',this.commentData.UserEmail);
+                frm.append('CommentContent',this.commentData.CommentContent);
 
-            // console.log(frm);
+                // console.log(frm);
 
-            axios.post(url, frm, header)
-            .then(res => {
+                axios.post(url, frm, header)
+                .then(res => {
+                    Swal.fire({
+                        icon: 'success',
+                        title: '완료',
+                        text: '댓글이 작성되었습니다.',
+                        confirmButtonText: '확인'
+                    })
+                    //res.data가 이상함. 다시 확인해야함
+                    // console.log(res.data);
+                    // 이게 작성된 댓글리스트들
+                    // console.log(this.newCommentItem);
+                    // 작성된 댓글 데이터
+                    // console.log(this.commentData);
+                    // console.log(res.data);
+                    // window.location.reload();
+
+                    // unshift는 배열에 사용
+                    // this.newCommentItem.unshift(this.commentData);
+                    this.newCommentItem.unshift(res.data[0]);
+                    // push는 배열에 객체 추가할 때 사용
+                    // this.newCommentItem.push({...commentData});
+                    // console.log(this.commentData);
+                    this.commentData = this.newCommentData();
+
+                })
+                .catch(err => {
+                    // console.log(err.response.data.errors)
+                    // context.commit('setRegistrationErrorMessage', err.response.data.errors);
+                })
+            } else {
                 Swal.fire({
-					icon: 'success',
-					title: '완료',
-					text: '댓글이 작성되었습니다.',
-					confirmButtonText: '확인'
-            	})
-                //res.data가 이상함. 다시 확인해야함
-                // console.log(res.data);
-                // 이게 작성된 댓글리스트들
-                // console.log(this.newCommentItem);
-                // 작성된 댓글 데이터
-                // console.log(this.commentData);
-                // console.log(res.data);
-                // window.location.reload();
-
-                // unshift는 배열에 사용
-                // this.newCommentItem.unshift(this.commentData);
-                this.newCommentItem.unshift(res.data[0]);
-                // push는 배열에 객체 추가할 때 사용
-                // this.newCommentItem.push({...commentData});
-                // console.log(this.commentData);
-                this.commentData = this.newCommentData();
-
-            })
-            .catch(err => {
-                // console.log(err.response.data.errors)
-                // context.commit('setRegistrationErrorMessage', err.response.data.errors);
-            })
+                    icon: 'error',
+                    title: '저장 실패',
+                    text: '로그인 후 작성해주세요',
+                });
+            }
+            
         },
         
 

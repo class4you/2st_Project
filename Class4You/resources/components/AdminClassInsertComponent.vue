@@ -344,6 +344,7 @@
                                         <col style="width: 5%;">
                                         <col style="width: 5%;">
                                         <col style="width: 5%;">
+                                        <col style="width: 5%;">
                                         <!-- <col style="width: 5%;">
                                         <col style="width: 5%;"> -->
                                     </colgroup>
@@ -356,6 +357,7 @@
                                             <th>가격</th>
                                             <th>챕터 수</th>
                                             <th>레슨 수</th>
+                                            <th>수강생 수</th>
                                             <th>수강생 수</th>
                                             <!-- <th>수정</th>
                                             <th>삭제</th> -->
@@ -383,8 +385,8 @@
                                             <th>{{ datas.chapter_count }}개</th>
                                             <th>{{ datas.lesson_count }}개</th>
                                             <th>{{ datas.enrollment_count }}명</th>
-                                            <!-- <th><button type="button" style="padding: 0px 10px; border-radius: 3px; background-color: rgb(255, 95, 127); color: #fff; border: none;">수정</button></th>
-                                            <th><button type="button" style="padding: 0px 10px; border-radius: 3px; background-color: rgb(255, 95, 127); color: #fff; border: none;">삭제</button></th> -->
+                                            <th><button @click="adminClassUserDataIsOpenModal(datas.ClassID)" type="button" style="padding: 0px 10px; border-radius: 3px; background-color: rgb(255, 95, 127); color: #fff; border: none;">수강생 보기</button></th>
+                                            <!-- <th><button type="button" style="padding: 0px 10px; border-radius: 3px; background-color: rgb(255, 95, 127); color: #fff; border: none;">삭제</button></th> -->
                                         </tr>
                                     </tbody>
                                 </table>
@@ -430,27 +432,80 @@
             </a>
 
             <!-- Logout Modal-->
-            <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-            aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">×</span>
+            <div v-if="adminClassUserDataIsOpen" class="admin_class_user_data_modal">
+                <div class="admin_class_user_data_modal-container">
+                    <div class="admin_class_user_data_modal-container-header">
+                        <h5 class="admin_class_user_data_modal-container-title">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true">
+                            <path fill="none" d="M0 0h24v24H0z" />
+                            <path fill="currentColor" d="M14 9V4H5v16h6.056c.328.417.724.785 1.18 1.085l1.39.915H3.993A.993.993 0 0 1 3 21.008V2.992C3 2.455 3.449 2 4.002 2h10.995L21 8v1h-7zm-2 2h9v5.949c0 .99-.501 1.916-1.336 2.465L16.5 21.498l-3.164-2.084A2.953 2.953 0 0 1 12 16.95V11zm2 5.949c0 .316.162.614.436.795l2.064 1.36 2.064-1.36a.954.954 0 0 0 .436-.795V13h-5v3.949z" />
+                        </svg>
+                        수강생 정보 보기
+                        </h5>
+                        <button @click="adminClassUserDataIsCloseModal"  class="admin_class_user_data_icon-button">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                            <path fill="none" d="M0 0h24v24H0z" />
+                            <path fill="currentColor" d="M12 10.586l4.95-4.95 1.414 1.414-4.95 4.95 4.95 4.95-1.414 1.414-4.95-4.95-4.95 4.95-1.414-1.414 4.95-4.95-4.95-4.95L7.05 5.636z" />
+                        </svg>
                         </button>
                     </div>
-                    <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-                    <div class="modal-footer">
-                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                        <a class="btn btn-primary" href="login.html">Logout</a>
+                    <section class="admin_class_user_data_modal-container-body admin_class_user_data_rtf">
+                        <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered" style="text-align: center;" id="dataTable" width="100%" cellspacing="0">
+                                    <colgroup>
+                                        <col style="width: 5%;">
+                                        <col style="width: 10%;">
+                                        <col style="width: 10%;">
+                                        <col style="width: 10%;">
+                                        <col style="width: 10%;">
+                                        <col style="width: 10%;">
+                                    </colgroup>
+                                    <thead>
+                                        <tr>
+                                            <th>유저 번호</th>
+                                            <th>유저 이메일</th>
+                                            <th>유저 이름</th>
+                                            <th>유저 전화번호</th>
+                                            <th>유저 생년월일</th>
+                                            <th>유저 가입일</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr v-for="datas in userEnrollmentData">
+                                            <th>{{datas.UserID}}</th>
+                                            <th>{{datas.UserEmail}}</th>
+                                            <th>{{datas.UserName}}</th>
+                                            <th>{{datas.UserPhoneNumber}}</th>
+                                            <th>{{datas.UserBirthDate}}</th>
+                                            <th>{{datas.created_at}}</th>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <table style="display: flex; justify-content: center; gap: 8px;">
+                                    <tbody v-for="(page, index) in enrollmentDataPagination" :key="index">
+                                        <template v-if="page.url !== null">
+											<a class="qustuon_list_page_a" :class="{'page_on': page.label == enrollmentDataPageChk}" @click.prevent="fetchData(page.label)" href="#">{{ replaceString(page.label) }}</a>
+										</template>
+										<template v-else>
+											<span>{{ replaceString(page.label) }}</span>
+                                        </template>
+                                    </tbody>
+                                </table>
+                                </div>
+                            </div>
+                    </section>
+                    <div class="admin_class_user_data_modal-container-footer">
+                        <button @click="adminClassUserDataIsCloseModal"  class="admin_class_user_data_button admin_class_user_data_is-primary">닫기</button>
                     </div>
                 </div>
             </div>
-            </div>
     </div>
+
+
 </template>
 <script>
+import axios from 'axios';
 import LoadingComponent from './LoadingComponent.vue';
 import Swal from 'sweetalert2';
 export default {
@@ -466,6 +521,12 @@ export default {
 			page: {},
 			pageChk: {},
             searchQuery: '',
+            adminClassUserDataIsOpen: false,
+            userEnrollmentData: {},
+
+            enrollmentDataPagination: {},
+            enrollmentDataPage: {},
+            enrollmentDataPageChk: {},
         };
     },
 
@@ -473,7 +534,7 @@ export default {
         fetchData(page = 1) {
             axios.get(`/instructorclassinsertdata?page=${page}&search=${this.searchQuery}`)
             .then(response => {
-                console.log('오냐');
+                // console.log('오냐');
                 // console.log(response.data.userData.data)
                 this.classData = response.data.ClassData.data;
                 this.pagination = response.data.ClassData.links;
@@ -517,6 +578,27 @@ export default {
 			// console.log(str);
 			return str;
 		},
+        adminClassUserDataIsOpenModal(data) {
+            this.adminClassUserDataIsOpen = true;
+            axios.get('/modalclassuserdata', {
+                params: {
+                    ClassID: data
+                }
+            })
+            .then(res => {
+                console.log(res.data);
+                this.userEnrollmentData = res.data.userEnrollmentData.data
+                this.enrollmentDataPagination = response.data.userEnrollmentData.links;
+                this.enrollmentDataPage = response.data.userEnrollmentData.current_page;
+                this.enrollmentDataPageChk = response.data.userEnrollmentData.current_page;
+            })
+            .catch(err => {
+
+            })
+        },
+        adminClassUserDataIsCloseModal() {
+            this.adminClassUserDataIsOpen = false;
+        },
     },
 
     beforeCreate() {

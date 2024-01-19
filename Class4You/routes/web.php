@@ -268,7 +268,8 @@ Route::get('/instructorclassinsertdata', [InstructorController::class, 'getinstr
 Route::get('/instructorchapterinsertdata/{ClassID}', [InstructorController::class, 'getinstructorchapterinsertdata']);
 // 레슨 작성 데이터
 Route::get('/instructorlessoninsertdata/{ChapterID}', [InstructorController::class, 'getinstructorlessoninsertdata']);
-
+// 강의 수강생 데이터
+Route::get('/modalclassuserdata', [InstructorController::class, 'getmodalclassuserdata']);
 
 // 신고 게시글 리스트 
 

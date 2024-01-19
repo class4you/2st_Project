@@ -674,4 +674,19 @@ class InstructorController extends Controller
 
         return response()->json($result);
     }
+
+    public function getmodalclassuserdata(Request $request) {
+
+        $ClassID = $request->ClassID;
+
+        $userEnrollmentData = Enrollment::select('users.UserID', 'users.UserEmail', 'users.UserName', 'users.UserPhoneNumber', 'users.UserBirthDate', 'users.created_at')
+            ->join('users', 'enrollments.UserID', 'users.UserID')
+            ->where('enrollments.ClassID', $ClassID)
+            ->paginate(10);
+
+        return response()->json([
+            'userEnrollmentData' => $userEnrollmentData,
+        ]);
+    }
 }
+

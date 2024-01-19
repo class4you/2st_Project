@@ -473,10 +473,10 @@ export default {
             .then(response => {
                 console.log(response.data)
                 console.log(response.data.boardData.data)
-                this.boardQuestionData = response.data.boardData.data;
-                this.pagination = response.data.boardData.links;
-                this.page = response.data.boardData.current_page;
-                this.pageChk = response.data.boardData.current_page;
+                // this.boardQuestionData = response.data.boardData.data;
+                // this.pagination = response.data.boardData.links;
+                // this.page = response.data.boardData.current_page;
+                // this.pageChk = response.data.boardData.current_page;
             })
             .catch(error => {
                 // console.error('Error fetching data:', error);
@@ -501,14 +501,14 @@ export default {
             this.commentBoardID = data;
 
             this.showModal = true;
-            console.log(this.showModal);
+            // console.log(this.showModal);
             
         },
         submitAnswer() {
             // console.log("모달 상태:", this.showModal);
             // console.log("데이터값:", this.boardData);
-            console.log("데이터값1:", this.boardQuestionData);
-            console.log("데이터값2:", this.questionAnswerData);
+            // console.log("데이터값1:", this.boardQuestionData);
+            // console.log("데이터값2:", this.questionAnswerData);
 
             const url = '/adminboardquestiondata';
             const header = {
@@ -524,8 +524,8 @@ export default {
             frm.append('BoardID', this.commentBoardID);
             frm.append('InstructorID', this.adminID);
 
-            console.log("데이터값:", this.questionAnswerData);
-            console.log("데이터값:", this.boardQuestionData);
+            // console.log("데이터값:", this.questionAnswerData);
+            // console.log("데이터값:", this.boardQuestionData);
             // console.log(frm);
 
             axios.post(url, frm, header)
