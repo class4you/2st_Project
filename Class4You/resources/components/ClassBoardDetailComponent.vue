@@ -5,7 +5,8 @@
             <div class="class_detail_container_box">
                 
                 <div class="class_detail_container">
-                    <div class="class_detail_container_lr">
+					<LoadingBar v-if="loading" style="background-color: transparent; min-height: 43vh;"></LoadingBar>
+                    <div v-else class="class_detail_container_lr">
                         <div class="class_detail_container_l">
                             <div class="class_detail_container_l_img_cover">
                                 <img :src="'/' + detailClassItems.ClassImg" alt="">
@@ -1108,11 +1109,15 @@
 import Swal from 'sweetalert2';
 import axios from 'axios'
 import { toHandlerKey } from 'vue';
-
+import LoadingBar from './LoadingComponent';
 export default {
     name: 'ClassBoardDetailComponent',
 	props: 
 		['ClassID'],
+
+	components: {
+		LoadingBar,
+	},
 	
     data() {
         return {
@@ -1213,6 +1218,7 @@ export default {
 			updateClassQuestionData: {},
 			updateClassQuestionBoardID: {},
 			answerData: {},
+			loading: true,
         }
     },
 	mounted() {
@@ -1255,6 +1261,16 @@ export default {
 				// avgRating 값이 없는 경우
 				this.enrollmentCnt = 0;
 			}
+
+			const checkLoad = () => {
+					if(response.data) {
+						this.loading = false;
+					} else {
+						setTimeout(checkLoad, 10);
+					}
+				}
+
+			checkLoad();
 
 
 			// if(this.clickFlgTab === 1) {
