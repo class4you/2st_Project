@@ -124,7 +124,7 @@
 								</div>
 								<ul class="question_list">
 									<li class="question_container">
-									<LoadingBar v-if="loading"></LoadingBar>
+									<LoadingBar v-if="loading" style="background-color: transparent; min-height: 43vh;"></LoadingBar>
 									<a v-else v-for="item in newBoardItems" :href="'/boardDetail/' + item.BoardID" @click="increaseViews(item.BoardID)"> 
 										<div  class="question">
 										<div class="question_info">
@@ -193,7 +193,7 @@
 								<div class="qustuon_list_pageing">
 									<div v-for="(page, index) in pagination" :key="index">
 										<template v-if="page.url !== null">
-											<a class="qustuon_list_page_a" :class="{'page_on': page.label == pageChk}" @click.prevent="fetchData(page.label, searchQuery, solve, sortData, boardCategory)" href="#">{{ replaceString(page.label) }}</a>
+											<a class="qustuon_list_page_a" :class="{'page_on': page.label == pageChk}" @click.prevent="fetchData(page.label, searchQuery, solve, sortData, boardCategory,loading = true)" href="#">{{ replaceString(page.label) }}</a>
 										</template>
 										<template v-else>
 											<span>{{ replaceString(page.label) }}</span>
