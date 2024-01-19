@@ -18,40 +18,79 @@ class BoardController extends Controller
 {
     public function getBoardMainData(Request $request)
     {
-        Log::debug($request);
-        // 보드 모델 쿼리를 작성 -> 유저와 답변을 래프트 조인함, 왼쪽 테이블과 오른쪽 테이블 간에 조인을 수행하고, 왼쪽 테이블의 모든 레코드와 일치하는 오른쪽 테이블의 레코드를 가져오는 조인 방식임, 보더가 왼쪽, 유저와 코멘트가 오른쪽
-        // 해당 조인을 사용한 이유는 값이 없는 경우가 있을 수도 있어서 없는 값을 가져오면 에러가 떠서 해당 조인 사용(댓글이 없는 게시물의 경우 자동으로 null 처리를 하기 위해서)
-        // DB::raw를 사용해서 하위 쿼리 (서브 쿼리) 작성, 서브 쿼리에서 답변 테이블을 기준으로 코멘트의 보더 아이디 값으로 그룹화 시켜줌, 
+        // // Log::debug($request);
+        // // 보드 모델 쿼리를 작성 -> 유저와 답변을 래프트 조인함, 왼쪽 테이블과 오른쪽 테이블 간에 조인을 수행하고, 왼쪽 테이블의 모든 레코드와 일치하는 오른쪽 테이블의 레코드를 가져오는 조인 방식임, 보더가 왼쪽, 유저와 코멘트가 오른쪽
+        // // 해당 조인을 사용한 이유는 값이 없는 경우가 있을 수도 있어서 없는 값을 가져오면 에러가 떠서 해당 조인 사용(댓글이 없는 게시물의 경우 자동으로 null 처리를 하기 위해서)
+        // // DB::raw를 사용해서 하위 쿼리 (서브 쿼리) 작성, 서브 쿼리에서 답변 테이블을 기준으로 코멘트의 보더 아이디 값으로 그룹화 시켜줌, 
+        // $boardDataQuery = Board::leftJoin('users', 'boards.UserID', 'users.UserID')
+        //     // 아래 부분은 콜백 함수를 사용, $join은 leftjoin 메소드에서 전달된 콜백 함수에 사용되는 인스턴스 -> left join으로 조인한 결과값을 funtion안에 인스턴스로 넣어주고 해당 on은 조인 시에 사용할 조건을 말함
+        //     // 하이디에서 사용한 join 이후 on과 같음 이전 leftjoin에 만든 com에 있는 보더 아이디 값과 보더즈에 있는 보더 아이디 값을 조인해주는거
+        //     ->leftJoin(DB::raw('(SELECT BoardID, COUNT(BoardID) AS cnt FROM comments GROUP BY comments.BoardID) com'), function ($join) {
+        //         $join->on('com.BoardID', 'boards.BoardID');
+        //     })
+        //     ->leftJoin('board_languagelinks', 'boards.BoardID', 'board_languagelinks.BoardID')
+        //     // 최종적으로 보더 테이블과 유저즈, 코멘트즈들이 연결된 결과를 가져옴
+        //     // 쉽게 설명하면 보더즈로 두 개의 테이블(유저와 코멘트)를 레프트 조인을 통해 값이 있는 애들만 불러오고 그 안에서 서브쿼리를 만들어서 콜백함수로 받아온 그룹에 보더 아이디와 보더즈의 보더 아이디와 다시 조인하는 것
+        //     ->select('boards.BoardID', 'boards.created_at', 'boards.UserID', 'boards.BoardTitle', 'boards.BoardComment', 'boards.BoardView', 'boards.BoardRecommended', 'boards.BoardNotRecommended', 'boards.BoardFlg', 'users.UserEmail', 'com.cnt', 'board_languagelinks.HTMLFlg', 'board_languagelinks.CSSFlg', 'board_languagelinks.JavaScriptFlg', 'board_languagelinks.PHPFlg', 'board_languagelinks.JAVAFlg', 'board_languagelinks.DataBaseFlg');
+        //     // 
+
+        // //  아래 이프문은 파라미터 값이 있는지 확인하고 해당 값이 있을 경우에 쿼리문이 추가되는 것임
+        // if ($request->has('boardCategory')) {
+        //     $boardCategoryID = $request->input('boardCategory');
+        //     $boardDataQuery->where('BoardCategoryID', $boardCategoryID);
+        // }
+        
+        // if ($request->has('boardCategory')) {
+        //     $boardCategoryID = $request->input('boardCategory');
+            
+        //     if ($boardCategoryID == 1) {
+        //         $boardDataQuery->where('BoardCategoryID', $boardCategoryID);
+        //     } elseif ($boardCategoryID == 2) {
+        //         $boardDataQuery->where('BoardCategoryID', $boardCategoryID);    
+        //         if ($request->input('boardLanguage') !== null) {
+        //             $boardLanguageNames = $request->input('boardLanguage');
+        //             // $boardDataQuery->join('board_languagelinks', 'boards.BoardID', 'board_languagelinks.BoardID');
+            
+        //             foreach (explode(',', $boardLanguageNames) as $boardLanguageName) {
+        //                 $column = strtolower($boardLanguageName) . 'Flg';
+        //                 $boardDataQuery->where("board_languagelinks.$column", 1);
+        //             }
+        //         }
+        //     }
+        // }
+
         $boardDataQuery = Board::leftJoin('users', 'boards.UserID', 'users.UserID')
-            // 아래 부분은 콜백 함수를 사용, $join은 leftjoin 메소드에서 전달된 콜백 함수에 사용되는 인스턴스 -> left join으로 조인한 결과값을 funtion안에 인스턴스로 넣어주고 해당 on은 조인 시에 사용할 조건을 말함
-            // 하이디에서 사용한 join 이후 on과 같음 이전 leftjoin에 만든 com에 있는 보더 아이디 값과 보더즈에 있는 보더 아이디 값을 조인해주는거
             ->leftJoin(DB::raw('(SELECT BoardID, COUNT(BoardID) AS cnt FROM comments GROUP BY comments.BoardID) com'), function ($join) {
                 $join->on('com.BoardID', 'boards.BoardID');
             })
             ->leftJoin('board_languagelinks', 'boards.BoardID', 'board_languagelinks.BoardID')
-            // 최종적으로 보더 테이블과 유저즈, 코멘트즈들이 연결된 결과를 가져옴
-            // 쉽게 설명하면 보더즈로 두 개의 테이블(유저와 코멘트)를 레프트 조인을 통해 값이 있는 애들만 불러오고 그 안에서 서브쿼리를 만들어서 콜백함수로 받아온 그룹에 보더 아이디와 보더즈의 보더 아이디와 다시 조인하는 것
-            ->select('boards.BoardID', 'boards.created_at', 'boards.UserID', 'boards.BoardTitle', 'boards.BoardComment', 'boards.BoardView', 'boards.BoardRecommended', 'boards.BoardNotRecommended', 'boards.BoardFlg', 'users.UserEmail', 'com.cnt', 'board_languagelinks.HTMLFlg', 'board_languagelinks.CSSFlg', 'board_languagelinks.JavaScriptFlg', 'board_languagelinks.PHPFlg', 'board_languagelinks.JAVAFlg', 'board_languagelinks.DataBaseFlg');
-            // 
+            ->leftJoin(DB::raw('(SELECT BoardID, 
+                                        SUM(CASE WHEN BoardRating = 1 THEN 1 ELSE 0 END) as likeratingcnt,
+                                        SUM(CASE WHEN BoardRating = -1 THEN 1 ELSE 0 END) as hateratingcnt
+                                    FROM board_rating_states
+                                    GROUP BY BoardID) ratings'), function ($join) {
+                $join->on('ratings.BoardID', 'boards.BoardID');
+            })
+            ->select(
+                'boards.BoardID', 
+                'boards.created_at', 
+                'boards.UserID', 
+                'boards.BoardTitle', 
+                'boards.BoardComment', 
+                'boards.BoardView', 
+                'boards.BoardFlg', 
+                'users.UserEmail', 
+                'com.cnt', 
+                'board_languagelinks.HTMLFlg', 
+                'board_languagelinks.CSSFlg', 
+                'board_languagelinks.JavaScriptFlg', 
+                'board_languagelinks.PHPFlg', 
+                'board_languagelinks.JAVAFlg', 
+                'board_languagelinks.DataBaseFlg',
+                'ratings.likeratingcnt',
+                'ratings.hateratingcnt'
+            );
 
-        // if($request->input('ClassID') == null) {
-        //     $boardDataQuery->whereNull('boards.ClassID');
-        // } else if($request->input('ClassID') !== null) {
-        //     $boardDataQuery->where('boards.ClassID', $request->input('ClassID'));
-        // }
-
-        // $boardDataQuery = Board::join('users', 'boards.UserID', 'users.UserID');
-        // ->orderBy('boards.created_at', 'desc');
-    
-        // 게시물 당 댓글 수를 계산하기 위한 쿼리
-        $commentCountQuery = Board::Join('comments', 'boards.BoardID', 'comments.BoardID')
-            ->select('boards.BoardID', DB::raw('COUNT(comments.CommentID) AS CommentCount'))
-            ->groupBy('boards.BoardID')
-            ->get();
-
-        // Log::debug($commentCountQuery);
-
-        //  아래 이프문은 파라미터 값이 있는지 확인하고 해당 값이 있을 경우에 쿼리문이 추가되는 것임
         if ($request->has('boardCategory')) {
             $boardCategoryID = $request->input('boardCategory');
             $boardDataQuery->where('BoardCategoryID', $boardCategoryID);
@@ -110,6 +149,24 @@ class BoardController extends Controller
                 $boardDataQuery->orderBy('boards.BoardView', 'desc');
             }
         }
+
+        
+        // if($request->input('ClassID') == null) {
+        //     $boardDataQuery->whereNull('boards.ClassID');
+        // } else if($request->input('ClassID') !== null) {
+        //     $boardDataQuery->where('boards.ClassID', $request->input('ClassID'));
+        // }
+
+        // $boardDataQuery = Board::join('users', 'boards.UserID', 'users.UserID');
+        // ->orderBy('boards.created_at', 'desc');
+    
+        // 게시물 당 댓글 수를 계산하기 위한 쿼리
+        // $commentCountQuery = Board::Join('comments', 'boards.BoardID', 'comments.BoardID')
+        //     ->select('boards.BoardID', DB::raw('COUNT(comments.CommentID) AS CommentCount'))
+        //     ->groupBy('boards.BoardID')
+        //     ->get();
+
+        // Log::debug($commentCountQuery);
 
         // 페이징 처리
         $boardData = $boardDataQuery->orderBy('boards.created_at', 'desc')->paginate(10);

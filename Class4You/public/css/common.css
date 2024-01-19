@@ -2820,6 +2820,7 @@ ul.class_tabs li.class_current {
 
 .class_detail_watch_side_tab1_off {
     padding: 20px 10px;
+    cursor: pointer;
 }
 
 .class_detail_watch_side_tab1_off span{
@@ -2839,6 +2840,7 @@ ul.class_tabs li.class_current {
 
 .class_detail_watch_side_tab2_off {
     padding: 20px 10px;
+    cursor: pointer;
 }
 
 .class_detail_watch_side_tab2_off span {

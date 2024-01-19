@@ -112,7 +112,7 @@
                                     </div>
                                 </div> 
 
-                                <div v-if="data.UserID == $store.state.UserID">
+                                <div>
                                     <div v-if="data.ClassNoteID == updateNoteID" class="class_detail_watch_side_classnote_list_btn">
                                         <div class="class_detail_watch_side_classnote_list_btn_up">
                                             <button @click="updateClassNote(data)">수정</button>
@@ -429,8 +429,11 @@ export default {
                 // res가 왜 빈값인지 알아야함.>해결
                 // console.log("res데이터 어디갔냐");
                 // console.log(res);
+                console.log(res);
                 console.log("레스데이터", res.data);
                 console.log("UserID값", res.data.UserID);
+                
+                
                 // 여기엔 있음
                 // console.log("노트아이디", res.data.ClassNoteID);
                 // 작성된 노트 데이터

@@ -28,12 +28,12 @@
 									<h6>함께 공부해요</h6>
 									<ul class="community_aside_menu_list">
 										<li class="community_aside_menu">
-											<a @click="fetchData(1, searchQuery, solve = null, sortData, boardCategory = 1)" :class="{ 'community_aside_menu_on': boardCategory == 1}">
+											<a @click="fetchData(1, searchQuery, solve = null, sortData, boardCategory = 1, loading = true)" :class="{ 'community_aside_menu_on': boardCategory == 1}">
 												자유게시판
 											</a>
 										</li>
 										<li class="community_aside_menu">
-										<a @click="fetchData(1, searchQuery, solve = null, sortData = 1, boardCategory = 2)" :class="{ 'community_aside_menu_on': boardCategory == 2}">질문게시판</a>
+										<a @click="fetchData(1, searchQuery, solve = null, sortData = 1, boardCategory = 2, loading = true)" :class="{ 'community_aside_menu_on': boardCategory == 2}">질문게시판</a>
 											<!-- <ul class="community_dropdown">
 												<li><a @click="fetchData(1, searchQuery, solve = null, sortData, boardCategory = 2, boardLanguage = 'HTML')">HTML</a></li>
 												<li><a @click="fetchData(1, searchQuery, solve = null, sortData, boardCategory = 2, boardLanguage = 'CSS')">CSS</a></li>
@@ -53,17 +53,17 @@
 								<div class="search_filter">
 								<ul class="search_filter_status">
 									<li class="e_status_active">
-									<button type="button" @click="fetchData(1, searchQuery, solve = null, sortData, boardCategory)" class="e_status_active_tap_button" :class="{ 'e_status_active_tap_button_border_bottom': solve == null}">
+									<button type="button" @click="fetchData(1, searchQuery, solve = null, sortData, boardCategory, loading = true)" class="e_status_active_tap_button" :class="{ 'e_status_active_tap_button_border_bottom': solve == null}">
 										전체
 									</button>
 									</li>
 									<li class="e_status_active">
-									<button type="button" @click="fetchData(1, searchQuery, solve = 0, sortData, boardCategory)" class="e_status_active_tap_button" :class="{ 'e_status_active_tap_button_border_bottom': solve == 0}">
+									<button type="button" @click="fetchData(1, searchQuery, solve = 0, sortData, boardCategory, loading = true)" class="e_status_active_tap_button" :class="{ 'e_status_active_tap_button_border_bottom': solve == 0}">
 										미해결
 									</button>
 									</li>
 									<li class="e_status_active">
-									<button type="button" @click="fetchData(1, searchQuery, solve = 1, sortData, boardCategory)" class="e_status_active_tap_button" :class="{ 'e_status_active_tap_button_border_bottom': solve == 1}">
+									<button type="button" @click="fetchData(1, searchQuery, solve = 1, sortData, boardCategory, loading = true)" class="e_status_active_tap_button" :class="{ 'e_status_active_tap_button_border_bottom': solve == 1}">
 										해결
 									</button>
 									</li>
@@ -72,7 +72,7 @@
 
 									<fieldset v-if="boardCategory == 2" class="board_checkbox-group">
 										<div class="board_checkbox" v-for="(item, index) in checkboxes" :key="index">
-										<label class="board_checkbox-wrapper">
+										<label class="board_checkbox-wrapper" @click="loading = true">
 											<input type="checkbox" class="board_checkbox-input" v-model="checkboxes[index].checked" :value="item.label" />
 											<span class="board_checkbox-tile">
 											<span class="board_checkbox-label">{{ item.label }}</span>
@@ -85,7 +85,7 @@
 									<div class="ac_input_with_item">
 										<input type="text" v-model="searchQuery">
 									</div>
-									<button type="button" @click="fetchData(1, searchQuery, solve, sortData, boardCategory)" class="search_item_button">
+									<button type="button" @click="fetchData(1, searchQuery, solve, sortData, boardCategory, loading = true)" class="search_item_button">
 										검색
 									</button>
 									</div>
@@ -103,20 +103,20 @@
 									<select style="margin-left: 10px;">
 									<option value="">최신순</option>
 									<option value="">답변많은순</option>
-									<option value="">좋아요순</option>
+									<option value="">추천순순</option>
 									</select>
 									<ul class="order_pc">
 									<li class="e_order active">
-										<button type="button" @click="fetchData(1, searchQuery, solve, sortData = 1, boardCategory)" class="order_pc_button" :class="{ 'order_pc_button_on': sortData == 1}"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="violet" class="bi bi-dot svg_opacity_off" :class="{ 'svg_opacity_on': sortData == 1}" viewBox="0 0 16 16"><path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/></svg>최신순</button>
+										<button type="button" @click="fetchData(1, searchQuery, solve, sortData = 1, boardCategory, loading = true)" class="order_pc_button" :class="{ 'order_pc_button_on': sortData == 1}"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="violet" class="bi bi-dot svg_opacity_off" :class="{ 'svg_opacity_on': sortData == 1}" viewBox="0 0 16 16"><path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/></svg>최신순</button>
 									</li>
 									<li class="e_order active">
-										<button type="button" @click="fetchData(1, searchQuery, solve, sortData = 2, boardCategory)" class="order_pc_button" :class="{ 'order_pc_button_on': sortData == 2}"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="violet" class="bi bi-dot svg_opacity_off" :class="{ 'svg_opacity_on': sortData == 2}" viewBox="0 0 16 16"><path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/></svg>답변많은순</button>
+										<button type="button" @click="fetchData(1, searchQuery, solve, sortData = 2, boardCategory, loading = true)" class="order_pc_button" :class="{ 'order_pc_button_on': sortData == 2}"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="violet" class="bi bi-dot svg_opacity_off" :class="{ 'svg_opacity_on': sortData == 2}" viewBox="0 0 16 16"><path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/></svg>답변많은순</button>
 									</li>
 									<li class="e_order active">
-										<button type="button" @click="fetchData(1, searchQuery, solve, sortData = 3, boardCategory)" class="order_pc_button" :class="{ 'order_pc_button_on': sortData == 3}"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="violet" class="bi bi-dot svg_opacity_off" :class="{ 'svg_opacity_on': sortData == 3}" viewBox="0 0 16 16"><path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/></svg>좋아요순</button>
+										<button type="button" @click="fetchData(1, searchQuery, solve, sortData = 3, boardCategory, loading = true)" class="order_pc_button" :class="{ 'order_pc_button_on': sortData == 3}"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="violet" class="bi bi-dot svg_opacity_off" :class="{ 'svg_opacity_on': sortData == 3}" viewBox="0 0 16 16"><path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/></svg>추천순</button>
 									</li>
 									<li class="e_order active">
-										<button type="button" @click="fetchData(1, searchQuery, solve, sortData = 4, boardCategory)" class="order_pc_button" :class="{ 'order_pc_button_on': sortData == 4}"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="violet" class="bi bi-dot svg_opacity_off" :class="{ 'svg_opacity_on': sortData == 4}" viewBox="0 0 16 16"><path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/></svg>조회순</button>
+										<button type="button" @click="fetchData(1, searchQuery, solve, sortData = 4, boardCategory, loading = true)" class="order_pc_button" :class="{ 'order_pc_button_on': sortData == 4}"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="violet" class="bi bi-dot svg_opacity_off" :class="{ 'svg_opacity_on': sortData == 4}" viewBox="0 0 16 16"><path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/></svg>조회순</button>
 									</li>
 									</ul>
 									<div class="posts_container_header_button_cover"></div>
@@ -124,7 +124,8 @@
 								</div>
 								<ul class="question_list">
 									<li class="question_container">
-									<a v-for="item in newBoardItems" :href="'/boardDetail/' + item.BoardID" @click="increaseViews(item.BoardID)"> 
+									<LoadingBar v-if="loading" style="background-color: transparent; min-height: 43vh;"></LoadingBar>
+									<a v-else v-for="item in newBoardItems" :href="'/boardDetail/' + item.BoardID" @click="increaseViews(item.BoardID)"> 
 										<div  class="question">
 										<div class="question_info">
 											<div class="question_title">
@@ -159,11 +160,11 @@
 												<dl>
 												<dt class="visually_hidden">투표점수</dt>
 												<dd class="comment_count">
-													<i>추천수 : {{ item.BoardRecommended }}</i>
+													<i>추천수 : {{ item.likeratingcnt }}</i>
 												</dd>
 												<dt class="visually_hidden">투표점수</dt>
 												<dd class="comment_count">
-													<i>비추천 : {{ item.BoardNotRecommended }}</i>
+													<i>비추천 : {{ item.hateratingcnt }}</i>
 												</dd>
 												<dt class="visually_hidden">조회수</dt>
 												<dd class="comment_count">
@@ -192,7 +193,7 @@
 								<div class="qustuon_list_pageing">
 									<div v-for="(page, index) in pagination" :key="index">
 										<template v-if="page.url !== null">
-											<a class="qustuon_list_page_a" :class="{'page_on': page.label == pageChk}" @click.prevent="fetchData(page.label, searchQuery, solve, sortData, boardCategory)" href="#">{{ replaceString(page.label) }}</a>
+											<a class="qustuon_list_page_a" :class="{'page_on': page.label == pageChk}" @click.prevent="fetchData(page.label, searchQuery, solve, sortData, boardCategory,loading = true)" href="#">{{ replaceString(page.label) }}</a>
 										</template>
 										<template v-else>
 											<span>{{ replaceString(page.label) }}</span>
@@ -227,10 +228,15 @@
 </template>
 <script>
 // import Pagination from 'vue3-pagination';
+import LoadingBar from './LoadingComponent';
 export default {
 	name: 'BoardComponent',
 
 	computed: {
+	},
+
+	components: {
+		LoadingBar,
 	},
 
 	data() {
@@ -255,7 +261,8 @@ export default {
 				{ label: 'DataBase', checked: false },
 			],
 
-
+			loading: true,
+			loadingChk: false,
 		}
 	},
 	
@@ -280,10 +287,21 @@ export default {
                 this.page = response.data.boardData.current_page;
                 this.pageChk = response.data.boardData.current_page;
 				console.log(response.data);
+
 				// console.log(response.data.boardData.data);
 				// console.log(response.data.boardData.links);
 				// console.log(response.data.boardData.current_page);
 				// console.log(response.data.userCntData);
+
+				const checkLoad = () => {
+					if(response.data) {
+						this.loading = false;
+					} else {
+						setTimeout(checkLoad, 10);
+					}
+				}
+
+				checkLoad();
             })
             .catch(error => {
                 console.error('Error fetching data:', error);
