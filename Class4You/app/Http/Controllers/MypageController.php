@@ -394,16 +394,13 @@ class MypageController extends Controller
 
 
     function deleteUserpasswordData(Request $request) {
-        
+        Log::debug($request);
         $result = User::find($request->UserID);
         $deletedPassword = $request->input('deletedPassword');
-        $deletedPasswordChk = $request->input('deletedPasswordChk');
-        $deletedPasswordChk2 = $request->input('deletedPasswordChk2');
+
         Log::debug($result);
         Log::debug($deletedPassword);
-        Log::debug($deletedPasswordChk);
-        Log::debug($deletedPasswordChk2);
-    
+
     
         if(Auth::check()) {
             $loggedInUserId = Auth::id();
@@ -411,7 +408,7 @@ class MypageController extends Controller
 
             if ($loggedInUserId == $requestUserId) {
                 Log::debug($result);
-                if (Hash::check($deletedPassword, $result->UserPassword) && $deletedPasswordChk == $deletedPasswordChk2) {
+                if (Hash::check($deletedPassword, $result->UserPassword)) {
                     // 비밀번호 일치 및 비밀번호 체크 값이 일치하면 계정 삭제
                     $result->delete();
                     // 삭제 성공 응답 등을 반환
@@ -424,6 +421,12 @@ class MypageController extends Controller
         }
         
     }
+
+    // function getUserChkData(Request $request) {
+    //     Log::debug($request);
+    //     Log::debug('오냐');
+
+    // }
 }
 
 

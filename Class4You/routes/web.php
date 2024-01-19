@@ -196,6 +196,7 @@ Route::put('/boardViewsUpdate', [BoardController::class, 'putBoardViewUpdate']);
 
 // 마이페이지 작업
 Route::middleware('checkUserId')->get('/getmypagedashboard', [MyPageController::class, 'getUserClassData']);
+// Route::get('/deleteduserdatachk', [MyPageController::class, 'getUserChkData']);
 
 Route::middleware('my.user.validation')->put('/useraddressdataupdate', [MyPageController::class, 'putUserAddressData']);
 Route::middleware('my.user.validation')->put('/userbasicdataupdate', [MyPageController::class, 'putUserbasicData']);

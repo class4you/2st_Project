@@ -988,8 +988,8 @@
 								<summary>
 									<p>✔강사 답변 보기</p>
 								</summary>
-								<div style="margin-top: 5px;">
-									<p>{{item.CommentContent}}</p>
+								<div style="margin-top: 5px; padding: 10px;">
+									<p style="line-height: 30px;">{{item.CommentContent}}</p>
 									<!-- <p>{{ data.CommentContent }}</p> -->
 								</div>
 							</details>

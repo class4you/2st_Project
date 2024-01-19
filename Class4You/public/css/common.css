@@ -2409,13 +2409,15 @@ ul.class_tabs li.class_current {
     padding-right: 7px;
 }
 
-/* .class_detail_community_btn_answer {
-    display: flex;
+.class_detail_community_btn_answer {
+    /* display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    margin-top: 10px;
-} */
+    margin-top: 10px; */
+    padding: 20px 20px;
+    /* border-top: 1px solid #000; */
+}
 
 .class_detail_community_instructor_answer {
     color: #9b9898;
@@ -2426,7 +2428,7 @@ ul.class_tabs li.class_current {
 
 .class_detail_commu_list_div {
     /* margin: 10px 0; */
-    padding-bottom: 15px;
+    /* padding-bottom: 15px; */
     line-height: 20px;
     border-bottom: 2px solid #002d426f;
 }
@@ -2470,7 +2472,7 @@ ul.class_tabs li.class_current {
     border-radius: 5px;
     margin: 7px 0;
     /* background-color: #ededed; */
-    padding: 5px 0;
+    padding: 10px 20px;
 }
 
 .class_detail_commu_list_text>p {
@@ -6640,6 +6642,8 @@ background-color: rgba(225, 223, 234, 0.224);
 
 .users_basic_information_password_cover {
     grid-column: span 3;
+    display: flex;
+    justify-content: end;
 }
 
 .users_basic_password_box {

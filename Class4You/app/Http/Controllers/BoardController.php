@@ -486,17 +486,17 @@ class BoardController extends Controller
         //                     ->where('comments.ClassID', $ClassID)
         //                     ->get();
         $responseData = Board::selectRaw('
-            MAX(boards.BoardID) as BoardID,
-            MAX(boards.ClassID) as ClassID,
-            MAX(boards.UserID) as UserID,
-            MAX(boards.BoardTitle) as BoardTitle,
-            MAX(boards.BoardComment) as BoardComment,
-            MAX(boards.BoardCategoryID) as BoardCategoryID,
-            MAX(boards.created_at) as created_at,
-            MAX(users.UserEmail) as UserEmail,
-            MAX(comments.CommentContent) as CommentContent,
-            MAX(comments.CommentID) as CommentID,
-            MAX(comments.InstructorID) as InstructorID
+                MAX(boards.BoardID) as BoardID,
+                MAX(boards.ClassID) as ClassID,
+                MAX(boards.UserID) as UserID,
+                MAX(boards.BoardTitle) as BoardTitle,
+                MAX(boards.BoardComment) as BoardComment,
+                MAX(boards.BoardCategoryID) as BoardCategoryID,
+                MAX(boards.created_at) as created_at,
+                MAX(users.UserEmail) as UserEmail,
+                MAX(comments.CommentContent) as CommentContent,
+                MAX(comments.CommentID) as CommentID,
+                MAX(comments.InstructorID) as InstructorID
             ')
             ->join('users','boards.UserID','users.UserID')
             ->join('comments','boards.BoardID','comments.BoardID')
