@@ -8488,23 +8488,23 @@ footer {
    .desktop-element {
     margin-top: 100px;
     margin-bottom: 80px;
-    padding: 0px 10vw;
+    padding: 0px 20vw;
    }
 
    .desktop-element {
     margin-left: auto;
     margin-right: auto;
-    min-width: 98rem;
+    /* min-width: 98rem; */
   }
   
   .category-menu__title {
     position: relative;
-    top: -2rem;
+    top: -1.5rem;
     /* left: -2rem; */
     padding: 0px 2rem 2rem 2rem;
     line-height: 3rem;
     background-color: #fff;
-    font-size: 20px;
+    font-size: 17px;
     display: inline-block;
     color: rgba(0,0,0);
   }
@@ -8518,9 +8518,10 @@ footer {
   }
   .category-menu__list {
     display: flex;
-    gap: 40px;
+    gap: 30px;
     position: relative;
     top: -40px;
+    justify-content: center;
   }
   .common-category-icon {
     width: 50px;
@@ -8531,8 +8532,8 @@ footer {
 
   
   .common-category-icon--large {
-    width: 6rem;
-    height: 6rem;
+    width: 4rem;
+    height: 4rem;
     mask-size: cover;
     margin-bottom: 10px;
   }

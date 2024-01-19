@@ -983,13 +983,13 @@
 
 					<div class="class_detail_community_btn_answer">
 
-						<div class="class_detail_community_instructor_answer">
-							<details>
+						<div v-for="item in instructorData" class="class_detail_community_instructor_answer">
+							<details  v-if="data.BoardID == item.BoardID">
 								<summary>
 									<p>✔강사 답변 보기</p>
 								</summary>
 								<div style="margin-top: 5px;">
-									<p>코멘트코멘트코멘트</p>
+									<p>{{item.CommentContent}}</p>
 									<!-- <p>{{ data.CommentContent }}</p> -->
 								</div>
 							</details>
@@ -1190,6 +1190,7 @@ export default {
 			paymentUserData: {},
 			// 강의 질문
 			classQuestionData: [],
+			instructorData: [],
 			classQuestionItems: {
 				ClassID: this.ClassID,
 				UserID: this.$store.state.UserID,
@@ -1230,7 +1231,7 @@ export default {
 		axios.get('/classBoardDetail/' + this.ClassID)
 			.then(response => {
 			// API 응답에 대한 로직 수행
-			console.log(response.data);
+			// console.log(response.data);
 			this.detailClassItems = response.data.result;
 			// this.enrollmentCnt = response.data.userCnt.user_count;
 			// this.classCuriData = response.data.classCuri;
@@ -1265,24 +1266,26 @@ export default {
 				// })
 				.then(reviewResponse => {
                     // 두 번째 API 응답에 대한 로직 수행
-                    console.log(reviewResponse.data);
+                    // console.log(reviewResponse.data);
 						this.reviewClassItems = reviewResponse.data.reviewsData;
 						// this.pagination = reviewResponse.data.links;
 						this.EnrollChk = reviewResponse.data.enrollmentData;
 						// this.newReviewData = reviewResponse.data.classReviewData;
-						console.log('classID',this.ClassID);
+						// console.log('classID',this.ClassID);
 
-						axios.get(`/board/data?page=${page}&ClassID=${this.ClassID}`)
+						axios.get('/classquestion/' + this.ClassID)
 						.then(boardResponse => {
+							console.log(boardResponse);
 							// console.log('이건 값이 있어');
 							// console.log(boardResponse.data);
 							// console.log('이건 값이 없어');
 							// console.log(boardResponse.data.data);
 							// console.log('이건 값이 ');
-							console.log('강의질문데이터',boardResponse.data.boardData.data);
-							this.classQuestionData = boardResponse.data.boardData.data;
-							this.classQuestionAnswerData = boardResponse.data.boardData.data.answerData;
-							console.log('강의답변데이터',boardResponse.data.boardData.data.answerData);
+							// console.log('강의질문데이터',boardResponse.data.boardData.data);
+							this.classQuestionData = boardResponse.data.responseData;
+							this.instructorData = boardResponse.data.instructorData;
+							// this.classQuestionAnswerData = boardResponse.data.boardData.data.answerData;
+							// console.log('강의답변데이터',boardResponse.data.boardData.data.answerData);
 							// this.EnrollChk = boardResponse.data.boardData.enrollmentData;
 							
 						}) 

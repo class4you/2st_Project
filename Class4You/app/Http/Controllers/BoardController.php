@@ -485,28 +485,41 @@ class BoardController extends Controller
         // $result = Board::join('comments','boards.BoardID','comments.BoardID')
         //                     ->where('comments.ClassID', $ClassID)
         //                     ->get();
-
-        $responseData = Board::select('boards.BoardID',
-                'boards.ClassID',
-                'boards.UserID',
-                'boards.BoardTitle',
-                'boards.BoardComment',
-                'boards.BoardCategoryID',
-                'boards.created_at',
-                'users.UserEmail',
-                'comments.CommentContent',
-                'comments.CommentID',
-                'comments.InstructorID')
-                ->join('users','boards.UserID','users.UserID')
-                ->join('comments','boards.BoardID','comments.BoardID')
-                ->where('boards.ClassID', $ClassID)
-                // ->where('boards.BoardID', $result->BoardID)
-                ->orderBy('boards.created_at','desc')
-                ->get();
+        $responseData = Board::selectRaw('
+            MAX(boards.BoardID) as BoardID,
+            MAX(boards.ClassID) as ClassID,
+            MAX(boards.UserID) as UserID,
+            MAX(boards.BoardTitle) as BoardTitle,
+            MAX(boards.BoardComment) as BoardComment,
+            MAX(boards.BoardCategoryID) as BoardCategoryID,
+            MAX(boards.created_at) as created_at,
+            MAX(users.UserEmail) as UserEmail,
+            MAX(comments.CommentContent) as CommentContent,
+            MAX(comments.CommentID) as CommentID,
+            MAX(comments.InstructorID) as InstructorID
+            ')
+            ->join('users','boards.UserID','users.UserID')
+            ->join('comments','boards.BoardID','comments.BoardID')
+            ->where('boards.ClassID', $ClassID)
+            ->groupBy('boards.BoardID')
+            ->orderBy('created_at', 'desc')
+            ->get();
 
         Log::debug($responseData);
+            
+        $instructorData = Comment::select('boards.ClassID', 'comments.CommentID', 'comments.UserID', 'comments.BoardID', 'comments.InstructorID', 'comments.CommentContent')
+            ->join('boards', 'boards.BoardID', 'comments.BoardID')
+            ->where('boards.ClassID', $ClassID)
+            ->whereNotNull('comments.InstructorID') 
+            ->get();
 
-        return response()->json($responseData);
+
+                
+        return response()->json([
+            'responseData' => $responseData,
+            'instructorData' => $instructorData,
+        ]);
+
     }
     
 
