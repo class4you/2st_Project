@@ -480,39 +480,48 @@ export default {
         },
 
         submitInstructorData() {
-            const url = '/instructorregist';
-            const header = {
-            headers: {
-                "Content-Type": 'multipart/form-data',
-                // 'X-CSRF-TOKEN': document.head.querySelector('meta[name="csrf-token"]').content,
-                },
-            };
-
-            let frm = new FormData();
-            const InstructorPhoneNumber = this.frmInstructorRegistData.InstructorPhoneNumber1 + this.frmInstructorRegistData.InstructorPhoneNumber2 + this.frmInstructorRegistData.InstructorPhoneNumber3
-
-            frm.append('InstructorFullName', this.frmInstructorRegistData.InstructorFullName);
-            frm.append('InstructorEmail', this.frmInstructorRegistData.InstructorEmail);
-            frm.append('InstructorPassword', this.frmInstructorRegistData.InstructorPassword);
-            frm.append('InstructorPasswordChk', this.frmInstructorRegistData.InstructorPasswordChk);
-            frm.append('InstructorPhoneNumber', InstructorPhoneNumber);
-
-            axios.post(url, frm, header)
-            .then(res => {
-                // console.log(res);
-
+            if (this.frmInstructorRegistData.InstructorPassword !== this.frmInstructorRegistData.InstructorPasswordChk) {
                 Swal.fire({
-                    icon: 'success',
-                    title: '회원가입이 완료되었습니다.',
+                    icon: 'error',
+                    title: '비밀번호가 일치하지않습니다.',
                     confirmButtonText: '확인',
-                    }).then(() => {
-                    // 페이지 이동
-                    this.$router.push('/adminmain');
-                    });
-            })
-            .catch(err => {
-                // console.error(err);
-            });
+                })
+            }  else {
+                const url = '/instructorregist';
+                const header = {
+                headers: {
+                    "Content-Type": 'multipart/form-data',
+                    // 'X-CSRF-TOKEN': document.head.querySelector('meta[name="csrf-token"]').content,
+                    },
+                };
+
+                let frm = new FormData();
+                const InstructorPhoneNumber = this.frmInstructorRegistData.InstructorPhoneNumber1 + this.frmInstructorRegistData.InstructorPhoneNumber2 + this.frmInstructorRegistData.InstructorPhoneNumber3
+
+                frm.append('InstructorFullName', this.frmInstructorRegistData.InstructorFullName);
+                frm.append('InstructorEmail', this.frmInstructorRegistData.InstructorEmail);
+                frm.append('InstructorPassword', this.frmInstructorRegistData.InstructorPassword);
+                frm.append('InstructorPasswordChk', this.frmInstructorRegistData.InstructorPasswordChk);
+                frm.append('InstructorPhoneNumber', InstructorPhoneNumber);
+
+                axios.post(url, frm, header)
+                .then(res => {
+                    // console.log(res);
+
+                    Swal.fire({
+                        icon: 'success',
+                        title: '회원가입이 완료되었습니다.',
+                        confirmButtonText: '확인',
+                        }).then(() => {
+                        // 페이지 이동
+                        this.$router.push('/adminmain');
+                        });
+                })
+                .catch(err => {
+                    // console.error(err);
+                });
+
+            }
         },
 
     },
