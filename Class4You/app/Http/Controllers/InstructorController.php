@@ -335,24 +335,61 @@ class InstructorController extends Controller
         $instructorId = Auth::guard('admin')->id();
         $searchTerm = $request->input('search');
 
+
+        $ClassDataQuery = ClassInfo::select(
+            'class_infos.ClassID',
+            'class_infos.CategoryID',
+            'class_infos.ClassDifficultyID',
+            'class_infos.ClassTitle',
+            'class_infos.ClassPrice',
+            DB::raw('cha.chapter_count'),
+            DB::raw('lescnt.lesson_count'),
+            DB::raw('enr.enrollment_count')
+        )
+        ->join(DB::raw('(SELECT subcha.ClassID, COUNT(subcha.ClassID) AS chapter_count FROM chapters subcha GROUP BY subcha.ClassID) cha'), function($join) {
+            $join->on('class_infos.ClassID', '=', 'cha.ClassID');
+        })
+        ->join(DB::raw('(
+                SELECT
+                    cha2.ClassID,
+                    SUM(chales1.lesson_count) lesson_count
+                FROM chapters cha2
+                JOIN (
+                    SELECT
+                        cha1.ChapterID,
+                        les2.lesson_count
+                    FROM chapters cha1
+                    JOIN (
+                        SELECT les1.ChapterID, COUNT(les1.ChapterID) lesson_count FROM lessons les1 GROUP BY les1.ChapterID
+                    ) les2 ON cha1.ChapterID = les2.ChapterID
+                ) chales1 ON cha2.ChapterID = chales1.ChapterID
+                GROUP BY cha2.classID
+            ) lescnt'), function($join) {
+            $join->on('class_infos.ClassID', '=', 'lescnt.ClassID');
+        })
+        ->join(DB::raw('(SELECT enr1.ClassID, COUNT(enr1.ClassID) enrollment_count FROM enrollments enr1 GROUP BY enr1.ClassID) enr'), function($join) {
+            $join->on('class_infos.ClassID', '=', 'enr.ClassID');
+        });
+
+
         // Log::debug($searchTerm);
         // Log::debug($request);
         // Log::debug($request);
-        $ClassDataQuery = Classinfo::leftJoin('enrollments', 'class_infos.ClassID', '=', 'enrollments.ClassID')
-            ->leftJoin('chapters', 'class_infos.ClassID', '=', 'chapters.ClassID')
-            ->leftJoin('lessons', 'chapters.ChapterID', '=', 'lessons.ChapterID')
-            ->select(
-                'class_infos.ClassID',
-                'class_infos.CategoryID',
-                'class_infos.ClassDifficultyID',
-                'class_infos.ClassTitle',
-                'class_infos.ClassPrice',
-                DB::raw('COUNT(DISTINCT chapters.ChapterID) as chapter_count'),
-                DB::raw('COUNT(DISTINCT lessons.LessonID) as lesson_count'),
-                DB::raw('COUNT(DISTINCT enrollments.UserID) as enrollment_count')
-            )
-            ->groupBy('class_infos.ClassID', 'class_infos.CategoryID', 'class_infos.ClassDifficultyID', 'class_infos.ClassTitle', 'class_infos.ClassPrice')
-            ->orderByDesc('class_infos.created_at');
+        // $ClassDataQuery = Classinfo::leftJoin('enrollments', 'class_infos.ClassID', '=', 'enrollments.ClassID')
+        //     ->leftJoin('chapters', 'class_infos.ClassID', '=', 'chapters.ClassID')
+        //     ->leftJoin('lessons', 'chapters.ChapterID', '=', 'lessons.ChapterID')
+        //     ->select(
+        //         'class_infos.ClassID',
+        //         'class_infos.CategoryID',
+        //         'class_infos.ClassDifficultyID',
+        //         'class_infos.ClassTitle',
+        //         'class_infos.ClassPrice',
+        //         DB::raw('COUNT(DISTINCT chapters.ChapterID) as chapter_count'),
+        //         DB::raw('COUNT(DISTINCT lessons.LessonID) as lesson_count'),
+        //         DB::raw('COUNT(DISTINCT enrollments.UserID) as enrollment_count')
+        //     )
+        //     ->groupBy('class_infos.ClassID', 'class_infos.CategoryID', 'class_infos.ClassDifficultyID', 'class_infos.ClassTitle', 'class_infos.ClassPrice')
+        //     ->orderByDesc('class_infos.created_at');
         
         if ($request->filled('search')) {
             $searchTerm = $request->input('search');
@@ -387,9 +424,9 @@ class InstructorController extends Controller
         //     ->groupBy('class_infos.ClassID', 'class_infos.CategoryID', 'class_infos.ClassDifficultyID', 'class_infos.ClassTitle', 'class_infos.ClassPrice')
         //     ->paginate(10);
 
-        return response()->json([
-            'ClassData' => $ClassData,
-        ]);
+            return response()->json([
+                'ClassData' => $ClassData,
+            ]);
     }
 
     public function getinstructorchapterinsertdata($ClassID) {
