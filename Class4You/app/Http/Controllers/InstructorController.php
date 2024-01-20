@@ -677,9 +677,10 @@ class InstructorController extends Controller
 
     public function getmodalclassuserdata(Request $request) {
 
+        LOG::debug($request);
         $ClassID = $request->ClassID;
 
-        $userEnrollmentData = Enrollment::select('users.UserID', 'users.UserEmail', 'users.UserName', 'users.UserPhoneNumber', 'users.UserBirthDate', 'users.created_at')
+        $userEnrollmentData = Enrollment::select('users.UserID', 'users.UserEmail', 'users.UserName', 'users.UserPhoneNumber', 'users.UserBirthDate', 'users.created_at','enrollments.ClassID')
             ->join('users', 'enrollments.UserID', 'users.UserID')
             ->where('enrollments.ClassID', $ClassID)
             ->paginate(10);

@@ -385,7 +385,7 @@
                                             <th>{{ datas.chapter_count }}개</th>
                                             <th>{{ datas.lesson_count }}개</th>
                                             <th>{{ datas.enrollment_count }}명</th>
-                                            <th><button @click="adminClassUserDataIsOpenModal(datas.ClassID)" type="button" style="padding: 0px 10px; border-radius: 3px; background-color: rgb(255, 95, 127); color: #fff; border: none;">수강생 보기</button></th>
+                                            <th><button @click="adminClassUserDataIsOpenModal(page = 1, datas.ClassID)" type="button" style="padding: 0px 10px; border-radius: 3px; background-color: rgb(255, 95, 127); color: #fff; border: none;">수강생 보기</button></th>
                                             <!-- <th><button type="button" style="padding: 0px 10px; border-radius: 3px; background-color: rgb(255, 95, 127); color: #fff; border: none;">삭제</button></th> -->
                                         </tr>
                                     </tbody>
@@ -485,7 +485,7 @@
                                 <table style="display: flex; justify-content: center; gap: 8px;">
                                     <tbody v-for="(page, index) in enrollmentDataPagination" :key="index">
                                         <template v-if="page.url !== null">
-											<a class="qustuon_list_page_a" :class="{'page_on': page.label == enrollmentDataPageChk}" @click.prevent="fetchData(page.label)" href="#">{{ replaceString(page.label) }}</a>
+											<a class="qustuon_list_page_a" :class="{'page_on': page.label == enrollmentDataPageChk}" @click.prevent="adminClassUserDataIsOpenModal(page.label, modalClassID)" href="#">{{ replaceString(page.label) }}</a>
 										</template>
 										<template v-else>
 											<span>{{ replaceString(page.label) }}</span>
@@ -527,6 +527,8 @@ export default {
             enrollmentDataPagination: {},
             enrollmentDataPage: {},
             enrollmentDataPageChk: {},
+
+            modalClassID: {},
         };
     },
 
@@ -578,23 +580,23 @@ export default {
 			// console.log(str);
 			return str;
 		},
-        adminClassUserDataIsOpenModal(data) {
-            this.adminClassUserDataIsOpen = true;
-            axios.get('/modalclassuserdata', {
-                params: {
-                    ClassID: data
-                }
+        adminClassUserDataIsOpenModal(page = 1, data) {
+            this.modalClassID = data;
+            const ClassID = data;
+            // console.log(ClassID);
+            axios.get(`/modalclassuserdata?page=${page}&ClassID=${ClassID}`, {
             })
             .then(res => {
                 console.log(res.data);
                 this.userEnrollmentData = res.data.userEnrollmentData.data
-                this.enrollmentDataPagination = response.data.userEnrollmentData.links;
-                this.enrollmentDataPage = response.data.userEnrollmentData.current_page;
-                this.enrollmentDataPageChk = response.data.userEnrollmentData.current_page;
+                this.enrollmentDataPagination = res.data.userEnrollmentData.links;
+                this.enrollmentDataPage = res.data.userEnrollmentData.current_page;
+                this.enrollmentDataPageChk = res.data.userEnrollmentData.current_page;
             })
             .catch(err => {
-
+                
             })
+            this.adminClassUserDataIsOpen = true;
         },
         adminClassUserDataIsCloseModal() {
             this.adminClassUserDataIsOpen = false;
