@@ -454,12 +454,12 @@
                                 <div class="table-responsive">
                                     <table class="table table-bordered" style="text-align: center;" id="dataTable" width="100%" cellspacing="0">
                                     <colgroup>
-                                        <col style="width: 5%;">
-                                        <col style="width: 10%;">
-                                        <col style="width: 10%;">
-                                        <col style="width: 10%;">
-                                        <col style="width: 10%;">
-                                        <col style="width: 10%;">
+                                        <col style="width: 15%;">
+                                        <col style="width: 15%;">
+                                        <col style="width: 15%;">
+                                        <col style="width: 15%;">
+                                        <col style="width: 15%;">
+                                        <col style="width: 15%;">
                                     </colgroup>
                                     <thead>
                                         <tr>

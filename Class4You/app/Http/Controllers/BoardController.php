@@ -556,7 +556,7 @@ class BoardController extends Controller
                 MAX(comments.InstructorID) as InstructorID
             ')
             ->join('users','boards.UserID','users.UserID')
-            ->join('comments','boards.BoardID','comments.BoardID')
+            ->leftJoin('comments','boards.BoardID','comments.BoardID')
             ->where('boards.ClassID', $ClassID)
             ->groupBy('boards.BoardID')
             ->orderBy('created_at', 'desc')
