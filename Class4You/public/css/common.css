@@ -2130,7 +2130,7 @@ ul.class_tabs li.class_current {
     line-height: 20px;
     border: 1px solid #c2c2c2;
     /* background-color: rgba(241, 241, 241, 0.69); */
-    border-bottom: 1px solid #fff;
+    /* border-bottom: 1px solid #fff; */
 }
 
 .class_detail_rating_form_text>textarea {
@@ -2419,6 +2419,17 @@ ul.class_tabs li.class_current {
     margin-top: 10px; */
     padding: 20px 20px;
     /* border-top: 1px solid #000; */
+    border: 1px solid #e9ecef;
+    background-color: #f8f9fa;
+    border-radius: 5px;
+    padding: 10px 15px;
+    margin: 10px 15px;
+    line-height: 30px;
+    opacity: 0.7;
+}
+
+.class_detail_community_btn_answer:hover {
+    opacity: 1;
 }
 
 .class_detail_community_instructor_answer {
@@ -2426,6 +2437,15 @@ ul.class_tabs li.class_current {
     font-size: 15px;
     font-weight: bold;
     padding: 0 8px;
+}
+
+.class_detail_community_instructor_answer_comment {
+    margin-top: 5px; 
+    padding: 10px;
+    background-color: #fff;
+    border-radius: 5px;
+    border: 1px solid #e9ecef;
+    white-space: pre;
 }
 
 .class_detail_commu_list_div {
@@ -2544,7 +2564,7 @@ ul.class_tabs li.class_current {
     /* font-size: 15px; */
     /* background-color: #fff; */
     color: #858383;
-    border-bottom: 1px solid #fff;
+    border-bottom: 1px solid #ededed;
 }
 
 /* ============================================================================================================ */

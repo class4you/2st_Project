@@ -531,6 +531,7 @@ export default {
             axios.post(url, frm, header)
                 .then(res => {
                     console.log("questionAnswerData",res);
+                    // this.showModal = false;
                 })
                 .catch(err => {
 
