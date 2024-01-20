@@ -473,10 +473,10 @@ export default {
             .then(response => {
                 console.log(response.data)
                 console.log(response.data.boardData.data)
-                // this.boardQuestionData = response.data.boardData.data;
-                // this.pagination = response.data.boardData.links;
-                // this.page = response.data.boardData.current_page;
-                // this.pageChk = response.data.boardData.current_page;
+                this.boardQuestionData = response.data.boardData.data;
+                this.pagination = response.data.boardData.links;
+                this.page = response.data.boardData.current_page;
+                this.pageChk = response.data.boardData.current_page;
             })
             .catch(error => {
                 // console.error('Error fetching data:', error);

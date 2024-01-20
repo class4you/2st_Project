@@ -161,10 +161,10 @@ class BoardController extends Controller
         // ->orderBy('boards.created_at', 'desc');
     
         // 게시물 당 댓글 수를 계산하기 위한 쿼리
-        // $commentCountQuery = Board::Join('comments', 'boards.BoardID', 'comments.BoardID')
-        //     ->select('boards.BoardID', DB::raw('COUNT(comments.CommentID) AS CommentCount'))
-        //     ->groupBy('boards.BoardID')
-        //     ->get();
+        $commentCountQuery = Board::Join('comments', 'boards.BoardID', 'comments.BoardID')
+            ->select('boards.BoardID', DB::raw('COUNT(comments.CommentID) AS CommentCount'))
+            ->groupBy('boards.BoardID')
+            ->get();
 
         // Log::debug($commentCountQuery);
 
