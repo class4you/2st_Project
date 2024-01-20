@@ -72,6 +72,7 @@ hr {
 html, body {
     display: flex;
     flex-direction: column;
+    background-color: transparent !important;
 }
 
 .class_detail_visual {
