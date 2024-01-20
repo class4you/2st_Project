@@ -2129,6 +2129,7 @@ ul.class_tabs li.class_current {
     line-height: 20px;
     border: 1px solid #c2c2c2;
     /* background-color: rgba(241, 241, 241, 0.69); */
+    border-bottom: 1px solid #fff;
 }
 
 .class_detail_rating_form_text>textarea {
@@ -2163,8 +2164,8 @@ ul.class_tabs li.class_current {
     outline: 1px solid #ededed;
     background-color: #fff;
     margin: 5px 0;
-    padding: 5px;
-    border-radius: 3px;
+    padding: 10px;
+    border-radius: 4px;
 }
 
 .class_detail_rating_form_content {
@@ -2470,9 +2471,9 @@ ul.class_tabs li.class_current {
     /* border-bottom: 1px solid #f2f2f2; */
     /* border: 1px solid #ededed; */
     border-radius: 5px;
-    margin: 7px 0;
+    /* margin: 7px 0; */
     /* background-color: #ededed; */
-    padding: 10px 20px;
+    padding: 5px 20px;
 }
 
 .class_detail_commu_list_text>p {
@@ -2534,7 +2535,7 @@ ul.class_tabs li.class_current {
 }
 
 .class_detail_commu_list_text_board_comment {
-    padding: 10px;
+    padding: 15px 10px;
     /* margin: 7px; */
     /* border: 1px solid #ededed; */
     /* border-radius: 5px; */
@@ -2542,6 +2543,7 @@ ul.class_tabs li.class_current {
     /* font-size: 15px; */
     /* background-color: #fff; */
     color: #858383;
+    border-bottom: 1px solid #fff;
 }
 
 /* ============================================================================================================ */
