@@ -471,7 +471,8 @@ export default {
                     confirmButtonText: '확인'
                 }).then(() => {
                     // 확인 버튼을 눌렀을 때 실행할 코드
-                    location.reload();
+                    // location.reload();
+                    this.$router.push('/adminlogin');
                 });
             })
             .catch(err => {

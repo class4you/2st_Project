@@ -486,10 +486,10 @@
                                 <div>9</div>
                                 </div><code><span class="main_banner_code_variable">const </span><span class="main_banner_code_function">aboutMe </span><span class="main_banner_code_operator">= </span><span>{</span>
                                 <div class="main_banner_code_indent"> <span class="main_banner_code_property">name</span><span class="main_banner_code_operator">: </span><span class="main_banner_code_string">'정명호'</span><span>,</span></div>
-                                <div class="main_banner_code_indent"> <span class="main_banner_code_property">title</span><span class="main_banner_code_operator">: </span><span class="main_banner_code_string">'Sr. UI/UX Developer'</span><span>,</span></div>
+                                <div class="main_banner_code_indent"> <span class="main_banner_code_property">title</span><span class="main_banner_code_operator">: </span><span class="main_banner_code_string">'Jr. Developer'</span><span>,</span></div>
                                 <div class="main_banner_code_indent"> <span class="main_banner_code_property">contact</span><span class="main_banner_code_operator">: </span><span>{</span>
-                                    <div class="main_banner_code_indent"> <span class="main_banner_code_property">email</span><span class="main_banner_code_operator">: </span><span class="main_banner_code_string">'josh@geekstudios.co'</span><span>,</span></div>
-                                    <div class="main_banner_code_indent"><span class="main_banner_code_property">website</span><span class="main_banner_code_operator">:</span><span class="main_banner_code_string">'geekstudios.co'</span></div><span>}</span>
+                                    <div class="main_banner_code_indent"> <span class="main_banner_code_property">email</span><span class="main_banner_code_operator">: </span><span class="main_banner_code_string">'jmh4912@naver.com'</span><span>,</span></div>
+                                    <div class="main_banner_code_indent"><span class="main_banner_code_property">website</span><span class="main_banner_code_operator">:</span><span class="main_banner_code_string">'https://github.com/iammyeongho'</span></div><span>}</span>
                                 </div><span>}</span></code>
                             </div>
                             <div class="main_banner_code_card-front">
@@ -520,11 +520,11 @@
                                 <div>8</div>
                                 <div>9</div>
                                 </div><code><span class="main_banner_code_variable">const </span><span class="main_banner_code_function">aboutMe </span><span class="main_banner_code_operator">= </span><span>{</span>
-                                <div class="main_banner_code_indent"> <span class="main_banner_code_property">name</span><span class="main_banner_code_operator">: </span><span class="main_banner_code_string">'Joshua Ward'</span><span>,</span></div>
-                                <div class="main_banner_code_indent"> <span class="main_banner_code_property">title</span><span class="main_banner_code_operator">: </span><span class="main_banner_code_string">'Sr. UI/UX Developer'</span><span>,</span></div>
+                                <div class="main_banner_code_indent"> <span class="main_banner_code_property">name</span><span class="main_banner_code_operator">: </span><span class="main_banner_code_string">'최현희'</span><span>,</span></div>
+                                <div class="main_banner_code_indent"> <span class="main_banner_code_property">title</span><span class="main_banner_code_operator">: </span><span class="main_banner_code_string">'Jr. Developer'</span><span>,</span></div>
                                 <div class="main_banner_code_indent"> <span class="main_banner_code_property">contact</span><span class="main_banner_code_operator">: </span><span>{</span>
-                                    <div class="main_banner_code_indent"> <span class="main_banner_code_property">email</span><span class="main_banner_code_operator">: </span><span class="main_banner_code_string">'josh@geekstudios.co'</span><span>,</span></div>
-                                    <div class="main_banner_code_indent"><span class="main_banner_code_property">website</span><span class="main_banner_code_operator">:</span><span class="main_banner_code_string">'geekstudios.co'</span></div><span>}</span>
+                                    <div class="main_banner_code_indent"> <span class="main_banner_code_property">email</span><span class="main_banner_code_operator">: </span><span class="main_banner_code_string">'roseok624@gmail.com'</span><span>,</span></div>
+                                    <div class="main_banner_code_indent"><span class="main_banner_code_property">website</span><span class="main_banner_code_operator">:</span><span class="main_banner_code_string">'https://github.com/choibocknami12'</span></div><span>}</span>
                                 </div><span>}</span></code>
                             </div>
                             <div class="main_banner_code_card-front">
@@ -538,7 +538,7 @@
                                 <div>7</div>
                                 <div>8</div>
                                 <div>9</div>
-                                </div><code><span class="main_banner_code_variable">this</span><span>.</span><span class="method">addEventListener</span><span>(</span><span class="main_banner_code_string">'mouseover'</span><span>, </span><span class="main_banner_code_function">() => </span><span>{ </span>
+                                </div><code><span class="main_banner_code_variable">this</span><span>.</span><span class="method">목표는 개발자입니다</span><span>(</span><span class="main_banner_code_string">'mouseover'</span><span>, </span><span class="main_banner_code_function">() => </span><span>{ </span>
                                 <div class="main_banner_code_indent"><span class="main_banner_code_variable">this</span><span>.</span><span class="main_banner_code_property">flipCard </span><span>= </span><span class="boolean">true</span><span>;</span></div><span>});</span></code>
                             </div>
                         </div>
@@ -554,12 +554,12 @@
                                 <div>7</div>
                                 <div>8</div>
                                 <div>9</div>
-                                </div><code><span class="main_banner_code_variable">const </span><span class="main_banner_code_function">aboutMe </span><span class="main_banner_code_operator">= </span><span>{</span>
-                                <div class="main_banner_code_indent"> <span class="main_banner_code_property">name</span><span class="main_banner_code_operator">: </span><span class="main_banner_code_string">'Joshua Ward'</span><span>,</span></div>
-                                <div class="main_banner_code_indent"> <span class="main_banner_code_property">title</span><span class="main_banner_code_operator">: </span><span class="main_banner_code_string">'Sr. UI/UX Developer'</span><span>,</span></div>
+                                </div><code><span class="main_banner_code_variable">const </span><span class="main_banner_code_function">aboutThis </span><span class="main_banner_code_operator">= </span><span>{</span>
+                                <div class="main_banner_code_indent"> <span class="main_banner_code_property">name</span><span class="main_banner_code_operator">: </span><span class="main_banner_code_string">'class4You'</span><span>,</span></div>
+                                <div class="main_banner_code_indent"> <span class="main_banner_code_property">title</span><span class="main_banner_code_operator">: </span><span class="main_banner_code_string">'onlineClassWebSite'</span><span>,</span></div>
                                 <div class="main_banner_code_indent"> <span class="main_banner_code_property">contact</span><span class="main_banner_code_operator">: </span><span>{</span>
-                                    <div class="main_banner_code_indent"> <span class="main_banner_code_property">email</span><span class="main_banner_code_operator">: </span><span class="main_banner_code_string">'josh@geekstudios.co'</span><span>,</span></div>
-                                    <div class="main_banner_code_indent"><span class="main_banner_code_property">website</span><span class="main_banner_code_operator">:</span><span class="main_banner_code_string">'geekstudios.co'</span></div><span>}</span>
+                                    <div class="main_banner_code_indent"> <span class="main_banner_code_property">period</span><span class="main_banner_code_operator">: </span><span class="main_banner_code_string">'2023.12.04~2024.01.23'</span><span>,</span></div>
+                                    <div class="main_banner_code_indent"><span class="main_banner_code_property">website</span><span class="main_banner_code_operator">:</span><span class="main_banner_code_string">'http://112.222.157.156:6004/'</span></div><span>}</span>
                                 </div><span>}</span></code>
                             </div>
                             <div class="main_banner_code_card-front">
@@ -573,7 +573,7 @@
                                 <div>7</div>
                                 <div>8</div>
                                 <div>9</div>
-                                </div><code><span class="main_banner_code_variable">this</span><span>.</span><span class="method">addEventListener</span><span>(</span><span class="main_banner_code_string">'mouseover'</span><span>, </span><span class="main_banner_code_function">() => </span><span>{ </span>
+                                </div><code><span class="main_banner_code_variable">this</span><span>.</span><span class="method">targetDevelopers</span><span>(</span><span class="main_banner_code_string">'mouseover'</span><span>, </span><span class="main_banner_code_function">() => </span><span>{ </span>
                                 <div class="main_banner_code_indent"><span class="main_banner_code_variable">this</span><span>.</span><span class="main_banner_code_property">flipCard </span><span>= </span><span class="boolean">true</span><span>;</span></div><span>});</span></code>
                             </div>
                         </div>
