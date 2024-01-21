@@ -1297,7 +1297,7 @@ export default {
 
 						axios.get('/classquestion/' + this.ClassID)
 						.then(boardResponse => {
-							console.log(boardResponse);
+							// console.log(boardResponse);
 							// console.log('이건 값이 있어');
 							// console.log(boardResponse.data);
 							// console.log('이건 값이 없어');
@@ -1365,15 +1365,15 @@ export default {
 					text: '수강평이 작성되었습니다.',
 					confirmButtonText: '확인'
             	})
-				console.log(res.data);
-				console.log(this.reviewClassItems);
+				// console.log(res.data);
+				// console.log(this.reviewClassItems);
 				// console.log(this.reviewClassItems.UserEmail);
 				
                 // console.log(res.data[0]);
 				
 				// 기존 수강평 데이터의 [0]번 방에 작성한 수강평 추가
                 this.reviewClassItems.unshift(res.data[0]);
-				console.log(this.classReviewData);
+				// console.log(this.classReviewData);
 				// 수강평 등록시 기록된 데이터 삭제?
 				// if(this.deleteClassReview) {
 				// if(this.addClassReview) {
@@ -1535,7 +1535,7 @@ export default {
 				})
 				.then(response => {
 					// 여기서는 백엔드 db만 데이터가 변경되는것.
-					console.log(response);
+					// console.log(response);
 					// console.log(this.updataReviewData);
 					// console.log(this.classReviewData);
 					// console.log(response.data);
@@ -1680,13 +1680,13 @@ export default {
 					confirmButtonText: '확인'
             	})
 
-				console.log(res.data.data);
-				console.log("res.data임-객체");
-				console.log(res.data);
-				console.log("classQuestionItems임");
-				console.log(this.classQuestionItems);
-				console.log("classQuestionData임-배열");
-				console.log(this.classQuestionData);
+				// console.log(res.data.data);
+				// console.log("res.data임-객체");
+				// console.log(res.data);
+				// console.log("classQuestionItems임");
+				// console.log(this.classQuestionItems);
+				// console.log("classQuestionData임-배열");
+				// console.log(this.classQuestionData);
 
 				// console.log("Before unshift - classQuestionData:", this.classQuestionData);
         		// this.classQuestionData.unshift(res.data);
@@ -1752,8 +1752,8 @@ export default {
 							confirmButtonText: '확인'
 						})
 
-						console.log('res',res);
-						console.log(res.data);
+						// console.log('res',res);
+						// console.log(res.data);
 						// Remove the deleted item from the reviewClassItems array
 						this.classQuestionData = this.classQuestionData.filter((item) => item.BoardID !== data.BoardID);
 					})

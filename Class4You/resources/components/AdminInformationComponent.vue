@@ -439,7 +439,7 @@ export default {
         fetchData() {
             axios.get('/instructormain')
             .then(response => {
-                console.log(response.data);
+                // console.log(response.data);
                
             })
             .catch(error => {
@@ -450,7 +450,7 @@ export default {
         instructorlogout() {
             axios.get('/instructorlogout')
             .then(res => {
-                console.log(res);
+                // console.log(res);
                 localStorage.clear();
                 
                 Swal.fire({

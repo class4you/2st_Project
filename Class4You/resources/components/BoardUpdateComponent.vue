@@ -154,8 +154,8 @@ export default {
                     BoardComment: this.newBoardItem.BoardComment,
                 })
                 .then(response => {
-                    console.log(result);
-                    console.log(response);
+                    // console.log(result);
+                    // console.log(response);
                     
                     // 서버 응답에 대한 로직 수행
                     // this.$router.push('/board');

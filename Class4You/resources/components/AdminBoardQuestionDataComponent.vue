@@ -372,23 +372,32 @@
                                     <!-- 모달 내용 -->
                                     <form>
                                         <div class="admin_modal_content">
-                                            <div class="admin_modal_content_label_span">
+                                            <!-- <div class="admin_modal_content_label_span">
                                                 <div class="admin_modal_content_label">
                                                     <label for="">답변하기</label>
                                                 </div>
                                                 <div>
                                                     <span @click="showModal = false" class="admin_answer_modal_close">❌</span>
                                                 </div>
-                                            </div>
+                                            </div> -->
                                             
                                             <div class="admin_modal_content_text">
-                                            
-                                                    <textarea v-model="questionAnswerData.CommentContent"></textarea>
-                                                    <!-- <textarea></textarea> -->
-                                                    <div class="admin_modal_content_text_btn" style="text-align: end;">
-                                                        <button type="button" @click="submitAnswer()">전송</button>
-                                                        <!-- <button>전송</button> -->
+
+                                                <div class="admin_modal_content_label_span">
+                                                    <div class="admin_modal_content_label">
+                                                        <label for="">답변하기</label>
                                                     </div>
+                                                    <div>
+                                                        <span @click="showModal = false" class="admin_answer_modal_close">❌</span>
+                                                    </div>
+                                                </div>
+                                            
+                                                <textarea v-model="questionAnswerData.CommentContent"></textarea>
+                                                    <!-- <textarea></textarea> -->
+                                                <div class="admin_modal_content_text_btn" style="text-align: end;">
+                                                    <button type="button" @click="submitAnswer()">전송</button>
+                                                    <!-- <button>전송</button> -->
+                                                </div>
                                                 
                                             </div>
                                         </div>
@@ -473,8 +482,8 @@ export default {
         fetchData(page = 1) {
             axios.get(`/instructoruserboardquestion?page=${page}&search=${this.searchQuery}`)
             .then(response => {
-                console.log(response.data)
-                console.log(response.data.boardData.data)
+                // console.log(response.data)
+                // console.log(response.data.boardData.data)
                 this.boardQuestionData = response.data.boardData.data;
                 this.pagination = response.data.boardData.links;
                 this.page = response.data.boardData.current_page;
@@ -497,8 +506,8 @@ export default {
 			return str;
 		},
         handleModalClick(data) {
-            console.log(data);
-            console.log("버튼 클릭됨");
+            // console.log(data);
+            // console.log("버튼 클릭됨");
 
             this.commentBoardID = data;
 
@@ -533,7 +542,7 @@ export default {
 
             axios.post(url, frm, header)
                 .then(res => {
-                    console.log("questionAnswerData",res);
+                    // console.log("questionAnswerData",res);
 
                     this.showModal = false;
                 })
@@ -545,7 +554,7 @@ export default {
         instructorlogout() {
             axios.get('/instructorlogout')
             .then(res => {
-                console.log(res);
+                // console.log(res);
                 localStorage.clear();
                 
                 Swal.fire({
@@ -646,7 +655,7 @@ export default {
     flex-direction: row;
     /* gap: 50px; */
     justify-content: space-between;
-    align-items: center;
+    /* align-items: center; */
 }
 
 .admin_modal_content {
@@ -660,7 +669,7 @@ export default {
 
 .admin_modal_content_label {
     font-weight: 700;
-    color: #4d4c4c;
+    color: #fff;
 }
 
 .admin_modal_content_text {
@@ -668,7 +677,7 @@ export default {
   border-radius: 5px;
   height: 30vh;
   padding: 10px;
-  background-color: rgba(89 90 91 / 30%);
+  background-color: #1c3264d6;
   display: flex;
     flex-direction: column;
 }
@@ -689,6 +698,7 @@ export default {
     width: 100%;
     height: 100%;
     overflow: hidden;
+    border-radius: 5px;
   /* position: relative;
     top: 50%;
     right: 50%; */

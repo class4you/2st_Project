@@ -664,7 +664,7 @@ export default {
         fetchData() {
         axios.get('/getNewClassMainData')
             .then(response => {
-                console.log(response);
+                // console.log(response);
                 this.newClassItems = response.data;
                 // return axios.get('/getUserData');
             })

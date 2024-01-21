@@ -551,7 +551,7 @@ export default {
         instructorlogout() {
             axios.get('/instructorlogout')
             .then(res => {
-                console.log(res);
+                // console.log(res);
                 localStorage.clear();
                 
                 Swal.fire({
@@ -587,7 +587,7 @@ export default {
             axios.get(`/modalclassuserdata?page=${page}&ClassID=${ClassID}`, {
             })
             .then(res => {
-                console.log(res.data);
+                // console.log(res.data);
                 this.userEnrollmentData = res.data.userEnrollmentData.data
                 this.enrollmentDataPagination = res.data.userEnrollmentData.links;
                 this.enrollmentDataPage = res.data.userEnrollmentData.current_page;
@@ -638,7 +638,7 @@ export default {
     mounted() {
         this.InstructorID = localStorage.getItem('InstructorID');
         this.adminChk = localStorage.getItem('adminChk');
-        console.log(localStorage.getItem('adminChk'));
+        // console.log(localStorage.getItem('adminChk'));
 
         this.fetchData();
     },

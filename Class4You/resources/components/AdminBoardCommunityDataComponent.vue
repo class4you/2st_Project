@@ -446,8 +446,8 @@ export default {
         fetchData(page = 1) {
             axios.get(`/instructoruserboardcommunity?page=${page}&search=${this.searchQuery}`)
             .then(response => {
-                console.log(response.data)
-                console.log(response.data.boardData.data)
+                // console.log(response.data)
+                // console.log(response.data.boardData.data)
                 this.boardCommunityData = response.data.boardData.data;
                 this.pagination = response.data.boardData.links;
                 this.page = response.data.boardData.current_page;

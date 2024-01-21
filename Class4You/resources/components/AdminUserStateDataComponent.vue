@@ -463,7 +463,7 @@ export default {
         instructorlogout() {
             axios.get('/instructorlogout')
             .then(res => {
-                console.log(res);
+                // console.log(res);
                 localStorage.clear();
                 
                 Swal.fire({
@@ -508,7 +508,7 @@ export default {
                 cancelButtonText: '취소'
             }).then((result) => {
                 if (result.isConfirmed) {
-                    console.log(data);
+                    // console.log(data);
                     const UserStatusID = data.UserStatusID;
                     const UserID = data.UserID;
 

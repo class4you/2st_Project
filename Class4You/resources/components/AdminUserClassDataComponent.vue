@@ -442,8 +442,8 @@ export default {
         fetchData(page = 1) {
             axios.get(`/instructoruserclassdata?page=${page}&search=${this.searchQuery}`)
             .then(response => {
-                console.log(response.data)
-                console.log(response.data.classData.data)
+                // console.log(response.data)
+                // console.log(response.data.classData.data)
                 this.classData = response.data.classData.data;
                 this.pagination = response.data.classData.links;
                 this.page = response.data.classData.current_page;
@@ -468,7 +468,7 @@ export default {
         instructorlogout() {
             axios.get('/instructorlogout')
             .then(res => {
-                console.log(res);
+                // console.log(res);
                 localStorage.clear();
                 
                 Swal.fire({

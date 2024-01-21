@@ -581,8 +581,8 @@ export default {
                     
                     // this.commentItems = this.commentItems.filter((comment) => comment.CommentID !== data.CommentID);
                     this.newCommentItem = this.newCommentItem.filter((item) => item.CommentID !== deleteCommentID);
-                    console.log('response after');
-                    console.log(this.newCommentItem);
+                    // console.log('response after');
+                    // console.log(this.newCommentItem);
                     
                 })
                 .catch(err => {
@@ -671,7 +671,7 @@ export default {
                 .delete(url, header)
                 .then((res) => {
 
-                    console.log(this.newBoardItem);
+                    // console.log(this.newBoardItem);
                     // this.newBoardItem = this.delBoard();
                     // router.push('/board');
                     this.$router.push('/board');
@@ -718,7 +718,7 @@ export default {
                 UserID: this.$store.state.UserID,
             })
             .then(response => {
-                console.log(response.data);
+                // console.log(response.data);
                 this.recommendationState = response.data.recommendationState;
                 this.likeCount = response.data.likeCount;
 
@@ -802,7 +802,7 @@ export default {
                             
                         axios.post(url, formData, header)
                         .then(res => {
-                            console.log(res.data);
+                            // console.log(res.data);
                             
                         })
                         .catch(err => {
@@ -850,11 +850,11 @@ export default {
                             formData.append('CommentID', CommentID);
                             // formData.append('BoardID', this.commentReportData.BoardID);
 
-                            console.log(formData);
+                            // console.log(formData);
 
                         axios.post(url, formData)
                         .then(res => {
-                            console.log(res.data);
+                            // console.log(res.data);
                         })
                         .catch(err => {
 

@@ -467,7 +467,7 @@ export default {
         fetchData(page = 1) {
             axios.get(`/instructoruserdata?page=${page}&search=${this.searchQuery}`)
             .then(response => {
-                console.log(response.data)
+                // console.log(response.data)
                 // console.log(response.data.userData.data)
                 this.userData = response.data.userData.data;
                 this.pagination = response.data.userData.links;
@@ -493,7 +493,7 @@ export default {
         instructorlogout() {
             axios.get('/instructorlogout')
             .then(res => {
-                console.log(res);
+                // console.log(res);
                 localStorage.clear();
                 
                 Swal.fire({
@@ -526,13 +526,13 @@ export default {
                     const selectedDate = result.value;
                     const UserID = data;
                     if (selectedDate) {
-                        console.log('사용자가 선택한 날짜:', selectedDate);
+                        // console.log('사용자가 선택한 날짜:', selectedDate);
                         axios.post(`/instructoruserstate`,{
                             UserID: UserID,
                             Date: selectedDate,
                         }).then(response => {
                             // console.log(this.userData);
-                            console.log(response.data);
+                            // console.log(response.data);
                             const updatedUser = response.data.userStateData;
                             // this.userData에서 UserID에 해당하는 사용자를 찾아서 인덱스를 가져옴
                             const userIndex = this.userData.findIndex(user => user.UserID === updatedUser.UserID);
@@ -569,12 +569,12 @@ export default {
                             ban: 'ban',
                         }).then(response => {
                             // console.log(this.userData);
-                            console.log(response.data);
+                            // console.log(response.data);
                             const updatedUser = response.data.userStateData;
                             // this.userData에서 UserID에 해당하는 사용자를 찾아서 인덱스를 가져옴
-                            console.log(updatedUser);
+                            // console.log(updatedUser);
                             const userIndex = this.userData.findIndex(user => user.UserID === updatedUser.UserID);
-                            console.log(userIndex);
+                            // console.log(userIndex);
                             // UserID에 해당하는 사용자가 이미 존재하면 업데이트
                             if (userIndex !== -1) {
                                 // 기존 사용자의 데이터를 업데이트

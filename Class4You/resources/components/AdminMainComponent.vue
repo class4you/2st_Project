@@ -849,7 +849,7 @@ export default {
         instructorlogout() {
             axios.get('/instructorlogout')
             .then(res => {
-                console.log(res);
+                // console.log(res);
                 localStorage.clear();
                 
                 Swal.fire({
@@ -1012,7 +1012,7 @@ export default {
         },
 
         updatePolarAreaChartData(transData) {
-            console.log(transData);
+            // console.log(transData);
             this.PolarAreaChartData = {
                 labels: [],
                 datasets: [

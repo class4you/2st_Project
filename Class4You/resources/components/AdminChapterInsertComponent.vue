@@ -437,7 +437,7 @@ export default {
         fetchData() {
             axios.get(`/instructorchapterinsertdata/${this.ClassID}`)
             .then(response => {
-                console.log(response.data)
+                // console.log(response.data)
                 // console.log(response.data.userData.data)
                 this.chapterData = response.data.ChapterData;
             })
@@ -449,7 +449,7 @@ export default {
         instructorlogout() {
             axios.get('/instructorlogout')
             .then(res => {
-                console.log(res);
+                // console.log(res);
                 localStorage.clear();
                 
                 Swal.fire({
@@ -515,7 +515,7 @@ export default {
     mounted() {
         this.InstructorID = localStorage.getItem('InstructorID');
         this.adminChk = localStorage.getItem('adminChk');
-        console.log(localStorage.getItem('adminChk'));
+        // console.log(localStorage.getItem('adminChk'));
 
         this.fetchData();
     },

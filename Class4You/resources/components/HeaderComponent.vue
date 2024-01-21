@@ -170,7 +170,7 @@ export default {
                     text: '로그인에 성공했습니다.',
                     confirmButtonText: '확인'
                 })
-                console.log(response2);
+                // console.log(response2);
                 this.$store.commit('setSaveToLocalStorage', response2.data);
                 this.$store.commit('setUserLoginChk', response2.data.sessionDataCheck);
                 this.$store.commit('setUserID', response2.data.userId);
@@ -273,7 +273,7 @@ export default {
                             formData.append('email', verificationCode);
                             axios.post(url,formData, header)
                         .then(res => {
-                            console.log(res.data);
+                            // console.log(res.data);
                             if(res.data.success === false) {
                                     this.userEmailChk = false;
                                     Swal.fire({
@@ -321,7 +321,7 @@ export default {
                                             }
                                         })
                                         .then(res => {
-                                            console.log(res.data);
+                                            // console.log(res.data);
                                             if(res.data.success === false) {
                                                     // this.userEmailChk = false;
                                                     Swal.fire({
@@ -337,7 +337,7 @@ export default {
                             },
                             preConfirm: (verificationCode) => {
                                 const verificationCodeInputValue = document.getElementById('verificationCodeInput').value;
-                                console.log(resendButton);
+                                // console.log(resendButton);
                                 axios.get('/tokenChkSubmit', {
                                     params: {
                                         email: this.userEmailData,
@@ -345,7 +345,7 @@ export default {
                                     }
                                 })
                                     .then(res => {
-                                        console.log(res.data);
+                                        // console.log(res.data);
                                 })
 
                                 return new Promise((resolve) => {
