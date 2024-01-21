@@ -985,15 +985,21 @@
 					<div class="class_detail_community_btn_answer">
 
 						<div v-for="item in instructorData" class="class_detail_community_instructor_answer">
-							<details  v-if="data.BoardID == item.BoardID">
-								<summary>
-									<p>✔강사 답변 보기</p>
-								</summary>
-								<div class="class_detail_community_instructor_answer_comment">
-									<p style="line-height: 30px;">{{item.CommentContent}}</p>
-									<!-- <p>{{ data.CommentContent }}</p> -->
+							<!-- <div v-if="data.BoardID == item.BoardID"> -->
+								<details v-if="data.BoardID == item.BoardID">
+									<summary>
+										<p>✔강사 답변 보기</p>
+									</summary>
+									<div class="class_detail_community_instructor_answer_comment">
+										<p style="line-height: 30px;">{{item.CommentContent}}</p>
+									</div>
+								</details>
+								<div v-if="item.CommentContent == null">
+									
+										<p>✔강사 답변 없음</p>
+									
 								</div>
-							</details>
+							<!-- </div>	 -->
 						</div>
 
 					</div>

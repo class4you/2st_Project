@@ -361,6 +361,7 @@
                                             <th>{{ datas.BoardFlg == 0 ? '미해결' : datas.BoardFlg == 1 ? '해결' : '상태를 확인할 수 없음' }}</th>
                                             <th>{{ datas.deleted_at == null ? '미삭제' : datas.deleted_at !== null ? '삭제' : '상태를 확인할 수 없음' }}</th>
                                             <th><button type="button" @click="handleModalClick(datas.BoardID)" style="padding: 0px 8px; border-radius: 3px; background-color: rgb(255, 95, 127); color: #fff; border: none;">답변하기</button></th>
+                                           
                                         </tr>
                                     </tbody>
                                     
@@ -464,6 +465,7 @@ export default {
             // questionAnswerData: {},
             amdinID: null,
             commentBoardID: null,
+            // answerFlg: [],
         };
     },
 
@@ -502,6 +504,7 @@ export default {
 
             this.showModal = true;
             // console.log(this.showModal);
+            // this.modalIndex = index;
             
         },
         submitAnswer() {
@@ -531,6 +534,7 @@ export default {
             axios.post(url, frm, header)
                 .then(res => {
                     console.log("questionAnswerData",res);
+
                     this.showModal = false;
                 })
                 .catch(err => {
