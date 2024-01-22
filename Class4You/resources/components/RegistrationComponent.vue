@@ -597,7 +597,7 @@ export default {
         const url = '/registrationtest';
         axios.get(url)
         .then(res => {
-            console.log(res.data);
+            // console.log(res.data);
             this.frmUserData.UserEmail = res.data.userEmail;
         })
         .catch(err => {
