@@ -470,117 +470,12 @@
                             </a>
                         </ul>
                     </div>
-
-                    <div style="display: flex; gap: 30px; padding: 50px 10vw; justify-content: center;">
-                        <div class="main_banner_code_card">
-                            <div class="main_banner_code_card-back">
-                                <div class="main_banner_code_line-numbers">
-                                <div>1</div>
-                                <div>2</div>
-                                <div>3</div>
-                                <div>4</div>
-                                <div>5</div>
-                                <div>6</div>
-                                <div>7</div>
-                                <div>8</div>
-                                <div>9</div>
-                                </div><code><span class="main_banner_code_variable">const </span><span class="main_banner_code_function">aboutMe </span><span class="main_banner_code_operator">= </span><span>{</span>
-                                <div class="main_banner_code_indent"> <span class="main_banner_code_property">name</span><span class="main_banner_code_operator">: </span><span class="main_banner_code_string">'정명호'</span><span>,</span></div>
-                                <div class="main_banner_code_indent"> <span class="main_banner_code_property">title</span><span class="main_banner_code_operator">: </span><span class="main_banner_code_string">'Sr. UI/UX Developer'</span><span>,</span></div>
-                                <div class="main_banner_code_indent"> <span class="main_banner_code_property">contact</span><span class="main_banner_code_operator">: </span><span>{</span>
-                                    <div class="main_banner_code_indent"> <span class="main_banner_code_property">email</span><span class="main_banner_code_operator">: </span><span class="main_banner_code_string">'josh@geekstudios.co'</span><span>,</span></div>
-                                    <div class="main_banner_code_indent"><span class="main_banner_code_property">website</span><span class="main_banner_code_operator">:</span><span class="main_banner_code_string">'geekstudios.co'</span></div><span>}</span>
-                                </div><span>}</span></code>
-                            </div>
-                            <div class="main_banner_code_card-front">
-                                <div class="main_banner_code_line-numbers">
-                                <div>1</div>
-                                <div>2</div>
-                                <div>3</div>
-                                <div>4</div>
-                                <div>5</div>
-                                <div>6</div>
-                                <div>7</div>
-                                <div>8</div>
-                                <div>9</div>
-                                </div><code><span class="main_banner_code_variable">this</span><span>.</span><span class="method">우리를 소개할게요</span><span>(</span><span class="main_banner_code_string">'mouseover'</span><span>, </span><span class="main_banner_code_function">() => </span><span>{ </span>
-                                <div class="main_banner_code_indent"><span class="main_banner_code_variable">this</span><span>.</span><span class="main_banner_code_property">flipCard </span><span>= </span><span class="boolean">true</span><span>;</span></div><span>});</span></code>
-                            </div>
-                        </div>
-                        <div class="main_banner_code_card">
-                            <div class="main_banner_code_card-back">
-                                <div class="main_banner_code_line-numbers">
-                                <div>1</div>
-                                <div>2</div>
-                                <div>3</div>
-                                <div>4</div>
-                                <div>5</div>
-                                <div>6</div>
-                                <div>7</div>
-                                <div>8</div>
-                                <div>9</div>
-                                </div><code><span class="main_banner_code_variable">const </span><span class="main_banner_code_function">aboutMe </span><span class="main_banner_code_operator">= </span><span>{</span>
-                                <div class="main_banner_code_indent"> <span class="main_banner_code_property">name</span><span class="main_banner_code_operator">: </span><span class="main_banner_code_string">'Joshua Ward'</span><span>,</span></div>
-                                <div class="main_banner_code_indent"> <span class="main_banner_code_property">title</span><span class="main_banner_code_operator">: </span><span class="main_banner_code_string">'Sr. UI/UX Developer'</span><span>,</span></div>
-                                <div class="main_banner_code_indent"> <span class="main_banner_code_property">contact</span><span class="main_banner_code_operator">: </span><span>{</span>
-                                    <div class="main_banner_code_indent"> <span class="main_banner_code_property">email</span><span class="main_banner_code_operator">: </span><span class="main_banner_code_string">'josh@geekstudios.co'</span><span>,</span></div>
-                                    <div class="main_banner_code_indent"><span class="main_banner_code_property">website</span><span class="main_banner_code_operator">:</span><span class="main_banner_code_string">'geekstudios.co'</span></div><span>}</span>
-                                </div><span>}</span></code>
-                            </div>
-                            <div class="main_banner_code_card-front">
-                                <div class="main_banner_code_line-numbers">
-                                <div>1</div>
-                                <div>2</div>
-                                <div>3</div>
-                                <div>4</div>
-                                <div>5</div>
-                                <div>6</div>
-                                <div>7</div>
-                                <div>8</div>
-                                <div>9</div>
-                                </div><code><span class="main_banner_code_variable">this</span><span>.</span><span class="method">addEventListener</span><span>(</span><span class="main_banner_code_string">'mouseover'</span><span>, </span><span class="main_banner_code_function">() => </span><span>{ </span>
-                                <div class="main_banner_code_indent"><span class="main_banner_code_variable">this</span><span>.</span><span class="main_banner_code_property">flipCard </span><span>= </span><span class="boolean">true</span><span>;</span></div><span>});</span></code>
-                            </div>
-                        </div>
-                        <div class="main_banner_code_card">
-                            <div class="main_banner_code_card-back">
-                                <div class="main_banner_code_line-numbers">
-                                <div>1</div>
-                                <div>2</div>
-                                <div>3</div>
-                                <div>4</div>
-                                <div>5</div>
-                                <div>6</div>
-                                <div>7</div>
-                                <div>8</div>
-                                <div>9</div>
-                                </div><code><span class="main_banner_code_variable">const </span><span class="main_banner_code_function">aboutMe </span><span class="main_banner_code_operator">= </span><span>{</span>
-                                <div class="main_banner_code_indent"> <span class="main_banner_code_property">name</span><span class="main_banner_code_operator">: </span><span class="main_banner_code_string">'Joshua Ward'</span><span>,</span></div>
-                                <div class="main_banner_code_indent"> <span class="main_banner_code_property">title</span><span class="main_banner_code_operator">: </span><span class="main_banner_code_string">'Sr. UI/UX Developer'</span><span>,</span></div>
-                                <div class="main_banner_code_indent"> <span class="main_banner_code_property">contact</span><span class="main_banner_code_operator">: </span><span>{</span>
-                                    <div class="main_banner_code_indent"> <span class="main_banner_code_property">email</span><span class="main_banner_code_operator">: </span><span class="main_banner_code_string">'josh@geekstudios.co'</span><span>,</span></div>
-                                    <div class="main_banner_code_indent"><span class="main_banner_code_property">website</span><span class="main_banner_code_operator">:</span><span class="main_banner_code_string">'geekstudios.co'</span></div><span>}</span>
-                                </div><span>}</span></code>
-                            </div>
-                            <div class="main_banner_code_card-front">
-                                <div class="main_banner_code_line-numbers">
-                                <div>1</div>
-                                <div>2</div>
-                                <div>3</div>
-                                <div>4</div>
-                                <div>5</div>
-                                <div>6</div>
-                                <div>7</div>
-                                <div>8</div>
-                                <div>9</div>
-                                </div><code><span class="main_banner_code_variable">this</span><span>.</span><span class="method">addEventListener</span><span>(</span><span class="main_banner_code_string">'mouseover'</span><span>, </span><span class="main_banner_code_function">() => </span><span>{ </span>
-                                <div class="main_banner_code_indent"><span class="main_banner_code_variable">this</span><span>.</span><span class="main_banner_code_property">flipCard </span><span>= </span><span class="boolean">true</span><span>;</span></div><span>});</span></code>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </main>
         </div>
+
+        
+
     </div>
 </template>
 <script>
@@ -649,6 +544,8 @@ export default {
             ],
             selectedGiftId: null,
             currentIndex: 0,
+            teamMembersBox: false,
+            teamIsToggled: false,
         }
     },
     mounted() {
@@ -664,7 +561,7 @@ export default {
         fetchData() {
         axios.get('/getNewClassMainData')
             .then(response => {
-                console.log(response);
+                // console.log(response);
                 this.newClassItems = response.data;
                 // return axios.get('/getUserData');
             })
@@ -848,4 +745,8 @@ export default {
         opacity: 0.3;
     }
 }
+
+
+
+
 </style>

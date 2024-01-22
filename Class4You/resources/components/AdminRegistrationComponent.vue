@@ -450,7 +450,7 @@ export default {
         fetchData() {
             axios.get('/instructormain')
             .then(response => {
-                console.log(response.data);
+                // console.log(response.data);
             
             })
             .catch(error => {
@@ -461,7 +461,7 @@ export default {
         instructorlogout() {
             axios.get('/instructorlogout')
             .then(res => {
-                console.log(res);
+                // console.log(res);
                 localStorage.clear();
                 
                 Swal.fire({
@@ -471,7 +471,8 @@ export default {
                     confirmButtonText: '확인'
                 }).then(() => {
                     // 확인 버튼을 눌렀을 때 실행할 코드
-                    location.reload();
+                    // location.reload();
+                    this.$router.push('/adminlogin');
                 });
             })
             .catch(err => {

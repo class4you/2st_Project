@@ -111,10 +111,10 @@ export default {
                     this.frmInstructorRegistData = '';
                     // location.reload();
                   });
-              console.log(res.data);
+              // console.log(res.data);
             })
             .catch(err => {
-              console.error(error);
+              // console.error(error);
             })
         },
     },
@@ -168,7 +168,7 @@ export default {
         loadExternalScripts(externalScriptsToLoad, () => {
             loadInternalScript(internalScriptToLoad, () => {
                 // 모든 스크립트가 로드된 후 실행될 코드를 이곳에 추가
-                console.log('All scripts loaded!');
+                // console.log('All scripts loaded!');
             });
         });
 

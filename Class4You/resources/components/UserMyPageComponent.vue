@@ -5,7 +5,7 @@
             <div @click="handleTabClick(1)" class="my_page_main_tap_ui" :class="{ 'my_page_main_tap_ui_on': $store.state.myPageClickFlgTab == 1}">대시보드</div>
             <div @click="handleTabClick(2)" class="my_page_main_tap_ui" :class="{ 'my_page_main_tap_ui_on': $store.state.myPageClickFlgTab == 2}">계정정보</div>
             <div @click="handleTabClick(3)" class="my_page_main_tap_ui" :class="{ 'my_page_main_tap_ui_on': $store.state.myPageClickFlgTab == 3}">나의학습</div>
-            <!-- <div @click="handleTabClick(4)" class="my_page_main_tap_ui">강의노트</div> -->
+            <!-- <div @click="handleTabClick(4)" class="my_page_main_tap_ui" :class="{ 'my_page_main_tap_ui_on': $store.state.myPageClickFlgTab == 4}">강의노트</div> -->
             <div @click="handleTabClick(5)" class="my_page_main_tap_ui" :class="{ 'my_page_main_tap_ui_on': $store.state.myPageClickFlgTab == 5}">작성 게시글</div>
             
             <!-- <div @click="handleTabClick(6)" class="my_page_main_tap_ui">구매내역</div> -->
@@ -32,8 +32,8 @@
                         </div>
                         <div class="recent_learning_class_progress_cover">
                             <div class="recent_learning_class_progress">
-                                <span>진도율 :</span>
-                                <span>{{ flaggedChaptersCount }}강</span>
+                                <span>진도율 : </span>
+                                <span>　{{ flaggedChaptersCount }}강</span>
                                 <span style="margin-left: 5px; margin-right: 5px;">/</span>
                                 <span>{{ totalChaptersCount }}강</span>
                                 <span>({{ percentageFlaggedChapters }}%)</span>
@@ -52,6 +52,7 @@
                             </div>
                         </div>
                     </div>
+                    
                 </div>
 
                 <!-- <div class="dashboard_weekly_study_class">
@@ -393,7 +394,7 @@
                         </div>
                     </div> -->
                     <!-- <button type="button" class="users_password_button" style="margin-right: 50px;">비밀번호 확인</button>          -->
-                    <button type="button" class="users_password_button" @click="deleteUserData()">탈퇴하기</button>
+                    <button style="background-color: #750550 !important;" type="button" class="users_password_button" @click="deleteUserData()">탈퇴하기</button>
                 </div>
             </div>
         </div>
@@ -443,64 +444,7 @@
                         </div>
                     </div>
 
-                    <div class="users_class_note_box">
-                        <div class="users_class_note_cover">
-                            <div class="users_class_note_content_box">
-                                <span class="users_class_note_content">강의명</span>
-                                <span class="users_class_note_content">챕터명</span>
-                                <span class="users_class_note_content">노트내용</span>
-                                <button class="users_class_note_button">강의 이동</button>
-                            </div>
-                        </div>
-                    </div>
-
-                    
-                    <div class="users_class_note_box">
-                        <div class="users_class_note_cover">
-                            <div class="users_class_note_content_box">
-                                <span class="users_class_note_content">강의명</span>
-                                <span class="users_class_note_content">챕터명</span>
-                                <span class="users_class_note_content">노트내용</span>
-                                <button class="users_class_note_button">강의 이동</button>
-                            </div>
-                        </div>
-                    </div>
-
-                    
-                    <div class="users_class_note_box">
-                        <div class="users_class_note_cover">
-                            <div class="users_class_note_content_box">
-                                <span class="users_class_note_content">강의명</span>
-                                <span class="users_class_note_content">챕터명</span>
-                                <span class="users_class_note_content">노트내용</span>
-                                <button class="users_class_note_button">강의 이동</button>
-                            </div>
-                        </div>
-                    </div>
-
-                    
-                    <div class="users_class_note_box">
-                        <div class="users_class_note_cover">
-                            <div class="users_class_note_content_box">
-                                <span class="users_class_note_content">강의명</span>
-                                <span class="users_class_note_content">챕터명</span>
-                                <span class="users_class_note_content">노트내용</span>
-                                <button class="users_class_note_button">강의 이동</button>
-                            </div>
-                        </div>
-                    </div>
-
-                    
-                    <div class="users_class_note_box">
-                        <div class="users_class_note_cover">
-                            <div class="users_class_note_content_box">
-                                <span class="users_class_note_content">강의명</span>
-                                <span class="users_class_note_content">챕터명</span>
-                                <span class="users_class_note_content">노트내용</span>
-                                <button class="users_class_note_button">강의 이동</button>
-                            </div>
-                        </div>
-                    </div>
+                   
                 </div>
             </div>
         </div>
@@ -809,14 +753,17 @@ data() {
         },
         RadarChartOptions: {
             responsive: true,
-            pointRadius: 5,
-            pointBorderWidth: 5,
-            cubicInterpolationMode:1,
-            borderWidth: 2,
+                maintainAspectRatio: false,
+                fill: true,
+                pointHitRadius: 50,
+                pointRadius: 8,
+                pointBorderWidth: 5,
+                cubicInterpolationMode:1,
+                borderWidth: 2,
             // Add more Radar chart options if needed
             scales: {
                 r: {
-                    max: 20, // 최대값 설정
+                    max: 10, // 최대값 설정
                     angleLines: {
                         display: true,
                     },
@@ -824,7 +771,7 @@ data() {
                         fontSize: 14,
                     },
                     ticks: {
-                        stepSize:5,
+                        stepSize:2,
                     },
                 },
             },
@@ -874,7 +821,7 @@ methods: {
             }
         })
         .then(response => {
-            console.log(response.data);
+            // console.log(response.data);
             // console.log(response.data.userData);
             // console.log(response.data.ClassData);
             this.newUserInfoItems = response.data.userData;
@@ -1186,7 +1133,7 @@ methods: {
             });
             } else {
             // 사용자가 확인 취소를 선택한 경우의 처리
-            console.log('전화번호 변경이 취소되었습니다.');
+            // console.log('전화번호 변경이 취소되었습니다.');
             }
         });
     },
@@ -1238,7 +1185,7 @@ methods: {
             });
             } else {
             // 사용자가 확인 취소를 선택한 경우의 처리
-            console.log('비밀번호 변경이 취소되었습니다.');
+            // console.log('비밀번호 변경이 취소되었습니다.');
             }
         });
     },    
@@ -1293,7 +1240,7 @@ methods: {
                     }
                 })
                 .then(res => {
-                    console.log(res.data);
+                    // console.log(res.data);
                     if(res.data.success) {
                         Swal.fire({
                             icon: 'success',
@@ -1356,7 +1303,7 @@ methods: {
         }
     },
     updateChartData(transData) {
-        console.log(transData);
+        // console.log(transData);
         let result = {
                 labels: [],
                 datasets: [ {label: '수강 강의', data: [], backgroundColor: '#4e81f8',}, {label: '수강 챕터', data2: [], backgroundColor: '#7371fc',} ],
@@ -1379,7 +1326,7 @@ methods: {
                 fill: true,
                 backgroundColor: 'rgba(255, 99, 132, 0.2)',
                 borderColor: 'rgba(0,0,0,0.1)',
-                pointBackgroundColor: 'rgba(179,181,198,1)',
+                pointBackgroundColor: ['#f94144','#f3722c','#f8961e','#f9844a','#f9c74f','#90be6d','#43aa8b','#4d908e','#577590','#277da1','#35007a'],
                 pointBorderColor: '#fff',
                 pointHoverBackgroundColor: '#fff',
                 pointHoverBorderColor: 'rgba(179,181,198,1)',

@@ -477,7 +477,7 @@ export default {
 
         this.adminChk = localStorage.getItem('adminChk');
 
-        console.log(localStorage.getItem('adminChk'));
+        // console.log(localStorage.getItem('adminChk'));
     },
 
     methods: {
@@ -487,19 +487,19 @@ export default {
             // axios.get('/instructorboardreportdata')
                 .then(response => {
 
-                    console.log(response);
-                    console.log(response.data);
+                    // console.log(response);
+                    // console.log(response.data);
 
                     this.boardReportData = response.data.boardReportData.data;
                     this.pagination = response.data.boardReportData.links;
                     this.page = response.data.boardReportData.current_page;
                     this.pageChk = response.data.boardReportData.current_page;
 
-                    console.log(this.pagination);
-                    console.log(this.page);
+                    // console.log(this.pagination);
+                    // console.log(this.page);
                 })
                 .catch(error => {
-                    console.error(error);
+                    // console.error(error);
                 });
         },
         replaceString(str) {
@@ -540,7 +540,7 @@ export default {
                 .delete(url, header)
                 .then((res) => {
 
-                    console.log(this.delBoardReportData);
+                    // console.log(this.delBoardReportData);
                     // this.newBoardItem = this.delBoard();
                     // router.push('/board');
                     // this.$router.push('/board');
@@ -549,13 +549,13 @@ export default {
                 })
                 .catch((err) => {
 
-                    console.error(err);
+                    // console.error(err);
                     Swal.fire({
 							icon: 'error',
 							title: '삭제 실패',
 							text: '삭제 중에 오류가 발생했습니다.',
 						});
-                        console.log(err.response);
+                        // console.log(err.response);
                     });
                 }
             });    

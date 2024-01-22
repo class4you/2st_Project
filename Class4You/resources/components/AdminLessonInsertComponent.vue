@@ -444,7 +444,7 @@ export default {
                 }
             })
             .then(response => {
-                console.log(response.data)
+                // console.log(response.data)
                 // console.log(response.data.userData.data)
                 this.lessonData = response.data.LessonData;
             })
@@ -456,7 +456,7 @@ export default {
         instructorlogout() {
             axios.get('/instructorlogout')
             .then(res => {
-                console.log(res);
+                // console.log(res);
                 localStorage.clear();
                 
                 Swal.fire({
@@ -522,7 +522,7 @@ export default {
     mounted() {
         this.InstructorID = localStorage.getItem('InstructorID');
         this.adminChk = localStorage.getItem('adminChk');
-        console.log(localStorage.getItem('adminChk'));
+        // console.log(localStorage.getItem('adminChk'));
 
         this.fetchData();
     },

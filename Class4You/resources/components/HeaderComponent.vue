@@ -31,7 +31,7 @@
                     </li> -->
                     
                 <div class="header_dropdown_box_container">
-                    <button class="header_dropdown_box_btn"><span>전체강의</span><i class="header_dropdown_box_material-icons" ><svg style="position: relative; top: 2px;" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-text-right" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M6 12.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm-4-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5zm4-3a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm-4-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5z"/></svg></i>
+                    <button class="header_dropdown_box_btn"><span>FULL LECTURE</span><i class="header_dropdown_box_material-icons" ></i>
                     <ul class="header_dropdown_box_dropdown">
                         <li><a href="/classBoard/HTML">HTML</a></li>
                             <li><a href="/classBoard/CSS">CSS</a></li>
@@ -46,7 +46,7 @@
                     <!-- <li><a href="">추천 강의</a></li> -->
                     <!-- <li><a href="">신규 강의</a></li> -->
                     <li>|</li>
-                    <li><a href="/board">커뮤니티</a></li>
+                    <li><a href="/board" style="font-weight: 800;">COMMUNITY</a></li>
                     <!-- <button type="button" @click="logoutWithKakao" style="cursor: pointer;">카카오톡 로그아웃</button> -->
                 </ul>
                 <h1>
@@ -56,8 +56,8 @@
                 </h1>
                 <div v-if="!$store.state.userLoginChk" class="side_nav">
                     <!-- <router-link to="/registration">SIGN UP</router-link> -->
-                    <a href="/registration">SIGN UP</a>
-                    <a @click="loginOpenModal" style="cursor: pointer;">LOGIN</a>
+                    <a href="/registration" style="font-weight: 800;">SIGN UP</a>
+                    <a @click="loginOpenModal" style="cursor: pointer; font-weight: 800;">LOGIN</a>
                     <!-- <div class="search_box">
                         <input type="text" placeholder="SEARCH">
                         <button><img src="/img/SEARCH.png" alt=""></button>
@@ -65,8 +65,8 @@
                 </div>
                 <div v-if="$store.state.userLoginChk" class="side_nav">
                     <!-- <router-link to="/">MY PAGE</router-link> -->
-                    <a href="/usermypage">MY PAGE</a>
-                    <a @click="logout" style="cursor: pointer;">LOGOUT</a>
+                    <a href="/usermypage" style="font-weight: 800;">MY PAGE</a>
+                    <a @click="logout" style="cursor: pointer; font-weight: 800;">LOGOUT</a>
                     <!-- <div class="search_box">
                         <input type="text" placeholder="SEARCH">
                         <button><img src="/img/SEARCH.png" alt=""></button>
@@ -108,7 +108,7 @@
 
         <div  @click="scrollToTop" class="header_top_btn_cta__wrapper">
             <div class="header_top_cta__button">
-                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="#4e81f8" class="bi bi-triangle-half header_top_cta__svg" viewBox="0 0 16 16">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#4e81f8" class="bi bi-triangle-half header_top_cta__svg" viewBox="0 0 16 16">
                 <path d="M8.065 2.016A.13.13 0 0 0 8.002 2v11.983l6.856.017a.12.12 0 0 0 .066-.017.162.162 0 0 0 .054-.06.176.176 0 0 0-.002-.183L8.12 2.073a.146.146 0 0 0-.054-.057zm-1.043-.45a1.13 1.13 0 0 1 1.96 0l6.856 11.667c.458.778-.091 1.767-.98 1.767H1.146c-.889 0-1.437-.99-.98-1.767L7.022 1.566z"/>
             </svg>
             </div>
@@ -170,7 +170,7 @@ export default {
                     text: '로그인에 성공했습니다.',
                     confirmButtonText: '확인'
                 })
-                console.log(response2);
+                // console.log(response2);
                 this.$store.commit('setSaveToLocalStorage', response2.data);
                 this.$store.commit('setUserLoginChk', response2.data.sessionDataCheck);
                 this.$store.commit('setUserID', response2.data.userId);
@@ -273,7 +273,7 @@ export default {
                             formData.append('email', verificationCode);
                             axios.post(url,formData, header)
                         .then(res => {
-                            console.log(res.data);
+                            // console.log(res.data);
                             if(res.data.success === false) {
                                     this.userEmailChk = false;
                                     Swal.fire({
@@ -321,13 +321,13 @@ export default {
                                             }
                                         })
                                         .then(res => {
-                                            console.log(res.data);
+                                            // console.log(res.data);
                                             if(res.data.success === false) {
                                                     // this.userEmailChk = false;
                                                     Swal.fire({
                                                     icon: 'warning', // 추가: 아이콘 설정
                                                     title: '횟수 초과',
-                                                    text: '5분 후 다시 시도해주세요.',
+                                                    text: '잠시 후 다시 시도해주세요.',
                                                     confirmButtonText: 'Close',
                                                 });
                                             }
@@ -337,7 +337,7 @@ export default {
                             },
                             preConfirm: (verificationCode) => {
                                 const verificationCodeInputValue = document.getElementById('verificationCodeInput').value;
-                                console.log(resendButton);
+                                // console.log(resendButton);
                                 axios.get('/tokenChkSubmit', {
                                     params: {
                                         email: this.userEmailData,
@@ -345,7 +345,7 @@ export default {
                                     }
                                 })
                                     .then(res => {
-                                        console.log(res.data);
+                                        // console.log(res.data);
                                 })
 
                                 return new Promise((resolve) => {

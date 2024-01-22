@@ -98,6 +98,18 @@
                 <!-- 강의노트UI -->
                 <div v-if="clickFlgTab === 1" class="class_detail_watch_side_classnote_div">
                     <div>
+                        <div class="class_detail_watch_side_classnote_write_div">
+                            <fieldset>
+                                <div class="class_detail_watch_side_classnote_write">
+                                    <div class="class_detail_watch_side_classnote_write_text">
+                                        <textarea v-model="noteCommentData.ClassNoteComment" cols="30" rows="10" placeholder="메모해주세요"></textarea>
+                                    </div>
+                                </div>
+                                <div class="class_detail_watch_side_classnote_write_btn">
+                                    <button @click="addClassNote()">노트입력</button>
+                                </div>
+                            </fieldset>
+                        </div>
                         <div class="class_detail_watch_side_classnote_list_div">
                             <div v-for="data in noteData" :key="data.ClassNoteID" class="class_detail_watch_side_classnote_list">
                                 <div v-if="data.ClassNoteID == updateNoteID" class="class_detail_watch_side_classnote_list_text">
@@ -135,18 +147,7 @@
                             </div>
                         </div>
                         
-                        <div class="class_detail_watch_side_classnote_write_div">
-                            <fieldset>
-                                <div class="class_detail_watch_side_classnote_write">
-                                    <div class="class_detail_watch_side_classnote_write_text">
-                                        <textarea v-model="noteCommentData.ClassNoteComment" cols="30" rows="10" placeholder="메모해주세요"></textarea>
-                                    </div>
-                                </div>
-                                <div class="class_detail_watch_side_classnote_write_btn">
-                                    <button @click="addClassNote()">노트입력</button>
-                                </div>
-                            </fieldset>
-                        </div>
+
                     </div>
                 </div>
         </div>
@@ -221,7 +222,7 @@ export default {
 		axios.get('/classwatchview/' + this.ClassID)
 			.then(response => {
 			// API 응답에 대한 로직 수행
-			console.log(response.data);
+			// console.log(response.data);
                 this.ClassDataItem = response.data.classData;
                 this.ChapterDataItem = response.data.chapterData;
                 this.LessonDataItem = response.data.lessonData;
@@ -246,7 +247,7 @@ export default {
                 // this.videoId = response.data.lessonData
                 axios.get('/classwatchnote/' + this.ClassID)
                 .then(noteResponse => {
-                    console.log('노트레스폰스데이터',noteResponse);
+                    // console.log('노트레스폰스데이터',noteResponse);
                     // console.log(noteResponse.data.noteData);
                     this.noteData = noteResponse.data.noteData;
                     // console.log(this.noteData);
@@ -369,15 +370,15 @@ export default {
         goToNextLesson() {
             // 다음 레슨으로 이동하는 메서드
             const allLessons = Object.values(this.LessonDataItem).flat();
-            console.log(allLessons.length);
+            // console.log(allLessons.length);
             const currentIndex = allLessons.findIndex(lesson => lesson.LessonID == this.selectedLesson);
-            console.log(currentIndex);
+            // console.log(currentIndex);
 
             if(currentIndex < allLessons.length - 1) {
                 
                 // 현재 리슨이 배열의 범위 내에 있고, 다음 리슨이 있다면
                 const nextLesson = allLessons[currentIndex + 1];
-                console.log(nextLesson);
+                // console.log(nextLesson);
                 // 다음 리슨으로 전환
                 this.selectedLesson = nextLesson.LessonID;
                 this.videoId = nextLesson.LessonVideoID;    
@@ -392,9 +393,9 @@ export default {
         goToPreviousLesson() {
 
             const allLessons = Object.values(this.LessonDataItem).flat();
-            console.log(allLessons.length);
+            // console.log(allLessons.length);
             const currentIndex = allLessons.findIndex(lesson => lesson.LessonID === this.selectedLesson);
-            console.log(currentIndex);
+            // console.log(currentIndex);
 
             // 현재 리슨이 배열의 첫 번째보다 더 앞에 있고, 이전 리슨이 있다면
             const previousLesson = allLessons[currentIndex - 1];
@@ -429,9 +430,9 @@ export default {
                 // res가 왜 빈값인지 알아야함.>해결
                 // console.log("res데이터 어디갔냐");
                 // console.log(res);
-                console.log(res);
-                console.log("레스데이터", res.data);
-                console.log("UserID값", res.data.UserID);
+                // console.log(res);
+                // console.log("레스데이터", res.data);
+                // console.log("UserID값", res.data.UserID);
                 
                 
                 // 여기엔 있음
@@ -455,7 +456,7 @@ export default {
                 // console.log(this.noteCommentData);
             })
             .catch(err => {
-                console.log("전달안됨")
+                // console.log("전달안됨")
             })
         },
         // 노트 삭제 함수
@@ -509,8 +510,8 @@ export default {
         // 노트 수정 함수
         updateClassNote(data) {
             
-            console.log("data는 이거");
-            console.log(data);
+            // console.log("data는 이거");
+            // console.log(data);
 
             if(data) {
                 this.updateNoteData = data;
@@ -524,8 +525,8 @@ export default {
                     ClassNoteComment: this.updateNoteData.ClassNoteComment,
                 })
                 .then(response => {
-                    console.log('put되고나서 데이터값');
-                    console.log(response.data);
+                    // console.log('put되고나서 데이터값');
+                    // console.log(response.data);
 
                     this.updateNoteData = response.data;
 
