@@ -1018,7 +1018,12 @@ export default {
                 datasets: [
                 {
                     label: '수강 인원',
-                    backgroundColor: ['#ffadad','#ffd6a5','#fdffb6','#caffbf'],
+                    backgroundColor: [
+                        'rgba(255, 173, 173, 0.5)',
+                        'rgba(255, 214, 165, 0.5)', 
+                        'rgba(253, 255, 182, 0.5)',
+                        'rgba(202, 255, 191, 0.5)' 
+                        ],
                     pointBackgroundColor: 'rgba(179,181,198,1)',
                     pointBorderColor: '#fff',
                     pointHoverBackgroundColor: '#fff',
