@@ -8928,9 +8928,10 @@ footer {
 
 
   .class_detail_rating_user_delete_button {
-    --background: #2B3044;
+    --background: rgb(187 23 56);
     /* --background: #cdc9cd; */
-    --background-hover: #1E2235;
+    /* --background-hover: #1E2235; */
+    --background-hover: rgb(229 31 70);
     /* --background-hover: #999; */
     --text: #fff;
     /* --shadow: rgba(0, 9, 61, .2); */
@@ -8946,6 +8947,7 @@ footer {
     background: none;
     padding: 5px 20px;
     border-radius: 7px;
+    opacity: 0.8;
     /* min-width: 30px; */
     -webkit-appearance: none;
     -webkit-tap-highlight-color: transparent;
