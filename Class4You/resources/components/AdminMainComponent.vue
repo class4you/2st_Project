@@ -327,7 +327,7 @@
                                         <div class="row no-gutters align-items-center">
                                             <div class="col mr-2">
                                                 <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                                    월간 결제 금액 (Monthly)</div>
+                                                    월간 결제 금액 (Monthly Amount)</div>
                                                 <div class="h5 mb-0 font-weight-bold text-gray-800">&#8361;{{ formatNumber(monthlyPaymentSum) }}원</div>
                                             </div>
                                             <div class="col-auto">
@@ -345,7 +345,7 @@
                                         <div class="row no-gutters align-items-center">
                                             <div class="col mr-2">
                                                 <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                                    연간 결제 금액 (Annual)</div>
+                                                    연간 결제 금액 (Annual Amount)</div>
                                                 <div class="h5 mb-0 font-weight-bold text-gray-800">&#8361;{{ formatNumber(yearPaymentSum) }}원</div>
                                             </div>
                                             <div class="col-auto">
@@ -1018,7 +1018,12 @@ export default {
                 datasets: [
                 {
                     label: '수강 인원',
-                    backgroundColor: ['#ffadad','#ffd6a5','#fdffb6','#caffbf'],
+                    backgroundColor: [
+                        'rgba(255, 173, 173, 0.5)',
+                        'rgba(255, 214, 165, 0.5)', 
+                        'rgba(253, 255, 182, 0.5)',
+                        'rgba(202, 255, 191, 0.5)' 
+                        ],
                     pointBackgroundColor: 'rgba(179,181,198,1)',
                     pointBorderColor: '#fff',
                     pointHoverBackgroundColor: '#fff',

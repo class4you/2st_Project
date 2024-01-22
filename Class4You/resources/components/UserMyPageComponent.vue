@@ -394,7 +394,7 @@
                         </div>
                     </div> -->
                     <!-- <button type="button" class="users_password_button" style="margin-right: 50px;">비밀번호 확인</button>          -->
-                    <button type="button" class="users_password_button" @click="deleteUserData()">탈퇴하기</button>
+                    <button style="background-color: #750550 !important;" type="button" class="users_password_button" @click="deleteUserData()">탈퇴하기</button>
                 </div>
             </div>
         </div>

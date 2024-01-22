@@ -15,11 +15,11 @@
                                 <p>개인정보처리방침 |</p>
                             </li>
                             <li>
-                                <p>| 이용약관 |</p>
+                                <p>| 이용약관</p>
                             </li>
-                            <li @click="toggleClass" style="cursor: pointer;">
+                            <!-- <li @click="toggleClass" style="cursor: pointer;">
                                 <p>| 프로젝트 설명</p>
-                            </li>
+                            </li> -->
                         </ul>
                     </div>
                     <div class="footer_info_buttom">

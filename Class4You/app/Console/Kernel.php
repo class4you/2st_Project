@@ -6,6 +6,7 @@ use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 use App\Models\UserStatus;
 use App\Models\User;
+use Illuminate\Support\Facades\Log;
 
 class Kernel extends ConsoleKernel
 {
@@ -19,15 +20,18 @@ class Kernel extends ConsoleKernel
     {
         $schedule->call(function () {
             // 정지 기간이 지난 경우 UserStatus를 0으로 업데이트
-            UserStatus::where('UserStatus', '1')
+            $updatedUserStatus = UserStatus::where('UserStatus', '1')
                 ->where('SuspendedUntil', '<=', now())
                 ->update(['UserStatus' => '0']);
 
-            User::whereHas('userStatus', function ($query) {
-                $query->where('UserStatus', '0');
-            })->update(['UserState' => '0']);
+            // 업데이트된 UserStatus의 해당하는 User ID를 가져옴
+            $userIdsToUpdate = UserStatus::where('UserStatus', '0')
+                ->pluck('UserID');
+
+            User::whereIn('UserID', $userIdsToUpdate)
+                ->update(['UserState' => '0']);
             
-        })->daily(); // 매일 실행
+        })->everyMinute(); 
     }
 
     /**

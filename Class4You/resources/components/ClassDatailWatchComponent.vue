@@ -98,6 +98,18 @@
                 <!-- 강의노트UI -->
                 <div v-if="clickFlgTab === 1" class="class_detail_watch_side_classnote_div">
                     <div>
+                        <div class="class_detail_watch_side_classnote_write_div">
+                            <fieldset>
+                                <div class="class_detail_watch_side_classnote_write">
+                                    <div class="class_detail_watch_side_classnote_write_text">
+                                        <textarea v-model="noteCommentData.ClassNoteComment" cols="30" rows="10" placeholder="메모해주세요"></textarea>
+                                    </div>
+                                </div>
+                                <div class="class_detail_watch_side_classnote_write_btn">
+                                    <button @click="addClassNote()">노트입력</button>
+                                </div>
+                            </fieldset>
+                        </div>
                         <div class="class_detail_watch_side_classnote_list_div">
                             <div v-for="data in noteData" :key="data.ClassNoteID" class="class_detail_watch_side_classnote_list">
                                 <div v-if="data.ClassNoteID == updateNoteID" class="class_detail_watch_side_classnote_list_text">
@@ -135,18 +147,7 @@
                             </div>
                         </div>
                         
-                        <div class="class_detail_watch_side_classnote_write_div">
-                            <fieldset>
-                                <div class="class_detail_watch_side_classnote_write">
-                                    <div class="class_detail_watch_side_classnote_write_text">
-                                        <textarea v-model="noteCommentData.ClassNoteComment" cols="30" rows="10" placeholder="메모해주세요"></textarea>
-                                    </div>
-                                </div>
-                                <div class="class_detail_watch_side_classnote_write_btn">
-                                    <button @click="addClassNote()">노트입력</button>
-                                </div>
-                            </fieldset>
-                        </div>
+
                     </div>
                 </div>
         </div>

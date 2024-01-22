@@ -984,7 +984,7 @@
 					<div v-if="instructorData" class="class_detail_community_btn_answer">
 						<div v-for="item in instructorData" class="class_detail_community_instructor_answer">
 							<div v-if="data.BoardID == item.BoardID">
-								<details >
+								<details style="margin-top: 10px;">
 									<summary>
 										<p>✔강사 답변 보기</p>
 									</summary>
