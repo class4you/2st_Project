@@ -327,7 +327,7 @@ export default {
                                                     Swal.fire({
                                                     icon: 'warning', // 추가: 아이콘 설정
                                                     title: '횟수 초과',
-                                                    text: '5분 후 다시 시도해주세요.',
+                                                    text: '잠시 후 다시 시도해주세요.',
                                                     confirmButtonText: 'Close',
                                                 });
                                             }

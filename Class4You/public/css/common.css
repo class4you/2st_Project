@@ -2437,7 +2437,7 @@ ul.class_tabs li.class_current {
     color: #9b9898;
     font-size: 15px;
     font-weight: bold;
-    padding: 8px;
+    /* padding: 8px; */
     /* border: 1px solid #ededed;
     margin: 10px;
     border-radius: 5px; */
