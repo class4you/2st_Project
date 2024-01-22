@@ -31,7 +31,7 @@
                     </li> -->
                     
                 <div class="header_dropdown_box_container">
-                    <button class="header_dropdown_box_btn"><span>전체강의</span><i class="header_dropdown_box_material-icons" ><svg style="position: relative; top: 2px;" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-text-right" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M6 12.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm-4-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5zm4-3a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm-4-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5z"/></svg></i>
+                    <button class="header_dropdown_box_btn"><span>FULL LECTURE</span><i class="header_dropdown_box_material-icons" ></i>
                     <ul class="header_dropdown_box_dropdown">
                         <li><a href="/classBoard/HTML">HTML</a></li>
                             <li><a href="/classBoard/CSS">CSS</a></li>
@@ -46,7 +46,7 @@
                     <!-- <li><a href="">추천 강의</a></li> -->
                     <!-- <li><a href="">신규 강의</a></li> -->
                     <li>|</li>
-                    <li><a href="/board">커뮤니티</a></li>
+                    <li><a href="/board" style="font-weight: 800;">COMMUNITY</a></li>
                     <!-- <button type="button" @click="logoutWithKakao" style="cursor: pointer;">카카오톡 로그아웃</button> -->
                 </ul>
                 <h1>
