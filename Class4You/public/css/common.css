@@ -8571,6 +8571,7 @@ footer {
     position: relative;
     top: -40px;
     justify-content: center;
+    flex-wrap: wrap;
   }
   .common-category-icon {
     width: 50px;
