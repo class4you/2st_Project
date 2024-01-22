@@ -5,7 +5,7 @@
             <div @click="handleTabClick(1)" class="my_page_main_tap_ui" :class="{ 'my_page_main_tap_ui_on': $store.state.myPageClickFlgTab == 1}">대시보드</div>
             <div @click="handleTabClick(2)" class="my_page_main_tap_ui" :class="{ 'my_page_main_tap_ui_on': $store.state.myPageClickFlgTab == 2}">계정정보</div>
             <div @click="handleTabClick(3)" class="my_page_main_tap_ui" :class="{ 'my_page_main_tap_ui_on': $store.state.myPageClickFlgTab == 3}">나의학습</div>
-            <!-- <div @click="handleTabClick(4)" class="my_page_main_tap_ui">강의노트</div> -->
+            <!-- <div @click="handleTabClick(4)" class="my_page_main_tap_ui" :class="{ 'my_page_main_tap_ui_on': $store.state.myPageClickFlgTab == 4}">강의노트</div> -->
             <div @click="handleTabClick(5)" class="my_page_main_tap_ui" :class="{ 'my_page_main_tap_ui_on': $store.state.myPageClickFlgTab == 5}">작성 게시글</div>
             
             <!-- <div @click="handleTabClick(6)" class="my_page_main_tap_ui">구매내역</div> -->
@@ -32,8 +32,8 @@
                         </div>
                         <div class="recent_learning_class_progress_cover">
                             <div class="recent_learning_class_progress">
-                                <span>진도율 :</span>
-                                <span>{{ flaggedChaptersCount }}강</span>
+                                <span>진도율 : </span>
+                                <span>　{{ flaggedChaptersCount }}강</span>
                                 <span style="margin-left: 5px; margin-right: 5px;">/</span>
                                 <span>{{ totalChaptersCount }}강</span>
                                 <span>({{ percentageFlaggedChapters }}%)</span>
@@ -52,6 +52,7 @@
                             </div>
                         </div>
                     </div>
+                    
                 </div>
 
                 <!-- <div class="dashboard_weekly_study_class">
@@ -443,64 +444,7 @@
                         </div>
                     </div>
 
-                    <div class="users_class_note_box">
-                        <div class="users_class_note_cover">
-                            <div class="users_class_note_content_box">
-                                <span class="users_class_note_content">강의명</span>
-                                <span class="users_class_note_content">챕터명</span>
-                                <span class="users_class_note_content">노트내용</span>
-                                <button class="users_class_note_button">강의 이동</button>
-                            </div>
-                        </div>
-                    </div>
-
-                    
-                    <div class="users_class_note_box">
-                        <div class="users_class_note_cover">
-                            <div class="users_class_note_content_box">
-                                <span class="users_class_note_content">강의명</span>
-                                <span class="users_class_note_content">챕터명</span>
-                                <span class="users_class_note_content">노트내용</span>
-                                <button class="users_class_note_button">강의 이동</button>
-                            </div>
-                        </div>
-                    </div>
-
-                    
-                    <div class="users_class_note_box">
-                        <div class="users_class_note_cover">
-                            <div class="users_class_note_content_box">
-                                <span class="users_class_note_content">강의명</span>
-                                <span class="users_class_note_content">챕터명</span>
-                                <span class="users_class_note_content">노트내용</span>
-                                <button class="users_class_note_button">강의 이동</button>
-                            </div>
-                        </div>
-                    </div>
-
-                    
-                    <div class="users_class_note_box">
-                        <div class="users_class_note_cover">
-                            <div class="users_class_note_content_box">
-                                <span class="users_class_note_content">강의명</span>
-                                <span class="users_class_note_content">챕터명</span>
-                                <span class="users_class_note_content">노트내용</span>
-                                <button class="users_class_note_button">강의 이동</button>
-                            </div>
-                        </div>
-                    </div>
-
-                    
-                    <div class="users_class_note_box">
-                        <div class="users_class_note_cover">
-                            <div class="users_class_note_content_box">
-                                <span class="users_class_note_content">강의명</span>
-                                <span class="users_class_note_content">챕터명</span>
-                                <span class="users_class_note_content">노트내용</span>
-                                <button class="users_class_note_button">강의 이동</button>
-                            </div>
-                        </div>
-                    </div>
+                   
                 </div>
             </div>
         </div>
@@ -1186,7 +1130,7 @@ methods: {
             });
             } else {
             // 사용자가 확인 취소를 선택한 경우의 처리
-            console.log('전화번호 변경이 취소되었습니다.');
+            // console.log('전화번호 변경이 취소되었습니다.');
             }
         });
     },
@@ -1238,7 +1182,7 @@ methods: {
             });
             } else {
             // 사용자가 확인 취소를 선택한 경우의 처리
-            console.log('비밀번호 변경이 취소되었습니다.');
+            // console.log('비밀번호 변경이 취소되었습니다.');
             }
         });
     },    

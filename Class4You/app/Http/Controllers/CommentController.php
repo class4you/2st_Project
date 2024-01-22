@@ -74,7 +74,7 @@ class CommentController extends Controller
     }
 
     public function questionAnswerComment(Request $request) {
-        Log::debug($request);
+        // Log::debug($request);
 
         // $result = DB::table('class_infos')
         //     ->join('instructors', 'class_infos.InstructorID', '=', 'instructors.InstructorID')
@@ -85,6 +85,11 @@ class CommentController extends Controller
 
         $data = $request->only('InstructorID', 'CommentContent', 'BoardID', 'UserID');
 
+        $BaordData = Board::find($request->BoardID);
+
+        $BaordData->update(['BoardInstructorFlg' => '1']);
+
+        // Log::debug($BaordData);
         // $instructorID = $request->input('InstructorID');
         // $boardID = $request->input('BoardID');
         // $userID = $request->input('UserID');
@@ -92,7 +97,7 @@ class CommentController extends Controller
         // $commentContent = $request->input('CommentContent');
 
         $result = Comment::create($data);
-        Log::debug($result);
+        // Log::debug($result);
 
         return response()->json($result);
     }

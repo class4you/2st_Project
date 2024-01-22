@@ -31,7 +31,8 @@ class Board extends Model
         'BoardNotRecommended',
         'BoardFlg',
         'created_at',
-        'ClassID'
+        'ClassID',
+        'BoardInstructorFlg'
     ];
 
 

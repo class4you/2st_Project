@@ -276,6 +276,7 @@ class MypageController extends Controller
         })
         ->first();
 
+
         // $test = LessonState::join('enrollments', 'enrollments.EnrollmentID', 'lesson_states.EnrollmentID')
         //     ->orderByDesc('lesson_states.updated_at')
         //     ->first();
@@ -283,39 +284,51 @@ class MypageController extends Controller
         // Log::debug($test);
 
         // Log::debug($recentEnrollmentData);
+        if($recentEnrollmentData) {
+            $recentClassInfoData = Classinfo::where('ClassID', $recentEnrollmentData->ClassID)
+                ->get();
+            
+            // Log::debug($recentClassInfoData);
 
-        $recentClassInfoData = Classinfo::where('ClassID', $recentEnrollmentData->ClassID)
-            ->get();
+            // $recentClassData = User::join('enrollments', 'users.UserID', 'enrollments.UserID')
+            //     ->join('class_infos', 'enrollments.ClassID', 'class_infos.ClassID')
+            //     ->join('chapters', 'class_infos.ClassID', 'chapters.ClassID')
+            //     // ->join('lessons', 'chapters.ChapterID', 'lessons.ChapterID')
+            //     ->where('users.UserID', $UserID)
+            //     ->whereRaw('class_infos.updated_at = (SELECT MAX(class_infos.updated_at) FROM class_infos)')
+            //     ->get();
+
+            $recentChapterStateData = Enrollment::join('chapter_states', 'enrollments.EnrollmentID', 'chapter_states.EnrollmentID')
+                ->where('enrollments.UserID', $UserID)
+                ->where('enrollments.EnrollmentID', $recentEnrollmentData->EnrollmentID)
+                ->get();
+
+            // Log::debug($recentChapterStateData);
+            
+            // 플래그가 1인 챕터 개수 세기
+            $flaggedChaptersCount =  $recentChapterStateData->where('ChapterFlg', 1)->count();
+
+            // Log::debug($flaggedChaptersCount);
+            // 전체 챕터 개수 세기
+            $totalChaptersCount =  $recentChapterStateData->where('EnrollmentID', $recentEnrollmentData->EnrollmentID)->count();
+            // Log::debug($totalChaptersCount);
+
+            // 퍼센트 계산
+            $percentageFlaggedChapters = ($totalChaptersCount > 0) ? round(($flaggedChaptersCount / $totalChaptersCount) * 100) : 0;
+
+            // Log::debug($percentageFlaggedChapters);
+        } else {
+
+            $recentClassInfoData = [['ClassTitle' => '최근 학습 강의가 없습니다.', 'ClassDescription' => '최근 학습 강의가 없습니다.']];
+            
+            $flaggedChaptersCount = 0;
+
+            $totalChaptersCount = 0;
+
+            $percentageFlaggedChapters = 0;
+        }
+
         
-        // Log::debug($recentClassInfoData);
-
-        // $recentClassData = User::join('enrollments', 'users.UserID', 'enrollments.UserID')
-        //     ->join('class_infos', 'enrollments.ClassID', 'class_infos.ClassID')
-        //     ->join('chapters', 'class_infos.ClassID', 'chapters.ClassID')
-        //     // ->join('lessons', 'chapters.ChapterID', 'lessons.ChapterID')
-        //     ->where('users.UserID', $UserID)
-        //     ->whereRaw('class_infos.updated_at = (SELECT MAX(class_infos.updated_at) FROM class_infos)')
-        //     ->get();
-
-        $recentChapterStateData = Enrollment::join('chapter_states', 'enrollments.EnrollmentID', 'chapter_states.EnrollmentID')
-            ->where('enrollments.UserID', $UserID)
-            ->where('enrollments.EnrollmentID', $recentEnrollmentData->EnrollmentID)
-            ->get();
-
-        // Log::debug($recentChapterStateData);
-        
-        // 플래그가 1인 챕터 개수 세기
-        $flaggedChaptersCount =  $recentChapterStateData->where('ChapterFlg', 1)->count();
-
-        // Log::debug($flaggedChaptersCount);
-        // 전체 챕터 개수 세기
-        $totalChaptersCount =  $recentChapterStateData->where('EnrollmentID', $recentEnrollmentData->EnrollmentID)->count();
-        // Log::debug($totalChaptersCount);
-
-        // 퍼센트 계산
-        $percentageFlaggedChapters = ($totalChaptersCount > 0) ? round(($flaggedChaptersCount / $totalChaptersCount) * 100) : 0;
-
-        // Log::debug($percentageFlaggedChapters);
         
         // ==============================================================================================
 

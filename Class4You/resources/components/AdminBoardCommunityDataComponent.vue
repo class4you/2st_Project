@@ -352,8 +352,8 @@
                                     </div>
                                     <div>
                                         <input v-model="searchPicked" name="type" type="radio" value="3" id="keyword-type-special">
-                                        <label for="keyword-type-special" :class="{'keyword-type-on': searchPicked == 3}">
-                                        <svg class="keyword-edit-pen-title">
+                                        <label for="keyword-type-special">
+                                        <svg class="keyword-edit-pen-title" :class="{'keyword-type-on': searchPicked == 3}">
                                             <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#special"></use>
                                         </svg>
                                         <span>BoardFlg</span>
