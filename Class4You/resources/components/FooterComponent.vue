@@ -15,7 +15,10 @@
                                 <p>개인정보처리방침 |</p>
                             </li>
                             <li>
-                                <p>| 이용약관</p>
+                                <p>| 이용약관 |</p>
+                            </li>
+                            <li @click="toggleClass" style="cursor: pointer;">
+                                <p>| 프로젝트 설명</p>
                             </li>
                         </ul>
                     </div>
@@ -47,14 +50,155 @@
 
             </div>
         </footer>
+
+        <div class="main_banner_code_full" v-if="teamMembersBox" style="position: fixed; top: 0; z-index: 10000; background-color: #00000073; height: 100vh; width: 100vw;">
+            <div style="display: flex; gap: 30px; padding: 50px 10vw; justify-content: center; margin-top: 250px;">
+                <div class="main_banner_code_card">
+                    <div class="main_banner_code_card-back">
+                        <div class="main_banner_code_line-numbers">
+                        <div>1</div>
+                        <div>2</div>
+                        <div>3</div>
+                        <div>4</div>
+                        <div>5</div>
+                        <div>6</div>
+                        <div>7</div>
+                        <div>8</div>
+                        <div>9</div>
+                        </div><code><span class="main_banner_code_variable">const </span><span class="main_banner_code_function">aboutMe </span><span class="main_banner_code_operator">= </span><span>{</span>
+                        <div class="main_banner_code_indent"> <span class="main_banner_code_property">name</span><span class="main_banner_code_operator">: </span><span class="main_banner_code_string">'정명호'</span><span>,</span></div>
+                        <div class="main_banner_code_indent"> <span class="main_banner_code_property">title</span><span class="main_banner_code_operator">: </span><span class="main_banner_code_string">'Jr. Developer'</span><span>,</span></div>
+                        <div class="main_banner_code_indent"> <span class="main_banner_code_property">contact</span><span class="main_banner_code_operator">: </span><span>{</span>
+                            <div class="main_banner_code_indent"> <span class="main_banner_code_property">email</span><span class="main_banner_code_operator">: </span><span class="main_banner_code_string">'jmh4912@naver.com'</span><span>,</span></div>
+                            <div class="main_banner_code_indent"><span class="main_banner_code_property">website</span><span class="main_banner_code_operator">:</span><span class="main_banner_code_string">'https://github.com/iammyeongho'</span></div><span>}</span>
+                        </div><span>}</span></code>
+                    </div>
+                    <div class="main_banner_code_card-front">
+                        <div class="main_banner_code_line-numbers">
+                        <div>1</div>
+                        <div>2</div>
+                        <div>3</div>
+                        <div>4</div>
+                        <div>5</div>
+                        <div>6</div>
+                        <div>7</div>
+                        <div>8</div>
+                        <div>9</div>
+                        </div><code><span class="main_banner_code_variable">this</span><span>.</span><span class="method">우리를 소개할게요</span><span>(</span><span class="main_banner_code_string">'mouseover'</span><span>, </span><span class="main_banner_code_function">() => </span><span>{ </span>
+                        <div class="main_banner_code_indent"><span class="main_banner_code_variable">this</span><span>.</span><span class="main_banner_code_property">flipCard </span><span>= </span><span class="boolean">true</span><span>;</span></div><span>});</span></code>
+                    </div>
+                </div>
+                <div class="main_banner_code_card">
+                    <div class="main_banner_code_card-back">
+                        <div class="main_banner_code_line-numbers">
+                        <div>1</div>
+                        <div>2</div>
+                        <div>3</div>
+                        <div>4</div>
+                        <div>5</div>
+                        <div>6</div>
+                        <div>7</div>
+                        <div>8</div>
+                        <div>9</div>
+                        </div><code><span class="main_banner_code_variable">const </span><span class="main_banner_code_function">aboutMe </span><span class="main_banner_code_operator">= </span><span>{</span>
+                        <div class="main_banner_code_indent"> <span class="main_banner_code_property">name</span><span class="main_banner_code_operator">: </span><span class="main_banner_code_string">'최현희'</span><span>,</span></div>
+                        <div class="main_banner_code_indent"> <span class="main_banner_code_property">title</span><span class="main_banner_code_operator">: </span><span class="main_banner_code_string">'Jr. Developer'</span><span>,</span></div>
+                        <div class="main_banner_code_indent"> <span class="main_banner_code_property">contact</span><span class="main_banner_code_operator">: </span><span>{</span>
+                            <div class="main_banner_code_indent"> <span class="main_banner_code_property">email</span><span class="main_banner_code_operator">: </span><span class="main_banner_code_string">'roseok624@gmail.com'</span><span>,</span></div>
+                            <div class="main_banner_code_indent"><span class="main_banner_code_property">website</span><span class="main_banner_code_operator">:</span><span class="main_banner_code_string">'https://github.com/choibocknami12'</span></div><span>}</span>
+                        </div><span>}</span></code>
+                    </div>
+                    <div class="main_banner_code_card-front">
+                        <div class="main_banner_code_line-numbers">
+                        <div>1</div>
+                        <div>2</div>
+                        <div>3</div>
+                        <div>4</div>
+                        <div>5</div>
+                        <div>6</div>
+                        <div>7</div>
+                        <div>8</div>
+                        <div>9</div>
+                        </div><code><span class="main_banner_code_variable">this</span><span>.</span><span class="method">목표는 개발자입니다</span><span>(</span><span class="main_banner_code_string">'mouseover'</span><span>, </span><span class="main_banner_code_function">() => </span><span>{ </span>
+                        <div class="main_banner_code_indent"><span class="main_banner_code_variable">this</span><span>.</span><span class="main_banner_code_property">flipCard </span><span>= </span><span class="boolean">true</span><span>;</span></div><span>});</span></code>
+                    </div>
+                </div>
+                <div class="main_banner_code_card">
+                    <div class="main_banner_code_card-back">
+                        <div class="main_banner_code_line-numbers">
+                        <div>1</div>
+                        <div>2</div>
+                        <div>3</div>
+                        <div>4</div>
+                        <div>5</div>
+                        <div>6</div>
+                        <div>7</div>
+                        <div>8</div>
+                        <div>9</div>
+                        </div><code><span class="main_banner_code_variable">const </span><span class="main_banner_code_function">aboutThis </span><span class="main_banner_code_operator">= </span><span>{</span>
+                        <div class="main_banner_code_indent"> <span class="main_banner_code_property">name</span><span class="main_banner_code_operator">: </span><span class="main_banner_code_string">'class4You'</span><span>,</span></div>
+                        <div class="main_banner_code_indent"> <span class="main_banner_code_property">title</span><span class="main_banner_code_operator">: </span><span class="main_banner_code_string">'onlineClassWebSite'</span><span>,</span></div>
+                        <div class="main_banner_code_indent"> <span class="main_banner_code_property">contact</span><span class="main_banner_code_operator">: </span><span>{</span>
+                            <div class="main_banner_code_indent"> <span class="main_banner_code_property">period</span><span class="main_banner_code_operator">: </span><span class="main_banner_code_string">'2023.12.04~2024.01.23'</span><span>,</span></div>
+                            <div class="main_banner_code_indent"><span class="main_banner_code_property">website</span><span class="main_banner_code_operator">:</span><span class="main_banner_code_string">'http://112.222.157.156:6004/'</span></div><span>}</span>
+                        </div><span>}</span></code>
+                    </div>
+                    <div class="main_banner_code_card-front">
+                        <div class="main_banner_code_line-numbers">
+                        <div>1</div>
+                        <div>2</div>
+                        <div>3</div>
+                        <div>4</div>
+                        <div>5</div>
+                        <div>6</div>
+                        <div>7</div>
+                        <div>8</div>
+                        <div>9</div>
+                        </div><code><span class="main_banner_code_variable">this</span><span>.</span><span class="method">targetDevelopers</span><span>(</span><span class="main_banner_code_string">'mouseover'</span><span>, </span><span class="main_banner_code_function">() => </span><span>{ </span>
+                        <div class="main_banner_code_indent"><span class="main_banner_code_variable">this</span><span>.</span><span class="main_banner_code_property">flipCard </span><span>= </span><span class="boolean">true</span><span>;</span></div><span>});</span></code>
+                    </div>
+                </div>
+            </div>
+            <div @click="toggleClass" class="main_banner_code_close">
+                <button style="background-color: transparent; color: #fff; border: none; font-weight: 700;">X</button>
+            </div>
+        </div>
     </div>
 </template>
 <script>
 
 export default {
-    name: 'FooterComponent'
+    name: 'FooterComponent',
+
+    data() {
+        return {
+            teamMembersBox: false,
+            teamIsToggled: false,
+        }
+    },
+
+    methods: {
+        toggleClass() {
+        // 클릭 이벤트 처리 함수
+            this.teamMembersBox = !this.teamMembersBox;
+        },
+    }
 }
 </script>
 <style>
-    
+
+    .main_banner_code_close {
+        position: absolute; 
+        left: 48%; 
+        background-color: #2c3e50; 
+        padding: 15px 20px; 
+        border: none; 
+        border-radius: 100%;
+        opacity: 0.5;
+        cursor: pointer;
+    }
+
+    .main_banner_code_close:hover {
+        opacity: 1;
+    }
 </style>

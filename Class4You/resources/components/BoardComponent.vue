@@ -160,11 +160,11 @@
 												<dl>
 												<dt class="visually_hidden">투표점수</dt>
 												<dd class="comment_count">
-													<i>추천수 : {{ item.likeratingcnt }}</i>
+													<i>추천수 : {{ item.likeratingcnt === null ? 0 : item.likeratingcnt }}</i>
 												</dd>
 												<dt class="visually_hidden">투표점수</dt>
 												<dd class="comment_count">
-													<i>비추천 : {{ item.hateratingcnt }}</i>
+													<i>비추천 : {{ item.hateratingcnt === null ? 0 : item.likeratingcnt }}</i>
 												</dd>
 												<dt class="visually_hidden">조회수</dt>
 												<dd class="comment_count">
