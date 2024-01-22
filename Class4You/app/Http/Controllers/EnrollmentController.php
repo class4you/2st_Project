@@ -77,6 +77,7 @@ class EnrollmentController extends Controller
                 ChapterState::create($ChapterStateData);
 
                 $ChapterStateID = ChapterState::where('ChapterID', $ChapterID->ChapterID)
+                    ->where('EnrollmentID', $EnrollmentID)
                     ->value('ChapterStateID');
 
                 $LessonData = Lesson::select('LessonID')
