@@ -176,7 +176,7 @@ header .navigation {
     font-weight: 600;
     font-family: Arial;
     font-size: 12px;
-    color: #1e1e1e;
+    color: #1c3264;
     text-transform: uppercase;
 }
 
@@ -3176,13 +3176,16 @@ progress[value]::-webkit-progress-bar{
 }
 
 .class_detail_watch_side_classnote_write_btn>button {
-    padding: 5px 10px;
-    background-color: #4e81f8;
+    padding: 10px 15px;
+    background-color: #750550;
     border-radius: 5px;
     border: none;
     color: #ffffff;
     cursor: pointer;
     opacity: 0.7;
+    font-weight: 700;
+    font-family: 'Noto Sans KR' !important;
+    font-size: 13px;
 }
 
 .class_detail_watch_side_classnote_write_btn>button:hover {
@@ -9518,7 +9521,8 @@ code, .main_banner_code_card .main_banner_code_line-numbers {
     display: inline-flex;
     align-items: center;
     justify-content: space-between;
-    background: #000000;
+    /* background: #000000; */
+    background: #3D64BF;
     min-width: 130px;
     border: 0;
     border-radius: 4px;
@@ -9583,8 +9587,9 @@ code, .main_banner_code_card .main_banner_code_line-numbers {
 
   .header_dropdown_box_btn .header_dropdown_box_dropdown li:hover {
     transform: scale(1.05);
-    color: #000;
-    
+    /* color: #000; */
+    color: #fff;
+    background-color: #4e81f8;
   }
 
   .header_dropdown_box_btn .header_dropdown_box_dropdown li.active {

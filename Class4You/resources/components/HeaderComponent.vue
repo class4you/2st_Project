@@ -56,8 +56,8 @@
                 </h1>
                 <div v-if="!$store.state.userLoginChk" class="side_nav">
                     <!-- <router-link to="/registration">SIGN UP</router-link> -->
-                    <a href="/registration">SIGN UP</a>
-                    <a @click="loginOpenModal" style="cursor: pointer;">LOGIN</a>
+                    <a href="/registration" style="font-weight: 800;">SIGN UP</a>
+                    <a @click="loginOpenModal" style="cursor: pointer; font-weight: 800;">LOGIN</a>
                     <!-- <div class="search_box">
                         <input type="text" placeholder="SEARCH">
                         <button><img src="/img/SEARCH.png" alt=""></button>
@@ -65,8 +65,8 @@
                 </div>
                 <div v-if="$store.state.userLoginChk" class="side_nav">
                     <!-- <router-link to="/">MY PAGE</router-link> -->
-                    <a href="/usermypage">MY PAGE</a>
-                    <a @click="logout" style="cursor: pointer;">LOGOUT</a>
+                    <a href="/usermypage" style="font-weight: 800;">MY PAGE</a>
+                    <a @click="logout" style="cursor: pointer; font-weight: 800;">LOGOUT</a>
                     <!-- <div class="search_box">
                         <input type="text" placeholder="SEARCH">
                         <button><img src="/img/SEARCH.png" alt=""></button>
