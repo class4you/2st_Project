@@ -18,7 +18,7 @@ class BoardRatingStateSeeder extends Seeder
     {
         $faker = Faker::create();
         for ($i = 0; $i < 50000; $i++) {
-            $board = $faker->numberBetween(1, 10633);
+            $board = $faker->numberBetween(1, 2272);
             $user = $faker->numberBetween(1, 50000);
             $rating = $faker->numberBetween(-1, 1);
         

@@ -923,6 +923,7 @@ footer {
 
 .main_container_keyword {
     margin-top: 20px;
+    margin-bottom: 100px;
     padding: 0 10vw;
     display: grid; 
     transition: all 0.2s;
@@ -10065,8 +10066,8 @@ code, .main_banner_code_card .main_banner_code_line-numbers {
 
   .header_top_cta__button{
     position: relative;
-    width: 70px;
-    height: 70px;
+    width: 50px;
+    height: 50px;
     display: flex;
     justify-content: center;
     align-items: center;
