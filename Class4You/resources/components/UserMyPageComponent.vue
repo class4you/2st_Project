@@ -753,14 +753,17 @@ data() {
         },
         RadarChartOptions: {
             responsive: true,
-            pointRadius: 5,
-            pointBorderWidth: 5,
-            cubicInterpolationMode:1,
-            borderWidth: 2,
+                maintainAspectRatio: false,
+                fill: true,
+                pointHitRadius: 50,
+                pointRadius: 8,
+                pointBorderWidth: 5,
+                cubicInterpolationMode:1,
+                borderWidth: 2,
             // Add more Radar chart options if needed
             scales: {
                 r: {
-                    max: 20, // 최대값 설정
+                    max: 10, // 최대값 설정
                     angleLines: {
                         display: true,
                     },
@@ -768,7 +771,7 @@ data() {
                         fontSize: 14,
                     },
                     ticks: {
-                        stepSize:5,
+                        stepSize:2,
                     },
                 },
             },
@@ -1323,7 +1326,7 @@ methods: {
                 fill: true,
                 backgroundColor: 'rgba(255, 99, 132, 0.2)',
                 borderColor: 'rgba(0,0,0,0.1)',
-                pointBackgroundColor: 'rgba(179,181,198,1)',
+                pointBackgroundColor: ['#f94144','#f3722c','#f8961e','#f9844a','#f9c74f','#90be6d','#43aa8b','#4d908e','#577590','#277da1','#35007a'],
                 pointBorderColor: '#fff',
                 pointHoverBackgroundColor: '#fff',
                 pointHoverBorderColor: 'rgba(179,181,198,1)',

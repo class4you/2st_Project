@@ -981,12 +981,10 @@
 							<!-- </div> -->
 						</div>
 					</div>	
-
-					<div class="class_detail_community_btn_answer">
-
+					<div v-if="instructorData" class="class_detail_community_btn_answer">
 						<div v-for="item in instructorData" class="class_detail_community_instructor_answer">
-							<!-- <div v-if="data.BoardID == item.BoardID"> -->
-								<details v-if="data.BoardID == item.BoardID">
+							<div v-if="data.BoardID == item.BoardID">
+								<details >
 									<summary>
 										<p>✔강사 답변 보기</p>
 									</summary>
@@ -994,14 +992,8 @@
 										<p style="line-height: 30px; white-space: pre-wrap;">{{item.CommentContent}}</p>
 									</div>
 								</details>
-								<div v-if="item.CommentContent == null">
-									
-										<p>✔강사 답변 없음</p>
-									
-								</div>
-							<!-- </div>	 -->
+							</div>
 						</div>
-
 					</div>
 					
 				</div>
