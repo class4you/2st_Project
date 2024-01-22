@@ -441,7 +441,7 @@
                                 <table style="display: flex; justify-content: center; gap: 8px;">
                                     <tbody v-for="(page, index) in pagination" :key="index">
                                         <template v-if="page.url !== null">
-											<a class="qustuon_list_page_a" :class="{'page_on': page.label == pageChk}" @click.prevent="fetchData(page.label, searchQuery, searchPicked)" href="#">{{ replaceString(page.label) }}</a>
+											<a class="admin_qustuon_list_page_a" :class="{'admin_page_on': page.label == pageChk}" @click.prevent="fetchData(page.label, searchQuery, searchPicked)" href="#">{{ replaceString(page.label) }}</a>
 										</template>
 										<template v-else>
 											<span>{{ replaceString(page.label) }}</span>
