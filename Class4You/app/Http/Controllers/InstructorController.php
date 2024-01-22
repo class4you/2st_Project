@@ -81,6 +81,8 @@ class InstructorController extends Controller
 
     public function instructoruserdata(Request $request) {
         // Log::debug($request);
+        $searchPicked = $request->searchPicked;
+        // Log::debug($searchPicked);
         $instructorId = Auth::guard('admin')->id();
 
         $adminChk = Instructor::where('InstructorID', $instructorId)->where('InstructorFlg', 1)->first();
@@ -93,10 +95,21 @@ class InstructorController extends Controller
 
         if ($request->has('search')) {
             $searchTerm = $request->input('search');
-            $userDataQuery->where(function ($query) use ($searchTerm) {
-                $query->orWhere('users.UserName', 'LIKE', "%{$searchTerm}%")
-                ->orWhere('users.UserID', 'LIKE', "%{$searchTerm}%");
-            });
+            if($searchPicked == 1) {
+                $userDataQuery->where(function ($query) use ($searchTerm) {
+                    $query->orWhere('users.UserEmail', 'LIKE', "%{$searchTerm}%");
+                });
+            } else if($searchPicked == 2) {
+                $userDataQuery->where(function ($query) use ($searchTerm) {
+                    $query->orWhere('users.UserName', 'LIKE', "%{$searchTerm}%");
+                });
+            } else if($searchPicked == 3) {
+                // $searchTerm = Carbon::createFromFormat('Ymd', $searchTerm)->format('Y-m-d');
+                Log::debug($searchTerm);
+                $userDataQuery->where(function ($query) use ($searchTerm) {
+                    $query->orWhere('users.UserBirthDate', 'LIKE', "%{$searchTerm}%");
+                });
+            }
         }
         $userData = $userDataQuery->paginate(10);
 
@@ -106,6 +119,7 @@ class InstructorController extends Controller
     }
 
     public function instructoruserclassdata(Request $request) {
+        
 
         $instructorId = Auth::guard('admin')->id();
 
@@ -118,13 +132,27 @@ class InstructorController extends Controller
                 ->orderBy('users.created_at', 'desc');
         }
 
+        $searchPicked = $request->searchPicked;
+
         if ($request->has('search')) {
             $searchTerm = $request->input('search');
-            $ClassDataQuery->where(function ($query) use ($searchTerm) {
-                $query->orWhere('class_infos.ClassTitle', 'LIKE', "%{$searchTerm}%")
-                    ->orWhere('class_infos.ClassID', 'LIKE', "%{$searchTerm}%");
-            });
+            if($searchPicked == 1) {
+                $ClassDataQuery->where(function ($query) use ($searchTerm) {
+                    $query->orWhere('class_infos.ClassID', 'LIKE', "%{$searchTerm}%");
+                });
+            } else if($searchPicked == 2) {
+                $ClassDataQuery->where(function ($query) use ($searchTerm) {
+                    $query->orWhere('class_infos.ClassTitle', 'LIKE', "%{$searchTerm}%");
+                });
+            } else if($searchPicked == 3) {
+                // $searchTerm = Carbon::createFromFormat('Ymd', $searchTerm)->format('Y-m-d');
+                Log::debug($searchTerm);
+                $ClassDataQuery->where(function ($query) use ($searchTerm) {
+                    $query->orWhere('class_infos.ClassPrice', 'LIKE', "%{$searchTerm}%");
+                });
+            }
         }
+
 
         $ClassData = $ClassDataQuery->paginate(10);
 
@@ -146,13 +174,44 @@ class InstructorController extends Controller
                 ->orderBy('boards.created_at', 'desc');
         }
 
+        // if ($request->has('search')) {
+        //     $searchTerm = $request->input('search');
+        //     $boardQuestionDataQuery->where(function ($query) use ($searchTerm) {
+        //         $query->orWhere('BoardTitle', 'LIKE', "%{$searchTerm}%")
+        //             ->orWhere('BoardComment', 'LIKE', "%{$searchTerm}%")
+        //             ->orWhere('BoardID', 'LIKE', "%{$searchTerm}%");
+        //     });
+        // }
+
+        $searchPicked = $request->searchPicked;
+                
         if ($request->has('search')) {
+            // Log::debug('오냐');
             $searchTerm = $request->input('search');
-            $boardQuestionDataQuery->where(function ($query) use ($searchTerm) {
-                $query->orWhere('BoardTitle', 'LIKE', "%{$searchTerm}%")
-                    ->orWhere('BoardComment', 'LIKE', "%{$searchTerm}%")
-                    ->orWhere('BoardID', 'LIKE', "%{$searchTerm}%");
-            });
+            // Log::debug($searchPicked);
+            if($searchPicked == 1) {
+                $boardQuestionDataQuery->where(function ($query) use ($searchTerm) {
+                    $query->orWhere('UserID', 'LIKE', "%{$searchTerm}%");
+                });
+            } else if($searchPicked == 2) {
+
+                // Log::debug($searchTerm);
+                $boardQuestionDataQuery->where(function ($query) use ($searchTerm) {
+                    $query->orWhere('BoardTitle', 'LIKE', "%{$searchTerm}%");
+                });
+            } else if($searchPicked == 3) {
+
+                if (strpos($searchTerm, '미해결') !== false) {
+                    $searchTerm = '0';
+                } else if (strpos($searchTerm, '해결') !== false) {
+                    $searchTerm = '1';
+                } 
+                // $searchTerm = Carbon::createFromFormat('Ymd', $searchTerm)->format('Y-m-d');
+                // Log::debug($searchTerm);
+                $boardQuestionDataQuery->where(function ($query) use ($searchTerm) {
+                    $query->orWhere('BoardFlg', 'LIKE', "%{$searchTerm}%");
+                });
+            }
         }
 
         $BoardData = $boardQuestionDataQuery->paginate(10);
@@ -174,13 +233,44 @@ class InstructorController extends Controller
                 ->orderBy('boards.created_at', 'desc');
         }
 
+        // if ($request->has('search')) {
+        //     $searchTerm = $request->input('search');
+        //     $boardQuestionDataQuery->where(function ($query) use ($searchTerm) {
+        //         $query->orWhere('BoardTitle', 'LIKE', "%{$searchTerm}%")
+        //             ->orWhere('BoardComment', 'LIKE', "%{$searchTerm}%")
+        //             ->orWhere('BoardID', 'LIKE', "%{$searchTerm}%");
+        //     });
+        // }
+
+        $searchPicked = $request->searchPicked;
+                
         if ($request->has('search')) {
+            // Log::debug('오냐');
             $searchTerm = $request->input('search');
-            $boardQuestionDataQuery->where(function ($query) use ($searchTerm) {
-                $query->orWhere('BoardTitle', 'LIKE', "%{$searchTerm}%")
-                    ->orWhere('BoardComment', 'LIKE', "%{$searchTerm}%")
-                    ->orWhere('BoardID', 'LIKE', "%{$searchTerm}%");
-            });
+            // Log::debug($searchPicked);
+            if($searchPicked == 1) {
+                $boardQuestionDataQuery->where(function ($query) use ($searchTerm) {
+                    $query->orWhere('UserID', 'LIKE', "%{$searchTerm}%");
+                });
+            } else if($searchPicked == 2) {
+
+                // Log::debug($searchTerm);
+                $boardQuestionDataQuery->where(function ($query) use ($searchTerm) {
+                    $query->orWhere('BoardTitle', 'LIKE', "%{$searchTerm}%");
+                });
+            } else if($searchPicked == 3) {
+
+              if (strpos($searchTerm, '미해결') !== false) {
+                    $searchTerm = '0';
+                } else if (strpos($searchTerm, '해결') !== false) {
+                    $searchTerm = '1';
+                } 
+                // $searchTerm = Carbon::createFromFormat('Ymd', $searchTerm)->format('Y-m-d');
+                // Log::debug($searchTerm);
+                $boardQuestionDataQuery->where(function ($query) use ($searchTerm) {
+                    $query->orWhere('BoardFlg', 'LIKE', "%{$searchTerm}%");
+                });
+            }
         }
 
         $BoardData = $boardQuestionDataQuery->paginate(10);
@@ -237,9 +327,9 @@ class InstructorController extends Controller
 
     public function instructoruserstatedata(Request $request) {
         $instructorId = Auth::guard('admin')->id();
-
+        
         $adminChk = Instructor::where('InstructorID', $instructorId)->where('InstructorFlg', 1)->first();
-
+        
         if($adminChk) {
             $userStateDataQuery = UserStatus::select(
                 'UserStatusID',
@@ -248,21 +338,51 @@ class InstructorController extends Controller
                 'SuspensionType',
                 'SuspendedUntil',
                 'created_at'
-            )
-            ->addSelect(DB::raw('(
-                SELECT COUNT(*)
-                FROM user_statuses t2
-                WHERE t2.UserID = user_statuses.UserID AND t2.created_at <= user_statuses.created_at
-            ) as status_count'))
-            ->orderBy('created_at', 'desc');
-        }
-        
+                )
+                ->addSelect(DB::raw('(
+                    SELECT COUNT(*)
+                    FROM user_statuses t2
+                    WHERE t2.UserID = user_statuses.UserID AND t2.created_at <= user_statuses.created_at
+                    ) as status_count'))
+                    ->orderBy('created_at', 'desc');
+                }
+                
         // if ($request->has('search')) {
             //     $searchTerm = $request->input('search');
             //     $userStateDataQuery->where(function ($query) use ($searchTerm) {
                 //         $query->where('UserID', $searchTerm);
                 //     });
                 // }
+                
+        $searchPicked = $request->searchPicked;
+                
+        if ($request->has('search')) {
+            // Log::debug('오냐');
+            $searchTerm = $request->input('search');
+            // Log::debug($searchPicked);
+            if($searchPicked == 1) {
+                $userStateDataQuery->where(function ($query) use ($searchTerm) {
+                    $query->orWhere('UserID', 'LIKE', "%{$searchTerm}%");
+                });
+            } else if($searchPicked == 2) {
+                if (strpos($searchTerm, '임시') !== false) {
+                    $searchTerm = '1';
+                } else if (strpos($searchTerm, '영구') !== false) {
+                    $searchTerm = '2';
+                }
+                // Log::debug($searchTerm);
+                $userStateDataQuery->where(function ($query) use ($searchTerm) {
+                    $query->orWhere('SuspensionType', 'LIKE', "%{$searchTerm}%");
+                });
+            } else if($searchPicked == 3) {
+                // $searchTerm = Carbon::createFromFormat('Ymd', $searchTerm)->format('Y-m-d');
+                // Log::debug($searchTerm);
+                $userStateDataQuery->where(function ($query) use ($searchTerm) {
+                    $query->orWhere('created_at', 'LIKE', "%{$searchTerm}%");
+                });
+            }
+        }
+        
         $userStateData = $userStateDataQuery->paginate(10);
         
         return response()->json([
@@ -391,13 +511,32 @@ class InstructorController extends Controller
         //     ->groupBy('class_infos.ClassID', 'class_infos.CategoryID', 'class_infos.ClassDifficultyID', 'class_infos.ClassTitle', 'class_infos.ClassPrice')
         //     ->orderByDesc('class_infos.created_at');
         
-        if ($request->filled('search')) {
+        // if ($request->filled('search')) {
+        //     $searchTerm = $request->input('search');
+        //     $ClassDataQuery->where(function ($query) use ($searchTerm) {
+        //         $query->orWhere('class_infos.ClassTitle', 'LIKE', "%{$searchTerm}%")
+        //             ->orWhere('class_infos.ClassID', 'LIKE', "%{$searchTerm}%");
+        //     });
+        // }
+
+
+        $searchPicked = $request->searchPicked;
+                
+        if ($request->has('search')) {
+            // Log::debug('오냐');
             $searchTerm = $request->input('search');
-            $ClassDataQuery->where(function ($query) use ($searchTerm) {
-                $query->orWhere('class_infos.ClassTitle', 'LIKE', "%{$searchTerm}%")
-                    ->orWhere('class_infos.ClassID', 'LIKE', "%{$searchTerm}%");
-            });
+            // Log::debug($searchPicked);
+            if($searchPicked == 1) {
+                $ClassDataQuery->where(function ($query) use ($searchTerm) {
+                    $query->orWhere('class_infos.ClassTitle', 'LIKE', "%{$searchTerm}%");
+                });
+            } else if($searchPicked == 2) {
+                $ClassDataQuery->where(function ($query) use ($searchTerm) {
+                    $query->orWhere('class_infos.ClassPrice', 'LIKE', "%{$searchTerm}%");
+                });
+            }
         }
+        
         
         $ClassData = $ClassDataQuery->paginate(10);
 
@@ -683,7 +822,7 @@ class InstructorController extends Controller
         $userEnrollmentData = Enrollment::select('users.UserID', 'users.UserEmail', 'users.UserName', 'users.UserPhoneNumber', 'users.UserBirthDate', 'users.created_at','enrollments.ClassID')
             ->join('users', 'enrollments.UserID', 'users.UserID')
             ->where('enrollments.ClassID', $ClassID)
-            ->paginate(10);
+            ->paginate(20);
 
         return response()->json([
             'userEnrollmentData' => $userEnrollmentData,
