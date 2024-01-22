@@ -25,6 +25,7 @@ return new class extends Migration
             // $table->integer('BoardRecommended')->default(0);
             // $table->integer('BoardNotRecommended')->default(0);
             $table->char('BoardFlg', 1)->default(0);
+            $table->char('BoardInstructorFlg', 1)->default(0);
             $table->timestamps();
             $table->softDeletes();
         });

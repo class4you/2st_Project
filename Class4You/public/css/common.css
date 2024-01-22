@@ -5870,6 +5870,7 @@ background-color: rgba(225, 223, 234, 0.224);
 
 
 .dashboard_recent_learning_class_box {
+    gap: 3.5px;
     margin-top: 20px;
     width: 100%;
     border: 1px solid #e2e2e2;
@@ -5935,7 +5936,7 @@ background-color: rgba(225, 223, 234, 0.224);
 
 .recent_learning_class_content p{
     display: -webkit-box;
-    -webkit-line-clamp: 2;
+    -webkit-line-clamp: 1;
     -webkit-box-orient: vertical;
     white-space: normal;
 }

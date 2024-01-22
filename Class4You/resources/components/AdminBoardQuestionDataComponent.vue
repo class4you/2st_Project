@@ -393,6 +393,7 @@
                                         <col style="width: 5%;">
                                         <col style="width: 5%;">
                                         <col style="width: 5%;">
+                                        <col style="width: 5%;">
                                     </colgroup>
                                     <thead>
                                         <tr>
@@ -404,6 +405,7 @@
                                             <th>생성날짜</th>
                                             <th>해결유무</th>
                                             <th>게시물상태</th>
+                                            <th>답변유무</th>
                                             <th>답변하기</th>
                                         </tr>
                                     </thead>
@@ -417,6 +419,7 @@
                                             <th>{{ datas.created_at }}</th>
                                             <th>{{ datas.BoardFlg == 0 ? '미해결' : datas.BoardFlg == 1 ? '해결' : '상태를 확인할 수 없음' }}</th>
                                             <th>{{ datas.deleted_at == null ? '미삭제' : datas.deleted_at !== null ? '삭제' : '상태를 확인할 수 없음' }}</th>
+                                            <th>{{ datas.BoardInstructorFlg == 0 ? '미해결' : datas.BoardInstructorFlg == 1 ? '해결' : '상태를 확인할 수 없음' }}</th>
                                             <th><button type="button" @click="handleModalClick(datas.BoardID)" style="padding: 0px 8px; border-radius: 3px; background-color: rgb(255, 95, 127); color: #fff; border: none;">답변하기</button></th>
                                            
                                         </tr>
