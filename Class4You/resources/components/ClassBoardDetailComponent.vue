@@ -39,7 +39,7 @@
                                             <!-- <span>☆</span> -->
                                             <!-- <span>☆</span> -->
                                             <!-- <span>☆</span> -->
-                                            <span style="margin-right: 3px;">⭐평점</span>
+                                            <span>⭐평점</span>
 											<span>{{ classRatingData }}.0</span>
                                         </div>
                                     </div>

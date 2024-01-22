@@ -421,7 +421,7 @@
                                             <th>{{ datas.deleted_at == null ? '미삭제' : datas.deleted_at !== null ? '삭제' : '상태를 확인할 수 없음' }}</th>
                                             <th>{{ datas.BoardInstructorFlg == 0 ? '미해결' : datas.BoardInstructorFlg == 1 ? '해결' : '상태를 확인할 수 없음' }}</th>
                                             <th><button type="button" @click="handleModalClick(datas.BoardID)" style="padding: 0px 8px; border-radius: 3px; background-color: rgb(255, 95, 127); color: #fff; border: none;">답변하기</button></th>
-                                           
+                                        
                                         </tr>
                                     </tbody>
                                     
@@ -458,8 +458,9 @@
                                                     </button>
                                                 </div>
 
-                                            
-                                                <textarea v-model="questionAnswerData.CommentContent"></textarea>
+                                                <div style="padding: 50px 10px;">
+                                                    <textarea v-model="questionAnswerData.CommentContent"></textarea>
+                                                </div>
                                                     <!-- <textarea></textarea> -->
                                                 <div class="admin_class_user_data_modal-container-footer">
                                                     <button @click="submitAnswer()"  class="admin_class_user_data_button admin_class_user_data_is-primary">전송</button>
@@ -729,9 +730,10 @@ export default {
     display: flex; 
     flex-direction: column;
     flex-wrap: wrap;
-    width: 50%;
-    margin-left: 25%;
-    margin-top: 15%;
+    width: 30%;
+    /* margin-left: 25%; */
+    /* margin-top: 15%; */
+    margin: auto;
 }
 
 .admin_modal_content_label {
@@ -740,14 +742,16 @@ export default {
 }
 
 .admin_modal_content_text {
-  border: 1px solid rgba(89 90 91 / 30%);
-  border-radius: 5px;
-  height: 30vh;
-  padding: 10px;
-  background-color: #ffffff;
-  display: flex;
+    border: 1px solid rgba(89 90 91 / 30%);
+  /* border-radius: 5px; */
+  /* height: 30vh; */
+    padding: 10px;
+    background-color: #ffffff;
+    display: flex;
     flex-direction: column;
     border-radius: 20px;
+    margin-top: 30%;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23)
 }
 
 .admin_modal_content_text_btn>button {
@@ -758,16 +762,18 @@ export default {
     font-size: 13px;
 }
 
-.admin_modal_content_text>textarea {
+.admin_modal_content_text>div>textarea {
     background-color: #fff;
     border: none;
     resize: none;
     padding: 10px;
     width: 100%;
-    height: 100%;
+    height: 300px;
     overflow: hidden;
     border-radius: 5px;
-  /* position: relative;
+    border: 1px solid #ddd;
+    margin: 10px 0px;
+    /* position: relative;
     top: 50%;
     right: 50%; */
 }
