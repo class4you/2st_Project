@@ -722,7 +722,7 @@ class InstructorController extends Controller
         $classTopData = Enrollment::select('ClassID', \DB::raw('COUNT(UserID) as user_count'))
             ->groupBy('ClassID')
             ->orderByDesc('user_count')
-            ->limit(8)
+            ->limit(6)
             ->get();
             // Log::debug($classTopData);
         // ========================

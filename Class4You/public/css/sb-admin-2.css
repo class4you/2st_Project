@@ -10896,6 +10896,11 @@ form.user .form-control-user {
   background-color: #ededed;
 }
 
+.form-control:focus {
+  background-color: #fff !important;
+  color: #000 !important;
+}
+
 form.user .btn-user {
   font-size: 0.8rem;
   border-radius: 1rem;
