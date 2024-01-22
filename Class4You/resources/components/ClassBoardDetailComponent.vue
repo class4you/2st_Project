@@ -991,7 +991,7 @@
 										<p>✔강사 답변 보기</p>
 									</summary>
 									<div class="class_detail_community_instructor_answer_comment">
-										<p style="line-height: 30px;">{{item.CommentContent}}</p>
+										<p style="line-height: 30px; white-space: pre-wrap;">{{item.CommentContent}}</p>
 									</div>
 								</details>
 								<div v-if="item.CommentContent == null">

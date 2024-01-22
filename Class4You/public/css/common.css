@@ -2423,7 +2423,7 @@ ul.class_tabs li.class_current {
     /* background-color: #f8f9fa; */
     /* border-radius: 5px; */
     padding: 10px 15px;
-    margin: 10px 15px 10px 15px;
+    margin: 0px 15px 10px 15px;
     /* line-height: 30px; */
     /* opacity: 0.7; */
 }
@@ -2436,7 +2436,10 @@ ul.class_tabs li.class_current {
     color: #9b9898;
     font-size: 15px;
     font-weight: bold;
-    padding: 0 8px;
+    padding: 8px;
+    /* border: 1px solid #ededed;
+    margin: 10px;
+    border-radius: 5px; */
 }
 
 .class_detail_community_instructor_answer_comment {
@@ -2558,7 +2561,7 @@ ul.class_tabs li.class_current {
 
 .class_detail_commu_list_text_board_comment {
     padding: 15px 10px;
-    /* margin: 7px; */
+    margin: 7px;
     /* border: 1px solid #ededed; */
     /* border-radius: 5px; */
     /* white-space: pre; */
@@ -3120,6 +3123,7 @@ progress[value]::-webkit-progress-bar{
     color: #fff;
     cursor: pointer;
     opacity: 0.7;
+    font-size: 13px;
 }
 
 .class_detail_watch_side_classnote_list_btn_up>button:hover {
@@ -3134,6 +3138,7 @@ progress[value]::-webkit-progress-bar{
     color: #fff;
     cursor: pointer;
     opacity: 0.7;
+    font-size: 13px;
 }
 
 .class_detail_watch_side_classnote_list_btn_del>button:hover {
