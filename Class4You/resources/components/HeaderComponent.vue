@@ -247,6 +247,7 @@ export default {
             location.href='/logout/kakao/callback';
         },
         findPassword() {
+            this.$store.state.loginShowModal = false;
             Swal.fire({
                 icon: 'info', // 추가: 아이콘 설정
                 title: '이메일 입력',

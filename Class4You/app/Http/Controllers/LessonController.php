@@ -60,7 +60,7 @@ class LessonController extends Controller
         
         // 모든 강의가 완료되었다면 챕터 플래그를 1로 업데이트
         if ($allLessonsCompleted) {
-            ChapterState::where('ChapterStateID', $ChapterStateID)
+            $aaa = ChapterState::where('ChapterStateID', $ChapterStateID)
                 ->where('EnrollmentID', $EnrollmentID)  
                 ->update(['ChapterFlg' => '1']);
             
@@ -79,6 +79,7 @@ class LessonController extends Controller
             if ($allChaptersCompleted) {
                 Enrollment::where('EnrollmentID', $EnrollmentDataID)
                     ->update(['EnrollmentFlg' => '1']);
+                    Log::debug('오냐');
             }
             // Log::debug($allLessonsCompleted);
         }
