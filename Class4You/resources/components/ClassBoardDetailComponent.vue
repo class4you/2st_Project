@@ -989,7 +989,7 @@
 										<p>✔강사 답변 보기</p>
 									</summary>
 									<div class="class_detail_community_instructor_answer_comment">
-										<p style="line-height: 30px; white-space: pre-wrap; color: #000;">{{item.CommentContent}}</p>
+										<p style="line-height: 30px;  color: #000;">{{item.CommentContent}}</p>
 									</div>
 								</details>
 							</div>
