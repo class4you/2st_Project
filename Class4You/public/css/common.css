@@ -225,13 +225,13 @@ header .navigation {
         display: none;
     } */
 
-    .side_nav a {
+    /* .side_nav a {
         display: none;
     }
 
     .side_nav input {
         display: none;
-    }
+    } */
 
     /* .menu_btn {
         display: flex;
@@ -1645,7 +1645,7 @@ th:last-child, td:last-child {
     display: flex;
     flex-direction: column;
     padding: 20px 0px;
-    /* flex-basis: 58.33333333%; */
+    flex-basis: 58.33333333% !important;
     max-width: 60%;
     justify-content: center;
 }
@@ -1741,6 +1741,7 @@ th:last-child, td:last-child {
     font-weight: 500;
     font-size: 15px;
     word-break: break-word;
+    white-space: pre-wrap !important;
 }
 
 .class_detail_container_r_info_star_box {

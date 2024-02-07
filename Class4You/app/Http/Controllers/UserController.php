@@ -273,7 +273,7 @@ class UserController extends Controller
                     $randomValue = $characters[rand(0, 25)];  // 영어 대문자
                     $randomValue .= $characters[rand(26, 51)];  // 영어 소문자
                     $randomValue .= $characters[rand(52, 61)];  // 숫자
-                    $randomValue .= $characters[rand(62, 65)];  // 특수문자
+                    $randomValue .= $characters[rand(62, 64)];  // 특수문자
                     
                     // 나머지 글자를 랜덤하게 채우기
                     while(strlen($randomValue) < 8) {
