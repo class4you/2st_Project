@@ -425,7 +425,6 @@ class UserSeeder extends Seeder
         $koreanName = $randomSurname . $randomFirstName;
     
         return $koreanName;
-        
     }
 
     function generateRandomKoreanPhoneNumber() {
