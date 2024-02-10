@@ -419,6 +419,7 @@ class UserSeeder extends Seeder
         
         // 랜덤으로 성과 이름 선택
         $randomSurname = $surnames[array_rand($surnames)];
+        
         $randomFirstName = $firstNames[array_rand($firstNames)];
     
         // 랜덤한 한국인 이름 생성
