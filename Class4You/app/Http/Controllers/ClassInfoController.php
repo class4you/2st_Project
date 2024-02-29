@@ -108,7 +108,6 @@ class ClassInfoController extends Controller
 
     // 1단계 클래스 가져오기
     // private function getDataForFirstSection() {
-
     //     return ClassInfo::where('ClassDifficultyID', 1)->take(4)->get();
     // }
     

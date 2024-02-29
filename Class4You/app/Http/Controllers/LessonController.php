@@ -68,7 +68,7 @@ class LessonController extends Controller
                 Log::debug('업데이트 확인'.$ChapterStateID);
             // 해당 강의의 모든 챕터가 1인지 확인
             $EnrollmentDataID = ChapterState::where('ChapterStateID', $ChapterStateID)->value('EnrollmentID');
-            
+
             // Log::debug($EnrollmentDataID);
             
             $allChaptersCompleted = ChapterState::where('EnrollmentID', $EnrollmentDataID)
